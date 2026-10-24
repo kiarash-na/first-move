@@ -60,7 +60,7 @@
     "notice": {
       "changed-elsewhere": "This project was changed in another tab. You now see the latest version.",
       "conflict": "This project was also changed in another tab. Your version is kept, and the other one is saved as a snapshot.",
-      "deleted-elsewhere": "This project was deleted in another tab. Any unsaved changes are kept as a snapshot.",
+      "deleted-elsewhere": "This project was deleted in another tab, so it was closed here.",
       "export-reminder": "Your project is stored only in this browser. Export a copy to keep it safe.",
       "recovered": "Projects restored from a backup copy: {count}",
       "unreadable": "Stored projects that could not be read and were left unchanged: {count}",
@@ -176,7 +176,7 @@
   },
   "delete": {
     "title": "Delete “{name}”?",
-    "body": "The project is removed from this browser. You can undo this right away, and an earlier version is kept for a while.",
+    "body": "The project is removed from this browser. You can undo this only right after deleting, while the message is shown. Export it first to keep a copy.",
     "confirm": "Delete project",
     "cancel": "Cancel",
     "done": "“{name}” was deleted",

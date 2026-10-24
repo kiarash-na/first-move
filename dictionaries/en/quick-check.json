@@ -484,6 +484,12 @@
         "over": "{value} too much. Reduce the shares to 100 %."
       },
       "clear": "Clear all shares",
+      "confirmClear": {
+        "title": "Clear all shares?",
+        "body": "All 25 share values on this step are removed. This cannot be undone.",
+        "cancel": "Keep them",
+        "clear": "Clear shares"
+      },
       "industry": "Industry has no default values. Any industry share leads to “Further analysis required”."
     },
     "sources": {

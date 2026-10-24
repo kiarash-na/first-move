@@ -2,9 +2,10 @@
 
 import { CoinsIcon, FlameIcon, LandmarkIcon, ReceiptTextIcon, SnowflakeIcon, type LucideIcon } from "lucide-react"
 
+import { formatIndicator } from "@/lib/dashboard/indicator-format"
 import { splitUnit } from "@/lib/dashboard/overview"
 import { indicatorEffect } from "@/lib/dashboard/indicator-effect"
-import { formatEnergy, formatEur, formatPercent } from "@/lib/i18n/format"
+import { formatEnergy, formatEur } from "@/lib/i18n/format"
 import { interpolate } from "@/lib/i18n/interpolate"
 import { explainResult, type QuickCheckComplete } from "@/lib/quick-check"
 import { CalcInfo } from "../../../_components/how-we-calculate"
@@ -40,7 +41,7 @@ export function KpiGrid({ result }: { result: QuickCheckComplete }) {
         icon={icon}
         tone={demand === "heating" ? "hot" : "cool"}
         label={label}
-        value={value === null ? qc.results.classes.notRelevant.label : formatPercent(value, lang)}
+        value={value === null ? qc.results.classes.notRelevant.label : formatIndicator("coverage", value, lang)}
         status={
           <>
             <EffectMark effect={effect} />

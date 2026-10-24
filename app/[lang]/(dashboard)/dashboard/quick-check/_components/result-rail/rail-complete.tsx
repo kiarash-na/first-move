@@ -3,9 +3,9 @@
 import { ArrowRightIcon, LockIcon } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { formatIndicator } from "@/lib/dashboard/indicator-format"
 import { indicatorEffect } from "@/lib/dashboard/indicator-effect"
 import { dashboardHref } from "@/lib/dashboard/routes"
-import { formatNumber, formatPercent } from "@/lib/i18n/format"
 import { interpolate } from "@/lib/i18n/interpolate"
 import { DEMANDS, explainResult, type QuickCheckComplete } from "@/lib/quick-check"
 import { CustomParametersBadge } from "../../../_components/custom-parameters-badge"
@@ -51,7 +51,7 @@ export function RailComplete({ result, headingId }: { result: QuickCheckComplete
             <RailIndicator
               key={demand}
               label={`${rail.indicators.coverage} · ${copy.results.demands[demand].label}`}
-              value={value === null ? classes.notRelevant.label : formatPercent(value, lang)}
+              value={value === null ? classes.notRelevant.label : formatIndicator("coverage", value, lang)}
               detail={coverageClass ? classes.coverage[coverageClass].label : undefined}
               effect={indicatorEffect(drivers, demand === "heating" ? "heating_coverage" : "cooling_coverage")}
               explain={explainResult(key, flags)}
@@ -60,14 +60,14 @@ export function RailComplete({ result, headingId }: { result: QuickCheckComplete
         })}
         <RailIndicator
           label={rail.indicators.buildingDensity}
-          value={`${formatNumber(values.buildingDensity, lang, { maximumFractionDigits: 1 })} ${units.densityUnit}`}
+          value={`${formatIndicator("buildingDensity", values.buildingDensity, lang)} ${units.densityUnit}`}
           detail={classes.buildingDensity[result.classes.buildingDensity].label}
           effect={indicatorEffect(drivers, "building_density")}
           explain={explainResult("buildingDensity", flags)}
         />
         <RailIndicator
           label={rail.indicators.heatDensity}
-          value={`${formatNumber(values.heatDensityMwhPerM, lang, { maximumFractionDigits: 2 })} ${units.heatUnit}`}
+          value={`${formatIndicator("heatDensity", values.heatDensityMwhPerM, lang)} ${units.heatUnit}`}
           detail={classes.heatDensity[result.classes.heatDensity].label}
           effect={indicatorEffect(drivers, "heat_density")}
           explain={explainResult("heatDensityMwhPerM", flags)}
@@ -77,7 +77,7 @@ export function RailComplete({ result, headingId }: { result: QuickCheckComplete
           value={
             values.economicRatio === null
               ? classes.notApplicable.label
-              : interpolate(units.ratio, { value: formatNumber(values.economicRatio, lang, { maximumFractionDigits: 2 }) })
+              : interpolate(units.ratio, { value: formatIndicator("economic", values.economicRatio, lang) })
           }
           detail={result.classes.economic ? classes.economic[result.classes.economic].label : undefined}
           effect={indicatorEffect(drivers, "economics")}

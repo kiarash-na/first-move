@@ -27,6 +27,26 @@ describe("useNumberDraft", () => {
     expect(result.current).toMatchObject({ text: "8", error: null })
   })
 
+  it("puts the pre-edit value back when the typed text is rejected", () => {
+    const commit = vi.fn((next: number | string | null) => (typeof next === "number" && next > 100_000 ? [error] : []))
+    const { result, rerender } = renderHook(({ value }) => useNumberDraft(value, "en", commit), { initialProps: { value: 42 as number | null } })
+    let stored: number | string | null = 42
+    for (const text of ["1", "10", "100", "1000", "10000", "100001"]) {
+      // The store applies the patch in the same event, as the real one does.
+      act(() => {
+        result.current.change(text)
+        stored = commit.mock.lastCall![0]
+        rerender({ value: stored as number })
+      })
+    }
+    expect(stored).toBe(42)
+    expect(result.current).toMatchObject({ text: "100001", error })
+    act(() => result.current.blur())
+    // A new edit starts from the restored value.
+    act(() => result.current.change("7"))
+    expect(commit).toHaveBeenLastCalledWith(7)
+  })
+
   it("reformats when the language changes", () => {
     const { result, rerender } = renderHook(({ lang }) => useNumberDraft(1234.5, lang, () => []), { initialProps: { lang: "en" as "en" | "de" } })
     expect(result.current.text).toBe("1,234.5")

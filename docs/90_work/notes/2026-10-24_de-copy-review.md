@@ -28,10 +28,10 @@ Things to check in the translation pass, not just the keys:
 | [common](#common) | 20 | 9 | 55 % |
 | [landing](#landing) | 204 | 188 | 8 % |
 | [overview](#overview) | 116 | 116 | 0 % |
-| [quick-check](#quick-check) | 270 | 270 | 0 % |
+| [quick-check](#quick-check) | 274 | 274 | 0 % |
 | [shell](#shell) | 162 | 158 | 2 % |
 | [start](#start) | 50 | 49 | 2 % |
-| **All** | **1263** | **1230** | **3 %** |
+| **All** | **1267** | **1234** | **3 %** |
 
 ## assumptions
 
@@ -1178,7 +1178,7 @@ Things to check in the translation pass, not just the keys:
 
 ## quick-check
 
-270 of 270 keys missing (`dictionaries/de/quick-check.json`).
+274 of 274 keys missing (`dictionaries/de/quick-check.json`).
 
 **`fields.buildings`** (6)
 
@@ -1531,7 +1531,7 @@ Things to check in the translation pass, not just the keys:
 - `ui.area.densityUnit`
 - `ui.area.pending`
 
-**`ui.buildings`** (12)
+**`ui.buildings`** (16)
 
 - `ui.buildings.periods`
 - `ui.buildings.types`
@@ -1544,6 +1544,10 @@ Things to check in the translation pass, not just the keys:
 - `ui.buildings.state.exact`
 - `ui.buildings.state.over`
 - `ui.buildings.clear`
+- `ui.buildings.confirmClear.title`
+- `ui.buildings.confirmClear.body`
+- `ui.buildings.confirmClear.cancel`
+- `ui.buildings.confirmClear.clear`
 - `ui.buildings.industry`
 
 **`ui.sources`** (12)

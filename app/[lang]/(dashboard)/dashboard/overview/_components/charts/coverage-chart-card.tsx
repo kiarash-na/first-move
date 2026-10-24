@@ -2,6 +2,7 @@
 
 import { FlameIcon, SnowflakeIcon } from "lucide-react"
 
+import { formatIndicator } from "@/lib/dashboard/indicator-format"
 import { coverageRows } from "@/lib/dashboard/overview"
 import { indicatorEffect } from "@/lib/dashboard/indicator-effect"
 import { formatEnergy, formatPercent } from "@/lib/i18n/format"
@@ -44,7 +45,7 @@ export function CoverageChartCard({ result, className }: { result: QuickCheckCom
                 {qc.results.demands[row.demand].label}
               </span>
               <span className="inline-flex items-center gap-2">
-                <span className="font-mono text-xl leading-none tabular-nums">{row.coverage === null ? copy.notRelevant : formatPercent(row.coverage, lang)}</span>
+                <span className="font-mono text-xl leading-none tabular-nums">{row.coverage === null ? copy.notRelevant : formatIndicator("coverage", row.coverage, lang)}</span>
                 <EffectMark effect={effect} />
               </span>
             </div>
@@ -64,7 +65,7 @@ export function CoverageChartCard({ result, className }: { result: QuickCheckCom
     cells: [
       formatEnergy(row.supplyKwh, lang, { perYear: true }),
       formatEnergy(row.demandKwh, lang, { perYear: true }),
-      row.coverage === null ? copy.notRelevant : formatPercent(row.coverage, lang),
+      row.coverage === null ? copy.notRelevant : formatIndicator("coverage", row.coverage, lang),
     ],
   }))
 

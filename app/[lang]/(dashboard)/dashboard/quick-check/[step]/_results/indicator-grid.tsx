@@ -1,8 +1,9 @@
 "use client"
 
 import { Building2Icon, CoinsIcon, ScaleIcon, ThermometerIcon } from "lucide-react"
+import { formatIndicator } from "@/lib/dashboard/indicator-format"
 import { indicatorEffect } from "@/lib/dashboard/indicator-effect"
-import { formatNumber, formatQuantity } from "@/lib/i18n/format"
+import { formatQuantity } from "@/lib/i18n/format"
 import { interpolate } from "@/lib/i18n/interpolate"
 import { explainResult, type QuickCheckComplete } from "@/lib/quick-check"
 import { useDictionary, useLocale } from "../../../_components/i18n-provider"
@@ -34,7 +35,7 @@ export function IndicatorGrid({ result }: { result: QuickCheckComplete }) {
           id="buildingDensity"
           icon={Building2Icon}
           title={ui.buildingDensity}
-          value={formatNumber(values.buildingDensity, lang, { maximumFractionDigits: 1 })}
+          value={formatIndicator("buildingDensity", values.buildingDensity, lang)}
           unit={ui.densityUnit}
           classLabel={classes.buildingDensity[result.classes.buildingDensity].label}
           interpretation={classes.buildingDensity[result.classes.buildingDensity].interpretation}
@@ -47,7 +48,7 @@ export function IndicatorGrid({ result }: { result: QuickCheckComplete }) {
           id="heatDensity"
           icon={ThermometerIcon}
           title={ui.heatDensity}
-          value={formatNumber(values.heatDensityMwhPerM, lang, { maximumFractionDigits: 2 })}
+          value={formatIndicator("heatDensity", values.heatDensityMwhPerM, lang)}
           unit={ui.heatUnit}
           classLabel={classes.heatDensity[result.classes.heatDensity].label}
           interpretation={classes.heatDensity[result.classes.heatDensity].interpretation}
@@ -63,7 +64,7 @@ export function IndicatorGrid({ result }: { result: QuickCheckComplete }) {
           id="chRatio"
           icon={ScaleIcon}
           title={ui.chRatio}
-          value={formatNumber(values.chRatio, lang, { maximumFractionDigits: 2 })}
+          value={formatIndicator("chRatio", values.chRatio, lang)}
           classLabel={chClass ? classes.chRatio[chClass].label : notApplicable.label}
           interpretation={chClass ? classes.chRatio[chClass].interpretation : notApplicable.interpretation}
           effect={null}
@@ -75,7 +76,7 @@ export function IndicatorGrid({ result }: { result: QuickCheckComplete }) {
           id="economic"
           icon={CoinsIcon}
           title={ui.economic}
-          value={values.economicRatio === null ? notApplicable.label : interpolate(ui.ratio, { value: formatNumber(values.economicRatio, lang, { maximumFractionDigits: 2 }) })}
+          value={values.economicRatio === null ? notApplicable.label : interpolate(ui.ratio, { value: formatIndicator("economic", values.economicRatio, lang) })}
           classLabel={economic ? classes.economic[economic].label : notApplicable.label}
           interpretation={economic ? classes.economic[economic].interpretation : notApplicable.interpretation}
           effect={indicatorEffect(drivers, "economics")}

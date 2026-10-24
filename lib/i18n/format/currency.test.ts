@@ -19,6 +19,15 @@ describe("formatEur", () => {
     expect(plain(formatEur(1_250_000, "de", { compact: true }))).toBe("1,3 Mio. €")
   })
 
+  it("never shows tenths of a euro when the language does not abbreviate (D-21)", () => {
+    expect(plain(formatEur(89_577.5, "de", { compact: true }))).toBe("89.578 €")
+    expect(plain(formatEur(128_100.9, "de", { compact: true }))).toBe("128.101 €")
+    expect(plain(formatEur(631_083.3, "de", { compact: true }))).toBe("631.083 €")
+    expect(plain(formatEur(8712, "de", { compact: true }))).toBe("8.712 €")
+    expect(formatEur(128_100.9, "en", { compact: true })).toBe("€128.1K")
+    expect(formatEur(999.6, "en", { compact: true })).toBe("€1,000")
+  })
+
   it("formats negative amounts", () => {
     expect(formatEur(-500, "en")).toBe("-€500")
   })

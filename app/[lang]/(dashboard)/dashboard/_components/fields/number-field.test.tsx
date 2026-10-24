@@ -40,11 +40,12 @@ describe("NumberField (D-05, D-21)", () => {
     expect(de.current().quickCheck.networkLengthM).toBe(7.5)
   })
 
-  it("shows the applyPatch error and keeps the last valid value", async () => {
+  it("shows the applyPatch error and keeps the value from before the edit", async () => {
     const { store, current } = projectStore(emptyProject())
     renderDashboard(<NumberField field={field("buildings.total")} />, { store })
     const input = screen.getByRole("textbox")
     await userEvent.type(input, "4")
+    await userEvent.tab()
     await userEvent.type(input, ".5")
     expect(screen.getByRole("alert")).toHaveTextContent(shell.validation.integer)
     expect(input).toHaveAttribute("aria-invalid", "true")
@@ -55,6 +56,22 @@ describe("NumberField (D-05, D-21)", () => {
     await userEvent.clear(input)
     expect(screen.queryByRole("alert")).not.toBeInTheDocument()
     expect(current().buildings.total).toBeNull()
+  })
+
+  it("never keeps the prefix of a rejected number (100001 passes through 10000)", async () => {
+    const { store, current } = projectStore(emptyProject())
+    renderDashboard(<NumberField field={field("buildings.total")} />, { store })
+    const input = screen.getByRole("textbox")
+    await userEvent.type(input, "120")
+    await userEvent.tab()
+    await userEvent.clear(input)
+    await userEvent.type(input, "100001")
+    expect(screen.getByRole("alert")).toBeInTheDocument()
+    expect(input).toHaveValue("100001")
+    expect(current().buildings.total).toBe(120)
+    await userEvent.tab()
+    expect(input).toHaveValue("100001")
+    expect(current().buildings.total).toBe(120)
   })
 
   it("follows changes made elsewhere", () => {

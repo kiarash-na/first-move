@@ -2,8 +2,9 @@
 
 import { Building2Icon, CoinsIcon, PercentIcon, RulerIcon, ScaleIcon, ThermometerIcon, WrenchIcon, ZapIcon } from "lucide-react"
 
+import { formatIndicator } from "@/lib/dashboard/indicator-format"
 import { indicatorEffect } from "@/lib/dashboard/indicator-effect"
-import { formatEur, formatNumber, formatQuantity } from "@/lib/i18n/format"
+import { formatEur, formatQuantity } from "@/lib/i18n/format"
 import { interpolate } from "@/lib/i18n/interpolate"
 import { explainResult, type QuickCheckComplete } from "@/lib/quick-check"
 import { CalcInfo } from "../../../_components/how-we-calculate"
@@ -38,7 +39,7 @@ export function TileGrid({ result }: { result: QuickCheckComplete }) {
           id="buildingDensity"
           icon={Building2Icon}
           label={copy.buildingDensity}
-          value={formatNumber(values.buildingDensity, lang, { maximumFractionDigits: 1 })}
+          value={formatIndicator("buildingDensity", values.buildingDensity, lang)}
           unit={ui.indicators.densityUnit}
           detail={
             <>
@@ -52,7 +53,7 @@ export function TileGrid({ result }: { result: QuickCheckComplete }) {
           id="heatDensity"
           icon={ThermometerIcon}
           label={copy.heatDensity}
-          value={formatNumber(values.heatDensityMwhPerM, lang, { maximumFractionDigits: 2 })}
+          value={formatIndicator("heatDensity", values.heatDensityMwhPerM, lang)}
           unit={ui.indicators.heatUnit}
           detail={
             <>
@@ -66,7 +67,7 @@ export function TileGrid({ result }: { result: QuickCheckComplete }) {
           id="chRatio"
           icon={ScaleIcon}
           label={copy.chRatio}
-          value={formatNumber(values.chRatio, lang, { maximumFractionDigits: 2 })}
+          value={formatIndicator("chRatio", values.chRatio, lang)}
           detail={
             <>
               {chClass ? classes.chRatio[chClass].label : classes.notApplicable.label}
@@ -112,7 +113,7 @@ export function TileGrid({ result }: { result: QuickCheckComplete }) {
           id="economicRatio"
           icon={PercentIcon}
           label={copy.economicRatio}
-          value={values.economicRatio === null ? classes.notApplicable.label : interpolate(ui.indicators.ratio, { value: formatNumber(values.economicRatio, lang, { maximumFractionDigits: 2 }) })}
+          value={values.economicRatio === null ? classes.notApplicable.label : interpolate(ui.indicators.ratio, { value: formatIndicator("economic", values.economicRatio, lang) })}
           detail={
             <>
               <EffectMark effect={indicatorEffect(drivers, "economics")} />

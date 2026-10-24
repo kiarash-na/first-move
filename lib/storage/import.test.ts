@@ -104,6 +104,39 @@ describe("import: rejected files", () => {
     expect(result.errors.map((error) => error.path).sort()).toEqual(["exportedAt", "format"])
   })
 
+  it.each([["1"], [1.5], [null]])("names the field when the schema version is %j (never an empty list)", (version) => {
+    const project = { ...fixture, meta: { ...fixture.meta, schemaVersion: version } }
+    for (const text of [JSON.stringify(project), envelope(project)]) {
+      const result = parseImportText(text)
+      expect(result).toMatchObject({ ok: false, code: "invalid" })
+      if (!result.ok) expect(result.errors).toEqual([expect.objectContaining({ path: "meta.schemaVersion", code: "integer" })])
+    }
+  })
+
+  it("never fails as invalid without a listed field", () => {
+    const deep = `${"[".repeat(50_000)}${"]".repeat(50_000)}`
+    const results = [
+      parseImportText(envelope("not a project")),
+      parseImportText(`{"meta":{"schemaVersion":1},"site":${deep}}`),
+    ]
+    for (const result of results) {
+      expect(result.ok).toBe(false)
+      if (!result.ok && result.code === "invalid") expect(result.errors.length).toBeGreaterThan(0)
+    }
+  })
+
+  it("clips file-controlled paths and messages of listed fields", () => {
+    const key = `<img src=x onerror=1>${"K".repeat(100_000)}`
+    const result = parseImportText(JSON.stringify({ ...fixture, site: { ...fixture.site, [key]: 1 } }))
+    expect(result).toMatchObject({ ok: false, code: "invalid" })
+    if (result.ok) return
+    for (const error of result.errors) {
+      expect(error.path.length).toBeLessThanOrEqual(80)
+      expect(error.message.length).toBeLessThanOrEqual(80)
+    }
+    expect(result.errors[0]!.path).toMatch(/^site\.<img src=x onerror=1>K+…$/)
+  })
+
   it("has copy codes for every failure", () => {
     expect(new Set(IMPORT_ERROR_CODES).size).toBe(IMPORT_ERROR_CODES.length)
   })

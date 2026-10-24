@@ -28,4 +28,15 @@ describe("CoverageCard (QCT-KF-03/04)", () => {
     expect(screen.getByText(quickCheck.results.classes.notRelevant.label)).toBeInTheDocument()
     expect(screen.getAllByText(quickCheck.ui.results.coverage.manual).length).toBeGreaterThan(0)
   })
+
+  it("never shows a number on the other side of its class edge (TBL-7, QCT-KF-03)", () => {
+    const supply = setup().result.values.heatingSupplyKwh
+    const { project, result } = setup({ "quickCheck.manualDemand.heatingKwhPerYear": Math.round(supply / 0.9976) })
+    expect(result.values.heatingCoverage).toBeGreaterThan(0.997)
+    expect(result.values.heatingCoverage).toBeLessThan(1)
+    renderDashboard(<CoverageCard demand="heating" result={result} />, { store: projectStore(project).store })
+    expect(screen.getByText("99%")).toBeInTheDocument()
+    expect(screen.queryByText("100%")).toBeNull()
+    expect(screen.getByText(quickCheck.results.classes.coverage.conditionally_feasible.label)).toBeInTheDocument()
+  })
 })

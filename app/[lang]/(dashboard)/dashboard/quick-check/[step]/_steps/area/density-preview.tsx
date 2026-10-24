@@ -1,7 +1,7 @@
 "use client"
 
 import { Building2Icon, MapIcon } from "lucide-react"
-import { formatNumber } from "@/lib/i18n/format"
+import { formatIndicator } from "@/lib/dashboard/indicator-format"
 import { areaPreview, DENSITY_CLASSES, RESULT_EXPLAIN } from "@/lib/quick-check"
 import { cn } from "@/lib/utils"
 import { CalcInfo } from "../../../../_components/how-we-calculate"
@@ -36,7 +36,7 @@ export function DensityPreview() {
               <CalcInfo source={RESULT_EXPLAIN.buildingDensity} label={copy.ui.area.density} className="-m-2.5" />
             </div>
             <p className="font-mono text-2xl tracking-[-0.02em] tabular-nums">
-              {formatNumber(preview.buildingDensity, lang, { maximumFractionDigits: 1 })}
+              {formatIndicator("buildingDensity", preview.buildingDensity, lang)}
               <span className="ml-2 text-xs tracking-[0.04em] text-muted-foreground uppercase">{copy.ui.area.densityUnit}</span>
             </p>
             <ol className="grid grid-cols-3 gap-1" aria-label={copy.results.classes.buildingDensity[preview.densityClass].label}>

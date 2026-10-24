@@ -22,7 +22,7 @@ export function ShareGrid({ group, sum }: { group: FieldGroup; sum: ShareSum }) 
   const header = "hidden gap-x-2 px-3 font-mono text-xs tracking-[0.04em] text-muted-foreground uppercase @xl:grid"
 
   return (
-    <section aria-labelledby="share-grid-title" data-slot="share-grid" className="flex flex-col gap-4">
+    <section aria-labelledby="share-grid-title" data-slot="share-grid" className="flex flex-col gap-4 [&_input]:scroll-mb-44">
       <div className="flex max-w-[64ch] flex-col gap-1.5">
         <h2 id="share-grid-title" className="text-lg leading-tight font-[560] tracking-[-0.03em] [font-stretch:86%]">
           {text(group.text)}

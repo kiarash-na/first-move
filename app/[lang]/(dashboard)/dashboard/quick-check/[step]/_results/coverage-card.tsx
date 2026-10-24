@@ -1,8 +1,9 @@
 "use client"
 
 import { FlameIcon, SnowflakeIcon } from "lucide-react"
+import { formatIndicator } from "@/lib/dashboard/indicator-format"
 import { indicatorEffect } from "@/lib/dashboard/indicator-effect"
-import { formatEnergy, formatPercent } from "@/lib/i18n/format"
+import { formatEnergy } from "@/lib/i18n/format"
 import { explainResult, type Demand, type QuickCheckComplete } from "@/lib/quick-check"
 import { cn } from "@/lib/utils"
 import { CalcInfo } from "../../../_components/how-we-calculate"
@@ -43,7 +44,7 @@ export function CoverageCard({ demand, result }: { demand: Demand; result: Quick
       </header>
       <div className="flex items-end justify-between gap-4">
         <p className="font-mono text-[clamp(30px,3.2vw,40px)] leading-none tracking-[-0.03em] tabular-nums">
-          {formatPercent(value, lang)}
+          {formatIndicator("coverage", value, lang)}
         </p>
         <span className="inline-flex items-center gap-2 pb-0.5 text-right text-sm leading-tight">
           {classCopy.label}

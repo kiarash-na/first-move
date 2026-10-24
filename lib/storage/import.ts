@@ -78,11 +78,19 @@ const fail = (code: ImportErrorCode, params: ImportFailure["params"] = {}, all: 
 const isObject = (value: unknown): value is Record<string, unknown> =>
   typeof value === "object" && value !== null && !Array.isArray(value)
 
-/** Adds the registry label to an error path, when the path is (inside) an input. */
+/** Longest path or message of a listed error; file-controlled text (an unknown key) is cut there. */
+export const IMPORT_MAX_ERROR_TEXT = 80
+
+const clip = (text: string): string => (text.length > IMPORT_MAX_ERROR_TEXT ? `${text.slice(0, IMPORT_MAX_ERROR_TEXT - 1)}…` : text)
+
+/** Adds the registry label to an error path, when the path is (inside) an input, and clips what the file controls. */
 function withLabel(error: PatchError): ImportFieldError {
   const target = resolvePatchPath(error.path)
-  return { ...error, text: "field" in target ? target.field.text : null }
+  return { ...error, path: clip(error.path), message: clip(error.message), text: "field" in target ? target.field.text : null }
 }
+
+/** A schema version that is not a whole number names the field, so the dialog never lists nothing. */
+const BAD_VERSION: PatchError = { path: "meta.schemaVersion", code: "integer", message: "schemaVersion must be a whole number" }
 
 function fromEnvelope(data: Record<string, unknown>): { project: unknown } | ImportFailure {
   if (typeof data.formatVersion === "number" && data.formatVersion > EXPORT_FORMAT_VERSION) {
@@ -128,7 +136,8 @@ export function parseImportText(text: string, { maxBytes = IMPORT_MAX_BYTES, mig
   try {
     result = migrateProject(raw, migration)
   } catch {
-    return fail("invalid")
+    // E.g. nesting too deep to walk: nothing to list, so not an "invalid" with an empty list.
+    return fail("unreadable")
   }
   if (!result.ok) {
     const { error } = result
@@ -137,9 +146,11 @@ export function parseImportText(text: string, { maxBytes = IMPORT_MAX_BYTES, mig
       case "unsupported-version":
         return fail(error.code, { version: error.version })
       case "invalid":
-        return fail("invalid", { version: error.version }, error.errors.map(withLabel))
+        return error.errors.length > 0 ? fail("invalid", { version: error.version }, error.errors.map(withLabel)) : fail("not-first-move")
+      case "missing-version":
+        return fail("invalid", {}, [withLabel(BAD_VERSION)])
       default:
-        return fail("invalid")
+        return fail("not-first-move")
     }
   }
 
