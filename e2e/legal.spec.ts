@@ -60,7 +60,7 @@ for (const lang of LANGS) {
       await expect(page.getByRole("cell", { name: "OFL-1.1" }).first()).toBeVisible()
       await page.goto(`/${lang}/cookies`)
       const main = page.locator("main")
-      for (const name of ["NEXT_LOCALE", "first-move:theme", "first-move:notice-ack", "first-move:active-project", "first-move:storage"]) {
+      for (const name of ["NEXT_LOCALE", "first-move:theme", "first-move:sidebar", "first-move:notice-ack", "first-move:active-project", "first-move:storage"]) {
         await expect(main).toContainText(name)
       }
     })

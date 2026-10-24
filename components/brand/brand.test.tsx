@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react"
-import type { ComponentProps } from "react"
+import { createRef, type ComponentProps } from "react"
 import { describe, expect, it, vi } from "vitest"
 import { Brand } from "./brand"
 
@@ -22,5 +22,14 @@ describe("Brand", () => {
   it("passes prefetch through to the link", () => {
     render(<Brand href="/en" name="First Move" label="Home" prefetch={false} />)
     expect(screen.getByRole("link", { name: "Home" })).toHaveAttribute("data-prefetch", "false")
+  })
+
+  it("passes other link props and the ref through, so a tooltip can wrap it", () => {
+    const ref = createRef<HTMLAnchorElement>()
+    render(<Brand ref={ref} href="/en" name="First Move" label="Home" data-state="closed" nameClassName="rail:hidden" />)
+    const link = screen.getByRole("link", { name: "Home" })
+    expect(ref.current).toBe(link)
+    expect(link).toHaveAttribute("data-state", "closed")
+    expect(screen.getByText("First Move")).toHaveClass("rail:hidden")
   })
 })

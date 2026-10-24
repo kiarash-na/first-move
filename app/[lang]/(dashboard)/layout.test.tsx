@@ -1,6 +1,10 @@
 // @vitest-environment node
+import { Children, type ReactElement, type ReactNode } from "react"
 import { describe, expect, it } from "vitest"
+import { CookieNotice } from "@/components/cookie-notice/cookie-notice"
+import { ThemeScript } from "@/components/theme/theme-script"
 import en from "@/dictionaries/en/common.json"
+import { SidebarScript } from "./_components/sidebar-script"
 import DashboardRootLayout, { generateMetadata, generateStaticParams, viewport } from "./layout"
 
 const props = (lang: string) => ({ params: Promise.resolve({ lang }) }) as LayoutProps<"/[lang]">
@@ -24,5 +28,19 @@ describe("dashboard root layout", () => {
     const root = await DashboardRootLayout({ ...props("de"), children: null })
     expect(root.type).toBe("html")
     expect(root.props).toMatchObject({ lang: "de", "data-theme": "dark", suppressHydrationWarning: true })
+  })
+
+  it("applies the stored theme and a collapsed sidebar in <head>, before paint (D-16, D-59)", async () => {
+    const root = await DashboardRootLayout({ ...props("en"), children: null })
+    const [head] = Children.toArray(root.props.children) as ReactElement<{ children: ReactNode }>[]
+    expect(head.type).toBe("head")
+    expect(Children.toArray(head.props.children).map((child) => (child as ReactElement).type)).toEqual([ThemeScript, SidebarScript])
+  })
+
+  it("keeps the cookie notice past the sidebar at its current width (D-59)", async () => {
+    const root = await DashboardRootLayout({ ...props("en"), children: null })
+    const [, body] = Children.toArray(root.props.children) as ReactElement<{ children: ReactNode }>[]
+    const notice = Children.toArray(body.props.children).find((child) => (child as ReactElement).type === CookieNotice) as ReactElement<{ className: string }>
+    expect(notice.props.className).toContain("var(--sidebar-width)")
   })
 })

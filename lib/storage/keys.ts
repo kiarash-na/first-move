@@ -1,6 +1,7 @@
 /**
  * Names of everything First Move keeps in the browser (D-11). Project data never leaves it (D-14).
- * The theme preference has its own key in `lib/theme/theme.ts`.
+ * The UI preferences have their own keys: the theme in `lib/theme/theme.ts`, the collapsed
+ * sidebar in `lib/dashboard/sidebar-state.ts`.
  */
 
 /** IndexedDB database: the primary store. */

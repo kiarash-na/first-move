@@ -1,5 +1,6 @@
 import { expect, test, type Page } from "@playwright/test"
 
+import { hitAtCentre } from "./support/hit"
 import { openExample, settle } from "./support/session"
 
 /**
@@ -55,17 +56,7 @@ test("the sidebar scrolls the current page into view at 1440 × 900", async ({ p
     await settle(page)
     const link = page.locator(`aside nav a[aria-current="page"]`).first()
     await expect(link).toHaveAttribute("href", `/en/dashboard/${route}`)
-    await expect
-      .poll(
-        () =>
-          link.evaluate((el) => {
-            const box = el.getBoundingClientRect()
-            const hit = document.elementFromPoint(box.left + box.width / 2, box.top + box.height / 2)
-            return hit !== null && el.contains(hit)
-          }),
-        { message: route },
-      )
-      .toBe(true)
+    await expect.poll(() => hitAtCentre(link), { message: route }).toBe(true)
   }
 })
 

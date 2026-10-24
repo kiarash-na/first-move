@@ -6,11 +6,13 @@ import { describe, expect, it } from "vitest"
 /**
  * D-14: imported (and all user) text is never rendered as HTML. React escapes text, so the only
  * risk is raw HTML injection. These files inject build-time strings that never contain user data:
- * the theme pre-paint script, the chart colour CSS and the "How we calculate" MathML (generated
- * from the docs at `pnpm gen:reference` time, D-33). Add a file here only for such strings.
+ * the theme and sidebar pre-paint scripts (D-16, D-59), the chart colour CSS and the "How we
+ * calculate" MathML (generated from the docs at `pnpm gen:reference` time, D-33). Add a file here
+ * only for such strings.
  */
 const ALLOWED = new Set([
   "components/theme/theme-script.tsx",
+  "app/[lang]/(dashboard)/_components/sidebar-script.tsx",
   "components/ui/chart.tsx",
   "app/[lang]/(dashboard)/dashboard/_components/how-we-calculate/formula-math.tsx",
 ])

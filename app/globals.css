@@ -4,6 +4,13 @@
 /* shadcn `dark:` follows the attribute, not the OS (D-16). */
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
+/*
+ * `rail:` styles the desktop sidebar ([data-slot=sidebar]) while it is collapsed into its icon
+ * rail (D-59). The pre-paint SidebarScript sets the attribute on <html>, so the first paint is
+ * already right. The mobile sheet is outside [data-slot=sidebar] and never matches.
+ */
+@custom-variant rail (&:where([data-sidebar=collapsed] [data-slot=sidebar] *));
+
 /* ------------------------------------------------------------------------- */
 /* 1. Primitives (DESIGN-TOKENS §2), fixed in both themes                    */
 /* ------------------------------------------------------------------------- */
@@ -129,6 +136,16 @@
   --sidebar-accent-foreground: var(--text-primary);
   --sidebar-border: var(--line-subtle);
   --sidebar-ring: var(--accent-cool);
+}
+
+/* Desktop sidebar width (D-07): 18rem, or the 4rem icon rail when collapsed (D-59, `rail:` above).
+   The dashboard cookie notice sits past it. */
+:root {
+  --sidebar-width: 18rem;
+}
+
+:root[data-sidebar="collapsed"] {
+  --sidebar-width: 4rem;
 }
 
 /* ------------------------------------------------------------------------- */

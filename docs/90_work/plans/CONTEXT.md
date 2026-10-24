@@ -29,7 +29,7 @@ Planned on 2026-10-24; the owner said go the same day (D-64, D-65). Few agents (
 | Phase | Plan | Blocked by | Status |
 |---|---|---|---|
 | A01 | [Foundation: env, proxy, CSP, boundary, Workflow spike, schema v2](2026-10-24_agents-01_foundation.md) | none | done |
-| A02 | [Collapsible sidebar](2026-10-24_agents-02_sidebar.md) | A01 | todo |
+| A02 | [Collapsible sidebar](2026-10-24_agents-02_sidebar.md) | A01 | done |
 | A03 | [Shared AI core](2026-10-24_agents-03_ai-core.md) | A01 | done |
 | A04 | [Public docs and knowledge index](2026-10-24_agents-04_public-docs.md) | A03 | todo |
 | A05 | [In-app assistant (BYOK)](2026-10-24_agents-05_assistant.md) | A03, A04 | todo |

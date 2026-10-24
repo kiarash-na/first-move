@@ -1,6 +1,8 @@
-import { screen, within } from "@testing-library/react"
+import { act, screen, waitFor, within } from "@testing-library/react"
+import userEvent from "@testing-library/user-event"
 import { afterEach, describe, expect, it, vi } from "vitest"
 import shell from "@/dictionaries/en/shell.json"
+import { SIDEBAR_ATTRIBUTE, SIDEBAR_STORAGE_KEY } from "@/lib/dashboard/sidebar-state"
 import { testTab, type TestTab } from "@/lib/store/test-utils/harness"
 import { testDictionaries } from "../test-utils/dictionaries"
 import { renderDashboard } from "../test-utils/render"
@@ -8,9 +10,12 @@ import { Sidebar } from "./sidebar"
 
 vi.mock("next/navigation", () => ({ usePathname: () => "/en/dashboard/business-plan/opportunity" }))
 
+const root = document.documentElement
 const tabs: TestTab[] = []
 afterEach(() => {
   while (tabs.length) tabs.pop()!.store.stop()
+  window.localStorage.clear()
+  root.removeAttribute(SIDEBAR_ATTRIBUTE)
 })
 
 async function storeWith(modules?: { quickCheck?: boolean; businessPlan?: boolean }) {
@@ -61,5 +66,59 @@ describe("Sidebar (D-07)", () => {
   it("is a named complementary landmark, so it stays distinct from other asides on the page", async () => {
     renderDashboard(<Sidebar />, { store: await storeWith() })
     expect(screen.getByRole("complementary", { name: shell.nav.sidebar })).toHaveAttribute("data-slot", "sidebar")
+  })
+})
+
+describe("Sidebar as a collapsible rail (D-59)", () => {
+  it("takes its width from the CSS variable that the html attribute switches", async () => {
+    renderDashboard(<Sidebar />, { store: await storeWith() })
+    expect(screen.getByRole("complementary", { name: shell.nav.sidebar }).parentElement).toHaveClass("w-(--sidebar-width)")
+  })
+
+  it("has a toggle above the privacy note that controls the sidebar", async () => {
+    renderDashboard(<Sidebar />, { store: await storeWith() })
+    const aside = screen.getByRole("complementary", { name: shell.nav.sidebar })
+    const toggle = within(aside).getByRole("button", { name: shell.nav.rail.collapse })
+    expect(toggle).toHaveAttribute("aria-controls", aside.id)
+    expect(toggle).toHaveAttribute("aria-expanded", "true")
+    const note = screen.getByText(shell.nav.privacy)
+    expect(toggle.compareDocumentPosition(note) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+  })
+
+  it("collapses: the html attribute and the stored key follow, and the toggle reports it", async () => {
+    renderDashboard(<Sidebar />, { store: await storeWith() })
+    await userEvent.click(screen.getByRole("button", { name: shell.nav.rail.collapse }))
+    expect(root.getAttribute(SIDEBAR_ATTRIBUTE)).toBe("collapsed")
+    expect(window.localStorage.getItem(SIDEBAR_STORAGE_KEY)).toBe("collapsed")
+    const toggle = await screen.findByRole("button", { name: shell.nav.rail.expand })
+    expect(toggle).toHaveAttribute("aria-expanded", "false")
+
+    await userEvent.click(toggle)
+    expect(root.hasAttribute(SIDEBAR_ATTRIBUTE)).toBe(false)
+    expect(window.localStorage.getItem(SIDEBAR_STORAGE_KEY)).toBeNull()
+    expect(await screen.findByRole("button", { name: shell.nav.rail.collapse })).toHaveAttribute("aria-expanded", "true")
+  })
+
+  it("reads a collapse from the html attribute and names its entries in tooltips", async () => {
+    root.setAttribute(SIDEBAR_ATTRIBUTE, "collapsed")
+    renderDashboard(<Sidebar />, { store: await storeWith({ quickCheck: true, businessPlan: true }) })
+    expect(screen.getByRole("button", { name: shell.nav.rail.expand })).toHaveAttribute("aria-expanded", "false")
+    const buildings = await screen.findByRole("link", { name: shell.nav.items.quickCheck.buildings })
+    await act(async () => buildings.focus())
+    expect(await screen.findByRole("tooltip")).toHaveTextContent("Quick Check · Buildings")
+    expect(screen.getByRole("button", { name: `${shell.nav.currentProject}: Harbour district` })).toBeInTheDocument()
+    expect(screen.getByRole("button", { name: shell.nav.rail.privacy })).toBeInTheDocument()
+  })
+
+  it("puts a stored collapse back on <html> after mount (React's dev remount clears the script's attribute)", async () => {
+    window.localStorage.setItem(SIDEBAR_STORAGE_KEY, "collapsed")
+    renderDashboard(<Sidebar />, { store: await storeWith() })
+    expect(root.getAttribute(SIDEBAR_ATTRIBUTE)).toBe("collapsed")
+    await waitFor(() => expect(screen.getByRole("button", { name: shell.nav.rail.expand })).toBeInTheDocument())
+  })
+
+  it("leaves an expanded sidebar alone when nothing is stored", async () => {
+    renderDashboard(<Sidebar />, { store: await storeWith() })
+    expect(root.hasAttribute(SIDEBAR_ATTRIBUTE)).toBe(false)
   })
 })

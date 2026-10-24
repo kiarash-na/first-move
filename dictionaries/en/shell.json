@@ -138,7 +138,14 @@
     "noProject": "No project open",
     "noProjectHint": "Open a project or start a new one on the start screen.",
     "example": "Example",
-    "privacy": "Your data stays in this browser. Export a copy to keep it safe."
+    "privacy": "Your data stays in this browser. Export a copy to keep it safe.",
+    "rail": {
+      "collapse": "Collapse sidebar",
+      "expand": "Expand sidebar",
+      "entry": "{section} · {label}",
+      "project": "Current project: {name}",
+      "privacy": "About your data"
+    }
   },
   "topBar": {
     "label": "Project actions",

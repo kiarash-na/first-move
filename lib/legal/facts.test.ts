@@ -2,6 +2,7 @@
 import { describe, expect, it } from "vitest"
 import { getDictionary } from "@/lib/i18n/get-dictionary"
 import { LOCALES, type Locale } from "@/lib/i18n/locales"
+import { SIDEBAR_STORAGE_KEY } from "@/lib/dashboard/sidebar-state"
 import { DB_NAME, MIRROR_PREFIX, STORE, ACTIVE_PROJECT_KEY, LAST_PROJECT_KEY, TAB_CHANNEL } from "@/lib/storage/keys"
 import { THEME_STORAGE_KEY } from "@/lib/theme/theme"
 import { LOCALE_COOKIE } from "@/lib/i18n/locales"
@@ -37,6 +38,7 @@ describe.each(LOCALES)("legal facts (%s)", (lang) => {
     const keys = [
       LOCALE_COOKIE,
       THEME_STORAGE_KEY,
+      SIDEBAR_STORAGE_KEY,
       `${MIRROR_PREFIX}`,
       ACTIVE_PROJECT_KEY,
       LAST_PROJECT_KEY,
