@@ -14,6 +14,7 @@ Use this sheet for dashboards, forms, results, reports, and other user-facing to
 ## 1. Brand rules
 
 - **Name and slogan:** product name **First Move**; slogan *Start your 5GDHC Journey now*.
+- **Mark:** the "Knight's move" (D-68): on a 3 × 3 board, a pipe runs from a hollow cyan node up two squares and one across to a glowing orange node. One component, `components/brand/brand-mark.tsx`; the favicon `app/icon.svg` drops the board points.
 - **Dark-first:** near-black blue-tinted surfaces; use light surfaces mainly for reports and methodology/content-focused pages.
 - **Sharp and technical:** `1px` borders, `0` border-radius, no decorative card nesting.
 - **Two signals only:** electric cyan for Quick Check/cooling; blaze orange for Business Models/heating/risk.

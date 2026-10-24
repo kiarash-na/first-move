@@ -1,0 +1,89 @@
+/*
+ * The "Knight's move" mark (D-68). Colours come from the theme tokens, so it follows light and
+ * dark. The pulse is a short dash on a path normalised to a length of 100: an offset of 24 hides
+ * it before the start, -100 past the end.
+ */
+
+.brand-mark {
+  flex: none;
+  overflow: visible;
+}
+
+.brand-mark__dot {
+  fill: var(--muted-foreground);
+  opacity: 0.6;
+}
+
+.brand-mark__pipe,
+.brand-mark__start {
+  fill: none;
+  stroke: var(--primary);
+}
+
+.brand-mark__pipe {
+  stroke-width: 2.4;
+}
+
+.brand-mark__start {
+  stroke-width: 2;
+}
+
+.brand-mark__end,
+.brand-mark__glow {
+  fill: var(--accent-hot);
+}
+
+.brand-mark__glow {
+  opacity: 0.55;
+}
+
+.brand-mark__pulse {
+  fill: none;
+  stroke: var(--foreground);
+  stroke-width: 2.4;
+  stroke-dasharray: 24 200;
+  stroke-dashoffset: 24;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .brand-mark__pulse--load {
+    animation: brand-mark-pulse 1.4s ease-in-out 0.4s both;
+  }
+
+  /* The glow flares once when the pulse arrives; every animation here ends, so nothing keeps moving. */
+  .brand-mark__glow {
+    animation: brand-mark-flare 0.9s ease-out 1.5s;
+    transition: opacity 0.3s ease;
+  }
+
+  /* Hover and focus send the pulse along once; leaving resets it at once, out of sight. */
+  .brand-mark__pulse--hover {
+    transition: stroke-dashoffset 0s;
+  }
+
+  :is(a, button):is(:hover, :focus-visible) .brand-mark__pulse--hover {
+    stroke-dashoffset: -100;
+    transition: stroke-dashoffset 1.2s ease-in-out;
+  }
+
+  :is(a, button):is(:hover, :focus-visible) .brand-mark__glow {
+    opacity: 0.95;
+    transition: opacity 0.5s ease 0.7s;
+  }
+}
+
+@keyframes brand-mark-pulse {
+  from {
+    stroke-dashoffset: 24;
+  }
+
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
+@keyframes brand-mark-flare {
+  35% {
+    opacity: 1;
+  }
+}

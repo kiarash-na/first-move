@@ -2,9 +2,10 @@ import Link from "next/link"
 import type { ComponentProps } from "react"
 
 import { cn } from "@/lib/utils"
+import { BrandMark } from "./brand-mark"
 
 /**
- * The First Move mark and name (DESIGN-TOKENS §3 brand name), linking to the landing page.
+ * The First Move mark (D-68) and name (DESIGN-TOKENS §3 brand name), linking to the landing page.
  * Other link props and the ref pass through, so a tooltip can wrap it (the sidebar rail, D-59).
  */
 export function Brand({
@@ -34,15 +35,7 @@ export function Brand({
       aria-label={label}
       className={cn("inline-flex min-h-11 items-center gap-2.5 text-foreground", className)}
     >
-      <svg
-        viewBox="0 0 32 32"
-        aria-hidden="true"
-        className="size-7 fill-none stroke-primary stroke-[1.8]"
-      >
-        <path d="M4 23.5 15.9 16 28 23.5" />
-        <path d="M4 15.5 15.9 8 28 15.5" />
-        <path d="M15.9 8v8" className="stroke-hot" />
-      </svg>
+      <BrandMark className="size-7" />
       <span className={cn("text-xl leading-none font-[755] tracking-[-0.045em] [font-stretch:82%]", nameClassName)}>
         {name}
       </span>

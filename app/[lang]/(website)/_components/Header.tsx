@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { ArrowDownRight, Menu, X } from 'lucide-react'
+import { BrandMark } from '@/components/brand/brand-mark'
 import { LanguageSwitch, type LanguageSwitchProps } from '@/components/language-switch/language-switch'
 import { withLocale } from '@/lib/i18n/locale-path'
 import { RichText } from './rich-text'
@@ -48,11 +49,7 @@ export function Header({ t, lang, language, onToolSelect }: HeaderProps) {
   return (
     <header className="site-header" ref={headerRef}>
       <a className="brand" href="#overview" aria-label={copy.brandLabel} onClick={() => setMenuOpen(false)}>
-        <svg className="brand__mark" viewBox="0 0 32 32" aria-hidden="true">
-          <path d="M4 23.5 15.9 16 28 23.5" />
-          <path d="M4 15.5 15.9 8 28 15.5" />
-          <path className="brand__mark-hot" d="M15.9 8v8" />
-        </svg>
+        <BrandMark className="brand__mark" />
         <span className="brand__name">{copy.brandName}</span>
         <span className="brand__descriptor"><RichText text={copy.brandDescriptor} /></span>
       </a>
