@@ -40,5 +40,4 @@ export const THIRD_PARTY: readonly ThirdPartyEntry[] = [
   { name: "@upstash/redis", license: "MIT", url: "https://github.com/upstash/redis-js", role: "The email agent's encrypted state" },
   { name: "@fontsource-variable/archivo", license: "OFL-1.1", url: "https://fontsource.org/fonts/archivo", role: "Font Archivo" },
   { name: "@fontsource/ibm-plex-mono", license: "OFL-1.1", url: "https://fontsource.org/fonts/ibm-plex-mono", role: "Font IBM Plex Mono" },
-  { name: "@fontsource/instrument-serif", license: "OFL-1.1", url: "https://fontsource.org/fonts/instrument-serif", role: "Font Instrument Serif" },
 ]

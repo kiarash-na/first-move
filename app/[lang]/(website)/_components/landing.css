@@ -290,13 +290,14 @@
   white-space: nowrap;
 }
 
-.title-line--serif {
+.title-line--accent {
   margin-top: 0.05em;
-  font-family: var(--font-editorial);
-  font-size: 1.12em;
+  font-family: var(--font-display);
+  font-size: 1em;
+  font-stretch: 88%;
   font-style: italic;
-  font-weight: 400;
-  letter-spacing: -0.035em;
+  font-weight: 300;
+  letter-spacing: -0.045em;
   line-height: 0.9;
   text-transform: none;
 }

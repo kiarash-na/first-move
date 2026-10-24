@@ -36,7 +36,7 @@ export function Hero({ t, selectedTool, flowDirection, onFlowDirectionChange, on
           <h1 id="hero-title" className="hero__title" aria-label={copy.titleLabel}>
             <span className="title-line reveal reveal--2">{copy.titleLine1}</span>
             <span className="title-line reveal reveal--3">{copy.titleLine2}</span>
-            <span className="title-line title-line--serif reveal reveal--4">{copy.titleLine3}</span>
+            <span className="title-line title-line--accent reveal reveal--4">{copy.titleLine3}</span>
           </h1>
           <div className="hero__intro reveal reveal--5" id="why-5gdhc">
             <p>{copy.intro}</p>

@@ -25,7 +25,7 @@ for describing the origin of this work (Apache License 2.0, section 6).
 Third-party material
 --------------------
 First Move ships third-party software under MIT, ISC and Apache-2.0 licences,
-and three fonts (Archivo, Instrument Serif, IBM Plex Mono) under the SIL Open
-Font License 1.1, delivered through the Fontsource packages. The list with
-licences is on the Licence page of the website (/license) and in the
-dependencies of package.json. Each package keeps its own licence and notices.
+and two fonts (Archivo, IBM Plex Mono) under the SIL Open Font License 1.1,
+delivered through the Fontsource packages. The list with licences is on the
+Licence page of the website (/license) and in the dependencies of
+package.json. Each package keeps its own licence and notices.

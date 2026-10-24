@@ -108,6 +108,18 @@ Given by the project owner in chat on 2026-10-24 for [PLAN-AGENT-00](../plans/20
 | D-65 | Build mode and local testing (owner, at build start, 2026-10-24): subagents may build phases (few, as needed). `.env.local` is filled by a script that prints names only: secrets generated, defaults, the agent@ inbox id from the Resend CLI; `SITE_URL=https://localhost:3015` with `pnpm dev:https` (`next dev --experimental-https`); the owner sets the real URL in Vercel. |
 | D-63 | E-mails keep Resend's minimal tracking: open and click tracking, both on for `mail.firstmove.energy`. It is disclosed separately, in its own Privacy Policy section (`email-tracking`) with pointers from the Cookie Policy and the AI page. The website itself stays free of tracking. This replaces "tracking off" in D-53. On 2026-10-24 the legal texts (AI page, Privacy, Cookies and Terms, version 1.1, EN plus DE drafts) were updated to describe the planned design; `AI_FEATURES_LIVE` stays false until A08. |
 
+## Decisions added after A04 (2026-10-24)
+
+Given by the owner in the cloud session after A06 and A04, for the `dev` branch.
+
+| ID | Decision |
+|---|---|
+| D-66 | **Sans serif only.** Instrument Serif is removed everywhere; the emphasised words of the landing headlines use Archivo italic (light weight, narrower width). This replaces the "Editorial accent" row of DESIGN-TOKENS §3. |
+| D-67 | **German is the default language.** An unprefixed URL goes to `/de` unless the language cookie says `en`; the browser language no longer decides. English stays the fallback for a missing German key (D-32). All copy that was still English is translated (drafts; the owner reviews them, the legal texts stay under D-44). |
+| D-68 | **New logo, "Knight's move".** An L-shaped pipe on a 3 × 3 grid runs from a cyan node to an orange node: the knight's first move and a network link in one. A pulse runs along the pipe on load and on hover, and the orange node glows; nothing moves with reduced motion. It replaces the two-chevron mark in the header, the docs, the dashboard and the favicon. |
+| D-69 | **"Brought to you by"** strip on the landing page, right below the methodology's "Explicit boundary" line (the closing "Get started" card stays as it is): a slowly sliding row of partner placeholders ("Your Company", three for now) that pauses on hover or focus. A click opens a small dialog, "Contact us to become a partner", with a link to the owner's contact page (`https://kiarash.online/contact/`, new tab). Partner logos replace the placeholders later. |
+| D-70 | **The report (D-09) is built:** Report opens a light, printable report of the open project, and the browser's own "Save as PDF" makes the PDF. No PDF library. |
+
 ## Defaults added in plan review (2026-10-24)
 
 | ID | Default |

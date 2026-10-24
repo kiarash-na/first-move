@@ -17,7 +17,7 @@ Use this sheet for dashboards, forms, results, reports, and other user-facing to
 - **Dark-first:** near-black blue-tinted surfaces; use light surfaces mainly for reports and methodology/content-focused pages.
 - **Sharp and technical:** `1px` borders, `0` border-radius, no decorative card nesting.
 - **Two signals only:** electric cyan for Quick Check/cooling; blaze orange for Business Models/heating/risk.
-- **Typography carries the premium feel:** condensed Archivo, small IBM Plex Mono labels, Instrument Serif italic only for editorial emphasis.
+- **Typography carries the premium feel:** condensed Archivo, small IBM Plex Mono labels, Archivo italic only for editorial emphasis. Sans serif only (D-66).
 - **Clarity before theatre:** visible labels, explicit output states, plain-language reasons, and “screening—not a full feasibility study” where relevant.
 
 ## 2. Color
@@ -51,7 +51,7 @@ Canonical values are **OKLCH**. Alpha is written after `/`.
 | Role | Exact specification |
 |---|---|
 | Display/UI sans | `Archivo Variable`, sans-serif; use its width axis through `font-stretch` |
-| Editorial accent | `Instrument Serif`, italic, weight `400`; letter-spacing `-0.035em` |
+| Editorial accent | `Archivo Variable`, italic, weight `300`; stretch `88%`; letter-spacing `-0.045em`; no uppercase (D-66) |
 | Technical labels | `IBM Plex Mono`, monospace; weight `400`; `12px`; uppercase; letter-spacing `0.04–0.075em`; line-height `1.5` |
 | Brand name | Archivo `20px`; weight `750–760`; stretch `82%`; letter-spacing `-0.045em`; line-height `1` |
 | Page/panel title | Archivo `25–35px`; weight `510–590`; stretch `82–88%`; letter-spacing `-0.035–-0.045em`; line-height `1.1–1.15` |
