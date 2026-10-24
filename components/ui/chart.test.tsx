@@ -1,7 +1,13 @@
-import { render } from "@testing-library/react"
+import { render, screen } from "@testing-library/react"
 import { Bar, BarChart } from "recharts"
-import { describe, expect, it } from "vitest"
-import { ChartContainer, ChartStyle, type ChartConfig } from "./chart"
+import { describe, expect, it, vi } from "vitest"
+import { ChartContainer, ChartStyle, ChartTooltipContent, type ChartConfig } from "./chart"
+
+// jsdom has no layout, so the responsive wrapper would render nothing: render its children directly.
+vi.mock("recharts", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("recharts")>()),
+  ResponsiveContainer: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
+}))
 
 const config = {
   heat: { label: "Heat", color: "var(--chart-2)" },
@@ -34,5 +40,22 @@ describe("ChartContainer", () => {
       </ChartContainer>,
     )
     expect(container.querySelector("[data-chart=chart-demand]")).not.toBeNull()
+  })
+})
+
+describe("ChartTooltipContent", () => {
+  it("lists only the series that have a value at the hovered category (stacks with different series per row)", () => {
+    const payload = [
+      { name: "heat", dataKey: "heat", value: 1200, color: "red", payload: {} },
+      { name: "cool", dataKey: "cool", value: undefined, color: "blue", payload: {} },
+    ]
+    render(
+      <ChartContainer config={config}>
+        <ChartTooltipContent active payload={payload as never} label="Row" valueFormatter={(value) => `${value} kWh`} />
+      </ChartContainer>,
+    )
+    expect(screen.getByText("Heat")).toBeInTheDocument()
+    expect(screen.getByText("1200 kWh")).toBeInTheDocument()
+    expect(screen.queryByText("Cool")).not.toBeInTheDocument()
   })
 })

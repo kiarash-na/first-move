@@ -1,1 +1,172 @@
-{}
+{
+  "meta": {
+    "title": "Overview"
+  },
+  "header": {
+    "eyebrow": "Project overview",
+    "results": "Full result",
+    "edit": "Edit inputs"
+  },
+  "verdict": {
+    "eyebrow": "Quick Check verdict",
+    "details": "See why",
+    "factors": "What decides it",
+    "supporting": "Supporting",
+    "limiting": "Limiting",
+    "none": "None"
+  },
+  "sections": {
+    "kpis": "Key numbers",
+    "energy": "Energy",
+    "economics": "Economics",
+    "indicators": "More indicators",
+    "charts": "Charts",
+    "businessPlan": "Business Plan",
+    "quickCheck": "Quick Check"
+  },
+  "kpi": {
+    "heatingCoverage": "Heating coverage",
+    "coolingCoverage": "Cooling coverage",
+    "heatingDemand": "Heating demand",
+    "coolingDemand": "Cooling demand",
+    "revenue": "Overall revenues",
+    "investment": "Overall investment",
+    "annualCosts": "Annual costs",
+    "supplyOfDemand": "{supply} supply of {demand} demand",
+    "notRelevant": "No demand of this kind",
+    "perYear": "/a",
+    "customParameters": "Custom parameters"
+  },
+  "tiles": {
+    "buildingDensity": "Building density",
+    "heatDensity": "Heat density",
+    "chRatio": "Cooling-to-heating ratio",
+    "networkLength": "Network length",
+    "electricity": "Electricity costs",
+    "operation": "Operation and maintenance",
+    "annuity": "Annuity",
+    "annuityHint": "Annualized investment",
+    "economicRatio": "Revenue-to-cost ratio"
+  },
+  "charts": {
+    "view": {
+      "label": "View",
+      "chart": "Chart",
+      "table": "Table"
+    },
+    "tableOf": "Table view of {chart}",
+    "loading": "Loading chart",
+        "total": "Total",
+    "coverage": {
+      "title": "Coverage against demand",
+      "lead": "Supply as a share of demand. The ticks mark 70 %, 90 % and 100 %.",
+      "type": "Demand type",
+      "supply": "Supply",
+      "demand": "Demand",
+      "coverage": "Coverage",
+      "scale": "Scale up to 150 % of demand",
+      "notRelevant": "Not relevant"
+    },
+    "economics": {
+      "title": "Revenues against annual costs",
+      "lead": "Both are per year. Revenues should cover the annual costs.",
+      "item": "Part",
+      "amount": "Amount per year",
+      "revenues": "Revenues",
+      "costs": "Annual costs",
+      "revenue": {
+        "base": "Base prices",
+        "energy": "Energy prices",
+        "connection": "Connection fees"
+      },
+      "cost": {
+        "annualized": "Annuity",
+        "electricity": "Electricity",
+        "operation": "Operation and maintenance"
+      }
+    },
+    "investment": {
+      "title": "Investment breakdown",
+      "lead": "Where the overall investment goes.",
+      "item": "Item",
+      "amount": "Investment",
+      "parts": {
+        "heatPump": "Heat pumps",
+        "network": "Network",
+        "supply": "Energy supply"
+      }
+    },
+    "more": {
+      "title": "More charts",
+      "lead": "Opened on request, so the overview stays fast.",
+      "close": "Hide chart",
+      "demand": {
+        "tab": "Demand by type and period",
+        "title": "Demand by building type and period",
+        "lead": "Annual demand per building type, split by construction period.",
+        "heating": "Heating",
+        "cooling": "Cooling",
+        "type": "Building type"
+      },
+      "supply": {
+        "tab": "Supply per source",
+        "title": "Supply per source against demand",
+        "lead": "What each selected source can supply per year, with both demands as reference lines.",
+        "source": "Source",
+        "heatingSupply": "Heating supply",
+        "coolingSupply": "Cooling supply",
+        "heatingDemand": "Heating demand",
+        "coolingDemand": "Cooling demand"
+      },
+      "cost": {
+        "tab": "Cost structure",
+        "title": "Cost structure",
+        "lead": "The annual costs by component, and the investment down to each source.",
+        "annual": "Annual costs",
+        "investment": "Investment by item",
+        "share": "Share",
+        "item": "Item",
+        "electricity": "Electricity per source"
+      }
+    }
+  },
+  "incomplete": {
+    "title": "No Quick Check result yet",
+    "body": "The verdict and the key numbers appear here as soon as the Quick Check has what it needs. These steps are still open:"
+  },
+  "add": {
+    "quickCheck": {
+      "title": "Add the Quick Check",
+      "body": "Get a first indication of whether a 5GDHC network looks promising here: verdict, supply coverage, densities and costs.",
+      "action": "Add Quick Check"
+    },
+    "businessPlan": {
+      "title": "Add the Business Plan",
+      "body": "Work out the business logic behind this site: who pays, who owns and operates, and which risks could stop it.",
+      "action": "Add Business Plan"
+    }
+  },
+  "bp": {
+    "steps": {
+      "title": "Step progress",
+      "progress": "{done} of {total} filled in",
+      "overall": "Overall"
+    },
+    "readiness": {
+      "title": "Pitch readiness",
+      "caveat": "Counts what is filled in, not how good it is."
+    },
+    "risks": {
+      "title": "Top risks",
+      "none": "No risks entered yet.",
+      "add": "Add risks"
+    },
+    "dealBreaker": {
+      "title": "Potential deal-breaker",
+      "tag": "Deal-breaker",
+      "none": "No deal-breaker marked yet.",
+      "mark": "Mark one"
+    },
+    "open": "Open"
+  }
+}

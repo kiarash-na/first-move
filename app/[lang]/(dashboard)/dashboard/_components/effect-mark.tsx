@@ -3,7 +3,7 @@
 import { ArrowDownRightIcon, ArrowUpRightIcon, MinusIcon } from "lucide-react"
 import type { DriverEffect } from "@/lib/quick-check"
 import { cn } from "@/lib/utils"
-import { useDictionary } from "../../_components/i18n-provider"
+import { useDictionary } from "./i18n-provider"
 
 /**
  * Supporting (cyan, up arrow) or limiting (orange, down arrow) factor, or neutral (QCT-KF-05).

@@ -5,7 +5,7 @@ import Link from "next/link"
 import { dashboardHref, type DashboardRoute } from "@/lib/dashboard/routes"
 import { QUICK_CHECK_STEPS, type FieldStep, type QuickCheckStep } from "@/lib/project"
 import { cn } from "@/lib/utils"
-import { useDictionary, useLocale } from "../../_components/i18n-provider"
+import { useDictionary, useLocale } from "./i18n-provider"
 
 const isInputStep = (step: FieldStep): step is QuickCheckStep => (QUICK_CHECK_STEPS as readonly string[]).includes(step)
 

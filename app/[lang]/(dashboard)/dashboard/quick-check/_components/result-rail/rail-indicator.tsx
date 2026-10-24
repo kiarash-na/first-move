@@ -4,7 +4,7 @@ import type { ReactNode } from "react"
 import type { DriverEffect } from "@/lib/quick-check"
 import { cn } from "@/lib/utils"
 import { CalcInfo, type CalcSource } from "../../../_components/how-we-calculate"
-import { EffectMark } from "../effect-mark"
+import { EffectMark } from "../../../_components/effect-mark"
 
 /** One compact indicator of the live result: name, value, class, effect and its info popover (D-33). */
 export function RailIndicator({

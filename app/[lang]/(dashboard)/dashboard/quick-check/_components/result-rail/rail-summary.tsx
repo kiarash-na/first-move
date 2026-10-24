@@ -2,7 +2,7 @@
 
 import { useDictionary } from "../../../_components/i18n-provider"
 import { useQuickCheck } from "../../../_components/use-quick-check"
-import { MissingSteps } from "../missing-steps"
+import { MissingSteps } from "../../../_components/missing-steps"
 import { RailComplete } from "./rail-complete"
 
 /** The live result next to the inputs (PLAN-DASH-08 step 2): verdict and indicators, or what is missing. */

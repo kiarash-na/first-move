@@ -4,7 +4,7 @@ import type { LucideIcon } from "lucide-react"
 import type { ReactNode } from "react"
 import type { DriverEffect } from "@/lib/quick-check"
 import { CalcInfo, type CalcSource } from "../../../_components/how-we-calculate"
-import { EffectMark } from "../../_components/effect-mark"
+import { EffectMark } from "../../../_components/effect-mark"
 
 /**
  * One indicator (QCT-KF-02): value with unit, its class (TBL-8..10, OQ-21) and what the class

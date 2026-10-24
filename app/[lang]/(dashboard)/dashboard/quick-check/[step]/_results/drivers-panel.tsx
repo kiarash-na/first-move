@@ -4,7 +4,7 @@ import { driverText } from "@/lib/dashboard/result-text"
 import type { DriverEffect, Drivers } from "@/lib/quick-check"
 import { cn } from "@/lib/utils"
 import { useDictionary, useLocale } from "../../../_components/i18n-provider"
-import { EffectMark } from "../../_components/effect-mark"
+import { EffectMark } from "../../../_components/effect-mark"
 
 const EFFECTS: DriverEffect[] = ["supporting", "limiting"]
 

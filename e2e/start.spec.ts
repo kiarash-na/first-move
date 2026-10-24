@@ -17,7 +17,8 @@ test.describe("start screen (PLAN-DASH-07 verification)", () => {
     await expect(page.getByRole("status").filter({ hasText: /Saved/ })).toBeVisible()
 
     await page.reload()
-    await expect(page.getByRole("heading", { level: 1, name: "Overview" })).toBeVisible()
+    await expect(page.getByRole("heading", { level: 1, name: "Housing cooperatives with mixed ownership" })).toBeVisible()
+    await expect(page.getByRole("region", { name: "Key numbers" })).toBeVisible()
 
     await page.goto("/en/dashboard")
     const card = page.getByRole("region", { name: "Housing cooperatives with mixed ownership" })

@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/react"
 import { describe, expect, it } from "vitest"
 import quickCheck from "@/dictionaries/en/quick-check.json"
-import { I18nProvider } from "../../_components/i18n-provider"
-import { testDictionaries } from "../../_components/test-utils/dictionaries"
+import { I18nProvider } from "./i18n-provider"
+import { testDictionaries } from "./test-utils/dictionaries"
 import { EffectMark } from "./effect-mark"
 
 const renderMark = (effect: "supporting" | "limiting" | null) =>

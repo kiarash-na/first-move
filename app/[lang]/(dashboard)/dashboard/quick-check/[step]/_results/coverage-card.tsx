@@ -7,7 +7,7 @@ import { explainResult, type Demand, type QuickCheckComplete } from "@/lib/quick
 import { cn } from "@/lib/utils"
 import { CalcInfo } from "../../../_components/how-we-calculate"
 import { useDictionary, useLocale } from "../../../_components/i18n-provider"
-import { EffectMark } from "../../_components/effect-mark"
+import { EffectMark } from "../../../_components/effect-mark"
 import { CoverageScale } from "./coverage-scale"
 
 const KEYS = {

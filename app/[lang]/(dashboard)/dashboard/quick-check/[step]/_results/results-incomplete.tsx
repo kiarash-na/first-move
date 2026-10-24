@@ -3,7 +3,7 @@
 import { CircleDashedIcon } from "lucide-react"
 import type { QuickCheckIncomplete } from "@/lib/quick-check"
 import { useDictionary } from "../../../_components/i18n-provider"
-import { MissingSteps } from "../../_components/missing-steps"
+import { MissingSteps } from "../../../_components/missing-steps"
 
 /** No result without the required inputs (R-03, OQ-22): what is missing and where to add it. */
 export function ResultsIncomplete({ result }: { result: QuickCheckIncomplete }) {
