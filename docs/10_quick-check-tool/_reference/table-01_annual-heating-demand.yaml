@@ -1,0 +1,89 @@
+# Generated from 00_originals/AQC-Methodology.docx. Values exactly as in the source;
+# `raw` keeps the printed text, `value` is the number (null for "-").
+# Table numbers follow the PDF render (the docx stores stale caption numbers).
+id: TBL-1
+caption: 'Table 1: Annual Heating Demand: Default annual heating demand per square meter of floor area expressed in kWh/m² per year'
+unit: kWh/m² per year
+source: 00_originals/AQC-Methodology.docx §1.2
+column_header: Construction Period
+columns:
+- '-1919'
+- 1919-1960
+- 1961-1990
+- 1991-2010
+- 2011-today
+row_header: Type
+rows:
+  residential:
+    label: Residential buildings
+    raw:
+    - '124.4'
+    - '131.5'
+    - '109.3'
+    - '92.5'
+    - '86.3'
+    value:
+    - 124.4
+    - 131.5
+    - 109.3
+    - 92.5
+    - 86.3
+  category_a:
+    label: Category A
+    raw:
+    - '139.0'
+    - '127.4'
+    - '104.3'
+    - '92.7'
+    - '67.5'
+    value:
+    - 139.0
+    - 127.4
+    - 104.3
+    - 92.7
+    - 67.5
+  category_b:
+    label: Category B
+    raw:
+    - '177.0'
+    - '162.3'
+    - '132.8'
+    - '118.0'
+    - '78.8'
+    value:
+    - 177.0
+    - 162.3
+    - 132.8
+    - 118.0
+    - 78.8
+  category_c:
+    label: Category C
+    raw:
+    - '204.0'
+    - '187.0'
+    - '153.0'
+    - '136.0'
+    - '90.0'
+    value:
+    - 204.0
+    - 187.0
+    - 153.0
+    - 136.0
+    - 90.0
+  industry:
+    label: Industry*
+    raw:
+    - '-'
+    - '-'
+    - '-'
+    - '-'
+    - '-'
+    value:
+    - null
+    - null
+    - null
+    - null
+    - null
+flags:
+- OQ-02
+- OQ-03

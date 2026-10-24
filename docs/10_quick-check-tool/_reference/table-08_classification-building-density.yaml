@@ -1,0 +1,33 @@
+# Generated from 00_originals/AQC-Methodology.docx. Values exactly as in the source;
+# `raw` keeps the printed text, `value` is the number (null for "-").
+# Table numbers follow the PDF render (the docx stores stale caption numbers).
+id: TBL-8
+caption: 'Table 8: Classification of Building Density'
+source: 00_originals/AQC-Methodology.docx §4.2
+unit: buildings/ha
+bounds_note: min/max are the numbers as printed; *_inclusive only where the words say so ("Above or equal", "Above", "Below").
+header:
+- Building Density
+- Classification
+- Interpretation
+classes:
+- range: Above 30 buildings/ha
+  bounds:
+    min: 30
+    min_inclusive: false
+  classification: High density
+  interpretation: Densely built areas can benefit from shorter network lengths, although low energy demand may still weaken economic performance.
+- range: 10-30 buildings/ha
+  bounds:
+    min: 10
+    max: 30
+  classification: Medium density
+  interpretation: The structure may be suitable for a network.
+- range: Below 10 buildings/ha
+  bounds:
+    max: 10
+    max_inclusive: false
+  classification: Low density
+  interpretation: Buildings are more distributed, potentially increasing network length. High energy demand or suitable local energy sources may still make a project promising.
+flags:
+- OQ-20

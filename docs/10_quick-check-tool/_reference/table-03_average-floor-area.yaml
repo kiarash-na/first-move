@@ -1,0 +1,89 @@
+# Generated from 00_originals/AQC-Methodology.docx. Values exactly as in the source;
+# `raw` keeps the printed text, `value` is the number (null for "-").
+# Table numbers follow the PDF render (the docx stores stale caption numbers).
+id: TBL-3
+caption: 'Table 3: Average Floor Area: Default average floor area per building expressed in m².'
+unit: m²
+source: 00_originals/AQC-Methodology.docx §1.2
+column_header: Construction Period
+columns:
+- '-1919'
+- 1919-1960
+- 1961-1990
+- 1991-2010
+- 2011-today
+row_header: Type
+rows:
+  residential:
+    label: Residential buildings
+    raw:
+    - '547.5'
+    - '452.5'
+    - '493.0'
+    - '408.0'
+    - '347.8'
+    value:
+    - 547.5
+    - 452.5
+    - 493.0
+    - 408.0
+    - 347.8
+  category_a:
+    label: Category A
+    raw:
+    - '933.3'
+    - '991.7'
+    - '1050.0'
+    - '1108.0'
+    - '1166.7'
+    value:
+    - 933.3
+    - 991.7
+    - 1050.0
+    - 1108.0
+    - 1166.7
+  category_b:
+    label: Category B
+    raw:
+    - '1420.0'
+    - '1508.8'
+    - '1597.5'
+    - '1686.3'
+    - '1775.0'
+    value:
+    - 1420.0
+    - 1508.8
+    - 1597.5
+    - 1686.3
+    - 1775.0
+  category_c:
+    label: Category C
+    raw:
+    - '730.0'
+    - '775.6'
+    - '821.3'
+    - '866.9'
+    - '912.5'
+    value:
+    - 730.0
+    - 775.6
+    - 821.3
+    - 866.9
+    - 912.5
+  industry:
+    label: Industry*
+    raw:
+    - '-'
+    - '-'
+    - '-'
+    - '-'
+    - '-'
+    value:
+    - null
+    - null
+    - null
+    - null
+    - null
+flags:
+- OQ-02
+- OQ-03

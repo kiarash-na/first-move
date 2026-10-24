@@ -1,0 +1,21 @@
+# Generated from 00_originals/AQC-Methodology.docx. Values exactly as in the source;
+id: QCT-REF-TYPES
+source: 00_originals/AQC-Methodology.docx §1.1
+intro: 'Buildings are grouped into the following categories according to their use:'
+types:
+- key: residential
+  label: Residential buildings
+  description: Residential buildings of different construction periods.
+- key: category_a
+  label: Category A
+  description: Retail, museums, supermarkets, schools, offices and fitness studios.
+- key: category_b
+  label: Category B
+  description: Kindergartens, sports halls, hotels and theatres.
+- key: category_c
+  label: Category C
+  description: Hospitals, restaurants, swimming pools and canteens.
+- key: industry
+  label: Industry
+  description: Industrial buildings and facilities.
+note: Keys match the row keys of Tables 1-3.

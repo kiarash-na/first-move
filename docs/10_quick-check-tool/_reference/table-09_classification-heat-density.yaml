@@ -1,0 +1,34 @@
+# Generated from 00_originals/AQC-Methodology.docx. Values exactly as in the source;
+# `raw` keeps the printed text, `value` is the number (null for "-").
+# Table numbers follow the PDF render (the docx stores stale caption numbers).
+id: TBL-9
+caption: 'Table 9: Classification of Heat Density'
+source: 00_originals/AQC-Methodology.docx §4.3
+unit: null
+bounds_note: min/max are the numbers as printed; *_inclusive only where the words say so ("Above or equal", "Above", "Below").
+header:
+- Heat Density
+- Classification
+- Interpretation
+classes:
+- range: Above 1.5
+  bounds:
+    min: 1.5
+    min_inclusive: false
+  classification: High density
+  interpretation: A relatively short network serves a high heating demand, potentially improving economic performance.
+- range: 0.5-1.5
+  bounds:
+    min: 0.5
+    max: 1.5
+  classification: Medium density
+  interpretation: The network may be viable.
+- range: Below 0.5
+  bounds:
+    max: 0.5
+    max_inclusive: false
+  classification: Low density
+  interpretation: A relatively long network serves a low heating demand. Substantial cooling demand or low network costs may improve the outlook.
+flags:
+- OQ-10
+- OQ-20
