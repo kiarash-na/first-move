@@ -37,5 +37,72 @@
     "duplicate-id": "Two rows have the same id.",
     "at-least-one-module": "Keep at least one module turned on.",
     "invalid": "This value is not valid."
+  },
+  "storage": {
+    "saveStatus": {
+      "idle": "Not saved yet",
+      "saving": "Saving…",
+      "saved": "Saved {time}",
+      "error": "Not saved",
+      "storage-warning": "Saved {time}, storage at risk"
+    },
+    "saveError": {
+      "quota-exceeded": "Browser storage is full. Export your project, then delete projects you no longer need.",
+      "unavailable": "This browser does not let First Move save. Export your project to keep it.",
+      "write-failed": "Saving failed. First Move tries again in a few seconds.",
+      "mirrored": "A backup copy of your changes is kept in this browser."
+    },
+    "warning": {
+      "unavailable": "This browser cannot store projects reliably, for example in a private window. Export your project to keep it.",
+      "low-space": "Browser storage is almost full. Export your projects and delete the ones you no longer need.",
+      "not-persisted": "Your browser may clear stored data when space runs low. Export your project regularly."
+    },
+    "notice": {
+      "changed-elsewhere": "This project was changed in another tab. You now see the latest version.",
+      "conflict": "This project was also changed in another tab. Your version is kept, and the other one is saved as a snapshot.",
+      "deleted-elsewhere": "This project was deleted in another tab. Any unsaved changes are kept as a snapshot.",
+      "export-reminder": "Your project is stored only in this browser. Export a copy to keep it safe.",
+      "recovered": "Projects restored from a backup copy: {count}",
+      "unreadable": "Stored projects that could not be read and were left unchanged: {count}",
+      "reload-required": "First Move was updated in another tab. Reload this page to keep saving."
+    },
+    "snapshotReason": {
+      "autosave": "Autosave",
+      "conflict": "Version from another tab",
+      "before-restore": "Before a restore",
+      "before-delete": "Before deleting",
+      "before-import": "Before an import",
+      "before-migration": "Before a format update",
+      "deleted-elsewhere": "Unsaved changes when deleted in another tab",
+      "recovery": "Before recovery"
+    },
+    "import": {
+      "error": {
+        "too-large": "This file is larger than {max} MB.",
+        "empty": "This file is empty.",
+        "unreadable": "This file could not be read.",
+        "not-json": "This file is not a First Move project (it is not valid JSON).",
+        "not-first-move": "This file is not a First Move project.",
+        "newer-version": "This file comes from a newer version of First Move (format {version}). Reload the app and try again.",
+        "unsupported-version": "This file uses a format that is no longer supported (format {version}).",
+        "invalid": "This file has values First Move cannot accept:"
+      },
+      "moreErrors": "and {count} more",
+      "migrated": "The file was updated to the current format.",
+      "methodologyChanged": "Results are recalculated with methodology {current}. The file was saved with {file}."
+    },
+    "fileLink": {
+      "status": {
+        "off": "Not linked to a file",
+        "on": "Also saving to {file}",
+        "needs-permission": "Allow saving to {file} again",
+        "error": "Could not save to {file}"
+      },
+      "error": {
+        "permission": "The browser no longer allows writing to this file.",
+        "not-found": "The linked file was moved or deleted. Link a file again.",
+        "write-failed": "Writing the linked file failed."
+      }
+    }
   }
 }
