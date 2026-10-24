@@ -6,7 +6,7 @@ One sub-agent per phase. A phase may start when everything in its `Blocked by` c
 
 | Phase | Plan | Blocked by | Status |
 |---|---|---|---|
-| 01 | [Foundation](2026-10-24_dashboard-01_foundation.md) | none | todo |
+| 01 | [Foundation](2026-10-24_dashboard-01_foundation.md) | none | done |
 | 02 | [Landing as First Move (EN, DE basis)](2026-10-24_dashboard-02_landing-i18n.md) | 01 | todo |
 | 03 | [Project model](2026-10-24_dashboard-03_project-model.md) | 01 | todo |
 | 04 | [Local storage and data safety](2026-10-24_dashboard-04_storage.md) | 03 | todo |
