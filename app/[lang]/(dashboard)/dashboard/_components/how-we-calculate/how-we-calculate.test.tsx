@@ -20,7 +20,8 @@ describe("HowWeCalculate (D-33)", () => {
     expect(screen.queryByText(calc.steps.buildings)).not.toBeInTheDocument()
     await userEvent.click(trigger)
     expect(trigger).toHaveAttribute("aria-expanded", "true")
-    expect(screen.getByText(calc.steps.buildings)).toBeVisible()
+    // The body loads on first open (lazy-calc-explanation.tsx).
+    expect(await screen.findByText(calc.steps.buildings)).toBeVisible()
     expect(screen.getByText("EQ-3.2c")).toBeVisible()
   })
 

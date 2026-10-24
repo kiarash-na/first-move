@@ -12,7 +12,6 @@ describe("lib/project public API", () => {
       "inputStatus",
       "groupRuleStatus",
       "migrateProject",
-      "projectJsonSchema",
       "resolvePatchPath",
       "stepEquations",
       "getField",
@@ -23,6 +22,10 @@ describe("lib/project public API", () => {
     expect(model.projectSchema.safeParse).toBeTypeOf("function")
     expect(model.FIELDS.length).toBeGreaterThan(100)
     expect(model.MIGRATIONS).toHaveLength(model.SCHEMA_VERSION)
+  })
+
+  it("leaves the JSON Schema contract out of the barrel the client imports", () => {
+    expect("projectJsonSchema" in model).toBe(false)
   })
 
   it("round-trips a project: create, patch, migrate", () => {

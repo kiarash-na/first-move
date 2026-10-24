@@ -5,12 +5,13 @@ import { CalculatorIcon, ChevronDownIcon } from "lucide-react"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import { cn } from "@/lib/utils"
 import { useDictionary } from "../i18n-provider"
-import { CalcExplanation } from "./calc-explanation"
+import { LazyCalcExplanation, preloadCalcExplanation } from "./lazy-calc-explanation"
 import type { CalcSource, CalcTone } from "./types"
 
 /**
  * "How we calculate" as a quiet disclosure, collapsed by default (D-33). Put it under each
  * Quick Check step and next to computed numbers: `<HowWeCalculate source={STEP_EXPLAIN.area} />`.
+ * The body (with the MathML) loads on first open, see `lazy-calc-explanation.tsx`.
  */
 export function HowWeCalculate({
   source,
@@ -29,6 +30,8 @@ export function HowWeCalculate({
   return (
     <Collapsible data-slot="how-we-calculate" className={cn("group/calc", className)}>
       <CollapsibleTrigger
+        onPointerEnter={preloadCalcExplanation}
+        onFocus={preloadCalcExplanation}
         className={cn(
           "inline-flex min-h-11 cursor-pointer items-center gap-2.5 font-mono text-xs tracking-[0.06em] text-muted-foreground uppercase transition-colors duration-[180ms] hover:text-foreground",
           tone === "cool" ? "data-[state=open]:text-primary" : "data-[state=open]:text-hot",
@@ -49,7 +52,7 @@ export function HowWeCalculate({
             tone === "cool" ? "border-primary" : "border-hot",
           )}
         >
-          <CalcExplanation source={source} />
+          <LazyCalcExplanation source={source} />
         </div>
       </CollapsibleContent>
     </Collapsible>

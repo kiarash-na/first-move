@@ -8,24 +8,14 @@ describe("formulas (D-33)", () => {
     expect(FORMULA_IDS).toEqual([...EQUATION_IDS, "OQ-06", "OQ-12", "OQ-17", "OQ-21"])
   })
 
-  it("has MathML for every formula with LaTeX, and none for EQ-3.7", () => {
-    for (const id of FORMULA_IDS) {
-      const formula = FORMULAS[id]
-      expect(formula.id).toBe(id)
-      if (formula.latex === null) {
-        expect(formula.mathml, id).toBeNull()
-      } else {
-        expect(formula.mathml, id).toContain('<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">')
-        expect(formula.mathml, id).not.toContain("katex-html")
-        expect(formula.outputMathml, id).toContain('<math xmlns="http://www.w3.org/1998/Math/MathML">')
-      }
-    }
+  it("keys every formula by its id, and EQ-3.7 has no LaTeX", () => {
+    for (const id of FORMULA_IDS) expect(FORMULAS[id].id).toBe(id)
     expect(FORMULAS["EQ-3.7"].latex).toBeNull()
+    expect(FORMULAS["EQ-3.12"].latex).toBe("C_{O\\&M} = 0.02 \\cdot C_{overall}")
   })
 
-  it("keeps the source LaTeX in the MathML annotation", () => {
-    expect(FORMULAS["EQ-3.12"].latex).toBe("C_{O\\&M} = 0.02 \\cdot C_{overall}")
-    expect(FORMULAS["EQ-3.12"].mathml).toContain('<annotation encoding="application/x-tex">C_{O\\&amp;M} = 0.02')
+  it("carries no MathML: that loads with the explanation body (./mathml)", () => {
+    for (const id of FORMULA_IDS) expect(JSON.stringify(FORMULAS[id]), id).not.toContain("<math")
   })
 
   it("renders the OQ answers the engine uses instead of the printed formula (OQ-17, OQ-06)", () => {

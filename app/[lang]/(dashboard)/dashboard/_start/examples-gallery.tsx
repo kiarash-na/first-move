@@ -4,7 +4,6 @@ import { useState } from "react"
 import { toast } from "sonner"
 
 import type { ExampleCard as ExampleCardData } from "@/lib/dashboard/example-cards"
-import { getExample, localizeExample } from "@/lib/examples"
 import { interpolate } from "@/lib/i18n/interpolate"
 import { useDictionary, useLocale } from "../_components/i18n-provider"
 import { useProjectActions } from "../_components/project-actions/use-project-actions"
@@ -21,10 +20,14 @@ export function ExamplesGallery({ examples }: { examples: readonly ExampleCardDa
   const [busy, setBusy] = useState<string | null>(null)
 
   async function openCopy(id: string) {
-    const example = getExample(id)
-    if (!example || busy) return
+    if (busy) return
     setBusy(id)
     try {
+      // The six example projects load on pick, not with the start screen: the cards come from
+      // the server (`exampleCards`).
+      const { getExample, localizeExample } = await import("@/lib/examples")
+      const example = getExample(id)
+      if (!example) return
       const project = await store.addCopy(localizeExample(example, lang))
       toast.success(interpolate(start.examples.opened, { name: project.meta.name }))
       go({ page: "overview" })

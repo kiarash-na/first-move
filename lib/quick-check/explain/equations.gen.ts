@@ -38,9 +38,7 @@ export const EQUATIONS = {
     "title": "Number of Buildings per Type and Construction Period",
     "file": "docs/10_quick-check-tool/02_run-quick-check/eq-03-01_number-of-buildings.md",
     "output": "N_{i,p}",
-    "outputMathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>N</mi><mrow><mi>i</mi><mo separator=\"true\">,</mo><mi>p</mi></mrow></msub></mrow><annotation encoding=\"application/x-tex\">N_{i,p}</annotation></semantics></math></span>",
     "latex": "N_{i,p} = N_{total} \\cdot s_{i,p}",
-    "mathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msub><mi>N</mi><mrow><mi>i</mi><mo separator=\"true\">,</mo><mi>p</mi></mrow></msub><mo>=</mo><msub><mi>N</mi><mrow><mi>t</mi><mi>o</mi><mi>t</mi><mi>a</mi><mi>l</mi></mrow></msub><mo>⋅</mo><msub><mi>s</mi><mrow><mi>i</mi><mo separator=\"true\">,</mo><mi>p</mi></mrow></msub></mrow><annotation encoding=\"application/x-tex\">N_{i,p} = N_{total} \\cdot s_{i,p}</annotation></semantics></math></span>",
     "inputs": [
       "N_{total}",
       "s_{i,p}"
@@ -57,9 +55,7 @@ export const EQUATIONS = {
     "title": "Annual Heating Demand",
     "file": "docs/10_quick-check-tool/02_run-quick-check/eq-03-02a_annual-heating-demand.md",
     "output": "Q_{heat}",
-    "outputMathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>Q</mi><mrow><mi>h</mi><mi>e</mi><mi>a</mi><mi>t</mi></mrow></msub></mrow><annotation encoding=\"application/x-tex\">Q_{heat}</annotation></semantics></math></span>",
     "latex": "Q_{heat} = N_{i,p} \\cdot q_{heat} \\cdot A",
-    "mathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msub><mi>Q</mi><mrow><mi>h</mi><mi>e</mi><mi>a</mi><mi>t</mi></mrow></msub><mo>=</mo><msub><mi>N</mi><mrow><mi>i</mi><mo separator=\"true\">,</mo><mi>p</mi></mrow></msub><mo>⋅</mo><msub><mi>q</mi><mrow><mi>h</mi><mi>e</mi><mi>a</mi><mi>t</mi></mrow></msub><mo>⋅</mo><mi>A</mi></mrow><annotation encoding=\"application/x-tex\">Q_{heat} = N_{i,p} \\cdot q_{heat} \\cdot A</annotation></semantics></math></span>",
     "inputs": [
       "N_{i,p}",
       "q_{heat}",
@@ -79,9 +75,7 @@ export const EQUATIONS = {
     "title": "Annual Cooling Demand",
     "file": "docs/10_quick-check-tool/02_run-quick-check/eq-03-02b_annual-cooling-demand.md",
     "output": "Q_{cool}",
-    "outputMathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>Q</mi><mrow><mi>c</mi><mi>o</mi><mi>o</mi><mi>l</mi></mrow></msub></mrow><annotation encoding=\"application/x-tex\">Q_{cool}</annotation></semantics></math></span>",
     "latex": "Q_{cool} = N_{i,p} \\cdot q_{cool} \\cdot A",
-    "mathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msub><mi>Q</mi><mrow><mi>c</mi><mi>o</mi><mi>o</mi><mi>l</mi></mrow></msub><mo>=</mo><msub><mi>N</mi><mrow><mi>i</mi><mo separator=\"true\">,</mo><mi>p</mi></mrow></msub><mo>⋅</mo><msub><mi>q</mi><mrow><mi>c</mi><mi>o</mi><mi>o</mi><mi>l</mi></mrow></msub><mo>⋅</mo><mi>A</mi></mrow><annotation encoding=\"application/x-tex\">Q_{cool} = N_{i,p} \\cdot q_{cool} \\cdot A</annotation></semantics></math></span>",
     "inputs": [
       "N_{i,p}",
       "q_{cool}",
@@ -101,9 +95,7 @@ export const EQUATIONS = {
     "title": "Total Annual Heating Demand",
     "file": "docs/10_quick-check-tool/02_run-quick-check/eq-03-02c_total-heating-demand.md",
     "output": "Q_{heat,total}",
-    "outputMathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>Q</mi><mrow><mi>h</mi><mi>e</mi><mi>a</mi><mi>t</mi><mo separator=\"true\">,</mo><mi>t</mi><mi>o</mi><mi>t</mi><mi>a</mi><mi>l</mi></mrow></msub></mrow><annotation encoding=\"application/x-tex\">Q_{heat,total}</annotation></semantics></math></span>",
     "latex": "Q_{heat,total} = \\sum_{i=1}^{n} \\sum_{p=1}^{m} Q_{heat}",
-    "mathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msub><mi>Q</mi><mrow><mi>h</mi><mi>e</mi><mi>a</mi><mi>t</mi><mo separator=\"true\">,</mo><mi>t</mi><mi>o</mi><mi>t</mi><mi>a</mi><mi>l</mi></mrow></msub><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><munderover><mo>∑</mo><mrow><mi>p</mi><mo>=</mo><mn>1</mn></mrow><mi>m</mi></munderover><msub><mi>Q</mi><mrow><mi>h</mi><mi>e</mi><mi>a</mi><mi>t</mi></mrow></msub></mrow><annotation encoding=\"application/x-tex\">Q_{heat,total} = \\sum_{i=1}^{n} \\sum_{p=1}^{m} Q_{heat}</annotation></semantics></math></span>",
     "inputs": [
       "Q_{heat}"
     ],
@@ -118,9 +110,7 @@ export const EQUATIONS = {
     "title": "Total Annual Cooling Demand",
     "file": "docs/10_quick-check-tool/02_run-quick-check/eq-03-02d_total-cooling-demand.md",
     "output": "Q_{cool,total}",
-    "outputMathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>Q</mi><mrow><mi>c</mi><mi>o</mi><mi>o</mi><mi>l</mi><mo separator=\"true\">,</mo><mi>t</mi><mi>o</mi><mi>t</mi><mi>a</mi><mi>l</mi></mrow></msub></mrow><annotation encoding=\"application/x-tex\">Q_{cool,total}</annotation></semantics></math></span>",
     "latex": "Q_{cool,total} = \\sum_{i=1}^{n} \\sum_{p=1}^{m} Q_{cool,i,p}",
-    "mathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msub><mi>Q</mi><mrow><mi>c</mi><mi>o</mi><mi>o</mi><mi>l</mi><mo separator=\"true\">,</mo><mi>t</mi><mi>o</mi><mi>t</mi><mi>a</mi><mi>l</mi></mrow></msub><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><munderover><mo>∑</mo><mrow><mi>p</mi><mo>=</mo><mn>1</mn></mrow><mi>m</mi></munderover><msub><mi>Q</mi><mrow><mi>c</mi><mi>o</mi><mi>o</mi><mi>l</mi><mo separator=\"true\">,</mo><mi>i</mi><mo separator=\"true\">,</mo><mi>p</mi></mrow></msub></mrow><annotation encoding=\"application/x-tex\">Q_{cool,total} = \\sum_{i=1}^{n} \\sum_{p=1}^{m} Q_{cool,i,p}</annotation></semantics></math></span>",
     "inputs": [
       "Q_{cool,i,p}"
     ],
@@ -136,9 +126,7 @@ export const EQUATIONS = {
     "title": "Building Density",
     "file": "docs/10_quick-check-tool/02_run-quick-check/eq-03-03_building-density.md",
     "output": "\\rho_{building}",
-    "outputMathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>ρ</mi><mrow><mi>b</mi><mi>u</mi><mi>i</mi><mi>l</mi><mi>d</mi><mi>i</mi><mi>n</mi><mi>g</mi></mrow></msub></mrow><annotation encoding=\"application/x-tex\">\\rho_{building}</annotation></semantics></math></span>",
     "latex": "\\rho_{building} = \\frac{N_{total} \\cdot {10}^{4}}{A_{proj}}",
-    "mathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msub><mi>ρ</mi><mrow><mi>b</mi><mi>u</mi><mi>i</mi><mi>l</mi><mi>d</mi><mi>i</mi><mi>n</mi><mi>g</mi></mrow></msub><mo>=</mo><mfrac><mrow><msub><mi>N</mi><mrow><mi>t</mi><mi>o</mi><mi>t</mi><mi>a</mi><mi>l</mi></mrow></msub><mo>⋅</mo><msup><mn>10</mn><mn>4</mn></msup></mrow><msub><mi>A</mi><mrow><mi>p</mi><mi>r</mi><mi>o</mi><mi>j</mi></mrow></msub></mfrac></mrow><annotation encoding=\"application/x-tex\">\\rho_{building} = \\frac{N_{total} \\cdot {10}^{4}}{A_{proj}}</annotation></semantics></math></span>",
     "inputs": [
       "N_{total}",
       "A_{proj}"
@@ -154,9 +142,7 @@ export const EQUATIONS = {
     "title": "Estimated Network Length: specific net length",
     "file": "docs/10_quick-check-tool/02_run-quick-check/eq-03-04a_specific-net-length.md",
     "output": "l_{spec}",
-    "outputMathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>l</mi><mrow><mi>s</mi><mi>p</mi><mi>e</mi><mi>c</mi></mrow></msub></mrow><annotation encoding=\"application/x-tex\">l_{spec}</annotation></semantics></math></span>",
     "latex": "l_{spec} = \\frac{171.22}{1 + 8.817 \\cdot e^{-0.549 \\cdot N_{ha}}}",
-    "mathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msub><mi>l</mi><mrow><mi>s</mi><mi>p</mi><mi>e</mi><mi>c</mi></mrow></msub><mo>=</mo><mfrac><mn>171.22</mn><mrow><mn>1</mn><mo>+</mo><mn>8.817</mn><mo>⋅</mo><msup><mi>e</mi><mrow><mo>−</mo><mn>0.549</mn><mo>⋅</mo><msub><mi>N</mi><mrow><mi>h</mi><mi>a</mi></mrow></msub></mrow></msup></mrow></mfrac></mrow><annotation encoding=\"application/x-tex\">l_{spec} = \\frac{171.22}{1 + 8.817 \\cdot e^{-0.549 \\cdot N_{ha}}}</annotation></semantics></math></span>",
     "inputs": [
       "N_{ha}"
     ],
@@ -171,9 +157,7 @@ export const EQUATIONS = {
     "title": "Estimated Network Length: total net length",
     "file": "docs/10_quick-check-tool/02_run-quick-check/eq-03-04b_total-net-length.md",
     "output": "l_{total}",
-    "outputMathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>l</mi><mrow><mi>t</mi><mi>o</mi><mi>t</mi><mi>a</mi><mi>l</mi></mrow></msub></mrow><annotation encoding=\"application/x-tex\">l_{total}</annotation></semantics></math></span>",
     "latex": "l_{total} = l_{spec} \\cdot \\frac{A_{proj}}{{10}^{4}}",
-    "mathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msub><mi>l</mi><mrow><mi>t</mi><mi>o</mi><mi>t</mi><mi>a</mi><mi>l</mi></mrow></msub><mo>=</mo><msub><mi>l</mi><mrow><mi>s</mi><mi>p</mi><mi>e</mi><mi>c</mi></mrow></msub><mo>⋅</mo><mfrac><msub><mi>A</mi><mrow><mi>p</mi><mi>r</mi><mi>o</mi><mi>j</mi></mrow></msub><msup><mn>10</mn><mn>4</mn></msup></mfrac></mrow><annotation encoding=\"application/x-tex\">l_{total} = l_{spec} \\cdot \\frac{A_{proj}}{{10}^{4}}</annotation></semantics></math></span>",
     "inputs": [
       "l_{spec}",
       "A_{proj}"
@@ -187,9 +171,7 @@ export const EQUATIONS = {
     "title": "Heat Density",
     "file": "docs/10_quick-check-tool/02_run-quick-check/eq-03-05_heat-density.md",
     "output": "\\rho_{heat}",
-    "outputMathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>ρ</mi><mrow><mi>h</mi><mi>e</mi><mi>a</mi><mi>t</mi></mrow></msub></mrow><annotation encoding=\"application/x-tex\">\\rho_{heat}</annotation></semantics></math></span>",
     "latex": "\\rho_{heat} = \\frac{Q_{heat,total}}{l_{total}}",
-    "mathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msub><mi>ρ</mi><mrow><mi>h</mi><mi>e</mi><mi>a</mi><mi>t</mi></mrow></msub><mo>=</mo><mfrac><msub><mi>Q</mi><mrow><mi>h</mi><mi>e</mi><mi>a</mi><mi>t</mi><mo separator=\"true\">,</mo><mi>t</mi><mi>o</mi><mi>t</mi><mi>a</mi><mi>l</mi></mrow></msub><msub><mi>l</mi><mrow><mi>t</mi><mi>o</mi><mi>t</mi><mi>a</mi><mi>l</mi></mrow></msub></mfrac></mrow><annotation encoding=\"application/x-tex\">\\rho_{heat} = \\frac{Q_{heat,total}}{l_{total}}</annotation></semantics></math></span>",
     "inputs": [
       "Q_{heat,total}",
       "l_{total}"
@@ -205,9 +187,7 @@ export const EQUATIONS = {
     "title": "Heating Supply Coverage",
     "file": "docs/10_quick-check-tool/02_run-quick-check/eq-03-06a_heating-coverage.md",
     "output": "C_{heat}",
-    "outputMathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>C</mi><mrow><mi>h</mi><mi>e</mi><mi>a</mi><mi>t</mi></mrow></msub></mrow><annotation encoding=\"application/x-tex\">C_{heat}</annotation></semantics></math></span>",
     "latex": "C_{heat} = \\frac{Q_{heat,supply}}{Q_{heat,total}}",
-    "mathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msub><mi>C</mi><mrow><mi>h</mi><mi>e</mi><mi>a</mi><mi>t</mi></mrow></msub><mo>=</mo><mfrac><msub><mi>Q</mi><mrow><mi>h</mi><mi>e</mi><mi>a</mi><mi>t</mi><mo separator=\"true\">,</mo><mi>s</mi><mi>u</mi><mi>p</mi><mi>p</mi><mi>l</mi><mi>y</mi></mrow></msub><msub><mi>Q</mi><mrow><mi>h</mi><mi>e</mi><mi>a</mi><mi>t</mi><mo separator=\"true\">,</mo><mi>t</mi><mi>o</mi><mi>t</mi><mi>a</mi><mi>l</mi></mrow></msub></mfrac></mrow><annotation encoding=\"application/x-tex\">C_{heat} = \\frac{Q_{heat,supply}}{Q_{heat,total}}</annotation></semantics></math></span>",
     "inputs": [
       "Q_{heat,supply}",
       "Q_{heat,total}"
@@ -223,9 +203,7 @@ export const EQUATIONS = {
     "title": "Cooling Supply Coverage",
     "file": "docs/10_quick-check-tool/02_run-quick-check/eq-03-06b_cooling-coverage.md",
     "output": "C_{cool}",
-    "outputMathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>C</mi><mrow><mi>c</mi><mi>o</mi><mi>o</mi><mi>l</mi></mrow></msub></mrow><annotation encoding=\"application/x-tex\">C_{cool}</annotation></semantics></math></span>",
     "latex": "C_{cool} = \\frac{Q_{cool,supply}}{Q_{cool,total}}",
-    "mathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msub><mi>C</mi><mrow><mi>c</mi><mi>o</mi><mi>o</mi><mi>l</mi></mrow></msub><mo>=</mo><mfrac><msub><mi>Q</mi><mrow><mi>c</mi><mi>o</mi><mi>o</mi><mi>l</mi><mo separator=\"true\">,</mo><mi>s</mi><mi>u</mi><mi>p</mi><mi>p</mi><mi>l</mi><mi>y</mi></mrow></msub><msub><mi>Q</mi><mrow><mi>c</mi><mi>o</mi><mi>o</mi><mi>l</mi><mo separator=\"true\">,</mo><mi>t</mi><mi>o</mi><mi>t</mi><mi>a</mi><mi>l</mi></mrow></msub></mfrac></mrow><annotation encoding=\"application/x-tex\">C_{cool} = \\frac{Q_{cool,supply}}{Q_{cool,total}}</annotation></semantics></math></span>",
     "inputs": [
       "Q_{cool,supply}",
       "Q_{cool,total}"
@@ -241,9 +219,7 @@ export const EQUATIONS = {
     "title": "Cooling-to-Heating Demand Ratio",
     "file": "docs/10_quick-check-tool/02_run-quick-check/eq-03-07_cooling-to-heating-ratio.md",
     "output": null,
-    "outputMathml": null,
     "latex": null,
-    "mathml": null,
     "inputs": [],
     "tables": [],
     "flags": [
@@ -256,9 +232,7 @@ export const EQUATIONS = {
     "title": "Heating Supply",
     "file": "docs/10_quick-check-tool/02_run-quick-check/eq-03-08a_heating-supply.md",
     "output": "Q_{heat,supply}",
-    "outputMathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>Q</mi><mrow><mi>h</mi><mi>e</mi><mi>a</mi><mi>t</mi><mo separator=\"true\">,</mo><mi>s</mi><mi>u</mi><mi>p</mi><mi>p</mi><mi>l</mi><mi>y</mi></mrow></msub></mrow><annotation encoding=\"application/x-tex\">Q_{heat,supply}</annotation></semantics></math></span>",
     "latex": "Q_{heat,supply} = Q_{heat,available} \\cdot \\frac{COP}{COP - 1}",
-    "mathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msub><mi>Q</mi><mrow><mi>h</mi><mi>e</mi><mi>a</mi><mi>t</mi><mo separator=\"true\">,</mo><mi>s</mi><mi>u</mi><mi>p</mi><mi>p</mi><mi>l</mi><mi>y</mi></mrow></msub><mo>=</mo><msub><mi>Q</mi><mrow><mi>h</mi><mi>e</mi><mi>a</mi><mi>t</mi><mo separator=\"true\">,</mo><mi>a</mi><mi>v</mi><mi>a</mi><mi>i</mi><mi>l</mi><mi>a</mi><mi>b</mi><mi>l</mi><mi>e</mi></mrow></msub><mo>⋅</mo><mfrac><mrow><mi>C</mi><mi>O</mi><mi>P</mi></mrow><mrow><mi>C</mi><mi>O</mi><mi>P</mi><mo>−</mo><mn>1</mn></mrow></mfrac></mrow><annotation encoding=\"application/x-tex\">Q_{heat,supply} = Q_{heat,available} \\cdot \\frac{COP}{COP - 1}</annotation></semantics></math></span>",
     "inputs": [
       "Q_{heat,available}",
       "COP"
@@ -278,9 +252,7 @@ export const EQUATIONS = {
     "title": "Cooling Supply",
     "file": "docs/10_quick-check-tool/02_run-quick-check/eq-03-08b_cooling-supply.md",
     "output": "Q_{cool,supply}",
-    "outputMathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>Q</mi><mrow><mi>c</mi><mi>o</mi><mi>o</mi><mi>l</mi><mo separator=\"true\">,</mo><mi>s</mi><mi>u</mi><mi>p</mi><mi>p</mi><mi>l</mi><mi>y</mi></mrow></msub></mrow><annotation encoding=\"application/x-tex\">Q_{cool,supply}</annotation></semantics></math></span>",
     "latex": "Q_{cool,supply} = Q_{cool,available} \\cdot \\frac{COP}{COP + 1}",
-    "mathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msub><mi>Q</mi><mrow><mi>c</mi><mi>o</mi><mi>o</mi><mi>l</mi><mo separator=\"true\">,</mo><mi>s</mi><mi>u</mi><mi>p</mi><mi>p</mi><mi>l</mi><mi>y</mi></mrow></msub><mo>=</mo><msub><mi>Q</mi><mrow><mi>c</mi><mi>o</mi><mi>o</mi><mi>l</mi><mo separator=\"true\">,</mo><mi>a</mi><mi>v</mi><mi>a</mi><mi>i</mi><mi>l</mi><mi>a</mi><mi>b</mi><mi>l</mi><mi>e</mi></mrow></msub><mo>⋅</mo><mfrac><mrow><mi>C</mi><mi>O</mi><mi>P</mi></mrow><mrow><mi>C</mi><mi>O</mi><mi>P</mi><mo>+</mo><mn>1</mn></mrow></mfrac></mrow><annotation encoding=\"application/x-tex\">Q_{cool,supply} = Q_{cool,available} \\cdot \\frac{COP}{COP + 1}</annotation></semantics></math></span>",
     "inputs": [
       "Q_{cool,available}",
       "COP"
@@ -300,9 +272,7 @@ export const EQUATIONS = {
     "title": "Annual Heating Revenue",
     "file": "docs/10_quick-check-tool/02_run-quick-check/eq-03-09a_heating-revenue.md",
     "output": "R_{heat}",
-    "outputMathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>R</mi><mrow><mi>h</mi><mi>e</mi><mi>a</mi><mi>t</mi></mrow></msub></mrow><annotation encoding=\"application/x-tex\">R_{heat}</annotation></semantics></math></span>",
     "latex": "R_{heat} = \\sum_{i=1}^{n} \\sum_{p=1}^{m} (N_{i,p} \\cdot A \\cdot p_{H,base}) + Q_{heat,total} \\cdot p_{H,energy}",
-    "mathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msub><mi>R</mi><mrow><mi>h</mi><mi>e</mi><mi>a</mi><mi>t</mi></mrow></msub><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><munderover><mo>∑</mo><mrow><mi>p</mi><mo>=</mo><mn>1</mn></mrow><mi>m</mi></munderover><mo stretchy=\"false\">(</mo><msub><mi>N</mi><mrow><mi>i</mi><mo separator=\"true\">,</mo><mi>p</mi></mrow></msub><mo>⋅</mo><mi>A</mi><mo>⋅</mo><msub><mi>p</mi><mrow><mi>H</mi><mo separator=\"true\">,</mo><mi>b</mi><mi>a</mi><mi>s</mi><mi>e</mi></mrow></msub><mo stretchy=\"false\">)</mo><mo>+</mo><msub><mi>Q</mi><mrow><mi>h</mi><mi>e</mi><mi>a</mi><mi>t</mi><mo separator=\"true\">,</mo><mi>t</mi><mi>o</mi><mi>t</mi><mi>a</mi><mi>l</mi></mrow></msub><mo>⋅</mo><msub><mi>p</mi><mrow><mi>H</mi><mo separator=\"true\">,</mo><mi>e</mi><mi>n</mi><mi>e</mi><mi>r</mi><mi>g</mi><mi>y</mi></mrow></msub></mrow><annotation encoding=\"application/x-tex\">R_{heat} = \\sum_{i=1}^{n} \\sum_{p=1}^{m} (N_{i,p} \\cdot A \\cdot p_{H,base}) + Q_{heat,total} \\cdot p_{H,energy}</annotation></semantics></math></span>",
     "inputs": [
       "N_{i,p}",
       "A",
@@ -324,9 +294,7 @@ export const EQUATIONS = {
     "title": "Annual Cooling Revenue",
     "file": "docs/10_quick-check-tool/02_run-quick-check/eq-03-09b_cooling-revenue.md",
     "output": "R_{cool}",
-    "outputMathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>R</mi><mrow><mi>c</mi><mi>o</mi><mi>o</mi><mi>l</mi></mrow></msub></mrow><annotation encoding=\"application/x-tex\">R_{cool}</annotation></semantics></math></span>",
     "latex": "R_{cool} = \\sum_{i=1}^{n} \\sum_{p=1}^{m} (N_{i,p} \\cdot A \\cdot p_{C,base}) + Q_{cool,total} \\cdot p_{C,energy}",
-    "mathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msub><mi>R</mi><mrow><mi>c</mi><mi>o</mi><mi>o</mi><mi>l</mi></mrow></msub><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><munderover><mo>∑</mo><mrow><mi>p</mi><mo>=</mo><mn>1</mn></mrow><mi>m</mi></munderover><mo stretchy=\"false\">(</mo><msub><mi>N</mi><mrow><mi>i</mi><mo separator=\"true\">,</mo><mi>p</mi></mrow></msub><mo>⋅</mo><mi>A</mi><mo>⋅</mo><msub><mi>p</mi><mrow><mi>C</mi><mo separator=\"true\">,</mo><mi>b</mi><mi>a</mi><mi>s</mi><mi>e</mi></mrow></msub><mo stretchy=\"false\">)</mo><mo>+</mo><msub><mi>Q</mi><mrow><mi>c</mi><mi>o</mi><mi>o</mi><mi>l</mi><mo separator=\"true\">,</mo><mi>t</mi><mi>o</mi><mi>t</mi><mi>a</mi><mi>l</mi></mrow></msub><mo>⋅</mo><msub><mi>p</mi><mrow><mi>C</mi><mo separator=\"true\">,</mo><mi>e</mi><mi>n</mi><mi>e</mi><mi>r</mi><mi>g</mi><mi>y</mi></mrow></msub></mrow><annotation encoding=\"application/x-tex\">R_{cool} = \\sum_{i=1}^{n} \\sum_{p=1}^{m} (N_{i,p} \\cdot A \\cdot p_{C,base}) + Q_{cool,total} \\cdot p_{C,energy}</annotation></semantics></math></span>",
     "inputs": [
       "N_{i,p}",
       "A",
@@ -349,9 +317,7 @@ export const EQUATIONS = {
     "title": "Overall Revenues",
     "file": "docs/10_quick-check-tool/02_run-quick-check/eq-03-09c_overall-revenue.md",
     "output": "R_{overall}",
-    "outputMathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>R</mi><mrow><mi>o</mi><mi>v</mi><mi>e</mi><mi>r</mi><mi>a</mi><mi>l</mi><mi>l</mi></mrow></msub></mrow><annotation encoding=\"application/x-tex\">R_{overall}</annotation></semantics></math></span>",
     "latex": "R_{overall} = R_{heat} + R_{cool} + p_{connect} \\cdot N_{total} \\cdot a",
-    "mathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msub><mi>R</mi><mrow><mi>o</mi><mi>v</mi><mi>e</mi><mi>r</mi><mi>a</mi><mi>l</mi><mi>l</mi></mrow></msub><mo>=</mo><msub><mi>R</mi><mrow><mi>h</mi><mi>e</mi><mi>a</mi><mi>t</mi></mrow></msub><mo>+</mo><msub><mi>R</mi><mrow><mi>c</mi><mi>o</mi><mi>o</mi><mi>l</mi></mrow></msub><mo>+</mo><msub><mi>p</mi><mrow><mi>c</mi><mi>o</mi><mi>n</mi><mi>n</mi><mi>e</mi><mi>c</mi><mi>t</mi></mrow></msub><mo>⋅</mo><msub><mi>N</mi><mrow><mi>t</mi><mi>o</mi><mi>t</mi><mi>a</mi><mi>l</mi></mrow></msub><mo>⋅</mo><mi>a</mi></mrow><annotation encoding=\"application/x-tex\">R_{overall} = R_{heat} + R_{cool} + p_{connect} \\cdot N_{total} \\cdot a</annotation></semantics></math></span>",
     "inputs": [
       "R_{heat}",
       "R_{cool}",
@@ -370,9 +336,7 @@ export const EQUATIONS = {
     "title": "Investment Costs: network",
     "file": "docs/10_quick-check-tool/02_run-quick-check/eq-03-10a_network-investment.md",
     "output": "C_{net}",
-    "outputMathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>C</mi><mrow><mi>n</mi><mi>e</mi><mi>t</mi></mrow></msub></mrow><annotation encoding=\"application/x-tex\">C_{net}</annotation></semantics></math></span>",
     "latex": "C_{net} = c_{net} \\cdot l_{total}",
-    "mathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msub><mi>C</mi><mrow><mi>n</mi><mi>e</mi><mi>t</mi></mrow></msub><mo>=</mo><msub><mi>c</mi><mrow><mi>n</mi><mi>e</mi><mi>t</mi></mrow></msub><mo>⋅</mo><msub><mi>l</mi><mrow><mi>t</mi><mi>o</mi><mi>t</mi><mi>a</mi><mi>l</mi></mrow></msub></mrow><annotation encoding=\"application/x-tex\">C_{net} = c_{net} \\cdot l_{total}</annotation></semantics></math></span>",
     "inputs": [
       "c_{net}",
       "l_{total}"
@@ -388,9 +352,7 @@ export const EQUATIONS = {
     "title": "Investment Costs: per heat supply",
     "file": "docs/10_quick-check-tool/02_run-quick-check/eq-03-10b_supply-investment-per-source.md",
     "output": "C_{i}",
-    "outputMathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>C</mi><mi>i</mi></msub></mrow><annotation encoding=\"application/x-tex\">C_{i}</annotation></semantics></math></span>",
     "latex": "C_{i} = c_{i} \\cdot Q_{heat,supply}",
-    "mathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msub><mi>C</mi><mi>i</mi></msub><mo>=</mo><msub><mi>c</mi><mi>i</mi></msub><mo>⋅</mo><msub><mi>Q</mi><mrow><mi>h</mi><mi>e</mi><mi>a</mi><mi>t</mi><mo separator=\"true\">,</mo><mi>s</mi><mi>u</mi><mi>p</mi><mi>p</mi><mi>l</mi><mi>y</mi></mrow></msub></mrow><annotation encoding=\"application/x-tex\">C_{i} = c_{i} \\cdot Q_{heat,supply}</annotation></semantics></math></span>",
     "inputs": [
       "c_{i}",
       "Q_{heat,supply}"
@@ -410,9 +372,7 @@ export const EQUATIONS = {
     "title": "Investment Costs: total heat supply",
     "file": "docs/10_quick-check-tool/02_run-quick-check/eq-03-10c_supply-investment-total.md",
     "output": "C_{i,total}",
-    "outputMathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>C</mi><mrow><mi>i</mi><mo separator=\"true\">,</mo><mi>t</mi><mi>o</mi><mi>t</mi><mi>a</mi><mi>l</mi></mrow></msub></mrow><annotation encoding=\"application/x-tex\">C_{i,total}</annotation></semantics></math></span>",
     "latex": "C_{i,total} = \\sum_{j=1}^{n} C_{i}",
-    "mathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msub><mi>C</mi><mrow><mi>i</mi><mo separator=\"true\">,</mo><mi>t</mi><mi>o</mi><mi>t</mi><mi>a</mi><mi>l</mi></mrow></msub><mo>=</mo><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msub><mi>C</mi><mi>i</mi></msub></mrow><annotation encoding=\"application/x-tex\">C_{i,total} = \\sum_{j=1}^{n} C_{i}</annotation></semantics></math></span>",
     "inputs": [
       "C_{i}"
     ],
@@ -428,9 +388,7 @@ export const EQUATIONS = {
     "title": "Investment Costs: overall",
     "file": "docs/10_quick-check-tool/02_run-quick-check/eq-03-10d_overall-investment.md",
     "output": "C_{overall}",
-    "outputMathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>C</mi><mrow><mi>o</mi><mi>v</mi><mi>e</mi><mi>r</mi><mi>a</mi><mi>l</mi><mi>l</mi></mrow></msub></mrow><annotation encoding=\"application/x-tex\">C_{overall}</annotation></semantics></math></span>",
     "latex": "C_{overall} = C_{HP} \\cdot N_{total} + C_{net} + C_{i} + C_{i,total}",
-    "mathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msub><mi>C</mi><mrow><mi>o</mi><mi>v</mi><mi>e</mi><mi>r</mi><mi>a</mi><mi>l</mi><mi>l</mi></mrow></msub><mo>=</mo><msub><mi>C</mi><mrow><mi>H</mi><mi>P</mi></mrow></msub><mo>⋅</mo><msub><mi>N</mi><mrow><mi>t</mi><mi>o</mi><mi>t</mi><mi>a</mi><mi>l</mi></mrow></msub><mo>+</mo><msub><mi>C</mi><mrow><mi>n</mi><mi>e</mi><mi>t</mi></mrow></msub><mo>+</mo><msub><mi>C</mi><mi>i</mi></msub><mo>+</mo><msub><mi>C</mi><mrow><mi>i</mi><mo separator=\"true\">,</mo><mi>t</mi><mi>o</mi><mi>t</mi><mi>a</mi><mi>l</mi></mrow></msub></mrow><annotation encoding=\"application/x-tex\">C_{overall} = C_{HP} \\cdot N_{total} + C_{net} + C_{i} + C_{i,total}</annotation></semantics></math></span>",
     "inputs": [
       "C_{HP}",
       "N_{total}",
@@ -451,9 +409,7 @@ export const EQUATIONS = {
     "title": "Annuity Factor",
     "file": "docs/10_quick-check-tool/02_run-quick-check/eq-03-10e_annuity-factor.md",
     "output": "a",
-    "outputMathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>a</mi></mrow><annotation encoding=\"application/x-tex\">a</annotation></semantics></math></span>",
     "latex": "a = \\frac{{(1 + i)}^{p} \\cdot i}{{(1 + i)}^{p} - 1}",
-    "mathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><mi>a</mi><mo>=</mo><mfrac><mrow><msup><mrow><mo stretchy=\"false\">(</mo><mn>1</mn><mo>+</mo><mi>i</mi><mo stretchy=\"false\">)</mo></mrow><mi>p</mi></msup><mo>⋅</mo><mi>i</mi></mrow><mrow><msup><mrow><mo stretchy=\"false\">(</mo><mn>1</mn><mo>+</mo><mi>i</mi><mo stretchy=\"false\">)</mo></mrow><mi>p</mi></msup><mo>−</mo><mn>1</mn></mrow></mfrac></mrow><annotation encoding=\"application/x-tex\">a = \\frac{{(1 + i)}^{p} \\cdot i}{{(1 + i)}^{p} - 1}</annotation></semantics></math></span>",
     "inputs": [
       "i",
       "p"
@@ -472,9 +428,7 @@ export const EQUATIONS = {
     "title": "Annualized Costs",
     "file": "docs/10_quick-check-tool/02_run-quick-check/eq-03-10f_annualized-costs.md",
     "output": "C_{annual}",
-    "outputMathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>C</mi><mrow><mi>a</mi><mi>n</mi><mi>n</mi><mi>u</mi><mi>a</mi><mi>l</mi></mrow></msub></mrow><annotation encoding=\"application/x-tex\">C_{annual}</annotation></semantics></math></span>",
     "latex": "C_{annual} = C_{overall} \\cdot a",
-    "mathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msub><mi>C</mi><mrow><mi>a</mi><mi>n</mi><mi>n</mi><mi>u</mi><mi>a</mi><mi>l</mi></mrow></msub><mo>=</mo><msub><mi>C</mi><mrow><mi>o</mi><mi>v</mi><mi>e</mi><mi>r</mi><mi>a</mi><mi>l</mi><mi>l</mi></mrow></msub><mo>⋅</mo><mi>a</mi></mrow><annotation encoding=\"application/x-tex\">C_{annual} = C_{overall} \\cdot a</annotation></semantics></math></span>",
     "inputs": [
       "C_{overall}",
       "a"
@@ -488,9 +442,7 @@ export const EQUATIONS = {
     "title": "Operational Costs: electricity",
     "file": "docs/10_quick-check-tool/02_run-quick-check/eq-03-11_electricity-costs.md",
     "output": "C_{el}",
-    "outputMathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>C</mi><mrow><mi>e</mi><mi>l</mi></mrow></msub></mrow><annotation encoding=\"application/x-tex\">C_{el}</annotation></semantics></math></span>",
     "latex": "C_{el} = \\sum_{i=1}^{n} \\frac{Q_{heat,supply}}{COP_{H}} \\cdot c_{el} + \\sum_{i=1}^{n} \\frac{Q_{cool,supply}}{COP_{C}} \\cdot c_{el}",
-    "mathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msub><mi>C</mi><mrow><mi>e</mi><mi>l</mi></mrow></msub><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><mfrac><msub><mi>Q</mi><mrow><mi>h</mi><mi>e</mi><mi>a</mi><mi>t</mi><mo separator=\"true\">,</mo><mi>s</mi><mi>u</mi><mi>p</mi><mi>p</mi><mi>l</mi><mi>y</mi></mrow></msub><mrow><mi>C</mi><mi>O</mi><msub><mi>P</mi><mi>H</mi></msub></mrow></mfrac><mo>⋅</mo><msub><mi>c</mi><mrow><mi>e</mi><mi>l</mi></mrow></msub><mo>+</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><mfrac><msub><mi>Q</mi><mrow><mi>c</mi><mi>o</mi><mi>o</mi><mi>l</mi><mo separator=\"true\">,</mo><mi>s</mi><mi>u</mi><mi>p</mi><mi>p</mi><mi>l</mi><mi>y</mi></mrow></msub><mrow><mi>C</mi><mi>O</mi><msub><mi>P</mi><mi>C</mi></msub></mrow></mfrac><mo>⋅</mo><msub><mi>c</mi><mrow><mi>e</mi><mi>l</mi></mrow></msub></mrow><annotation encoding=\"application/x-tex\">C_{el} = \\sum_{i=1}^{n} \\frac{Q_{heat,supply}}{COP_{H}} \\cdot c_{el} + \\sum_{i=1}^{n} \\frac{Q_{cool,supply}}{COP_{C}} \\cdot c_{el}</annotation></semantics></math></span>",
     "inputs": [
       "Q_{heat,supply}",
       "COP_{H}",
@@ -518,9 +470,7 @@ export const EQUATIONS = {
     "title": "Additional Costs: operation & maintenance",
     "file": "docs/10_quick-check-tool/02_run-quick-check/eq-03-12_operation-and-maintenance.md",
     "output": "C_{O\\&M}",
-    "outputMathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>C</mi><mrow><mi>O</mi><mi mathvariant=\"normal\">&amp;</mi><mi>M</mi></mrow></msub></mrow><annotation encoding=\"application/x-tex\">C_{O\\&amp;M}</annotation></semantics></math></span>",
     "latex": "C_{O\\&M} = 0.02 \\cdot C_{overall}",
-    "mathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msub><mi>C</mi><mrow><mi>O</mi><mi mathvariant=\"normal\">&amp;</mi><mi>M</mi></mrow></msub><mo>=</mo><mn>0.02</mn><mo>⋅</mo><msub><mi>C</mi><mrow><mi>o</mi><mi>v</mi><mi>e</mi><mi>r</mi><mi>a</mi><mi>l</mi><mi>l</mi></mrow></msub></mrow><annotation encoding=\"application/x-tex\">C_{O\\&amp;M} = 0.02 \\cdot C_{overall}</annotation></semantics></math></span>",
     "inputs": [
       "C_{overall}"
     ],
@@ -537,9 +487,7 @@ export const RESOLVED_FORMULAS = {
     "title": "PV: input and application of the 30 % reduction",
     "file": "docs/10_quick-check-tool/open-questions/OQ-06_pv-input-and-reduction.md",
     "output": "C_{el,PV}",
-    "outputMathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>C</mi><mrow><mi>e</mi><mi>l</mi><mo separator=\"true\">,</mo><mi>P</mi><mi>V</mi></mrow></msub></mrow><annotation encoding=\"application/x-tex\">C_{el,PV}</annotation></semantics></math></span>",
     "latex": "C_{el,PV} = C_{el} \\cdot (1 - r_{PV})",
-    "mathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msub><mi>C</mi><mrow><mi>e</mi><mi>l</mi><mo separator=\"true\">,</mo><mi>P</mi><mi>V</mi></mrow></msub><mo>=</mo><msub><mi>C</mi><mrow><mi>e</mi><mi>l</mi></mrow></msub><mo>⋅</mo><mo stretchy=\"false\">(</mo><mn>1</mn><mo>−</mo><msub><mi>r</mi><mrow><mi>P</mi><mi>V</mi></mrow></msub><mo stretchy=\"false\">)</mo></mrow><annotation encoding=\"application/x-tex\">C_{el,PV} = C_{el} \\cdot (1 - r_{PV})</annotation></semantics></math></span>",
     "inputs": [],
     "tables": [],
     "flags": [
@@ -552,9 +500,7 @@ export const RESOLVED_FORMULAS = {
     "title": "No formula for the cooling-to-heating ratio",
     "file": "docs/10_quick-check-tool/open-questions/OQ-12_ch-ratio-formula.md",
     "output": "CH",
-    "outputMathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>C</mi><mi>H</mi></mrow><annotation encoding=\"application/x-tex\">CH</annotation></semantics></math></span>",
     "latex": "CH = \\frac{\\min(Q_{cool,total}, Q_{heat,total})}{\\max(Q_{cool,total}, Q_{heat,total})}",
-    "mathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><mi>C</mi><mi>H</mi><mo>=</mo><mfrac><mrow><mi>min</mi><mo>⁡</mo><mo stretchy=\"false\">(</mo><msub><mi>Q</mi><mrow><mi>c</mi><mi>o</mi><mi>o</mi><mi>l</mi><mo separator=\"true\">,</mo><mi>t</mi><mi>o</mi><mi>t</mi><mi>a</mi><mi>l</mi></mrow></msub><mo separator=\"true\">,</mo><msub><mi>Q</mi><mrow><mi>h</mi><mi>e</mi><mi>a</mi><mi>t</mi><mo separator=\"true\">,</mo><mi>t</mi><mi>o</mi><mi>t</mi><mi>a</mi><mi>l</mi></mrow></msub><mo stretchy=\"false\">)</mo></mrow><mrow><mi>max</mi><mo>⁡</mo><mo stretchy=\"false\">(</mo><msub><mi>Q</mi><mrow><mi>c</mi><mi>o</mi><mi>o</mi><mi>l</mi><mo separator=\"true\">,</mo><mi>t</mi><mi>o</mi><mi>t</mi><mi>a</mi><mi>l</mi></mrow></msub><mo separator=\"true\">,</mo><msub><mi>Q</mi><mrow><mi>h</mi><mi>e</mi><mi>a</mi><mi>t</mi><mo separator=\"true\">,</mo><mi>t</mi><mi>o</mi><mi>t</mi><mi>a</mi><mi>l</mi></mrow></msub><mo stretchy=\"false\">)</mo></mrow></mfrac></mrow><annotation encoding=\"application/x-tex\">CH = \\frac{\\min(Q_{cool,total}, Q_{heat,total})}{\\max(Q_{cool,total}, Q_{heat,total})}</annotation></semantics></math></span>",
     "inputs": [],
     "tables": [],
     "flags": [
@@ -567,9 +513,7 @@ export const RESOLVED_FORMULAS = {
     "title": "C_overall adds both C_i and C_i,total",
     "file": "docs/10_quick-check-tool/open-questions/OQ-17_c-overall-double-count.md",
     "output": "C_{overall}",
-    "outputMathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>C</mi><mrow><mi>o</mi><mi>v</mi><mi>e</mi><mi>r</mi><mi>a</mi><mi>l</mi><mi>l</mi></mrow></msub></mrow><annotation encoding=\"application/x-tex\">C_{overall}</annotation></semantics></math></span>",
     "latex": "C_{overall} = C_{HP} \\cdot N_{total} + C_{net} + C_{i,total}",
-    "mathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msub><mi>C</mi><mrow><mi>o</mi><mi>v</mi><mi>e</mi><mi>r</mi><mi>a</mi><mi>l</mi><mi>l</mi></mrow></msub><mo>=</mo><msub><mi>C</mi><mrow><mi>H</mi><mi>P</mi></mrow></msub><mo>⋅</mo><msub><mi>N</mi><mrow><mi>t</mi><mi>o</mi><mi>t</mi><mi>a</mi><mi>l</mi></mrow></msub><mo>+</mo><msub><mi>C</mi><mrow><mi>n</mi><mi>e</mi><mi>t</mi></mrow></msub><mo>+</mo><msub><mi>C</mi><mrow><mi>i</mi><mo separator=\"true\">,</mo><mi>t</mi><mi>o</mi><mi>t</mi><mi>a</mi><mi>l</mi></mrow></msub></mrow><annotation encoding=\"application/x-tex\">C_{overall} = C_{HP} \\cdot N_{total} + C_{net} + C_{i,total}</annotation></semantics></math></span>",
     "inputs": [],
     "tables": [],
     "flags": [
@@ -582,9 +526,7 @@ export const RESOLVED_FORMULAS = {
     "title": "\"Economic assessment favorable / clearly unfavorable\" is not defined",
     "file": "docs/10_quick-check-tool/open-questions/OQ-21_economic-assessment-undefined.md",
     "output": "E",
-    "outputMathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>E</mi></mrow><annotation encoding=\"application/x-tex\">E</annotation></semantics></math></span>",
     "latex": "E = \\frac{R_{overall}}{C_{annual} + C_{el} + C_{O\\&M}}",
-    "mathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><mi>E</mi><mo>=</mo><mfrac><msub><mi>R</mi><mrow><mi>o</mi><mi>v</mi><mi>e</mi><mi>r</mi><mi>a</mi><mi>l</mi><mi>l</mi></mrow></msub><mrow><msub><mi>C</mi><mrow><mi>a</mi><mi>n</mi><mi>n</mi><mi>u</mi><mi>a</mi><mi>l</mi></mrow></msub><mo>+</mo><msub><mi>C</mi><mrow><mi>e</mi><mi>l</mi></mrow></msub><mo>+</mo><msub><mi>C</mi><mrow><mi>O</mi><mi mathvariant=\"normal\">&amp;</mi><mi>M</mi></mrow></msub></mrow></mfrac></mrow><annotation encoding=\"application/x-tex\">E = \\frac{R_{overall}}{C_{annual} + C_{el} + C_{O\\&amp;M}}</annotation></semantics></math></span>",
     "inputs": [],
     "tables": [],
     "flags": [

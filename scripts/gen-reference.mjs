@@ -6,8 +6,10 @@
  *    `lib/quick-check/reference/<name>.gen.ts` (values exactly as in the YAML).
  * 2. Reads the frontmatter `latex:` of every equation file in
  *    `docs/10_quick-check-tool/02_run-quick-check/` and writes
- *    `lib/quick-check/explain/equations.gen.ts`: ID → MathML (KaTeX `output: "mathml"`) plus the
- *    output symbol, for "How we calculate" (D-33). No math library ships to the client.
+ *    `lib/quick-check/explain/equations.gen.ts` (ID → title, LaTeX, inputs, tables, flags) and
+ *    `lib/quick-check/explain/equations-mathml.gen.ts` (ID → MathML of the formula and of its
+ *    output symbol, KaTeX `output: "mathml"`), for "How we calculate" (D-33). No math library
+ *    ships to the client, and the MathML loads only when an explanation opens.
  *
  * `node scripts/gen-reference.mjs --check` exits with 1 when a generated file is out of date.
  * `scripts/gen-reference.test.ts` runs the same check in `pnpm test`.
@@ -26,6 +28,7 @@ const EQUATION_DIR = `${QCT}/02_run-quick-check`
 const OQ_DIR = `${QCT}/open-questions`
 export const REFERENCE_OUT = "lib/quick-check/reference"
 export const EQUATIONS_OUT = "lib/quick-check/explain/equations.gen.ts"
+export const MATHML_OUT = "lib/quick-check/explain/equations-mathml.gen.ts"
 
 /**
  * Formulas that no equation file holds, written from the resolved OQ answer (the only math
@@ -123,16 +126,22 @@ function formula({ id, slug, title, file, output, latex, inputs, tables, flags }
     title,
     file,
     output: output ?? null,
-    outputMathml: output ? toMathml(output) : null,
     latex: latex ?? null,
-    mathml: latex ? toMathml(latex, { display: true }) : null,
     inputs: inputs ?? [],
     tables: tables ?? [],
     flags: flags ?? [],
   }
 }
 
-function equationsFile(root) {
+/** The MathML of a formula and of its output symbol; kept apart so it can load lazily. */
+function mathmlOf({ output, latex }) {
+  return {
+    mathml: latex ? toMathml(latex, { display: true }) : null,
+    outputMathml: output ? toMathml(output) : null,
+  }
+}
+
+function equationsFiles(root) {
   const sources = []
   const equations = listFiles(root, EQUATION_DIR, (file) => file.startsWith("eq-") && file.endsWith(".md")).map(
     (file) => {
@@ -151,7 +160,7 @@ function equationsFile(root) {
     if (front.status !== "resolved") throw new Error(`${entry.id} is not resolved`)
     return formula({ ...entry, slug: entry.id.toLowerCase(), title: front.title, file: relative, flags: [entry.id] })
   })
-  const byId = (list) => Object.fromEntries(list.map((entry) => [entry.id, entry]))
+  const byId = (list, map = (entry) => entry) => Object.fromEntries(list.map((entry) => [entry.id, map(entry)]))
   const content = [
     header(sources),
     "/** Every equation of methodology §3 (`latex:` of each file), keyed by ID, in file order. */",
@@ -161,12 +170,21 @@ function equationsFile(root) {
     `export const RESOLVED_FORMULAS = ${literal(byId(resolved))} as const`,
     "",
   ].join("\n")
-  return { path: EQUATIONS_OUT, content }
+  const mathml = [
+    header(sources),
+    "/** The MathML of every formula and of its output symbol (`null` without LaTeX), keyed by ID. */",
+    `export const FORMULA_MATHML = ${literal(byId([...equations, ...resolved], mathmlOf))} as const`,
+    "",
+  ].join("\n")
+  return [
+    { path: EQUATIONS_OUT, content },
+    { path: MATHML_OUT, content: mathml },
+  ]
 }
 
 /** Every generated file with its content, relative to `root`. Pure: writes nothing. */
 export function generateReference(root = ROOT) {
-  return [...referenceFiles(root), equationsFile(root)]
+  return [...referenceFiles(root), ...equationsFiles(root)]
 }
 
 /** Generated files on disk that the generator no longer produces (a YAML was removed). */

@@ -24,6 +24,6 @@ describe("StepLayout", () => {
     const how = screen.getByRole("button", { name: calc.ui.title })
     expect(how).toHaveAttribute("aria-expanded", "false")
     await userEvent.click(how)
-    expect(screen.getByText(calc.steps.sources)).toBeVisible()
+    expect(await screen.findByText(calc.steps.sources)).toBeVisible()
   })
 })

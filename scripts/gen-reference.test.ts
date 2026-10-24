@@ -21,13 +21,14 @@ describe("gen:reference", () => {
     expect(staleFiles(root, files)).toEqual([])
   })
 
-  it("produces one file per reference YAML plus the equation file", () => {
+  it("produces one file per reference YAML plus the equation and MathML files", () => {
     const yamls = readdirSync(path.join(root, "docs/10_quick-check-tool/_reference")).filter((file) =>
       file.endsWith(".yaml"),
     )
     const references = files.filter((file) => file.path.startsWith(`${REFERENCE_OUT}/`))
     expect(references).toHaveLength(yamls.length)
     expect(files.map((file) => file.path)).toContain("lib/quick-check/explain/equations.gen.ts")
+    expect(files.map((file) => file.path)).toContain("lib/quick-check/explain/equations-mathml.gen.ts")
   })
 
   it("keeps the YAML data exactly (TBL-6 as an example)", async () => {

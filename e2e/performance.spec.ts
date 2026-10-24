@@ -34,6 +34,18 @@ test.describe("first-load JavaScript", () => {
     }
   })
 
+  test("the landing's 3D scene and the formula MathML load lazily, never with the first load", () => {
+    for (const { route, firstLoadChunkPaths } of stats()) {
+      for (const file of firstLoadChunkPaths) {
+        const code = chunk(file)
+        // three.js loads after hydration (DistrictScene → districtWorld).
+        expect(code, `${route} ${file}`).not.toContain("WebGLRenderer")
+        // The MathML loads when a "How we calculate" opens (lazy-calc-explanation.tsx).
+        expect(code, `${route} ${file}`).not.toContain('<annotation encoding="application/x-tex">')
+      }
+    }
+  })
+
   test("no math library ships to the client (D-33): equations are pre-rendered MathML", () => {
     for (const { route, firstLoadChunkPaths } of stats()) {
       for (const file of firstLoadChunkPaths) {

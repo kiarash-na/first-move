@@ -4,8 +4,9 @@ import { EQUATIONS, RESOLVED_FORMULAS } from "./equations.gen"
 export type FormulaId = keyof typeof EQUATIONS | keyof typeof RESOLVED_FORMULAS
 
 /**
- * One formula for "How we calculate" (D-33), pre-rendered at `pnpm gen:reference` time so no
- * math library ships to the client. EQ-3.7 has no equation in the source (`latex` null).
+ * One formula for "How we calculate" (D-33). Its MathML is pre-rendered at `pnpm gen:reference`
+ * time (`./mathml`), so no math library ships to the client. EQ-3.7 has no equation in the
+ * source (`latex` null).
  */
 export interface Formula {
   id: FormulaId
@@ -15,12 +16,10 @@ export interface Formula {
   title: string
   /** The docs file the formula comes from. */
   file: string
-  /** Output symbol as LaTeX and MathML (`l_{spec}`). */
+  /** Output symbol as LaTeX (`l_{spec}`). */
   output: string | null
-  outputMathml: string | null
-  /** The `latex:` of the docs file, and its MathML (KaTeX `output: "mathml"`). */
+  /** The `latex:` of the docs file; its MathML is in `./mathml` (loaded lazily). */
   latex: string | null
-  mathml: string | null
   inputs: readonly string[]
   tables: readonly string[]
   flags: readonly string[]

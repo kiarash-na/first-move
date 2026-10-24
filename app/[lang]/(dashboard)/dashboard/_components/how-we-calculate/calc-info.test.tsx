@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react"
+import { render, screen, within } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import { describe, expect, it } from "vitest"
 import calc from "@/dictionaries/en/calc.json"
@@ -17,6 +17,8 @@ describe("CalcInfo (D-33)", () => {
     const dictionary = testDictionaries(lang).calc
     await userEvent.click(screen.getByRole("button", { name: `${dictionary.ui.info}: Building density` }))
     const panel = screen.getByRole("dialog", { name: dictionary.ui.title })
+    // The body loads on first open (lazy-calc-explanation.tsx).
+    await within(panel).findByText("EQ-3.3")
     expect(panel).toHaveTextContent(calc.results.buildingDensity.text)
     expect(panel).toHaveTextContent("EQ-3.3")
   })
