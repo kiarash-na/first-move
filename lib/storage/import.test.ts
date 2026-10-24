@@ -1,0 +1,137 @@
+// @vitest-environment node
+import { describe, expect, it } from "vitest"
+import { z } from "zod"
+import { MIGRATIONS, projectSchema, type Migration, type Project } from "@/lib/project"
+import fixture from "@/lib/project/migrations/v1-baseline.fixture.json"
+import { buildExport, EXPORT_FORMAT } from "./export"
+import { IMPORT_ERROR_CODES, parseImportText, readImportFile } from "./import"
+import { IMPORT_MAX_BYTES, IMPORT_MAX_LISTED_ERRORS } from "./limits"
+import { testProject } from "./test-utils/projects"
+
+const now = new Date("2026-10-24T10:00:00.000Z")
+const envelope = (project: unknown) => JSON.stringify({ format: EXPORT_FORMAT, formatVersion: 1, exportedAt: now.toISOString(), project })
+
+describe("import: round trip", () => {
+  it("brings back exactly the exported inputs", async () => {
+    const project = testProject(1, { "buildings.total": 12, "sources.potentials.ground_water": "high", "meta.name": "Valley" })
+    const file = buildExport(project, now)
+    const result = await readImportFile(new Blob([file.text]))
+    expect(result).toEqual({
+      ok: true,
+      project,
+      fromVersion: 1,
+      migrated: false,
+      methodology: { file: project.meta.methodologyVersion, current: project.meta.methodologyVersion, changed: false },
+    })
+  })
+
+  it("accepts a bare project (the ingestion-agent contract, D-05)", () => {
+    const result = parseImportText(JSON.stringify(fixture))
+    expect(result.ok).toBe(true)
+  })
+
+  it("keeps text as typed: markup is data, never HTML (D-14)", () => {
+    const name = `<img src=x onerror="alert(1)"> & <script>`
+    const result = parseImportText(envelope(testProject(1, { "meta.name": name })))
+    expect(result.ok && result.project.meta.name).toBe(name)
+  })
+
+  it("flags a file saved with another methodology version (results are recomputed)", () => {
+    const old = testProject(1)
+    const result = parseImportText(envelope({ ...old, meta: { ...old.meta, methodologyVersion: "0.9.0" } }))
+    expect(result.ok && result.methodology).toEqual({ file: "0.9.0", current: old.meta.methodologyVersion, changed: true })
+  })
+})
+
+describe("import: rejected files", () => {
+  it("rejects files over 5 MB before reading them", async () => {
+    let read = false
+    const big = { size: IMPORT_MAX_BYTES + 1, text: async () => ((read = true), "") } as unknown as Blob
+    expect(await readImportFile(big)).toMatchObject({ ok: false, code: "too-large", params: { maxMegabytes: 5 } })
+    expect(read).toBe(false)
+    expect(parseImportText(" ".repeat(11), { maxBytes: 10 })).toMatchObject({ code: "too-large" })
+  })
+
+  it.each([
+    ["an empty file", "", "empty"],
+    ["whitespace", "   ", "empty"],
+    ["text that is not JSON", "{oops", "not-json"],
+    ["a JSON array", "[]", "not-first-move"],
+    ["another JSON file", JSON.stringify({ name: "x" }), "not-first-move"],
+    ["a newer export format", JSON.stringify({ format: EXPORT_FORMAT, formatVersion: 2, project: {} }), "newer-version"],
+    ["a project from a newer app", envelope({ meta: { schemaVersion: 2 } }), "newer-version"],
+    ["a project older than any supported version", envelope({ meta: { schemaVersion: 0 } }), "unsupported-version"],
+    ["an envelope without a project version", envelope({ meta: {} }), "invalid"],
+  ])("rejects %s", (_, text, code) => {
+    expect(parseImportText(text)).toMatchObject({ ok: false, code })
+  })
+
+  it("rejects an empty or unreadable blob", async () => {
+    expect(await readImportFile(new Blob([]))).toMatchObject({ code: "empty" })
+    const broken = { size: 3, text: async () => Promise.reject(new Error("io")) } as unknown as Blob
+    expect(await readImportFile(broken)).toMatchObject({ code: "unreadable" })
+  })
+
+  it("lists the bad fields with their registry labels", () => {
+    const project = testProject(1)
+    const bad = { ...project, buildings: { ...project.buildings, total: -3 }, site: { ...project.site, extra: 1 } }
+    const result = parseImportText(envelope(bad))
+    expect(result).toMatchObject({ ok: false, code: "invalid", params: { version: 1 }, moreErrors: 0 })
+    if (result.ok) return
+    expect(result.errors).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ path: "buildings.total", code: "min", text: { area: "quick-check", key: "fields.buildings.total" } }),
+        expect.objectContaining({ path: "site.extra", code: "unknown-field", text: null }),
+      ]),
+    )
+  })
+
+  it("lists at most 20 bad fields and counts the rest", () => {
+    const project = testProject(1)
+    const risks = Array.from({ length: 30 }, (_, index) => ({ id: `r${index}`, title: 1, description: "", dealBreaker: false, validation: "" }))
+    const result = parseImportText(envelope({ ...project, businessPlan: { ...project.businessPlan, risks } }))
+    expect(result.ok).toBe(false)
+    if (result.ok) return
+    expect(result.errors).toHaveLength(IMPORT_MAX_LISTED_ERRORS)
+    expect(result.moreErrors).toBe(10)
+  })
+
+  it("rejects a damaged envelope with the bad keys", () => {
+    const text = JSON.stringify({ format: EXPORT_FORMAT, formatVersion: 1, exportedAt: "yesterday", project: {}, extra: true })
+    const result = parseImportText(text)
+    expect(result).toMatchObject({ ok: false, code: "invalid" })
+    if (result.ok) return
+    expect(result.errors.map((error) => error.path).sort()).toEqual(["exportedAt", "format"])
+  })
+
+  it("has copy codes for every failure", () => {
+    expect(new Set(IMPORT_ERROR_CODES).size).toBe(IMPORT_ERROR_CODES.length)
+  })
+})
+
+describe("import: migrations (old files, D-13)", () => {
+  // A pretend version 2 that renames the project name to `title`, so v1 files must be migrated.
+  const v2Schema = projectSchema.extend({
+    meta: projectSchema.shape.meta.omit({ name: true, schemaVersion: true }).extend({ title: z.string(), schemaVersion: z.literal(2) }),
+  })
+  const v2: Migration = {
+    version: 2,
+    description: "Rename meta.name to meta.title.",
+    up: (project) => {
+      const { name, ...meta } = project.meta as Record<string, unknown>
+      return { ...project, meta: { ...meta, title: name } }
+    },
+  }
+  const migration = { migrations: [...MIGRATIONS, v2], schema: v2Schema as unknown as z.ZodType<Project>, target: 2 }
+
+  it("runs every step from the file's version", () => {
+    const result = parseImportText(envelope(testProject(1, { "meta.name": "Old" })), { migration })
+    expect(result).toMatchObject({ ok: true, fromVersion: 1, migrated: true })
+    expect(result.ok && (result.project.meta as unknown as { title: string }).title).toBe("Old")
+  })
+
+  it("keeps the frozen v1 fixture importable with the real chain", () => {
+    const result = parseImportText(envelope(fixture))
+    expect(result).toMatchObject({ ok: true, fromVersion: 1, migrated: false })
+  })
+})
