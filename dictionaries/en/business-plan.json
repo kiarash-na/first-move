@@ -3,7 +3,9 @@
     "site": {
       "label": "Site or district",
       "help": "Describe the site or district the business model is for.",
-      "name": { "label": "Name of the site or district" },
+      "name": {
+        "label": "Name of the site or district"
+      },
       "location": {
         "label": "Location",
         "help": "Municipality, region or country."
@@ -69,15 +71,33 @@
       "canvas": {
         "label": "Business Model Canvas",
         "help": "Pay particular attention to the value proposition, customer relationships, key partners, operator responsibilities, cost structure and revenue streams.",
-        "keyPartners": { "label": "Key partners" },
-        "keyActivities": { "label": "Key activities" },
-        "keyResources": { "label": "Key resources" },
-        "valueProposition": { "label": "Value proposition" },
-        "customerRelationships": { "label": "Customer relationships" },
-        "channels": { "label": "Channels" },
-        "customerSegments": { "label": "Customer segments" },
-        "costStructure": { "label": "Cost structure" },
-        "revenueStreams": { "label": "Revenue streams" },
+        "keyPartners": {
+          "label": "Key partners"
+        },
+        "keyActivities": {
+          "label": "Key activities"
+        },
+        "keyResources": {
+          "label": "Key resources"
+        },
+        "valueProposition": {
+          "label": "Value proposition"
+        },
+        "customerRelationships": {
+          "label": "Customer relationships"
+        },
+        "channels": {
+          "label": "Channels"
+        },
+        "customerSegments": {
+          "label": "Customer segments"
+        },
+        "costStructure": {
+          "label": "Cost structure"
+        },
+        "revenueStreams": {
+          "label": "Revenue streams"
+        },
         "operatorResponsibilities": {
           "label": "Operator responsibilities",
           "help": "Who owns and operates the source, the network and the heat pumps, and who is responsible for what?"
@@ -87,68 +107,429 @@
         "label": "Allocation of investment, risk and benefit",
         "help": "Make explicit who invests, who carries which risk and who benefits.",
         "item": {
-          "stakeholder": { "label": "Stakeholder" },
-          "investment": { "label": "Investment" },
-          "risk": { "label": "Risk" },
-          "benefit": { "label": "Benefit" }
+          "stakeholder": {
+            "label": "Stakeholder"
+          },
+          "investment": {
+            "label": "Investment"
+          },
+          "risk": {
+            "label": "Risk"
+          },
+          "benefit": {
+            "label": "Benefit"
+          }
         }
       },
       "assumptions": {
         "label": "Rough assumptions",
         "help": "Use rough but transparent assumptions rather than detailed engineering calculations.",
-        "connectionRate": { "label": "Connection rate" },
-        "tariffs": { "label": "Tariffs" },
-        "capex": { "label": "Capital expenditure" },
-        "financing": { "label": "Financing" },
-        "subsidies": { "label": "Subsidy dependence" }
+        "connectionRate": {
+          "label": "Connection rate"
+        },
+        "tariffs": {
+          "label": "Tariffs"
+        },
+        "capex": {
+          "label": "Capital expenditure"
+        },
+        "financing": {
+          "label": "Financing"
+        },
+        "subsidies": {
+          "label": "Subsidy dependence"
+        }
       },
       "criticalAssumptions": {
         "label": "Critical assumptions",
         "help": "The top critical assumptions, and how each could be validated.",
         "item": {
-          "statement": { "label": "Assumption" },
-          "validation": { "label": "How to validate it" }
+          "statement": {
+            "label": "Assumption"
+          },
+          "validation": {
+            "label": "How to validate it"
+          }
         }
       },
       "risks": {
         "label": "Risks",
         "help": "The top risks, including one potential deal-breaker, and how each could be validated.",
         "item": {
-          "title": { "label": "Risk" },
-          "description": { "label": "Description" },
-          "dealBreaker": { "label": "Potential deal-breaker" },
-          "validation": { "label": "How to validate it" }
+          "title": {
+            "label": "Risk"
+          },
+          "description": {
+            "label": "Description"
+          },
+          "dealBreaker": {
+            "label": "Potential deal-breaker"
+          },
+          "validation": {
+            "label": "How to validate it"
+          }
         }
       },
       "refinements": {
         "label": "Refinements",
         "help": "Refine the business model based on the Reality Check, expert feedback and the challenges found.",
-        "feedback": { "label": "Feedback and challenges" },
-        "changes": { "label": "What changed in the model, and why" }
+        "feedback": {
+          "label": "Feedback and challenges"
+        },
+        "changes": {
+          "label": "What changed in the model, and why"
+        }
       },
       "scalability": {
         "label": "Scalability and replication",
         "help": "Could the model work under different geographical, economic and organisational conditions?",
-        "geographical": { "label": "Geographical conditions" },
-        "economic": { "label": "Economic conditions" },
-        "organisational": { "label": "Organisational conditions" }
+        "geographical": {
+          "label": "Geographical conditions"
+        },
+        "economic": {
+          "label": "Economic conditions"
+        },
+        "organisational": {
+          "label": "Organisational conditions"
+        }
       },
       "nextSteps": {
         "label": "Next steps",
         "help": "The next practical steps towards implementation.",
-        "data": { "label": "Data to collect" },
-        "stakeholders": { "label": "Stakeholders to engage" },
-        "partnerships": { "label": "Partnerships to secure" },
-        "pilots": { "label": "Pilot opportunities" },
-        "decisions": { "label": "Key decisions and the decision gate" }
+        "data": {
+          "label": "Data to collect"
+        },
+        "stakeholders": {
+          "label": "Stakeholders to engage"
+        },
+        "partnerships": {
+          "label": "Partnerships to secure"
+        },
+        "pilots": {
+          "label": "Pilot opportunities"
+        },
+        "decisions": {
+          "label": "Key decisions and the decision gate"
+        }
       }
     }
   },
   "scenarios": {
-    "BM-SCN-01": { "label": "Scenario 01: Rural village" },
-    "BM-SCN-02": { "label": "Scenario 02: Urban outskirts, no district heating planned" },
-    "BM-SCN-03": { "label": "Scenario 03: Urban outskirts, mixed ownership" },
-    "BM-SCN-04": { "label": "Scenario 04: Urban outskirts, thermal spa and hotels" },
-    "custom": { "label": "Your own use case" }
+    "BM-SCN-01": {
+      "label": "Scenario 01: Rural village"
+    },
+    "BM-SCN-02": {
+      "label": "Scenario 02: Urban outskirts, no district heating planned"
+    },
+    "BM-SCN-03": {
+      "label": "Scenario 03: Urban outskirts, mixed ownership"
+    },
+    "BM-SCN-04": {
+      "label": "Scenario 04: Urban outskirts, thermal spa and hotels"
+    },
+    "custom": {
+      "label": "Your own use case"
+    }
+  },
+  "presets": {
+    "BM-SCN-01": {
+      "siteType": "Rural village",
+      "stakeholders": [
+        "Private households",
+        "Hotel"
+      ],
+      "ownership": "Private ownership, tourist accommodation, commercial",
+      "partners": [
+        "Municipality",
+        "Ski resort"
+      ],
+      "units": "20-70 units (phased development)"
+    },
+    "BM-SCN-02": {
+      "siteType": "Urban outskirts; no district heating planned",
+      "stakeholders": [
+        "Secondary school",
+        "Kindergarten",
+        "Multi-family buildings"
+      ],
+      "ownership": "Municipal ownership, rental apartments",
+      "partners": [
+        "Owner of educational facilities"
+      ],
+      "units": "Approx. 80 units",
+      "currentSupply": [
+        "Natural gas"
+      ]
+    },
+    "BM-SCN-03": {
+      "siteType": "Urban outskirts",
+      "stakeholders": [
+        "Private homeowners",
+        "Housing cooperatives",
+        "Municipality",
+        "Educational facilities"
+      ],
+      "ownership": "Condominium ownership (WEG), rental housing (MRG), non-profit housing (WGG)",
+      "units": "3-20 buildings",
+      "currentSupply": [
+        "Natural gas",
+        "Biomass"
+      ]
+    },
+    "BM-SCN-04": {
+      "siteType": "Urban outskirts",
+      "stakeholders": [
+        "Thermal spa",
+        "Hotels",
+        "Private households"
+      ],
+      "ownership": "Mainly tourism and spa facilities, limited residential use",
+      "units": "3-20 buildings",
+      "currentSupply": [
+        "Natural gas",
+        "Biomass"
+      ]
+    }
+  },
+  "page": {
+    "opportunity": {
+      "lead": "Describe the site, who would connect and why a shared low-temperature network is worth it. Start from a scenario or from your own use case."
+    },
+    "business-logic": {
+      "lead": "Complete a Business Model Canvas for the use case and make explicit who invests, who carries which risk and who benefits."
+    },
+    "reality-check": {
+      "lead": "Use rough but transparent assumptions. Name the top critical assumptions and risks, mark one potential deal-breaker, and say how each could be validated."
+    },
+    "implementation": {
+      "lead": "Refine the model, assess where it could be repeated, and outline the practical next steps. Then check how ready your pitch is."
+    }
+  },
+  "stepNav": {
+    "label": "Business Plan steps",
+    "progress": "{done} of {total} filled in",
+    "done": "Done",
+    "freeOrder": "Work in any order; progress is counted per step."
+  },
+  "prompts": {
+    "heading": "Guiding questions",
+    "lead": "Questions and tips from the challenge brief and the project learnings. Use what helps.",
+    "kind": {
+      "question": "Key question",
+      "learning": "Learning",
+      "tip": "Tip"
+    },
+    "motivation": "What motivates customers to connect? Think of cost, comfort, price stability and the end of their old boiler.",
+    "resilience": "How can a network here contribute to a resilient, local energy supply and energy security?",
+    "existingBuildings": "Existing buildings can usually be connected, most of them even without major thermal renovation.",
+    "heatLineDensity": "Heat line density decides the economics: above about 1 MWh per metre of trench, a network can beat individual solutions.",
+    "groundwater": "Groundwater is the most economical source, and a micro-network between direct neighbours is a promising start.",
+    "bothDirections": "Energy flows both ways in a 5GDHC network, so summer cooling can become a reason to connect.",
+    "extraValue": "Look for extra value beyond heat: cooling, stable prices and relief for the electricity grid.",
+    "whoPays": "Who benefits, and who pays? Are they the same people?",
+    "whoOperates": "Who owns and who operates the source, the network and the heat pumps?",
+    "distribution": "How are investments, revenues and risks shared between the stakeholders?",
+    "ownership": "Ownership decides the pathway: utilities, housing associations and private owners each need a different model.",
+    "implementationModels": "Think of ownership and operation, organisation and governance, and (re-)financing as one implementation model.",
+    "systemBoundary": "Draw the system boundary: who owns the source, the network and the heat pumps?",
+    "costKey": "Look for a fair cost key, for example the source by connected load and the pipes by those who use them.",
+    "infrastructure": "Think infrastructure: long-term finance, public land and the city as a partner.",
+    "framework": "How do energy prices, funding, regulation and long-term commitments affect feasibility?",
+    "reliability": "Which risks, dependencies and operational responsibilities must be covered for a reliable and secure supply?",
+    "pipesDriveCost": "Pipes and house connections drive the cost; trench length dominates the investment.",
+    "costsFirst": "Costs come first: the investment is upfront, the revenues come over 25 to 30 years.",
+    "stayingOut": "Every building that stays out raises the cost for the rest.",
+    "voluntary": "Connecting is voluntary, and there is no fixed gas phase-out date yet. What makes owners say yes?",
+    "funding": "Funding fits only partly and depends on who owns what.",
+    "scaleHere": "How can the model be developed and scaled here, and where else could it work?",
+    "whatWorks": "What works, what does not, and why? A convincing, critically evaluated model beats a perfect-looking one.",
+    "organisational": "Most challenges are organisational rather than technical: coordination, ownership, financing and long-term operation.",
+    "alignment": "Align early with the municipality and the authorities: spatial planning, permits and local strategies shape feasibility.",
+    "leadership": "Who is the committed initiator? Projects need local leadership and long-term commitment.",
+    "scalableModels": "Standardised business and governance models reduce complexity and speed up replication.",
+    "startSmall": "Start small: anchor customers, modular growth and micro-networks."
+  },
+  "scenario": {
+    "title": "Start from a use case",
+    "lead": "Pick one of the four provided scenarios to prefill only what it states, or describe your own use case. You can change everything afterwards.",
+    "prefills": "Prefills",
+    "prefillsNothing": "Prefills nothing. You describe the use case yourself.",
+    "selected": "Selected",
+    "choose": "Use this scenario",
+    "chooseCustom": "Use my own",
+    "overwrite": {
+      "title": "Replace your text?",
+      "body": "This scenario replaces these fields, which already hold your text: {fields}.",
+      "keep": "Keep my text",
+      "replace": "Replace"
+    },
+    "applied": "Scenario applied: {name}."
+  },
+  "qc": {
+    "title": "From the Quick Check",
+    "readOnly": "Read-only",
+    "leadSite": "The site, buildings and sources are shared with the Quick Check. Change them there and they update here.",
+    "leadEconomics": "Rough Quick Check figures for context. The Business Plan does not calculate anything of its own.",
+    "buildings": "Buildings",
+    "area": "Project area",
+    "sources": "Sources selected",
+    "noSources": "None selected yet",
+    "heatingDemand": "Heating demand",
+    "coolingDemand": "Cooling demand",
+    "revenue": "Revenue",
+    "investment": "Overall investment",
+    "perYear": "{value}/a",
+    "customParameters": "Custom parameters",
+    "screeningNote": "Screening values, not a feasibility study.",
+    "sourcesSentence": "Sources screened in the Quick Check: {sources}.",
+    "useSources": "Add to heat sources",
+    "sourcesAdded": "Added to the heat sources text.",
+    "off": {
+      "title": "The Quick Check is off for this project",
+      "body": "Turn it on to see demand, revenue and investment here. The Business Plan works without it.",
+      "action": "Open Quick Check"
+    },
+    "incomplete": {
+      "title": "The Quick Check is not complete yet",
+      "body": "Finish its inputs to see demand, revenue and investment here.",
+      "action": "Continue Quick Check"
+    }
+  },
+  "ui": {
+    "addEntry": "Add entry",
+    "removeEntry": "Remove entry {index}",
+    "entry": "{label} {index}",
+    "focus": "Focus",
+    "emptyRows": "Nothing here yet.",
+    "add": {
+      "businessPlan.allocation": "Add stakeholder",
+      "businessPlan.criticalAssumptions": "Add critical assumption",
+      "businessPlan.risks": "Add risk"
+    },
+    "row": {
+      "businessPlan.allocation": "Stakeholder",
+      "businessPlan.criticalAssumptions": "Critical assumption",
+      "businessPlan.risks": "Risk"
+    },
+    "removeRow": "Remove {row}",
+    "confirmRemove": {
+      "title": "Remove this entry?",
+      "body": "Its text is deleted. You can restore an earlier version from the project menu.",
+      "cancel": "Keep it",
+      "remove": "Remove"
+    },
+    "dealBreaker": {
+      "label": "Potential deal-breaker",
+      "hint": "One risk can be marked as the potential deal-breaker. Marking another moves the flag.",
+      "marked": "Marked as deal-breaker"
+    },
+    "saveFailed": "Could not save this change."
+  },
+  "compare": {
+    "title": "Compare business models",
+    "body": "A project holds one business model. To compare an alternative, duplicate the project and change the copy.",
+    "action": "Duplicate project"
+  },
+  "readiness": {
+    "title": "Pitch readiness",
+    "lead": "How much of the final pitch already has content, from what you filled in.",
+    "caveat": "It counts what is filled in, not how good the content is.",
+    "level": {
+      "not-started": "Not started",
+      "in-progress": "In progress",
+      "ready": "Pitch-ready"
+    },
+    "summary": "{met} of {total} points covered",
+    "open": "See details",
+    "fill": "Fill in",
+    "met": "Covered",
+    "missing": "Open",
+    "unofficial": "Unofficial",
+    "sections": {
+      "title": "The six parts of the final pitch",
+      "source": "BM-SCOPE-07",
+      "useCase": {
+        "label": "Use case and value proposition",
+        "question": "What problem does the model solve, for whom, and why is a 5GDHC network a suitable solution?"
+      },
+      "businessModel": {
+        "label": "Business model",
+        "question": "How does the model create and capture value? Who are the key stakeholders, customers and partners?"
+      },
+      "feasibility": {
+        "label": "Economic and practical feasibility",
+        "question": "How are investment, ownership, operation, financing, revenues and risks addressed?"
+      },
+      "realityCheck": {
+        "label": "Reality check",
+        "question": "What are the critical assumptions, challenges and potential deal-breakers? What works, what does not, and why?"
+      },
+      "scalability": {
+        "label": "Scalability and replicability",
+        "question": "Can the model be expanded or transferred to other locations? Under which conditions?"
+      },
+      "nextSteps": {
+        "label": "Next steps",
+        "question": "What would be required to move towards real-world implementation?"
+      }
+    },
+    "jury": {
+      "title": "Jury criteria",
+      "source": "BM-SCOPE-08 (V01)",
+      "note": "Proposed in the first version of the challenge brief. They are not an official scoring rule for this event.",
+      "problemSolutionFit": {
+        "label": "Problem-solution fit and clarity of the use case"
+      },
+      "coherence": {
+        "label": "Business-model coherence and stakeholder incentives"
+      },
+      "plausibility": {
+        "label": "Economic plausibility and a realistic implementation pathway"
+      },
+      "riskQuality": {
+        "label": "Quality of the risk analysis, assumptions and validation approach"
+      },
+      "scalabilityClarity": {
+        "label": "Innovation, scalability and clarity of the final pitch"
+      }
+    },
+    "checks": {
+      "site": "Site or district named",
+      "painPoint": "Key pain point described",
+      "customers": "Customer segments described",
+      "needs": "Heating and cooling needs described",
+      "heatSources": "Relevant heat sources described",
+      "advantage": "Why a shared network beats the alternatives",
+      "stakeholders": "Stakeholders listed",
+      "valueProposition": "Value proposition",
+      "canvasCustomers": "Customer segments in the canvas",
+      "customerRelationships": "Customer relationships",
+      "keyPartners": "Key partners",
+      "operator": "Operator responsibilities",
+      "revenueStreams": "Revenue streams",
+      "allocation": "Investment, risk and benefit allocated to a stakeholder",
+      "connectionRate": "Connection rate assumption",
+      "tariffs": "Tariffs assumption",
+      "capex": "Capital expenditure assumption",
+      "financing": "Financing assumption",
+      "subsidies": "Subsidy dependence assumption",
+      "criticalAssumptions": "Critical assumptions, each with a way to validate it",
+      "risks": "Risks, each with a way to validate it",
+      "dealBreaker": "One potential deal-breaker marked",
+      "feedback": "Feedback and challenges noted",
+      "changes": "What changed in the model, and why",
+      "scalabilityGeographical": "Geographical conditions",
+      "scalabilityEconomic": "Economic conditions",
+      "scalabilityOrganisational": "Organisational conditions",
+      "nextData": "Data to collect",
+      "nextStakeholders": "Stakeholders to engage",
+      "nextPartnerships": "Partnerships to secure",
+      "nextPilots": "Pilot opportunities",
+      "nextDecisions": "Key decisions and the decision gate"
+    },
+    "how": {
+      "title": "How readiness is counted",
+      "body": "Each pitch part has a short list of points. A text point counts when its field has text, a list point when it has an entry, and a risk or critical-assumption point when at least one row is complete and no row is half filled. The share of points covered is the part's score, and readiness is the average of the six parts. A part is pitch-ready when all its points are covered. There is no equation behind this, and no judgement of the content."
+    }
   }
 }
