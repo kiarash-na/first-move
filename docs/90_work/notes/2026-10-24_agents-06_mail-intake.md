@@ -31,7 +31,7 @@ Everything between "an email reached agent@" and "phase 07 answers it" is built 
 | Copy: sender name, confirm page, notices, admin alerts | `dictionaries/en/mail.json` |
 | Licence table: `ai`, `resend`, `@upstash/redis` | `lib/legal/third-party.ts` |
 
-Tests: 37 files in `lib/mail-agent/` (176 tests, 6 skipped live ones). `pipeline/flow.test.ts` runs whole scenarios with the memory store, a fake Resend and a mock Jev: consent, one link a day, three pending, allowed mail, warning → ban → silence, block → one notice, an admin alert, then silence, refusal, failure, a repeated act step, Reply-To pointing elsewhere, DMARC fail, global limit, budget, resumed runs. It also checks that no step payload and no log line carries an address, a subject or body text.
+Tests: 36 files in `lib/mail-agent/`, 170 tests, plus 6 live tests that are skipped unless enabled. `pipeline/flow.test.ts` runs whole scenarios with the memory store, a fake Resend and a mock Jev: consent, one link a day, three pending, allowed mail, warning → ban → silence, block → one notice, an admin alert, then silence, refusal, failure, a repeated act step, Reply-To pointing elsewhere, DMARC fail, global limit, budget, resumed runs. It also checks that no step payload and no log line carries an address, a subject or body text.
 
 ## Live spike (step 2), 2026-10-24
 
