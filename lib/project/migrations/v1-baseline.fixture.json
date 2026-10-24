@@ -1,0 +1,258 @@
+{
+  "meta": {
+    "id": "00000000-0000-4000-8000-0000000000f1",
+    "name": "Fixture: filled v1 project",
+    "createdAt": "2026-10-24T08:00:00.000Z",
+    "updatedAt": "2026-10-24T09:00:00.000Z",
+    "schemaVersion": 1,
+    "methodologyVersion": "1.0.0",
+    "modules": {
+      "quickCheck": true,
+      "businessPlan": true
+    },
+    "exampleId": null
+  },
+  "site": {
+    "name": "Fixture district",
+    "location": "",
+    "siteType": "Urban outskirts",
+    "ownership": "",
+    "units": "",
+    "currentSupply": [
+      "Natural gas",
+      "Biomass"
+    ],
+    "stakeholders": [
+      "Housing cooperative",
+      "School"
+    ],
+    "partners": []
+  },
+  "buildings": {
+    "total": 12,
+    "areaM2": 30000,
+    "shares": {
+      "residential": {
+        "until_1919": null,
+        "1919_1960": null,
+        "1961_1990": 50,
+        "1991_2010": null,
+        "2011_today": 25
+      },
+      "category_a": {
+        "until_1919": null,
+        "1919_1960": null,
+        "1961_1990": null,
+        "1991_2010": null,
+        "2011_today": 25
+      },
+      "category_b": {
+        "until_1919": null,
+        "1919_1960": null,
+        "1961_1990": null,
+        "1991_2010": null,
+        "2011_today": null
+      },
+      "category_c": {
+        "until_1919": null,
+        "1919_1960": null,
+        "1961_1990": null,
+        "1991_2010": null,
+        "2011_today": null
+      },
+      "industry": {
+        "until_1919": null,
+        "1919_1960": null,
+        "1961_1990": null,
+        "1991_2010": null,
+        "2011_today": null
+      }
+    }
+  },
+  "sources": {
+    "potentials": {
+      "geothermal": null,
+      "waste_heat": "medium",
+      "ground_water": "high",
+      "surface_water": null,
+      "solar_thermal": null,
+      "ambient_air": null
+    },
+    "pv": true
+  },
+  "quickCheck": {
+    "manualDemand": {
+      "heatingKwhPerYear": null,
+      "coolingKwhPerYear": 80000
+    },
+    "networkLengthM": 900,
+    "overrides": {
+      "heating": {
+        "geothermal": {
+          "low": null,
+          "medium": null,
+          "high": null,
+          "cop": null
+        },
+        "waste_heat": {
+          "low": null,
+          "medium": null,
+          "high": null,
+          "cop": null
+        },
+        "ground_water": {
+          "low": null,
+          "medium": null,
+          "high": null,
+          "cop": 5.5
+        },
+        "surface_water": {
+          "low": null,
+          "medium": null,
+          "high": null,
+          "cop": null
+        },
+        "solar_thermal": {
+          "low": null,
+          "medium": null,
+          "high": null,
+          "cop": null
+        },
+        "ambient_air": {
+          "low": null,
+          "medium": null,
+          "high": null,
+          "cop": null
+        }
+      },
+      "cooling": {
+        "geothermal": {
+          "low": null,
+          "medium": null,
+          "high": null,
+          "cop": null
+        },
+        "waste_heat": {
+          "low": null,
+          "medium": null,
+          "high": null,
+          "cop": null
+        },
+        "ground_water": {
+          "low": null,
+          "medium": null,
+          "high": null,
+          "cop": null
+        },
+        "surface_water": {
+          "low": null,
+          "medium": null,
+          "high": null,
+          "cop": null
+        },
+        "solar_thermal": {
+          "low": null,
+          "medium": null,
+          "high": null,
+          "cop": null
+        },
+        "ambient_air": {
+          "low": null,
+          "medium": null,
+          "high": null,
+          "cop": null
+        }
+      },
+      "economic": {
+        "heating_base_price": null,
+        "heating_energy_price": null,
+        "cooling_base_price": null,
+        "cooling_energy_price": null,
+        "connection_fee": null,
+        "network_construction_costs": null,
+        "installation_costs_geothermal": null,
+        "installation_costs_waste_heat": null,
+        "installation_costs_ground_water": null,
+        "installation_costs_surface_water": null,
+        "installation_costs_solar_thermal": null,
+        "installation_costs_ambient_air": null,
+        "heat_pump": null,
+        "electricity_cost": null,
+        "pv_cost_reduction": null,
+        "depreciation_period": null,
+        "interest_rate": 4
+      }
+    }
+  },
+  "businessPlan": {
+    "scenarioId": "BM-SCN-03",
+    "opportunity": {
+      "customerSegments": "",
+      "needs": "",
+      "heatSources": "",
+      "painPoint": "Gas boilers reach the end of their life.",
+      "alternatives": "",
+      "advantage": ""
+    },
+    "canvas": {
+      "keyPartners": "",
+      "keyActivities": "",
+      "keyResources": "",
+      "valueProposition": "Stable heat prices and cooling in summer.",
+      "customerRelationships": "",
+      "channels": "",
+      "customerSegments": "",
+      "costStructure": "",
+      "revenueStreams": "",
+      "operatorResponsibilities": ""
+    },
+    "allocation": [
+      {
+        "id": "alloc-1",
+        "stakeholder": "Cooperative",
+        "investment": "House connections",
+        "risk": "Vacancy",
+        "benefit": "Lower costs"
+      }
+    ],
+    "assumptions": {
+      "connectionRate": "70 % in phase 1.",
+      "tariffs": "",
+      "capex": "",
+      "financing": "",
+      "subsidies": ""
+    },
+    "criticalAssumptions": [
+      {
+        "id": "ca-1",
+        "statement": "Groundwater is usable.",
+        "validation": "Test drilling."
+      }
+    ],
+    "risks": [
+      {
+        "id": "risk-1",
+        "title": "Low connection rate",
+        "description": "",
+        "dealBreaker": true,
+        "validation": "Letters of intent."
+      }
+    ],
+    "refinements": {
+      "feedback": "",
+      "changes": "Start with the school as anchor customer."
+    },
+    "scalability": {
+      "geographical": "",
+      "economic": "Works where gas prices are high.",
+      "organisational": ""
+    },
+    "nextSteps": {
+      "data": "",
+      "stakeholders": "",
+      "partnerships": "",
+      "pilots": "",
+      "decisions": "Go/no-go after the drilling test."
+    }
+  }
+}

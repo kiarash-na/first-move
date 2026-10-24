@@ -1,7 +1,7 @@
 ---
 id: PLAN-DASH-03
 date: 2026-10-24
-status: todo
+status: done
 challenge: [quick-check-tool, business-models]
 covers: [QCT-IN-00, QCT-IN-01, QCT-IN-02, QCT-IN-03, QCT-IN-04, QCT-IN-05, QCT-IN-06, QCT-IN-07, QCT-IN-08, QCT-IN-09, QCT-REF-TYPES, BM-STEP-01, BM-STEP-02, BM-STEP-03, BM-STEP-04, OQ-04, OQ-05]
 blocked_by: [PLAN-DASH-01]
