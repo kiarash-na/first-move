@@ -45,7 +45,7 @@ Nothing visible changed. The repo is ready for both AI layers: config, routing, 
 
 ## Local setup (D-65)
 
-`.env.local` was filled by a script in the session scratchpad that printed names only and kept the two keys the owner had set. Generated: the three secrets (32 random bytes each). Defaults: limits, addresses, models. From the Resend CLI: `RESEND_AGENT_INBOX_ID`. Local values: `SITE_URL=https://localhost:3015`, `EMAIL_AGENT_ENABLED=false` (flip to `true` for local mail tests). **Still empty:** `EMAIL_AGENT_ADMIN_ADDRESS` (owner), `RESEND_WEBHOOK_SECRET` (from the webhook; locally from `resend webhooks listen`), `KV_REST_API_URL` and `KV_REST_API_TOKEN` (Upstash). File mode 600.
+`.env.local` was filled by a script in the session scratchpad that printed names only and kept the two keys the owner had set. Generated: the three secrets (32 random bytes each). Defaults: limits, addresses, models. From the Resend CLI: `RESEND_AGENT_INBOX_ID`. Local values: `SITE_URL=https://localhost:3015`, `EMAIL_AGENT_ENABLED=false` (flip to `true` for local mail tests). Then the owner added `EMAIL_AGENT_ADMIN_ADDRESS` and the Upstash `KV_REST_API_URL` / `KV_REST_API_TOKEN`, taken directly from the Upstash console, not through the Vercel Marketplace; a REST `PING` answers `PONG`. **Still empty:** `RESEND_WEBHOOK_SECRET` (locally from `resend webhooks listen`; in production from the Resend webhook). Go-live: add the same Upstash names to the Vercel env by hand and confirm the database region is EU (D-56). File mode 600.
 
 ## Next.js friction (feedback candidate)
 
