@@ -1,0 +1,81 @@
+# Email agent
+
+You can also use First Move by email: write to agent@mail.firstmove.energy. This mailbox is answered by an AI system. It answers short questions about First Move and fifth-generation district heating and cooling from these public docs, and it can run a Quick Check, a Business Plan or both with you by email. For now, the email agent writes in English.
+
+For privacy questions, legal matters and requests about your data protection rights, write to human@mail.firstmove.energy instead. That mailbox is read by a person.
+
+## What it can do
+
+- **Answer questions** about First Move, 5GDHC, the Quick Check and the Business Plan, using only these docs. When the docs do not cover a question, it says so.
+- **Run a Quick Check by email**: it asks for the inputs and sends you the result.
+- **Develop a Business Plan by email**, step by step.
+- **Send a project file** that you can import in the dashboard, if you want one.
+
+Replies are written by an AI system and sent automatically; a person does not review them. They may be wrong, and they are not legally binding.
+
+## The first email: confirm once
+
+The first time you write, nothing is processed by AI. Your message is kept, encrypted, and you get a short email with a confirmation link. On the confirmation page, tick the box and press the button: you accept the Terms of Use and emails about your request, with no marketing. Then your message is processed.
+
+If you do not confirm, your message is deleted after 7 days. If you did not write to us, ignore the email. You confirm only once; your confirmation is kept for 12 months after your last message.
+
+## Who can write
+
+Your mail provider must authenticate your email (DMARC); most providers do. Email that does not pass this check is ignored, without a reply. Automatic replies, mailing lists and bounces are ignored as well. The agent replies only to the address the email came from, and never to anyone else.
+
+## A Quick Check by email
+
+1. First the agent asks which module you want, 1 Quick Check, 2 Business Plan or 3 both, and whether you would like a project file to import in the dashboard, yes or no. A short answer such as "1, yes" or "both, no" works, and so does writing it in your own words.
+2. For a Quick Check, it sends a numbered list of questions, each with an example answer: the project name (optional), the number of buildings, the project area in m² (hectares work too), the building mix by type and construction period (it must add up to 100 %), the energy sources and their potential, whether PV is available, and, if you know them, the heating and cooling demand in kWh/a and the network length in m.
+3. Answer with the number of the question, for example "2: 40 buildings". You can answer in several emails, and correct a value the same way or in words, for example "change the area to 4 ha".
+4. Each reply lists what the agent understood, what is unclear and what is still missing.
+5. When the required inputs are complete, you get the result.
+
+The result is calculated by First Move's own Quick Check engine, exactly as in the dashboard; the AI only collects your inputs. The [Quick Check](/docs/quick-check) page explains how the result is calculated.
+
+## A Business Plan by email
+
+For a Business Plan, the agent goes through the four steps, one round each: the opportunity, the business logic, the reality check and the implementation. Each round brings the guiding questions of the step, with the example scenarios as examples. Your answers are kept in your own words. When you choose both modules, the Business Plan shows the Quick Check figures read-only.
+
+The summary lists the filled sections, the critical assumptions, the risks and the pitch-readiness checklist, which is unofficial. The [Business Plan](/docs/business-plan) page explains the steps.
+
+## Attaching files to an email
+
+Instead of answering the questions, you can attach documents, and the agent reads them in the background:
+
+- PDF, Word (.docx), Excel (.xlsx), CSV, Markdown and plain-text files;
+- a First Move project file (`.firstmove.json`), which is imported as it is;
+- up to 5 files per email, 10 MB per file and 20 MB in total; of a PDF, the first 60 pages are read.
+
+A file the agent cannot read is skipped, and the reply says which one. Every file is also checked for hidden instructions. A file that tries to manipulate the assistant is skipped, but it does not count against you, because people forward documents they did not write.
+
+## Results and the project file
+
+The Quick Check result comes as an email in the style of First Move, with a plain-text version: the overall result and its main factors, the key figures, the assumptions and how the figures were calculated, the inputs used, and the note that this is a screening, not a feasibility study. A Business Plan comes as a summary of the same kind. There is no PDF report yet.
+
+If you asked for a project file, a `.firstmove.json` file is attached. Import it in the dashboard to continue there; the values collected by email carry an AI mark. You can also ask for the file later by writing "file".
+
+After the result, further answers update it, and the agent sends it again. Write "new" to start over, or "stop" to end the conversation and delete it.
+
+## The rules
+
+The mailbox is for questions about First Move and fifth-generation district heating and cooling, and for your Quick Check and Business Plan. Greetings and thanks are fine.
+
+- **Stay on topic.** A first off-topic email gets one warning. A second one pauses the mailbox for you for 30 days.
+- **No misuse.** Attempts to manipulate the assistant, to reveal its instructions or to make it email other people, harassment, and fraud, phishing, malware or spam block the sender. You get one notice, and the operator is told what happened.
+- **After a pause or a block, the agent does not reply.**
+
+When the agent is not sure whether an email is misuse, it counts the email as a warning rather than a block.
+
+## How long data is kept
+
+- An unconfirmed first message: 7 days.
+- The conversation: 30 days after your last message.
+- A warning: 90 days. A pause: 30 days. A block: until we delete it.
+- Your confirmation: 12 months after your last message.
+
+For these records your address is stored only in hashed form, and the conversation and any waiting messages are stored encrypted. The emails themselves stay with our email provider for 30 days. Our emails carry minimal open and click tracking ([E-mail tracking](/privacy#email-tracking)). The [Privacy Policy](/privacy#retention) has the details.
+
+## Who processes your email
+
+To answer, your email and its attachments are processed by these service providers: Resend for email, Vercel for the functions, the workflows and the AI Gateway, TypeSafe AI for Jev, a decision model that checks each email for relevance and misuse, Anthropic for Claude Haiku, which reads the email and writes the answer, and Upstash for the encrypted records. The [Privacy Policy](/privacy#recipients) names them with their locations and safeguards.

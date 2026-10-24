@@ -1,0 +1,87 @@
+# AI assistant
+
+The AI assistant is an optional helper in the dashboard. It answers questions about your open project, and it reads documents, such as a PDF or a spreadsheet, into proposed values that you review before they are applied. It works with your own key for an AI provider you choose: your browser talks directly to that provider, and nothing passes through our servers.
+
+The assistant never computes the Quick Check results. The calculation engine does that, with the same equations whether a value was typed in or proposed by the AI.
+
+## Open the assistant
+
+The bot button at the bottom right of every dashboard page opens the assistant as a compact chat. You can expand it into a panel docked on the right side, and the page makes room for it, so the panel covers nothing. On a phone it opens as a full-height sheet. Escape closes it. The assistant is labelled as an AI assistant.
+
+## Choose a provider and a key
+
+The assistant works with two providers:
+
+- **Anthropic**: create an API key in your Anthropic account and paste it.
+- **OpenRouter**: paste an API key, or choose **Connect OpenRouter** to sign in there and create a key for First Move without copying it. OpenRouter also offers the Auto Router, which picks a model for each question.
+
+The assistant tests the key with the provider before you use it. Requests are billed to your account with the provider, at its prices; First Move itself charges nothing.
+
+## Pick a model
+
+Chips show the price level of each model, from $ to $$$$, and its kind: Fast, Balanced, Best, Frontier or Auto. A tooltip gives the prices, with the date they were checked. The defaults are Claude Sonnet 5.5 for Anthropic and the Auto Router for OpenRouter. You can also enter the id of another model; it must support tool use.
+
+## Set a spending limit at your provider
+
+The assistant is built to keep your key safe, but the real safety net is a spending limit at your provider. Set a spending limit for the key in your provider account before you use it. The assistant asks you to confirm that you have, and you cannot start without confirming. For an OpenRouter key, it shows the limit set on the key, or warns you when there is none.
+
+## Keep the key for this session or with a PIN
+
+- **For this session**, the default: the key is kept only in the memory of the browser tab and is gone when you close it.
+- **Remember on this device**: the key is stored encrypted in this browser and locked with a 6-digit PIN, which you enter twice; very common PINs are not accepted. When you come back, you unlock it with the PIN. After five wrong PINs the key is deleted, and you are told why. The key locks again after 30 minutes without use.
+
+The PIN guards against other people who use the same browser. It cannot stop an attack on a copy of your browser profile, so the spending limit at your provider stays the real safety net. The key never goes into project exports, earlier versions or the address bar.
+
+## What the assistant can see
+
+When you ask a question, the assistant reads the open project: its inputs and its results, and the documents you attach. It sees nothing from your other projects, and it cannot browse the web. To answer, it uses the results of the Quick Check engine, the "How we calculate" explanations with their equation numbers, and these docs pages. Its answers are short and in the language of the app.
+
+Your browser sends each request to the provider you chose, and the provider's terms apply to it. Before you ask, consider what your question and your documents contain: do not send personal data of other people or confidential documents unless you are allowed to. The [AI transparency](/ai) page and the [Privacy Policy](/privacy#ai-features) explain how the AI features handle data.
+
+## Attach documents
+
+Attach files with the attach button or by dragging them into the chat:
+
+- PDF, Word (.docx), Excel (.xlsx), CSV, Markdown, plain-text and JSON files;
+- up to 5 files per message, 10 MB per file and 20 MB in total;
+- of a PDF, the first 60 pages are read, and very long documents are shortened.
+
+The file type is checked from the content, not from the name. Files with macros, encrypted files and other formats, such as older Excel files (.xls), are refused. The text of a document is treated as data, never as instructions to the assistant. It is not kept in the chat history; only the file name is.
+
+## Review proposed values
+
+The assistant never changes your project on its own. Values it reads from a document or a message appear as proposals in a review card. Each row shows the field and its step, the current value, the proposed value with its unit, the quote and page it comes from, and whether it passes the checks. Select the values you want, all or none, and choose **Apply selected**. Only the selected values are applied, and they go through the same checks as values you type in. When two documents give different values for one field, both are shown, and you decide.
+
+Before you apply a value, check it against the document: that the value really appears there, the unit, the number format (German documents write 1.000,5 where English ones write 1,000.5), the building, area and year it refers to, and whether it is plausible.
+
+## The AI marks
+
+Everything the assistant writes is marked as AI-generated, in the chat and in a machine-readable form. A field value applied from a proposal shows an **AI** chip, with a tooltip that names the file it came from. The mark is saved in the project and in its export. When you edit the value yourself, it becomes yours, and the chip disappears.
+
+## Chat history
+
+The chat history is kept in this browser, separately for each project, and it is on by default. It holds the messages and the names of attached files, never the text of the documents and never your key, and it keeps at most 200 messages. You can switch it off and clear it in the settings of the assistant. When a project no longer exists, its chat history is deleted the next time you open the assistant.
+
+## Settings
+
+In the settings of the assistant you can change the provider and the model, change your PIN, remove the key, switch the chat history on or off and clear it, and choose how the panel opens. The settings are kept in this browser, but never the key.
+
+## Remove your key
+
+Choose **Remove key** in the settings of the assistant, and the key is deleted from this browser at once. This does not revoke the key at the provider. To revoke it, delete it in your account there, and do so at once if you think the key was exposed.
+
+## When something goes wrong
+
+The assistant tells you what the provider reported:
+
+- the key was not accepted;
+- the spending limit or the credits are used up;
+- the model is not allowed for this key;
+- too many requests, so wait a moment;
+- the provider has trouble, or it cannot be reached.
+
+You can stop an answer while it is being written, and retry it.
+
+## Limits
+
+AI models can be wrong. They can misunderstand a question, give a wrong answer with confidence, or invent figures and sources. Reading values from documents is error-prone, especially with scanned pages, tables, units and documents in mixed languages. Check every proposed value, and keep in mind that neither the assistant's answers nor the screening results are engineering advice.

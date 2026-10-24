@@ -1,5 +1,717 @@
 [
   {
+    "id": "docs:assistant",
+    "lang": "en",
+    "title": "AI assistant",
+    "url": "/en/docs/assistant",
+    "text": "The AI assistant is an optional helper in the dashboard. It answers questions about your open project, and it reads documents, such as a PDF or a spreadsheet, into proposed values that you review before they are applied. It works with your own key for an AI provider you choose: your browser talks directly to that provider, and nothing passes through our servers.\nThe assistant never computes the Quick Check results. The calculation engine does that, with the same equations whether a value was typed in or proposed by the AI.",
+    "source": "content/docs/en/assistant.mdx"
+  },
+  {
+    "id": "docs:assistant#open-the-assistant",
+    "lang": "en",
+    "title": "AI assistant · Open the assistant",
+    "url": "/en/docs/assistant#open-the-assistant",
+    "text": "The bot button at the bottom right of every dashboard page opens the assistant as a compact chat. You can expand it into a panel docked on the right side, and the page makes room for it, so the panel covers nothing. On a phone it opens as a full-height sheet. Escape closes it. The assistant is labelled as an AI assistant.",
+    "source": "content/docs/en/assistant.mdx#open-the-assistant"
+  },
+  {
+    "id": "docs:assistant#choose-a-provider-and-a-key",
+    "lang": "en",
+    "title": "AI assistant · Choose a provider and a key",
+    "url": "/en/docs/assistant#choose-a-provider-and-a-key",
+    "text": "The assistant works with two providers:\n- Anthropic: create an API key in your Anthropic account and paste it.\n- OpenRouter: paste an API key, or choose Connect OpenRouter to sign in there and create a key for First Move without copying it. OpenRouter also offers the Auto Router, which picks a model for each question.\nThe assistant tests the key with the provider before you use it. Requests are billed to your account with the provider, at its prices; First Move itself charges nothing.",
+    "source": "content/docs/en/assistant.mdx#choose-a-provider-and-a-key"
+  },
+  {
+    "id": "docs:assistant#pick-a-model",
+    "lang": "en",
+    "title": "AI assistant · Pick a model",
+    "url": "/en/docs/assistant#pick-a-model",
+    "text": "Chips show the price level of each model, from $ to $$$$, and its kind: Fast, Balanced, Best, Frontier or Auto. A tooltip gives the prices, with the date they were checked. The defaults are Claude Sonnet 5.5 for Anthropic and the Auto Router for OpenRouter. You can also enter the id of another model; it must support tool use.",
+    "source": "content/docs/en/assistant.mdx#pick-a-model"
+  },
+  {
+    "id": "docs:assistant#set-a-spending-limit-at-your-provider",
+    "lang": "en",
+    "title": "AI assistant · Set a spending limit at your provider",
+    "url": "/en/docs/assistant#set-a-spending-limit-at-your-provider",
+    "text": "The assistant is built to keep your key safe, but the real safety net is a spending limit at your provider. Set a spending limit for the key in your provider account before you use it. The assistant asks you to confirm that you have, and you cannot start without confirming. For an OpenRouter key, it shows the limit set on the key, or warns you when there is none.",
+    "source": "content/docs/en/assistant.mdx#set-a-spending-limit-at-your-provider"
+  },
+  {
+    "id": "docs:assistant#keep-the-key-for-this-session-or-with-a-pin",
+    "lang": "en",
+    "title": "AI assistant · Keep the key for this session or with a PIN",
+    "url": "/en/docs/assistant#keep-the-key-for-this-session-or-with-a-pin",
+    "text": "- For this session, the default: the key is kept only in the memory of the browser tab and is gone when you close it.\n- Remember on this device: the key is stored encrypted in this browser and locked with a 6-digit PIN, which you enter twice; very common PINs are not accepted. When you come back, you unlock it with the PIN. After five wrong PINs the key is deleted, and you are told why. The key locks again after 30 minutes without use.\nThe PIN guards against other people who use the same browser. It cannot stop an attack on a copy of your browser profile, so the spending limit at your provider stays the real safety net. The key never goes into project exports, earlier versions or the address bar.",
+    "source": "content/docs/en/assistant.mdx#keep-the-key-for-this-session-or-with-a-pin"
+  },
+  {
+    "id": "docs:assistant#what-the-assistant-can-see",
+    "lang": "en",
+    "title": "AI assistant · What the assistant can see",
+    "url": "/en/docs/assistant#what-the-assistant-can-see",
+    "text": "When you ask a question, the assistant reads the open project: its inputs and its results, and the documents you attach. It sees nothing from your other projects, and it cannot browse the web. To answer, it uses the results of the Quick Check engine, the \"How we calculate\" explanations with their equation numbers, and these docs pages. Its answers are short and in the language of the app.\nYour browser sends each request to the provider you chose, and the provider's terms apply to it. Before you ask, consider what your question and your documents contain: do not send personal data of other people or confidential documents unless you are allowed to. The AI transparency page and the Privacy Policy explain how the AI features handle data.",
+    "source": "content/docs/en/assistant.mdx#what-the-assistant-can-see"
+  },
+  {
+    "id": "docs:assistant#attach-documents",
+    "lang": "en",
+    "title": "AI assistant · Attach documents",
+    "url": "/en/docs/assistant#attach-documents",
+    "text": "Attach files with the attach button or by dragging them into the chat:\n- PDF, Word (.docx), Excel (.xlsx), CSV, Markdown, plain-text and JSON files;\n- up to 5 files per message, 10 MB per file and 20 MB in total;\n- of a PDF, the first 60 pages are read, and very long documents are shortened.\nThe file type is checked from the content, not from the name. Files with macros, encrypted files and other formats, such as older Excel files (.xls), are refused. The text of a document is treated as data, never as instructions to the assistant. It is not kept in the chat history; only the file name is.",
+    "source": "content/docs/en/assistant.mdx#attach-documents"
+  },
+  {
+    "id": "docs:assistant#review-proposed-values",
+    "lang": "en",
+    "title": "AI assistant · Review proposed values",
+    "url": "/en/docs/assistant#review-proposed-values",
+    "text": "The assistant never changes your project on its own. Values it reads from a document or a message appear as proposals in a review card. Each row shows the field and its step, the current value, the proposed value with its unit, the quote and page it comes from, and whether it passes the checks. Select the values you want, all or none, and choose Apply selected. Only the selected values are applied, and they go through the same checks as values you type in. When two documents give different values for one field, both are shown, and you decide.\nBefore you apply a value, check it against the document: that the value really appears there, the unit, the number format (German documents write 1.000,5 where English ones write 1,000.5), the building, area and year it refers to, and whether it is plausible.",
+    "source": "content/docs/en/assistant.mdx#review-proposed-values"
+  },
+  {
+    "id": "docs:assistant#the-ai-marks",
+    "lang": "en",
+    "title": "AI assistant · The AI marks",
+    "url": "/en/docs/assistant#the-ai-marks",
+    "text": "Everything the assistant writes is marked as AI-generated, in the chat and in a machine-readable form. A field value applied from a proposal shows an AI chip, with a tooltip that names the file it came from. The mark is saved in the project and in its export. When you edit the value yourself, it becomes yours, and the chip disappears.",
+    "source": "content/docs/en/assistant.mdx#the-ai-marks"
+  },
+  {
+    "id": "docs:assistant#chat-history",
+    "lang": "en",
+    "title": "AI assistant · Chat history",
+    "url": "/en/docs/assistant#chat-history",
+    "text": "The chat history is kept in this browser, separately for each project, and it is on by default. It holds the messages and the names of attached files, never the text of the documents and never your key, and it keeps at most 200 messages. You can switch it off and clear it in the settings of the assistant. When a project no longer exists, its chat history is deleted the next time you open the assistant.",
+    "source": "content/docs/en/assistant.mdx#chat-history"
+  },
+  {
+    "id": "docs:assistant#settings",
+    "lang": "en",
+    "title": "AI assistant · Settings",
+    "url": "/en/docs/assistant#settings",
+    "text": "In the settings of the assistant you can change the provider and the model, change your PIN, remove the key, switch the chat history on or off and clear it, and choose how the panel opens. The settings are kept in this browser, but never the key.",
+    "source": "content/docs/en/assistant.mdx#settings"
+  },
+  {
+    "id": "docs:assistant#remove-your-key",
+    "lang": "en",
+    "title": "AI assistant · Remove your key",
+    "url": "/en/docs/assistant#remove-your-key",
+    "text": "Choose Remove key in the settings of the assistant, and the key is deleted from this browser at once. This does not revoke the key at the provider. To revoke it, delete it in your account there, and do so at once if you think the key was exposed.",
+    "source": "content/docs/en/assistant.mdx#remove-your-key"
+  },
+  {
+    "id": "docs:assistant#when-something-goes-wrong",
+    "lang": "en",
+    "title": "AI assistant · When something goes wrong",
+    "url": "/en/docs/assistant#when-something-goes-wrong",
+    "text": "The assistant tells you what the provider reported:\n- the key was not accepted;\n- the spending limit or the credits are used up;\n- the model is not allowed for this key;\n- too many requests, so wait a moment;\n- the provider has trouble, or it cannot be reached.\nYou can stop an answer while it is being written, and retry it.",
+    "source": "content/docs/en/assistant.mdx#when-something-goes-wrong"
+  },
+  {
+    "id": "docs:assistant#limits",
+    "lang": "en",
+    "title": "AI assistant · Limits",
+    "url": "/en/docs/assistant#limits",
+    "text": "AI models can be wrong. They can misunderstand a question, give a wrong answer with confidence, or invent figures and sources. Reading values from documents is error-prone, especially with scanned pages, tables, units and documents in mixed languages. Check every proposed value, and keep in mind that neither the assistant's answers nor the screening results are engineering advice.",
+    "source": "content/docs/en/assistant.mdx#limits"
+  },
+  {
+    "id": "docs:business-plan",
+    "lang": "en",
+    "title": "Business Plan",
+    "url": "/en/docs/business-plan",
+    "text": "The Business Plan is a workspace to develop a business model for a 5GDHC network: who benefits and who pays, who owns and operates the network, what motivates customers to connect, and how investments, revenues and risks are distributed. It follows four suggested steps. You can work on them in any order; the progress is counted per step.\nThe Business Plan is qualitative. You write in your own words, and it does not calculate anything of its own. When the Quick Check is on, its figures are shown read-only for context. Start in the dashboard with a new project or one of the examples.",
+    "source": "content/docs/en/business-plan.mdx"
+  },
+  {
+    "id": "docs:business-plan#step-1-opportunity",
+    "lang": "en",
+    "title": "Business Plan · Step 1: Opportunity",
+    "url": "/en/docs/business-plan#step-1-opportunity",
+    "text": "Describe the site or district, the customer segments, the heating and cooling needs, the relevant heat sources and the key pain point. Then explain why a shared low-temperature network offers value compared with the available alternatives, for example individual heat pumps.\nYou can start from one of the example scenarios or from your own use case. The buildings and the energy sources are shared with the Quick Check: you change them there, and the Business Plan shows them.",
+    "source": "content/docs/en/business-plan.mdx#step-1-opportunity"
+  },
+  {
+    "id": "docs:business-plan#step-2-business-logic",
+    "lang": "en",
+    "title": "Business Plan · Step 2: Business logic",
+    "url": "/en/docs/business-plan#step-2-business-logic",
+    "text": "Complete a Business Model Canvas for your use case, with particular attention to the value proposition, customer relationships, key partners, operator responsibilities, cost structure and revenue streams. The canvas also holds the key activities, key resources, channels and customer segments.\nThen make the allocation of investment, risk and benefit explicit: for each stakeholder, what they invest, which risk they carry and how they benefit.",
+    "source": "content/docs/en/business-plan.mdx#step-2-business-logic"
+  },
+  {
+    "id": "docs:business-plan#step-3-reality-check",
+    "lang": "en",
+    "title": "Business Plan · Step 3: Reality check",
+    "url": "/en/docs/business-plan#step-3-reality-check",
+    "text": "Use rough but transparent assumptions rather than detailed engineering calculations. Test plausible connection rates, tariffs, capital expenditure, financing and subsidy dependencies. Identify the top risks and the top critical assumptions, including one potential deal-breaker, and explain how each could be validated. One risk can be marked as the potential deal-breaker.",
+    "source": "content/docs/en/business-plan.mdx#step-3-reality-check"
+  },
+  {
+    "id": "docs:business-plan#step-4-implementation",
+    "lang": "en",
+    "title": "Business Plan · Step 4: Implementation",
+    "url": "/en/docs/business-plan#step-4-implementation",
+    "text": "Refine your business model based on the reality check, expert feedback and the challenges you found. Assess its potential for scalability and replication under different geographical, economic and organisational conditions. Then outline the next practical steps: the data to collect, the stakeholders to engage, the partnerships to secure, the pilot opportunities and the key decisions, including a realistic decision gate for moving the concept forward.",
+    "source": "content/docs/en/business-plan.mdx#step-4-implementation"
+  },
+  {
+    "id": "docs:business-plan#guiding-questions",
+    "lang": "en",
+    "title": "Business Plan · Guiding questions",
+    "url": "/en/docs/business-plan#guiding-questions",
+    "text": "Each step shows guiding questions and tips from the challenge brief and from the learnings of the research project Anergie Leicht Gemacht. For example: Who benefits, and who pays? Who owns and who operates the source, the network and the heat pumps? Connecting is voluntary, so what makes owners say yes? Use what helps.",
+    "source": "content/docs/en/business-plan.mdx#guiding-questions"
+  },
+  {
+    "id": "docs:business-plan#example-scenarios-1",
+    "lang": "en",
+    "title": "Business Plan · Example scenarios",
+    "url": "/en/docs/business-plan#example-scenarios",
+    "text": "Four predefined scenarios can start a Business Plan (BM-SCN-01 to BM-SCN-04). Picking one fills in only what the scenario states. You can change everything afterwards, and the app asks before a scenario replaces text you wrote. You can also describe your own use case instead.",
+    "source": "content/docs/en/business-plan.mdx#example-scenarios"
+  },
+  {
+    "id": "docs:business-plan#example-scenarios-2",
+    "lang": "en",
+    "title": "Business Plan · Example scenarios",
+    "url": "/en/docs/business-plan#example-scenarios",
+    "text": "- Scenario 01, rural village: private households and a hotel; private ownership, tourist accommodation and commercial use; other partners: the municipality and a ski resort; 20-70 units in phased development; current energy supply not specified.\n- Scenario 02, urban outskirts with no district heating planned: a secondary school, a kindergarten and multi-family buildings; municipal ownership and rental apartments; other partner: the owner of the educational facilities; about 80 units; current energy supply natural gas.\n- Scenario 03, urban outskirts with mixed ownership: private homeowners, housing cooperatives, the municipality and educational facilities; condominium ownership (WEG), rental housing (MRG) and non-profit housing (WGG); other partners to be identified; 3-20 buildings; current energy supply natural gas and biomass.\n- Scenario 04, urban outskirts with a thermal spa and hotels: a thermal spa, hotels and private households; mainly tourism and spa facilities, limited residential use; other partners to be identified; 3-20 buildings; current energy supply natural gas and biomass.",
+    "source": "content/docs/en/business-plan.mdx#example-scenarios"
+  },
+  {
+    "id": "docs:business-plan#example-scenarios-3",
+    "lang": "en",
+    "title": "Business Plan · Example scenarios",
+    "url": "/en/docs/business-plan#example-scenarios",
+    "text": "The start screen also offers six illustrative example projects with both modules filled in, four of them based on these scenarios. Opening one creates your own copy.",
+    "source": "content/docs/en/business-plan.mdx#example-scenarios"
+  },
+  {
+    "id": "docs:business-plan#pitch-readiness-unofficial",
+    "lang": "en",
+    "title": "Business Plan · Pitch readiness (unofficial)",
+    "url": "/en/docs/business-plan#pitch-readiness-unofficial",
+    "text": "The last step shows how ready your pitch is: how much of the final pitch already has content, from what you filled in. It counts what is filled in, not how good the content is, and it is labelled unofficial.\nIt checks the six parts of the final pitch (BM-SCOPE-07): the use case and value proposition, the business model, the economic and practical feasibility, the reality check, the scalability and replicability, and the next steps. Next to them it shows the jury criteria proposed in the first version of the challenge brief (BM-SCOPE-08). They are not an official scoring rule.\nEach part has a short list of points. A text point counts when its field has text, a list point when it has an entry, and a risk or critical-assumption point when at least one row is complete and no row is half filled. The share of points covered is the score of the part, and the readiness is the average of the six parts. A part is pitch-ready when all its points are covered. There is no equation behind this, and no judgement of the content.",
+    "source": "content/docs/en/business-plan.mdx#pitch-readiness-unofficial"
+  },
+  {
+    "id": "docs:business-plan#quick-check-figures-in-the-business-plan",
+    "lang": "en",
+    "title": "Business Plan · Quick Check figures in the Business Plan",
+    "url": "/en/docs/business-plan#quick-check-figures-in-the-business-plan",
+    "text": "When the Quick Check is on and complete, the Business Plan shows its rough figures for context: the heating and cooling demand, the revenue and the overall investment, next to the buildings, the project area and the selected sources. They are screening values, not a feasibility study, and they are read-only: you change the inputs in the Quick Check. With your own parameters, they carry the \"Custom parameters\" badge. The sources screened in the Quick Check can be added to the heat sources text with one click.",
+    "source": "content/docs/en/business-plan.mdx#quick-check-figures-in-the-business-plan"
+  },
+  {
+    "id": "docs:business-plan#comparing-business-models",
+    "lang": "en",
+    "title": "Business Plan · Comparing business models",
+    "url": "/en/docs/business-plan#comparing-business-models",
+    "text": "A project holds one business model. To compare an alternative, duplicate the project and change the copy.",
+    "source": "content/docs/en/business-plan.mdx#comparing-business-models"
+  },
+  {
+    "id": "docs:data-and-privacy",
+    "lang": "en",
+    "title": "Data and privacy",
+    "url": "/en/docs/data-and-privacy",
+    "text": "First Move keeps your work on your device. There is no account, no password and no project database on any server. Your projects are stored in the browser you use, and we never receive them, so we cannot read, share or recover them.",
+    "source": "content/docs/en/data-and-privacy.mdx"
+  },
+  {
+    "id": "docs:data-and-privacy#where-your-projects-live",
+    "lang": "en",
+    "title": "Data and privacy · Where your projects live",
+    "url": "/en/docs/data-and-privacy#where-your-projects-live",
+    "text": "Your projects, settings and choices are stored only in your browser's storage: the projects in its database (IndexedDB), with a copy of each project in its local storage as a safeguard. They stay in this browser on this device. Another browser or another device does not see them, and a private window may not keep them at all.\nFirst Move asks your browser to keep this storage persistent, so that the browser is less likely to remove your projects on its own. Your browser decides whether to grant this.",
+    "source": "content/docs/en/data-and-privacy.mdx#where-your-projects-live"
+  },
+  {
+    "id": "docs:data-and-privacy#saving",
+    "lang": "en",
+    "title": "Data and privacy · Saving",
+    "url": "/en/docs/data-and-privacy#saving",
+    "text": "First Move saves every change automatically, and the save status in the top bar shows when the project was last saved; there is no save button. If the same project is open in two tabs, they stay in sync. If both tabs change it, your version is kept, and the other one is saved as an earlier version.",
+    "source": "content/docs/en/data-and-privacy.mdx#saving"
+  },
+  {
+    "id": "docs:data-and-privacy#export-and-import",
+    "lang": "en",
+    "title": "Data and privacy · Export and import",
+    "url": "/en/docs/data-and-privacy#export-and-import",
+    "text": "- Export saves the open project as a .firstmove.json file, wherever you choose. The file holds your inputs. The results are not stored; they are calculated again when the file is imported.\n- Import reads a .firstmove.json file and checks it in your browser; nothing is uploaded. If the project is already in this browser, you choose whether to keep both or to replace the stored version. A replaced version is kept, so you can restore it.\n- A file from an earlier version of First Move is updated to the current format when you import it.\nExport your projects regularly, because an export is your copy outside this browser. First Move reminds you to export from time to time.",
+    "source": "content/docs/en/data-and-privacy.mdx#export-and-import"
+  },
+  {
+    "id": "docs:data-and-privacy#earlier-versions",
+    "lang": "en",
+    "title": "Data and privacy · Earlier versions",
+    "url": "/en/docs/data-and-privacy#earlier-versions",
+    "text": "While you work, First Move keeps earlier versions of each project in this browser, up to 20 per project, for example before a restore, an import or a delete. Restore a version in the project menu brings one back, and the current state is kept as a version too.\nIn Chromium-based browsers, Link to a file in the project menu also saves the project to a file on your own disk. The file stays on your disk, and nothing is uploaded.",
+    "source": "content/docs/en/data-and-privacy.mdx#earlier-versions"
+  },
+  {
+    "id": "docs:data-and-privacy#deleting-data",
+    "lang": "en",
+    "title": "Data and privacy · Deleting data",
+    "url": "/en/docs/data-and-privacy#deleting-data",
+    "text": "- Delete a project from the project menu or from the list on the start screen. You can undo this only right after deleting, while the message is shown, so export the project first if you want to keep a copy.\n- Clear the site data of First Move in your browser's settings to delete everything it stored there: all projects, earlier versions and settings. We cannot recover them, because we never had them.",
+    "source": "content/docs/en/data-and-privacy.mdx#deleting-data"
+  },
+  {
+    "id": "docs:data-and-privacy#cookies-and-settings",
+    "lang": "en",
+    "title": "Data and privacy · Cookies and settings",
+    "url": "/en/docs/data-and-privacy#cookies-and-settings",
+    "text": "First Move sets one functional cookie, which remembers your language. Your theme and your other settings are kept in your browser's storage. The website has no tracking, no advertising and no third-party cookies, so there is nothing to accept. The Cookie Policy lists every cookie and storage entry by name.",
+    "source": "content/docs/en/data-and-privacy.mdx#cookies-and-settings"
+  },
+  {
+    "id": "docs:data-and-privacy#the-ai-features-and-your-data",
+    "lang": "en",
+    "title": "Data and privacy · The AI features and your data",
+    "url": "/en/docs/data-and-privacy#the-ai-features-and-your-data",
+    "text": "First Move has two optional AI layers, separate from the app and from each other. The AI transparency page says whether they are available today.\n- The AI assistant in the dashboard works with your own key for an AI provider you choose. When you use it, your browser sends your request directly to that provider: your question, the open project's inputs and results, and the documents you attach; nothing from your other projects. We receive neither the content nor the key. The key stays in your browser, for the session only or locked with a PIN on this device, and the chat history stays in your browser too.\n- The email agent at agent@mail.firstmove.energy processes what you send to it on the server, through the service providers named in the Privacy Policy, and only after you have confirmed once. The conversation is stored encrypted, for 30 days after your last message.\nThe Quick Check and Business Plan results never come from AI, and the projects in your browser never go to our servers.\nThe AI assistant and Email agent pages explain both in detail.",
+    "source": "content/docs/en/data-and-privacy.mdx#the-ai-features-and-your-data"
+  },
+  {
+    "id": "docs:data-and-privacy#legal-pages",
+    "lang": "en",
+    "title": "Data and privacy · Legal pages",
+    "url": "/en/docs/data-and-privacy#legal-pages",
+    "text": "The legal pages are the reference: the Privacy Policy, the Cookie Policy, the Terms of Use, the AI transparency page and the Imprint. For privacy questions and requests about your rights, write to human@mail.firstmove.energy, which is read by a person.",
+    "source": "content/docs/en/data-and-privacy.mdx#legal-pages"
+  },
+  {
+    "id": "docs:email-agent",
+    "lang": "en",
+    "title": "Email agent",
+    "url": "/en/docs/email-agent",
+    "text": "You can also use First Move by email: write to agent@mail.firstmove.energy. This mailbox is answered by an AI system. It answers short questions about First Move and fifth-generation district heating and cooling from these public docs, and it can run a Quick Check, a Business Plan or both with you by email. For now, the email agent writes in English.\nFor privacy questions, legal matters and requests about your data protection rights, write to human@mail.firstmove.energy instead. That mailbox is read by a person.",
+    "source": "content/docs/en/email-agent.mdx"
+  },
+  {
+    "id": "docs:email-agent#what-it-can-do",
+    "lang": "en",
+    "title": "Email agent · What it can do",
+    "url": "/en/docs/email-agent#what-it-can-do",
+    "text": "- Answer questions about First Move, 5GDHC, the Quick Check and the Business Plan, using only these docs. When the docs do not cover a question, it says so.\n- Run a Quick Check by email: it asks for the inputs and sends you the result.\n- Develop a Business Plan by email, step by step.\n- Send a project file that you can import in the dashboard, if you want one.\nReplies are written by an AI system and sent automatically; a person does not review them. They may be wrong, and they are not legally binding.",
+    "source": "content/docs/en/email-agent.mdx#what-it-can-do"
+  },
+  {
+    "id": "docs:email-agent#the-first-email-confirm-once",
+    "lang": "en",
+    "title": "Email agent · The first email: confirm once",
+    "url": "/en/docs/email-agent#the-first-email-confirm-once",
+    "text": "The first time you write, nothing is processed by AI. Your message is kept, encrypted, and you get a short email with a confirmation link. On the confirmation page, tick the box and press the button: you accept the Terms of Use and emails about your request, with no marketing. Then your message is processed.\nIf you do not confirm, your message is deleted after 7 days. If you did not write to us, ignore the email. You confirm only once; your confirmation is kept for 12 months after your last message.",
+    "source": "content/docs/en/email-agent.mdx#the-first-email-confirm-once"
+  },
+  {
+    "id": "docs:email-agent#who-can-write",
+    "lang": "en",
+    "title": "Email agent · Who can write",
+    "url": "/en/docs/email-agent#who-can-write",
+    "text": "Your mail provider must authenticate your email (DMARC); most providers do. Email that does not pass this check is ignored, without a reply. Automatic replies, mailing lists and bounces are ignored as well. The agent replies only to the address the email came from, and never to anyone else.",
+    "source": "content/docs/en/email-agent.mdx#who-can-write"
+  },
+  {
+    "id": "docs:email-agent#a-quick-check-by-email-1",
+    "lang": "en",
+    "title": "Email agent · A Quick Check by email",
+    "url": "/en/docs/email-agent#a-quick-check-by-email",
+    "text": "1. First the agent asks which module you want, 1 Quick Check, 2 Business Plan or 3 both, and whether you would like a project file to import in the dashboard, yes or no. A short answer such as \"1, yes\" or \"both, no\" works, and so does writing it in your own words.\n2. For a Quick Check, it sends a numbered list of questions, each with an example answer: the project name (optional), the number of buildings, the project area in m² (hectares work too), the building mix by type and construction period (it must add up to 100 %), the energy sources and their potential, whether PV is available, and, if you know them, the heating and cooling demand in kWh/a and the network length in m.\n3. Answer with the number of the question, for example \"2: 40 buildings\". You can answer in several emails, and correct a value the same way or in words, for example \"change the area to 4 ha\".\n4. Each reply lists what the agent understood, what is unclear and what is still missing.\n5. When the required inputs are complete, you get the result.",
+    "source": "content/docs/en/email-agent.mdx#a-quick-check-by-email"
+  },
+  {
+    "id": "docs:email-agent#a-quick-check-by-email-2",
+    "lang": "en",
+    "title": "Email agent · A Quick Check by email",
+    "url": "/en/docs/email-agent#a-quick-check-by-email",
+    "text": "The result is calculated by First Move's own Quick Check engine, exactly as in the dashboard; the AI only collects your inputs. The Quick Check page explains how the result is calculated.",
+    "source": "content/docs/en/email-agent.mdx#a-quick-check-by-email"
+  },
+  {
+    "id": "docs:email-agent#a-business-plan-by-email",
+    "lang": "en",
+    "title": "Email agent · A Business Plan by email",
+    "url": "/en/docs/email-agent#a-business-plan-by-email",
+    "text": "For a Business Plan, the agent goes through the four steps, one round each: the opportunity, the business logic, the reality check and the implementation. Each round brings the guiding questions of the step, with the example scenarios as examples. Your answers are kept in your own words. When you choose both modules, the Business Plan shows the Quick Check figures read-only.\nThe summary lists the filled sections, the critical assumptions, the risks and the pitch-readiness checklist, which is unofficial. The Business Plan page explains the steps.",
+    "source": "content/docs/en/email-agent.mdx#a-business-plan-by-email"
+  },
+  {
+    "id": "docs:email-agent#attaching-files-to-an-email",
+    "lang": "en",
+    "title": "Email agent · Attaching files to an email",
+    "url": "/en/docs/email-agent#attaching-files-to-an-email",
+    "text": "Instead of answering the questions, you can attach documents, and the agent reads them in the background:\n- PDF, Word (.docx), Excel (.xlsx), CSV, Markdown and plain-text files;\n- a First Move project file (.firstmove.json), which is imported as it is;\n- up to 5 files per email, 10 MB per file and 20 MB in total; of a PDF, the first 60 pages are read.\nA file the agent cannot read is skipped, and the reply says which one. Every file is also checked for hidden instructions. A file that tries to manipulate the assistant is skipped, but it does not count against you, because people forward documents they did not write.",
+    "source": "content/docs/en/email-agent.mdx#attaching-files-to-an-email"
+  },
+  {
+    "id": "docs:email-agent#results-and-the-project-file",
+    "lang": "en",
+    "title": "Email agent · Results and the project file",
+    "url": "/en/docs/email-agent#results-and-the-project-file",
+    "text": "The Quick Check result comes as an email in the style of First Move, with a plain-text version: the overall result and its main factors, the key figures, the assumptions and how the figures were calculated, the inputs used, and the note that this is a screening, not a feasibility study. A Business Plan comes as a summary of the same kind. There is no PDF report yet.\nIf you asked for a project file, a .firstmove.json file is attached. Import it in the dashboard to continue there; the values collected by email carry an AI mark. You can also ask for the file later by writing \"file\".\nAfter the result, further answers update it, and the agent sends it again. Write \"new\" to start over, or \"stop\" to end the conversation and delete it.",
+    "source": "content/docs/en/email-agent.mdx#results-and-the-project-file"
+  },
+  {
+    "id": "docs:email-agent#the-rules",
+    "lang": "en",
+    "title": "Email agent · The rules",
+    "url": "/en/docs/email-agent#the-rules",
+    "text": "The mailbox is for questions about First Move and fifth-generation district heating and cooling, and for your Quick Check and Business Plan. Greetings and thanks are fine.\n- Stay on topic. A first off-topic email gets one warning. A second one pauses the mailbox for you for 30 days.\n- No misuse. Attempts to manipulate the assistant, to reveal its instructions or to make it email other people, harassment, and fraud, phishing, malware or spam block the sender. You get one notice, and the operator is told what happened.\n- After a pause or a block, the agent does not reply.\nWhen the agent is not sure whether an email is misuse, it counts the email as a warning rather than a block.",
+    "source": "content/docs/en/email-agent.mdx#the-rules"
+  },
+  {
+    "id": "docs:email-agent#how-long-data-is-kept",
+    "lang": "en",
+    "title": "Email agent · How long data is kept",
+    "url": "/en/docs/email-agent#how-long-data-is-kept",
+    "text": "- An unconfirmed first message: 7 days.\n- The conversation: 30 days after your last message.\n- A warning: 90 days. A pause: 30 days. A block: until we delete it.\n- Your confirmation: 12 months after your last message.\nFor these records your address is stored only in hashed form, and the conversation and any waiting messages are stored encrypted. The emails themselves stay with our email provider for 30 days. Our emails carry minimal open and click tracking (E-mail tracking). The Privacy Policy has the details.",
+    "source": "content/docs/en/email-agent.mdx#how-long-data-is-kept"
+  },
+  {
+    "id": "docs:email-agent#who-processes-your-email",
+    "lang": "en",
+    "title": "Email agent · Who processes your email",
+    "url": "/en/docs/email-agent#who-processes-your-email",
+    "text": "To answer, your email and its attachments are processed by these service providers: Resend for email, Vercel for the functions, the workflows and the AI Gateway, TypeSafe AI for Jev, a decision model that checks each email for relevance and misuse, Anthropic for Claude Haiku, which reads the email and writes the answer, and Upstash for the encrypted records. The Privacy Policy names them with their locations and safeguards.",
+    "source": "content/docs/en/email-agent.mdx#who-processes-your-email"
+  },
+  {
+    "id": "docs:index",
+    "lang": "en",
+    "title": "Introduction",
+    "url": "/en/docs",
+    "text": "First Move is a free web app for the first steps of a fifth-generation district heating and cooling (5GDHC) project. It helps municipalities, energy service providers and other project initiators to screen a project area and to develop a business model for a network there.",
+    "source": "content/docs/en/index.mdx"
+  },
+  {
+    "id": "docs:index#two-modules",
+    "lang": "en",
+    "title": "Introduction · Two modules",
+    "url": "/en/docs#two-modules",
+    "text": "A project in First Move has two optional modules. You can use one of them or both, and you can turn each one on or off at any time; the data of a module is kept while it is off.\n- Quick Check: a first assessment of the technical and economic potential of a 5GDHC network for a project area. You enter a few key parameters, and the Quick Check applies a predefined calculation and assessment methodology. The result is one of three levels, Promising, Further analysis required or Not promising, shown together with the main factors behind it.\n- Business Plan: a workspace to develop a business model for the network in four steps, from the opportunity to the next steps towards implementation. You write in your own words; the Business Plan calculates nothing of its own.\nBoth modules share the site data, such as the buildings and the energy sources, so you enter them once.",
+    "source": "content/docs/en/index.mdx#two-modules"
+  },
+  {
+    "id": "docs:index#your-data-stays-in-your-browser",
+    "lang": "en",
+    "title": "Introduction · Your data stays in your browser",
+    "url": "/en/docs#your-data-stays-in-your-browser",
+    "text": "There is no account and no server database. Your projects are stored only in the browser you use, and First Move never receives them. Export a project to keep a copy or to move it to another browser. Data and privacy explains the details.",
+    "source": "content/docs/en/index.mdx#your-data-stays-in-your-browser"
+  },
+  {
+    "id": "docs:index#where-to-start",
+    "lang": "en",
+    "title": "Introduction · Where to start",
+    "url": "/en/docs#where-to-start",
+    "text": "1. Open the dashboard.\n2. Start a new project with the Quick Check, the Business Plan or both, or open one of the six examples. Opening an example creates your own copy; the examples use illustrative inputs only.\n3. Or import a project file (.firstmove.json) that you exported before.\nNew to 5GDHC? Read What is 5GDHC? first.",
+    "source": "content/docs/en/index.mdx#where-to-start"
+  },
+  {
+    "id": "docs:index#read-next",
+    "lang": "en",
+    "title": "Introduction · Read next",
+    "url": "/en/docs#read-next",
+    "text": "- What is 5GDHC?: the idea behind the networks, where they fit and where they do not.\n- Quick Check: every input, how the result is calculated and what it means.\n- Business Plan: the four steps, the example scenarios and the pitch-readiness checklist.\n- Data and privacy: where your projects live, export, import and deleting data.\n- AI assistant: the optional assistant in the dashboard, with your own key.\n- Email agent: a Quick Check or a Business Plan by email.",
+    "source": "content/docs/en/index.mdx#read-next"
+  },
+  {
+    "id": "docs:index#a-screening-not-a-feasibility-study",
+    "lang": "en",
+    "title": "Introduction · A screening, not a feasibility study",
+    "url": "/en/docs#a-screening-not-a-feasibility-study",
+    "text": "The Quick Check gives an initial indication, not a definitive feasibility decision. Its parameters and methodology are based on simplified assumptions; actual values may vary with project-specific conditions and should be refined through further analysis. Neither the results nor these pages are engineering advice.",
+    "source": "content/docs/en/index.mdx#a-screening-not-a-feasibility-study"
+  },
+  {
+    "id": "docs:quick-check",
+    "lang": "en",
+    "title": "Quick Check",
+    "url": "/en/docs/quick-check",
+    "text": "The Quick Check gives a first assessment of the technical and economic potential of a 5GDHC network for a project area. You enter a few key parameters. The Quick Check estimates the energy demand, the network length, the supply coverage and the economics, classifies the indicators and gives one of three overall results, together with the main factors behind it. It communicates an initial indication, not a definitive feasibility decision.\nThe calculation follows a predefined 5GDHC Quick Check methodology; First Move implements it and does not change it. On this page, equations are cited by their number in the methodology (for example EQ-3.4a) and default tables by theirs (for example TBL-6). Where the methodology leaves a point open, the answer First Move applies is cited by its number (for example OQ-20). In the app, every input step and every result has a \"How we calculate\" section with the equations used.",
+    "source": "content/docs/en/quick-check.mdx"
+  },
+  {
+    "id": "docs:quick-check#the-steps",
+    "lang": "en",
+    "title": "Quick Check · The steps",
+    "url": "/en/docs/quick-check#the-steps",
+    "text": "The Quick Check has four input steps and a results page:\n1. Project area: the number of buildings and the project area.\n2. Buildings: the share of each building type and construction period.\n3. Energy sources: the sources available in the area and their potential.\n4. Options: a known demand, a known network length and photovoltaics, all optional.\n5. Results: the overall result, the main factors, the indicators and the key figures.\nThe result appears as soon as the required inputs are complete: the number of buildings, the project area, shares that add up to 100 % and at least one energy source. All calculations run automatically, in your browser. The Assumptions page shows every default value and lets you try your own parameters.",
+    "source": "content/docs/en/quick-check.mdx#the-steps"
+  },
+  {
+    "id": "docs:quick-check#number-of-buildings",
+    "lang": "en",
+    "title": "Quick Check · Number of buildings",
+    "url": "/en/docs/quick-check#number-of-buildings",
+    "text": "The total number of buildings in the project area, as a whole number, including industrial buildings. Together with the project area it gives the building density (EQ-3.3). It also sets the number of buildings in each group (EQ-3.1), the heat pump investment, with one heat pump per building (EQ-3.10d), and the connection fees (EQ-3.9c).\nWhere to find it: a map of the area, the building or address register of the municipality, or a walk through the area.",
+    "source": "content/docs/en/quick-check.mdx#number-of-buildings"
+  },
+  {
+    "id": "docs:quick-check#project-area",
+    "lang": "en",
+    "title": "Quick Check · Project area",
+    "url": "/en/docs/quick-check#project-area",
+    "text": "The total project area in m². The app shows the value in hectares next to it; 1 ha is 10,000 m². The area sets the building density in buildings per hectare (EQ-3.3) and, unless you enter a network length, the estimated network length (EQ-3.4b).\nWhere to find it: draw the area on a map or in a GIS tool, or take it from a land-use or development plan.",
+    "source": "content/docs/en/quick-check.mdx#project-area"
+  },
+  {
+    "id": "docs:quick-check#building-types-and-construction-periods-1",
+    "lang": "en",
+    "title": "Quick Check · Building types and construction periods",
+    "url": "/en/docs/quick-check#building-types-and-construction-periods",
+    "text": "Enter the share of each building type and construction period in %, in a grid with the building types as rows and the construction periods as columns. All shares must add up to 100 %; until they do, there is no result.\n- Residential buildings: residential buildings of different construction periods.\n- Category A: retail, museums, supermarkets, schools, offices and fitness studios.\n- Category B: kindergartens, sports halls, hotels and theatres.\n- Category C: hospitals, restaurants, swimming pools and canteens.\n- Industry: industrial buildings and facilities.\nThe construction periods are -1919, 1919-1960, 1961-1990, 1991-2010 and 2011-today, labelled as in the methodology; no calculation depends on the boundary year (OQ-03).\nFor example, a project area could consist of 50 % residential buildings from 1991-2010, 25 % residential buildings from 2011-today and 25 % Category A buildings from 2011-today.",
+    "source": "content/docs/en/quick-check.mdx#building-types-and-construction-periods"
+  },
+  {
+    "id": "docs:quick-check#building-types-and-construction-periods-2",
+    "lang": "en",
+    "title": "Quick Check · Building types and construction periods",
+    "url": "/en/docs/quick-check#building-types-and-construction-periods",
+    "text": "Industry has no default values. An industry share adds no demand, no floor area and no base-price or energy-price revenue, and any industry share sets the overall result to \"Further analysis required\" (OQ-02). Industrial buildings still count in the number of buildings, for example in the building density, the connection fees and the heat pump investment (OQ-02).\nWhere to find it: the building register or census statistics of the municipality, energy performance certificates, or a walk through the area.",
+    "source": "content/docs/en/quick-check.mdx#building-types-and-construction-periods"
+  },
+  {
+    "id": "docs:quick-check#heating-and-cooling-demand",
+    "lang": "en",
+    "title": "Quick Check · Heating and cooling demand",
+    "url": "/en/docs/quick-check#heating-and-cooling-demand",
+    "text": "The shares split the number of buildings into groups: the number of buildings of a type and period is the total number of buildings times its share (EQ-3.1). Shares and other percentages are divided by 100 first, and a group may hold a fractional number of buildings (OQ-01).\nEach group gets the default annual heating demand per m² of floor area (TBL-1), the default annual cooling demand per m² (TBL-2) and the default floor area per building (TBL-3) of its type and construction period. The number of buildings times the demand per m² times the floor area gives the annual heating and cooling demand of each group (EQ-3.2a, EQ-3.2b). The sum over all groups is the total annual heating demand and the total annual cooling demand of the project area (EQ-3.2c, EQ-3.2d). A known demand that you enter in Options replaces these totals.",
+    "source": "content/docs/en/quick-check.mdx#heating-and-cooling-demand"
+  },
+  {
+    "id": "docs:quick-check#energy-sources-1",
+    "lang": "en",
+    "title": "Quick Check · Energy sources",
+    "url": "/en/docs/quick-check#energy-sources",
+    "text": "Select the energy sources that are available or potentially available in the project area, and rate the potential of each one: Low, Medium, High or Unknown. You can select several sources; their supplies add up (OQ-11).\nFor each source, the Quick Check takes the predefined annual capacity of its potential, TBL-4 for heating and TBL-5 for cooling, and the COP of its heat pump. The capacities are the energy taken from the source, not the energy delivered to the buildings; the COP of the heat pump turns them into the supply (see Supply).\n- Solar thermal has no COP in the methodology, so its capacity counts as heating supply directly, without heat pump electricity (OQ-13).\n- Waste heat and solar thermal have no default cooling capacity, so they supply no cooling (OQ-13).\n- An Unknown potential adds no supply. It sets the overall result to \"Further analysis required\", because the potential needs to be clarified before a reliable initial assessment can be made.",
+    "source": "content/docs/en/quick-check.mdx#energy-sources"
+  },
+  {
+    "id": "docs:quick-check#energy-sources-2",
+    "lang": "en",
+    "title": "Quick Check · Energy sources",
+    "url": "/en/docs/quick-check#energy-sources",
+    "text": "The methodology does not say whether the capacities apply per project, per building or per area. First Move applies them as absolute values per selected source for the whole project and flags this on the Assumptions page (OQ-26). With the default capacities, the sources cover the demand of small projects only: one residential building needs about 30,000 to 68,000 kWh/a of heat, while the highest default capacity of a source is 150,000 kWh/a. You can try other capacities with Play with parameters.\nWhere to find it: geological and hydrogeological maps, studies of the area, the operator of a possible waste-heat source, or the authorities responsible for water and geology. If you cannot rate a source yet, choose Unknown.",
+    "source": "content/docs/en/quick-check.mdx#energy-sources"
+  },
+  {
+    "id": "docs:quick-check#options",
+    "lang": "en",
+    "title": "Quick Check · Options",
+    "url": "/en/docs/quick-check#options",
+    "text": "All options are optional. Leave a field empty to keep the estimate of the methodology.\n- Known heating and cooling demand: if you have more detailed information about the buildings' energy demand, enter the total annual heating demand and the total annual cooling demand in kWh/a. Each value replaces the estimated total (EQ-3.2c, EQ-3.2d) wherever the total is used; the base-price revenues still use the default floor areas (OQ-05).\n- Network length: if you know the estimated total network length, enter it in m. It replaces the estimate (EQ-3.4a, EQ-3.4b), and the results say that the length was entered.\n- Photovoltaic (PV) available: with PV, the electricity costs of the heat pumps are lowered by the PV cost reduction of 30 % (TBL-6, OQ-06).\nWhere to find it: energy bills, meter data or the energy supplier for the demand; a first network sketch for the length.",
+    "source": "content/docs/en/quick-check.mdx#options"
+  },
+  {
+    "id": "docs:quick-check#building-density",
+    "lang": "en",
+    "title": "Quick Check · Building density",
+    "url": "/en/docs/quick-check#building-density",
+    "text": "The building density is the number of buildings per hectare of project area (EQ-3.3). It is classified with TBL-8:\n- High density: above 30 buildings/ha. Densely built areas can benefit from shorter network lengths, although low energy demand may still weaken economic performance.\n- Medium density: from 10 to 30 buildings/ha. The structure may be suitable for a network.\n- Low density: below 10 buildings/ha. Buildings are more distributed, potentially increasing network length. High energy demand or suitable local energy sources may still make a project promising.\nThe building density category (rural, sub-urban or urban) is not an input. It follows from this class: low density is rural, medium is sub-urban, high is urban (OQ-04).",
+    "source": "content/docs/en/quick-check.mdx#building-density"
+  },
+  {
+    "id": "docs:quick-check#network-length",
+    "lang": "en",
+    "title": "Quick Check · Network length",
+    "url": "/en/docs/quick-check#network-length",
+    "text": "Unless you enter a network length, the Quick Check estimates it in two steps. First, the specific network length in metres per hectare follows from the building density with a predefined relationship (EQ-3.4a); the number of buildings per hectare in that equation is the building density (OQ-09). Then the specific network length times the project area in hectares gives the total network length in metres (EQ-3.4b).\nThe results always say whether the network length was entered or estimated.",
+    "source": "content/docs/en/quick-check.mdx#network-length"
+  },
+  {
+    "id": "docs:quick-check#heat-density",
+    "lang": "en",
+    "title": "Quick Check · Heat density",
+    "url": "/en/docs/quick-check#heat-density",
+    "text": "The heat density is the total annual heating demand divided by the network length (EQ-3.5). Higher heat density can improve the economic outlook, because more heating demand is served per metre of network. It is calculated in kWh per metre and classified in MWh per metre (OQ-10), with TBL-9:\n- High density: above 1.5 MWh/m. A relatively short network serves a high heating demand, potentially improving economic performance.\n- Medium density: from 0.5 to 1.5 MWh/m. The network may be viable.\n- Low density: below 0.5 MWh/m. A relatively long network serves a low heating demand. Substantial cooling demand or low network costs may improve the outlook.",
+    "source": "content/docs/en/quick-check.mdx#heat-density"
+  },
+  {
+    "id": "docs:quick-check#supply",
+    "lang": "en",
+    "title": "Quick Check · Supply",
+    "url": "/en/docs/quick-check#supply",
+    "text": "For each selected source, the heating supply is its capacity plus the share the heat pump adds: capacity times COP / (COP − 1) (EQ-3.8a). The cooling supply is its cooling capacity adjusted by the COP: capacity times COP / (COP + 1) (EQ-3.8b). COP is the coefficient of performance of the heat pump; the heating COP comes from TBL-4 and the cooling COP from TBL-5 (OQ-14). The supplies of all selected sources are added up (OQ-11).",
+    "source": "content/docs/en/quick-check.mdx#supply"
+  },
+  {
+    "id": "docs:quick-check#coverage",
+    "lang": "en",
+    "title": "Quick Check · Coverage",
+    "url": "/en/docs/quick-check#coverage",
+    "text": "The coverage is the share of the annual demand that the selected sources can supply: the heating supply divided by the heating demand (EQ-3.6a), and the cooling supply divided by the cooling demand (EQ-3.6b). A value of 1.0 corresponds to 100 % coverage. Heating and cooling coverage are shown and classified separately, so supply gaps stay visible (TBL-7):\n- Feasible: 100 % or more. Sufficient annual energy potential to cover the total demand with additional potential available.\n- Conditionally feasible: from 90 % to below 100 %. A small share of supplementary supply is required.\n- Limited feasibility: from 70 % to below 90 %. A significant share of supplementary supply is required.\n- Not feasible as the sole supply concept: below 70 %. Too much demand remains uncovered.\nA demand of 0 is not relevant, so it gets no coverage class (OQ-22).",
+    "source": "content/docs/en/quick-check.mdx#coverage"
+  },
+  {
+    "id": "docs:quick-check#cooling-to-heating-ratio",
+    "lang": "en",
+    "title": "Quick Check · Cooling-to-heating ratio",
+    "url": "/en/docs/quick-check#cooling-to-heating-ratio",
+    "text": "The cooling-to-heating ratio indicates how balanced the annual heating and cooling demands are. The methodology gives no formula for it (EQ-3.7). First Move divides the smaller of the two demands by the larger one, so the ratio is always between 0 and 1, and names the demand that is higher (OQ-12). A value of 1 indicates equal demands; values approaching 0 indicate an increasing imbalance. When both demands are 0, the ratio is not applicable. It is classified with TBL-10:\n- Balanced: 0.8 or more. Heating and cooling demand are similar, potentially supporting thermal exchange.\n- Partially balanced: from 0.3 to below 0.8. One demand is higher than the other, but thermal exchange may still be possible.\n- Unbalanced: below 0.3. One demand clearly dominates, potentially increasing the need for external energy sources or thermal storage.\nThe ratio indicates the potential for thermal balancing. It does not decide on its own whether a network is feasible, but it can influence the system configuration and the economic viability. An unbalanced demand profile does not automatically make a 5GDHC network unsuitable.",
+    "source": "content/docs/en/quick-check.mdx#cooling-to-heating-ratio"
+  },
+  {
+    "id": "docs:quick-check#revenues",
+    "lang": "en",
+    "title": "Quick Check · Revenues",
+    "url": "/en/docs/quick-check#revenues",
+    "text": "- Heating revenue: the heating base price for every m² of floor area per year, plus the heating energy price for every kWh of heating demand (EQ-3.9a). The base prices are per m² of floor area and year (OQ-16), and the floor area is the default floor area of each building group (TBL-3).\n- Cooling revenue: the cooling base price for every m² of floor area per year, plus the cooling energy price for every kWh of cooling demand (EQ-3.9b, OQ-15).\n- Overall revenues: the heating revenue, the cooling revenue and the connection fees. The connection fee is a one-time fee per building, spread over the depreciation period with the annuity factor (EQ-3.9c).",
+    "source": "content/docs/en/quick-check.mdx#revenues"
+  },
+  {
+    "id": "docs:quick-check#costs",
+    "lang": "en",
+    "title": "Quick Check · Costs",
+    "url": "/en/docs/quick-check#costs",
+    "text": "- Network investment: the network construction costs per metre times the network length (EQ-3.10a).\n- Installation investment: for each selected source, its installation costs per kWh/a times its heating supply (EQ-3.10b), summed over all sources (EQ-3.10c). TBL-6 gives no installation costs for ambient air; First Move uses 0, because the heat pumps are already counted in the heat pump investment (OQ-18).\n- Overall investment: the investment in one heat pump times the number of buildings, plus the network investment and the installation investment of all sources (EQ-3.10d). The installations are counted once (OQ-17).\n- Annualized costs: the overall investment times the annuity factor (EQ-3.10f). The annuity factor turns an investment into equal yearly payments over the depreciation period at the interest rate (EQ-3.10e).\n- Electricity costs: for each source, the heating supply divided by the heating COP and the cooling supply divided by the cooling COP, times the electricity price, in € per year (EQ-3.11, OQ-19). With PV, they are multiplied by 1 − 0.30 (OQ-06).\n- Operation and maintenance: 0.02 times the overall investment, that is 2 % of it every year (EQ-3.12).",
+    "source": "content/docs/en/quick-check.mdx#costs"
+  },
+  {
+    "id": "docs:quick-check#economic-assessment",
+    "lang": "en",
+    "title": "Quick Check · Economic assessment",
+    "url": "/en/docs/quick-check#economic-assessment",
+    "text": "The methodology does not define when the economic assessment is favorable or clearly unfavorable, so First Move uses an economic ratio E (OQ-21): the overall revenues divided by the annual costs, which are the annualized costs plus the electricity costs plus operation and maintenance.\n- Favorable: E is 1.0 or more. The revenues cover the annual costs.\n- Unclear: E is 0.7 or more, but below 1.0. The revenues cover a large part, but not all, of the annual costs.\n- Clearly unfavorable: E is below 0.7. The revenues fall far short of the annual costs.\nThe economic parameters (TBL-6) are only preliminary assumptions, so treat the economic results with care.",
+    "source": "content/docs/en/quick-check.mdx#economic-assessment"
+  },
+  {
+    "id": "docs:quick-check#the-verdict-what-the-overall-result-means",
+    "lang": "en",
+    "title": "Quick Check · The verdict: what the overall result means",
+    "url": "/en/docs/quick-check#the-verdict-what-the-overall-result-means",
+    "text": "The overall result, the verdict of the Quick Check, is one of three levels:\n- Promising: favorable conditions identified.\n- Further analysis required: mixed conditions, uncertainties or missing information.\n- Not promising: unfavorable conditions identified.\nThe indicator is intentionally broad, to avoid false precision and to make clear that it is a general initial assessment, not a detailed feasibility study. It combines the supply coverage, the building and heat density and the economic assessment (TBL-11), checked in this order (OQ-22):\n1. Set by a fixed rule: if the project area includes industry, or if any selected source has an Unknown potential, the result is \"Further analysis required\".\n2. Not promising: if the economic assessment is clearly unfavorable, or if a relevant supply coverage is below 70 % and both the building density and the heat density are low.\n3. Promising: if every relevant demand has at least 90 % annual supply coverage, the economic assessment is favorable, and neither the building density nor the heat density is low.\n4. Further analysis required: in every other case.\nA demand is relevant when it is above 0 (OQ-22).",
+    "source": "content/docs/en/quick-check.mdx#the-verdict-what-the-overall-result-means"
+  },
+  {
+    "id": "docs:quick-check#main-factors",
+    "lang": "en",
+    "title": "Quick Check · Main factors",
+    "url": "/en/docs/quick-check#main-factors",
+    "text": "Next to the overall result, the Quick Check shows the main factors supporting or limiting it, and under \"Why this result\" the reasons for the level it reached.\n- An indicator supports the result when it meets its condition for Promising: a coverage of at least 90 %, a favorable economic assessment, a building density or heat density that is not low.\n- It limits the result otherwise.\n- Industry in the project area and an Unknown source potential always limit the result.\n- A demand of 0 is left out. The cooling-to-heating ratio is shown with its class but not counted as a factor, because it does not decide the result on its own.\nEach indicator is shown with its classification and a short explanation of what it means for the project. The results also show the key figures, such as the demand, the supply, the network length, the revenues, the investment and the annual costs.",
+    "source": "content/docs/en/quick-check.mdx#main-factors"
+  },
+  {
+    "id": "docs:quick-check#default-source-capacities",
+    "lang": "en",
+    "title": "Quick Check · Default source capacities",
+    "url": "/en/docs/quick-check#default-source-capacities",
+    "text": "The default annual capacity at Low, Medium and High potential, and the COP of the heat pump (TBL-4 for heating, TBL-5 for cooling):\n- Geothermal: heating 10,000, 50,000 and 150,000 kWh/a, COP 4.5; cooling 10,000, 50,000 and 150,000 kWh/a, COP 5.0.\n- Waste heat: heating 5,000, 30,000 and 100,000 kWh/a, COP 4.5; no cooling.\n- Ground water: heating 10,000, 50,000 and 150,000 kWh/a, COP 5.0; cooling 10,000, 50,000 and 150,000 kWh/a, COP 5.0.\n- Surface water: heating 10,000, 50,000 and 150,000 kWh/a, COP 4.0; cooling 10,000, 50,000 and 150,000 kWh/a, COP 4.5.\n- Solar thermal: heating 5,000, 20,000 and 50,000 kWh/a, without heat pump; no cooling.\n- Ambient air: heating 10,000, 50,000 and 150,000 kWh/a, COP 3.0; cooling 10,000, 50,000 and 150,000 kWh/a, COP 3.5.\nThe default demand per m² and the default floor area of every building type and construction period (TBL-1 to TBL-3) are listed on the Assumptions page.",
+    "source": "content/docs/en/quick-check.mdx#default-source-capacities"
+  },
+  {
+    "id": "docs:quick-check#default-economic-parameters",
+    "lang": "en",
+    "title": "Quick Check · Default economic parameters",
+    "url": "/en/docs/quick-check#default-economic-parameters",
+    "text": "The default economic parameters (TBL-6):\n- Heating base price: 6.00 €/m² per year\n- Heating energy price: 0.12 €/kWh\n- Cooling base price: 3.00 €/m² per year\n- Cooling energy price: 0.08 €/kWh\n- Connection fee: 1,000 € per building\n- Network construction costs, for pipes, materials, excavation and installation: 500 €/m\n- Installation costs per kWh/a of heating supply: geothermal 1.50 €, waste heat 0.50 €, ground water 1.00 €, surface water 0.80 €, solar thermal 0.70 €, ambient air none, used as 0\n- Heat pump: 15,000 € per building\n- Electricity cost: 0.20 €/kWh\n- PV cost reduction: 30 %\n- Depreciation period: 20 years\n- Interest rate: 3 %",
+    "source": "content/docs/en/quick-check.mdx#default-economic-parameters"
+  },
+  {
+    "id": "docs:quick-check#your-own-parameters",
+    "lang": "en",
+    "title": "Quick Check · Your own parameters",
+    "url": "/en/docs/quick-check#your-own-parameters",
+    "text": "On the Assumptions page, Play with parameters lets you override the capacities and COPs of TBL-4 and TBL-5 and the economic parameters of TBL-6. The results then carry the \"Custom parameters\" badge, your values are saved in the project, and Reset to defaults brings the default values back. The classification thresholds (TBL-7 to TBL-11) are fixed. The Assumptions page also lists the answers to the open points of the methodology that First Move applies in every calculation.",
+    "source": "content/docs/en/quick-check.mdx#your-own-parameters"
+  },
+  {
+    "id": "docs:quick-check#limits-of-the-quick-check",
+    "lang": "en",
+    "title": "Quick Check · Limits of the Quick Check",
+    "url": "/en/docs/quick-check#limits-of-the-quick-check",
+    "text": "- A screening, not engineering advice. The Quick Check is intended for a preliminary screening rather than a detailed system design. It does not replace a detailed technical or economic feasibility study.\n- Simplified assumptions. The parameters, inputs and methodology are based on simplified assumptions and should be interpreted carefully. Actual values may vary with project-specific conditions and should be refined through further analysis.\n- Your inputs only. The Quick Check does not query external databases. It works with what you enter and the default values.\n- The same inputs give the same result. The calculation is deterministic and runs in your browser; it does not use AI.\n- Illustrative examples. The example projects on the start screen use illustrative inputs only.",
+    "source": "content/docs/en/quick-check.mdx#limits-of-the-quick-check"
+  },
+  {
+    "id": "docs:what-is-5gdhc",
+    "lang": "en",
+    "title": "What is 5GDHC?",
+    "url": "/en/docs/what-is-5gdhc",
+    "text": "5GDHC stands for fifth-generation district heating and cooling. A 5GDHC network is a low-temperature system that supplies buildings with heating and cooling. Such networks are also called anergy networks or ambient loop networks.",
+    "source": "content/docs/en/what-is-5gdhc.mdx"
+  },
+  {
+    "id": "docs:what-is-5gdhc#a-low-temperature-network",
+    "lang": "en",
+    "title": "What is 5GDHC? · A low-temperature network",
+    "url": "/en/docs/what-is-5gdhc#a-low-temperature-network",
+    "text": "Water circulates in a 5GDHC network at around 5 to 25 °C. At these temperatures the network can use renewable energy and waste heat efficiently without insulated pipes, and its losses are minimal.\nThe network connects the buildings with energy sources and with thermal storage, such as borehole fields, buffer tanks or seasonal storage.",
+    "source": "content/docs/en/what-is-5gdhc.mdx#a-low-temperature-network"
+  },
+  {
+    "id": "docs:what-is-5gdhc#heat-pumps-in-every-building",
+    "lang": "en",
+    "title": "What is 5GDHC? · Heat pumps in every building",
+    "url": "/en/docs/what-is-5gdhc#heat-pumps-in-every-building",
+    "text": "Each building uses its own heat pump to provide heating or cooling. The decentralised heat pumps raise the temperature to what each building needs, for radiators or for floor heating. The challenge: a higher upfront investment and more complex control.",
+    "source": "content/docs/en/what-is-5gdhc.mdx#heat-pumps-in-every-building"
+  },
+  {
+    "id": "docs:what-is-5gdhc#sharing-heat-and-cold",
+    "lang": "en",
+    "title": "What is 5GDHC? · Sharing heat and cold",
+    "url": "/en/docs/what-is-5gdhc#sharing-heat-and-cold",
+    "text": "A key advantage is the bidirectional energy exchange. Excess heat can be fed back into the network and used by other buildings, which improves the overall energy efficiency. When some buildings heat while others cool, their demands balance each other, so summer cooling becomes a reason to connect.",
+    "source": "content/docs/en/what-is-5gdhc.mdx#sharing-heat-and-cold"
+  },
+  {
+    "id": "docs:what-is-5gdhc#typical-sources",
+    "lang": "en",
+    "title": "What is 5GDHC? · Typical sources",
+    "url": "/en/docs/what-is-5gdhc#typical-sources",
+    "text": "Typical sources are groundwater, geothermal energy, waste heat and wastewater. The Quick Check works with six kinds of source: geothermal, waste heat, ground water, surface water, solar thermal and ambient air.\nIn the use cases of the research project Anergie Leicht Gemacht, groundwater was the most economical source.",
+    "source": "content/docs/en/what-is-5gdhc.mdx#typical-sources"
+  },
+  {
+    "id": "docs:what-is-5gdhc#why-it-matters",
+    "lang": "en",
+    "title": "What is 5GDHC? · Why it matters",
+    "url": "/en/docs/what-is-5gdhc#why-it-matters",
+    "text": "5GDHC networks integrate renewable energy and waste heat efficiently and reduce the reliance on fossil fuels. They can also contribute to a resilient, secure and locally available energy supply, because they integrate local energy sources, reduce the dependence on individual energy carriers and allow a flexible exchange and storage of heat and cold.",
+    "source": "content/docs/en/what-is-5gdhc.mdx#why-it-matters"
+  },
+  {
+    "id": "docs:what-is-5gdhc#where-it-fits",
+    "lang": "en",
+    "title": "What is 5GDHC? · Where it fits",
+    "url": "/en/docs/what-is-5gdhc#where-it-fits",
+    "text": "5GDHC networks can be built in different settlement and building types, but they need suitable technical and economic conditions. The research project Anergie Leicht Gemacht drew these learnings from its use cases:\n- Existing buildings can be integrated, most of them even without major thermal renovation.\n- Heat line density decides the economics: above about 1 MWh per metre of trench, networks can beat individual solutions.\n- Pipes and house connections drive the cost; the trench length dominates the investment.\n- Micro-networks between direct neighbours are a promising option.\nGood to know: the investment comes first, while the revenues come over 25 to 30 years, and every building that stays out raises the costs for the rest.",
+    "source": "content/docs/en/what-is-5gdhc.mdx#where-it-fits"
+  },
+  {
+    "id": "docs:what-is-5gdhc#where-it-is-harder",
+    "lang": "en",
+    "title": "What is 5GDHC? · Where it is harder",
+    "url": "/en/docs/what-is-5gdhc#where-it-is-harder",
+    "text": "The Quick Check indicators show what can weaken the case for a network:\n- Low building density: the buildings are more spread out, which can increase the network length.\n- Low heat density: a relatively long network serves a low heating demand.\n- Unbalanced demand: when heating or cooling clearly dominates, more external energy sources or thermal storage may be needed. An unbalanced demand profile does not automatically make a 5GDHC network unsuitable.\nMost challenges are organisational rather than technical: coordination, ownership structures, financing and long-term operation. In the experience of the project, connecting is voluntary, and many owners decide individually: homeowners, housing associations and public buildings.",
+    "source": "content/docs/en/what-is-5gdhc.mdx#where-it-is-harder"
+  },
+  {
+    "id": "docs:what-is-5gdhc#examples-in-practice",
+    "lang": "en",
+    "title": "What is 5GDHC? · Examples in practice",
+    "url": "/en/docs/what-is-5gdhc#examples-in-practice",
+    "text": "- Viertel Zwei, Vienna: residential, commercial and public buildings with decentralised heat pumps, on geothermal energy, wastewater and groundwater; in operation since 2017.\n- Bregenz, Vorarlberg: water from Lake Constance as the source for heating and cooling, run by the municipal utility, Stadtwerke Bregenz; in operation, and the network is being expanded.\n- Lagarde, Bamberg: existing and new buildings with about 1,200 dwellings, 70 decentralised heat pumps and 5.5 km of pipe, on geothermal energy and wastewater heat; in operation since 2023, with Stadtwerke Bamberg.",
+    "source": "content/docs/en/what-is-5gdhc.mdx#examples-in-practice"
+  },
+  {
+    "id": "docs:what-is-5gdhc#how-first-move-helps",
+    "lang": "en",
+    "title": "What is 5GDHC? · How First Move helps",
+    "url": "/en/docs/what-is-5gdhc#how-first-move-helps",
+    "text": "The Quick Check screens a project area: does a 5GDHC network look promising there, and which factors decide it? The Business Plan helps you work out who benefits and who pays, who owns and operates the network, and which risks could stop it.",
+    "source": "content/docs/en/what-is-5gdhc.mdx#how-first-move-helps"
+  },
+  {
     "id": "calc:steps.area",
     "lang": "en",
     "title": "How we calculate · Quick Check · Project area",

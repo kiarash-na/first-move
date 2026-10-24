@@ -13,7 +13,7 @@ const eslintConfig = defineConfig([
   ...nextTs,
   {
     files: [
-      "lib/{project,quick-check,business-plan,storage,store,i18n,dashboard,legal,examples,theme}/**",
+      "lib/{project,quick-check,business-plan,storage,store,i18n,dashboard,legal,examples,theme,docs}/**",
       "lib/utils.ts",
       "components/**",
       "app/**",

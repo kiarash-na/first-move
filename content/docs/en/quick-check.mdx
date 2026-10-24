@@ -1,0 +1,221 @@
+# Quick Check
+
+The Quick Check gives a first assessment of the technical and economic potential of a 5GDHC network for a project area. You enter a few key parameters. The Quick Check estimates the energy demand, the network length, the supply coverage and the economics, classifies the indicators and gives one of three overall results, together with the main factors behind it. It communicates an initial indication, not a definitive feasibility decision.
+
+The calculation follows a predefined 5GDHC Quick Check methodology; First Move implements it and does not change it. On this page, equations are cited by their number in the methodology (for example EQ-3.4a) and default tables by theirs (for example TBL-6). Where the methodology leaves a point open, the answer First Move applies is cited by its number (for example OQ-20). In the app, every input step and every result has a "How we calculate" section with the equations used.
+
+## The steps
+
+The Quick Check has four input steps and a results page:
+
+1. **Project area**: the number of buildings and the project area.
+2. **Buildings**: the share of each building type and construction period.
+3. **Energy sources**: the sources available in the area and their potential.
+4. **Options**: a known demand, a known network length and photovoltaics, all optional.
+5. **Results**: the overall result, the main factors, the indicators and the key figures.
+
+The result appears as soon as the required inputs are complete: the number of buildings, the project area, shares that add up to 100 % and at least one energy source. All calculations run automatically, in your browser. The [Assumptions](/dashboard/assumptions) page shows every default value and lets you try your own parameters.
+
+## Number of buildings
+
+The total number of buildings in the project area, as a whole number, including industrial buildings. Together with the project area it gives the building density (EQ-3.3). It also sets the number of buildings in each group (EQ-3.1), the heat pump investment, with one heat pump per building (EQ-3.10d), and the connection fees (EQ-3.9c).
+
+Where to find it: a map of the area, the building or address register of the municipality, or a walk through the area.
+
+## Project area
+
+The total project area in m². The app shows the value in hectares next to it; 1 ha is 10,000 m². The area sets the building density in buildings per hectare (EQ-3.3) and, unless you enter a network length, the estimated network length (EQ-3.4b).
+
+Where to find it: draw the area on a map or in a GIS tool, or take it from a land-use or development plan.
+
+## Building types and construction periods
+
+Enter the share of each building type and construction period in %, in a grid with the building types as rows and the construction periods as columns. All shares must add up to 100 %; until they do, there is no result.
+
+- **Residential buildings**: residential buildings of different construction periods.
+- **Category A**: retail, museums, supermarkets, schools, offices and fitness studios.
+- **Category B**: kindergartens, sports halls, hotels and theatres.
+- **Category C**: hospitals, restaurants, swimming pools and canteens.
+- **Industry**: industrial buildings and facilities.
+
+The construction periods are -1919, 1919-1960, 1961-1990, 1991-2010 and 2011-today, labelled as in the methodology; no calculation depends on the boundary year (OQ-03).
+
+For example, a project area could consist of 50 % residential buildings from 1991-2010, 25 % residential buildings from 2011-today and 25 % Category A buildings from 2011-today.
+
+Industry has no default values. An industry share adds no demand, no floor area and no base-price or energy-price revenue, and any industry share sets the overall result to "Further analysis required" (OQ-02). Industrial buildings still count in the number of buildings, for example in the building density, the connection fees and the heat pump investment (OQ-02).
+
+Where to find it: the building register or census statistics of the municipality, energy performance certificates, or a walk through the area.
+
+## Heating and cooling demand
+
+The shares split the number of buildings into groups: the number of buildings of a type and period is the total number of buildings times its share (EQ-3.1). Shares and other percentages are divided by 100 first, and a group may hold a fractional number of buildings (OQ-01).
+
+Each group gets the default annual heating demand per m² of floor area (TBL-1), the default annual cooling demand per m² (TBL-2) and the default floor area per building (TBL-3) of its type and construction period. The number of buildings times the demand per m² times the floor area gives the annual heating and cooling demand of each group (EQ-3.2a, EQ-3.2b). The sum over all groups is the total annual heating demand and the total annual cooling demand of the project area (EQ-3.2c, EQ-3.2d). A known demand that you enter in Options replaces these totals.
+
+## Energy sources
+
+Select the energy sources that are available or potentially available in the project area, and rate the potential of each one: Low, Medium, High or Unknown. You can select several sources; their supplies add up (OQ-11).
+
+For each source, the Quick Check takes the predefined annual capacity of its potential, TBL-4 for heating and TBL-5 for cooling, and the COP of its heat pump. The capacities are the energy taken from the source, not the energy delivered to the buildings; the COP of the heat pump turns them into the supply (see [Supply](#supply)).
+
+- **Solar thermal** has no COP in the methodology, so its capacity counts as heating supply directly, without heat pump electricity (OQ-13).
+- **Waste heat** and **solar thermal** have no default cooling capacity, so they supply no cooling (OQ-13).
+- An **Unknown** potential adds no supply. It sets the overall result to "Further analysis required", because the potential needs to be clarified before a reliable initial assessment can be made.
+
+The methodology does not say whether the capacities apply per project, per building or per area. First Move applies them as absolute values per selected source for the whole project and flags this on the Assumptions page (OQ-26). With the default capacities, the sources cover the demand of small projects only: one residential building needs about 30,000 to 68,000 kWh/a of heat, while the highest default capacity of a source is 150,000 kWh/a. You can try other capacities with Play with parameters.
+
+Where to find it: geological and hydrogeological maps, studies of the area, the operator of a possible waste-heat source, or the authorities responsible for water and geology. If you cannot rate a source yet, choose Unknown.
+
+## Options
+
+All options are optional. Leave a field empty to keep the estimate of the methodology.
+
+- **Known heating and cooling demand**: if you have more detailed information about the buildings' energy demand, enter the total annual heating demand and the total annual cooling demand in kWh/a. Each value replaces the estimated total (EQ-3.2c, EQ-3.2d) wherever the total is used; the base-price revenues still use the default floor areas (OQ-05).
+- **Network length**: if you know the estimated total network length, enter it in m. It replaces the estimate (EQ-3.4a, EQ-3.4b), and the results say that the length was entered.
+- **Photovoltaic (PV) available**: with PV, the electricity costs of the heat pumps are lowered by the PV cost reduction of 30 % (TBL-6, OQ-06).
+
+Where to find it: energy bills, meter data or the energy supplier for the demand; a first network sketch for the length.
+
+## Building density
+
+The building density is the number of buildings per hectare of project area (EQ-3.3). It is classified with TBL-8:
+
+- **High density**: above 30 buildings/ha. Densely built areas can benefit from shorter network lengths, although low energy demand may still weaken economic performance.
+- **Medium density**: from 10 to 30 buildings/ha. The structure may be suitable for a network.
+- **Low density**: below 10 buildings/ha. Buildings are more distributed, potentially increasing network length. High energy demand or suitable local energy sources may still make a project promising.
+
+The building density category (rural, sub-urban or urban) is not an input. It follows from this class: low density is rural, medium is sub-urban, high is urban (OQ-04).
+
+## Network length
+
+Unless you enter a network length, the Quick Check estimates it in two steps. First, the specific network length in metres per hectare follows from the building density with a predefined relationship (EQ-3.4a); the number of buildings per hectare in that equation is the building density (OQ-09). Then the specific network length times the project area in hectares gives the total network length in metres (EQ-3.4b).
+
+The results always say whether the network length was entered or estimated.
+
+## Heat density
+
+The heat density is the total annual heating demand divided by the network length (EQ-3.5). Higher heat density can improve the economic outlook, because more heating demand is served per metre of network. It is calculated in kWh per metre and classified in MWh per metre (OQ-10), with TBL-9:
+
+- **High density**: above 1.5 MWh/m. A relatively short network serves a high heating demand, potentially improving economic performance.
+- **Medium density**: from 0.5 to 1.5 MWh/m. The network may be viable.
+- **Low density**: below 0.5 MWh/m. A relatively long network serves a low heating demand. Substantial cooling demand or low network costs may improve the outlook.
+
+## Supply
+
+For each selected source, the heating supply is its capacity plus the share the heat pump adds: capacity times COP / (COP − 1) (EQ-3.8a). The cooling supply is its cooling capacity adjusted by the COP: capacity times COP / (COP + 1) (EQ-3.8b). COP is the coefficient of performance of the heat pump; the heating COP comes from TBL-4 and the cooling COP from TBL-5 (OQ-14). The supplies of all selected sources are added up (OQ-11).
+
+## Coverage
+
+The coverage is the share of the annual demand that the selected sources can supply: the heating supply divided by the heating demand (EQ-3.6a), and the cooling supply divided by the cooling demand (EQ-3.6b). A value of 1.0 corresponds to 100 % coverage. Heating and cooling coverage are shown and classified separately, so supply gaps stay visible (TBL-7):
+
+- **Feasible**: 100 % or more. Sufficient annual energy potential to cover the total demand with additional potential available.
+- **Conditionally feasible**: from 90 % to below 100 %. A small share of supplementary supply is required.
+- **Limited feasibility**: from 70 % to below 90 %. A significant share of supplementary supply is required.
+- **Not feasible as the sole supply concept**: below 70 %. Too much demand remains uncovered.
+
+A demand of 0 is not relevant, so it gets no coverage class (OQ-22).
+
+## Cooling-to-heating ratio
+
+The cooling-to-heating ratio indicates how balanced the annual heating and cooling demands are. The methodology gives no formula for it (EQ-3.7). First Move divides the smaller of the two demands by the larger one, so the ratio is always between 0 and 1, and names the demand that is higher (OQ-12). A value of 1 indicates equal demands; values approaching 0 indicate an increasing imbalance. When both demands are 0, the ratio is not applicable. It is classified with TBL-10:
+
+- **Balanced**: 0.8 or more. Heating and cooling demand are similar, potentially supporting thermal exchange.
+- **Partially balanced**: from 0.3 to below 0.8. One demand is higher than the other, but thermal exchange may still be possible.
+- **Unbalanced**: below 0.3. One demand clearly dominates, potentially increasing the need for external energy sources or thermal storage.
+
+The ratio indicates the potential for thermal balancing. It does not decide on its own whether a network is feasible, but it can influence the system configuration and the economic viability. An unbalanced demand profile does not automatically make a 5GDHC network unsuitable.
+
+## Revenues
+
+- **Heating revenue**: the heating base price for every m² of floor area per year, plus the heating energy price for every kWh of heating demand (EQ-3.9a). The base prices are per m² of floor area and year (OQ-16), and the floor area is the default floor area of each building group (TBL-3).
+- **Cooling revenue**: the cooling base price for every m² of floor area per year, plus the cooling energy price for every kWh of cooling demand (EQ-3.9b, OQ-15).
+- **Overall revenues**: the heating revenue, the cooling revenue and the connection fees. The connection fee is a one-time fee per building, spread over the depreciation period with the annuity factor (EQ-3.9c).
+
+## Costs
+
+- **Network investment**: the network construction costs per metre times the network length (EQ-3.10a).
+- **Installation investment**: for each selected source, its installation costs per kWh/a times its heating supply (EQ-3.10b), summed over all sources (EQ-3.10c). TBL-6 gives no installation costs for ambient air; First Move uses 0, because the heat pumps are already counted in the heat pump investment (OQ-18).
+- **Overall investment**: the investment in one heat pump times the number of buildings, plus the network investment and the installation investment of all sources (EQ-3.10d). The installations are counted once (OQ-17).
+- **Annualized costs**: the overall investment times the annuity factor (EQ-3.10f). The annuity factor turns an investment into equal yearly payments over the depreciation period at the interest rate (EQ-3.10e).
+- **Electricity costs**: for each source, the heating supply divided by the heating COP and the cooling supply divided by the cooling COP, times the electricity price, in € per year (EQ-3.11, OQ-19). With PV, they are multiplied by 1 − 0.30 (OQ-06).
+- **Operation and maintenance**: 0.02 times the overall investment, that is 2 % of it every year (EQ-3.12).
+
+## Economic assessment
+
+The methodology does not define when the economic assessment is favorable or clearly unfavorable, so First Move uses an economic ratio E (OQ-21): the overall revenues divided by the annual costs, which are the annualized costs plus the electricity costs plus operation and maintenance.
+
+- **Favorable**: E is 1.0 or more. The revenues cover the annual costs.
+- **Unclear**: E is 0.7 or more, but below 1.0. The revenues cover a large part, but not all, of the annual costs.
+- **Clearly unfavorable**: E is below 0.7. The revenues fall far short of the annual costs.
+
+The economic parameters (TBL-6) are only preliminary assumptions, so treat the economic results with care.
+
+## The verdict: what the overall result means
+
+The overall result, the verdict of the Quick Check, is one of three levels:
+
+- **Promising**: favorable conditions identified.
+- **Further analysis required**: mixed conditions, uncertainties or missing information.
+- **Not promising**: unfavorable conditions identified.
+
+The indicator is intentionally broad, to avoid false precision and to make clear that it is a general initial assessment, not a detailed feasibility study. It combines the supply coverage, the building and heat density and the economic assessment (TBL-11), checked in this order (OQ-22):
+
+1. **Set by a fixed rule**: if the project area includes industry, or if any selected source has an Unknown potential, the result is "Further analysis required".
+2. **Not promising**: if the economic assessment is clearly unfavorable, or if a relevant supply coverage is below 70 % and both the building density and the heat density are low.
+3. **Promising**: if every relevant demand has at least 90 % annual supply coverage, the economic assessment is favorable, and neither the building density nor the heat density is low.
+4. **Further analysis required**: in every other case.
+
+A demand is relevant when it is above 0 (OQ-22).
+
+## Main factors
+
+Next to the overall result, the Quick Check shows the main factors supporting or limiting it, and under "Why this result" the reasons for the level it reached.
+
+- An indicator **supports** the result when it meets its condition for Promising: a coverage of at least 90 %, a favorable economic assessment, a building density or heat density that is not low.
+- It **limits** the result otherwise.
+- Industry in the project area and an Unknown source potential always limit the result.
+- A demand of 0 is left out. The cooling-to-heating ratio is shown with its class but not counted as a factor, because it does not decide the result on its own.
+
+Each indicator is shown with its classification and a short explanation of what it means for the project. The results also show the key figures, such as the demand, the supply, the network length, the revenues, the investment and the annual costs.
+
+## Default source capacities
+
+The default annual capacity at Low, Medium and High potential, and the COP of the heat pump (TBL-4 for heating, TBL-5 for cooling):
+
+- **Geothermal**: heating 10,000, 50,000 and 150,000 kWh/a, COP 4.5; cooling 10,000, 50,000 and 150,000 kWh/a, COP 5.0.
+- **Waste heat**: heating 5,000, 30,000 and 100,000 kWh/a, COP 4.5; no cooling.
+- **Ground water**: heating 10,000, 50,000 and 150,000 kWh/a, COP 5.0; cooling 10,000, 50,000 and 150,000 kWh/a, COP 5.0.
+- **Surface water**: heating 10,000, 50,000 and 150,000 kWh/a, COP 4.0; cooling 10,000, 50,000 and 150,000 kWh/a, COP 4.5.
+- **Solar thermal**: heating 5,000, 20,000 and 50,000 kWh/a, without heat pump; no cooling.
+- **Ambient air**: heating 10,000, 50,000 and 150,000 kWh/a, COP 3.0; cooling 10,000, 50,000 and 150,000 kWh/a, COP 3.5.
+
+The default demand per m² and the default floor area of every building type and construction period (TBL-1 to TBL-3) are listed on the Assumptions page.
+
+## Default economic parameters
+
+The default economic parameters (TBL-6):
+
+- Heating base price: 6.00 €/m² per year
+- Heating energy price: 0.12 €/kWh
+- Cooling base price: 3.00 €/m² per year
+- Cooling energy price: 0.08 €/kWh
+- Connection fee: 1,000 € per building
+- Network construction costs, for pipes, materials, excavation and installation: 500 €/m
+- Installation costs per kWh/a of heating supply: geothermal 1.50 €, waste heat 0.50 €, ground water 1.00 €, surface water 0.80 €, solar thermal 0.70 €, ambient air none, used as 0
+- Heat pump: 15,000 € per building
+- Electricity cost: 0.20 €/kWh
+- PV cost reduction: 30 %
+- Depreciation period: 20 years
+- Interest rate: 3 %
+
+## Your own parameters
+
+On the Assumptions page, **Play with parameters** lets you override the capacities and COPs of TBL-4 and TBL-5 and the economic parameters of TBL-6. The results then carry the "Custom parameters" badge, your values are saved in the project, and **Reset to defaults** brings the default values back. The classification thresholds (TBL-7 to TBL-11) are fixed. The Assumptions page also lists the answers to the open points of the methodology that First Move applies in every calculation.
+
+## Limits of the Quick Check
+
+- **A screening, not engineering advice.** The Quick Check is intended for a preliminary screening rather than a detailed system design. It does not replace a detailed technical or economic feasibility study.
+- **Simplified assumptions.** The parameters, inputs and methodology are based on simplified assumptions and should be interpreted carefully. Actual values may vary with project-specific conditions and should be refined through further analysis.
+- **Your inputs only.** The Quick Check does not query external databases. It works with what you enter and the default values.
+- **The same inputs give the same result.** The calculation is deterministic and runs in your browser; it does not use AI.
+- **Illustrative examples.** The example projects on the start screen use illustrative inputs only.

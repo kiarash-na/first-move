@@ -26,11 +26,6 @@
     "home": "Go to the start page"
   },
   "docs": {
-    "metaTitle": "Docs",
-    "eyebrow": "Documentation",
-    "title": "Documentation is on its way",
-    "body": "Public guides for First Move will be published here.",
-    "status": "Coming soon",
-    "dashboard": "Open the dashboard"
+    "metaTitle": "Docs"
   }
 }

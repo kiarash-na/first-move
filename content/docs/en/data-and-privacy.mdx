@@ -1,0 +1,55 @@
+# Data and privacy
+
+First Move keeps your work on your device. There is no account, no password and no project database on any server. Your projects are stored in the browser you use, and we never receive them, so we cannot read, share or recover them.
+
+## Where your projects live
+
+Your projects, settings and choices are stored only in your browser's storage: the projects in its database (IndexedDB), with a copy of each project in its local storage as a safeguard. They stay in this browser on this device. Another browser or another device does not see them, and a private window may not keep them at all.
+
+First Move asks your browser to keep this storage persistent, so that the browser is less likely to remove your projects on its own. Your browser decides whether to grant this.
+
+## Saving
+
+First Move saves every change automatically, and the save status in the top bar shows when the project was last saved; there is no save button. If the same project is open in two tabs, they stay in sync. If both tabs change it, your version is kept, and the other one is saved as an earlier version.
+
+## Export and import
+
+- **Export** saves the open project as a `.firstmove.json` file, wherever you choose. The file holds your inputs. The results are not stored; they are calculated again when the file is imported.
+- **Import** reads a `.firstmove.json` file and checks it in your browser; nothing is uploaded. If the project is already in this browser, you choose whether to keep both or to replace the stored version. A replaced version is kept, so you can restore it.
+- A file from an earlier version of First Move is updated to the current format when you import it.
+
+Export your projects regularly, because an export is your copy outside this browser. First Move reminds you to export from time to time.
+
+## Earlier versions
+
+While you work, First Move keeps earlier versions of each project in this browser, up to 20 per project, for example before a restore, an import or a delete. **Restore a version** in the project menu brings one back, and the current state is kept as a version too.
+
+In Chromium-based browsers, **Link to a file** in the project menu also saves the project to a file on your own disk. The file stays on your disk, and nothing is uploaded.
+
+## Deleting data
+
+- **Delete a project** from the project menu or from the list on the start screen. You can undo this only right after deleting, while the message is shown, so export the project first if you want to keep a copy.
+- **Clear the site data** of First Move in your browser's settings to delete everything it stored there: all projects, earlier versions and settings. We cannot recover them, because we never had them.
+
+## Cookies and settings
+
+First Move sets one functional cookie, which remembers your language. Your theme and your other settings are kept in your browser's storage. The website has no tracking, no advertising and no third-party cookies, so there is nothing to accept. The [Cookie Policy](/cookies) lists every cookie and storage entry by name.
+
+## The AI features and your data
+
+First Move has two optional AI layers, separate from the app and from each other. The [AI transparency](/ai) page says whether they are available today.
+
+- **The AI assistant in the dashboard** works with your own key for an AI provider you choose. When you use it, your browser sends your request directly to that provider: your question, the open project's inputs and results, and the documents you attach; nothing from your other projects. We receive neither the content nor the key. The key stays in your browser, for the session only or locked with a PIN on this device, and the chat history stays in your browser too.
+- **The email agent** at agent@mail.firstmove.energy processes what you send to it on the server, through the service providers named in the [Privacy Policy](/privacy#email), and only after you have confirmed once. The conversation is stored encrypted, for 30 days after your last message.
+
+The Quick Check and Business Plan results never come from AI, and the projects in your browser never go to our servers.
+
+<AiOnly>
+
+The [AI assistant](/docs/assistant) and [Email agent](/docs/email-agent) pages explain both in detail.
+
+</AiOnly>
+
+## Legal pages
+
+The legal pages are the reference: the [Privacy Policy](/privacy), the [Cookie Policy](/cookies), the [Terms of Use](/terms), the [AI transparency](/ai) page and the [Imprint](/imprint). For privacy questions and requests about your rights, write to human@mail.firstmove.energy, which is read by a person.

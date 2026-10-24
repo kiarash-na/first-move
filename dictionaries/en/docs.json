@@ -1,0 +1,44 @@
+{
+  "nav": {
+    "label": "Documentation pages",
+    "title": "Documentation"
+  },
+  "pages": {
+    "index": {
+      "title": "Introduction",
+      "description": "What First Move is, its two modules, where your data stays and where to start."
+    },
+    "what-is-5gdhc": {
+      "title": "What is 5GDHC?",
+      "description": "Fifth-generation district heating and cooling in plain words: a low-temperature network, heat pumps in the buildings, shared heat and cold."
+    },
+    "quick-check": {
+      "title": "Quick Check",
+      "description": "Every Quick Check input, how the result is calculated with the predefined methodology, and what the result and its main factors mean."
+    },
+    "business-plan": {
+      "title": "Business Plan",
+      "description": "The four Business Plan steps, the example scenarios, the unofficial pitch-readiness checklist and the Quick Check numbers it shows."
+    },
+    "assistant": {
+      "title": "AI assistant",
+      "description": "The optional AI assistant in the dashboard: your own key, your provider, proposed values you review, and how to remove the key."
+    },
+    "email-agent": {
+      "title": "Email agent",
+      "description": "Using First Move by email: the one-time confirmation, Quick Check and Business Plan by email, attachments, the rules and how long data is kept."
+    },
+    "data-and-privacy": {
+      "title": "Data and privacy",
+      "description": "Where your projects live, export and import, earlier versions, deleting data, and how the AI features handle data."
+    }
+  },
+  "page": {
+    "englishOnly": "This page is available in English only for now."
+  },
+  "pager": {
+    "label": "Previous and next page",
+    "previous": "Previous",
+    "next": "Next"
+  }
+}
