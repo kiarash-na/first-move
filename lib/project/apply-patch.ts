@@ -1,7 +1,9 @@
 import { resolvePatchPath } from "./fields/resolve"
 import { getAt, hasPath, setAt } from "./path"
 import { toPatchErrors, type PatchError } from "./patch-errors"
+import { updateMarks, type WrittenValue } from "./provenance-marks"
 import { projectSchema, type Project } from "./schema/project"
+import { PROVENANCE_LIMITS, type AiMark, type AiSource } from "./schema/provenance"
 import { schemaAt } from "./schema/schema-at"
 
 /**
@@ -10,11 +12,25 @@ import { schemaAt } from "./schema/schema-at"
  */
 export type ProjectPatch = Readonly<Record<string, unknown>>
 
+/** Who proposed the values of an AI patch the user confirmed (schema v2 provenance). */
+export interface PatchProvenance {
+  by: AiSource
+  /** Model id; cut to the schema limit. */
+  model: string
+  /** Document the values were read from; cut to the schema limit. */
+  file?: string
+}
+
 export interface ApplyPatchOptions {
   /** Apply nothing if any key fails. Default: apply the valid keys, report the others. */
   atomic?: boolean
   /** Stamped into `meta.updatedAt` when the patch changes something. Defaults to now. */
   now?: Date
+  /**
+   * Marks the applied values as AI-proposed. Without it the patch is a manual edit, and the
+   * applied keys lose their marks: the value is now the user's own.
+   */
+  provenance?: PatchProvenance
 }
 
 export interface PatchResult {
@@ -28,12 +44,15 @@ export interface PatchResult {
   errors: PatchError[]
 }
 
-interface Entry {
-  key: string
+interface Entry extends WrittenValue {
   segments: string[]
-  value: unknown
   /** A whole-row patch (`<list>.<index>`): the row keeps its id. */
   row?: boolean
+}
+
+function toMark({ by, model, file }: PatchProvenance, at: string): AiMark {
+  const name = file?.slice(0, PROVENANCE_LIMITS.file)
+  return { at, by, model: model.slice(0, PROVENANCE_LIMITS.model) || "unknown", ...(name && { file: name }) }
 }
 
 const idOf = (row: unknown) => (typeof row === "object" && row !== null ? (row as { id?: unknown }).id : undefined)
@@ -86,7 +105,10 @@ export function applyPatch(project: Project, patch: ProjectPatch, options: Apply
     }
     const parsed = schemaAt(projectSchema, target.segments)!.safeParse(value)
     const row = target.kind === "item" && target.property === null
-    if (parsed.success) valid.push({ key, segments: target.segments, value: parsed.data, row })
+    const list = target.kind === "field" && target.field.kind === "items" ? target.field : target.kind === "item" ? target.field : null
+    const shape = row ? "row" : target.kind === "field" && list ? "list" : "value"
+    const properties = list?.properties.map((property) => property.key)
+    if (parsed.success) valid.push({ key, segments: target.segments, value: parsed.data, row, shape, properties })
     else errors.push(...toPatchErrors(target.segments, value, parsed.error.issues))
   }
 
@@ -118,8 +140,11 @@ export function applyPatch(project: Project, patch: ProjectPatch, options: Apply
   errors.push(...attempt.errors)
   if (options.atomic && errors.length > 0) return unchanged([])
 
-  const changed = JSON.stringify(attempt.next) !== JSON.stringify(project)
-  const next = changed ? setAt(attempt.next, ["meta", "updatedAt"], (options.now ?? new Date()).toISOString()) : project
+  const timestamp = (options.now ?? new Date()).toISOString()
+  const marks = updateMarks(project.provenance.ai, attempt.applied, options.provenance ? toMark(options.provenance, timestamp) : null)
+  const patched = setAt(attempt.next, ["provenance", "ai"], marks)
+  const changed = JSON.stringify(patched) !== JSON.stringify(project)
+  const next = changed ? setAt(patched, ["meta", "updatedAt"], timestamp) : project
   return {
     ok: errors.length === 0,
     project: next,

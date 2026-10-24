@@ -49,7 +49,7 @@ D-23 (tests and one Playwright journey), D-55, D-61, D-62.
    - Check the Upstash keys and TTLs, then delete the test keys and the test threads.
 6. **Production checklist for the owner** (copied from PLAN-AGENT-00 § Go-live, with what was already done):
    - Upstash integration (EU) and the Vercel env;
-   - AI Gateway key budget; Anthropic workspace limit;
+   - AI Gateway key budget; Anthropic key under BYOK; Anthropic workspace limit (D-64);
    - Resend: production webhook; "Reply as" names; Inbox agent off on both inboxes; tracking as D-63; DMARC record; plan;
    - `node scripts/mail-agent-doctor.mjs` green;
    - `EMAIL_AGENT_ENABLED=true`, then one real round trip in production.

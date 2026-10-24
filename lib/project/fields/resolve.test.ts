@@ -18,7 +18,7 @@ describe("resolvePatchPath", () => {
   })
 
   it("treats system values and row ids as read-only", () => {
-    for (const path of ["meta.id", "meta.updatedAt", "meta.schemaVersion", "meta.exampleId", "businessPlan.risks.0.id"]) {
+    for (const path of ["meta.id", "meta.updatedAt", "meta.schemaVersion", "meta.exampleId", "businessPlan.risks.0.id", "provenance", "provenance.ai", "provenance.ai.buildings.total"]) {
       expect(resolvePatchPath(path), path).toEqual({ kind: "read-only" })
     }
   })

@@ -15,8 +15,8 @@ describe("projectSchema", () => {
     expect(projectSchema.safeParse(empty()).success).toBe(true)
   })
 
-  it("has the six sections of the PLAN-DASH-00 data model", () => {
-    expect(Object.keys(projectSchema.shape)).toEqual(["meta", "site", "buildings", "sources", "quickCheck", "businessPlan"])
+  it("has the six sections of the PLAN-DASH-00 data model, plus provenance (schema v2)", () => {
+    expect(Object.keys(projectSchema.shape)).toEqual(["meta", "site", "buildings", "sources", "quickCheck", "businessPlan", "provenance"])
   })
 
   it.each([
@@ -28,7 +28,8 @@ describe("projectSchema", () => {
     ["an unknown potential", (p: ReturnType<typeof empty>) => ({ ...p, sources: { ...p.sources, potentials: { ...p.sources.potentials, geothermal: "huge" } } })],
     ["an unknown section", (p: ReturnType<typeof empty>) => ({ ...p, results: {} })],
     ["a missing section", (p: ReturnType<typeof empty>) => ({ ...p, site: undefined })],
-    ["a newer schema version", (p: ReturnType<typeof empty>) => ({ ...p, meta: { ...p.meta, schemaVersion: 2 } })],
+    ["a newer schema version", (p: ReturnType<typeof empty>) => ({ ...p, meta: { ...p.meta, schemaVersion: 3 } })],
+    ["no provenance section", (p: ReturnType<typeof empty>) => ({ ...p, provenance: undefined })],
     ["no module", (p: ReturnType<typeof empty>) => ({ ...p, meta: { ...p.meta, modules: { quickCheck: false, businessPlan: false } } })],
   ])("rejects %s", (_, change) => {
     expect(projectSchema.safeParse(change(empty())).success).toBe(false)

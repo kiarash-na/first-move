@@ -3,7 +3,7 @@
  * migrations. Pure TypeScript, no React, no storage. The JSON Schema contract for agents is
  * imported from `./json-schema` directly, so `z.toJSONSchema` callers stay out of the client graph.
  */
-export { applyPatch, type ApplyPatchOptions, type PatchResult, type ProjectPatch } from "./apply-patch"
+export { applyPatch, type ApplyPatchOptions, type PatchProvenance, type PatchResult, type ProjectPatch } from "./apply-patch"
 export * from "./catalog"
 export { clearPatch } from "./clear-patch"
 export { groupRuleStatus, type GroupRuleStatus } from "./completeness/group-rule"

@@ -12,7 +12,7 @@ describe("migrateProject with the real chain", () => {
   it("accepts a current project unchanged", () => {
     const input = project()
     const result = migrateProject(input)
-    expect(result).toEqual({ ok: true, project: input, fromVersion: 1, migrated: false })
+    expect(result).toEqual({ ok: true, project: input, fromVersion: 2, migrated: false })
   })
 
   it.each([
@@ -21,7 +21,7 @@ describe("migrateProject with the real chain", () => {
     ["data that is not plain JSON", { meta: { schemaVersion: 1 }, run: () => 1 }, { code: "not-object" }],
     ["data without meta", { site: {} }, { code: "missing-version" }],
     ["a fractional version", { meta: { schemaVersion: 1.5 } }, { code: "missing-version" }],
-    ["a file from a newer app", { meta: { schemaVersion: 2 } }, { code: "newer-version", version: 2 }],
+    ["a file from a newer app", { meta: { schemaVersion: 3 } }, { code: "newer-version", version: 3 }],
     ["a version before the baseline", { meta: { schemaVersion: 0 } }, { code: "unsupported-version", version: 0 }],
   ])("rejects %s", (_, input, error) => {
     expect(migrateProject(input)).toEqual({ ok: false, error })
@@ -32,7 +32,7 @@ describe("migrateProject with the real chain", () => {
     const result = migrateProject(input)
     expect(result.ok).toBe(false)
     if (result.ok) return
-    expect(result.error).toMatchObject({ code: "invalid", version: 1 })
+    expect(result.error).toMatchObject({ code: "invalid", version: 2 })
     expect(result.error.code === "invalid" && result.error.errors[0]).toMatchObject({ path: "buildings.total", code: "min" })
   })
 })

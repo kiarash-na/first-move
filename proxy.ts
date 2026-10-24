@@ -24,6 +24,7 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  // Skips `_next`, any path with a file extension, and paths already starting with /en or /de.
-  matcher: ["/((?!_next|(?:en|de)(?:/|$)|.*\\..*).*)"],
+  // Skips `_next`, `api` (route handlers), any path with a dot (files, `.well-known/workflow`),
+  // and paths already starting with /en or /de.
+  matcher: ["/((?!_next|api(?:/|$)|(?:en|de)(?:/|$)|.*\\..*).*)"],
 }

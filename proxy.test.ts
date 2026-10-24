@@ -21,6 +21,18 @@ describe("proxy matcher", () => {
       expect(matches(url), url).toBe(false)
     }
   })
+
+  it("skips route handlers and the Workflow endpoints (PLAN-AGENT-01)", () => {
+    for (const url of ["/api", "/api/mail/inbound", "/api/mail/confirm", "/.well-known/workflow/v1/flow", "/.well-known/workflow/v1/webhook/x"]) {
+      expect(matches(url), url).toBe(false)
+    }
+  })
+
+  it("still redirects paths that only start with the letters api", () => {
+    for (const url of ["/apiary", "/api-docs"]) {
+      expect(matches(url), url).toBe(true)
+    }
+  })
 })
 
 describe("proxy redirect", () => {

@@ -97,7 +97,9 @@ describe("field registry", () => {
   })
 
   it("covers every input of the schema: all leaves but system values and dash cells", () => {
-    const inputs = leaves(projectSchema).filter((path) => !SYSTEM.includes(path) && !isNullOnly(schemaOf(path)!))
+    const inputs = leaves(projectSchema).filter(
+      (path) => !SYSTEM.includes(path) && !path.startsWith("provenance.") && !isNullOnly(schemaOf(path)!),
+    )
     expect(FIELDS.map((field) => field.id).sort()).toEqual(inputs.sort())
   })
 

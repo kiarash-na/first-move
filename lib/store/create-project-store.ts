@@ -1,10 +1,10 @@
 import { createStore, type StoreApi } from "zustand/vanilla"
-import type { PatchResult, Project, ProjectPatch } from "@/lib/project"
+import type { PatchProvenance, PatchResult, Project, ProjectPatch } from "@/lib/project"
 import type { ExportFile } from "@/lib/storage/export"
 import type { ImportSuccess } from "@/lib/storage/import"
 import type { SnapshotInfo } from "@/lib/storage/types"
 import { refreshHealth } from "./actions/health"
-import { closeProject, flushAll, openProject, patchActive, patchProject } from "./actions/editing"
+import { applyProposal, closeProject, flushAll, openProject, patchActive, patchProject } from "./actions/editing"
 import { linkFile, resumeFileLink, unlinkFile } from "./actions/file-link"
 import { runStart, runStop } from "./actions/lifecycle"
 import { addCopy, create, duplicate, type AddOptions, type CreateOptions } from "./actions/projects"
@@ -37,8 +37,10 @@ export interface ProjectStore {
   duplicate(id: string, options?: { name?: string } & AddOptions): Promise<Project | null>
   open(id: string): Promise<boolean>
   close(): Promise<void>
-  /** Edits the open project (the only way inputs change, with `patchProject`). */
+  /** Edits the open project (the only way inputs change, with `patchProject` and `applyProposal`). */
   patch(patch: ProjectPatch): PatchResult | null
+  /** Applies AI-proposed values the user confirmed, marked as AI-proposed (schema v2). */
+  applyProposal(patch: ProjectPatch, provenance: PatchProvenance): PatchResult | null
   /** Edits any project, e.g. a rename or module switch from the project list. */
   patchProject(id: string, patch: ProjectPatch): Promise<PatchResult | null>
   rename(id: string, name: string): Promise<PatchResult | null>
@@ -100,6 +102,7 @@ export function createProjectStore(deps: StoreDeps): ProjectStore {
     open: (id) => openProject(ctx, id),
     close: () => closeProject(ctx),
     patch: (patch) => patchActive(ctx, patch),
+    applyProposal: (patch, provenance) => applyProposal(ctx, patch, provenance),
     patchProject: (id, patch) => patchProject(ctx, id, patch),
     rename: (id, name) => patchProject(ctx, id, { "meta.name": name }),
     remove: (id) => removeProject(ctx, id),

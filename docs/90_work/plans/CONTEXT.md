@@ -24,11 +24,11 @@ One sub-agent per phase. A phase may start when everything in its `Blocked by` c
 
 Start with [PLAN-AGENT-00](2026-10-24_agents-00_overview.md): architecture, security model, environment, how the phases run. Research, versions and sources: [NOTE-2026-10-24-agents-research](../notes/2026-10-24_agents-research.md). Decisions D-47 to D-62: [owner decisions](../notes/2026-10-24_owner-decisions.md#decisions-for-the-ai-layer-2026-10-24).
 
-Planned on 2026-10-24. **Building starts when the owner says go.** Few agents (D-62): Claude builds A01, A03, A06, A07 and A09; at most two workers run in parallel in their own worktrees (A02 next to A03, A04 next to A06, A05 next to A07, then A08); one independent reviewer in A09.
+Planned on 2026-10-24; the owner said go the same day (D-64, D-65). Few agents (D-62): Claude builds A01, A03, A06, A07 and A09; at most two workers run in parallel in their own worktrees (A02 next to A03, A04 next to A06, A05 next to A07, then A08); one independent reviewer in A09.
 
 | Phase | Plan | Blocked by | Status |
 |---|---|---|---|
-| A01 | [Foundation: env, proxy, CSP, boundary, Workflow spike, schema v2](2026-10-24_agents-01_foundation.md) | none | todo |
+| A01 | [Foundation: env, proxy, CSP, boundary, Workflow spike, schema v2](2026-10-24_agents-01_foundation.md) | none | done |
 | A02 | [Collapsible sidebar](2026-10-24_agents-02_sidebar.md) | A01 | todo |
 | A03 | [Shared AI core](2026-10-24_agents-03_ai-core.md) | A01 | todo |
 | A04 | [Public docs and knowledge index](2026-10-24_agents-04_public-docs.md) | A03 | todo |

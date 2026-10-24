@@ -16,7 +16,7 @@ describe("export (.firstmove.json, D-13)", () => {
     const parsed = JSON.parse(file.text)
     expect(Object.keys(parsed)).toEqual(["format", "formatVersion", "exportedAt", "project"])
     expect(parsed).toMatchObject({ format: EXPORT_FORMAT, formatVersion: 1, exportedAt: now.toISOString() })
-    expect(parsed.project.meta).toMatchObject({ schemaVersion: 1, methodologyVersion: METHODOLOGY_VERSION })
+    expect(parsed.project.meta).toMatchObject({ schemaVersion: 2, methodologyVersion: METHODOLOGY_VERSION })
     // Inputs only: the file is exactly a valid project (results are never part of it).
     expect(projectSchema.parse(parsed.project)).toEqual(project)
   })

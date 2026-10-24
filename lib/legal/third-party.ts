@@ -31,6 +31,7 @@ export const THIRD_PARTY: readonly ThirdPartyEntry[] = [
   { name: "zustand", license: "MIT", url: "https://github.com/pmndrs/zustand", role: "State" },
   { name: "idb", license: "ISC", url: "https://github.com/jakearchibald/idb", role: "IndexedDB wrapper" },
   { name: "server-only", license: "MIT", url: "https://www.npmjs.com/package/server-only", role: "Build-time guard" },
+  { name: "workflow", license: "Apache-2.0", url: "https://workflow-sdk.dev", role: "Durable email processing" },
   { name: "@fontsource-variable/archivo", license: "OFL-1.1", url: "https://fontsource.org/fonts/archivo", role: "Font Archivo" },
   { name: "@fontsource/ibm-plex-mono", license: "OFL-1.1", url: "https://fontsource.org/fonts/ibm-plex-mono", role: "Font IBM Plex Mono" },
   { name: "@fontsource/instrument-serif", license: "OFL-1.1", url: "https://fontsource.org/fonts/instrument-serif", role: "Font Instrument Serif" },

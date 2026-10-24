@@ -2,6 +2,7 @@ import { z } from "zod"
 import { buildingsSchema } from "./buildings"
 import { businessPlanSchema } from "./business-plan"
 import { metaSchema } from "./meta"
+import { provenanceSchema } from "./provenance"
 import { quickCheckSchema } from "./quick-check"
 import { siteSchema } from "./site"
 import { sourcesSchema } from "./sources"
@@ -9,7 +10,7 @@ import { sourcesSchema } from "./sources"
 /**
  * One project with two optional modules (D-01, PLAN-DASH-00 § Data model). Inputs only:
  * results are derived, never stored (D-13). Every section is always present, whichever
- * modules are on.
+ * modules are on. `provenance` (schema v2) records which values an AI proposed.
  */
 export const projectSchema = z
   .strictObject({
@@ -19,6 +20,7 @@ export const projectSchema = z
     sources: sourcesSchema,
     quickCheck: quickCheckSchema,
     businessPlan: businessPlanSchema,
+    provenance: provenanceSchema,
   })
   .meta({
     title: "First Move project",

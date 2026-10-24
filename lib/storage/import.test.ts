@@ -1,7 +1,7 @@
 // @vitest-environment node
 import { describe, expect, it } from "vitest"
 import { z } from "zod"
-import { MIGRATIONS, projectSchema, type Migration, type Project } from "@/lib/project"
+import { applyPatch, MIGRATIONS, projectSchema, type Migration, type Project } from "@/lib/project"
 import fixture from "@/lib/project/migrations/v1-baseline.fixture.json"
 import { buildExport, EXPORT_FORMAT } from "./export"
 import { IMPORT_ERROR_CODES, parseImportText, readImportFile } from "./import"
@@ -19,10 +19,23 @@ describe("import: round trip", () => {
     expect(result).toEqual({
       ok: true,
       project,
-      fromVersion: 1,
+      fromVersion: 2,
       migrated: false,
       methodology: { file: project.meta.methodologyVersion, current: project.meta.methodologyVersion, changed: false },
     })
+  })
+
+  it("keeps the AI marks (schema v2 provenance) through export and import", async () => {
+    const marked = applyPatch(testProject(1), { "buildings.total": 7 }, { provenance: { by: "email", model: "claude-haiku-5-5", file: "plan.docx" } })
+    const result = await readImportFile(new Blob([buildExport(marked.project, now).text]))
+    expect(result.ok && result.project.provenance).toEqual(marked.project.provenance)
+    expect(result.ok && result.project.provenance.ai["buildings.total"]).toMatchObject({ by: "email", file: "plan.docx" })
+  })
+
+  it("rejects a file whose AI marks point at something that is not a field", () => {
+    const project = testProject(1)
+    const bad = { ...project, provenance: { ai: { "meta.id": { at: now.toISOString(), by: "email", model: "m" } } } }
+    expect(parseImportText(envelope(bad))).toMatchObject({ ok: false, code: "invalid" })
   })
 
   it("accepts a bare project (the ingestion-agent contract, D-05)", () => {
@@ -59,7 +72,7 @@ describe("import: rejected files", () => {
     ["a JSON array", "[]", "not-first-move"],
     ["another JSON file", JSON.stringify({ name: "x" }), "not-first-move"],
     ["a newer export format", JSON.stringify({ format: EXPORT_FORMAT, formatVersion: 2, project: {} }), "newer-version"],
-    ["a project from a newer app", envelope({ meta: { schemaVersion: 2 } }), "newer-version"],
+    ["a project from a newer app", envelope({ meta: { schemaVersion: 3 } }), "newer-version"],
     ["a project older than any supported version", envelope({ meta: { schemaVersion: 0 } }), "unsupported-version"],
     ["an envelope without a project version", envelope({ meta: {} }), "invalid"],
   ])("rejects %s", (_, text, code) => {
@@ -76,7 +89,7 @@ describe("import: rejected files", () => {
     const project = testProject(1)
     const bad = { ...project, buildings: { ...project.buildings, total: -3 }, site: { ...project.site, extra: 1 } }
     const result = parseImportText(envelope(bad))
-    expect(result).toMatchObject({ ok: false, code: "invalid", params: { version: 1 }, moreErrors: 0 })
+    expect(result).toMatchObject({ ok: false, code: "invalid", params: { version: 2 }, moreErrors: 0 })
     if (result.ok) return
     expect(result.errors).toEqual(
       expect.arrayContaining([
@@ -143,28 +156,28 @@ describe("import: rejected files", () => {
 })
 
 describe("import: migrations (old files, D-13)", () => {
-  // A pretend version 2 that renames the project name to `title`, so v1 files must be migrated.
-  const v2Schema = projectSchema.extend({
-    meta: projectSchema.shape.meta.omit({ name: true, schemaVersion: true }).extend({ title: z.string(), schemaVersion: z.literal(2) }),
+  // A pretend version 3 that renames the project name to `title`, so v2 files must be migrated.
+  const v3Schema = projectSchema.extend({
+    meta: projectSchema.shape.meta.omit({ name: true, schemaVersion: true }).extend({ title: z.string(), schemaVersion: z.literal(3) }),
   })
-  const v2: Migration = {
-    version: 2,
+  const v3: Migration = {
+    version: 3,
     description: "Rename meta.name to meta.title.",
     up: (project) => {
       const { name, ...meta } = project.meta as Record<string, unknown>
       return { ...project, meta: { ...meta, title: name } }
     },
   }
-  const migration = { migrations: [...MIGRATIONS, v2], schema: v2Schema as unknown as z.ZodType<Project>, target: 2 }
+  const migration = { migrations: [...MIGRATIONS, v3], schema: v3Schema as unknown as z.ZodType<Project>, target: 3 }
 
   it("runs every step from the file's version", () => {
     const result = parseImportText(envelope(testProject(1, { "meta.name": "Old" })), { migration })
-    expect(result).toMatchObject({ ok: true, fromVersion: 1, migrated: true })
+    expect(result).toMatchObject({ ok: true, fromVersion: 2, migrated: true })
     expect(result.ok && (result.project.meta as unknown as { title: string }).title).toBe("Old")
   })
 
   it("keeps the frozen v1 fixture importable with the real chain", () => {
     const result = parseImportText(envelope(fixture))
-    expect(result).toMatchObject({ ok: true, fromVersion: 1, migrated: false })
+    expect(result).toMatchObject({ ok: true, fromVersion: 1, migrated: true })
   })
 })

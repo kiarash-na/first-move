@@ -26,6 +26,28 @@ async function storedRecord(browser: ReturnType<typeof testBrowser>, id: string)
   return readProjectRecord(db, id) as Promise<ReturnType<typeof testProject> | undefined>
 }
 
+describe("applyProposal (AI provenance, PLAN-AGENT-01)", () => {
+  it("returns null without an open project", async () => {
+    const tab = await open()
+    expect(tab.store.applyProposal({ "buildings.total": 1 }, { by: "assistant", model: "m" })).toBeNull()
+  })
+
+  it("applies, marks the values as AI-proposed and saves them; a manual edit removes the mark", async () => {
+    const browser = testBrowser()
+    const tab = await open(browser)
+    const project = await tab.store.create({ modules: { quickCheck: true } })
+    const result = tab.store.applyProposal({ "buildings.total": 9 }, { by: "assistant", model: "claude-sonnet-5-5", file: "a.pdf" })
+    expect(result?.ok).toBe(true)
+    expect(tab.store.getState().active?.provenance.ai["buildings.total"]).toMatchObject({ by: "assistant", file: "a.pdf" })
+    tab.tick(400)
+    await until(tab, (state) => state.save.state === "saved")
+    expect((await storedRecord(browser, project.meta.id))?.provenance.ai["buildings.total"]?.model).toBe("claude-sonnet-5-5")
+
+    tab.store.patch({ "buildings.total": 10 })
+    expect(tab.store.getState().active?.provenance.ai).toEqual({})
+  })
+})
+
 describe("patch (autosave, debounced 400 ms)", () => {
   it("returns null without an open project", async () => {
     const tab = await open()

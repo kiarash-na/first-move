@@ -25,5 +25,6 @@ Bilingual (EN/DE) Next.js app for 5GDHC (5th-gen district heating and cooling) s
 - Inputs are declared once in `lib/project/fields/` and changed only through `applyPatch`, so agents can fill them later.
 - Quick Check math follows the equation files and the resolved OQ answers exactly. Never invent methodology.
 - Style comes from tokens in `app/globals.css` (`docs/02_design/`): 0 radius, cyan = Quick Check, orange = Business Plan or risk, no new hues.
-- Never send project data over the network, and never read browser storage during render.
+- Never send project data over the network, with the two exceptions of D-48: the in-app assistant sends what the user asks, from dashboard pages, straight to the provider the user configured; the email agent processes on the server what a person sends to agent@. Never read browser storage during render.
+- The AI layer (`lib/ai`, `lib/assistant`, `lib/mail-agent`, `workflows`, `emails`, `_agent`) stays apart from core code (PLAN-AGENT-00 § Folders; `boundary.test.ts`).
 - Before you finish, run `pnpm lint && pnpm typecheck && pnpm test && pnpm build`, then update the plan status, write the note, and commit and push.

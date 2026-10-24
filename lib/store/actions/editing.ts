@@ -1,4 +1,4 @@
-import { applyPatch, type PatchResult, type ProjectPatch } from "@/lib/project"
+import { applyPatch, type PatchProvenance, type PatchResult, type ProjectPatch } from "@/lib/project"
 import { forgetActive, rememberActive } from "../active-ids"
 import type { Runtime, StoreContext } from "../context"
 import { toSummary, upsertSummary } from "../summary"
@@ -42,16 +42,24 @@ export async function closeProject(ctx: StoreContext): Promise<void> {
  * Edits the active project through `applyPatch` (D-05) and autosaves it (debounced). Returns the
  * patch result at once, so the UI can show field errors; null when no project is open.
  */
-export function patchActive(ctx: StoreContext, patch: ProjectPatch): PatchResult | null {
+export function patchActive(ctx: StoreContext, patch: ProjectPatch, provenance?: PatchProvenance): PatchResult | null {
   const rt = ctx.rt
   const { active } = ctx.get()
   if (!rt || !active) return null
-  const result = applyPatch(active, patch, { now: ctx.deps.now() })
+  const result = applyPatch(active, patch, { now: ctx.deps.now(), provenance })
   if (result.project !== active) {
     ctx.set((state) => ({ active: result.project, projects: upsertSummary(state.projects, toSummary(result.project)) }))
     saverFor(ctx, rt, active.meta.id).schedule(result.project)
   }
   return result
+}
+
+/**
+ * Applies AI-proposed values the user confirmed (PLAN-AGENT-01): like `patchActive`, but the
+ * applied values are recorded as AI-proposed in the project (schema v2 provenance).
+ */
+export function applyProposal(ctx: StoreContext, patch: ProjectPatch, provenance: PatchProvenance): PatchResult | null {
+  return patchActive(ctx, patch, provenance)
 }
 
 /** Edits any project: the active one through autosave, another one directly (rename from the list). */

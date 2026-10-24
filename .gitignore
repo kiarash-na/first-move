@@ -37,6 +37,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# local HTTPS certificates (next dev --experimental-https)
+/certificates/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
@@ -52,3 +55,8 @@ next-env.d.ts
 
 # third-party hackathon material, not published with the repo
 /docs/00_originals/
+
+# Workflow SDK (withWorkflow): generated routes, SWC plugin cache, local run data
+/app/.well-known/workflow/
+/.swc
+/.workflow-data/

@@ -18,7 +18,7 @@ Checked on 2026-10-24 against the live documentation, the npm registry and the p
 | `@ai-sdk/anthropic` | 4.0.87 | in-app Anthropic provider (browser) |
 | `@ai-sdk/gateway` | 4.0.125 | dependency of `ai`; plain model strings route through the AI Gateway |
 | `@openrouter/ai-sdk-provider` | 3.1.0 | in-app OpenRouter provider (peer: `ai` ^7.0.0) |
-| `@anthropic-ai/sdk` | check at phase start | email agent's Claude Haiku 5.5 calls (official SDK, server) |
+| `@anthropic-ai/sdk` | 1.3.0 | email agent's Claude Haiku 5.5 calls (official SDK, server, through the AI Gateway, D-64) |
 | `resend` | 6.34.1 | Inbox and receiving APIs need ≥ 6.34.1 |
 | `@react-email/components` / `@react-email/render` | 1.0.12 / 2.1.1 | email templates |
 | `react-email` | 6.11.3 | optional preview CLI (dev) |
@@ -88,6 +88,8 @@ Public beta. Always-on container images (Dockerfile) that poll queues (queue con
 - ZDR: the gateway deletes prompts and responses after the request by default; `providerOptions.gateway.zeroDataRetention: true` routes only to providers with verified ZDR agreements; "disallow prompt training" exists too; provider allowlists on Pro and Enterprise.
 - Budgets per team, project (OIDC), API key or user; daily, weekly, monthly or none; soft cap (the request that crosses still completes); exceeded → HTTP 402 `quota_for_entity_exceeded` (may surface as `GatewayInternalServerError` in AI SDK 7); alerts at 50/75/100 %; BYOK spend is not counted. CLI: `vercel ai-gateway api-keys create --name … --limit 5 --refresh-period monthly`.
 - Catalogue (`https://ai-gateway.vercel.sh/v1/models`, public) lists ZDR, no-training and regions per model; `anthropic/claude-haiku-5.5` has ZDR all, no training all, regions au, eu, jp, us.
+
+**BYOK and the Messages API (checked at build start, 2026-10-24; D-64).** The Gateway serves the Anthropic Messages API at `https://ai-gateway.vercel.sh` (`POST /v1/messages`, streaming, tools, `output_config.format` structured outputs and `output_config.effort`), so the official `@anthropic-ai/sdk` works with only `baseURL` and the Gateway key. Team BYOK credentials (dashboard, "Bring Your Own Key") are used first; on failure the Gateway retries with system credentials billed to the team's credits. BYOK spend is not counted in budgets. With ZDR on (team or request), BYOK keys are skipped unless marked ZDR-compliant. Gateway options go in the body as `providerOptions.gateway` (`only`, `order`, `byok`). BYOK needs purchased Gateway credits. Model slug `anthropic/claude-haiku-5.5` ($0.10/$0.50, tiers above 100K prompt tokens). Sources: [BYOK](https://vercel.com/docs/ai-gateway/authentication-and-byok/byok), [Messages API](https://vercel.com/docs/ai-gateway/sdks-and-apis/anthropic-messages-api), [structured outputs](https://vercel.com/docs/ai-gateway/sdks-and-apis/anthropic-messages-api/structured-outputs), [reasoning and effort](https://vercel.com/docs/ai-gateway/sdks-and-apis/anthropic-messages-api/reasoning).
 
 ## Vercel Workflow (Workflow SDK)
 

@@ -14,7 +14,7 @@ blocked_by: []
 Add two AI layers next to the existing app. The app works exactly as before without them.
 
 1. **In-app assistant (bring your own key).** A small bot button (lucide `Bot`) at the bottom right of every dashboard page opens a compact chat, which expands into a panel docked on the right. It answers questions about the open project and reads documents (PDF, Word, Excel, CSV, text) into **proposed** field values that the user reviews before they are applied. The browser talks directly to Anthropic or OpenRouter with the user's key; nothing passes through our servers (D-42, AI page).
-2. **Email agent** at `agent@mail.firstmove.energy` (D-46), on our keys: Resend Inbox → webhook → Vercel Workflow → deterministic gates → consent → Jev decisions (Vercel AI Gateway) → Claude Haiku 5.5 (Anthropic API) → on-brand reply. It answers short questions from the public docs, runs a Quick Check and/or a Business Plan by email (numbered questions or attached files), and sends on-brand results plus, if wanted, a `.firstmove.json` file to continue in the dashboard.
+2. **Email agent** at `agent@mail.firstmove.energy` (D-46), on our keys: Resend Inbox → webhook → Vercel Workflow → deterministic gates → consent → Jev decisions → Claude Haiku 5.5 (both through the Vercel AI Gateway; Haiku with the owner's Anthropic key as BYOK, D-64) → on-brand reply. It answers short questions from the public docs, runs a Quick Check and/or a Business Plan by email (numbered questions or attached files), and sends on-brand results plus, if wanted, a `.firstmove.json` file to continue in the dashboard.
 
 Also: the sidebar becomes a collapsible icon rail (D-59), and the public docs get their first content, which is the only knowledge both agents answer from (D-57).
 
@@ -87,7 +87,7 @@ provenance: {
 | XSS turning into key theft | in-app | No HTML from models (React text plus a small markdown subset without raw HTML), links only to allow-listed origins, no remote images (`img-src` unchanged), no new third-party scripts, provider hosts in `connect-src` on dashboard routes only |
 | Prompt injection from documents | both | Documents wrapped as untrusted data; read-only tools; the only write path is a proposal that is validated (`applyPatch`) and, in-app, confirmed by the user; no browsing or network tools; schema-bound outputs |
 | Forged sender, reflection | email | DMARC `pass` only; replies only to the authenticated From (Inbox reply only when Reply-To is empty or equals From, else `emails.send` to From); never CC/BCC; human@ never processed |
-| Spam, floods, cost attacks | email | Consent before any AI processing; rate limits per sender, domain and globally; attachment caps; daily budget; AI Gateway key budget (Jev); Anthropic workspace limit (Haiku); kill switch |
+| Spam, floods, cost attacks | email | Consent before any AI processing; rate limits per sender, domain and globally; attachment caps; daily budget; AI Gateway key budget (Jev, and any fallback to gateway credentials); Anthropic workspace limit (Haiku through BYOK, which gateway budgets do not count, D-64); kill switch |
 | Abuse, mobbing, injection | email | Jev decisions with calibrated thresholds; off-topic: warning, then a 30-day ban; certain threats: permanent block; one notice, then silence; admin alert |
 | Mail loops | email | Drop auto-replies, bulk and list mail, bounces, `no-reply` senders and our own inboxes; send `Auto-Submitted: auto-replied` |
 | Leakage via logs or Workflow run data | email | Steps pass ids, codes and decisions only, never content; `log()` writes hashed sender ids and reason codes; errors carry codes |
@@ -125,13 +125,10 @@ RESEND_API_KEY=
 RESEND_WEBHOOK_SECRET=
 RESEND_AGENT_INBOX_ID=
 
-# Decisions: Jev through the Vercel AI Gateway
+# Models through the Vercel AI Gateway: Jev decides, Claude Haiku writes
 AI_GATEWAY_API_KEY=
 EMAIL_AGENT_DECISION_MODEL=typesafe-ai/jev-1.14.0
-
-# Text and answers: Claude Haiku 5.5 through the Anthropic API
-ANTHROPIC_API_KEY=
-EMAIL_AGENT_TEXT_MODEL=claude-haiku-5-5
+EMAIL_AGENT_TEXT_MODEL=anthropic/claude-haiku-5.5
 
 # Store: Upstash Redis (EU)
 KV_REST_API_URL=
@@ -164,7 +161,7 @@ Phase An is PLAN-AGENT-0n. Status lives in [CONTEXT.md](CONTEXT.md) and in each 
 ## How to run the phases (D-35, D-62)
 
 1. Few agents: Claude orchestrates and builds A01, A03, A06, A07 and A09 itself. At most two workers run in parallel, each in its own git worktree: A02 next to A03, A04 next to A06, A05 next to A07, then A08. One independent security reviewer in A09 gets the code, not conclusions.
-2. Each phase: read its plan and the files it cites; for every Next.js API read the guide in `node_modules/next/dist/docs/` first (route handlers, `proxy`, headers/CSP, environment variables, `after`); read the **current** docs of each library it touches and pin the versions found (research note); for Claude API code follow the claude-api skill (official SDK, `claude-haiku-5-5`, no sampling parameters, check `stop_reason`).
+2. Each phase: read its plan and the files it cites; for every Next.js API read the guide in `node_modules/next/dist/docs/` first (route handlers, `proxy`, headers/CSP, environment variables, `after`); read the **current** docs of each library it touches and pin the versions found (research note); for Claude API code follow the claude-api skill (official SDK, here pointed at the AI Gateway's Messages API with `anthropic/claude-haiku-5.5`, D-64; no sampling parameters, check `stop_reason`).
 3. Build; a test next to every unit; `pnpm lint && pnpm typecheck && pnpm test && pnpm build`; `pnpm test:e2e` where UI changed.
 4. Set `status: done` in the phase file, update [CONTEXT.md](CONTEXT.md), write `docs/90_work/notes/2026-10-24_agents-NN_<name>.md` (built, deviations, versions, follow-ups), commit `agents NN: <name>` on `main` with no co-author line, push.
 5. A gap in a requirement or an unclear point: take the documented default, log it in the note; ask the owner only for decisions that change behaviour or legal text.
@@ -180,8 +177,8 @@ Phase An is PLAN-AGENT-0n. Status lives in [CONTEXT.md](CONTEXT.md) and in each 
 ## Go-live checklist (owner, collected in phase 09)
 
 - Vercel: Upstash Redis via the Marketplace (EU region); all env vars from `.env.example` in Production; secrets generated with `openssl rand -base64 32`.
-- AI Gateway: an API key with a monthly budget for Jev (or OIDC with a project budget); optionally team-wide ZDR.
-- Anthropic Console: a workspace with a monthly spend limit for the Haiku key.
+- AI Gateway: an API key with a monthly budget (Jev, plus fallback traffic); the Anthropic key added under **Bring Your Own Key** (needs purchased gateway credits; do not turn on team-wide ZDR unless the key is marked ZDR-compliant, or the gateway skips it, D-64).
+- Anthropic Console: a workspace with a monthly spend limit for that key (BYOK spend is not counted in gateway budgets).
 - Resend: webhook `https://firstmove.energy/api/mail/inbound` for `inbox.email.received` only, secret into env; agent@ "Reply as" = `First Move assistant (AI)`, human@ = `First Move`; Inbox agent with no actions on both inboxes; tracking as decided in D-63 (disclosed); DMARC record on `mail.firstmove.energy`; Pro plan recommended (free is 100 emails/day including inbound).
 - Run `node scripts/mail-agent-doctor.mjs`, set `EMAIL_AGENT_ENABLED=true`, do one real round trip, watch logs and budgets for a day.
 - Legal: confirm the processor facts listed in the phase 08 note; the lawyer review from the phase 12 checklist still applies.

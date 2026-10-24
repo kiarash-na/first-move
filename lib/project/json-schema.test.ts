@@ -10,7 +10,7 @@ describe("projectJsonSchema (PLAN-DASH-03 verification)", () => {
 
   it("generates without errors as draft 2020-12", () => {
     expect(schema.$schema).toBe("https://json-schema.org/draft/2020-12/schema")
-    expect(Object.keys(schema.properties!)).toEqual(["meta", "site", "buildings", "sources", "quickCheck", "businessPlan"])
+    expect(Object.keys(schema.properties!)).toEqual(["meta", "site", "buildings", "sources", "quickCheck", "businessPlan", "provenance"])
     expect(schema.additionalProperties).toBe(false)
   })
 
