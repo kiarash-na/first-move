@@ -1,7 +1,7 @@
 ---
 id: PLAN-DASH-01
 date: 2026-10-24
-status: todo
+status: done
 challenge: [quick-check-tool, business-models]
 covers: [DESIGN-TOKENS, QCT-SCOPE-09, OQ-24]
 blocked_by: []

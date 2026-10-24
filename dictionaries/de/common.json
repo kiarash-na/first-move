@@ -1,0 +1,23 @@
+{
+  "app": {
+    "homeLabel": "First Move, zurück zur Website"
+  },
+  "language": {
+    "label": "Sprache"
+  },
+  "theme": {
+    "switchToLight": "Zum hellen Farbschema wechseln",
+    "switchToDark": "Zum dunklen Farbschema wechseln"
+  },
+  "notFound": {
+    "title": "Seite nicht gefunden",
+    "body": "Diese Seite gibt es nicht. Vielleicht wurde sie verschoben, oder der Link ist falsch.",
+    "home": "Zur Startseite"
+  },
+  "docs": {
+    "metaTitle": "Doku",
+    "eyebrow": "Dokumentation",
+    "status": "Demnächst",
+    "dashboard": "Dashboard öffnen"
+  }
+}

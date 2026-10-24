@@ -1,0 +1,36 @@
+{
+  "app": {
+    "name": "First Move",
+    "slogan": "Start your 5GDHC Journey now",
+    "homeLabel": "First Move, back to the website"
+  },
+  "language": {
+    "label": "Language",
+    "names": {
+      "en": "English",
+      "de": "Deutsch"
+    },
+    "short": {
+      "en": "EN",
+      "de": "DE"
+    }
+  },
+  "theme": {
+    "switchToLight": "Switch to light theme",
+    "switchToDark": "Switch to dark theme"
+  },
+  "notFound": {
+    "code": "404",
+    "title": "Page not found",
+    "body": "This page does not exist. It may have moved, or the link is wrong.",
+    "home": "Go to the start page"
+  },
+  "docs": {
+    "metaTitle": "Docs",
+    "eyebrow": "Documentation",
+    "title": "Documentation is on its way",
+    "body": "Public guides for First Move will be published here.",
+    "status": "Coming soon",
+    "dashboard": "Open the dashboard"
+  }
+}
