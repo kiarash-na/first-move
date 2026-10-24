@@ -24,26 +24,38 @@ Things to check in the translation pass, not just the keys:
 | Area | Keys in EN | Missing in DE | DE coverage |
 |---|---:|---:|---:|
 | [ai](#ai) | 9 | 0 | 100 % |
+| [assistant](#assistant) | 2 | 2 | 0 % |
 | [assumptions](#assumptions) | 87 | 87 | 0 % |
 | [business-plan](#business-plan) | 286 | 286 | 0 % |
 | [calc](#calc) | 68 | 67 | 1 % |
-| [common](#common) | 20 | 9 | 55 % |
+| [common](#common) | 15 | 7 | 53 % |
 | [cookies](#cookies) | 7 | 0 | 100 % |
+| [docs](#docs) | 20 | 19 | 5 % |
 | [imprint](#imprint) | 7 | 0 | 100 % |
 | [landing](#landing) | 212 | 188 | 11 % |
 | [legal](#legal) | 27 | 0 | 100 % |
 | [license](#license) | 7 | 0 | 100 % |
+| [mail](#mail) | 30 | 30 | 0 % |
 | [overview](#overview) | 116 | 116 | 0 % |
 | [privacy](#privacy) | 7 | 0 | 100 % |
 | [quick-check](#quick-check) | 274 | 274 | 0 % |
-| [shell](#shell) | 162 | 158 | 2 % |
+| [shell](#shell) | 167 | 163 | 2 % |
 | [start](#start) | 50 | 49 | 2 % |
 | [terms](#terms) | 7 | 0 | 100 % |
-| **All** | **1346** | **1234** | **8 %** |
+| **All** | **1398** | **1288** | **8 %** |
 
 ## ai
 
 Complete: German provides every key.
+
+## assistant
+
+2 of 2 keys missing (`dictionaries/de/assistant.json`).
+
+**`launcher`** (2)
+
+- `launcher.open`
+- `launcher.close`
 
 ## assumptions
 
@@ -739,7 +751,7 @@ Complete: German provides every key.
 
 ## common
 
-9 of 20 keys missing (`dictionaries/de/common.json`).
+7 of 15 keys missing (`dictionaries/de/common.json`).
 
 **`app`** (2)
 
@@ -760,14 +772,62 @@ Complete: German provides every key.
 
 - `notFound.code`
 
-**`docs`** (2)
-
-- `docs.title`
-- `docs.body`
-
 ## cookies
 
 Complete: German provides every key.
+
+## docs
+
+19 of 20 keys missing (`dictionaries/de/docs.json`).
+
+**`nav`** (1)
+
+- `nav.label`
+
+**`pages.index`** (2)
+
+- `pages.index.title`
+- `pages.index.description`
+
+**`pages.what-is-5gdhc`** (2)
+
+- `pages.what-is-5gdhc.title`
+- `pages.what-is-5gdhc.description`
+
+**`pages.quick-check`** (2)
+
+- `pages.quick-check.title`
+- `pages.quick-check.description`
+
+**`pages.business-plan`** (2)
+
+- `pages.business-plan.title`
+- `pages.business-plan.description`
+
+**`pages.assistant`** (2)
+
+- `pages.assistant.title`
+- `pages.assistant.description`
+
+**`pages.email-agent`** (2)
+
+- `pages.email-agent.title`
+- `pages.email-agent.description`
+
+**`pages.data-and-privacy`** (2)
+
+- `pages.data-and-privacy.title`
+- `pages.data-and-privacy.description`
+
+**`page`** (1)
+
+- `page.englishOnly`
+
+**`pager`** (3)
+
+- `pager.label`
+- `pager.previous`
+- `pager.next`
 
 ## imprint
 
@@ -1023,6 +1083,61 @@ Complete: German provides every key.
 ## license
 
 Complete: German provides every key.
+
+## mail
+
+30 of 30 keys missing (`dictionaries/de/mail.json`).
+
+**`sender`** (1)
+
+- `sender.name`
+
+**`confirm`** (7)
+
+- `confirm.title`
+- `confirm.lead`
+- `confirm.accept`
+- `confirm.terms`
+- `confirm.button`
+- `confirm.sending`
+- `confirm.missing`
+
+**`confirm.result`** (5)
+
+- `confirm.result.confirmed`
+- `confirm.result.expired`
+- `confirm.result.used`
+- `confirm.result.invalid`
+- `confirm.result.error`
+
+**`notices`** (5)
+
+- `notices.confirm`
+- `notices.warning`
+- `notices.ban`
+- `notices.block`
+- `notices.unavailable`
+
+**`admin`** (5)
+
+- `admin.subject`
+- `admin.body`
+- `admin.system`
+- `admin.more`
+- `admin.moreKind`
+
+**`admin.details`** (2)
+
+- `admin.details.rate-global`
+- `admin.details.budget`
+
+**`admin.kinds`** (5)
+
+- `admin.kinds.block`
+- `admin.kinds.guard-failed`
+- `admin.kinds.rate-global`
+- `admin.kinds.budget`
+- `admin.kinds.attachment-injection`
 
 ## overview
 
@@ -1671,7 +1786,7 @@ Complete: German provides every key.
 
 ## shell
 
-158 of 162 keys missing (`dictionaries/de/shell.json`).
+163 of 167 keys missing (`dictionaries/de/shell.json`).
 
 **`fields.meta`** (8)
 
@@ -1801,6 +1916,14 @@ Complete: German provides every key.
 - `nav.items.businessPlan.business-logic`
 - `nav.items.businessPlan.reality-check`
 - `nav.items.businessPlan.implementation`
+
+**`nav.rail`** (5)
+
+- `nav.rail.collapse`
+- `nav.rail.expand`
+- `nav.rail.entry`
+- `nav.rail.project`
+- `nav.rail.privacy`
 
 **`topBar`** (4)
 

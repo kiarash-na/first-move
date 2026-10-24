@@ -1,7 +1,7 @@
 ---
 id: PLAN-AGENT-04
 date: 2026-10-24
-status: todo
+status: in-progress
 challenge: [quick-check-tool, business-models]
 covers: [D-19, D-22, D-32, D-57]
 blocked_by: [PLAN-AGENT-03]
