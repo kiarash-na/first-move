@@ -1,1 +1,110 @@
-{}
+{
+  "steps": {
+    "area": "The number of buildings and the project area give the building density in buildings per hectare. Unless you enter a network length, the tool estimates the length from this density. The number of buildings also sets the heat pump investment and the connection fees.",
+    "buildings": "The shares split the buildings into types and construction periods. Each group gets the default heating demand, cooling demand and floor area of Tables 1 to 3; together they give the total annual demand. Industry has no default values: it adds no demand and leads to “Further analysis required”.",
+    "sources": "Each selected source adds the default annual capacity of its potential (Tables 4 and 5). The heat pump turns it into delivered heating and cooling, which sets the coverage, the installation costs and the electricity costs. A source with unknown potential adds nothing and leads to “Further analysis required”.",
+    "options": "A known heating or cooling demand replaces the estimated total, and a known network length replaces the estimated length. PV lowers the electricity costs of the heat pumps by the PV cost reduction of Table 6.",
+    "assumptions": "A changed parameter replaces the default of Tables 4 to 6 in every equation that uses it. Results then carry the “Custom parameters” badge."
+  },
+  "results": {
+    "heatingDemandKwh": {
+      "text": "The buildings of each type and construction period times their default heating demand per m² and their default floor area, summed over all groups.",
+      "manual": "You entered the total heating demand, so it replaces the estimate."
+    },
+    "coolingDemandKwh": {
+      "text": "The buildings of each type and construction period times their default cooling demand per m² and their default floor area, summed over all groups.",
+      "manual": "You entered the total cooling demand, so it replaces the estimate."
+    },
+    "buildingDensity": { "text": "The number of buildings per hectare of project area." },
+    "densityCategory": {
+      "text": "Follows from the building density class of Table 8: low density is rural, medium is sub-urban, high is urban."
+    },
+    "specificNetworkLength": {
+      "text": "Network metres per hectare, estimated from the building density with the predefined relationship of the methodology."
+    },
+    "networkLengthM": {
+      "text": "The specific network length times the project area in hectares.",
+      "manual": "You entered the network length, so it replaces the estimate."
+    },
+    "heatDensityMwhPerM": {
+      "text": "The total heating demand divided by the network length. It is classified in MWh per metre (Table 9)."
+    },
+    "heatingSupplyKwh": {
+      "text": "For each selected source, the default capacity of its potential plus the share the heat pump adds (COP), summed over all sources. Solar thermal works without a heat pump."
+    },
+    "coolingSupplyKwh": {
+      "text": "For each selected source, the default cooling capacity of its potential adjusted by the COP, summed over all sources. Waste heat and solar thermal supply no cooling."
+    },
+    "heatingCoverage": {
+      "text": "The heating supply divided by the heating demand: the share of the annual heating demand the selected sources can cover."
+    },
+    "coolingCoverage": {
+      "text": "The cooling supply divided by the cooling demand: the share of the annual cooling demand the selected sources can cover."
+    },
+    "chRatio": {
+      "text": "The smaller of the heating and cooling demand divided by the larger one. The closer it is to one, the more balanced the demands."
+    },
+    "heatingRevenue": {
+      "text": "The heating base price for every m² of floor area per year, plus the heating energy price for every kWh of heating demand."
+    },
+    "coolingRevenue": {
+      "text": "The cooling base price for every m² of floor area per year, plus the cooling energy price for every kWh of cooling demand."
+    },
+    "connectionFeeRevenue": {
+      "text": "The one-time connection fee of every building, spread over the depreciation period with the annuity factor."
+    },
+    "overallRevenue": { "text": "Heating revenue, cooling revenue and the annualized connection fees." },
+    "networkInvestment": { "text": "The network construction costs per metre times the network length." },
+    "supplyInvestment": {
+      "text": "For each selected source, its installation costs per kWh/a times its heating supply, summed over all sources. Ambient air adds no installation costs, as the heat pumps are counted separately."
+    },
+    "heatPumpInvestment": { "text": "The investment in one heat pump times the number of buildings." },
+    "overallInvestment": {
+      "text": "Heat pumps, network and the installations of all sources. The installations are counted once."
+    },
+    "annuityFactor": {
+      "text": "Turns an investment into equal yearly payments over the depreciation period at the interest rate."
+    },
+    "annualizedCosts": { "text": "The overall investment times the annuity factor: its cost per year." },
+    "electricityCosts": {
+      "text": "The electricity the heat pumps need (supply divided by COP) times the electricity price. With PV, the costs are lowered by the PV cost reduction."
+    },
+    "operationAndMaintenance": { "text": "A fixed share of the overall investment every year." },
+    "annualCosts": { "text": "Annualized investment, electricity costs, and operation and maintenance costs." },
+    "economicRatio": {
+      "text": "The overall revenues divided by the annual costs. The economic assessment rates this ratio as favorable, unclear or clearly unfavorable."
+    },
+    "level": {
+      "text": "The overall result combines the supply coverage, the building and heat density and the economic assessment (Table 11). Industry in the project area or a source with unknown potential always leads to “Further analysis required”."
+    }
+  },
+  "formulas": {
+    "eq-03-01": "Number of buildings per type and construction period",
+    "eq-03-02a": "Annual heating demand per building group",
+    "eq-03-02b": "Annual cooling demand per building group",
+    "eq-03-02c": "Total annual heating demand",
+    "eq-03-02d": "Total annual cooling demand",
+    "eq-03-03": "Building density",
+    "eq-03-04a": "Specific network length",
+    "eq-03-04b": "Total network length",
+    "eq-03-05": "Heat density",
+    "eq-03-06a": "Heating supply coverage",
+    "eq-03-06b": "Cooling supply coverage",
+    "eq-03-07": "Cooling-to-heating ratio",
+    "eq-03-08a": "Heating supply per source",
+    "eq-03-08b": "Cooling supply per source",
+    "eq-03-09a": "Annual heating revenue",
+    "eq-03-09b": "Annual cooling revenue",
+    "eq-03-09c": "Overall revenues",
+    "eq-03-10a": "Network investment",
+    "eq-03-10b": "Installation investment per source",
+    "eq-03-10c": "Total installation investment",
+    "eq-03-10d": "Overall investment",
+    "eq-03-10e": "Annuity factor",
+    "eq-03-10f": "Annualized costs",
+    "eq-03-11": "Electricity costs",
+    "eq-03-12": "Operation and maintenance costs",
+    "oq-12": "Cooling-to-heating ratio",
+    "oq-21": "Economic ratio"
+  }
+}

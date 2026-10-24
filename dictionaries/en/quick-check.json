@@ -141,5 +141,139 @@
         "urban": { "label": "Urban" }
       }
     }
+  },
+  "results": {
+    "levels": {
+      "promising": { "label": "Promising", "description": "Favorable conditions identified" },
+      "further_analysis": {
+        "label": "Further analysis required",
+        "description": "Mixed conditions, uncertainties or missing information"
+      },
+      "not_promising": { "label": "Not promising", "description": "Unfavorable conditions identified" }
+    },
+    "classes": {
+      "coverage": {
+        "feasible": {
+          "label": "Feasible",
+          "interpretation": "Sufficient annual energy potential to cover the total demand with additional potential available."
+        },
+        "conditionally_feasible": {
+          "label": "Conditionally feasible",
+          "interpretation": "A small share of supplementary supply is required."
+        },
+        "limited_feasibility": {
+          "label": "Limited feasibility",
+          "interpretation": "A significant share of supplementary supply is required."
+        },
+        "not_feasible": {
+          "label": "Not feasible as the sole supply concept",
+          "interpretation": "Too much demand remains uncovered."
+        }
+      },
+      "buildingDensity": {
+        "high": {
+          "label": "High density",
+          "interpretation": "Densely built areas can benefit from shorter network lengths, although low energy demand may still weaken economic performance."
+        },
+        "medium": { "label": "Medium density", "interpretation": "The structure may be suitable for a network." },
+        "low": {
+          "label": "Low density",
+          "interpretation": "Buildings are more distributed, potentially increasing network length. High energy demand or suitable local energy sources may still make a project promising."
+        }
+      },
+      "heatDensity": {
+        "high": {
+          "label": "High density",
+          "interpretation": "A relatively short network serves a high heating demand, potentially improving economic performance."
+        },
+        "medium": { "label": "Medium density", "interpretation": "The network may be viable." },
+        "low": {
+          "label": "Low density",
+          "interpretation": "A relatively long network serves a low heating demand. Substantial cooling demand or low network costs may improve the outlook."
+        }
+      },
+      "chRatio": {
+        "balanced": {
+          "label": "Balanced",
+          "interpretation": "Heating and cooling demand are similar, potentially supporting thermal exchange."
+        },
+        "partially_balanced": {
+          "label": "Partially balanced",
+          "interpretation": "One demand is higher than the other, but thermal exchange may still be possible."
+        },
+        "unbalanced": {
+          "label": "Unbalanced",
+          "interpretation": "One demand clearly dominates, potentially increasing the need for external energy sources or thermal storage."
+        }
+      },
+      "economic": {
+        "favorable": { "label": "Favorable", "interpretation": "The revenues cover the annual costs." },
+        "unclear": {
+          "label": "Unclear",
+          "interpretation": "The revenues cover a large part, but not all, of the annual costs."
+        },
+        "clearly_unfavorable": {
+          "label": "Clearly unfavorable",
+          "interpretation": "The revenues fall far short of the annual costs."
+        }
+      },
+      "notRelevant": { "label": "Not relevant", "interpretation": "There is no demand of this kind in the project area." },
+      "notApplicable": { "label": "Not applicable", "interpretation": "This indicator cannot be calculated for the inputs." }
+    },
+    "demands": {
+      "heating": { "label": "Heating" },
+      "cooling": { "label": "Cooling" }
+    },
+    "dominantDemand": {
+      "heating": { "label": "Heating demand is higher" },
+      "cooling": { "label": "Cooling demand is higher" },
+      "equal": { "label": "Heating and cooling demand are equal" }
+    },
+    "reasons": {
+      "industry": {
+        "label": "The project area includes industry. There are no default values for industrial buildings, so the result is set to “Further analysis required”."
+      },
+      "unknown_source": {
+        "label": "The potential of {sources} is unknown. It needs to be clarified before a reliable initial assessment can be made."
+      },
+      "economics_clearly_unfavorable": { "label": "The economic assessment is clearly unfavorable." },
+      "low_coverage_and_densities": {
+        "label": "The supply cannot cover the {demands} demand as the sole supply concept, and building density and heat density are both low."
+      },
+      "coverage_sufficient": { "label": "The selected sources cover the {demands} demand." },
+      "economics_favorable": { "label": "The economic assessment is favorable." },
+      "densities_not_low": { "label": "Neither building density nor heat density is low." },
+      "no_relevant_demand": { "label": "There is no heating or cooling demand to assess." },
+      "coverage_below_promising": {
+        "label": "The selected sources cover too little of the {demands} demand for a promising result."
+      },
+      "economics_unclear": { "label": "The economic results do not support a clear conclusion." },
+      "building_density_low": { "label": "The building density is low." },
+      "heat_density_low": { "label": "The heat density is low." }
+    },
+    "drivers": {
+      "industry": { "limiting": { "label": "Industry in the project area" } },
+      "unknown_sources": { "limiting": { "label": "Unknown source potential: {sources}" } },
+      "economics": {
+        "supporting": { "label": "Revenues cover the annual costs" },
+        "limiting": { "label": "Revenues do not clearly cover the annual costs" }
+      },
+      "heating_coverage": {
+        "supporting": { "label": "Local sources cover the heating demand" },
+        "limiting": { "label": "Local sources cover too little of the heating demand" }
+      },
+      "cooling_coverage": {
+        "supporting": { "label": "Local sources cover the cooling demand" },
+        "limiting": { "label": "Local sources cover too little of the cooling demand" }
+      },
+      "heat_density": {
+        "supporting": { "label": "Sufficient heat demand density" },
+        "limiting": { "label": "Low heat demand density" }
+      },
+      "building_density": {
+        "supporting": { "label": "Buildings are close enough together" },
+        "limiting": { "label": "Low building density" }
+      }
+    }
   }
 }
