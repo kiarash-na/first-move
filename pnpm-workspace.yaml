@@ -4,3 +4,8 @@ allowBuilds:
   esbuild: false
   sharp: false
   unrs-resolver: false
+# Patched transitive versions (pnpm audit): workflow 5.2.3 pins older zod (GHSA-mrhx-c7xc-m3w5)
+# and undici (GHSA-4qv8-2p9j-2685, GHSA-f72v-6w45-q472, GHSA-xjj6-f33q-929c). Drop when workflow ships them.
+overrides:
+  "zod@<4.6.6": "4.6.7"
+  "undici@>=7.0.0 <7.30.1": "7.30.1"
