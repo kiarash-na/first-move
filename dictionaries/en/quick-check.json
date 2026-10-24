@@ -80,76 +80,162 @@
     }
   },
   "periods": {
-    "until_1919": { "label": "-1919" },
-    "1919_1960": { "label": "1919-1960" },
-    "1961_1990": { "label": "1961-1990" },
-    "1991_2010": { "label": "1991-2010" },
-    "2011_today": { "label": "2011-today" }
+    "until_1919": {
+      "label": "-1919"
+    },
+    "1919_1960": {
+      "label": "1919-1960"
+    },
+    "1961_1990": {
+      "label": "1961-1990"
+    },
+    "1991_2010": {
+      "label": "1991-2010"
+    },
+    "2011_today": {
+      "label": "2011-today"
+    }
   },
   "sources": {
-    "geothermal": { "label": "Geothermal" },
-    "waste_heat": { "label": "Waste heat" },
-    "ground_water": { "label": "Ground water" },
-    "surface_water": { "label": "Surface water" },
-    "solar_thermal": { "label": "Solar thermal" },
-    "ambient_air": { "label": "Ambient air" }
+    "geothermal": {
+      "label": "Geothermal",
+      "inText": "geothermal"
+    },
+    "waste_heat": {
+      "label": "Waste heat",
+      "inText": "waste heat"
+    },
+    "ground_water": {
+      "label": "Ground water",
+      "inText": "ground water"
+    },
+    "surface_water": {
+      "label": "Surface water",
+      "inText": "surface water"
+    },
+    "solar_thermal": {
+      "label": "Solar thermal",
+      "inText": "solar thermal"
+    },
+    "ambient_air": {
+      "label": "Ambient air",
+      "inText": "ambient air"
+    }
   },
   "potentials": {
-    "low": { "label": "Low" },
-    "medium": { "label": "Medium" },
-    "high": { "label": "High" },
-    "unknown": { "label": "Unknown" }
+    "low": {
+      "label": "Low"
+    },
+    "medium": {
+      "label": "Medium"
+    },
+    "high": {
+      "label": "High"
+    },
+    "unknown": {
+      "label": "Unknown"
+    }
   },
   "capacityCells": {
-    "low": { "label": "Low" },
-    "medium": { "label": "Medium" },
-    "high": { "label": "High" },
-    "cop": { "label": "COP" }
+    "low": {
+      "label": "Low"
+    },
+    "medium": {
+      "label": "Medium"
+    },
+    "high": {
+      "label": "High"
+    },
+    "cop": {
+      "label": "COP"
+    }
   },
   "parameters": {
-    "heating_base_price": { "label": "Heating base price" },
-    "heating_energy_price": { "label": "Heating energy price" },
-    "cooling_base_price": { "label": "Cooling base price" },
-    "cooling_energy_price": { "label": "Cooling energy price" },
-    "connection_fee": { "label": "Connection fee" },
+    "heating_base_price": {
+      "label": "Heating base price"
+    },
+    "heating_energy_price": {
+      "label": "Heating energy price"
+    },
+    "cooling_base_price": {
+      "label": "Cooling base price"
+    },
+    "cooling_energy_price": {
+      "label": "Cooling energy price"
+    },
+    "connection_fee": {
+      "label": "Connection fee"
+    },
     "network_construction_costs": {
       "label": "Network construction costs",
       "help": "Pipes, materials, excavation and installation."
     },
-    "installation_costs_geothermal": { "label": "Geothermal installation costs" },
-    "installation_costs_waste_heat": { "label": "Waste heat installation costs" },
-    "installation_costs_ground_water": { "label": "Ground water installation costs" },
-    "installation_costs_surface_water": { "label": "Surface water installation costs" },
-    "installation_costs_solar_thermal": { "label": "Solar thermal installation costs" },
+    "installation_costs_geothermal": {
+      "label": "Geothermal installation costs"
+    },
+    "installation_costs_waste_heat": {
+      "label": "Waste heat installation costs"
+    },
+    "installation_costs_ground_water": {
+      "label": "Ground water installation costs"
+    },
+    "installation_costs_surface_water": {
+      "label": "Surface water installation costs"
+    },
+    "installation_costs_solar_thermal": {
+      "label": "Solar thermal installation costs"
+    },
     "installation_costs_ambient_air": {
       "label": "Ambient air installation costs",
       "help": "Table 6 gives no value; the Quick Check uses 0."
     },
-    "heat_pump": { "label": "Heat pump" },
-    "electricity_cost": { "label": "Electricity cost" },
-    "pv_cost_reduction": { "label": "PV cost reduction" },
-    "depreciation_period": { "label": "Depreciation period" },
-    "interest_rate": { "label": "Interest rate" }
+    "heat_pump": {
+      "label": "Heat pump"
+    },
+    "electricity_cost": {
+      "label": "Electricity cost"
+    },
+    "pv_cost_reduction": {
+      "label": "PV cost reduction"
+    },
+    "depreciation_period": {
+      "label": "Depreciation period"
+    },
+    "interest_rate": {
+      "label": "Interest rate"
+    }
   },
   "derived": {
     "densityCategory": {
       "label": "Building density category",
       "help": "Calculated from the building density, not entered.",
       "options": {
-        "rural": { "label": "Rural" },
-        "sub_urban": { "label": "Sub-urban" },
-        "urban": { "label": "Urban" }
+        "rural": {
+          "label": "Rural"
+        },
+        "sub_urban": {
+          "label": "Sub-urban"
+        },
+        "urban": {
+          "label": "Urban"
+        }
       }
     }
   },
   "results": {
     "levels": {
-      "promising": { "label": "Promising", "description": "Favorable conditions identified" },
+      "promising": {
+        "label": "Promising",
+        "description": "Favorable conditions identified"
+      },
       "further_analysis": {
         "label": "Further analysis required",
         "description": "Mixed conditions, uncertainties or missing information"
       },
-      "not_promising": { "label": "Not promising", "description": "Unfavorable conditions identified" }
+      "not_promising": {
+        "label": "Not promising",
+        "description": "Unfavorable conditions identified"
+      }
     },
     "classes": {
       "coverage": {
@@ -175,7 +261,10 @@
           "label": "High density",
           "interpretation": "Densely built areas can benefit from shorter network lengths, although low energy demand may still weaken economic performance."
         },
-        "medium": { "label": "Medium density", "interpretation": "The structure may be suitable for a network." },
+        "medium": {
+          "label": "Medium density",
+          "interpretation": "The structure may be suitable for a network."
+        },
         "low": {
           "label": "Low density",
           "interpretation": "Buildings are more distributed, potentially increasing network length. High energy demand or suitable local energy sources may still make a project promising."
@@ -186,7 +275,10 @@
           "label": "High density",
           "interpretation": "A relatively short network serves a high heating demand, potentially improving economic performance."
         },
-        "medium": { "label": "Medium density", "interpretation": "The network may be viable." },
+        "medium": {
+          "label": "Medium density",
+          "interpretation": "The network may be viable."
+        },
         "low": {
           "label": "Low density",
           "interpretation": "A relatively long network serves a low heating demand. Substantial cooling demand or low network costs may improve the outlook."
@@ -207,7 +299,10 @@
         }
       },
       "economic": {
-        "favorable": { "label": "Favorable", "interpretation": "The revenues cover the annual costs." },
+        "favorable": {
+          "label": "Favorable",
+          "interpretation": "The revenues cover the annual costs."
+        },
         "unclear": {
           "label": "Unclear",
           "interpretation": "The revenues cover a large part, but not all, of the annual costs."
@@ -217,17 +312,35 @@
           "interpretation": "The revenues fall far short of the annual costs."
         }
       },
-      "notRelevant": { "label": "Not relevant", "interpretation": "There is no demand of this kind in the project area." },
-      "notApplicable": { "label": "Not applicable", "interpretation": "This indicator cannot be calculated for the inputs." }
+      "notRelevant": {
+        "label": "Not relevant",
+        "interpretation": "There is no demand of this kind in the project area."
+      },
+      "notApplicable": {
+        "label": "Not applicable",
+        "interpretation": "This indicator cannot be calculated for the inputs."
+      }
     },
     "demands": {
-      "heating": { "label": "Heating" },
-      "cooling": { "label": "Cooling" }
+      "heating": {
+        "label": "Heating",
+        "inText": "heating"
+      },
+      "cooling": {
+        "label": "Cooling",
+        "inText": "cooling"
+      }
     },
     "dominantDemand": {
-      "heating": { "label": "Heating demand is higher" },
-      "cooling": { "label": "Cooling demand is higher" },
-      "equal": { "label": "Heating and cooling demand are equal" }
+      "heating": {
+        "label": "Heating demand is higher"
+      },
+      "cooling": {
+        "label": "Cooling demand is higher"
+      },
+      "equal": {
+        "label": "Heating and cooling demand are equal"
+      }
     },
     "reasons": {
       "industry": {
@@ -236,43 +349,245 @@
       "unknown_source": {
         "label": "The potential of {sources} is unknown. It needs to be clarified before a reliable initial assessment can be made."
       },
-      "economics_clearly_unfavorable": { "label": "The economic assessment is clearly unfavorable." },
+      "economics_clearly_unfavorable": {
+        "label": "The economic assessment is clearly unfavorable."
+      },
       "low_coverage_and_densities": {
         "label": "The supply cannot cover the {demands} demand as the sole supply concept, and building density and heat density are both low."
       },
-      "coverage_sufficient": { "label": "The selected sources cover the {demands} demand." },
-      "economics_favorable": { "label": "The economic assessment is favorable." },
-      "densities_not_low": { "label": "Neither building density nor heat density is low." },
-      "no_relevant_demand": { "label": "There is no heating or cooling demand to assess." },
+      "coverage_sufficient": {
+        "label": "The selected sources cover the {demands} demand."
+      },
+      "economics_favorable": {
+        "label": "The economic assessment is favorable."
+      },
+      "densities_not_low": {
+        "label": "Neither building density nor heat density is low."
+      },
+      "no_relevant_demand": {
+        "label": "There is no heating or cooling demand to assess."
+      },
       "coverage_below_promising": {
         "label": "The selected sources cover too little of the {demands} demand for a promising result."
       },
-      "economics_unclear": { "label": "The economic results do not support a clear conclusion." },
-      "building_density_low": { "label": "The building density is low." },
-      "heat_density_low": { "label": "The heat density is low." }
+      "economics_unclear": {
+        "label": "The economic results do not support a clear conclusion."
+      },
+      "building_density_low": {
+        "label": "The building density is low."
+      },
+      "heat_density_low": {
+        "label": "The heat density is low."
+      }
     },
     "drivers": {
-      "industry": { "limiting": { "label": "Industry in the project area" } },
-      "unknown_sources": { "limiting": { "label": "Unknown source potential: {sources}" } },
+      "industry": {
+        "limiting": {
+          "label": "Industry in the project area"
+        }
+      },
+      "unknown_sources": {
+        "limiting": {
+          "label": "Unknown source potential: {sources}"
+        }
+      },
       "economics": {
-        "supporting": { "label": "Revenues cover the annual costs" },
-        "limiting": { "label": "Revenues do not clearly cover the annual costs" }
+        "supporting": {
+          "label": "Revenues cover the annual costs"
+        },
+        "limiting": {
+          "label": "Revenues do not clearly cover the annual costs"
+        }
       },
       "heating_coverage": {
-        "supporting": { "label": "Local sources cover the heating demand" },
-        "limiting": { "label": "Local sources cover too little of the heating demand" }
+        "supporting": {
+          "label": "Local sources cover the heating demand"
+        },
+        "limiting": {
+          "label": "Local sources cover too little of the heating demand"
+        }
       },
       "cooling_coverage": {
-        "supporting": { "label": "Local sources cover the cooling demand" },
-        "limiting": { "label": "Local sources cover too little of the cooling demand" }
+        "supporting": {
+          "label": "Local sources cover the cooling demand"
+        },
+        "limiting": {
+          "label": "Local sources cover too little of the cooling demand"
+        }
       },
       "heat_density": {
-        "supporting": { "label": "Sufficient heat demand density" },
-        "limiting": { "label": "Low heat demand density" }
+        "supporting": {
+          "label": "Sufficient heat demand density"
+        },
+        "limiting": {
+          "label": "Low heat demand density"
+        }
       },
       "building_density": {
-        "supporting": { "label": "Buildings are close enough together" },
-        "limiting": { "label": "Low building density" }
+        "supporting": {
+          "label": "Buildings are close enough together"
+        },
+        "limiting": {
+          "label": "Low building density"
+        }
+      }
+    }
+  },
+  "ui": {
+    "customParameters": {
+      "label": "Custom parameters",
+      "hint": "Some default values are overridden on the Assumptions page. Results use your values."
+    },
+    "stepper": {
+      "label": "Quick Check steps",
+      "progress": "Step {number} of {total}",
+      "missing": "Something is missing in this step",
+      "done": "Step complete"
+    },
+    "footer": {
+      "previous": "Back",
+      "next": "Next: {step}",
+      "results": "See the results"
+    },
+    "intro": {
+      "area": "A first assessment of the technical and economic potential of a 5GDHC network for your project area. Enter a few key parameters to see whether a network appears promising and which factors decide the result.",
+      "buildings": "Split the buildings into types and construction periods. The tool uses these shares to estimate the number of buildings in each group and their heating and cooling demand.",
+      "sources": "Select the energy sources available or potentially available in the project area and rate the potential of each one.",
+      "options": "Optional details. Leave a field empty to keep the estimate of the methodology."
+    },
+    "field": {
+      "optional": "Optional",
+      "estimated": "Empty: the estimate is used",
+      "estimate": "Estimate: {value}",
+      "default": "Default: {value}",
+      "noDefault": "No default",
+      "on": "Yes",
+      "off": "No"
+    },
+    "area": {
+      "derived": "Calculated from your inputs",
+      "density": "Building density",
+      "densityUnit": "buildings/ha",
+      "pending": "Enter the number of buildings and the project area to see the building density."
+    },
+    "buildings": {
+      "periods": "Construction period",
+      "types": "Building type",
+      "cell": "{type}, {period}",
+      "rowTotal": "Total",
+      "columnTotal": "Total per period",
+      "sum": "Sum of all shares",
+      "state": {
+        "empty": "Nothing entered yet. The shares must add up to 100 %.",
+        "under": "{value} still to assign",
+        "exact": "All shares add up to 100 %",
+        "over": "{value} too much. Reduce the shares to 100 %."
+      },
+      "clear": "Clear all shares",
+      "industry": "Industry has no default values. Any industry share leads to “Further analysis required”."
+    },
+    "sources": {
+      "selected": "{count} of {total} selected",
+      "none": "Select at least one source to get a result.",
+      "potential": "Potential of {source}",
+      "notSelected": "Not selected",
+      "remove": "Remove {source}",
+      "heating": "Heating",
+      "cooling": "Cooling",
+      "cop": "COP",
+      "noCooling": "No cooling supply",
+      "noHeatPump": "Without heat pump",
+      "pending": "Choose a potential to see the default capacity.",
+      "unknown": "Unknown potential adds no supply and leads to “Further analysis required” until it is clarified."
+    },
+    "rail": {
+      "title": "Live result",
+      "toggle": "Live result",
+      "open": "Open full results",
+      "incomplete": {
+        "title": "No result yet",
+        "body": "Complete these steps to see the result:"
+      },
+      "indicators": {
+        "coverage": "Supply coverage",
+        "buildingDensity": "Building density",
+        "heatDensity": "Heat density",
+        "economic": "Economic ratio"
+      },
+      "screening": "Initial indication, not a feasibility decision."
+    },
+    "results": {
+      "title": "Quick Check result",
+      "overall": "Overall result",
+      "forced": "Set by a fixed rule",
+      "reasons": "Why this result",
+      "edit": "Edit inputs",
+      "assumptions": "View assumptions",
+      "screening": {
+        "title": "Screening, not a full feasibility study",
+        "body": "This is an initial indication based on simplified default values. Actual values depend on project-specific conditions and should be refined through further analysis."
+      },
+      "drivers": {
+        "title": "Main factors",
+        "supporting": "Supporting",
+        "limiting": "Limiting",
+        "none": "None"
+      },
+      "coverage": {
+        "title": "Supply coverage",
+        "lead": "Heating and cooling are assessed separately, so supply gaps stay visible.",
+        "supply": "Supply",
+        "demand": "Demand",
+        "manual": "Entered demand",
+        "scale": "Thresholds: 70 %, 90 %, 100 %"
+      },
+      "indicators": {
+        "title": "Indicators",
+        "buildingDensity": "Building density",
+        "heatDensity": "Heat density",
+        "chRatio": "Cooling-to-heating ratio",
+        "economic": "Economic assessment",
+        "densityUnit": "buildings/ha",
+        "heatUnit": "MWh/m",
+        "ratio": "E = {value}",
+        "category": "Category: {category}"
+      },
+      "network": {
+        "title": "Network length",
+        "manual": "Entered",
+        "estimated": "Estimated",
+        "manualHint": "You entered the network length.",
+        "estimatedHint": "Estimated from the building density and the project area. Enter a known length in Options."
+      },
+      "unknown": {
+        "title": "Clarify the source potential",
+        "body": "The potential of {sources} is unknown. It must be clarified before a reliable initial assessment can be made. Until then, the source adds no supply and the result stays “Further analysis required”.",
+        "action": "Rate the sources"
+      },
+      "figures": {
+        "title": "Key figures",
+        "demand": "Demand",
+        "network": "Network",
+        "economics": "Economics",
+        "heatingDemandKwh": "Heating demand",
+        "coolingDemandKwh": "Cooling demand",
+        "heatingSupplyKwh": "Heating supply",
+        "coolingSupplyKwh": "Cooling supply",
+        "networkLengthM": "Network length",
+        "specificNetworkLength": "Specific network length",
+        "overallRevenue": "Overall revenues",
+        "overallInvestment": "Overall investment",
+        "annualizedCosts": "Annualized costs",
+        "electricityCosts": "Electricity costs",
+        "operationAndMaintenance": "Operation and maintenance",
+        "annualCosts": "Annual costs",
+        "perYear": "/a",
+        "metresPerHectare": "m/ha"
+      },
+      "incomplete": {
+        "title": "No result yet",
+        "body": "The Quick Check needs the number of buildings, the project area, shares that add up to 100 % and at least one energy source.",
+        "step": "Complete {step}"
       }
     }
   }
