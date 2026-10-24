@@ -36,6 +36,7 @@ const nextConfig: NextConfig = {
     agentFeedback: true,
     globalNotFound: true,
   },
+  poweredByHeader: false,
   cacheComponents: true,
   partialPrefetching: true,
   pageExtensions: ["ts", "tsx", "js", "jsx", "mdx"],

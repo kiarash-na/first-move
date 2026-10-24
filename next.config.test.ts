@@ -27,6 +27,10 @@ describe("security headers (D-14)", () => {
 })
 
 describe("next config", () => {
+  it("does not announce the framework in an X-Powered-By header", () => {
+    expect(nextConfig.poweredByHeader).toBe(false)
+  })
+
   it("enables Cache Components, the global 404 and MDX pages", () => {
     expect(nextConfig.cacheComponents).toBe(true)
     expect(nextConfig.experimental?.globalNotFound).toBe(true)

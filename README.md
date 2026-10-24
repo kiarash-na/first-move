@@ -1,39 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# First Move
 
-## Getting Started
+Initial screening of 5th-generation district heating and cooling (5GDHC) projects, in the browser. Live at <https://firstmove.energy>, in English and German.
 
-First, run the development server:
+A project has two optional modules:
+
+- **Quick Check**: enter an area, its buildings and the planned supply, and get a screening result with the key factors behind it.
+- **Business Plan**: work through the opportunity, the business logic and a reality check.
+
+Every input step and every computed number has a collapsed "How we calculate" with the equations behind it.
+
+## Your data stays in your browser
+
+There is no backend and no database. Projects are stored in the browser (IndexedDB), and you can export and import them as files. The Content Security Policy only allows requests to the site's own origin, so project data is never sent anywhere. Details are in the Privacy Policy at `/en/privacy` and in [SECURITY.md](SECURITY.md).
+
+## Getting started
+
+You need Node.js 20.9 or newer (developed on 24) and [pnpm](https://pnpm.io).
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open <http://localhost:3000>. Unprefixed paths redirect to `/en` or `/de`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Command | What it does |
+|---|---|
+| `pnpm dev` | Development server |
+| `pnpm build` · `pnpm start` | Production build and server |
+| `pnpm lint` | ESLint |
+| `pnpm typecheck` | Route types, then `tsc --noEmit` |
+| `pnpm test` | Unit and component tests (Vitest) |
+| `pnpm test:e2e` | End-to-end tests (Playwright, against a production build) |
+| `pnpm gen:reference` | Regenerates the Quick Check reference data from `docs/10_quick-check-tool/_reference/` |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Environment
 
-## Learn More
+`.env.example` lists the server-side variables (Vercel AI Gateway and Resend). Copy it to `.env.local` to use them. The app does not read any of them yet, and the build needs none.
 
-To learn more about Next.js, take a look at the following resources:
+## Project layout
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Path | Contents |
+|---|---|
+| `app/[lang]/(website)`, `(docs)`, `(dashboard)` | The landing page, the docs and legal pages, and the dashboard |
+| `lib/` | Logic without JSX: Quick Check equations, project model, storage, i18n, legal facts |
+| `components/` | Components shared across layouts |
+| `dictionaries/{en,de}` | All visible text. German falls back to English where it is not translated yet |
+| `docs/` | Requirements, equations, design tokens and the build log. Start at [`docs/CLAUDE.md`](docs/CLAUDE.md) |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The `source:` lines in `docs/` cite the original hackathon material under `docs/00_originals/`. That material belongs to its rights holders and is not published in this repository.
 
-## Deploy on Vercel
+## Deploying
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The app deploys to [Vercel](https://vercel.com) as a standard Next.js project. No environment variable is required for the current version.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Security
+
+Please report vulnerabilities privately, as described in [SECURITY.md](SECURITY.md).
 
 ## License
 
