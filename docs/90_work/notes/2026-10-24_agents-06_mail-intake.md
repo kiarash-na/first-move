@@ -2,13 +2,13 @@
 id: NOTE-2026-10-24-agents-06-mail-intake
 date: 2026-10-24
 author: Claude (phase A06)
-status: in-progress
+status: done
 relates_to: [PLAN-AGENT-06, PLAN-AGENT-00, D-46, D-48, D-52, D-53, D-54, D-55, D-56, D-60, D-63, D-64]
 ---
 
-# Agents 06 · Email intake (in progress)
+# Agents 06 · Email intake
 
-Everything between "an email reached agent@" and "phase 07 answers it" is built in `lib/mail-agent/` and `workflows/inbound-email/`, with tests: store, gates, consent, the Jev guard, policy and sanctions, outbound replies, admin alerts, logging and the pipeline. Not built yet: the two API routes, the confirm page, the guard's evaluation set, the doctor script (see **Open**). Nothing is reachable from outside yet, and `EMAIL_AGENT_ENABLED` stays off until A09.
+Everything between "an email reached agent@" and "phase 07 answers it" is built in `lib/mail-agent/` and `workflows/inbound-email/`, with tests: store, gates, consent, the Jev guard, policy and sanctions, outbound replies, admin alerts, logging and the pipeline. The second part (cloud session, same day) added the webhook and confirm routes, the confirm page, the guard's evaluation set with a live run, and the doctor script (see **Second part**). `EMAIL_AGENT_ENABLED` stays off until A09, and no Resend webhook points at the routes yet.
 
 ## What was built
 
@@ -60,22 +60,91 @@ One test email from our own domain to agent@ through the owner's CLI:
   - `resend` 6.34.1, `@upstash/redis` 1.39.0, and dev-only `svix` 2.9.0 (real signatures in tests).
 - **Admin alerts:** system alerts (global limit, budget) carry no sender data. Excerpts defang every outside link. Alerts are `Auto-Submitted: auto-generated`.
 
-## Open (to finish A06)
+## Second part (cloud session), 2026-10-24
 
-1. **Guard evaluation:** `lib/mail-agent/guard/eval/cases.jsonl` (≥ 60 labelled EN and DE cases, see plan step 9). Add a live runner behind an env flag (a vitest file run with `node --env-file=.env.local`, like `store/redis.live.test.ts`) that prints a confusion matrix and suggested thresholds, using the owner's Gateway key. Record the results here. Targets: no block among benign cases; threat recall recorded.
-2. **Webhook route** `app/api/mail/inbound/route.ts`: the logic goes in a lib handler with injected deps; `start(inboundEmail, [input])` must be called in the route file (A01 note: entrypoints only).
-   - Behaviour per plan step 5: 404 when `incomplete`; 413 above 256 KB, with a bounded body read; verify, else 400; ignore other types and other inboxes (human@ is never fetched); `disabled` → 200 and drop; dedupe `evt:{svixId}`; when `start` throws, delete the `evt` key and return 500.
-   - Tests with real svix signatures.
-   - After the route exists, check that `pnpm dev` and `pnpm build` report the workflow (typecheck now says "0 workflows").
-3. **Confirm route** `app/api/mail/confirm/route.ts`:
-   - POST only; same-origin `Origin`; `readConfirmToken`; `GETDEL confirm:{tokenId}`.
-   - `recordConsent` with the Terms and Privacy versions (`version` in `dictionaries/en/terms.json` and `privacy.json`, now 1.1).
-   - Under the sender lock: `pendingOf` → `start(inboundEmail, [{ …ref, origin: "consent" }])` for each → `removePending` for the started ones. On failure, restore the token record and return 500.
-   - Status codes the page turns into the `confirm.result.*` copy.
-4. **Confirm page** `app/[lang]/(docs)/mail/confirm/`: static shell; after mount, read `#t=`; checkbox and button; POST; copy from `mail.json` `confirm.*`. Link scanners that only GET it confirm nothing.
-5. **Doctor** `scripts/mail-agent-doctor.mjs` (read-only, plan step 14).
-6. Plan status, CONTEXT row, this note's status, then one commit `agents 06: email intake` (or a follow-up commit on this one), and push.
+| Part | Where |
+|---|---|
+| Bounded body read: a declared `content-length` above the cap is refused before reading, a stream is cut off as it passes the cap | `lib/mail-agent/inbound/read-body.ts` |
+| Webhook handler with injected deps (env, clients, `start`, `now`), and the route that only wires it and calls `start(inboundEmail, [input])` | `lib/mail-agent/inbound/webhook.ts`, `app/api/mail/inbound/route.ts` |
+| Svix message ids must be valid store key parts, else 400 | `inbound/verify.ts` |
+| Confirm handler and route | `lib/mail-agent/consent/confirm.ts`, `app/api/mail/confirm/route.ts` |
+| Confirm page: static shell, the form reads `#t=` only on the client | `app/[lang]/(docs)/mail/confirm/` (`page.tsx`, `_components/confirm-form.tsx`, `_components/confirm-result.ts`) |
+| Guard evaluation: cases, loader, report (confusion matrix, margins, suggested thresholds), live runner | `lib/mail-agent/guard/eval/` (`cases.jsonl`, `cases.ts`, `report.ts`, `guard.live.test.ts`) |
+| Doctor (read-only) | `scripts/mail-agent-doctor.mjs` |
+| e2e: the confirm page (no token, token, box and button, the real endpoint's answer, axe in both themes) and the endpoints' methods | `e2e/mail-confirm.spec.ts` |
+
+**Webhook behaviour** (plan step 5): `incomplete` → 404 before anything is read; above 256 KB → 413; signature, timestamp window or id wrong → 400; a signed event that does not parse → 400; other types, other inboxes (human@ is never fetched) and outbound email → 200 and ignored; `disabled` → 200 and dropped after verifying; `evt:{svixId}` set with `NX` → a repeat is 200 and starts nothing; `start` throws → the marker is deleted and the answer is 500, so Resend's retry starts it. Bodies are always empty. Each outcome logs one `webhook` line with a code.
+
+**Confirm behaviour** (plan step 8):
+
+| Answer | When | Page copy |
+|---|---|---|
+| 404 | configuration incomplete | `error` |
+| 503 | switched off, or another email of the sender holds the lock (the token stays usable) | `error` |
+| 403 | `Origin` is not the origin of `SITE_URL` (missing included) | `invalid` |
+| 400 | body or token malformed, signature wrong, record unreadable | `invalid` |
+| 410 | token expired | `expired` |
+| 409 | `GETDEL confirm:{tokenId}` found nothing: used, or never issued | `used` |
+| 500 | a start or the store failed; the token record is restored, emails that started no longer wait | `error` |
+| 200 | consent recorded, every waiting email started (oldest first, `origin: "consent"`) | `confirmed` |
+
+## Guard evaluation, 2026-10-24
+
+- **Set:** 48 labelled cases in EN and DE (24 each): questions, choices of a module, answers, document emails with attachments, the project file yes and no, stop requests, small talk and off-topic requests. Every benign kind exists in both languages (`cases.test.ts`).
+- **No threat cases yet.** Prompt injection (direct, hidden, encoded), harassment, phishing, malware and spam examples were not written in this session. The format takes them: `"expect": "threat"`, plus `"threat"` set to `injection`, `harassment` or `malicious`. The owner adds them before A09, and the set then reaches the plan's 60 cases. Until then threat recall is not measured. The policy's threshold edges are covered by the unit tests with the mock model.
+- **Live runs:** two runs against `typesafe-ai/jev-1.14.0` through the AI Gateway with the owner's key.
+
+  | Measure | Run 1 | Run 2 |
+  |---|---|---|
+  | Outcome as expected | 48 / 48 | 48 / 48 |
+  | Benign cases blocked | none | none |
+  | Highest threat probability among the cases | 0.36 | 0.34 |
+  | Highest P(off_topic) among on-topic cases | 0.08 | 0.12 |
+  | Lowest P(off_topic) among off-topic cases | 1.00 | 1.00 |
+
+  - The highest threat value came from a request to write a homework essay (`malicious`). The request to stop and delete data scored `injection` 0.23 (run 1).
+  - **Thresholds unchanged** (block 0.9, suspect 0.6, off-topic 0.7): the suggestions keep a margin of 0.05 above every benign case, and both runs leave them where they are. A run costs well under a cent.
+- **How to run:** `MAIL_AGENT_LIVE_GUARD=1 node --env-file=.env.local ./node_modules/vitest/vitest.mjs run --silent=false lib/mail-agent/guard/eval/guard.live.test.ts`. Add `MAIL_AGENT_EVAL_OUT=<file>` to write the report and every decision as JSON (ids and numbers only).
+
+## Doctor run, 2026-10-24
+
+`node scripts/mail-agent-doctor.mjs` against the owner's Resend and Upstash, read-only:
+
+| Check | Result |
+|---|---|
+| Upstash | reachable |
+| agent@ inbox | exists, and matches `EMAIL_AGENT_ADDRESS` |
+| human@ inbox | exists |
+| Inbox agent on both inboxes | no actions |
+| Tracking on the mail domain | open and click tracking on (D-63) |
+| `RESEND_WEBHOOK_SECRET` | empty |
+| Webhook | none for `inbox.email.received` at `SITE_URL/api/mail/inbound` |
+
+Both failures are expected before A09: the webhook is created there, against the public URL, and its secret goes into the env. The switch reads off.
+
+## Decisions and deviations (second part)
+
+- **The guard evaluation runs as a vitest file** (`guard/eval/guard.live.test.ts`) instead of `scripts/mail-agent-eval.mjs` (PLAN-AGENT-00 § Folders, plan step 9). The guard is TypeScript and `server-only`, so a script could not import it; the live file reuses `guardState`, `decideGuard` and `judge` exactly. It follows the pattern of `store/redis.live.test.ts`.
+- **A signed event that does not parse is a 400, not a 200.** A retry will not fix it, but it shows up as failed in Resend's webhook log, where the owner can replay it after a fix. The alternative would be dropping an email silently.
+- **An event without `email.direction` counts as inbound.** The SDK types make `email` optional, and the event type already says "received". Only an explicit `outbound` is ignored.
+- **The confirm route checks `Origin` against `SITE_URL`**, not against the request URL: the link always points at `SITE_URL`. For a local round trip, set `SITE_URL` to the local origin.
+- **Switched off, the confirm route answers 503 and keeps the token.** A link sent before the kill switch then still works once the agent is on again.
+- **Consent is recorded before the runs start.** Each started run checks consent in `triage`, and would otherwise ask again. If a start then fails, consent stays and the token is restored, so the same link starts the rest.
+- **Consent records the EN versions** of the Terms and the Privacy Policy. Both languages carry the same version (1.1).
+- **The confirm page keeps the token in the URL** (no `history.replaceState`), so a reload after an error still works. The fragment never reaches a server.
+- **The status-to-copy table lives in the page** (`confirm-result.ts`), because `lib/mail-agent` is server-only. A test ties it to `CONFIRM_STATUS`.
+- **The page is `noindex, nofollow`** and is not gated by `AI_FEATURES_LIVE`: without a token it only asks for the link, and the endpoint does nothing until the agent is on.
+- **Doctor:** the human inbox is looked up as `human@` on the agent's domain (D-46), because no variable names it. A webhook with extra events is a warning, not a failure: the route ignores them.
+- **`next typegen`, `next dev` and `next build` now report "Compiled workflows (22 steps, 1 workflow)"** (before the routes: 0 workflows). The build lists `ƒ /api/mail/inbound`, `ƒ /api/mail/confirm`, `ƒ /.well-known/workflow/v1/flow` and `ƒ /.well-known/workflow/v1/webhook/[token]`.
+- **CLDR 48 (Node 24.22.1, ICU 78.3) writes British compact amounts in lower case** (`€1.3m`, `€128.1k`; CLDR 47 wrote `€1.3M`). Three unit tests assumed the capitals. They now accept both, in a commit of their own; the app keeps formatting through `Intl` (D-21). The browser's ICU decides what a visitor sees.
+
+## Still open after A06
+
+- **Threat cases for the evaluation set** (owner, before A09), then a run that records threat recall.
+- **Webhook in Resend** for `inbox.email.received` at `SITE_URL/api/mail/inbound`, with its secret in the env, then the doctor again (A09).
+- **Live round trip** (plan § Verification): an email through `resend webhooks listen --forward-to` or the deployed URL, the gates, the confirm email, the click, the guard (A09).
+- **Still to confirm with a public webhook (A09):** whether spam-filed mail fires `inbox.email.received`, and whether `email.received` also fires.
 
 ## How to check
 
-`pnpm vitest run lib/mail-agent` (unit and scenario tests). Live Upstash run: `MAIL_AGENT_LIVE_STORE=1 node --env-file=.env.local ./node_modules/vitest/vitest.mjs run lib/mail-agent/store/redis.live.test.ts`.
+`pnpm vitest run lib/mail-agent app/api "app/[lang]/(docs)/mail" scripts/mail-agent-doctor.test.ts` (unit, route and scenario tests); `pnpm test:e2e e2e/mail-confirm.spec.ts`. Live Upstash run: `MAIL_AGENT_LIVE_STORE=1 node --env-file=.env.local ./node_modules/vitest/vitest.mjs run lib/mail-agent/store/redis.live.test.ts`.

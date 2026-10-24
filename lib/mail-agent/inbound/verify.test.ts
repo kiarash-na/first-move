@@ -35,6 +35,10 @@ describe("verifyWebhook", () => {
     expect(verifyWebhook(resend, body, signed(body, now - 299_000), secret, now).ok).toBe(true)
   })
 
+  it("refuses a message id that could not be a store key", () => {
+    expect(verifyWebhook(resend, body, signed(body, now, "msg 1/../x"), secret, now)).toEqual({ ok: false })
+  })
+
   it("refuses a malformed timestamp", () => {
     const headers = signed(body)
     headers.set("svix-timestamp", "soon")

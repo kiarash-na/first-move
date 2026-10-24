@@ -33,7 +33,7 @@ Planned on 2026-10-24; the owner said go the same day (D-64, D-65). Few agents (
 | A03 | [Shared AI core](2026-10-24_agents-03_ai-core.md) | A01 | done |
 | A04 | [Public docs and knowledge index](2026-10-24_agents-04_public-docs.md) | A03 | in-progress (built, checks green, review open: [handoff](../notes/2026-10-24_handoff.md)) |
 | A05 | [In-app assistant (BYOK)](2026-10-24_agents-05_assistant.md) | A03, A04 | todo |
-| A06 | [Email intake: webhook, gates, consent, guard, store](2026-10-24_agents-06_mail-intake.md) ([progress](../notes/2026-10-24_agents-06_mail-intake.md)) | A03 | in-progress |
+| A06 | [Email intake: webhook, gates, consent, guard, store](2026-10-24_agents-06_mail-intake.md) ([note](../notes/2026-10-24_agents-06_mail-intake.md)) | A03 | done (threat cases for the guard evaluation: owner, before A09) |
 | A07 | [Email conversation, extraction, on-brand results](2026-10-24_agents-07_mail-conversation.md) | A04, A06 | todo |
 | A08 | [Legal texts, docs, go-live switch](2026-10-24_agents-08_legal.md) | A05, A07 | todo |
 | A09 | [QA, security review, live test, go-live](2026-10-24_agents-09_qa-go-live.md) | A08 | todo |
