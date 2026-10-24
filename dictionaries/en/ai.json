@@ -6,7 +6,7 @@
   "title": "AI Transparency",
   "intro": "This page explains where First Move uses artificial intelligence and where it does not, how the optional AI features work, how we classify them under the EU Artificial Intelligence Act (Regulation (EU) 2024/1689, the \"AI Act\") and what you should check when you use them.",
   "updated": "2026-10-24",
-  "version": "1.0",
+  "version": "1.1",
   "status": {
     "planned": "The AI features in the app described on this page are not available yet, and the First Move app currently contains no AI system. This page explains how the features will work once they are released.",
     "live": "The AI features described on this page are available. They are optional, stay off until you set them up, and run only when you use them."
@@ -43,12 +43,12 @@
       "heading": "How the features run: your provider, your key",
       "body": [
         "When the AI features are available, they work on a bring-your-own-key basis:",
-        "1. You choose an AI provider and obtain an API key from your account with that provider.",
-        "2. You enter the key in First Move. It is kept only in your browser.",
+        "1. You choose an AI provider, Anthropic or OpenRouter (whose Auto Router picks a model for each question), and obtain an API key from your account there. Set a spending limit for the key at the provider.",
+        "2. You enter the key in First Move, or connect your OpenRouter account. The key is kept only in your browser: for the current session only, or, if you choose, on this device, encrypted and locked with a 6-digit PIN.",
         "3. When you use a function, your browser sends the request directly to that provider, with your key, and receives the response.",
         "4. First Move shows you the answer or the proposed values, marked as AI-generated.",
         "We run no AI server. Your key and the content you send never reach us: we do not receive, store or see them, and we are not a processor acting on your behalf for this content (GDPR Art. 28). The provider is a separate party, and its own terms and privacy policy govern what it does with your requests.",
-        "This page lists the providers you can connect, once there are any."
+        "This page lists the providers with their details once the features are available."
       ]
     },
     {
@@ -120,12 +120,13 @@
       "heading": "Your data, your key, your provider",
       "body": [
         "When the AI features are available, the following applies:",
-        "- **You decide what is sent.** A request leaves your browser only when you start it, and it goes only to the provider you chose. Before you supply a document or ask a question, consider what it contains.",
+        "- **You decide what is sent.** A request leaves your browser only when you start it, and it goes only to the provider you chose. A question sends the question itself, the open project's inputs and results, and the documents you attach; nothing from your other projects. Before you supply a document or ask a question, consider what it contains.",
         "- **Take care with personal and confidential data.** Do not send personal data of other people, such as the names or contact details of residents, owners or colleagues, or confidential documents, unless you are allowed to, for example under a legal basis in data protection law, your organisation's rules or a contract.",
         "- **The provider's terms apply.** The provider processes your requests under its own terms and privacy policy. Before you send anything, check where it processes data, whether it uses your inputs to train models, and how long it keeps them.",
         "- **The costs are yours.** Requests are billed to your account with the provider at its prices. First Move itself is free and charges nothing for the AI features.",
-        "- **Protect your key.** Treat the API key like a password. Do not share it, use spending limits if your provider offers them, and rotate the key regularly, and at once if you think it has been exposed.",
+        "- **Protect your key.** Treat the API key like a password. Do not share it, set a spending limit at your provider (the app asks you to confirm this), and rotate the key regularly, and at once if you think it has been exposed. A key you keep on this device is locked with your PIN; five wrong PINs delete it.",
         "- **You can remove the key in the app at any time.** Removing it from First Move does not revoke it; to revoke it, delete it in your account with the provider.",
+        "- **Chat history stays on your device.** The conversation is kept in your browser, per project. You can switch this off and clear it.",
         "We never receive your key, your questions, your documents or the answers, so we cannot see, recover or delete them. How First Move handles data in general is described in the [Privacy Policy](/privacy#ai-features)."
       ]
     },
@@ -150,7 +151,10 @@
         "Messages to [{{operator.emailAgent}}](mailto:{{operator.emailAgent}}) are answered by an AI system. We say so here and in the [Imprint](/imprint) so that you know before you write that you will be dealing with an AI system (Art. 50(1)). This mailbox is separate from the AI features in the app and does not depend on them.",
         "- Replies from this address are written by an AI system and may be wrong.",
         "- They are not legally binding statements and bind no one, neither us nor you.",
-        "- To prepare a reply, an AI service provider processes the text of your message, in addition to our e-mail provider {{mail.name}}. The [Privacy Policy](/privacy#email) has the details.",
+        "- To prepare a reply, the AI service providers named in the [Privacy Policy](/privacy#email) process your message and its attachments, in addition to our e-mail provider {{mail.name}}: a decision model (Jev by TypeSafe AI) checks relevance and misuse, and Claude Haiku by Anthropic writes the answer. Quick Check results come from First Move's calculation, not from AI.",
+        "- The first time you write, you confirm once through a link; nothing is processed by AI before that. Confirming accepts the [Terms](/terms) and e-mails about your request, with no marketing.",
+        "- Stay on topic: a first off-topic message gets a warning, a second one pauses the mailbox for you for 30 days. Attempts to manipulate the assistant, harassment and other misuse block the sender, and we are told about it.",
+        "- Replies are sent automatically; a person does not review them. Our e-mails carry minimal tracking ([E-mail tracking](/privacy#email-tracking)).",
         "> For privacy requests, legal matters and anything sensitive, write to [{{operator.emailHuman}}](mailto:{{operator.emailHuman}}), which is read by a person. Requests to exercise your data protection rights must go to that address."
       ]
     },

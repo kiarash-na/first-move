@@ -1,12 +1,12 @@
 {
   "meta": {
     "title": "Privacy Policy",
-    "description": "How First Move handles personal data: your projects stay in your browser, there is no tracking, and only our web host and e-mail provider process the data needed to run the site and answer you."
+    "description": "How First Move handles personal data: your projects stay in your browser, the website has no tracking, and only the service providers named here process the data needed to run the site and answer your e-mails."
   },
   "title": "Privacy Policy",
   "intro": "This Privacy Policy explains which personal data is processed when you use First Move at {{site.domain}} or write to us, for what purposes and on which legal basis, and which rights you have. It provides the information required by Art. 13 and 14 of the General Data Protection Regulation (GDPR, Regulation (EU) 2016/679). Personal data means any information relating to an identified or identifiable person (Art. 4(1) GDPR).",
   "updated": "2026-10-24",
-  "version": "1.0",
+  "version": "1.1",
   "sections": [
     {
       "id": "summary",
@@ -14,9 +14,9 @@
       "body": [
         "First Move is built so that your work does not leave your device. In short:",
         "- **Your projects stay in your browser.** There are no accounts, passwords or project databases on any server. We never receive your projects, so we cannot read, share or recover them.",
-        "- **No tracking.** There is no analytics, no advertising, no social widget and no third-party script, font, map or embed.",
+        "- **No tracking on the website.** There is no analytics, no advertising, no social widget and no third-party script, font, map or embed. E-mails we send carry minimal tracking, described separately under [E-mail tracking](#email-tracking).",
         "- **Our web host** processes the technical data that every website visit involves, such as your IP address, to deliver the site and keep it secure.",
-        "- **If you write to us**, we process your e-mail to answer it. Messages to `{{operator.emailAgent}}` are answered by an AI system.",
+        "- **If you write to us**, we process your e-mail to answer it. Messages to `{{operator.emailAgent}}` are answered by an AI system, after you confirm once ([E-mail](#email)).",
         "- **AI features**, once available, are optional. Your browser then talks directly to the AI provider you chose, with your own key. We receive neither the content nor the key.",
         "- **Your rights** are set out under [Your rights](#rights). To exercise them, write to [{{operator.emailHuman}}](mailto:{{operator.emailHuman}}).",
         "You are not obliged by law or contract to provide personal data. Without the technical data of a request, however, your browser cannot load the site, and without your e-mail address we cannot reply to you."
@@ -75,26 +75,42 @@
         "- [{{operator.emailHuman}}](mailto:{{operator.emailHuman}}) is read by a person. Use it for privacy questions, requests about your rights and legal matters.",
         "- [{{operator.emailAgent}}](mailto:{{operator.emailAgent}}) is answered by an AI system.",
         "> Replies from {{operator.emailAgent}} are written by an AI system. They may be wrong and are not legally binding statements. Send privacy and legal-rights requests only to {{operator.emailHuman}}.",
-        "**What we process**: your e-mail address, your name if you give it, the content of your message and anything you include in it, and the time it was sent.",
+        "**What we process**: your e-mail address, your name if you give it, the content of your message, attached files and anything else you include, and the time it was sent.",
         "**Purpose and legal basis**: to read and answer your message. The legal basis is Art. 6(1)(f) GDPR, our legitimate interest in answering messages sent to us, and Art. 6(1)(b) GDPR where your message concerns your use of First Move under our [Terms of Use](/terms).",
         "**E-mail provider**: e-mails to and from both addresses are sent and received through {{mail.name}} ([{{mail.url}}]({{mail.url}})), using its {{mail.region}}. The provider processes them on our behalf as a processor (Art. 28 GDPR). Because it is a company based in the {{mail.country}}, access from outside the EU cannot be fully excluded. That transfer relies on the EU standard contractual clauses (Art. 46(2)(c) GDPR).",
-        "**AI-answered mailbox**: messages to {{operator.emailAgent}} are also processed by an AI service provider, which processes the text of the message to prepare the reply. Replies from that address are written by an AI system, and you are told so (Art. 50(1) AI Act, Regulation (EU) 2024/1689). The legal basis is Art. 6(1)(f) GDPR: our legitimate interest in answering general enquiries quickly. If you do not want your message processed by an AI service, write to {{operator.emailHuman}} instead.",
-        "**Retention**: we keep e-mails as long as needed to handle your request and then delete them, unless statutory retention duties apply."
+        "**AI-answered mailbox**: the first time you write to {{operator.emailAgent}}, we keep your message, encrypted, and send you a link to confirm once. Nothing is processed by AI before you confirm, and an unconfirmed message is deleted after 7 days. By confirming you accept the [Terms of Use](/terms) and e-mails about your request, with no marketing. After that, a decision model (Jev by TypeSafe AI, requested through Vercel's AI Gateway with zero data retention) checks each message for relevance and misuse, and Claude Haiku by Anthropic reads your message and any attached files to answer from our public docs and to fill in project values. Quick Check results are computed by First Move's own calculation, not by AI. We process mail only if the sender passes e-mail authentication (DMARC); other mail is ignored. Replies are written by an AI system, and you are told so (Art. 50(1) AI Act, Regulation (EU) 2024/1689). The legal basis is Art. 6(1)(b) GDPR for the service you ask for once you have confirmed, and Art. 6(1)(f) GDPR, our legitimate interest in checking messages and preventing misuse. If you do not want your message processed by an AI service, write to {{operator.emailHuman}} instead.",
+        "**Rules of the AI mailbox**: it handles questions about First Move and fifth-generation district heating and cooling. A first off-topic message gets one warning; a second one pauses the mailbox for you for 30 days. Attempts to manipulate the assistant, harassment and other misuse block the sender, and we are told what happened. For these records we keep your address only in hashed form; the conversation itself is stored encrypted ([How long data is kept](#retention)).",
+        "**Retention**: we keep e-mails as long as needed to handle your request and then delete them, unless statutory retention duties apply. The periods for {{operator.emailAgent}} are listed under [How long data is kept](#retention)."
+      ]
+    },
+    {
+      "id": "email-tracking",
+      "heading": "E-mail tracking",
+      "body": [
+        "The website itself has no tracking. E-mails are a separate matter: our e-mail provider {{mail.name}} adds minimal tracking to the e-mails we send from both addresses.",
+        "- **Opens**: a tiny invisible image records whether and when an e-mail was opened.",
+        "- **Clicks**: links in our e-mails pass through the provider's tracking address, which records the click and then takes you to the link.",
+        "**Purpose**: to see whether our replies arrive and are read. We build no profiles, do not combine this with other data and do not use it for advertising.",
+        "**Legal basis**: Art. 6(1)(f) GDPR, our legitimate interest in knowing that our replies reach you.",
+        "**How to avoid it**: if your e-mail program blocks images, no open is recorded. Links still pass through the tracking address.",
+        "**Retention**: the provider keeps these events with the e-mail for 30 days."
       ]
     },
     {
       "id": "ai-features",
       "heading": "AI features in the app",
       "body": [
-        "First Move plans two optional AI features: answering questions about your project data, and reading documents you supply (for example PDFs) to propose values for a project's fields. The [AI transparency](/ai) page shows whether they are available today and which providers you can choose.",
+        "First Move plans two optional AI features: answering questions about your project data, and reading documents you supply (for example PDFs) to propose values for a project's fields. The [AI transparency](/ai) page shows whether they are available today and which providers you can choose. The providers are Anthropic and OpenRouter (including OpenRouter's Auto Router, which picks a model for each question).",
         "When the AI features are available, they work as follows:",
         "- **Off until you set them up**: nothing is sent to an AI provider until you set up a feature and use it.",
         "- **Your own key**: your browser sends your request directly to the AI provider you chose, with your own API key. We run no AI server.",
         "- **We receive nothing**: we never receive the content you send or your key, and we are not a processor for this data. The provider is a separate party, and its own terms and privacy policy apply to what you send. As with any server your browser connects to, the provider also sees your IP address.",
-        "- **Your key stays with you**: the key is kept only in your browser. You can remove it in the app at any time.",
-        "- **You decide what is sent**: the provider receives only the questions, project data and documents you choose to send. Do not send personal data of other people or confidential documents unless you are allowed to.",
+        "- **Your key stays with you**: the key is kept only in your browser: for the current session only, or, if you choose, on this device, encrypted and locked with a 6-digit PIN. Five wrong PINs delete it. You can remove it in the app at any time.",
+        "- **You decide what is sent**: a question sends the question itself, the open project's inputs and results, and the documents you attach; nothing from your other projects. Do not send personal data of other people or confidential documents unless you are allowed to.",
         "- **You confirm every value**: the AI only proposes values. Nothing is applied to a project until you confirm it.",
-        "Keeping your key and your settings for these features on your device is strictly necessary for a function you expressly set up (§ 25(2) no. 2 TDDDG). The [AI transparency](/ai) page explains in detail how the features work and what to check."
+        "- **Set a spending limit**: requests are billed to your account with the provider. Set a spending limit for your key there before you use it; the app asks you to confirm that you have.",
+        "- **Chat history**: kept only in your browser, per project. You can switch it off and clear it.",
+        "Keeping your key, your chat history and your settings for these features on your device is strictly necessary for a function you expressly set up (§ 25(2) no. 2 TDDDG). The [AI transparency](/ai) page explains in detail how the features work and what to check."
       ]
     },
     {
@@ -115,7 +131,10 @@
         "|---|---|---|",
         "| {{hosting.name}}, web hosting | Delivers the website and processes server log data ([Hosting](#hosting)) | {{hosting.country}}; EU-U.S. Data Privacy Framework, adequacy decision of 10 July 2023 (Art. 45 GDPR) |",
         "| {{mail.name}}, e-mail | Sends and receives e-mail for both addresses ([E-mail](#email)) | {{mail.country}} company, {{mail.region}}; EU standard contractual clauses (Art. 46(2)(c) GDPR) |",
-        "| An AI service provider for {{operator.emailAgent}} | Processes the text of messages to that address to prepare the reply | To be named on this page; a transfer outside the EU takes place only with a safeguard under Art. 44 to 46 GDPR |",
+        "| {{hosting.name}}, functions, workflows and AI Gateway | Runs the AI mailbox: receives the e-mail events, processes them and passes the model requests on ([E-mail](#email)) | {{hosting.country}}; EU-U.S. Data Privacy Framework, adequacy decision of 10 July 2023 (Art. 45 GDPR) |",
+        "| TypeSafe AI, decision model Jev | Checks each message to {{operator.emailAgent}} for relevance and misuse | USA; requested through Vercel's AI Gateway with zero data retention; a transfer takes place only with a safeguard under Art. 44 to 46 GDPR |",
+        "| Anthropic PBC, Claude Haiku | Reads messages and attached files sent to {{operator.emailAgent}}, to answer from the public docs and fill in project values | USA; a transfer takes place only with a safeguard under Art. 44 to 46 GDPR |",
+        "| Upstash, Inc., Upstash Redis | Stores the records of the AI mailbox: hashed sender ids, the encrypted conversation, confirmations, warnings and blocks | Database in the EU; US company; a transfer takes place only with a safeguard under Art. 44 to 46 GDPR |",
         "| The AI provider you choose (planned) | Answers your questions and proposes values, only when you use the AI features ([AI features](#ai-features)) | Chosen by you; your browser contacts it directly under the provider's own terms; we send it nothing |"
       ]
     },
@@ -128,7 +147,8 @@
         "- **E-mails**: as long as needed to handle your request, then deleted, unless statutory retention duties apply.",
         "- **Projects and settings in your browser**: they stay until you delete them. We hold no copy.",
         "- **Exported files**: they stay wherever you saved them, under your control.",
-        "- **AI features**: what you send to an AI provider is kept according to that provider's terms."
+        "- **AI mailbox ({{operator.emailAgent}})**: an unconfirmed first message for 7 days; the conversation for 30 days after your last message; warnings for 90 days; a pause for 30 days; a block until we delete it; your confirmation for 12 months after your last message. The e-mails themselves stay with {{mail.name}} for 30 days, and its account logs are kept in the USA.",
+        "- **AI features**: what you send to an AI provider is kept according to that provider's terms. Your chat history stays in your browser until you clear it."
       ]
     },
     {
@@ -156,7 +176,8 @@
         "We make no decisions based solely on automated processing, including profiling, that have legal effects on you or affect you in a similarly significant way (Art. 22 GDPR).",
         "- Quick Check and Business Plan results are calculations from published equations and default values, shown to you as an initial indication. They are not decisions about you.",
         "- Replies from {{operator.emailAgent}} are written by an AI system. They answer your message and are not decisions about you.",
-        "- When the AI features are available, they only propose values. You decide what to accept."
+        "- When the AI features are available, they only propose values. You decide what to accept.",
+        "- The AI mailbox pauses or blocks a sender automatically after off-topic messages or detected misuse. This concerns only that mailbox and has no legal or similarly significant effect: you can always write to {{operator.emailHuman}}, which a person reads."
       ]
     },
     {
@@ -166,7 +187,7 @@
         "First Move is designed to keep the data that leaves your device to a minimum:",
         "- The host delivers the site over an encrypted connection (HTTPS).",
         "- Your projects are stored only on your device, not on any server.",
-        "- A Content-Security-Policy limits the connections the page may open to the site itself.",
+        "- A Content-Security-Policy limits the connections the page may open to the site itself. On dashboard pages it also allows the two AI providers of the assistant (`api.anthropic.com`, `openrouter.ai`); your browser contacts them only when you use the assistant.",
         "- The site loads no third-party scripts, fonts or embeds.",
         "- The site sends `Referrer-Policy: no-referrer`, so other sites are not told which page you came from.",
         "Your projects are only as safe as your device. Anyone with access to your browser profile can open them. Protect your device, and keep exported files as carefully as your other work files."

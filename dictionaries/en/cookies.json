@@ -6,7 +6,7 @@
   "title": "Cookie Policy",
   "intro": "This policy explains which cookie and which other browser storage First Move uses, what each one is for, and how you can delete or block them.",
   "updated": "2026-10-24",
-  "version": "1.0",
+  "version": "1.1",
   "sections": [
     {
       "id": "summary",
@@ -16,7 +16,7 @@
         "- First Move sets **one cookie**, `NEXT_LOCALE`. It remembers your language and contains no personal data.",
         "- Your settings and projects are kept in **your browser's storage** (localStorage, sessionStorage and IndexedDB), not on a server. There are no accounts and no server database, so we never receive this data.",
         "- Everything is first-party, stays on your device and is used only to provide the service you asked for.",
-        "- No analytics, no advertising, no tracking and no third-party cookies.",
+        "- No analytics, no advertising, no tracking and no third-party cookies on the website. E-mails we send are covered separately under [E-mail tracking](/privacy#email-tracking).",
         "- Because all of it is strictly necessary, we do not ask for consent. There is nothing to accept or reject.",
         "- Clearing your browser data deletes your projects, so export them first ([Delete or block](#manage))."
       ]
@@ -35,8 +35,12 @@
         "| `first-move:notice-ack` | localStorage | Records that you dismissed the cookie notice. | Until deleted |",
         "| `first-move:active-project` | sessionStorage | Which project is open in this tab. | Until the tab closes |",
         "| `first-move` | IndexedDB database with the stores `projects`, `snapshots`, `backups` and `file-links` | Your projects (`projects`, the primary store), earlier states of each project (`snapshots`), export bookkeeping (`backups`) and handles of files you linked (`file-links`). | Until deleted |",
+        "| `first-move:sidebar` | localStorage | Remembers that you collapsed the dashboard sidebar. | Until deleted |",
+        "| `first-move:assistant` | localStorage | Your AI assistant settings: provider, model, panel size and whether chat history is on. Never your key. | Until deleted |",
+        "| `first-move:assistant-oauth` | sessionStorage | One-time values while you connect your OpenRouter account; removed when that finishes. | Until the connection finishes or the tab closes |",
+        "| `first-move-assistant` | IndexedDB database with the stores `vault` and `chats` | Your API key if you chose to keep it on this device, encrypted and locked with your PIN (`vault`), and your chat history per project (`chats`). | Until deleted |",
         "| `first-move:storage` | BroadcastChannel | Keeps several tabs of First Move in the same browser in sync. Stores nothing. | While a tab is open |",
-        "‘Until deleted’ means the entry stays until you or the app delete it, or your browser clears it.",
+        "‘Until deleted’ means the entry stays until you or the app delete it, or your browser clears it. The assistant entries exist only once you set up the AI assistant, and `first-move:sidebar` only once you collapse the sidebar.",
         "To check that storage works, the app briefly writes a test entry, `first-move:probe`, to localStorage or sessionStorage and removes it straight away.",
         "The app also asks your browser to keep this storage persistent (`navigator.storage.persist()`), so the browser is less likely to clear your projects on its own. Your browser decides whether to grant this.",
         "In Chromium-based browsers you can link a project to a file on your disk (File System Access API). The browser then keeps a handle to that file in the `file-links` store. The file stays on your disk, and nothing is uploaded."
@@ -59,7 +63,7 @@
       "heading": "Legal basis",
       "body": [
         "Storing information on your device, or reading information already stored there, needs no consent when it is strictly necessary to provide a service you have expressly requested (§ 25(2) no. 2 TDDDG, which implements Art. 5(3) of the ePrivacy Directive 2002/58/EC).",
-        "Every entry in the [table](#what-we-use) meets this test. Each one shows the site in your language, remembers a setting, or keeps and syncs the projects you work on. None serves any other purpose.",
+        "Every entry in the [table](#what-we-use) meets this test. Each one shows the site in your language, remembers a setting, keeps and syncs the projects you work on, or keeps the AI assistant you set up working. None serves any other purpose.",
         "To the extent these entries contain personal data, for example details you enter in a project, the legal basis is Art. 6(1)(b) GDPR (providing the service under our [Terms of Use](/terms)) and Art. 6(1)(f) GDPR (our legitimate interest in an app that works reliably and remembers your settings). The [Privacy Policy](/privacy) explains how First Move handles personal data."
       ]
     },
@@ -70,7 +74,8 @@
         "First Move contains no analytics, no advertising, no tracking pixels and no social media widgets.",
         "It loads no scripts, fonts, maps or embedded content from third parties. Our fonts are served from our own site.",
         "We do not use any of the entries to identify you, build a profile or follow you across websites.",
-        "The site sends the header `Referrer-Policy: no-referrer`, so your browser does not tell other sites which page of First Move you came from. Its Content Security Policy limits the app's connections to its own origin."
+        "The site sends the header `Referrer-Policy: no-referrer`, so your browser does not tell other sites which page of First Move you came from. Its Content Security Policy limits the app's connections to its own origin and, on dashboard pages, to the two AI providers of the assistant.",
+        "E-mails are a separate matter: the e-mails we send contain minimal tracking by our e-mail provider, described under [E-mail tracking](/privacy#email-tracking)."
       ]
     },
     {
@@ -80,7 +85,7 @@
         "First Move sets no third-party cookies and gives no third party access to the storage listed here.",
         "Our hosting provider, {{hosting.name}}, delivers the pages and processes ordinary request data to do so. The [Privacy Policy](/privacy) describes what it processes and why.",
         "Links to other websites, such as GitHub in the footer, take you to services with their own cookie and privacy policies. Those apply once you follow the link.",
-        "When the optional AI features are available and you set them up, your browser sends the requests you trigger directly to the AI provider you chose, and that provider's terms and policies apply. This policy lists the entries those features keep in your browser, such as your API key, once they are available. See [AI transparency](/ai)."
+        "When the optional AI features are available and you set them up, your browser sends the requests you trigger directly to the AI provider you chose, and that provider's terms and policies apply. The entries the assistant keeps in your browser, such as your encrypted API key, are listed in the [table](#what-we-use). See [AI transparency](/ai)."
       ]
     },
     {

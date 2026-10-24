@@ -1,12 +1,12 @@
 {
   "meta": {
     "title": "Datenschutzerklärung",
-    "description": "Wie First Move mit personenbezogenen Daten umgeht: Ihre Projekte bleiben in Ihrem Browser, es gibt kein Tracking, und nur unser Webhoster und unser E-Mail-Anbieter verarbeiten die Daten, die für den Betrieb der Website und für unsere Antworten nötig sind."
+    "description": "Wie First Move mit personenbezogenen Daten umgeht: Ihre Projekte bleiben in Ihrem Browser, die Website verwendet kein Tracking, und nur die hier genannten Dienstleister verarbeiten die Daten, die für den Betrieb der Website und für unsere Antworten auf E-Mails nötig sind."
   },
   "title": "Datenschutzerklärung",
   "intro": "Diese Datenschutzerklärung erläutert, welche personenbezogenen Daten verarbeitet werden, wenn Sie First Move unter {{site.domain}} nutzen oder uns schreiben, zu welchen Zwecken und auf welcher Rechtsgrundlage dies geschieht und welche Rechte Sie haben. Sie enthält die Informationen nach Art. 13 und 14 der Datenschutz-Grundverordnung (DSGVO, Verordnung (EU) 2016/679). Personenbezogene Daten sind alle Informationen, die sich auf eine identifizierte oder identifizierbare Person beziehen (Art. 4 Nr. 1 DSGVO).",
   "updated": "2026-10-24",
-  "version": "1.0",
+  "version": "1.1",
   "sections": [
     {
       "id": "summary",
@@ -14,9 +14,9 @@
       "body": [
         "First Move ist so gebaut, dass Ihre Arbeit Ihr Gerät nicht verlässt. Kurz gesagt:",
         "- **Ihre Projekte bleiben in Ihrem Browser.** Es gibt keine Konten, keine Passwörter und keine Projektdatenbanken auf einem Server. Wir erhalten Ihre Projekte nie und können sie daher weder lesen noch weitergeben oder wiederherstellen.",
-        "- **Kein Tracking.** Es gibt keine Analyse, keine Werbung, keine Social-Media-Widgets und keine Skripte, Schriften, Karten oder eingebetteten Inhalte von Dritten.",
+        "- **Kein Tracking auf der Website.** Es gibt keine Analyse, keine Werbung, keine Social-Media-Widgets und keine Skripte, Schriften, Karten oder eingebetteten Inhalte von Dritten. E-Mails, die wir senden, enthalten ein minimales Tracking, das gesondert unter [E-Mail-Tracking](#email-tracking) beschrieben ist.",
         "- **Unser Webhoster** verarbeitet die technischen Daten, die bei jedem Website-Besuch anfallen, etwa Ihre IP-Adresse, um die Website auszuliefern und sicher zu betreiben.",
-        "- **Wenn Sie uns schreiben**, verarbeiten wir Ihre E-Mail, um sie zu beantworten. Nachrichten an `{{operator.emailAgent}}` beantwortet ein KI-System.",
+        "- **Wenn Sie uns schreiben**, verarbeiten wir Ihre E-Mail, um sie zu beantworten. Nachrichten an `{{operator.emailAgent}}` beantwortet ein KI-System, nachdem Sie einmal bestätigt haben ([E-Mail](#email)).",
         "- **KI-Funktionen** sind, sobald sie verfügbar sind, freiwillig. Ihr Browser kommuniziert dann direkt mit dem KI-Anbieter, den Sie gewählt haben, und nutzt dabei Ihren eigenen Schlüssel. Wir erhalten weder die Inhalte noch den Schlüssel.",
         "- **Ihre Rechte** finden Sie unter [Ihre Rechte](#rights). Um sie auszuüben, schreiben Sie an [{{operator.emailHuman}}](mailto:{{operator.emailHuman}}).",
         "Sie sind weder gesetzlich noch vertraglich verpflichtet, personenbezogene Daten bereitzustellen. Ohne die technischen Daten einer Anfrage kann Ihr Browser die Website jedoch nicht laden, und ohne Ihre E-Mail-Adresse können wir Ihnen nicht antworten."
@@ -75,26 +75,42 @@
         "- [{{operator.emailHuman}}](mailto:{{operator.emailHuman}}) wird von einem Menschen gelesen. Nutzen Sie diese Adresse für Datenschutzfragen, Anfragen zu Ihren Rechten und rechtliche Anliegen.",
         "- [{{operator.emailAgent}}](mailto:{{operator.emailAgent}}) wird von einem KI-System beantwortet.",
         "> Antworten von {{operator.emailAgent}} verfasst ein KI-System. Sie können fehlerhaft sein und sind keine rechtsverbindlichen Erklärungen. Senden Sie Datenschutzanfragen und Anfragen zu Ihren Rechten ausschließlich an {{operator.emailHuman}}.",
-        "**Was wir verarbeiten**: Ihre E-Mail-Adresse, Ihren Namen, falls Sie ihn angeben, den Inhalt Ihrer Nachricht und alles, was Sie ihr beifügen, sowie den Zeitpunkt des Versands.",
+        "**Was wir verarbeiten**: Ihre E-Mail-Adresse, Ihren Namen, falls Sie ihn angeben, den Inhalt Ihrer Nachricht, angehängte Dateien und alles Weitere, was Sie ihr beifügen, sowie den Zeitpunkt des Versands.",
         "**Zweck und Rechtsgrundlage**: Ihre Nachricht zu lesen und zu beantworten. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO, unser berechtigtes Interesse an der Beantwortung von Nachrichten, die an uns gerichtet sind, sowie Art. 6 Abs. 1 lit. b DSGVO, soweit Ihre Nachricht Ihre Nutzung von First Move nach unseren [Nutzungsbedingungen](/terms) betrifft.",
         "**E-Mail-Anbieter**: E-Mails an und von beiden Adressen werden über {{mail.name}} ([{{mail.url}}]({{mail.url}})) gesendet und empfangen, und zwar über dessen Serverregion „{{mail.region}}“. Der Anbieter verarbeitet sie in unserem Auftrag als Auftragsverarbeiter (Art. 28 DSGVO). Da es sich um ein Unternehmen mit Sitz in den {{mail.country}} handelt, lässt sich ein Zugriff von außerhalb der EU nicht vollständig ausschließen. Diese Übermittlung stützt sich auf die EU-Standardvertragsklauseln (Art. 46 Abs. 2 lit. c DSGVO).",
-        "**KI-beantwortetes Postfach**: Nachrichten an {{operator.emailAgent}} werden zusätzlich von einem KI-Dienstleister verarbeitet, der den Text der Nachricht verarbeitet, um die Antwort vorzubereiten. Antworten von dieser Adresse verfasst ein KI-System, und Sie werden darauf hingewiesen (Art. 50 Abs. 1 KI-Verordnung, Verordnung (EU) 2024/1689). Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO: unser berechtigtes Interesse, allgemeine Anfragen zügig zu beantworten. Wenn Sie nicht möchten, dass Ihre Nachricht von einem KI-Dienst verarbeitet wird, schreiben Sie stattdessen an {{operator.emailHuman}}.",
-        "**Speicherdauer**: Wir bewahren E-Mails so lange auf, wie es zur Bearbeitung Ihrer Anfrage erforderlich ist, und löschen sie danach, sofern keine gesetzlichen Aufbewahrungspflichten bestehen."
+        "**KI-beantwortetes Postfach**: Wenn Sie {{operator.emailAgent}} zum ersten Mal schreiben, bewahren wir Ihre Nachricht verschlüsselt auf und senden Ihnen einen Link, mit dem Sie einmal bestätigen. Vor Ihrer Bestätigung wird nichts von KI verarbeitet; eine unbestätigte Nachricht wird nach 7 Tagen gelöscht. Mit der Bestätigung akzeptieren Sie die [Nutzungsbedingungen](/terms) und E-Mails zu Ihrer Anfrage, ohne Werbung. Danach prüft ein Entscheidungsmodell (Jev von TypeSafe AI, abgerufen über das AI Gateway von Vercel ohne Datenspeicherung beim Modellanbieter) jede Nachricht auf Themenbezug und Missbrauch, und Claude Haiku von Anthropic liest Ihre Nachricht und angehängte Dateien, um aus unserer öffentlichen Dokumentation zu antworten und Projektwerte einzutragen. Die Ergebnisse des Quick Check berechnet First Move selbst, nicht die KI. Wir verarbeiten nur E-Mails, deren Absender die E-Mail-Authentifizierung (DMARC) besteht; andere E-Mails werden ignoriert. Antworten verfasst ein KI-System, und Sie werden darauf hingewiesen (Art. 50 Abs. 1 KI-Verordnung, Verordnung (EU) 2024/1689). Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO für den von Ihnen gewünschten Dienst nach Ihrer Bestätigung sowie Art. 6 Abs. 1 lit. f DSGVO, unser berechtigtes Interesse, Nachrichten zu prüfen und Missbrauch zu verhindern. Wenn Sie nicht möchten, dass Ihre Nachricht von einem KI-Dienst verarbeitet wird, schreiben Sie stattdessen an {{operator.emailHuman}}.",
+        "**Regeln des KI-Postfachs**: Es beantwortet Fragen zu First Move und zu Wärme- und Kältenetzen der fünften Generation. Auf eine erste Nachricht ohne Themenbezug folgt ein Hinweis; nach einer zweiten pausiert das Postfach für Sie 30 Tage. Versuche, den Assistenten zu manipulieren, Belästigung und anderer Missbrauch führen zur Sperrung des Absenders, und wir werden darüber informiert. Für diese Einträge speichern wir Ihre Adresse nur als Hashwert; die Unterhaltung selbst wird verschlüsselt gespeichert ([Speicherdauer](#retention)).",
+        "**Speicherdauer**: Wir bewahren E-Mails so lange auf, wie es zur Bearbeitung Ihrer Anfrage erforderlich ist, und löschen sie danach, sofern keine gesetzlichen Aufbewahrungspflichten bestehen. Die Fristen für {{operator.emailAgent}} stehen unter [Speicherdauer](#retention)."
+      ]
+    },
+    {
+      "id": "email-tracking",
+      "heading": "E-Mail-Tracking",
+      "body": [
+        "Die Website selbst verwendet kein Tracking. Für E-Mails gilt gesondert: Unser E-Mail-Anbieter {{mail.name}} fügt den E-Mails, die wir von beiden Adressen senden, ein minimales Tracking hinzu.",
+        "- **Öffnungen**: Ein winziges, unsichtbares Bild erfasst, ob und wann eine E-Mail geöffnet wurde.",
+        "- **Klicks**: Links in unseren E-Mails laufen über eine Tracking-Adresse des Anbieters, die den Klick erfasst und Sie dann zum Link weiterleitet.",
+        "**Zweck**: zu sehen, ob unsere Antworten ankommen und gelesen werden. Wir erstellen keine Profile, führen diese Angaben nicht mit anderen Daten zusammen und nutzen sie nicht für Werbung.",
+        "**Rechtsgrundlage**: Art. 6 Abs. 1 lit. f DSGVO, unser berechtigtes Interesse daran, zu wissen, dass unsere Antworten Sie erreichen.",
+        "**So vermeiden Sie es**: Wenn Ihr E-Mail-Programm Bilder blockiert, wird keine Öffnung erfasst. Links laufen dennoch über die Tracking-Adresse.",
+        "**Speicherdauer**: Der Anbieter speichert diese Ereignisse 30 Tage lang zusammen mit der E-Mail."
       ]
     },
     {
       "id": "ai-features",
       "heading": "KI-Funktionen in der App",
       "body": [
-        "First Move plant zwei optionale KI-Funktionen: Fragen zu Ihren Projektdaten beantworten und von Ihnen bereitgestellte Dokumente (zum Beispiel PDFs) lesen, um Werte für die Felder eines Projekts vorzuschlagen. Die Seite [KI-Transparenz](/ai) zeigt, ob sie heute verfügbar sind und welche Anbieter Sie wählen können.",
+        "First Move plant zwei optionale KI-Funktionen: Fragen zu Ihren Projektdaten beantworten und von Ihnen bereitgestellte Dokumente (zum Beispiel PDFs) lesen, um Werte für die Felder eines Projekts vorzuschlagen. Die Seite [KI-Transparenz](/ai) zeigt, ob sie heute verfügbar sind und welche Anbieter Sie wählen können. Als Anbieter stehen Anthropic und OpenRouter zur Verfügung (einschließlich des Auto Routers von OpenRouter, der für jede Frage ein Modell auswählt).",
         "Sobald die KI-Funktionen verfügbar sind, funktionieren sie so:",
         "- **Aus, bis Sie sie einrichten**: An einen KI-Anbieter wird nichts gesendet, bis Sie eine Funktion einrichten und nutzen.",
         "- **Ihr eigener Schlüssel**: Ihr Browser sendet Ihre Anfrage direkt an den KI-Anbieter, den Sie gewählt haben, mit Ihrem eigenen API-Schlüssel. Wir betreiben keinen KI-Server.",
         "- **Wir erhalten nichts**: Wir erhalten weder die Inhalte, die Sie senden, noch Ihren Schlüssel und sind für diese Daten kein Auftragsverarbeiter. Der Anbieter ist eine eigenständige Stelle; für das, was Sie senden, gelten seine eigenen Bedingungen und seine Datenschutzerklärung. Wie jeder Server, mit dem sich Ihr Browser verbindet, sieht auch der Anbieter Ihre IP-Adresse.",
-        "- **Ihr Schlüssel bleibt bei Ihnen**: Der Schlüssel wird nur in Ihrem Browser aufbewahrt. Sie können ihn jederzeit in der App entfernen.",
-        "- **Sie entscheiden, was gesendet wird**: Der Anbieter erhält nur die Fragen, Projektdaten und Dokumente, die Sie senden möchten. Senden Sie keine personenbezogenen Daten anderer Personen und keine vertraulichen Dokumente, sofern Sie dazu nicht berechtigt sind.",
+        "- **Ihr Schlüssel bleibt bei Ihnen**: Der Schlüssel wird nur in Ihrem Browser aufbewahrt: nur für die aktuelle Sitzung oder, wenn Sie es wählen, auf diesem Gerät, verschlüsselt und mit einer 6-stelligen PIN gesperrt. Nach fünf falschen PIN-Eingaben wird er gelöscht. Sie können ihn jederzeit in der App entfernen.",
+        "- **Sie entscheiden, was gesendet wird**: Eine Frage sendet die Frage selbst, die Eingaben und Ergebnisse des geöffneten Projekts und die Dokumente, die Sie anhängen; nichts aus Ihren anderen Projekten. Senden Sie keine personenbezogenen Daten anderer Personen und keine vertraulichen Dokumente, sofern Sie dazu nicht berechtigt sind.",
         "- **Sie bestätigen jeden Wert**: Die KI schlägt Werte nur vor. Nichts wird in ein Projekt übernommen, bevor Sie es bestätigen.",
-        "Ihren Schlüssel und Ihre Einstellungen für diese Funktionen auf Ihrem Gerät zu speichern, ist für eine Funktion, die Sie ausdrücklich einrichten, unbedingt erforderlich (§ 25 Abs. 2 Nr. 2 TDDDG). Die Seite [KI-Transparenz](/ai) erklärt ausführlich, wie die Funktionen arbeiten und was Sie prüfen sollten."
+        "- **Ausgabenlimit festlegen**: Anfragen werden Ihrem Konto beim Anbieter berechnet. Legen Sie dort vor der Nutzung ein Ausgabenlimit für Ihren Schlüssel fest; die App bittet Sie, das zu bestätigen.",
+        "- **Chatverlauf**: wird nur in Ihrem Browser gespeichert, je Projekt. Sie können ihn ausschalten und löschen.",
+        "Ihren Schlüssel, Ihren Chatverlauf und Ihre Einstellungen für diese Funktionen auf Ihrem Gerät zu speichern, ist für eine Funktion, die Sie ausdrücklich einrichten, unbedingt erforderlich (§ 25 Abs. 2 Nr. 2 TDDDG). Die Seite [KI-Transparenz](/ai) erklärt ausführlich, wie die Funktionen arbeiten und was Sie prüfen sollten."
       ]
     },
     {
@@ -115,7 +131,10 @@
         "|---|---|---|",
         "| {{hosting.name}}, Webhosting | Liefert die Website aus und verarbeitet Server-Log-Daten ([Hosting](#hosting)) | {{hosting.country}}; EU-US-Datenschutzrahmen, Angemessenheitsbeschluss vom 10. Juli 2023 (Art. 45 DSGVO) |",
         "| {{mail.name}}, E-Mail | Sendet und empfängt E-Mails für beide Adressen ([E-Mail](#email)) | Unternehmen in den {{mail.country}}, Serverregion „{{mail.region}}“; EU-Standardvertragsklauseln (Art. 46 Abs. 2 lit. c DSGVO) |",
-        "| Ein KI-Dienstleister für {{operator.emailAgent}} | Verarbeitet den Text von Nachrichten an diese Adresse, um die Antwort vorzubereiten | Wird auf dieser Seite benannt; eine Übermittlung außerhalb der EU erfolgt nur mit einer Garantie nach Art. 44 bis 46 DSGVO |",
+        "| {{hosting.name}}, Functions, Workflows und AI Gateway | Betreibt das KI-Postfach: empfängt die E-Mail-Ereignisse, verarbeitet sie und leitet die Modellanfragen weiter ([E-Mail](#email)) | {{hosting.country}}; EU-US-Datenschutzrahmen, Angemessenheitsbeschluss vom 10. Juli 2023 (Art. 45 DSGVO) |",
+        "| TypeSafe AI, Entscheidungsmodell Jev | Prüft jede Nachricht an {{operator.emailAgent}} auf Themenbezug und Missbrauch | USA; abgerufen über das AI Gateway von Vercel ohne Datenspeicherung beim Modellanbieter; eine Übermittlung erfolgt nur mit einer Garantie nach Art. 44 bis 46 DSGVO |",
+        "| Anthropic PBC, Claude Haiku | Liest Nachrichten und angehängte Dateien an {{operator.emailAgent}}, um aus der öffentlichen Dokumentation zu antworten und Projektwerte einzutragen | USA; eine Übermittlung erfolgt nur mit einer Garantie nach Art. 44 bis 46 DSGVO |",
+        "| Upstash, Inc., Upstash Redis | Speichert die Einträge des KI-Postfachs: gehashte Absenderkennungen, die verschlüsselte Unterhaltung, Bestätigungen, Hinweise und Sperren | Datenbank in der EU; Unternehmen in den USA; eine Übermittlung erfolgt nur mit einer Garantie nach Art. 44 bis 46 DSGVO |",
         "| Der KI-Anbieter Ihrer Wahl (geplant) | Beantwortet Ihre Fragen und schlägt Werte vor, nur wenn Sie die KI-Funktionen nutzen ([KI-Funktionen](#ai-features)) | Von Ihnen gewählt; Ihr Browser kontaktiert ihn direkt nach dessen eigenen Bedingungen; wir senden ihm nichts |"
       ]
     },
@@ -128,7 +147,8 @@
         "- **E-Mails**: so lange, wie es zur Bearbeitung Ihrer Anfrage erforderlich ist, danach werden sie gelöscht, sofern keine gesetzlichen Aufbewahrungspflichten bestehen.",
         "- **Projekte und Einstellungen in Ihrem Browser**: Sie bleiben, bis Sie sie löschen. Wir haben keine Kopie.",
         "- **Exportierte Dateien**: Sie bleiben dort, wo Sie sie gespeichert haben, unter Ihrer Kontrolle.",
-        "- **KI-Funktionen**: Was Sie an einen KI-Anbieter senden, wird nach dessen Bedingungen gespeichert."
+        "- **KI-Postfach ({{operator.emailAgent}})**: eine unbestätigte erste Nachricht 7 Tage; die Unterhaltung 30 Tage nach Ihrer letzten Nachricht; Hinweise 90 Tage; eine Pause 30 Tage; eine Sperre, bis wir sie löschen; Ihre Bestätigung 12 Monate nach Ihrer letzten Nachricht. Die E-Mails selbst bleiben 30 Tage bei {{mail.name}}, dessen Kontoprotokolle in den USA gespeichert werden.",
+        "- **KI-Funktionen**: Was Sie an einen KI-Anbieter senden, wird nach dessen Bedingungen gespeichert. Ihr Chatverlauf bleibt in Ihrem Browser, bis Sie ihn löschen."
       ]
     },
     {
@@ -156,7 +176,8 @@
         "Wir treffen keine ausschließlich auf einer automatisierten Verarbeitung, einschließlich Profiling, beruhenden Entscheidungen, die Ihnen gegenüber rechtliche Wirkung entfalten oder Sie in ähnlicher Weise erheblich beeinträchtigen (Art. 22 DSGVO).",
         "- Ergebnisse von Quick Check und Business Plan sind Berechnungen aus veröffentlichten Gleichungen und Standardwerten, die Ihnen als erste Einschätzung angezeigt werden. Sie sind keine Entscheidungen über Sie.",
         "- Antworten von {{operator.emailAgent}} verfasst ein KI-System. Sie beantworten Ihre Nachricht und sind keine Entscheidungen über Sie.",
-        "- Sobald die KI-Funktionen verfügbar sind, schlagen sie Werte nur vor. Sie entscheiden, was Sie übernehmen."
+        "- Sobald die KI-Funktionen verfügbar sind, schlagen sie Werte nur vor. Sie entscheiden, was Sie übernehmen.",
+        "- Das KI-Postfach pausiert oder sperrt einen Absender automatisch nach Nachrichten ohne Themenbezug oder bei erkanntem Missbrauch. Das betrifft nur dieses Postfach und hat keine rechtliche oder ähnlich erhebliche Wirkung: Sie können jederzeit an {{operator.emailHuman}} schreiben; diese Adresse liest ein Mensch."
       ]
     },
     {
@@ -166,7 +187,7 @@
         "First Move ist darauf ausgelegt, dass möglichst wenige Daten Ihr Gerät verlassen:",
         "- Der Hoster liefert die Website über eine verschlüsselte Verbindung (HTTPS) aus.",
         "- Ihre Projekte werden nur auf Ihrem Gerät gespeichert, nicht auf einem Server.",
-        "- Eine Content-Security-Policy beschränkt die Verbindungen, die die Seite aufbauen darf, auf die Website selbst.",
+        "- Eine Content-Security-Policy beschränkt die Verbindungen, die die Seite aufbauen darf, auf die Website selbst. Auf den Seiten des Dashboards erlaubt sie zusätzlich die beiden KI-Anbieter des Assistenten (`api.anthropic.com`, `openrouter.ai`); Ihr Browser kontaktiert sie nur, wenn Sie den Assistenten nutzen.",
         "- Die Website lädt keine Skripte, Schriften oder eingebetteten Inhalte von Dritten.",
         "- Die Website sendet `Referrer-Policy: no-referrer`, sodass andere Websites nicht erfahren, von welcher Seite Sie kommen.",
         "Ihre Projekte sind nur so sicher wie Ihr Gerät. Wer Zugriff auf Ihr Browserprofil hat, kann sie öffnen. Schützen Sie Ihr Gerät, und bewahren Sie exportierte Dateien so sorgfältig auf wie Ihre anderen Arbeitsdateien."

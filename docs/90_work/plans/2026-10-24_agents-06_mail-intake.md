@@ -15,7 +15,7 @@ Every email to `agent@mail.firstmove.energy` enters through one verified webhook
 
 ## Requirements covered
 
-D-46 (agent@ is AI-answered, human@ is read by a person), D-48, D-52 (Jev via the AI Gateway), D-53 (Resend Inboxes, recipient rule, tracking off), D-54 (DMARC pass, consent), D-55 (strikes, bans, blocks), D-56 (store and retention), D-60.
+D-46 (agent@ is AI-answered, human@ is read by a person), D-48, D-52 (Jev via the AI Gateway), D-53 (Resend Inboxes, recipient rule), D-63 (e-mail tracking disclosed), D-54 (DMARC pass, consent), D-55 (strikes, bans, blocks), D-56 (store and retention), D-60.
 
 ## Steps
 
@@ -64,7 +64,7 @@ D-46 (agent@ is AI-answered, human@ is read by a person), D-48, D-52 (Jev via th
 11. **Admin alert** (`admin/alert.ts`) to `EMAIL_AGENT_ADMIN_ADDRESS` only: what happened (category and probabilities), when, the sender address, the subject, the first 300 characters (sanitised), the Resend email id; at most 20 per day, then one "more today" line. No unblock action (D-55).
 12. **Notices** used here (templates in phase 07; plain-text stubs are fine until then): confirm, warning, ban (30 days), block, temporarily unavailable.
 13. **Logging** (`log.ts`): structured events with `sid` prefix, reason codes and timings only; a test spies on `console` through a full scenario and fails if an address, a subject or body text appears.
-14. **Doctor** `scripts/mail-agent-doctor.mjs` (read-only; uses the Resend and Upstash REST APIs with env keys): env complete, Upstash reachable, both inbox ids exist, the Inbox agent has no actions on either inbox, a webhook for `inbox.email.received` points at `SITE_URL/api/mail/inbound`, open and click tracking are off on the domain.
+14. **Doctor** `scripts/mail-agent-doctor.mjs` (read-only; uses the Resend and Upstash REST APIs with env keys): env complete, Upstash reachable, both inbox ids exist, the Inbox agent has no actions on either inbox, a webhook for `inbox.email.received` points at `SITE_URL/api/mail/inbound`, the domain's tracking matches D-63 (open and click tracking on, as disclosed).
 15. **Tests:** route (real Svix signatures from `svix` in tests; bad signature, stale timestamp, oversize, wrong inbox, duplicate, disabled), every gate, consent (tamper, expiry, reuse, three pending, 24 h confirm limit), guard and policy with `Experimental_DecisionMockModelV4` (each threshold edge, strike 1 and 2, ban expiry with a fake clock, block silence), outbound recipient rule, store crypto and key builder, workflow steps as plain functions (no content in step payloads), the memory store against the same contract tests as Upstash (an optional live Upstash run behind an env flag).
 
 ## Open questions this depends on

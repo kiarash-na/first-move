@@ -48,7 +48,7 @@ Public beta. Always-on container images (Dockerfile) that poll queues (queue con
 
 ## Resend
 
-**Account state (read-only CLI check, 2026-10-24):** domain `mail.firstmove.energy` verified, region `eu-west-1`, sending and receiving enabled, **open tracking on** (adds a tracking pixel; must be switched off, D-53). Inboxes `agent@` and `human@` exist (created 2026-10-24); their "Reply as" sender name is not set. The inbox IDs go into `.env.local`, not into the repo.
+**Account state (read-only CLI check, 2026-10-24):** domain `mail.firstmove.energy` verified, region `eu-west-1`, sending and receiving enabled, **open and click tracking on** (kept and disclosed, D-63). Inboxes `agent@` and `human@` exist (created 2026-10-24); their "Reply as" sender name is not set. The inbox IDs go into `.env.local`, not into the repo.
 
 **Two inbound models.**
 - *Receiving*: the `email.received` webhook carries metadata only (`email_id`, `from`, `to`, `subject`, `message_id`, attachment metadata). `resend.emails.receiving.get(id)` returns `html`, `text`, a `headers` object, `raw.download_url` (signed, temporary) and `authentication: { spf, dkim, dmarc }`, each `pass | fail | gray | processing_failed | unknown`, "from the receiving mail server". Attachments: `resend.emails.receiving.attachments.list({ emailId })` returns `download_url` (valid 1 hour) and `expires_at`.

@@ -3,7 +3,7 @@ id: PLAN-AGENT-00
 date: 2026-10-24
 status: todo
 challenge: [quick-check-tool, business-models]
-covers: [D-05, D-22, D-42, D-46, D-47, D-48, D-49, D-50, D-51, D-52, D-53, D-54, D-55, D-56, D-57, D-58, D-59, D-60, D-61, D-62]
+covers: [D-05, D-22, D-42, D-46, D-47, D-48, D-49, D-50, D-51, D-52, D-53, D-54, D-55, D-56, D-57, D-58, D-59, D-60, D-61, D-62, D-63]
 blocked_by: []
 ---
 
@@ -93,7 +93,7 @@ provenance: {
 | Leakage via logs or Workflow run data | email | Steps pass ids, codes and decisions only, never content; `log()` writes hashed sender ids and reason codes; errors carry codes |
 | Webhook spoofing, replay | email | Svix signature on the raw body, timestamp window, dedupe on `svix-id` and email id, 256 KB cap, POST only |
 | Stored data exposure | email | Upstash EU; sender id = HMAC-SHA-256 of the normalised address; state and pending mail AES-256-GCM encrypted (AAD = key name); TTLs (D-56) |
-| Tracking pixels | email | Open and click tracking off on `mail.firstmove.energy` (open tracking is **on** today) |
+| E-mail tracking | email | Resend's open and click tracking stay on and are disclosed in the Privacy Policy section `email-tracking` (D-63); the website has none |
 | Supply chain | both | Exact versions, `pnpm audit`, no install scripts (`allowBuilds` unchanged), licence table test |
 
 **Residual risks** (written into SECURITY.md in phase 08): `script-src 'unsafe-inline'` stays (static shells, D-14), so an XSS could use an unlocked key; a 6-digit PIN does not stop an offline attack on a copied browser profile (the device-key wrap raises the bar); the provider's spending limit is the real limit, and the UI says so before any key is used.
@@ -182,6 +182,6 @@ Phase An is PLAN-AGENT-0n. Status lives in [CONTEXT.md](CONTEXT.md) and in each 
 - Vercel: Upstash Redis via the Marketplace (EU region); all env vars from `.env.example` in Production; secrets generated with `openssl rand -base64 32`.
 - AI Gateway: an API key with a monthly budget for Jev (or OIDC with a project budget); optionally team-wide ZDR.
 - Anthropic Console: a workspace with a monthly spend limit for the Haiku key.
-- Resend: webhook `https://firstmove.energy/api/mail/inbound` for `inbox.email.received` only, secret into env; agent@ "Reply as" = `First Move assistant (AI)`, human@ = `First Move`; Inbox agent with no actions on both inboxes; open and click tracking off; DMARC record on `mail.firstmove.energy`; Pro plan recommended (free is 100 emails/day including inbound).
+- Resend: webhook `https://firstmove.energy/api/mail/inbound` for `inbox.email.received` only, secret into env; agent@ "Reply as" = `First Move assistant (AI)`, human@ = `First Move`; Inbox agent with no actions on both inboxes; tracking as decided in D-63 (disclosed); DMARC record on `mail.firstmove.energy`; Pro plan recommended (free is 100 emails/day including inbound).
 - Run `node scripts/mail-agent-doctor.mjs`, set `EMAIL_AGENT_ENABLED=true`, do one real round trip, watch logs and budgets for a day.
 - Legal: confirm the processor facts listed in the phase 08 note; the lawyer review from the phase 12 checklist still applies.

@@ -13,6 +13,8 @@ blocked_by: [PLAN-AGENT-05, PLAN-AGENT-07]
 
 Make every published statement true for the live features, then switch the in-app assistant on (`AI_FEATURES_LIVE = true`) in the same commit. Facts come from official sources or from the owner, never from guesses (memory: legal scope).
 
+**Pre-update (2026-10-24, D-63):** the AI page, Privacy Policy, Cookie Policy and Terms (version 1.1, EN plus DE drafts) already describe the planned design, including the e-mail tracking section. This phase checks them against the built code, moves the processor names (TypeSafe AI, Anthropic, Upstash, Vercel AI Gateway) into `lib/legal/operator.ts` tokens, fills `AI_PROVIDERS`, bumps the versions again if anything changes, and flips the switch.
+
 ## Requirements covered
 
 D-42 and the AI go-live checklist in the [phase 12 note](../notes/2026-10-24_phase-12_legal.md), D-44 (EN reference; DE drafts marked), D-46, D-48, D-56 (retention), D-61, D-40 (facts in `lib/legal/operator.ts`).

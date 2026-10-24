@@ -6,7 +6,7 @@
   "title": "Nutzungsbedingungen",
   "intro": "Diese Bedingungen regeln Ihre Nutzung von First Move. Sie erklären, was der Dienst leistet, was Sie von ihm erwarten können und was wir von Ihnen erwarten. First Move ist kostenlos, braucht kein Konto und speichert Ihre Projekte in Ihrem Browser.",
   "updated": "2026-10-24",
-  "version": "1.0",
+  "version": "1.1",
   "sections": [
     {
       "id": "provider",
@@ -65,9 +65,10 @@
         "- Kosten, die der Anbieter für Ihren Schlüssel berechnet, tragen Sie;",
         "- Sie entscheiden, was Sie senden. Senden Sie personenbezogene Daten anderer oder vertrauliche Dokumente nur, wenn Sie dazu berechtigt sind;",
         "- Sie müssen jede Ausgabe prüfen. Die KI macht nur Vorschläge: Nichts wird in ein Projekt übernommen, bevor Sie es bestätigen, und jeder Wert durchläuft dieselbe Prüfung wie eine manuelle Eingabe;",
-        "- Sie sind dafür verantwortlich, Ihren Schlüssel sicher aufzubewahren. Sie können ihn jederzeit aus der App entfernen.",
+        "- Sie sind dafür verantwortlich, Ihren Schlüssel sicher aufzubewahren und beim Anbieter ein Ausgabenlimit dafür festzulegen. Sie können ihn jederzeit aus der App entfernen.",
         "KI-Ausgaben können falsch oder unvollständig sein, und Modelle können Inhalte erfinden. Die KI berechnet nie die Ergebnisse des Quick Check, und von der KI vorgeschlagene Werte machen die Screening-Ergebnisse nicht zuverlässiger. Wir haben keinen Einfluss auf den KI-Anbieter und seine Modelle und sind nicht für deren Verfügbarkeit oder Ausgaben verantwortlich; für unsere eigene Haftung gilt der Abschnitt [Haftung](#liability).",
-        "Wenn Sie die KI-Funktionen beruflich nutzen, sind Sie „Betreiber“ eines KI-Systems im Sinne der KI-Verordnung (Verordnung (EU) 2024/1689, Art. 3 Nr. 4; englisch „deployer“) und für Ihre eigene Nutzung verantwortlich."
+        "Wenn Sie die KI-Funktionen beruflich nutzen, sind Sie „Betreiber“ eines KI-Systems im Sinne der KI-Verordnung (Verordnung (EU) 2024/1689, Art. 3 Nr. 4; englisch „deployer“) und für Ihre eigene Nutzung verantwortlich.",
+        "Wenn Sie Ihre erste Nachricht an {{operator.emailAgent}} bestätigen, akzeptieren Sie diese Bedingungen für diese Nutzung. Wir senden Ihnen dann nur E-Mails zu Ihrer Anfrage, ohne Werbung. Antworten von dieser Adresse verfasst ein KI-System; sie können falsch sein und sind nicht verbindlich. Die darin enthaltenen Ergebnisse des Quick Check stammen aus der Berechnung von First Move."
       ]
     },
     {

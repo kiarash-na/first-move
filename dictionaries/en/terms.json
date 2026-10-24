@@ -6,7 +6,7 @@
   "title": "Terms of Use",
   "intro": "These terms govern your use of First Move. They explain what the service does, what you can expect from it and what we expect from you. First Move is free, needs no account and keeps your projects in your browser.",
   "updated": "2026-10-24",
-  "version": "1.0",
+  "version": "1.1",
   "sections": [
     {
       "id": "provider",
@@ -65,9 +65,10 @@
         "- any costs the provider charges for your key are yours;",
         "- you decide what you send. Send other people's personal data or confidential documents only if you are allowed to;",
         "- you must review every output. The AI only proposes: nothing is applied to a project until you confirm it, and every value goes through the same validation as manual input;",
-        "- you are responsible for keeping your key secure. You can remove it from the app at any time.",
+        "- you are responsible for keeping your key secure and for setting a spending limit for it at the provider. You can remove it from the app at any time.",
         "AI output can be wrong or incomplete, and models can invent content. The AI never computes the Quick Check results, and AI-proposed values do not make the screening results more reliable. We do not control the AI provider or its models and are not responsible for their availability or output; our own liability is governed by [Liability](#liability).",
-        "If you use the AI features in a professional capacity, you are a deployer of an AI system within the meaning of the EU AI Act (Regulation (EU) 2024/1689, Art. 3(4)) and responsible for your own use of it."
+        "If you use the AI features in a professional capacity, you are a deployer of an AI system within the meaning of the EU AI Act (Regulation (EU) 2024/1689, Art. 3(4)) and responsible for your own use of it.",
+        "When you confirm your first message to {{operator.emailAgent}}, you accept these terms for that use. We then send you e-mails about your request only, with no marketing. Replies from that address are written by an AI system; they may be wrong and are not binding. The Quick Check results they contain come from First Move's calculation."
       ]
     },
     {

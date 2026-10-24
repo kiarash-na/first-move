@@ -50,7 +50,7 @@ D-23 (tests and one Playwright journey), D-55, D-61, D-62.
 6. **Production checklist for the owner** (copied from PLAN-AGENT-00 § Go-live, with what was already done):
    - Upstash integration (EU) and the Vercel env;
    - AI Gateway key budget; Anthropic workspace limit;
-   - Resend: production webhook; "Reply as" names; Inbox agent off on both inboxes; open and click tracking off; DMARC record; plan;
+   - Resend: production webhook; "Reply as" names; Inbox agent off on both inboxes; tracking as D-63; DMARC record; plan;
    - `node scripts/mail-agent-doctor.mjs` green;
    - `EMAIL_AGENT_ENABLED=true`, then one real round trip in production.
 7. **Wrap-up:** phase notes and a release note `notes/2026-10-24_v0.3.md`; [CONTEXT.md](CONTEXT.md) statuses; `package.json` version 0.3.0; commit and push. Tag only if the owner asks.

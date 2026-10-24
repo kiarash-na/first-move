@@ -6,7 +6,7 @@
   "title": "Cookie-Richtlinie",
   "intro": "Diese Richtlinie erklärt, welches Cookie und welche weiteren Browserspeicher First Move verwendet, wofür sie dienen und wie Sie sie löschen oder blockieren können.",
   "updated": "2026-10-24",
-  "version": "1.0",
+  "version": "1.1",
   "sections": [
     {
       "id": "summary",
@@ -16,7 +16,7 @@
         "- First Move setzt **ein einziges Cookie**, `NEXT_LOCALE`. Es speichert Ihre Sprache und enthält keine personenbezogenen Daten.",
         "- Ihre Einstellungen und Projekte liegen im **Speicher Ihres Browsers** (localStorage, sessionStorage und IndexedDB), nicht auf einem Server. Es gibt keine Konten und keine Serverdatenbank, daher erhalten wir diese Daten nie.",
         "- Alle Einträge stammen von uns als Erstanbieter, bleiben auf Ihrem Gerät und dienen nur dazu, den von Ihnen gewünschten Dienst bereitzustellen.",
-        "- Keine Analyse, keine Werbung, kein Tracking und keine Cookies von Drittanbietern.",
+        "- Keine Analyse, keine Werbung, kein Tracking und keine Cookies von Drittanbietern auf der Website. E-Mails, die wir senden, behandelt gesondert der Abschnitt [E-Mail-Tracking](/privacy#email-tracking).",
         "- Da all dies unbedingt erforderlich ist, fragen wir nicht nach Ihrer Einwilligung. Es gibt nichts anzunehmen oder abzulehnen.",
         "- Wenn Sie Ihre Browserdaten löschen, werden auch Ihre Projekte gelöscht. Exportieren Sie sie daher vorher ([Löschen oder blockieren](#manage))."
       ]
@@ -35,8 +35,12 @@
         "| `first-move:notice-ack` | localStorage | Hält fest, dass Sie den Cookie-Hinweis geschlossen haben. | Bis zur Löschung |",
         "| `first-move:active-project` | sessionStorage | Welches Projekt in diesem Tab geöffnet ist. | Bis der Tab geschlossen wird |",
         "| `first-move` | IndexedDB-Datenbank mit den Speicherbereichen `projects`, `snapshots`, `backups` und `file-links` | Ihre Projekte (`projects`, der Hauptspeicher), frühere Stände jedes Projekts (`snapshots`), Angaben zu Ihren Exporten (`backups`) und Verweise auf verknüpfte Dateien (`file-links`). | Bis zur Löschung |",
+        "| `first-move:sidebar` | localStorage | Merkt sich, dass Sie die Seitenleiste des Dashboards eingeklappt haben. | Bis zur Löschung |",
+        "| `first-move:assistant` | localStorage | Ihre Einstellungen für den KI-Assistenten: Anbieter, Modell, Größe des Bereichs und ob der Chatverlauf aktiv ist. Nie Ihr Schlüssel. | Bis zur Löschung |",
+        "| `first-move:assistant-oauth` | sessionStorage | Einmalige Werte, während Sie Ihr OpenRouter-Konto verbinden; wird danach entfernt. | Bis die Verbindung abgeschlossen ist oder der Tab geschlossen wird |",
+        "| `first-move-assistant` | IndexedDB-Datenbank mit den Speicherbereichen `vault` und `chats` | Ihr API-Schlüssel, wenn Sie ihn auf diesem Gerät behalten möchten, verschlüsselt und mit Ihrer PIN gesperrt (`vault`), und Ihr Chatverlauf je Projekt (`chats`). | Bis zur Löschung |",
         "| `first-move:storage` | BroadcastChannel | Hält mehrere Tabs von First Move im selben Browser synchron. Speichert nichts. | Solange ein Tab geöffnet ist |",
-        "„Bis zur Löschung“ bedeutet: Der Eintrag bleibt bestehen, bis Sie oder die App ihn löschen oder Ihr Browser ihn entfernt.",
+        "„Bis zur Löschung“ bedeutet: Der Eintrag bleibt bestehen, bis Sie oder die App ihn löschen oder Ihr Browser ihn entfernt. Die Einträge des Assistenten entstehen erst, wenn Sie den KI-Assistenten einrichten, und `first-move:sidebar` erst, wenn Sie die Seitenleiste einklappen.",
         "Um zu prüfen, ob der Speicher funktioniert, schreibt die App kurz einen Testeintrag, `first-move:probe`, in localStorage oder sessionStorage und entfernt ihn sofort wieder.",
         "Die App bittet Ihren Browser außerdem, diesen Speicher dauerhaft zu erhalten (`navigator.storage.persist()`), damit er Ihre Projekte seltener von sich aus löscht. Ob er dem nachkommt, entscheidet Ihr Browser.",
         "In Chromium-basierten Browsern können Sie ein Projekt mit einer Datei auf Ihrem Datenträger verknüpfen (File System Access API). Der Browser speichert dann einen Verweis (Handle) auf diese Datei im Speicherbereich `file-links`. Die Datei bleibt auf Ihrem Datenträger, und es wird nichts hochgeladen."
@@ -59,7 +63,7 @@
       "heading": "Rechtsgrundlage",
       "body": [
         "Das Speichern von Informationen in Ihrer Endeinrichtung und der Zugriff auf dort bereits gespeicherte Informationen bedürfen keiner Einwilligung, wenn sie unbedingt erforderlich sind, damit wir einen von Ihnen ausdrücklich gewünschten digitalen Dienst zur Verfügung stellen können (§ 25 Abs. 2 Nr. 2 TDDDG, der Art. 5 Abs. 3 der ePrivacy-Richtlinie 2002/58/EG umsetzt).",
-        "Jeder Eintrag in der [Tabelle](#what-we-use) erfüllt diese Voraussetzung. Jeder zeigt die Website in Ihrer Sprache an, merkt sich eine Einstellung oder speichert und synchronisiert die Projekte, an denen Sie arbeiten. Keiner dient einem anderen Zweck.",
+        "Jeder Eintrag in der [Tabelle](#what-we-use) erfüllt diese Voraussetzung. Jeder zeigt die Website in Ihrer Sprache an, merkt sich eine Einstellung, speichert und synchronisiert die Projekte, an denen Sie arbeiten, oder hält den KI-Assistenten, den Sie eingerichtet haben, funktionsfähig. Keiner dient einem anderen Zweck.",
         "Soweit diese Einträge personenbezogene Daten enthalten, etwa Angaben, die Sie in ein Projekt eingeben, ist die Rechtsgrundlage Art. 6 Abs. 1 lit. b DSGVO (Bereitstellung des Dienstes nach unseren [Nutzungsbedingungen](/terms)) und Art. 6 Abs. 1 lit. f DSGVO (unser berechtigtes Interesse an einer zuverlässig funktionierenden App, die sich Ihre Einstellungen merkt). Wie First Move mit personenbezogenen Daten umgeht, erklärt die [Datenschutzerklärung](/privacy)."
       ]
     },
@@ -70,7 +74,8 @@
         "First Move enthält keine Analysewerkzeuge, keine Werbung, keine Tracking-Pixel und keine Social-Media-Plugins.",
         "Es lädt keine Skripte, Schriften, Karten oder eingebetteten Inhalte von Dritten. Unsere Schriften werden von unserer eigenen Website ausgeliefert.",
         "Wir nutzen keinen der Einträge, um Sie zu identifizieren, ein Profil zu erstellen oder Sie über Websites hinweg zu verfolgen.",
-        "Die Website sendet den Header `Referrer-Policy: no-referrer`, damit Ihr Browser anderen Websites nicht mitteilt, von welcher Seite von First Move Sie kommen. Ihre Content Security Policy beschränkt die Verbindungen der App auf die eigene Herkunft (Origin)."
+        "Die Website sendet den Header `Referrer-Policy: no-referrer`, damit Ihr Browser anderen Websites nicht mitteilt, von welcher Seite von First Move Sie kommen. Ihre Content Security Policy beschränkt die Verbindungen der App auf die eigene Herkunft (Origin) und auf den Seiten des Dashboards auf die beiden KI-Anbieter des Assistenten.",
+        "Für E-Mails gilt Folgendes gesondert: Die E-Mails, die wir senden, enthalten ein minimales Tracking durch unseren E-Mail-Anbieter, beschrieben unter [E-Mail-Tracking](/privacy#email-tracking)."
       ]
     },
     {
@@ -80,7 +85,7 @@
         "First Move setzt keine Cookies von Drittanbietern und gibt keinem Dritten Zugriff auf die hier aufgeführten Speicher.",
         "Unser Hosting-Anbieter, {{hosting.name}}, liefert die Seiten aus und verarbeitet dafür die üblichen Anfragedaten. Was er verarbeitet und warum, beschreibt die [Datenschutzerklärung](/privacy).",
         "Links zu anderen Websites, etwa zu GitHub in der Fußzeile, führen zu Diensten mit eigenen Cookie- und Datenschutzrichtlinien. Diese gelten, sobald Sie dem Link folgen.",
-        "Wenn die optionalen KI-Funktionen verfügbar sind und Sie sie einrichten, sendet Ihr Browser die von Ihnen ausgelösten Anfragen direkt an den KI-Anbieter Ihrer Wahl, und es gelten dessen Bedingungen und Richtlinien. Die Einträge, die diese Funktionen in Ihrem Browser speichern, etwa Ihren API-Schlüssel, führt diese Richtlinie auf, sobald die Funktionen verfügbar sind. Mehr dazu unter [KI-Transparenz](/ai)."
+        "Wenn die optionalen KI-Funktionen verfügbar sind und Sie sie einrichten, sendet Ihr Browser die von Ihnen ausgelösten Anfragen direkt an den KI-Anbieter Ihrer Wahl, und es gelten dessen Bedingungen und Richtlinien. Die Einträge, die der Assistent in Ihrem Browser speichert, etwa Ihren verschlüsselten API-Schlüssel, führt die [Tabelle](#what-we-use) auf. Mehr dazu unter [KI-Transparenz](/ai)."
       ]
     },
     {
