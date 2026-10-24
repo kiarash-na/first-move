@@ -1,5 +1,5 @@
 import { resolvePatchPath } from "./fields/resolve"
-import { hasPath, setAt } from "./path"
+import { getAt, hasPath, setAt } from "./path"
 import { toPatchErrors, type PatchError } from "./patch-errors"
 import { projectSchema, type Project } from "./schema/project"
 import { schemaAt } from "./schema/schema-at"
@@ -32,9 +32,17 @@ interface Entry {
   key: string
   segments: string[]
   value: unknown
+  /** A whole-row patch (`<list>.<index>`): the row keeps its id. */
+  row?: boolean
 }
 
-/** Applies entries in order; a row that no longer exists (index out of range) is "not-found". */
+const idOf = (row: unknown) => (typeof row === "object" && row !== null ? (row as { id?: unknown }).id : undefined)
+
+/**
+ * Applies entries in order; a row that no longer exists (index out of range) is "not-found". A
+ * whole-row patch may not change the row's id (read-only, like `<list>.<index>.id`); a whole-list
+ * patch sets the ids, because it adds, removes and reorders rows.
+ */
 function build(project: Project, entries: readonly Entry[]) {
   let next = project
   const applied: Entry[] = []
@@ -42,6 +50,10 @@ function build(project: Project, entries: readonly Entry[]) {
   for (const entry of entries) {
     if (!hasPath(next, entry.segments)) {
       errors.push({ path: entry.key, code: "not-found", message: `No row at ${entry.key}` })
+      continue
+    }
+    if (entry.row && idOf(entry.value) !== idOf(getAt(next, entry.segments))) {
+      errors.push({ path: `${entry.key}.id`, code: "read-only", message: `${entry.key}.id is managed by the app` })
       continue
     }
     next = setAt(next, entry.segments, entry.value)
@@ -73,7 +85,8 @@ export function applyPatch(project: Project, patch: ProjectPatch, options: Apply
       continue
     }
     const parsed = schemaAt(projectSchema, target.segments)!.safeParse(value)
-    if (parsed.success) valid.push({ key, segments: target.segments, value: parsed.data })
+    const row = target.kind === "item" && target.property === null
+    if (parsed.success) valid.push({ key, segments: target.segments, value: parsed.data, row })
     else errors.push(...toPatchErrors(target.segments, value, parsed.error.issues))
   }
 

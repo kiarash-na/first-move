@@ -3,7 +3,9 @@ import { describe, expect, it } from "vitest"
 import { LOCALES } from "@/lib/i18n/locales"
 import { inputStatus, migrateProject, projectSchema, type Project } from "@/lib/project"
 import { run, type ReasonCode, type ResultLevel } from "@/lib/quick-check"
-import { EXAMPLES, getExample, localizeExample, ILLUSTRATIVE_LABEL } from "./index"
+import { getDictionary } from "@/lib/i18n/get-dictionary"
+import { EXAMPLES, getExample, localizeExample } from "./index"
+import * as examples from "./index"
 
 /** The plan's table (PLAN-DASH-06): what each example must conclude through the real engine. */
 const TARGETS: Record<string, { level: ResultLevel; forced: boolean; reasons: ReasonCode[]; scenarioId: string }> = {
@@ -58,8 +60,11 @@ describe("the example list", () => {
     expect(getExample("missing")).toBeUndefined()
   })
 
-  it("carries the label 'Illustrative inputs only' (DESIGN-TOKENS section 6)", () => {
-    expect(ILLUSTRATIVE_LABEL.en).toBe("Illustrative inputs only")
+  it("takes the label 'Illustrative inputs only' from the start dictionary (DESIGN-TOKENS section 6)", async () => {
+    for (const lang of LOCALES) expect((await getDictionary(lang, "start")).examples.illustrative).toBeTruthy()
+    expect((await getDictionary("en", "start")).examples.illustrative).toBe("Illustrative inputs only")
+    // UI copy is never hard-coded in lib/examples (root CLAUDE.md).
+    expect(Object.keys(examples)).not.toContain("ILLUSTRATIVE_LABEL")
   })
 
   it("shows all three result levels", () => {

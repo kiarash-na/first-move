@@ -127,6 +127,43 @@ describe("repository (IndexedDB + mirror)", () => {
   })
 })
 
+describe("repository with a full localStorage (D-11: never drop the only copy)", () => {
+  const big = (n: number) => edited(testProject(n), { "site.name": "x".repeat(200), "businessPlan.opportunity.needs": "x".repeat(2_000) }, "2026-10-24T11:00:00.000Z")
+  const quota = () => (JSON.stringify({ savedAt: now().toISOString(), project: testProject(1) }).length + 100) * 2
+
+  it("mirror-only: a save that does not fit fails and keeps the other projects", async () => {
+    const local = new MemoryStorage({ quota: quota() })
+    const repo = createRepository({ db: null, local, now })
+    await repo.save(testProject(1), { base: null })
+    await repo.save(testProject(2), { base: null })
+    expect(await repo.save(big(2), { base: null })).toEqual({ ok: false, error: "quota-exceeded", mirrored: false })
+    expect(repo.mirror(big(2))).toBe(false)
+    const report = await createRepository({ db: null, local, now }).loadAll()
+    expect(report.projects.map((entry) => entry.project.meta.id).sort()).toEqual([testId(1), testId(2)])
+  })
+
+  it("IndexedDB: keeps the mirror of a project whose IndexedDB save failed", async () => {
+    const { db, local, repo } = await setup(new MemoryStorage({ quota: quota() }))
+    const failing = createRepository({ db, local, now })
+    await repo.save(testProject(2), { base: null })
+    db.close()
+    // Project 1 cannot reach IndexedDB: its mirror is its only persistent copy.
+    expect(await failing.save(testProject(1), { base: null })).toEqual({ ok: false, error: "unavailable", mirrored: true })
+    expect(await failing.save(big(2), { base: null })).toMatchObject({ ok: false, mirrored: false })
+    expect(failing.mirror(big(2))).toBe(false)
+    expect(readMirror(local, testId(1))).not.toBeNull()
+  })
+
+  it("IndexedDB: drops the mirror of a project safely in IndexedDB to make room", async () => {
+    const { db, local, repo } = await setup(new MemoryStorage({ quota: quota() }))
+    await repo.save(testProject(1), { base: null })
+    await repo.save(testProject(2), { base: null })
+    expect(await repo.save(big(2), { base: null })).toMatchObject({ ok: true, mirrored: true })
+    expect(readMirror(local, testId(1))).toBeNull()
+    expect(await readProjectRecord(db, testId(1))).toEqual(testProject(1))
+  })
+})
+
 describe("repository without IndexedDB", () => {
   it("runs on the mirror only", async () => {
     const local = new MemoryStorage()

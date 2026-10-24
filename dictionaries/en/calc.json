@@ -104,7 +104,9 @@
     "eq-03-10f": "Annualized costs",
     "eq-03-11": "Electricity costs",
     "eq-03-12": "Operation and maintenance costs",
+    "oq-06": "Electricity costs with PV",
     "oq-12": "Cooling-to-heating ratio",
+    "oq-17": "Overall investment, installations counted once",
     "oq-21": "Economic ratio"
   }
 }

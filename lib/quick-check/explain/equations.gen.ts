@@ -24,7 +24,9 @@
 //   docs/10_quick-check-tool/02_run-quick-check/eq-03-10f_annualized-costs.md
 //   docs/10_quick-check-tool/02_run-quick-check/eq-03-11_electricity-costs.md
 //   docs/10_quick-check-tool/02_run-quick-check/eq-03-12_operation-and-maintenance.md
+//   docs/10_quick-check-tool/open-questions/OQ-06_pv-input-and-reduction.md
 //   docs/10_quick-check-tool/open-questions/OQ-12_ch-ratio-formula.md
+//   docs/10_quick-check-tool/open-questions/OQ-17_c-overall-double-count.md
 //   docs/10_quick-check-tool/open-questions/OQ-21_economic-assessment-undefined.md
 // Do not edit. Run `pnpm gen:reference` after changing the source.
 
@@ -527,8 +529,23 @@ export const EQUATIONS = {
   }
 } as const
 
-/** Formulas that come from a resolved OQ answer instead of an equation file (OQ-12, OQ-21). */
+/** Formulas that come from a resolved OQ answer instead of an equation file (OQ-06, OQ-12, OQ-17, OQ-21). */
 export const RESOLVED_FORMULAS = {
+  "OQ-06": {
+    "id": "OQ-06",
+    "slug": "oq-06",
+    "title": "PV: input and application of the 30 % reduction",
+    "file": "docs/10_quick-check-tool/open-questions/OQ-06_pv-input-and-reduction.md",
+    "output": "C_{el,PV}",
+    "outputMathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>C</mi><mrow><mi>e</mi><mi>l</mi><mo separator=\"true\">,</mo><mi>P</mi><mi>V</mi></mrow></msub></mrow><annotation encoding=\"application/x-tex\">C_{el,PV}</annotation></semantics></math></span>",
+    "latex": "C_{el,PV} = C_{el} \\cdot (1 - r_{PV})",
+    "mathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msub><mi>C</mi><mrow><mi>e</mi><mi>l</mi><mo separator=\"true\">,</mo><mi>P</mi><mi>V</mi></mrow></msub><mo>=</mo><msub><mi>C</mi><mrow><mi>e</mi><mi>l</mi></mrow></msub><mo>⋅</mo><mo stretchy=\"false\">(</mo><mn>1</mn><mo>−</mo><msub><mi>r</mi><mrow><mi>P</mi><mi>V</mi></mrow></msub><mo stretchy=\"false\">)</mo></mrow><annotation encoding=\"application/x-tex\">C_{el,PV} = C_{el} \\cdot (1 - r_{PV})</annotation></semantics></math></span>",
+    "inputs": [],
+    "tables": [],
+    "flags": [
+      "OQ-06"
+    ]
+  },
   "OQ-12": {
     "id": "OQ-12",
     "slug": "oq-12",
@@ -542,6 +559,21 @@ export const RESOLVED_FORMULAS = {
     "tables": [],
     "flags": [
       "OQ-12"
+    ]
+  },
+  "OQ-17": {
+    "id": "OQ-17",
+    "slug": "oq-17",
+    "title": "C_overall adds both C_i and C_i,total",
+    "file": "docs/10_quick-check-tool/open-questions/OQ-17_c-overall-double-count.md",
+    "output": "C_{overall}",
+    "outputMathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>C</mi><mrow><mi>o</mi><mi>v</mi><mi>e</mi><mi>r</mi><mi>a</mi><mi>l</mi><mi>l</mi></mrow></msub></mrow><annotation encoding=\"application/x-tex\">C_{overall}</annotation></semantics></math></span>",
+    "latex": "C_{overall} = C_{HP} \\cdot N_{total} + C_{net} + C_{i,total}",
+    "mathml": "<span class=\"katex\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msub><mi>C</mi><mrow><mi>o</mi><mi>v</mi><mi>e</mi><mi>r</mi><mi>a</mi><mi>l</mi><mi>l</mi></mrow></msub><mo>=</mo><msub><mi>C</mi><mrow><mi>H</mi><mi>P</mi></mrow></msub><mo>⋅</mo><msub><mi>N</mi><mrow><mi>t</mi><mi>o</mi><mi>t</mi><mi>a</mi><mi>l</mi></mrow></msub><mo>+</mo><msub><mi>C</mi><mrow><mi>n</mi><mi>e</mi><mi>t</mi></mrow></msub><mo>+</mo><msub><mi>C</mi><mrow><mi>i</mi><mo separator=\"true\">,</mo><mi>t</mi><mi>o</mi><mi>t</mi><mi>a</mi><mi>l</mi></mrow></msub></mrow><annotation encoding=\"application/x-tex\">C_{overall} = C_{HP} \\cdot N_{total} + C_{net} + C_{i,total}</annotation></semantics></math></span>",
+    "inputs": [],
+    "tables": [],
+    "flags": [
+      "OQ-17"
     ]
   },
   "OQ-21": {

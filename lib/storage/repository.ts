@@ -73,6 +73,13 @@ export function createRepository({ db, local, now }: RepositoryOptions): Reposit
    * are read from here until a save succeeds, so the tab never goes back to an older copy.
    */
   const unsaved = new Map<string, Project>()
+  /**
+   * A full localStorage may drop another project's mirror only when that copy is a backup: the
+   * project is in IndexedDB and this tab has no state of it that failed to reach IndexedDB.
+   * In mirror-only mode the mirror is the only store, so nothing is dropped.
+   */
+  const canEvict = (projectId: string) => db !== null && !unsaved.has(projectId)
+  const mirrorWrite = (project: Project, at: Date) => writeMirror(local, project, at, { canEvict })
 
   async function writeBack(report: RecoveryReport, mirrorAt: Map<string, string | null>) {
     for (const item of report.projects) {
@@ -82,10 +89,11 @@ export function createRepository({ db, local, now }: RepositoryOptions): Reposit
           const snapshotReason = item.migrated ? "before-migration" : "recovery"
           await saveProjectRecord(db, project, { base: null, now: now(), snapshotReason })
         } catch {
-          // Still loaded from the copy; the next save tries again.
+          // Still loaded from the copy, which stays the only one: keep it, the next save tries again.
+          unsaved.set(project.meta.id, project)
         }
       }
-      if (mirrorAt.get(project.meta.id) !== project.meta.updatedAt) writeMirror(local, project, now())
+      if (mirrorAt.get(project.meta.id) !== project.meta.updatedAt) mirrorWrite(project, now())
     }
   }
 
@@ -126,7 +134,7 @@ export function createRepository({ db, local, now }: RepositoryOptions): Reposit
       const stamped = withCurrentMethodology(project)
       const id = stamped.meta.id
       const at = now()
-      const mirrorResult = writeMirror(local, stamped, at)
+      const mirrorResult = mirrorWrite(stamped, at)
       const mirrored = mirrorResult === "ok"
       let outcome: SaveOutcome
       if (!db) {
@@ -146,7 +154,7 @@ export function createRepository({ db, local, now }: RepositoryOptions): Reposit
     },
 
     mirror(project) {
-      return writeMirror(local, withCurrentMethodology(project), now()) === "ok"
+      return mirrorWrite(withCurrentMethodology(project), now()) === "ok"
     },
 
     async remove(projectId, latest) {

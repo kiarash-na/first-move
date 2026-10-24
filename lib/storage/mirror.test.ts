@@ -28,15 +28,34 @@ describe("localStorage mirror", () => {
     expect([...all.keys()].sort()).toEqual([testId(1), testId(2)])
   })
 
-  it("makes room by dropping the oldest other copies when storage is full", () => {
-    const size = JSON.stringify({ savedAt: at(0).toISOString(), project: testProject(1) }).length + MIRROR_PREFIX.length + 40
+  const size = JSON.stringify({ savedAt: at(0).toISOString(), project: testProject(1) }).length + MIRROR_PREFIX.length + 40
+
+  it("makes room by dropping the oldest other copies it may drop when storage is full", () => {
     const storage = new MemoryStorage({ quota: size * 2 })
     writeMirror(storage, testProject(1), at(1))
     writeMirror(storage, testProject(2), at(2))
-    expect(writeMirror(storage, testProject(3), at(3))).toBe("ok")
+    expect(writeMirror(storage, testProject(3), at(3), { canEvict: () => true })).toBe("ok")
     expect(readMirror(storage, testId(1))).toBeNull()
     expect(readMirror(storage, testId(2))).not.toBeNull()
     expect(readMirror(storage, testId(3))).not.toBeNull()
+  })
+
+  it("skips copies it may not drop, oldest first among the rest", () => {
+    const storage = new MemoryStorage({ quota: size * 2 })
+    writeMirror(storage, testProject(1), at(1))
+    writeMirror(storage, testProject(2), at(2))
+    expect(writeMirror(storage, testProject(3), at(3), { canEvict: (id) => id !== testId(1) })).toBe("ok")
+    expect(readMirror(storage, testId(1))).not.toBeNull()
+    expect(readMirror(storage, testId(2))).toBeNull()
+  })
+
+  it("never drops another copy by default; reports the full storage instead", () => {
+    const storage = new MemoryStorage({ quota: size * 2 })
+    writeMirror(storage, testProject(1), at(1))
+    writeMirror(storage, testProject(2), at(2))
+    expect(writeMirror(storage, testProject(3), at(3))).toBe("quota-exceeded")
+    expect(readMirror(storage, testId(1))).not.toBeNull()
+    expect(readMirror(storage, testId(2))).not.toBeNull()
   })
 
   it("reports a full storage it cannot free, and blocked or missing storage", () => {

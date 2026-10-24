@@ -28,7 +28,7 @@ export interface Formula {
 
 export const FORMULAS: Record<FormulaId, Formula> = { ...EQUATIONS, ...RESOLVED_FORMULAS }
 
-/** Every formula id: the equations in methodology order, then OQ-12 and OQ-21. */
+/** Every formula id: the equations in methodology order, then the resolved OQ formulas (OQ-06, OQ-12, OQ-17, OQ-21). */
 export const FORMULA_IDS = Object.keys(FORMULAS) as FormulaId[]
 
 /** The `calc` dictionary key of a formula's name. */

@@ -33,9 +33,21 @@ export const EQUATIONS_OUT = "lib/quick-check/explain/equations.gen.ts"
  */
 const RESOLVED_FORMULAS = [
   {
+    // With PV, EQ-3.11 times (1 − PV cost reduction of TBL-6, 30 % by default); r_PV names that row.
+    id: "OQ-06",
+    output: "C_{el,PV}",
+    latex: "C_{el,PV} = C_{el} \\cdot (1 - r_{PV})",
+  },
+  {
     id: "OQ-12",
     output: "CH",
     latex: "CH = \\frac{\\min(Q_{cool,total}, Q_{heat,total})}{\\max(Q_{cool,total}, Q_{heat,total})}",
+  },
+  {
+    // EQ-3.10d without the second C_i: the installations are counted once.
+    id: "OQ-17",
+    output: "C_{overall}",
+    latex: "C_{overall} = C_{HP} \\cdot N_{total} + C_{net} + C_{i,total}",
   },
   {
     id: "OQ-21",
@@ -145,7 +157,7 @@ function equationsFile(root) {
     "/** Every equation of methodology §3 (`latex:` of each file), keyed by ID, in file order. */",
     `export const EQUATIONS = ${literal(byId(equations))} as const`,
     "",
-    "/** Formulas that come from a resolved OQ answer instead of an equation file (OQ-12, OQ-21). */",
+    "/** Formulas that come from a resolved OQ answer instead of an equation file (OQ-06, OQ-12, OQ-17, OQ-21). */",
     `export const RESOLVED_FORMULAS = ${literal(byId(resolved))} as const`,
     "",
   ].join("\n")

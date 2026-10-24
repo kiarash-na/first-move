@@ -38,10 +38,10 @@ function mirrorKeys(storage: Storage): string[] {
   return keys
 }
 
-/** Removes the oldest other mirror to make room; false when there is none left. */
-function evictOldest(storage: Storage, keep: string): boolean {
+/** Removes the oldest other mirror that may go; false when there is none left. */
+function evictOldest(storage: Storage, keep: string, canEvict: (projectId: string) => boolean): boolean {
   const candidates = mirrorKeys(storage)
-    .filter((key) => key !== keep)
+    .filter((key) => key !== keep && canEvict(key.slice(MIRROR_PREFIX.length)))
     .map((key) => ({ key, savedAt: parse(storage.getItem(key))?.savedAt ?? "" }))
     .sort((a, b) => a.savedAt.localeCompare(b.savedAt))
   if (candidates.length === 0) return false
@@ -49,11 +49,27 @@ function evictOldest(storage: Storage, keep: string): boolean {
   return true
 }
 
+export interface MirrorWriteOptions {
+  /**
+   * Whether another project's copy may be dropped to make room. Only a copy that is a backup of a
+   * project safely stored elsewhere (IndexedDB) may go; the default drops nothing, because in
+   * mirror-only mode, or after a failed IndexedDB save, the copy is the only one (D-11).
+   */
+  canEvict?: (projectId: string) => boolean
+}
+
+const NEVER = () => false
+
 /**
- * Writes the copy. When storage is full, the copies of other projects (oldest first) make room:
- * they are only backups, and the project being edited matters most.
+ * Writes the copy. When storage is full, the copies of other projects that `canEvict` allows
+ * (oldest first) make room; when none may go, the result is "quota-exceeded" and nothing is lost.
  */
-export function writeMirror(storage: Storage | null, project: Project, now: Date): MirrorWrite {
+export function writeMirror(
+  storage: Storage | null,
+  project: Project,
+  now: Date,
+  { canEvict = NEVER }: MirrorWriteOptions = {},
+): MirrorWrite {
   if (!storage) return "unavailable"
   const key = keyOf(project.meta.id)
   let value: string
@@ -69,7 +85,7 @@ export function writeMirror(storage: Storage | null, project: Project, now: Date
     } catch (error) {
       if (!isQuotaError(error)) return "unavailable"
       try {
-        if (!evictOldest(storage, key)) return "quota-exceeded"
+        if (!evictOldest(storage, key, canEvict)) return "quota-exceeded"
       } catch {
         return "quota-exceeded"
       }

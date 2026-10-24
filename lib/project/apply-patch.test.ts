@@ -181,6 +181,19 @@ describe("applyPatch: bad patches", () => {
     ])
   })
 
+  it("rejects a whole-row patch that changes the row id; a whole-list patch sets ids", () => {
+    const base = applyPatch(project(), { "businessPlan.risks": [risk("r1", "Old")] }).project
+    const changed = applyPatch(base, { "businessPlan.risks.0": { ...risk("changed"), title: "New" } })
+    expect(changed.ok).toBe(false)
+    expect(changed.errors.map((error) => [error.path, error.code])).toEqual([["businessPlan.risks.0.id", "read-only"]])
+    expect(changed.project).toBe(base)
+    expect(applyPatch(base, { "businessPlan.risks.0": risk("changed") }, { atomic: true })).toMatchObject({ ok: false, project: base })
+    const kept = applyPatch(base, { "businessPlan.risks.0": risk("r1", "New") })
+    expect(kept.ok).toBe(true)
+    expect(kept.project.businessPlan.risks[0]).toMatchObject({ id: "r1", title: "New" })
+    expect(applyPatch(base, { "businessPlan.risks": [risk("r2")] }).project.businessPlan.risks[0].id).toBe("r2")
+  })
+
   it("rejects turning off the last module, on the field that did it (D-01)", () => {
     const base = project({ quickCheck: true, businessPlan: false })
     const result = applyPatch(base, { "meta.modules.quickCheck": false, "buildings.total": 5 })
