@@ -1,6 +1,9 @@
 import { describe, expect, it } from "vitest"
 import { formatEur } from "./currency"
 
+// en-GB writes its compact suffixes in capitals up to CLDR 47 (`€1.3M`) and in lower case from
+// CLDR 48 (`€1.3m`); which one shows depends on the runtime's ICU, so both pass.
+const ignoringSuffixCase = (s: string) => s.replace(/[km]$/, (suffix) => suffix.toUpperCase())
 const plain = (s: string) => s.replace(/[  ]/g, " ")
 
 describe("formatEur", () => {
@@ -15,7 +18,7 @@ describe("formatEur", () => {
   })
 
   it("supports compact notation", () => {
-    expect(formatEur(1_250_000, "en", { compact: true })).toBe("€1.3M")
+    expect(ignoringSuffixCase(formatEur(1_250_000, "en", { compact: true }))).toBe("€1.3M")
     expect(plain(formatEur(1_250_000, "de", { compact: true }))).toBe("1,3 Mio. €")
   })
 
@@ -24,7 +27,7 @@ describe("formatEur", () => {
     expect(plain(formatEur(128_100.9, "de", { compact: true }))).toBe("128.101 €")
     expect(plain(formatEur(631_083.3, "de", { compact: true }))).toBe("631.083 €")
     expect(plain(formatEur(8712, "de", { compact: true }))).toBe("8.712 €")
-    expect(formatEur(128_100.9, "en", { compact: true })).toBe("€128.1K")
+    expect(ignoringSuffixCase(formatEur(128_100.9, "en", { compact: true }))).toBe("€128.1K")
     expect(formatEur(999.6, "en", { compact: true })).toBe("€1,000")
   })
 
