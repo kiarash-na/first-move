@@ -1,0 +1,108 @@
+---
+id: PLAN-DASH-00
+date: 2026-10-24
+status: todo
+challenge: [quick-check-tool, business-models]
+covers: [QCT-SCOPE-01, QCT-SCOPE-06, QCT-SCOPE-09, BM-SCOPE-05, DESIGN-TOKENS]
+blocked_by: []
+---
+
+# First Move dashboard: overview
+
+## Goal
+
+Build a bilingual (EN/DE), browser-only Next.js dashboard. Each project has two optional modules, **Quick Check** and **Business Plan**, built strictly to `docs/`. Decisions `D-xx` and all OQ answers are in [NOTE-2026-10-24-owner-decisions](../notes/2026-10-24_owner-decisions.md).
+
+## Requirements covered
+
+All of `10_quick-check-tool/` and `20_business-models/`, split across phases 01–11 ([CONTEXT.md](CONTEXT.md)). **Not now:** the output document (button only, D-09), public docs content (D-22) and the file-ingestion agent (D-05).
+
+## Steps (architecture every phase follows)
+
+**Routes**
+
+| URL | Root layout | Page |
+|---|---|---|
+| `/` | none | `proxy.ts` redirects to `/en` or `/de` (cookie `NEXT_LOCALE`, then `Accept-Language`, else `en`) |
+| `/[lang]` | `app/[lang]/(landing)/layout.tsx` | landing (always dark) |
+| `/[lang]/dashboard` | `app/[lang]/(app)/layout.tsx` | start screen |
+| `/[lang]/dashboard/overview` | (app) | overview |
+| `/[lang]/dashboard/quick-check/[step]` | (app) | `area` · `buildings` · `sources` · `options` · `results` |
+| `/[lang]/dashboard/business-plan/[step]` | (app) | `opportunity` · `business-logic` · `reality-check` · `implementation` |
+| `/[lang]/dashboard/assumptions` | (app) | defaults, OQ answers, parameter playground |
+| `/[lang]/docs/[[...slug]]` | `app/[lang]/(docs)/layout.tsx` | public MDX docs (empty now) |
+
+Every root layout sets `<html lang>` and lists `en` and `de` in `generateStaticParams`. Page shells stay static (Cache Components), and project data is read on the client only. The active project is kept per tab in sessionStorage, falling back to the last-used project. It never goes in the URL.
+
+**Folders**
+
+| Path | Holds |
+|---|---|
+| `lib/i18n/` | locales, `getDictionary`, `format` (numbers, units, dates, parsing) |
+| `dictionaries/{en,de}/<area>.json` | one file per area: `common`, `landing`, `start`, `shell`, `overview`, `quick-check`, `business-plan`, `assumptions` |
+| `lib/project/` | Zod schema (one file per section), field registry, `applyPatch`, `createProject`, migrations |
+| `lib/storage/` | IndexedDB, mirror, snapshots, tab sync, file link, export/import |
+| `lib/store/` | Zustand store: projects, active project, save status |
+| `lib/quick-check/` | `reference/` (generated from YAML), `equations/` (one file per EQ), `classify/`, `overall-rule.ts`, `drivers.ts`, `run.ts` |
+| `lib/business-plan/` | presets, guiding prompts, readiness, QC prefill |
+| `lib/examples/` | one file per example project |
+| `features/<area>/` | UI per area: `start`, `shell`, `overview`, `quick-check`, `business-plan`, `assumptions`, `charts` |
+| `components/ui/` | shadcn components (re-themed) |
+| `components/landing/` | existing landing |
+| `content/docs/{en,de}/` | public MDX (later) |
+
+Small files, one job each (D-24). Tests sit next to the unit they test (`x.ts` → `x.test.ts`). E2E tests go in `e2e/`.
+
+**Data model.** Shared data is stored once (D-01). Results are derived, never stored or exported.
+
+```
+Project
+  meta          id, name, createdAt, updatedAt, schemaVersion, methodologyVersion, modules {quickCheck, businessPlan}, exampleId?
+  site          name, location, siteType, currentSupply[], stakeholders[]          BM-SCN-*, BM-STEP-01
+  buildings     total QCT-IN-01 · areaM2 QCT-IN-02 · shares[type][period] QCT-IN-04
+  sources       [{ id, potential }] QCT-IN-06/07 · pv QCT-IN-09
+  quickCheck    manualDemand? QCT-IN-05 · networkLengthM? QCT-IN-08 · overrides? D-10
+  businessPlan  scenarioId · opportunity · canvas · allocation · assumptions · risks · scalability · nextSteps   BM-STEP-01..04
+```
+
+How the modules share data:
+- `site`, `buildings` and `sources` feed the QC equations and BP step 1 (site, customer segments, heat sources).
+- QC demand, revenue and investment appear read-only in BP steps 1 and 3 (ALG-09).
+
+**Agent-ready fields (D-05).** Every input is declared once in `lib/project/fields/` with:
+- id (dot path), module, step
+- type, unit, min/max or enum
+- requirement ID and i18n label key
+
+The UI renders inputs from this registry. `applyPatch(project, patch)` validates through the same Zod schema. `z.toJSONSchema()` becomes the contract for a later ingestion agent.
+
+**Stack.**
+- Next 16.4: App Router, `proxy.ts`, Cache Components, Turbopack
+- React 19.3, Tailwind v4, shadcn/ui, lucide-react
+- Zod 4, Zustand, `idb`
+- shadcn Charts (Recharts)
+- Vitest, Testing Library, `fake-indexeddb`; Playwright on the preinstalled Chromium
+- `@next/mdx`
+
+Add a dependency only when a phase needs it.
+
+## How to run the phases (orchestrator, fresh session; D-26)
+
+1. Read [CONTEXT.md](CONTEXT.md). Pick the first phase with `status: todo` whose `blocked_by` phases are all `done`.
+2. Spawn **one** sub-agent with: *"Execute `docs/90_work/plans/<file>`. Follow PLAN-DASH-00 and the root CLAUDE.md."* Never run two phases at once.
+3. The sub-agent:
+   1. Reads the phase file and the requirement files it cites.
+   2. Builds the phase.
+   3. Runs `pnpm lint && pnpm typecheck && pnpm test && pnpm build`.
+   4. Sets `status: done` in the file and in the CONTEXT table.
+   5. Writes `notes/YYYY-MM-DD_phase-NN_<name>.md` (built, deviations, follow-ups).
+   6. Commits (`phase NN: <name>`) and pushes to the session branch.
+4. The orchestrator skims the note and diff, then starts the next phase. If a requirement has a gap, the sub-agent takes the documented default and logs it in the note. It never blocks.
+
+## Open questions this depends on
+
+None. OQ-01..OQ-26 are resolved.
+
+## Verification
+
+Phase 11 passes, and every requirement ID in `10_quick-check-tool/` and `20_business-models/` appears in at least one phase's `covers`.

@@ -80,3 +80,4 @@ rows:
     cop: 3.5
 flags:
 - OQ-13
+- OQ-26

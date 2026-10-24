@@ -1,8 +1,8 @@
 ---
 id: OQ-25
 title: Which are the "predefined scenarios"?
-status: open
-answer: null
+status: resolved
+answer: 'Use the 4 V01 scenarios (BM-SCN-01..04) as presets, prefilling only the stated fields, plus a custom use case. (owner, 2026-10-24; NOTE-2026-10-24-owner-decisions)'
 ---
 
 # OQ-25 · Which are the "predefined scenarios"?

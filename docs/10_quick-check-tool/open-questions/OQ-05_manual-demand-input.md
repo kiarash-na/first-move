@@ -1,8 +1,8 @@
 ---
 id: OQ-05
 title: Form of the optional manual demand input
-status: open
-answer: null
+status: resolved
+answer: 'Two optional totals in kWh/a (heating, cooling). When set, they replace the EQ-3.2c / EQ-3.2d results. Base-price revenue terms still use N_i,p · A. (owner, 2026-10-24; NOTE-2026-10-24-owner-decisions)'
 ---
 
 # OQ-05 · Form of the optional manual demand input

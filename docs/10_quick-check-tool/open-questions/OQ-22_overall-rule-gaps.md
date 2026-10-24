@@ -1,8 +1,8 @@
 ---
 id: OQ-22
 title: Combinations not covered by the overall rule
-status: open
-answer: null
+status: resolved
+answer: 'Precedence: (1) industry share > 0 or any selected source with Unknown potential → Further analysis required; (2) Not promising; (3) Promising; (4) otherwise Further analysis required. A demand is relevant when > 0. Missing required inputs → no result (incomplete). (owner, 2026-10-24; NOTE-2026-10-24-owner-decisions)'
 ---
 
 # OQ-22 · Combinations not covered by the overall rule

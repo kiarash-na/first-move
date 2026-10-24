@@ -2,7 +2,7 @@
 id: QCT-REF-1.3
 title: Default Energy Source Parameters
 source: [00_originals/AQC-Methodology.docx §1.3]
-flags: [OQ-13, OQ-14]
+flags: [OQ-13, OQ-14, OQ-26]
 ---
 
 # Default Energy Source Parameters

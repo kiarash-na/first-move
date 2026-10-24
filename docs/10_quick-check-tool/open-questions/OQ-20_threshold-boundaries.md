@@ -1,8 +1,8 @@
 ---
 id: OQ-20
 title: Range boundaries in the classification tables
-status: open
-answer: null
+status: resolved
+answer: 'Lower bound inclusive, no gaps. Coverage: ≥100 / ≥90 / ≥70 / <70 %. Building density: >30 / ≥10 / <10 buildings/ha. Heat density: >1.5 / ≥0.5 / <0.5 MWh/m. CH ratio: ≥0.8 / ≥0.3 / <0.3. (owner, 2026-10-24; NOTE-2026-10-24-owner-decisions)'
 ---
 
 # OQ-20 · Range boundaries in the classification tables

@@ -1,8 +1,8 @@
 ---
 id: OQ-13
 title: Sources without COP or capacity
-status: open
-answer: null
+status: resolved
+answer: 'Solar thermal (no COP): Q_heat,supply = Q_heat,available, no heat-pump electricity. Sources without cooling capacity (waste heat, solar thermal): Q_cool,supply = 0. (owner, 2026-10-24; NOTE-2026-10-24-owner-decisions)'
 ---
 
 # OQ-13 · Sources without COP or capacity

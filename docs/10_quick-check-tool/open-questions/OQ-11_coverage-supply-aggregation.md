@@ -1,8 +1,8 @@
 ---
 id: OQ-11
 title: Per-source supply vs total supply in coverage
-status: open
-answer: null
+status: resolved
+answer: 'Several sources may be selected. Coverage uses the sum of the per-source supplies. C_i and C_el are computed per source and summed. (owner, 2026-10-24; NOTE-2026-10-24-owner-decisions)'
 ---
 
 # OQ-11 · Per-source supply vs total supply in coverage

@@ -1,8 +1,8 @@
 ---
 id: OQ-07
 title: Q_cool,total glossed as heating demand in §3.2
-status: open
-answer: null
+status: resolved
+answer: 'Q_cool,total is the total annual cooling demand (the §3.2 gloss is a slip). (owner, 2026-10-24; NOTE-2026-10-24-owner-decisions)'
 ---
 
 # OQ-07 · Q_cool,total glossed as heating demand in §3.2

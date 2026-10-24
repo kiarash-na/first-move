@@ -1,8 +1,8 @@
 ---
 id: OQ-23
 title: Predefined scenarios and mockup datasets not provided
-status: open
-answer: null
+status: resolved
+answer: 'The team creates 6 illustrative example projects (both modules filled), labelled ''Illustrative inputs only'': 4 based on BM-SCN-01..04 plus 2 extra promising ones. Together they cover all three result levels and double as test fixtures. (owner, 2026-10-24; NOTE-2026-10-24-owner-decisions)'
 ---
 
 # OQ-23 · Predefined scenarios and mockup datasets not provided

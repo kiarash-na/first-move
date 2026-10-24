@@ -11,6 +11,6 @@ Challenge: *Develop a 5GDHC Quick Check Tool*. The flow folders follow the brief
 | [04_understand-key-factors/](04_understand-key-factors/) | Understand the key factors: presentation requirements |
 | [05_output-document/](05_output-document/) | Receive an output document (e.g. PDF) |
 | [_reference/](_reference/) | Canonical data for code: Tables 1–11 (YAML), building types, symbols |
-| [open-questions/](open-questions/) | Issues in the source material (OQ-01 … OQ-24) |
+| [open-questions/](open-questions/) | Issues in the source material (OQ-01 … OQ-24, OQ-26) |
 
 Equation source of truth: `00_originals/AQC-Methodology.docx` (equation markup, verified against the PDF render). Data source of truth for code: `_reference/*.yaml`.

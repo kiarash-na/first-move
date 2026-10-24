@@ -1,8 +1,8 @@
 ---
 id: OQ-10
 title: Heat density unit vs thresholds
-status: open
-answer: null
+status: resolved
+answer: 'ρ_heat is computed in kWh/m and compared with the TBL-9 thresholds in MWh/m (ρ_heat / 1000). The UI shows MWh/m. (owner, 2026-10-24; NOTE-2026-10-24-owner-decisions)'
 ---
 
 # OQ-10 · Heat density unit vs thresholds

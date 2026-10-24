@@ -1,0 +1,54 @@
+---
+id: PLAN-DASH-01
+date: 2026-10-24
+status: todo
+challenge: [quick-check-tool, business-models]
+covers: [DESIGN-TOKENS, QCT-SCOPE-09, OQ-24]
+blocked_by: []
+---
+
+# Phase 01 · Foundation
+
+## Goal
+
+Routes, i18n, theming, shadcn, MDX and test tooling are in place. The landing page is moved but looks unchanged.
+
+## Requirements covered
+
+DESIGN-TOKENS §1–5 and §7; D-14, D-15, D-16, D-19, D-21, D-22, D-25.
+
+## Steps
+
+1. Read these docs in `node_modules/next/dist/docs/01-app/` first:
+   - `02-guides/internationalization.md`
+   - `03-api-reference/04-functions/next-root-params.md`
+   - `03-api-reference/03-file-conventions/{proxy,layout,route-groups}.md`
+   - `02-guides/{mdx,preventing-flash-before-hydration,content-security-policy}.md`
+   - `03-api-reference/05-config/01-next-config-js/cacheComponents.md`
+   - `02-guides/testing/{vitest,playwright}.md`
+2. Move `app/layout.tsx` and `app/page.tsx` to `app/[lang]/(landing)/`, with no visual change. Add the `(app)` and `(docs)` root layouts. Every root layout sets `<html lang>` and returns `en` and `de` from `generateStaticParams`.
+3. `proxy.ts`: redirect unprefixed paths. The matcher skips `_next`, files with an extension, and `/en` and `/de`. Store the choice in `NEXT_LOCALE`.
+4. `lib/i18n/`:
+   - locale config and guard
+   - server-only `getDictionary(lang, area)`
+   - `format.ts`: Intl numbers, EUR, %, kWh/MWh/GWh auto-scaling, locale-aware number parsing
+   - `LanguageSwitch` component: same path, other locale
+5. Tokens:
+   - Map the existing `app/globals.css` variables to shadcn names via `@theme inline`.
+   - Add a light palette under `[data-theme="light"]`, derived from the DESIGN-TOKENS light/report values: Ink text on Paper, cyan role → *Accent on light*, orange darkened until 4.5:1 contrast.
+   - Radius 0; focus ring 2px cyan, offset 4px; breakpoints 767/899/1100/1199.
+   - Theme toggle: dark by default, stored in localStorage, applied by a pre-paint inline script. Never read `cookies()`.
+6. `shadcn init`, then add: button, card, input, label, select, tabs, tooltip, dialog, alert-dialog, dropdown-menu, sheet, sonner, chart, switch, slider, toggle-group, table, progress, badge, separator, skeleton, scroll-area. Restyle the variants to DESIGN-TOKENS §5.
+7. `@next/mdx` with `mdx-components.tsx` at the root. `(docs)/docs/[[...slug]]/page.tsx` shows a "coming soon" page. Create `content/docs/{en,de}/.gitkeep`. Pass plugins as strings.
+8. Headers in `next.config.ts`: CSP *without nonces* (keeps shells static, see the CSP guide "Without Nonces"), `connect-src 'self'`, `frame-ancestors 'none'`, a referrer policy.
+9. Add `package.json` scripts `typecheck`, `test` (Vitest + jsdom + Testing Library) and `test:e2e` (Playwright). Write tests for format/parse, the locale guard and the proxy redirect logic.
+
+## Open questions this depends on
+
+None.
+
+## Verification
+
+- `pnpm build` passes.
+- `/` redirects to `/en`; `/de` renders the landing.
+- `/en/dashboard` renders a placeholder in dark and in light.

@@ -1,8 +1,8 @@
 ---
 id: OQ-12
 title: No formula for the cooling-to-heating ratio
-status: open
-answer: null
+status: resolved
+answer: 'CH = min(Q_cool,total, Q_heat,total) / max(Q_cool,total, Q_heat,total), always 0-1. The UI names the dominant demand. Both demands 0 → not applicable. (owner, 2026-10-24; NOTE-2026-10-24-owner-decisions)'
 ---
 
 # OQ-12 · No formula for the cooling-to-heating ratio

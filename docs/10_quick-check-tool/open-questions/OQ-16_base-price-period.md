@@ -1,8 +1,8 @@
 ---
 id: OQ-16
 title: Base prices per m² without time unit
-status: open
-answer: null
+status: resolved
+answer: 'Base prices are € per m² floor area per year. (owner, 2026-10-24; NOTE-2026-10-24-owner-decisions)'
 ---
 
 # OQ-16 · Base prices per m² without time unit

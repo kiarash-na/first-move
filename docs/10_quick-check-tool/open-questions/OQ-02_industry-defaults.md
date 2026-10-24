@@ -1,8 +1,8 @@
 ---
 id: OQ-02
 title: No default values for industry
-status: open
-answer: null
+status: resolved
+answer: 'Industry is selectable in the share grid. Any industry share > 0 forces ''Further analysis required'' (QCT-RULE-INDUSTRY). Industry adds no demand, floor area or revenue (no defaults); the UI shows a note. (owner, 2026-10-24; NOTE-2026-10-24-owner-decisions)'
 ---
 
 # OQ-02 · No default values for industry

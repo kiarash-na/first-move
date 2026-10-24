@@ -1,8 +1,8 @@
 ---
 id: OQ-04
 title: Role of the "rural, sub-urban, urban" input
-status: open
-answer: null
+status: resolved
+answer: 'Not a user input. The category is derived from the TBL-8 class of the computed ρ_building (Low → rural, Medium → sub-urban, High → urban) and shown read-only. (owner, 2026-10-24; NOTE-2026-10-24-owner-decisions)'
 ---
 
 # OQ-04 · Role of the "rural, sub-urban, urban" input

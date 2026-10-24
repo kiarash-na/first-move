@@ -1,8 +1,8 @@
 ---
 id: OQ-01
 title: Percent values used directly in equations
-status: open
-answer: null
+status: resolved
+answer: 'Divide all % values (shares, interest rate, PV reduction) by 100 before use. N_i,p stays fractional (no rounding); the UI rounds for display only. (owner, 2026-10-24; NOTE-2026-10-24-owner-decisions)'
 ---
 
 # OQ-01 · Percent values used directly in equations

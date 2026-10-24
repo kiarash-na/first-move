@@ -1,8 +1,8 @@
 ---
 id: OQ-21
 title: '"Economic assessment favorable / clearly unfavorable" is not defined'
-status: open
-answer: null
+status: resolved
+answer: 'E = R_overall / (C_annual + C_el + C_O&M). E ≥ 1.0 favorable; E < 0.7 clearly unfavorable; otherwise unclear (→ Further analysis required). Constants live in one config file. (owner, 2026-10-24; NOTE-2026-10-24-owner-decisions)'
 ---
 
 # OQ-21 · "Economic assessment favorable / clearly unfavorable" is not defined

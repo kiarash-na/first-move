@@ -1,8 +1,8 @@
 ---
 id: OQ-17
 title: C_overall adds both C_i and C_i,total
-status: open
-answer: null
+status: resolved
+answer: 'C_overall = C_HP · N_total + C_net + C_i,total (C_i is not added a second time). (owner, 2026-10-24; NOTE-2026-10-24-owner-decisions)'
 ---
 
 # OQ-17 · C_overall adds both C_i and C_i,total

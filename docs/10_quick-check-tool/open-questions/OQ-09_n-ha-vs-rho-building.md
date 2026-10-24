@@ -1,8 +1,8 @@
 ---
 id: OQ-09
 title: N_ha vs ρ_building
-status: open
-answer: null
+status: resolved
+answer: 'N_ha = ρ_building (EQ-3.3). (owner, 2026-10-24; NOTE-2026-10-24-owner-decisions)'
 ---
 
 # OQ-09 · N_ha vs ρ_building

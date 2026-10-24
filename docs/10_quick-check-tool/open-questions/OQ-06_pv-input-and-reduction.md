@@ -1,8 +1,8 @@
 ---
 id: OQ-06
 title: 'PV: input and application of the 30 % reduction'
-status: open
-answer: null
+status: resolved
+answer: 'PV is a yes/no input. If yes, C_el is multiplied by (1 − 0.30). (owner, 2026-10-24; NOTE-2026-10-24-owner-decisions)'
 ---
 
 # OQ-06 · PV: input and application of the 30 % reduction

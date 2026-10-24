@@ -1,8 +1,8 @@
 ---
 id: OQ-14
 title: COP definition and COP_H / COP_C
-status: open
-answer: null
+status: resolved
+answer: 'COP means coefficient of performance. COP_H = TBL-4 COP and COP_C = TBL-5 COP of the same source. (owner, 2026-10-24; NOTE-2026-10-24-owner-decisions)'
 ---
 
 # OQ-14 · COP definition and COP_H / COP_C

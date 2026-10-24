@@ -5,7 +5,9 @@ Living area for coding agents and the team. Everything above `90_work/` describe
 | Folder | What goes in | File name |
 |---|---|---|
 | [notes/](notes/) | Findings, decisions taken, answers received, session logs | `YYYY-MM-DD_topic.md` from [../_templates/note.md](../_templates/note.md) |
-| [plans/](plans/) | Build plans for a feature, module or challenge | `YYYY-MM-DD_plan-name.md` from [../_templates/plan.md](../_templates/plan.md) |
+| [plans/](plans/) | Build plans for a feature, module or challenge; [plans/CONTEXT.md](plans/CONTEXT.md) lists phases and status | `YYYY-MM-DD_plan-name.md` from [../_templates/plan.md](../_templates/plan.md) |
+
+The notes are the build log: every build phase adds `notes/YYYY-MM-DD_phase-NN_<name>.md`.
 
 Rules:
 

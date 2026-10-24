@@ -1,8 +1,8 @@
 ---
 id: OQ-08
 title: Overloaded symbols and inconsistent indices
-status: open
-answer: null
+status: resolved
+answer: 'Read indices by context: i = building type (§3.1, 3.2, 3.9) or source (§3.8, 3.10a-c, 3.11); in EQ-3.10e i = interest rate and p = depreciation period. A = average floor area of type i, period p (TBL-3). EQ-3.2a/b are evaluated per cell (i, p). C_i,total = sum of C_i over the selected sources. (owner, 2026-10-24; NOTE-2026-10-24-owner-decisions)'
 ---
 
 # OQ-08 · Overloaded symbols and inconsistent indices

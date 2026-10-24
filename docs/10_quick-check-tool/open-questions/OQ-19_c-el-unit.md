@@ -1,8 +1,8 @@
 ---
 id: OQ-19
 title: C_el unit given as kWh/a
-status: open
-answer: null
+status: resolved
+answer: 'C_el is in €/a. (owner, 2026-10-24; NOTE-2026-10-24-owner-decisions)'
 ---
 
 # OQ-19 · C_el unit given as kWh/a

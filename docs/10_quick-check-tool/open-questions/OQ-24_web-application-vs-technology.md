@@ -1,8 +1,8 @@
 ---
 id: OQ-24
 title: '"Web application" vs "technology is secondary"'
-status: open
-answer: null
+status: resolved
+answer: 'A web application (Next.js) that runs fully in the browser. (owner, 2026-10-24; NOTE-2026-10-24-owner-decisions)'
 ---
 
 # OQ-24 · "Web application" vs "technology is secondary"

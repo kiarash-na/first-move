@@ -1,8 +1,8 @@
 ---
 id: OQ-18
 title: Ambient air installation cost "-" with unit €/kWh
-status: open
-answer: null
+status: resolved
+answer: 'Ambient air installation cost = 0 €/(kWh/a); heat pumps are already in C_HP · N_total. Shown as an assumption in the UI. (owner, 2026-10-24; NOTE-2026-10-24-owner-decisions)'
 ---
 
 # OQ-18 · Ambient air installation cost "-" with unit €/kWh

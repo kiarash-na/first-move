@@ -1,8 +1,8 @@
 ---
 id: OQ-15
 title: p_C,energy vs p_HC,energy
-status: open
-answer: null
+status: resolved
+answer: 'p_C,energy is the cooling energy price (TBL-6, cooling_energy_price). (owner, 2026-10-24; NOTE-2026-10-24-owner-decisions)'
 ---
 
 # OQ-15 · p_C,energy vs p_HC,energy

@@ -1,8 +1,8 @@
 ---
 id: OQ-03
 title: Construction periods overlap at 1919
-status: open
-answer: null
+status: resolved
+answer: 'Show the period labels verbatim. No calculation depends on the boundary year. (owner, 2026-10-24; NOTE-2026-10-24-owner-decisions)'
 ---
 
 # OQ-03 · Construction periods overlap at 1919
