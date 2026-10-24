@@ -9,8 +9,8 @@ One sub-agent per phase. A phase may start when everything in its `Blocked by` c
 | 01 | [Foundation](2026-10-24_dashboard-01_foundation.md) | none | done |
 | 02 | [Landing as First Move (EN, DE basis)](2026-10-24_dashboard-02_landing-i18n.md) | 01 | done |
 | 03 | [Project model](2026-10-24_dashboard-03_project-model.md) | 01 | done |
-| 04 | [Local storage and data safety](2026-10-24_dashboard-04_storage.md) | 03 | todo |
-| 05 | [Quick Check engine](2026-10-24_dashboard-05_quick-check-engine.md) | 03 | todo |
+| 04 | [Local storage and data safety](2026-10-24_dashboard-04_storage.md) | 03 | done |
+| 05 | [Quick Check engine](2026-10-24_dashboard-05_quick-check-engine.md) | 03 | done |
 | 06 | [Demo examples](2026-10-24_dashboard-06_examples.md) | 05 | todo |
 | 07 | [Dashboard shell and start screen](2026-10-24_dashboard-07_shell-and-start.md) | 04, 06 | todo |
 | 08 | [Quick Check inputs, results, assumptions](2026-10-24_dashboard-08_quick-check-ui.md) | 07 | todo |
