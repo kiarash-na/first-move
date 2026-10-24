@@ -4,14 +4,13 @@ import "@fontsource/instrument-serif/400-italic.css"
 import "@fontsource/ibm-plex-mono/latin-400.css"
 import "../../globals.css"
 
+import { getDictionary } from "@/lib/i18n/get-dictionary"
 import { localeParams } from "@/lib/i18n/locales"
 import { requireLocale } from "@/lib/i18n/require-locale"
 
-// Landing copy and metadata move to dictionaries/{en,de}/landing.json in phase 02.
-export const metadata: Metadata = {
-  title: "5GDHC — The Operating System for Shared Energy",
-  description:
-    "A digital operating system for 5th Generation District Heating and Cooling—from first screening to a viable business model.",
+export async function generateMetadata({ params }: LayoutProps<"/[lang]">): Promise<Metadata> {
+  const { meta } = await getDictionary(requireLocale((await params).lang), "landing")
+  return { title: meta.title, description: meta.description }
 }
 
 export const viewport: Viewport = {

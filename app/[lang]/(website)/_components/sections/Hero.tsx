@@ -1,34 +1,28 @@
 import { ArrowDown, ArrowLeftRight, ArrowUpRight, MousePointer2 } from 'lucide-react'
 import type { ToolId } from '../Header'
+import { RichText } from '../rich-text'
+import type { Landing } from '../types'
 
 interface HeroProps {
+  t: Landing
   selectedTool: ToolId | null
   flowDirection: 1 | -1
   onFlowDirectionChange: () => void
   onToolSelect: (tool: ToolId) => void
 }
 
-const toolCopy: Record<ToolId, { index: string; title: string; description: string; sceneLabel: string; target: string }> = {
-  'quick-check': {
-    index: '01',
-    title: 'Quick Check',
-    description: 'Screen the potential. See the decisive factors.',
-    sceneLabel: 'Screening mode · three-level assessment',
-    target: 'quick-inputs',
-  },
-  'business-models': {
-    index: '02',
-    title: 'Business Models',
-    description: 'Allocate value, investment, risk and responsibility.',
-    sceneLabel: 'Business mode · value and risk allocation',
-    target: 'business-use-cases',
-  },
+const toolMeta: Record<ToolId, { index: string; target: string }> = {
+  'quick-check': { index: '01', target: 'quick-inputs' },
+  'business-models': { index: '02', target: 'business-use-cases' },
 }
 
-export function Hero({ selectedTool, flowDirection, onFlowDirectionChange, onToolSelect }: HeroProps) {
-  const sceneLabel = selectedTool
-    ? toolCopy[selectedTool].sceneLabel
-    : 'Interactive district · low-temperature network'
+export function Hero({ t, selectedTool, flowDirection, onFlowDirectionChange, onToolSelect }: HeroProps) {
+  const copy = t.hero
+  const toolCopy: Record<ToolId, { title: string; description: string; sceneLabel: string }> = {
+    'quick-check': copy.tools.quickCheck,
+    'business-models': copy.tools.businessModels,
+  }
+  const sceneLabel = selectedTool ? toolCopy[selectedTool].sceneLabel : copy.sceneDefault
 
   return (
     <section className={`hero ${selectedTool ? `hero--${selectedTool}` : ''}`} id="overview" data-chapter aria-labelledby="hero-title">
@@ -37,20 +31,17 @@ export function Hero({ selectedTool, flowDirection, onFlowDirectionChange, onToo
         <div className="hero__copy">
           <p className="hero__eyebrow reveal reveal--1">
             <span className="signal-dot" aria-hidden="true" />
-            5th Generation District Heating &amp; Cooling
+            {copy.eyebrow}
           </p>
-          <h1 id="hero-title" className="hero__title" aria-label="The operating system for shared energy">
-            <span className="title-line reveal reveal--2">The operating</span>
-            <span className="title-line reveal reveal--3">system for</span>
-            <span className="title-line title-line--serif reveal reveal--4">shared energy.</span>
+          <h1 id="hero-title" className="hero__title" aria-label={copy.titleLabel}>
+            <span className="title-line reveal reveal--2">{copy.titleLine1}</span>
+            <span className="title-line reveal reveal--3">{copy.titleLine2}</span>
+            <span className="title-line title-line--serif reveal reveal--4">{copy.titleLine3}</span>
           </h1>
           <div className="hero__intro reveal reveal--5" id="why-5gdhc">
-            <p>
-              From first screening to a viable business model—for low-temperature,
-              bidirectional networks connecting buildings with local renewables and waste heat.
-            </p>
+            <p>{copy.intro}</p>
             <a className="text-link" href="#promise">
-              Discover the system
+              {copy.discover}
               <ArrowDown size={17} strokeWidth={1.7} aria-hidden="true" />
             </a>
           </div>
@@ -61,36 +52,36 @@ export function Hero({ selectedTool, flowDirection, onFlowDirectionChange, onToo
             <span className="scene-hud__cross" aria-hidden="true">+</span>
             <span>{sceneLabel}</span>
           </div>
-          <div className="scene-hud__legend" aria-label="Energy network legend">
-            <span><i className="legend-line legend-line--cool" aria-hidden="true" />Cooling</span>
-            <span><i className="legend-line legend-line--hot" aria-hidden="true" />Heating</span>
-            <span className="scene-hud__temperature">5–25°C</span>
+          <div className="scene-hud__legend" aria-label={copy.legendLabel}>
+            <span><i className="legend-line legend-line--cool" aria-hidden="true" />{copy.cooling}</span>
+            <span><i className="legend-line legend-line--hot" aria-hidden="true" />{copy.heating}</span>
+            <span className="scene-hud__temperature">{copy.temperature}</span>
           </div>
         </div>
 
         <div className="scene-annotation scene-annotation--top reveal reveal--6" aria-hidden="true">
-          <span>Bidirectional flow</span><i />
+          <span>{copy.annotationTop}</span><i />
         </div>
         <div className="scene-annotation scene-annotation--side reveal reveal--6" aria-hidden="true">
-          <span>Local sources</span><i />
+          <span>{copy.annotationSide}</span><i />
         </div>
 
         <div className="scene-controls reveal reveal--6">
           <span className="scene-controls__hint">
             <MousePointer2 size={14} strokeWidth={1.6} aria-hidden="true" />
-            Move to shift perspective
+            {copy.hint}
           </span>
           <button className="flow-control" type="button" aria-pressed={flowDirection === -1} onClick={onFlowDirectionChange}>
             <ArrowLeftRight size={16} strokeWidth={1.6} aria-hidden="true" />
-            {flowDirection === 1 ? 'Reverse flow' : 'Restore flow'}
+            {flowDirection === 1 ? copy.reverseFlow : copy.restoreFlow}
           </button>
         </div>
 
         <div className="tool-gateway reveal reveal--6" id="start" tabIndex={-1}>
-          <p className="tool-gateway__label">Two tools.<br />One operating system.</p>
+          <p className="tool-gateway__label"><RichText text={copy.gatewayLabel} /></p>
           <div className="tool-gateway__paths">
             {(Object.keys(toolCopy) as ToolId[]).map((tool) => {
-              const item = toolCopy[tool]
+              const item = { ...toolMeta[tool], ...toolCopy[tool] }
               const isSelected = selectedTool === tool
               return (
                 <button

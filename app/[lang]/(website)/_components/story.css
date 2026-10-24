@@ -39,6 +39,17 @@
   gap: 8px;
 }
 
+.brand__name,
+.header-cta span {
+  white-space: nowrap;
+}
+
+@media (max-width: 1100px) {
+  .brand__descriptor {
+    display: none;
+  }
+}
+
 .main-nav a {
   padding-right: 11px;
   padding-left: 11px;
@@ -1583,6 +1594,18 @@
   }
 
   .mobile-nav a:last-child {
+    border-bottom: 0;
+  }
+
+  .mobile-nav .mobile-nav__language {
+    padding: 4px 8px;
+  }
+
+  .mobile-nav .mobile-nav__language a {
+    justify-content: center;
+    width: 44px;
+    min-height: 44px;
+    padding: 0;
     border-bottom: 0;
   }
 }

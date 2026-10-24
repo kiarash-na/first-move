@@ -5,6 +5,8 @@ import './landing.css'
 import './story.css'
 import { DistrictScene } from './DistrictScene'
 import { Header, type ToolId } from './Header'
+import type { LanguageSwitchProps } from '@/components/language-switch/language-switch'
+import type { LandingCopyProps } from './types'
 import { useActiveChapter, useScrollReveal } from './useLandingPage'
 import { BusinessModelStory } from './sections/BusinessModelStory'
 import { Closing } from './sections/Closing'
@@ -12,7 +14,11 @@ import { Hero } from './sections/Hero'
 import { ProductStory } from './sections/ProductStory'
 import { QuickCheckStory } from './sections/QuickCheckStory'
 
-export default function Home() {
+interface HomeProps extends LandingCopyProps {
+  language: Omit<LanguageSwitchProps, 'lang' | 'className'>
+}
+
+export default function Home({ t, lang, language }: HomeProps) {
   const [selectedTool, setSelectedTool] = useState<ToolId | null>(null)
   const [flowDirection, setFlowDirection] = useState<1 | -1>(1)
   const [previewInputs, setPreviewInputs] = useState({ demand: 78, source: 72 })
@@ -30,18 +36,19 @@ export default function Home() {
           sourceAvailability={previewInputs.source}
         />
       </div>
-      <Header onToolSelect={setSelectedTool} />
+      <Header t={t} lang={lang} language={language} onToolSelect={setSelectedTool} />
       <main>
         <Hero
+          t={t}
           selectedTool={selectedTool}
           flowDirection={flowDirection}
           onFlowDirectionChange={() => setFlowDirection((direction) => direction === 1 ? -1 : 1)}
           onToolSelect={setSelectedTool}
         />
-        <ProductStory onToolSelect={setSelectedTool} />
-        <QuickCheckStory onPreviewChange={(demand, source) => setPreviewInputs({ demand, source })} />
-        <BusinessModelStory />
-        <Closing />
+        <ProductStory t={t} onToolSelect={setSelectedTool} />
+        <QuickCheckStory t={t} onPreviewChange={(demand, source) => setPreviewInputs({ demand, source })} />
+        <BusinessModelStory t={t} />
+        <Closing t={t} lang={lang} />
       </main>
     </div>
   )
