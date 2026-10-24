@@ -6,7 +6,7 @@
   "title": "Cookie-Richtlinie",
   "intro": "Diese Richtlinie erklärt, welches Cookie und welche weiteren Browserspeicher First Move verwendet, wofür sie dienen und wie Sie sie löschen oder blockieren können.",
   "updated": "2026-10-24",
-  "version": "1.1",
+  "version": "1.2",
   "sections": [
     {
       "id": "summary",
@@ -52,7 +52,7 @@
       "body": [
         "`NEXT_LOCALE` ist das einzige Cookie, das First Move setzt. Es enthält nur den Sprachcode `en` oder `de`. Es gilt für die gesamte Website (Pfad `/`) und wird mit `SameSite=Lax` gesetzt. Das schränkt ein, wann Ihr Browser es bei Anfragen mitsendet, die von anderen Websites ausgehen.",
         "Die Website setzt oder erneuert es:",
-        "- wenn Sie eine Adresse ohne Sprachangabe aufrufen, zum Beispiel {{site.url}}: Die Website leitet Sie dann auf die englische oder deutsche Fassung weiter und wählt dafür Ihre gespeicherte Sprache, sonst die von Ihrem Browser angefragte Sprache (`Accept-Language`-Header), sonst Englisch;",
+        "- wenn Sie eine Adresse ohne Sprachangabe aufrufen, zum Beispiel {{site.url}}: Die Website leitet Sie dann auf die englische oder deutsche Fassung weiter und wählt dafür Ihre gespeicherte Sprache, sonst Deutsch;",
         "- wenn Sie die Sprache über die Sprachauswahl wechseln.",
         "Das Cookie kann daher schon bei Ihrem ersten Besuch gesetzt werden, bevor Sie selbst eine Sprache wählen. Bei jedem Setzen beginnt seine Laufzeit von einem Jahr neu. So öffnet sich die Website in Ihrer Sprache, wenn Sie wiederkommen.",
         "Ihr Browser sendet das Cookie, wie jedes Cookie, mit seinen Anfragen an {{site.domain}}. Wir verwenden es für nichts anderes."

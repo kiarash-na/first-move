@@ -23,7 +23,7 @@ All of `10_quick-check-tool/` and `20_business-models/`, split across phases 01â
 
 | URL | Root layout | Page |
 |---|---|---|
-| `/` | none | `proxy.ts` redirects to `/en` or `/de` (cookie `NEXT_LOCALE`, then `Accept-Language`, else `en`) |
+| `/` | none | `proxy.ts` redirects to `/de`, or to `/en` when the cookie `NEXT_LOCALE` says so (D-67; before: `Accept-Language`, else `en`) |
 | `/[lang]` | `app/[lang]/(website)/layout.tsx` | landing (always dark) |
 | `/[lang]/dashboard` | `app/[lang]/(dashboard)/layout.tsx` | start screen |
 | `/[lang]/dashboard/overview` | (dashboard) | overview |

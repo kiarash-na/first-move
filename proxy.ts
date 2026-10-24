@@ -1,17 +1,14 @@
 import { NextResponse, type NextRequest } from "next/server"
 import { withLocale } from "@/lib/i18n/locale-path"
 import { LOCALE_COOKIE, LOCALE_COOKIE_MAX_AGE } from "@/lib/i18n/locales"
-import { pickLocale } from "@/lib/i18n/negotiate-locale"
+import { pickLocale } from "@/lib/i18n/pick-locale"
 
 /**
- * Redirects unprefixed paths to `/en/…` or `/de/…`: cookie first, then
- * `Accept-Language`, else EN (PLAN-DASH-00), and remembers the choice.
+ * Redirects unprefixed paths to `/de/…`, or to `/en/…` when the language cookie says so
+ * (D-67), and remembers the choice.
  */
 export function proxy(request: NextRequest) {
-  const locale = pickLocale({
-    cookie: request.cookies.get(LOCALE_COOKIE)?.value,
-    acceptLanguage: request.headers.get("accept-language"),
-  })
+  const locale = pickLocale(request.cookies.get(LOCALE_COOKIE)?.value)
   const url = request.nextUrl.clone()
   url.pathname = withLocale(url.pathname, locale)
   const response = NextResponse.redirect(url)

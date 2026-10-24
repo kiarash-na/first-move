@@ -6,7 +6,7 @@
   "title": "Privacy Policy",
   "intro": "This Privacy Policy explains which personal data is processed when you use First Move at {{site.domain}} or write to us, for what purposes and on which legal basis, and which rights you have. It provides the information required by Art. 13 and 14 of the General Data Protection Regulation (GDPR, Regulation (EU) 2016/679). Personal data means any information relating to an identified or identifiable person (Art. 4(1) GDPR).",
   "updated": "2026-10-24",
-  "version": "1.1",
+  "version": "1.2",
   "sections": [
     {
       "id": "summary",
@@ -45,7 +45,7 @@
         "- information about your browser and device (user agent);",
         "- the response status, for example whether the page was delivered.",
         "**Purpose**: to deliver the site to you and to keep it secure.",
-        "**Language**: when you open the site without choosing a language, it reads the language your browser prefers (the `Accept-Language` header) and redirects you to the English or German version. The `NEXT_LOCALE` cookie then remembers the language (en or de) and is sent with later requests. It contains no personal data. Details are in the [Cookie Policy](/cookies).",
+        "**Language**: when you open the site without choosing a language, it redirects you to the German version, or to the English version if you chose English before. It does not read your browser's language settings. The `NEXT_LOCALE` cookie then remembers the language (en or de) and is sent with later requests. It contains no personal data. Details are in the [Cookie Policy](/cookies).",
         "Every file the site needs, including its fonts, comes from the same site. Loading a page contacts no other server.",
         "**Legal basis**: Art. 6(1)(f) GDPR. Our legitimate interest is to deliver the website reliably and securely.",
         "**Recipient**: {{hosting.name}} processes this data on our behalf as a processor (Art. 28 GDPR).",

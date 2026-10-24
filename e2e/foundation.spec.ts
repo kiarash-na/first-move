@@ -3,20 +3,27 @@ import { expect, test } from "@playwright/test"
 import { text } from "./support/dictionary"
 
 test.describe("locale routing (PLAN-DASH-01)", () => {
-  test("/ redirects to /en by default and stores the choice", async ({ page, context }) => {
+  test("/ redirects to /de by default and stores the choice (D-67)", async ({ page, context }) => {
     await page.goto("/")
-    await expect(page).toHaveURL(/\/en$/)
-    await expect(page.locator("html")).toHaveAttribute("lang", "en")
+    await expect(page).toHaveURL(/\/de$/)
+    await expect(page.locator("html")).toHaveAttribute("lang", "de")
     const cookies = await context.cookies()
-    expect(cookies.find((c) => c.name === "NEXT_LOCALE")?.value).toBe("en")
+    expect(cookies.find((c) => c.name === "NEXT_LOCALE")?.value).toBe("de")
   })
 
-  test("/ follows the browser language", async ({ browser }) => {
-    const context = await browser.newContext({ locale: "de-DE" })
+  test("/ ignores the browser language", async ({ browser }) => {
+    const context = await browser.newContext({ locale: "en-US" })
     const page = await context.newPage()
     await page.goto("/")
     await expect(page).toHaveURL(/\/de$/)
     await context.close()
+  })
+
+  test("/ follows a saved English choice", async ({ page, context, baseURL }) => {
+    await context.addCookies([{ name: "NEXT_LOCALE", value: "en", url: baseURL! }])
+    await page.goto("/")
+    await expect(page).toHaveURL(/\/en$/)
+    await expect(page.locator("html")).toHaveAttribute("lang", "en")
   })
 
   test("/de renders the landing in dark", async ({ page }) => {

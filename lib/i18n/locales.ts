@@ -1,9 +1,13 @@
-/** Supported UI languages (D-19). `en` is the default and the fallback for missing DE keys (D-32). */
+/** Supported UI languages (D-19), in the order of the language switch. */
 export const LOCALES = ["en", "de"] as const
 
 export type Locale = (typeof LOCALES)[number]
 
-export const DEFAULT_LOCALE: Locale = "en"
+/** Where an unprefixed URL goes without a saved language, and the language of the global 404 (D-67). */
+export const DEFAULT_LOCALE: Locale = "de"
+
+/** The complete language: German is merged over it, so a missing DE key shows English (D-32). */
+export const FALLBACK_LOCALE: Locale = "en"
 
 /** Cookie that remembers the chosen language; read by `proxy.ts`, written by the language switch. */
 export const LOCALE_COOKIE = "NEXT_LOCALE"

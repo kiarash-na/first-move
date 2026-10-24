@@ -1,7 +1,7 @@
 import "server-only"
 import { deepMerge } from "./deep-merge"
 import { dictionaryLoaders, type Area, type Dictionary } from "./dictionaries"
-import { DEFAULT_LOCALE, type Locale } from "./locales"
+import { FALLBACK_LOCALE, type Locale } from "./locales"
 
 /**
  * Loads one dictionary area on the server. DE is deep-merged over EN, so a key
@@ -9,8 +9,8 @@ import { DEFAULT_LOCALE, type Locale } from "./locales"
  * `I18nProvider`) to client components; never import the JSON there.
  */
 export async function getDictionary<A extends Area>(lang: Locale, area: A): Promise<Dictionary<A>> {
-  const base = (await dictionaryLoaders.en[area]()) as Dictionary<A>
-  if (lang === DEFAULT_LOCALE) return base
+  const base = (await dictionaryLoaders[FALLBACK_LOCALE][area]()) as Dictionary<A>
+  if (lang === FALLBACK_LOCALE) return base
   const override = await dictionaryLoaders[lang][area]()
   return deepMerge(base, override)
 }

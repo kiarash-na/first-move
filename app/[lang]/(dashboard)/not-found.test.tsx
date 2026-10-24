@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react"
 import { describe, expect, it, vi } from "vitest"
-import en from "@/dictionaries/en/common.json"
+import de from "@/dictionaries/de/common.json"
 import DashboardNotFound from "./not-found"
 
 const root = vi.hoisted(() => ({ lang: "de" as string | undefined }))
@@ -13,9 +13,9 @@ describe("dashboard not-found", () => {
     expect(screen.getByRole("link")).toHaveAttribute("href", "/de/dashboard")
   })
 
-  it("falls back to the default locale for an unknown language", async () => {
+  it("falls back to the default locale, German, for an unknown language (D-67)", async () => {
     root.lang = "xx"
     render(await DashboardNotFound())
-    expect(screen.getByRole("link", { name: en.notFound.home })).toHaveAttribute("href", "/en/dashboard")
+    expect(screen.getByRole("link", { name: de.notFound.home })).toHaveAttribute("href", "/de/dashboard")
   })
 })
