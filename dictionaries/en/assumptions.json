@@ -1,1 +1,161 @@
-{}
+{
+  "lead": "The default values, the answers to open questions and the parameters you can change. Classification thresholds (Tables 7 to 11) are fixed.",
+  "sections": {
+    "buildings": "Building defaults",
+    "sources": "Energy sources",
+    "economic": "Economic parameters",
+    "answers": "Answers to open questions in use"
+  },
+  "tables": {
+    "TBL-1": {
+      "title": "Annual heating demand",
+      "unit": "kWh/m² per year"
+    },
+    "TBL-2": {
+      "title": "Annual cooling demand",
+      "unit": "kWh/m² per year"
+    },
+    "TBL-3": {
+      "title": "Average floor area",
+      "unit": "m² per building"
+    },
+    "TBL-4": {
+      "title": "Heating capacity per source",
+      "unit": "kWh/a"
+    },
+    "TBL-5": {
+      "title": "Cooling capacity per source",
+      "unit": "kWh/a"
+    },
+    "TBL-6": {
+      "title": "Economic parameters",
+      "unit": ""
+    },
+    "dash": "No default value",
+    "type": "Building type",
+    "source": "Source",
+    "parameter": "Parameter",
+    "value": "Default",
+    "unitColumn": "Unit",
+    "custom": "Your value"
+  },
+  "playground": {
+    "title": "Play with parameters",
+    "body": "Override the capacities and COPs of Tables 4 and 5 and the economic parameters of Table 6. Results then carry the “Custom parameters” badge. Your values are saved in the project.",
+    "toggle": "Play with parameters",
+    "on": "On",
+    "off": "Off",
+    "count": "{count} custom values in use",
+    "none": "Default values in use",
+    "reset": "Reset to defaults",
+    "cell": "{row}, {column}",
+    "confirm": {
+      "title": "Reset all parameters?",
+      "body": "Every custom value is removed and the default values of Tables 4 to 6 are used again.",
+      "action": "Reset to defaults",
+      "cancel": "Cancel"
+    },
+    "reset_done": "Default values restored"
+  },
+  "flags": {
+    "OQ-18": "Table 6 gives no value; the Quick Check uses 0 (OQ-18).",
+    "OQ-26": "Capacities are used as absolute values per selected source for the whole project (OQ-26)."
+  },
+  "answers": {
+    "lead": "The methodology leaves some points open. These answers are applied in every calculation.",
+    "items": {
+      "OQ-01": {
+        "title": "Percent values used directly in equations",
+        "answer": "Divide all % values (shares, interest rate, PV reduction) by 100 before use. N_i,p stays fractional (no rounding); the UI rounds for display only."
+      },
+      "OQ-02": {
+        "title": "No default values for industry",
+        "answer": "Industry is selectable in the share grid. Any industry share > 0 forces 'Further analysis required' (QCT-RULE-INDUSTRY). Industry adds no demand, floor area or base/energy-price revenue (no defaults). Terms based on N_total (EQ-3.3, 3.9c, 3.10d) use the entered total, industry included. The UI shows a note."
+      },
+      "OQ-03": {
+        "title": "Construction periods overlap at 1919",
+        "answer": "Show the period labels verbatim. No calculation depends on the boundary year."
+      },
+      "OQ-04": {
+        "title": "Role of the \"rural, sub-urban, urban\" input",
+        "answer": "Not a user input. The category is derived from the TBL-8 class of the computed ρ_building (Low → rural, Medium → sub-urban, High → urban) and shown read-only."
+      },
+      "OQ-05": {
+        "title": "Form of the optional manual demand input",
+        "answer": "Two optional totals in kWh/a (heating, cooling). When set, they replace the EQ-3.2c / EQ-3.2d results. Base-price revenue terms still use N_i,p · A."
+      },
+      "OQ-06": {
+        "title": "PV: input and application of the 30 % reduction",
+        "answer": "PV is a yes/no input. If yes, C_el is multiplied by (1 − 0.30)."
+      },
+      "OQ-07": {
+        "title": "Q_cool,total glossed as heating demand in §3.2",
+        "answer": "Q_cool,total is the total annual cooling demand (the §3.2 gloss is a slip)."
+      },
+      "OQ-08": {
+        "title": "Overloaded symbols and inconsistent indices",
+        "answer": "Read indices by context: i = building type (§3.1, 3.2, 3.9) or source (§3.8, 3.10a-c, 3.11); in EQ-3.10e i = interest rate and p = depreciation period. A = average floor area of type i, period p (TBL-3). EQ-3.2a/b are evaluated per cell (i, p). C_i,total = sum of C_i over the selected sources."
+      },
+      "OQ-09": {
+        "title": "N_ha vs ρ_building",
+        "answer": "N_ha = ρ_building (EQ-3.3)."
+      },
+      "OQ-10": {
+        "title": "Heat density unit vs thresholds",
+        "answer": "ρ_heat is computed in kWh/m and compared with the TBL-9 thresholds in MWh/m (ρ_heat / 1000). The UI shows MWh/m."
+      },
+      "OQ-11": {
+        "title": "Per-source supply vs total supply in coverage",
+        "answer": "Several sources may be selected. Coverage uses the sum of the per-source supplies. C_i and C_el are computed per source and summed."
+      },
+      "OQ-12": {
+        "title": "No formula for the cooling-to-heating ratio",
+        "answer": "CH = min(Q_cool,total, Q_heat,total) / max(Q_cool,total, Q_heat,total), always 0-1. The UI names the dominant demand. Both demands 0 → not applicable."
+      },
+      "OQ-13": {
+        "title": "Sources without COP or capacity",
+        "answer": "Solar thermal (no COP): Q_heat,supply = Q_heat,available, no heat-pump electricity. Sources without cooling capacity (waste heat, solar thermal): Q_cool,supply = 0."
+      },
+      "OQ-14": {
+        "title": "COP definition and COP_H / COP_C",
+        "answer": "COP means coefficient of performance. COP_H = TBL-4 COP and COP_C = TBL-5 COP of the same source."
+      },
+      "OQ-15": {
+        "title": "p_C,energy vs p_HC,energy",
+        "answer": "p_C,energy is the cooling energy price (TBL-6, cooling_energy_price)."
+      },
+      "OQ-16": {
+        "title": "Base prices per m² without time unit",
+        "answer": "Base prices are € per m² floor area per year."
+      },
+      "OQ-17": {
+        "title": "C_overall adds both C_i and C_i,total",
+        "answer": "C_overall = C_HP · N_total + C_net + C_i,total (C_i is not added a second time)."
+      },
+      "OQ-18": {
+        "title": "Ambient air installation cost \"-\" with unit €/kWh",
+        "answer": "Ambient air installation cost = 0 €/(kWh/a); heat pumps are already in C_HP · N_total. Shown as an assumption in the UI."
+      },
+      "OQ-19": {
+        "title": "C_el unit given as kWh/a",
+        "answer": "C_el is in €/a."
+      },
+      "OQ-20": {
+        "title": "Range boundaries in the classification tables",
+        "answer": "Lower bound inclusive, no gaps. Coverage: ≥100 / ≥90 / ≥70 / <70 %. Building density: >30 / ≥10 / <10 buildings/ha. Heat density: >1.5 / ≥0.5 / <0.5 MWh/m. CH ratio: ≥0.8 / ≥0.3 / <0.3."
+      },
+      "OQ-21": {
+        "title": "\"Economic assessment favorable / clearly unfavorable\" is not defined",
+        "answer": "E = R_overall / (C_annual + C_el + C_O&M). E ≥ 1.0 favorable; E < 0.7 clearly unfavorable; otherwise unclear (→ Further analysis required). Constants live in one config file."
+      },
+      "OQ-22": {
+        "title": "Combinations not covered by the overall rule",
+        "answer": "Precedence: (1) industry share > 0 or any selected source with Unknown potential → Further analysis required; (2) Not promising; (3) Promising; (4) otherwise Further analysis required. A demand is relevant when > 0. Missing required inputs → no result (incomplete)."
+      },
+      "OQ-26": {
+        "title": "Source capacities are small compared with default demand",
+        "answer": "Use TBL-4/5 capacities verbatim as absolute values per selected source for the whole project. Flag this in the Assumptions panel and ask the organisers. \"Play with parameters\" may override capacities (results then marked as custom). Check: \"Promising\" is still reachable for about 2-15 buildings with several medium/high sources."
+      }
+    }
+  }
+}

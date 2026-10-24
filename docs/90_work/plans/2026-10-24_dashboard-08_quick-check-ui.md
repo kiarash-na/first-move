@@ -1,7 +1,7 @@
 ---
 id: PLAN-DASH-08
 date: 2026-10-24
-status: todo
+status: done
 challenge: quick-check-tool
 covers: [QCT-IN-00, QCT-IN-01, QCT-IN-02, QCT-IN-03, QCT-IN-04, QCT-IN-05, QCT-IN-06, QCT-IN-07, QCT-IN-08, QCT-IN-09, QCT-KF-02, QCT-KF-03, QCT-KF-04, QCT-KF-06, QCT-KF-07, QCT-SCOPE-03, QCT-SCOPE-04, QCT-SCOPE-07, QCT-SCOPE-08, QCT-REF-1.1, OQ-03, OQ-04]
 blocked_by: [PLAN-DASH-07]

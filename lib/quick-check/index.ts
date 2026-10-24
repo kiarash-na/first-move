@@ -3,6 +3,7 @@
  * result with its reasons and drivers, and the flags the UI needs. Pure TypeScript, no React,
  * no storage, no network. Methodology §3–4 exactly, with the resolved OQ answers.
  */
+export { areaPreview, type AreaPreview } from "./area-preview"
 export * from "./classify"
 export { DRIVER_IDS, keyFactors, type Driver, type DriverEffect, type DriverId, type Drivers } from "./drivers"
 export * from "./equations"
