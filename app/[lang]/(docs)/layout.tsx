@@ -35,7 +35,7 @@ export default async function DocsRootLayout({ children, params }: LayoutProps<"
   const common = await getDictionary(lang, "common")
 
   return (
-    <html lang={lang} data-theme="dark" suppressHydrationWarning>
+    <html lang={lang} data-theme="dark" data-scroll-behavior="smooth" suppressHydrationWarning>
       <head>
         <ThemeScript />
       </head>

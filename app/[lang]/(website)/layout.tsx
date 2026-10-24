@@ -29,7 +29,7 @@ export default async function WebsiteLayout({ children, params }: LayoutProps<"/
   const lang = requireLocale((await params).lang)
 
   return (
-    <html lang={lang} data-theme="dark">
+    <html lang={lang} data-theme="dark" data-scroll-behavior="smooth">
       <body>{children}</body>
     </html>
   )

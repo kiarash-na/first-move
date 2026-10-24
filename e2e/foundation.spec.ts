@@ -62,11 +62,15 @@ test.describe("docs", () => {
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible()
   })
 
-  // The status is 200 on the first request for an unlisted param (the static shell has
-  // already streamed) and 404 once cached, so assert the UI and noindex instead.
+  // `ensureStatic = "navigation"` makes the first request for an unlisted slug wait for the
+  // complete page, so it answers 404 (not a 200 App Shell).
   test("an unknown slug shows the localized 404", async ({ page }) => {
-    await page.goto("/de/docs/missing")
+    const response = await page.goto(`/de/docs/missing-${Date.now()}`)
+    expect(response?.status()).toBe(404)
     await expect(page.getByRole("heading", { level: 1, name: "Seite nicht gefunden" })).toBeVisible()
-    await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", "noindex")
+    // Next.js may emit the noindex tag twice on a 404 render; every copy must say noindex.
+    const robots = await page.locator('meta[name="robots"]').evaluateAll((tags) => tags.map((t) => t.getAttribute("content")))
+    expect(robots.length).toBeGreaterThan(0)
+    expect(robots.every((content) => content === "noindex")).toBe(true)
   })
 })

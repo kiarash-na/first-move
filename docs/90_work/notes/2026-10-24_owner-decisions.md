@@ -63,6 +63,9 @@ Answers given by the project owner in chat on 2026-10-24. The plan is [PLAN-DASH
 | D-33 | **How we calculate.** Wherever data is collected (each QC step) or a number is shown (results, KPI cards, BP read-only QC numbers), offer a quiet, collapsed explanation: plain-language sentence + the equation(s) used, with their ID (`EQ-3.4a`). Hidden by default (a small "How we calculate" disclosure or an info popover), never in the way. Equations come from the `latex:` field of each equation file, pre-rendered to MathML at `pnpm gen:reference` time, so no math library ships to the client. |
 | D-34 | **Co-location in the App Router.** Route groups are named after the two layouts: `(website)` (landing) and `(dashboard)` (app), plus `(docs)`. A component used by one route lives in that route's private `_components/` folder; one shared by several routes of a layout lives in the nearest common segment's `_components/`; only components used by more than one layout go in global `components/` (`components/ui/` = shadcn). Domain logic (no JSX) stays in `lib/`. No `features/` folder. |
 | D-35 | Delivery refined (replaces D-26 "one after another"): phases that do not depend on each other run in parallel, each in its own git worktree; dependent phases run layer by layer. The orchestrator merges, checks, updates the plan status and pushes. Small phases use a cheaper model, big ones a stronger one. |
+| D-36 | OQ-26 stays exactly as the project states: TBL-4/5 capacities verbatim (absolute per source); the compact promising examples stay. Ask the organisers. |
+| D-37 | Pitch-readiness checks stay labelled "unofficial" (BM-SCOPE-07/08 interpretation). |
+| D-38 | v0.1.0 is a checkpoint: no further building until the owner has tested it locally and confirms. ALG-02/03 placement (none, an "About the project" box, or a framing line in BP step 4) is waiting for the owner. |
 
 ## Defaults added in plan review (2026-10-24)
 

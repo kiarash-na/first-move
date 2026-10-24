@@ -29,8 +29,13 @@ test.describe("start screen (PLAN-DASH-07 verification)", () => {
     expect(problems).toEqual([])
   })
 
-  test("an unknown step shows the localized 404", async ({ page }) => {
-    await page.goto("/de/dashboard/quick-check/nope")
-    await expect(page.getByRole("heading", { level: 1, name: "Seite nicht gefunden" })).toBeVisible()
-  })
+  // `ensureStatic = "navigation"` makes the first request wait for the page, so even the
+  // first visit to an unknown step answers 404 (not a 200 App Shell).
+  for (const area of ["quick-check", "business-plan"]) {
+    test(`an unknown ${area} step shows the localized 404`, async ({ page }) => {
+      const response = await page.goto(`/de/dashboard/${area}/nope-${Date.now()}`)
+      expect(response?.status()).toBe(404)
+      await expect(page.getByRole("heading", { level: 1, name: "Seite nicht gefunden" })).toBeVisible()
+    })
+  }
 })

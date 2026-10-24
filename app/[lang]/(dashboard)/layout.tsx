@@ -33,7 +33,7 @@ export default async function DashboardRootLayout({ children, params }: LayoutPr
   const lang = requireLocale((await params).lang)
 
   return (
-    <html lang={lang} data-theme="dark" suppressHydrationWarning>
+    <html lang={lang} data-theme="dark" data-scroll-behavior="smooth" suppressHydrationWarning>
       <head>
         <ThemeScript />
       </head>

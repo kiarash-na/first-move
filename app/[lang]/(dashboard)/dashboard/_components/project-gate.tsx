@@ -10,7 +10,7 @@ import { interpolate } from "@/lib/i18n/interpolate"
 import type { ProjectModules } from "@/lib/project"
 import { EmptyState } from "./empty-state"
 import { useDictionary, useLocale } from "./i18n-provider"
-import { PageSkeleton } from "./page-skeleton"
+import { GateSkeleton } from "./gate-skeleton"
 import { useStore, useStoreState } from "./store-provider"
 
 /**
@@ -24,7 +24,7 @@ export function ProjectGate({ module, children }: { module?: keyof ProjectModule
   const phase = useStoreState((state) => state.phase)
   const active = useStoreState((state) => state.active)
 
-  if (phase !== "ready") return <PageSkeleton label={shell.loading} />
+  if (phase !== "ready") return <GateSkeleton />
 
   if (!active) {
     return (
