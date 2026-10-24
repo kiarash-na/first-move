@@ -10,7 +10,8 @@
     "typecheck": "next typegen && tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "gen:reference": "node scripts/gen-reference.mjs"
   },
   "dependencies": {
     "@fontsource-variable/archivo": "^5.3.0",
