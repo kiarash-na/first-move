@@ -10,8 +10,12 @@ import { renderDashboard } from "../test-utils/render"
 import { DeleteProjectDialog } from "./delete-project-dialog"
 
 const tabs: TestTab[] = []
-afterEach(() => {
+afterEach(async () => {
   toast.dismiss()
+  // let sonner's removal timers fire before jsdom is torn down
+  await act(async () => {
+    await new Promise((resolve) => setTimeout(resolve, 500))
+  })
   while (tabs.length) tabs.pop()!.store.stop()
 })
 
