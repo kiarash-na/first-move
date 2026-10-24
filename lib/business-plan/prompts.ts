@@ -1,10 +1,11 @@
 import type { BusinessPlanStep } from "@/lib/project/fields/steps"
 
 /**
- * Guiding prompts of the Business Plan (PLAN-DASH-10 step 3): the key questions of BM-SCOPE-03
- * and the learnings and tips of ALG-04, ALG-05, ALG-06, ALG-09 and ALG-10, each tied to the
- * step it helps. Copy lives in the `business-plan` dictionary at `prompts.<id>`; `source` is
- * shown as a tag.
+ * Guiding prompts of the Business Plan (PLAN-DASH-10 step 3): the key questions of BM-SCOPE-03,
+ * the learnings and tips of ALG-04 to ALG-10, the shared 5GDHC context (SHARED-CONTEXT) and the
+ * tip and information link of BM-SCOPE-10, each tied to the step it helps. Copy lives in the
+ * `business-plan` dictionary at `prompts.<id>`; `source` is shown as a tag. ALG-02 and ALG-03
+ * (project facts and goals) are context, not prompts (phase-09 note, review fixes).
  */
 export type PromptKind = "question" | "learning" | "tip"
 
@@ -15,11 +16,16 @@ export interface Prompt {
   kind: PromptKind
   /** Requirement or knowledge ID the prompt comes from. */
   source: string
+  /** An information link from the source document; its label is `prompts.links.<id>`. */
+  href?: string
 }
 
 const question = (id: string, step: BusinessPlanStep, source: string): Prompt => ({ id, step, kind: "question", source })
 const learning = (id: string, step: BusinessPlanStep, source: string): Prompt => ({ id, step, kind: "learning", source })
-const tip = (id: string, step: BusinessPlanStep, source: string): Prompt => ({ id, step, kind: "tip", source })
+const tip = (id: string, step: BusinessPlanStep, source: string, href?: string): Prompt => ({ id, step, kind: "tip", source, ...(href ? { href } : {}) })
+
+/** The 5GDHC information link of BM-SCOPE-10. */
+export const INFO_LINK_5GDHC = "https://www.geothermie-oesterreich.at/was-ist-geothermie/geothermie-in-anergienetzen/"
 
 export const PROMPTS: readonly Prompt[] = [
   // 1 · Define the opportunity
@@ -30,6 +36,8 @@ export const PROMPTS: readonly Prompt[] = [
   learning("groundwater", "opportunity", "ALG-09"),
   learning("bothDirections", "opportunity", "ALG-06"),
   tip("extraValue", "opportunity", "ALG-10"),
+  learning("networkBasics", "opportunity", "SHARED-CONTEXT"),
+  learning("heatingPlan", "opportunity", "ALG-07"),
 
   // 2 · Build the business logic
   question("whoPays", "business-logic", "BM-SCOPE-03"),
@@ -40,6 +48,7 @@ export const PROMPTS: readonly Prompt[] = [
   tip("systemBoundary", "business-logic", "ALG-10"),
   tip("costKey", "business-logic", "ALG-10"),
   tip("infrastructure", "business-logic", "ALG-10"),
+  tip("canvasTemplates", "business-logic", "BM-SCOPE-10", INFO_LINK_5GDHC),
 
   // 3 · Run the reality check
   question("framework", "reality-check", "BM-SCOPE-03"),
@@ -58,6 +67,7 @@ export const PROMPTS: readonly Prompt[] = [
   learning("leadership", "implementation", "ALG-05"),
   learning("scalableModels", "implementation", "ALG-05"),
   tip("startSmall", "implementation", "ALG-10"),
+  learning("examplesInPractice", "implementation", "ALG-08"),
 ]
 
 /** The prompts of one step, in order. */

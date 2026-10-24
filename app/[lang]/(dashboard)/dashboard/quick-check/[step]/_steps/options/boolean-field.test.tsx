@@ -3,8 +3,8 @@ import userEvent from "@testing-library/user-event"
 import { describe, expect, it } from "vitest"
 import quickCheck from "@/dictionaries/en/quick-check.json"
 import { getField, type BooleanField as BooleanFieldDef } from "@/lib/project"
-import { renderDashboard } from "../test-utils/render"
-import { emptyProject, projectStore } from "../test-utils/project-store"
+import { renderDashboard } from "../../../../_components/test-utils/render"
+import { emptyProject, projectStore } from "../../../../_components/test-utils/project-store"
 import { BooleanField } from "./boolean-field"
 
 describe("BooleanField", () => {

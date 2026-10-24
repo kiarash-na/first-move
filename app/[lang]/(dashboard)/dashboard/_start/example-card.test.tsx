@@ -18,7 +18,7 @@ describe("ExampleCard (D-04)", () => {
     )
     const article = screen.getByRole("article", { name: card.name })
     expect(article).toHaveTextContent(copy["business-plan"].scenarios["BM-SCN-01"].label)
-    expect(article).toHaveTextContent(copy.start.examples.illustrative)
+    expect(article).toHaveTextContent(copy.shell.illustrative)
     expect(article).toHaveTextContent(copy["quick-check"].results.levels.not_promising.label)
     expect(article).toHaveTextContent("45 buildings · 150 ha")
     await userEvent.click(screen.getByRole("button", { name: new RegExp(copy.start.examples.open) }))

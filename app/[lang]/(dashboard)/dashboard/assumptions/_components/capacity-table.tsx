@@ -25,7 +25,7 @@ export function CapacityTable({ application, playing }: { application: Applicati
         <span className="text-sm text-muted-foreground">· {copy.tables[table].unit}</span>
       </h3>
       <div className="border bg-card">
-        <Table>
+        <Table scrollLabel={`${table} ${copy.tables[table].title}`}>
           <TableHeader>
             <TableRow>
               <TableHead>{copy.tables.source}</TableHead>

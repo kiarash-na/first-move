@@ -57,4 +57,9 @@ describe("Sidebar (D-07)", () => {
     expect(screen.getByRole("link", { name: shell.nav.items.assumptions })).toHaveAttribute("href", "/en/dashboard/assumptions")
     expect(screen.getByRole("list", { name: shell.nav.sections.quickCheck })).toBeInTheDocument()
   })
+
+  it("is a named complementary landmark, so it stays distinct from other asides on the page", async () => {
+    renderDashboard(<Sidebar />, { store: await storeWith() })
+    expect(screen.getByRole("complementary", { name: shell.nav.sidebar })).toHaveAttribute("data-slot", "sidebar")
+  })
 })

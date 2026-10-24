@@ -15,4 +15,13 @@ describe("QcFrame", () => {
     expect(screen.getByText("Shared numbers.")).toBeInTheDocument()
     expect(screen.getByText("Inside")).toBeInTheDocument()
   })
+
+  it("titles the frame with an H2, as it sits directly under the page title", () => {
+    render(
+      <QcFrame id="x" title="From the Quick Check" lead="Shared numbers." readOnlyLabel="Read-only">
+        <p>Inside</p>
+      </QcFrame>,
+    )
+    expect(screen.getByRole("heading", { level: 2, name: "From the Quick Check" })).toBeInTheDocument()
+  })
 })

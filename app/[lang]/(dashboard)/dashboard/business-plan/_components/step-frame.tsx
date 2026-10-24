@@ -5,6 +5,7 @@ import type { ReactNode } from "react"
 import type { BusinessPlanStep } from "@/lib/project"
 import { BUSINESS_PLAN_PAGES } from "@/lib/dashboard/routes"
 import { useDictionary } from "../../_components/i18n-provider"
+import { IllustrativeBadge } from "../../_components/illustrative-badge"
 import { PageHeader } from "../../_components/page-header"
 import { GuidingPrompts } from "./guiding-prompts"
 import { ReadinessMeter } from "./readiness-meter"
@@ -26,7 +27,12 @@ export function StepFrame({ step, children }: { step: BusinessPlanStep; children
         eyebrow={`${shell.nav.sections.businessPlan} · ${String(index + 1).padStart(2, "0")}`}
         title={shell.nav.items.businessPlan[step]}
         description={bp.page[step].lead}
-        actions={<ReadinessMeter />}
+        actions={
+          <>
+            <IllustrativeBadge />
+            <ReadinessMeter />
+          </>
+        }
       />
       <StepNav current={step} />
       <GuidingPrompts step={step} />

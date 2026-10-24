@@ -7,7 +7,7 @@ import { useId, type ReactNode } from "react"
 import { Progress } from "@/components/ui/progress"
 import type { CheckId, ReadinessGroup } from "@/lib/business-plan"
 import { dashboardHref } from "@/lib/dashboard/routes"
-import { formatPercent } from "@/lib/i18n/format"
+import { formatNumber, formatPercent } from "@/lib/i18n/format"
 import { useDictionary, useLocale } from "../../../_components/i18n-provider"
 
 /**
@@ -43,7 +43,7 @@ export function ReadinessCard({
         <div className="flex items-center gap-3">
           <Progress tone="hot" value={Math.round(group.score * 100)} aria-label={label} className="flex-1" />
           <span className="font-mono text-xs tracking-[0.04em] tabular-nums">
-            {group.met}/{group.total} · {formatPercent(group.score, lang)}
+            {formatNumber(group.met, lang)}/{formatNumber(group.total, lang)} · {formatPercent(group.score, lang)}
           </span>
         </div>
       </header>

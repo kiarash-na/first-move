@@ -23,4 +23,15 @@ describe("StepFrame", () => {
     expect(screen.getByRole("button", { name: /Guiding questions/ })).toBeInTheDocument()
     expect(screen.getByText("Panels")).toBeInTheDocument()
   })
+
+  it("labels an example's steps 'Illustrative inputs only' (OQ-23)", async () => {
+    const tab = await openProject({ example: "new-build-quarter" })
+    renderDashboard(
+      <StepFrame step="opportunity">
+        <p>Panels</p>
+      </StepFrame>,
+      { store: tab.store },
+    )
+    expect(screen.getByText("Illustrative inputs only")).toBeInTheDocument()
+  })
 })

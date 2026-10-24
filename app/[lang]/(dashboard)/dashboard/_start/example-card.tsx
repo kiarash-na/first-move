@@ -18,6 +18,7 @@ export function ExampleCard({ example, busy, onOpen }: { example: ExampleCardDat
   const start = useDictionary("start")
   const scenarios = useDictionary("business-plan").scenarios
   const copy = start.examples
+  const shell = useDictionary("shell")
   const scenario = example.scenarioId === "custom" ? copy.extra : scenarios[example.scenarioId].label
 
   return (
@@ -32,7 +33,7 @@ export function ExampleCard({ example, busy, onOpen }: { example: ExampleCardDat
           <span>{interpolate(copy.facts, { buildings: formatNumber(example.buildings, lang), area: formatHectares(example.areaM2, lang) })}</span>
           <span className="inline-flex items-center gap-1.5">
             <FlaskConicalIcon className="size-3.5" strokeWidth={1.6} aria-hidden="true" />
-            {copy.illustrative}
+            {shell.illustrative}
           </span>
         </p>
       </div>

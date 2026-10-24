@@ -1,6 +1,6 @@
 "use client"
 
-import { BookOpenIcon, ChevronDownIcon, CompassIcon, HelpCircleIcon, LightbulbIcon, type LucideIcon } from "lucide-react"
+import { ArrowUpRightIcon, BookOpenIcon, ChevronDownIcon, CompassIcon, HelpCircleIcon, LightbulbIcon, type LucideIcon } from "lucide-react"
 
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import { promptsFor, type PromptKind } from "@/lib/business-plan"
@@ -51,6 +51,18 @@ export function GuidingPrompts({ step }: { step: BusinessPlanStep }) {
                   <span>{prompt.source}</span>
                 </span>
                 <p className="text-[15px] leading-relaxed">{(bp.prompts as Record<string, unknown>)[prompt.id] as string}</p>
+                {prompt.href && (
+                  <a
+                    href={prompt.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="-my-2 self-start py-3 text-sm leading-relaxed text-hot underline decoration-hot/50 underline-offset-4 hover:decoration-hot"
+                  >
+                    {(bp.prompts.links as Record<string, string>)[prompt.id]}
+                    <ArrowUpRightIcon className="ml-1 inline size-4 align-[-3px]" strokeWidth={1.6} aria-hidden="true" />
+                    <span className="sr-only">({bp.prompts.external})</span>
+                  </a>
+                )}
               </li>
             )
           })}

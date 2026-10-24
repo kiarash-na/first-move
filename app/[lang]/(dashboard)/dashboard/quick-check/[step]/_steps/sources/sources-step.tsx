@@ -21,9 +21,14 @@ export function SourcesStep() {
   const { project, result } = useQuickCheck()
   if (!project || !result) return null
   const selected = groupRuleStatus(project, GROUP)
+  const title = text(GROUP.text) ?? undefined
 
   return (
-    <section aria-label={text(GROUP.text) ?? undefined} data-slot="sources-step" className="flex flex-col gap-5">
+    <section aria-labelledby="sources-title" data-slot="sources-step" className="flex flex-col gap-5">
+      {/* Keeps the outline H1 → H2 → H3 (source names) without repeating the page title on screen. */}
+      <h2 id="sources-title" className="sr-only">
+        {title}
+      </h2>
       <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-2">
         <p aria-live="polite" className="font-mono text-xs tracking-[0.06em] text-muted-foreground uppercase">
           {interpolate(copy.selected, { count: formatNumber(selected.value, lang), total: formatNumber(SOURCE_FIELDS.length, lang) })}

@@ -31,9 +31,10 @@ export function QcFrame({
     >
       <header className="flex flex-col gap-2">
         <div className="flex flex-wrap items-center gap-3">
-          <h3 id={headingId} className="font-mono text-xs tracking-[0.075em] text-primary uppercase">
+          {/* H2: the frame sits directly under the page title, next to the H2 section panels. */}
+          <h2 id={headingId} className="font-mono text-xs tracking-[0.075em] text-primary uppercase">
             {title}
-          </h3>
+          </h2>
           <Badge variant="outline">
             <LockIcon strokeWidth={1.6} aria-hidden="true" />
             {readOnlyLabel}

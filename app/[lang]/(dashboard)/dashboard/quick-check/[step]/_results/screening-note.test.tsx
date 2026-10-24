@@ -15,4 +15,13 @@ describe("ScreeningNote (QCT-SCOPE-07/08)", () => {
     expect(screen.getByText(quickCheck.ui.results.screening.title)).toBeInTheDocument()
     expect(screen.getByText(quickCheck.ui.results.screening.body)).toBeInTheDocument()
   })
+
+  it("is a complementary landmark named by its title", () => {
+    render(
+      <I18nProvider lang="en" dictionaries={testDictionaries("en")}>
+        <ScreeningNote />
+      </I18nProvider>,
+    )
+    expect(screen.getByRole("complementary", { name: quickCheck.ui.results.screening.title })).toBeInTheDocument()
+  })
 })

@@ -3,7 +3,7 @@
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
 import { pitchReadiness } from "@/lib/business-plan"
-import { formatPercent } from "@/lib/i18n/format"
+import { formatNumber, formatPercent } from "@/lib/i18n/format"
 import { interpolate } from "@/lib/i18n/interpolate"
 import { useDictionary, useLocale } from "../../../_components/i18n-provider"
 import { useStoreState } from "../../../_components/store-provider"
@@ -35,7 +35,7 @@ export function ReadinessPanel({ index }: { index?: number }) {
         <div className="flex flex-1 flex-col gap-2">
           <Progress tone="hot" value={Math.round(readiness.score * 100)} aria-label={bp.readiness.title} />
           <p className="font-mono text-xs tracking-[0.04em] text-muted-foreground">
-            {interpolate(bp.readiness.summary, { met, total })} · {bp.readiness.caveat}
+            {interpolate(bp.readiness.summary, { met: formatNumber(met, lang), total: formatNumber(total, lang) })} · {bp.readiness.caveat}
           </p>
         </div>
       </div>

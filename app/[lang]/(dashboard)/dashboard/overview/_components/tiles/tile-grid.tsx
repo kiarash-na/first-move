@@ -33,7 +33,7 @@ export function TileGrid({ result }: { result: QuickCheckComplete }) {
       <h2 id="overview-tiles" className="text-xl leading-tight font-[560] tracking-[-0.035em] [font-stretch:86%]">
         {overview.sections.indicators}
       </h2>
-      <div className="grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-4">
+      <div className="grid grid-cols-1 gap-3 min-[360px]:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
         <MetricTile
           id="buildingDensity"
           icon={Building2Icon}

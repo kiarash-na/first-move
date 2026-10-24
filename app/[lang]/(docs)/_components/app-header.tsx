@@ -7,8 +7,7 @@ import type { Dictionary } from "@/lib/i18n/dictionaries"
 import type { Locale } from "@/lib/i18n/locales"
 
 /**
- * Minimal top bar for the docs layout and the phase 01 dashboard placeholder:
- * brand, optional actions, language switch, theme toggle.
+ * Minimal top bar of the docs layout: brand, optional actions, language switch, theme toggle.
  */
 export function AppHeader({
   lang,

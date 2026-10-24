@@ -7,17 +7,21 @@ export function Brand({
   href,
   name,
   label,
+  prefetch,
   className,
 }: {
   href: string
   name: string
   /** Accessible name of the link. */
   label: string
+  /** Passed to `Link`; `false` where the landing page's own CSS should not be preloaded (the dashboard). */
+  prefetch?: boolean
   className?: string
 }) {
   return (
     <Link
       href={href}
+      prefetch={prefetch}
       aria-label={label}
       className={cn("inline-flex min-h-11 items-center gap-2.5 text-foreground", className)}
     >

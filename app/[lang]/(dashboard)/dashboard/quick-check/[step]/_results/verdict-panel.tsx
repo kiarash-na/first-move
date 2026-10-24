@@ -6,6 +6,7 @@ import { explainResult, type QuickCheckComplete, type ResultLevel } from "@/lib/
 import { cn } from "@/lib/utils"
 import { CustomParametersBadge } from "../../../_components/custom-parameters-badge"
 import { CalcInfo } from "../../../_components/how-we-calculate"
+import { IllustrativeBadge } from "../../../_components/illustrative-badge"
 import { useDictionary, useLocale } from "../../../_components/i18n-provider"
 
 const LEVEL = {
@@ -64,6 +65,7 @@ export function VerdictPanel({ result }: { result: QuickCheckComplete }) {
             </span>
           )}
           <CustomParametersBadge />
+          <IllustrativeBadge />
         </div>
       </div>
       <div className="flex flex-col gap-3">

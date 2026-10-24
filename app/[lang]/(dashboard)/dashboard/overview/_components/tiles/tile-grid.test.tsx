@@ -29,6 +29,13 @@ describe.each(EXAMPLES.map((example) => example.id))("TileGrid of %s", (id) => {
 })
 
 describe("TileGrid", () => {
+  it("uses one column below 360px so two tiles never overflow a 320px screen", () => {
+    const project = exampleWith("housing-cooperatives")
+    renderOverview(<TileGrid result={completeRun(project)} />, project)
+    const grid = tile("operation").parentElement as HTMLElement
+    expect(grid).toHaveClass("grid-cols-1", "min-[360px]:grid-cols-2")
+  })
+
   it("says whether the network length was entered or estimated (KF-07)", () => {
     const entered = exampleWith("rural-village-hotel")
     const view = renderOverview(<TileGrid result={completeRun(entered)} />, entered)

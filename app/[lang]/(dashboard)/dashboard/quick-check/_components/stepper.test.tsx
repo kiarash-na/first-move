@@ -25,4 +25,15 @@ describe("Stepper (QCT-IN-00)", () => {
     expect(links.map((link) => link.dataset.state ?? null)).toEqual(["missing", "missing", "missing", "done", null])
     expect(screen.getAllByText(quickCheck.ui.stepper.missing)).toHaveLength(3)
   })
+
+  it("keeps every step at least 44px wide (DESIGN-TOKENS touch target)", () => {
+    const { store } = projectStore(emptyProject())
+    renderDashboard(<Stepper current="area" />, { store })
+    const items = Array.from(screen.getByRole("navigation").querySelectorAll("li"))
+    expect(items).toHaveLength(5)
+    items.forEach((item) => {
+      expect(item.className).toContain("min-w-11")
+      expect(item.className).not.toContain("min-w-0")
+    })
+  })
 })

@@ -21,7 +21,7 @@ export function EconomicTable({ playing }: { playing: boolean }) {
         {copy.tables["TBL-6"].title}
       </h3>
       <div className="border bg-card">
-        <Table>
+        <Table scrollLabel={`TBL-6 ${copy.tables["TBL-6"].title}`}>
           <TableHeader>
             <TableRow>
               <TableHead>{copy.tables.parameter}</TableHead>

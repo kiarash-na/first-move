@@ -60,9 +60,9 @@ describe("the example list", () => {
     expect(getExample("missing")).toBeUndefined()
   })
 
-  it("takes the label 'Illustrative inputs only' from the start dictionary (DESIGN-TOKENS section 6)", async () => {
-    for (const lang of LOCALES) expect((await getDictionary(lang, "start")).examples.illustrative).toBeTruthy()
-    expect((await getDictionary("en", "start")).examples.illustrative).toBe("Illustrative inputs only")
+  it("takes the label 'Illustrative inputs only' from the shell dictionary (DESIGN-TOKENS section 6)", async () => {
+    for (const lang of LOCALES) expect((await getDictionary(lang, "shell")).illustrative).toBeTruthy()
+    expect((await getDictionary("en", "shell")).illustrative).toBe("Illustrative inputs only")
     // UI copy is never hard-coded in lib/examples (root CLAUDE.md).
     expect(Object.keys(examples)).not.toContain("ILLUSTRATIVE_LABEL")
   })

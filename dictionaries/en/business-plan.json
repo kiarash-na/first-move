@@ -326,6 +326,8 @@
     "groundwater": "Groundwater is the most economical source, and a micro-network between direct neighbours is a promising start.",
     "bothDirections": "Energy flows both ways in a 5GDHC network, so summer cooling can become a reason to connect.",
     "extraValue": "Look for extra value beyond heat: cooling, stable prices and relief for the electricity grid.",
+    "networkBasics": "Water in a 5GDHC network circulates at about 5–25 °C, so renewable energy and waste heat can be used without insulated pipes, and buildings can feed surplus heat back for others. Which local sources and storage could your network connect?",
+    "heatingPlan": "The Vienna Heating Plan 2040 sorts areas into district heating, local collective heating (heating neighbourhoods) and individual heating. Does your municipality's heat planning put your area where a collective solution fits?",
     "whoPays": "Who benefits, and who pays? Are they the same people?",
     "whoOperates": "Who owns and who operates the source, the network and the heat pumps?",
     "distribution": "How are investments, revenues and risks shared between the stakeholders?",
@@ -334,6 +336,7 @@
     "systemBoundary": "Draw the system boundary: who owns the source, the network and the heat pumps?",
     "costKey": "Look for a fair cost key, for example the source by connected load and the pipes by those who use them.",
     "infrastructure": "Think infrastructure: long-term finance, public land and the city as a partner.",
+    "canvasTemplates": "Business Model Canvas templates can help you visualise and compare models; use them or your own approach. Focus on economic feasibility, practical implementation and scalability rather than detailed technical design.",
     "framework": "How do energy prices, funding, regulation and long-term commitments affect feasibility?",
     "reliability": "Which risks, dependencies and operational responsibilities must be covered for a reliable and secure supply?",
     "pipesDriveCost": "Pipes and house connections drive the cost; trench length dominates the investment.",
@@ -347,7 +350,12 @@
     "alignment": "Align early with the municipality and the authorities: spatial planning, permits and local strategies shape feasibility.",
     "leadership": "Who is the committed initiator? Projects need local leadership and long-term commitment.",
     "scalableModels": "Standardised business and governance models reduce complexity and speed up replication.",
-    "startSmall": "Start small: anchor customers, modular growth and micro-networks."
+    "startSmall": "Start small: anchor customers, modular growth and micro-networks.",
+    "examplesInPractice": "Networks already run in Viertel Zwei, Vienna (decentralised heat pumps on geothermal, wastewater and groundwater), in Bregenz (Lake Constance water, run by the municipal utility) and in Lagarde, Bamberg (about 1,200 dwellings, 70 heat pumps, 5.5 km of pipe). What could your project replicate from them?",
+    "links": {
+      "canvasTemplates": "Information about 5GDHC networks (Geothermie Österreich)"
+    },
+    "external": "opens in a new tab"
   },
   "scenario": {
     "title": "Start from a use case",

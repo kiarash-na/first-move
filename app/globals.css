@@ -287,3 +287,56 @@
     }
   }
 }
+
+/* ------------------------------------------------------------------------- */
+/* 7. Utilities                                                              */
+/* ------------------------------------------------------------------------- */
+
+/*
+ * Scroll cue for content that can scroll sideways (wide formulas and tables on phones): the edge
+ * that still has hidden content fades out. Driven by the element's own scroll position, so it
+ * shows only while there is something to scroll to; it has no colour of its own (alpha mask).
+ */
+@property --scroll-fade-start {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+@property --scroll-fade-end {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+@keyframes scroll-fade-x {
+  from {
+    --scroll-fade-start: 0px;
+    --scroll-fade-end: 32px;
+  }
+  10% {
+    --scroll-fade-start: 32px;
+    --scroll-fade-end: 32px;
+  }
+  90% {
+    --scroll-fade-start: 32px;
+    --scroll-fade-end: 32px;
+  }
+  to {
+    --scroll-fade-start: 32px;
+    --scroll-fade-end: 0px;
+  }
+}
+
+@utility scroll-fade-x {
+  overflow-x: auto;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black var(--scroll-fade-start),
+    black calc(100% - var(--scroll-fade-end)),
+    transparent
+  );
+  animation: scroll-fade-x linear both;
+  animation-timeline: scroll(self inline);
+}

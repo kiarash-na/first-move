@@ -44,7 +44,6 @@
     "failed": "The project could not be created. Try again."
   },
   "examples": {
-    "illustrative": "Illustrative inputs only",
     "title": "Examples",
     "body": "Six illustrative projects with both modules filled in. Opening one creates your own copy.",
     "open": "Open a copy",

@@ -6,7 +6,7 @@ import Link from "next/link"
 import { Progress } from "@/components/ui/progress"
 import { allProgress } from "@/lib/business-plan"
 import { BUSINESS_PLAN_PAGES, dashboardHref } from "@/lib/dashboard/routes"
-import { formatPercent } from "@/lib/i18n/format"
+import { formatNumber, formatPercent } from "@/lib/i18n/format"
 import { interpolate } from "@/lib/i18n/interpolate"
 import type { BusinessPlanStep } from "@/lib/project"
 import { cn } from "@/lib/utils"
@@ -41,24 +41,27 @@ export function StepNav({ current }: { current: BusinessPlanStep }) {
                   isCurrent && "bg-card",
                 )}
               >
-                <span className="flex items-center gap-3">
-                  <span className={cn("font-mono text-xs tracking-[0.075em] tabular-nums", isCurrent || done ? "text-hot" : "text-muted-foreground")}>
-                    {String(index + 1).padStart(2, "0")}
+                <span className="flex flex-col gap-1.5">
+                  {/* Number and done mark share the top row, so the title has the full cell width and never runs under the mark. */}
+                  <span className="flex min-h-4 items-center justify-between gap-2">
+                    <span className={cn("font-mono text-xs tracking-[0.075em] tabular-nums", isCurrent || done ? "text-hot" : "text-muted-foreground")}>
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    {done && (
+                      <span data-slot="step-done" className="inline-flex items-center gap-1 font-mono text-xs tracking-[0.06em] text-hot uppercase">
+                        <CheckIcon className="size-4" strokeWidth={1.8} aria-hidden="true" />
+                        <span className="max-sm:sr-only">{bp.stepNav.done}</span>
+                      </span>
+                    )}
                   </span>
-                  <span className="min-w-0 flex-1 text-base leading-tight font-[520] tracking-[-0.01em]">
+                  <span data-slot="step-title" className="min-w-0 text-[15px] leading-tight min-[360px]:text-base font-[520] tracking-[-0.01em] hyphens-auto [overflow-wrap:anywhere]">
                     {shell.nav.items.businessPlan[step]}
                   </span>
-                  {done && (
-                    <span className="inline-flex items-center gap-1 font-mono text-xs tracking-[0.06em] text-hot uppercase">
-                      <CheckIcon className="size-4" strokeWidth={1.8} aria-hidden="true" />
-                      <span className="max-sm:sr-only">{bp.stepNav.done}</span>
-                    </span>
-                  )}
                 </span>
                 <span className="flex flex-col gap-2">
                   <span className="flex items-baseline justify-between gap-2 font-mono text-xs tracking-[0.04em] text-muted-foreground">
                     <span>
-                      {entry ? interpolate(bp.stepNav.progress, { done: entry.done, total: entry.total }) : ""}
+                      {entry ? interpolate(bp.stepNav.progress, { done: formatNumber(entry.done, lang), total: formatNumber(entry.total, lang) }) : ""}
                     </span>
                     <span className="tabular-nums">{entry ? formatPercent(entry.fraction, lang) : ""}</span>
                   </span>

@@ -62,4 +62,15 @@ describe("OverviewView", () => {
     act(() => harness.set({ active: null, activeId: null }))
     expect(container).toBeEmptyDOMElement()
   })
+
+  it("labels an example's overview 'Illustrative inputs only' (OQ-23)", () => {
+    renderOverview(<OverviewView />, exampleWith("new-build-quarter"))
+    expect(screen.getByText("Illustrative inputs only")).toBeInTheDocument()
+  })
+
+  it("has no illustrative label on an own project", () => {
+    const example = exampleWith("new-build-quarter")
+    renderOverview(<OverviewView />, { ...example, meta: { ...example.meta, exampleId: null } })
+    expect(screen.queryByText("Illustrative inputs only")).not.toBeInTheDocument()
+  })
 })

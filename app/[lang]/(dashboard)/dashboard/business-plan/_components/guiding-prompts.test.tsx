@@ -32,4 +32,16 @@ describe("GuidingPrompts", () => {
     await userEvent.click(toggle)
     expect(toggle).toHaveAttribute("aria-expanded", "false")
   })
+
+  it("links the 5GDHC information of BM-SCOPE-10 and names the replication examples of ALG-08", async () => {
+    const tab = await openProject()
+    const { unmount } = renderDashboard(<GuidingPrompts step="business-logic" />, { store: tab.store })
+    const link = screen.getByRole("link", { name: /Information about 5GDHC networks/ })
+    expect(link).toHaveAttribute("href", "https://www.geothermie-oesterreich.at/was-ist-geothermie/geothermie-in-anergienetzen/")
+    expect(link).toHaveAttribute("rel", "noopener noreferrer")
+    unmount()
+    renderDashboard(<GuidingPrompts step="implementation" />, { store: tab.store })
+    expect(screen.getByText(/Viertel Zwei, Vienna/)).toBeInTheDocument()
+    expect(screen.getByText("ALG-08")).toBeInTheDocument()
+  })
 })

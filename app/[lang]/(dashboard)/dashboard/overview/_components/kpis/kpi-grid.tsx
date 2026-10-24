@@ -1,7 +1,6 @@
 "use client"
 
 import { CoinsIcon, FlameIcon, LandmarkIcon, ReceiptTextIcon, SnowflakeIcon, type LucideIcon } from "lucide-react"
-import type { ReactNode } from "react"
 
 import { splitUnit } from "@/lib/dashboard/overview"
 import { indicatorEffect } from "@/lib/dashboard/indicator-effect"
@@ -12,17 +11,7 @@ import { CalcInfo } from "../../../_components/how-we-calculate"
 import { EffectMark } from "../../../_components/effect-mark"
 import { useDictionary, useLocale } from "../../../_components/i18n-provider"
 import { KpiCard } from "./kpi-card"
-
-function Group({ id, title, children }: { id: string; title: string; children: ReactNode }) {
-  return (
-    <div role="group" aria-labelledby={id} className="flex flex-col gap-3">
-      <h3 id={id} className="font-mono text-xs tracking-[0.075em] text-muted-foreground uppercase">
-        {title}
-      </h3>
-      {children}
-    </div>
-  )
-}
+import { KpiGroup } from "./kpi-group"
 
 /**
  * The seven primary numbers (PLAN-DASH-09 step 3): coverage and demand for heating and cooling,
@@ -80,21 +69,21 @@ export function KpiGrid({ result }: { result: QuickCheckComplete }) {
       <h2 id="overview-kpis" className="text-xl leading-tight font-[560] tracking-[-0.035em] [font-stretch:86%]">
         {overview.sections.kpis}
       </h2>
-      <Group id="kpis-energy" title={overview.sections.energy}>
+      <KpiGroup id="kpis-energy" title={overview.sections.energy}>
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
           {coverage("heating", FlameIcon)}
           {coverage("cooling", SnowflakeIcon)}
           <KpiCard id="heatingDemand" icon={FlameIcon} tone="hot" label={copy.heatingDemand} value={energyParts(values.heatingDemandKwh).number} unit={energyParts(values.heatingDemandKwh).unit} info={info("heatingDemandKwh", copy.heatingDemand)} note={flags.manualHeatingDemand ? qc.ui.results.coverage.manual : undefined} />
           <KpiCard id="coolingDemand" icon={SnowflakeIcon} tone="cool" label={copy.coolingDemand} value={energyParts(values.coolingDemandKwh).number} unit={energyParts(values.coolingDemandKwh).unit} info={info("coolingDemandKwh", copy.coolingDemand)} note={flags.manualCoolingDemand ? qc.ui.results.coverage.manual : undefined} />
         </div>
-      </Group>
-      <Group id="kpis-economics" title={overview.sections.economics}>
+      </KpiGroup>
+      <KpiGroup id="kpis-economics" title={overview.sections.economics}>
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {money("revenue", CoinsIcon, copy.revenue, values.overallRevenue, "overallRevenue", true)}
           {money("investment", LandmarkIcon, copy.investment, values.overallInvestment, "overallInvestment", false)}
           {money("annualCosts", ReceiptTextIcon, copy.annualCosts, values.annualCosts, "annualCosts", true)}
         </div>
-      </Group>
+      </KpiGroup>
     </section>
   )
 }

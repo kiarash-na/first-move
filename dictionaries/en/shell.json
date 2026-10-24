@@ -107,6 +107,7 @@
   },
   "nav": {
     "label": "Dashboard navigation",
+    "sidebar": "Project sidebar",
     "open": "Open navigation",
     "close": "Close navigation",
     "title": "Navigation",
@@ -230,10 +231,7 @@
       "action": "Turn on {module}"
     }
   },
-  "placeholder": {
-    "badge": "In development",
-    "body": "This page is being built. Your project is open and saved in this browser."
-  },
   "close": "Close",
+  "illustrative": "Illustrative inputs only",
   "loading": "Loading your projects…"
 }

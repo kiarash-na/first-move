@@ -69,6 +69,7 @@ export function RowsField({ field, headless = false }: { field: ItemsDef; headle
               field={field}
               index={index}
               row={row}
+              headingLevel={headless ? 3 : 4}
               onToggleFlag={(key, value) => toggleFlag(index, key, value)}
               onRemove={() => (hasText(row) ? setRemoving(index) : remove(index))}
             />

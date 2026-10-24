@@ -90,10 +90,13 @@ export function KeyFigures({ result }: { result: QuickCheckComplete }) {
                     {ui[key]}
                     {key === "networkLengthM" && <NetworkLengthTag flags={flags} />}
                   </dt>
-                  <dd className="text-right font-mono text-sm text-foreground tabular-nums">
-                    {formatFigure(values[key], unit, lang, ui.perYear, ui.metresPerHectare)}
+                  {/* The info button sits inside the dd: a dl group may hold only dt and dd. */}
+                  <dd className="flex items-center gap-3">
+                    <span className="text-right font-mono text-sm text-foreground tabular-nums">
+                      {formatFigure(values[key], unit, lang, ui.perYear, ui.metresPerHectare)}
+                    </span>
+                    <CalcInfo source={explainResult(key, flags)} label={ui[key]} />
                   </dd>
-                  <CalcInfo source={explainResult(key, flags)} label={ui[key]} />
                 </div>
               ))}
             </dl>

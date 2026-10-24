@@ -6,7 +6,7 @@ import Link from "next/link"
 import { Progress } from "@/components/ui/progress"
 import { allProgress, overallProgress } from "@/lib/business-plan"
 import { dashboardHref } from "@/lib/dashboard/routes"
-import { formatPercent } from "@/lib/i18n/format"
+import { formatNumber, formatPercent } from "@/lib/i18n/format"
 import { interpolate } from "@/lib/i18n/interpolate"
 import type { Project } from "@/lib/project"
 import { useDictionary, useLocale } from "../../../_components/i18n-provider"
@@ -35,11 +35,11 @@ export function StepProgressTile({ project }: { project: Project }) {
             >
               <span className="flex items-baseline justify-between gap-3 text-sm">
                 {names[entry.step]}
-                <span className="font-mono text-xs text-muted-foreground tabular-nums" title={interpolate(copy.progress, { done: entry.done, total: entry.total })}>
-                  {entry.done}/{entry.total}
+                <span className="font-mono text-xs text-muted-foreground tabular-nums" title={interpolate(copy.progress, { done: formatNumber(entry.done, lang), total: formatNumber(entry.total, lang) })}>
+                  {formatNumber(entry.done, lang)}/{formatNumber(entry.total, lang)}
                 </span>
               </span>
-              <Progress tone="hot" value={Math.round(entry.fraction * 100)} aria-label={`${names[entry.step]}: ${interpolate(copy.progress, { done: entry.done, total: entry.total })}`} />
+              <Progress tone="hot" value={Math.round(entry.fraction * 100)} aria-label={`${names[entry.step]}: ${interpolate(copy.progress, { done: formatNumber(entry.done, lang), total: formatNumber(entry.total, lang) })}`} />
             </Link>
           </li>
         ))}

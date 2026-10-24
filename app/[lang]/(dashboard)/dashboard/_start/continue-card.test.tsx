@@ -23,6 +23,13 @@ describe("ContinueCard (D-03)", () => {
     expect(screen.getByLabelText(testDictionaries().shell.loading)).toHaveAttribute("aria-busy", "true")
   })
 
+  it("reserves the action button's slot in the skeleton (no layout shift when the project loads)", () => {
+    const tab = testTab()
+    tabs.push(tab)
+    const { container } = renderDashboard(<ContinueCard />, { store: tab.store })
+    expect(container.querySelector("[data-slot=continue-action-skeleton]")).toHaveClass("h-14")
+  })
+
   it.each(["en", "de"] as const)("welcomes when there is nothing to continue (%s)", async (lang) => {
     const tab = testTab()
     tabs.push(tab)

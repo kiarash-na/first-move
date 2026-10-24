@@ -88,3 +88,30 @@ Palette check (`validate_palette.js`, hexes computed from the tokens): cyan/oran
 ## Next.js
 
 `next/dynamic` with `ssr: false` in client files works as the lazy-loading guide says; the page stays a static shell (`generateStaticParams` untouched, no `dynamicParams`). No Next.js issue was hit.
+
+## Review fixes
+
+Three reviewers checked phases 07–10. Each finding was confirmed against the code and the production build (port 3311, Playwright at 320, 375 and 1440 px, dark and light, axe-core 4.14) before it was fixed. 18 findings: 18 fixed (one in part), 0 rejected.
+
+| # | Finding | Outcome |
+|---|---|---|
+| 1 | Chart axis labels fall back to Recharts' `#666` (3.28:1 on the dark card) | **Fixed.** Recharts 3 draws labels in `g.recharts-cartesian-axis-tick-label`, so `components/ui/chart.tsx` now targets `.recharts-cartesian-axis-tick-value`. Measured: the ticks use `--muted-foreground` in both themes. The test renders a real axis in jsdom and fails with the old selector |
+| 2 | BP step nav: "Implementation" runs under the done mark at 375/320 px | **Fixed.** The number and the done mark share the top row; the title has the full cell width (15 px below 360 px, `overflow-wrap: anywhere` as a last resort for long DE words). Checked at 320, 375 and 1440: no overlap, no clipping |
+| 3 | QC stepper cells 42 px wide at 375 px | **Fixed in part.** Every cell has `min-w-11` (44 px measured at 320 and 375). The 1 px divider between cells is kept: the stepper is one segmented control whose cells do not overlap, and an 8 px gap would break the joined segment style used for every tab/segment in the design. Logged as a documented default |
+| 4 | Storage banner pushes the start screen down (CLS 0.10–0.11) | **Fixed.** The banner sits below the Continue/Import row, and the Continue skeleton reserves the button's slot. Measured with the warning showing: CLS 0.062 at 1440 dark, 0.001 at 375 light. The top bar's save status still shows the warning at once |
+| 5 | Metric tiles overflow 320 px by 22 px | **Fixed.** One column below 360 px, and the info button sits absolutely in the tile corner, so the 44 px target never adds to the label's minimum width. 0 px overflow at 320 |
+| 6 | Wide formulas and tables cut off at 375 px, not focusable (axe `scrollable-region-focusable`) | **Fixed.** `FormulaMath` is a focusable, named group; `Table` takes `scrollLabel` (or its `aria-label`) and then is a focusable, named region. New `scroll-fade-x` utility in `globals.css`: an alpha mask driven by the element's own scroll timeline fades the edge that hides content, and shows nothing when nothing scrolls (no new colour). Formulas are 15 px below `sm`, so EQ-3.9c now fits; EQ-3.9a/b still scroll, with the fade. Arrow keys scroll a focused table |
+| 7 | `dl` rows hold a button beside `dt`/`dd` | **Fixed.** The info button is inside the `dd` |
+| 8 | Heading levels skip | **Fixed.** Sources: a visually hidden H2 names the group above the H3 source cards. `QcFrame` title is an H2. `RowCard` takes `headingLevel` (H3 directly under a panel's H2, H4 under a list's own H3) |
+| 9 | Two unnamed complementary landmarks | **Fixed.** The sidebar aside is "Project sidebar" (`shell.nav.sidebar`); the screening note and compare-models asides are named by their titles |
+| 10 | "Preloaded but not used" warning for the landing stylesheet | **Fixed.** The sidebar brand link has `prefetch={false}` (`Brand` passes `prefetch` through). The assumptions page, held open 6 s, has no style preload and no console message |
+| 11 | No "Illustrative inputs only" on an opened example | **Fixed.** New shared `IllustrativeBadge` (shown when `meta.exampleId` is set) in the overview header, the results verdict panel and every Business Plan step header. The label moved from `start.examples.illustrative` to `shell.illustrative`; the example card uses it too |
+| 12 | Covered IDs ALG-02/03/07/08, SHARED-CONTEXT, BM-SCOPE-10 unused | **Fixed.** New prompts: SHARED-CONTEXT and ALG-07 (step 1), BM-SCOPE-10 tip with its 5GDHC information link (step 2, opens in a new tab), ALG-08 replication examples (step 4). ALG-02 (funding, partners) and ALG-03 (project goals) are project facts, not guidance for a team; they were removed from PLAN-DASH-10's `covers` (team default, recorded here) |
+| 13 | `AppHeader` has one consumer but sits in `components/` | **Fixed.** Moved with its test to `app/[lang]/(docs)/_components/`; stale docstring corrected |
+| 14 | `BooleanField` used by one route, in shared `_components/fields/` | **Fixed.** Moved with its test next to the options step (`quick-check/[step]/_steps/options/`) |
+| 15 | `PlaceholderPage` is dead code | **Fixed.** Deleted with its test and the `shell.placeholder` copy |
+| 16 | Units without a test beside them | **Fixed.** New tests: `sidebar-nav`, `sidebar-content`, `sidebar-project`, `import-conflict-dialog`, `import-failure-dialog`, one per chart (the aggregate `recharts-charts.test.tsx` is split), `(dashboard)/layout`, `(dashboard)/not-found` |
+| 17 | Two components in one file | **Fixed.** `KpiGroup` and `FlagSwitch` have their own files and tests |
+| 18 | Counts not formatted through `lib/i18n/format` | **Fixed.** All listed sites use `formatNumber(n, lang)`; tests spy on `formatNumber` for the step nav and the step-progress tile |
+
+Checks: `pnpm lint && pnpm typecheck && pnpm test && pnpm build` pass (432 test files, 1755 tests). axe on overview, results, sources, assumptions and the three BP steps (320, 375, 1440; both themes): no `definition-list`, `heading-order`, `landmark-unique`, `scrollable-region-focusable` or `color-contrast` violations; no horizontal overflow; no console errors or warnings.

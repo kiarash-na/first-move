@@ -3,7 +3,7 @@ import { join } from "node:path"
 import { describe, expect, it } from "vitest"
 import businessPlan from "@/dictionaries/en/business-plan.json"
 import { BUSINESS_PLAN_STEPS } from "@/lib/project/fields/steps"
-import { PROMPTS, promptsFor } from "./prompts"
+import { INFO_LINK_5GDHC, PROMPTS, promptsFor } from "./prompts"
 
 const doc = (path: string) => readFileSync(join(process.cwd(), "docs", path), "utf8")
 
@@ -38,9 +38,23 @@ describe("guiding prompts", () => {
       "01_shared/alg-project/tips-for-the-challenge.md",
       "01_shared/alg-project/project-focus.md",
       "01_shared/alg-project/what-is-5gdhc.md",
+      "01_shared/alg-project/vienna-heating-plan.md",
+      "01_shared/alg-project/examples-in-practice.md",
+      "01_shared/5gdhc-context.md",
+      "20_business-models/00_scope/bm-scope-10_tips-and-templates_v01.md",
     ].map(doc)
     for (const source of new Set(PROMPTS.map((prompt) => prompt.source))) {
       expect(known.some((text) => text.includes(`id: ${source}`)), source).toBe(true)
+    }
+  })
+
+  it("use the covered project knowledge: ALG-07, ALG-08, SHARED-CONTEXT and the BM-SCOPE-10 tip with its information link", () => {
+    const sources = new Set(PROMPTS.map((prompt) => prompt.source))
+    for (const id of ["ALG-07", "ALG-08", "SHARED-CONTEXT", "BM-SCOPE-10"]) expect(sources.has(id), id).toBe(true)
+    expect(PROMPTS.find((prompt) => prompt.source === "ALG-08")?.step).toBe("implementation")
+    expect(doc("20_business-models/00_scope/bm-scope-10_tips-and-templates_v01.md")).toContain(INFO_LINK_5GDHC)
+    for (const prompt of PROMPTS.filter((item) => item.href)) {
+      expect((businessPlan.prompts.links as Record<string, string>)[prompt.id], prompt.id).toBeTruthy()
     }
   })
 })

@@ -1,8 +1,20 @@
 import { screen, within } from "@testing-library/react"
-import { afterEach, describe, expect, it } from "vitest"
+import { afterEach, describe, expect, it, vi } from "vitest"
 import { renderDashboard } from "../../_components/test-utils/render"
 import { openProject, stopTabs } from "./test-utils/open-project"
 import { StepNav } from "./step-nav"
+
+const format = vi.hoisted(() => ({ calls: [] as Array<[number, string]> }))
+vi.mock("@/lib/i18n/format", async (importOriginal) => {
+  const original = await importOriginal<typeof import("@/lib/i18n/format")>()
+  return {
+    ...original,
+    formatNumber: (value: number, lang: Parameters<typeof original.formatNumber>[1], options?: Intl.NumberFormatOptions) => {
+      format.calls.push([value, lang])
+      return original.formatNumber(value, lang, options)
+    },
+  }
+})
 
 afterEach(stopTabs)
 
@@ -28,5 +40,23 @@ describe("StepNav (BM-SCOPE-11, D-28)", () => {
     renderDashboard(<StepNav current="opportunity" />, { store: tab.store })
     expect(screen.getAllByText("Done")).toHaveLength(4)
     expect(screen.getAllByText("100%")).toHaveLength(4)
+  })
+
+  it("keeps the done mark out of the title's row so long titles wrap instead of running under it (375px)", async () => {
+    const tab = await openProject({ example: "housing-cooperatives" })
+    const { container } = renderDashboard(<StepNav current="opportunity" />, { store: tab.store })
+    const title = screen.getByText("Implementation")
+    expect(title).toHaveAttribute("data-slot", "step-title")
+    expect(title.className).toContain("[overflow-wrap:anywhere]")
+    const marks = container.querySelectorAll("[data-slot=step-done]")
+    expect(marks).toHaveLength(4)
+    marks.forEach((mark) => expect(mark.parentElement?.contains(screen.getByText("Implementation"))).toBe(false))
+  })
+
+  it("formats the per-step counts per language (lib/i18n/format)", async () => {
+    const tab = await openProject({ example: "housing-cooperatives" })
+    format.calls.length = 0
+    renderDashboard(<StepNav current="opportunity" />, { store: tab.store, lang: "de" })
+    expect(format.calls.filter(([, lang]) => lang === "de")).toHaveLength(8)
   })
 })

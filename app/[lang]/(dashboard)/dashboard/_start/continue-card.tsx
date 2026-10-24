@@ -70,6 +70,10 @@ export function ContinueCard() {
           </>
         )}
       </div>
+      {phase !== "ready" && (
+        // Holds the button's place so the card does not grow when the last project loads.
+        <Skeleton data-slot="continue-action-skeleton" className="relative h-14 w-48 sm:h-15" />
+      )}
       {phase === "ready" && project && (
         <div className="relative">
           <Button

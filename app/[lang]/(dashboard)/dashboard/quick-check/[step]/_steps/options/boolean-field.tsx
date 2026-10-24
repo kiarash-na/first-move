@@ -4,9 +4,9 @@ import { useId } from "react"
 import { Switch } from "@/components/ui/switch"
 import { getAt, parsePath, type BooleanField as BooleanFieldDef } from "@/lib/project"
 import { cn } from "@/lib/utils"
-import { useDictionary, useTextRef } from "../i18n-provider"
-import { useStoreState } from "../store-provider"
-import { useFieldPatch } from "./use-field-patch"
+import { useDictionary, useTextRef } from "../../../../_components/i18n-provider"
+import { useStoreState } from "../../../../_components/store-provider"
+import { useFieldPatch } from "../../../../_components/fields/use-field-patch"
 
 /** A yes/no input rendered from its registry entry, with its state as text (DESIGN-TOKENS §7). */
 export function BooleanField({ field, className }: { field: BooleanFieldDef; className?: string }) {

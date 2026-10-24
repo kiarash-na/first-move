@@ -67,4 +67,15 @@ describe("RowsField", () => {
     renderDashboard(<RowsField field={risks()} headless />, { store: tab.store })
     expect(screen.queryByRole("heading", { level: 3 })).toBeNull()
   })
+
+  it("puts the row titles one level below the panel's H2 when it has no heading of its own, else below its H3", async () => {
+    const tab = await openProject({ example: "housing-cooperatives" })
+    const headless = renderDashboard(<RowsField field={risks()} headless />, { store: tab.store })
+    expect(screen.getAllByRole("heading", { level: 3 }).length).toBeGreaterThan(0)
+    expect(screen.queryByRole("heading", { level: 4 })).toBeNull()
+    headless.unmount()
+    renderDashboard(<RowsField field={risks()} />, { store: tab.store })
+    expect(screen.getAllByRole("heading", { level: 3 })).toHaveLength(1)
+    expect(screen.getAllByRole("heading", { level: 4 }).length).toBeGreaterThan(0)
+  })
 })

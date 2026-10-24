@@ -31,7 +31,7 @@ export function BuildingTables() {
             {copy[table].unit}
           </p>
           <div className="border bg-card">
-            <Table>
+            <Table scrollLabel={`${table} ${copy[table].title}`}>
               <TableHeader>
                 <TableRow>
                   <TableHead>{copy.type}</TableHead>

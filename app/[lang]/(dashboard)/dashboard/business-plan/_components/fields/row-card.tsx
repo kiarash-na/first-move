@@ -1,15 +1,16 @@
 "use client"
 
-import { FlagIcon, Trash2Icon } from "lucide-react"
+import { Trash2Icon } from "lucide-react"
 import { useId } from "react"
 
 import { Button } from "@/components/ui/button"
-import { Switch } from "@/components/ui/switch"
+import { formatNumber } from "@/lib/i18n/format"
 import { interpolate } from "@/lib/i18n/interpolate"
 import type { FieldDef } from "@/lib/project"
 import { cn } from "@/lib/utils"
-import { useDictionary, useTextRef } from "../../../_components/i18n-provider"
+import { useDictionary, useLocale, useTextRef } from "../../../_components/i18n-provider"
 import { BoundText } from "./bound-text"
+import { FlagSwitch } from "./flag-switch"
 
 type ItemsDef = Extract<FieldDef, { kind: "items" }>
 
@@ -24,6 +25,7 @@ export function RowCard({
   row,
   onToggleFlag,
   onRemove,
+  headingLevel = 4,
 }: {
   field: ItemsDef
   index: number
@@ -31,7 +33,10 @@ export function RowCard({
   /** Sets a flag property on this row (the list clears it on the other rows). */
   onToggleFlag: (key: string, value: boolean) => void
   onRemove: () => void
+  /** 3 when the list has no heading of its own (directly under a section's H2), else 4. */
+  headingLevel?: 3 | 4
 }) {
+  const lang = useLocale()
   const bp = useDictionary("business-plan")
   const textOf = useTextRef()
   const titleId = useId()
@@ -41,6 +46,7 @@ export function RowCard({
   const shortProps = field.properties.filter((property) => property.kind === "text")
   const longProps = field.properties.filter((property) => property.kind === "longText")
   const flags = field.properties.filter((property) => property.kind === "boolean")
+  const Heading = headingLevel === 3 ? "h3" : "h4"
 
   return (
     <li>
@@ -49,14 +55,14 @@ export function RowCard({
           <span className="font-mono text-xs tracking-[0.075em] text-hot uppercase tabular-nums">
             {String(index + 1).padStart(2, "0")}
           </span>
-          <h4 id={titleId} className="min-w-0 flex-1 truncate text-lg leading-tight font-[520] tracking-[-0.02em]">
-            {headlineText || interpolate(bp.ui.entry, { label: rowName, index: index + 1 })}
-          </h4>
+          <Heading id={titleId} className="min-w-0 flex-1 truncate text-lg leading-tight font-[520] tracking-[-0.02em]">
+            {headlineText || interpolate(bp.ui.entry, { label: rowName, index: formatNumber(index + 1, lang) })}
+          </Heading>
           <Button
             type="button"
             variant="ghost"
             size="icon"
-            aria-label={interpolate(bp.ui.removeRow, { row: `${rowName} ${index + 1}` })}
+            aria-label={interpolate(bp.ui.removeRow, { row: `${rowName} ${formatNumber(index + 1, lang)}` })}
             onClick={onRemove}
           >
             <Trash2Icon strokeWidth={1.6} aria-hidden="true" />
@@ -94,30 +100,5 @@ export function RowCard({
         ))}
       </article>
     </li>
-  )
-}
-
-function FlagSwitch({ label, on, onChange }: { label: string; on: boolean; onChange: (value: boolean) => void }) {
-  const id = useId()
-  const bp = useDictionary("business-plan")
-
-  return (
-    <div className={cn("flex flex-wrap items-center gap-x-4 gap-y-2 border-t pt-4", on && "text-hot")}>
-      <Switch
-        id={id}
-        checked={on}
-        onCheckedChange={onChange}
-        aria-describedby={`${id}-hint`}
-        className="data-[state=checked]:border-hot data-[state=checked]:bg-hot"
-      />
-      <label htmlFor={id} className="flex cursor-pointer items-center gap-2 font-mono text-xs tracking-[0.06em] uppercase">
-        <FlagIcon className="size-4" strokeWidth={1.6} aria-hidden="true" />
-        {label}
-      </label>
-      {on && <span className="font-mono text-xs tracking-[0.06em] uppercase">{bp.ui.dealBreaker.marked}</span>}
-      <p id={`${id}-hint`} className="basis-full text-sm leading-snug text-muted-foreground">
-        {bp.ui.dealBreaker.hint}
-      </p>
-    </div>
   )
 }

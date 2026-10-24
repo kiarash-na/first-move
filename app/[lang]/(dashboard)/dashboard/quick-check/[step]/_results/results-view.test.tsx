@@ -45,4 +45,11 @@ describe("ResultsView (PLAN-DASH-08 step 3)", () => {
     const missing = container.querySelector("[data-slot=results-incomplete]") as HTMLElement
     expect(within(missing).getByRole("link", { name: /Project area/ })).toHaveAttribute("href", "/en/dashboard/quick-check/area")
   })
+
+  it("labels an example's result 'Illustrative inputs only' in the verdict panel (OQ-23)", () => {
+    const { store } = projectStore(exampleProject("new-build-quarter"))
+    const { container } = renderDashboard(<ResultsView />, { store })
+    const verdict = container.querySelector("[data-slot=verdict-panel]") as HTMLElement
+    expect(within(verdict).getByText(testDictionaries().shell.illustrative)).toBeInTheDocument()
+  })
 })

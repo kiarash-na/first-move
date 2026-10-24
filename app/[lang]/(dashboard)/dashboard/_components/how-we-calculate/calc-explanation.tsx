@@ -23,6 +23,7 @@ export function CalcExplanation({ source, compact = false }: { source: CalcSourc
         <ol className="flex flex-col divide-y divide-border border-y border-border">
           {source.formulas.map((id) => {
             const formula = FORMULAS[id]
+            const name = lookup(calc, formulaNameKey(id)) ?? formula.title
             return (
               <li
                 key={id}
@@ -33,10 +34,10 @@ export function CalcExplanation({ source, compact = false }: { source: CalcSourc
               >
                 <div className="flex min-w-0 flex-col gap-0.5">
                   <span className="font-mono text-xs tracking-[0.06em] text-primary">{id}</span>
-                  <span className="text-sm leading-snug text-foreground">{lookup(calc, formulaNameKey(id)) ?? formula.title}</span>
+                  <span className="text-sm leading-snug text-foreground">{name}</span>
                 </div>
                 {formula.mathml ? (
-                  <FormulaMath id={id} />
+                  <FormulaMath id={id} label={`${id} ${name}`} />
                 ) : (
                   <p className="text-sm leading-snug text-muted-foreground">{calc.ui.noEquation}</p>
                 )}

@@ -38,4 +38,14 @@ describe("SourcesStep (QCT-IN-06/07)", () => {
     await userEvent.click(within(air).getByRole("button", { name: "Remove Ambient air" }))
     expect(current().sources.potentials.ambient_air).toBeNull()
   })
+
+  it("keeps the heading outline: a (visually hidden) H2 for the group above the H3 source names", () => {
+    const { store } = projectStore(emptyProject())
+    renderDashboard(<SourcesStep />, { store })
+    const group = screen.getByRole("heading", { level: 2 })
+    expect(group).toHaveClass("sr-only")
+    expect(group.textContent).not.toBe("")
+    expect(screen.getByRole("region", { name: group.textContent ?? "" })).toBeInTheDocument()
+    expect(screen.getAllByRole("heading", { level: 3 })).toHaveLength(6)
+  })
 })

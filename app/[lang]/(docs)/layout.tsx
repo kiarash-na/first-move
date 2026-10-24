@@ -4,7 +4,7 @@ import "@fontsource/instrument-serif/400-italic.css"
 import "@fontsource/ibm-plex-mono/latin-400.css"
 import "../../globals.css"
 
-import { AppHeader } from "@/components/app-header/app-header"
+import { AppHeader } from "./_components/app-header"
 import { ThemeScript } from "@/components/theme/theme-script"
 import { ThemeSync } from "@/components/theme/theme-sync"
 import { getDictionary } from "@/lib/i18n/get-dictionary"

@@ -5,9 +5,10 @@ import { useId } from "react"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { formatNumber } from "@/lib/i18n/format"
 import { interpolate } from "@/lib/i18n/interpolate"
 import { getAt, parsePath, type FieldDef } from "@/lib/project"
-import { useDictionary, useTextRef } from "../../../_components/i18n-provider"
+import { useDictionary, useLocale, useTextRef } from "../../../_components/i18n-provider"
 import { useStoreState } from "../../../_components/store-provider"
 import { FieldError } from "./field-error"
 import { FieldLabel } from "./field-label"
@@ -20,6 +21,7 @@ const NONE: readonly string[] = []
 /** A list of one-line entries (stakeholders, partners, current supply): one input per entry. */
 export function TextListField({ field }: { field: TextListDef }) {
   const id = useId()
+  const lang = useLocale()
   const bp = useDictionary("business-plan")
   const textOf = useTextRef()
   const list = useStoreState((state) => {
@@ -40,7 +42,7 @@ export function TextListField({ field }: { field: TextListDef }) {
           <li key={index} className="flex items-center gap-2">
             <Input
               id={`${id}-${index}`}
-              aria-label={interpolate(bp.ui.entry, { label, index: index + 1 })}
+              aria-label={interpolate(bp.ui.entry, { label, index: formatNumber(index + 1, lang) })}
               aria-describedby={`${id}-help`}
               value={entry}
               maxLength={field.maxLength}
@@ -51,7 +53,7 @@ export function TextListField({ field }: { field: TextListDef }) {
                 type="button"
                 variant="ghost"
                 size="icon"
-                aria-label={interpolate(bp.ui.removeEntry, { index: index + 1 })}
+                aria-label={interpolate(bp.ui.removeEntry, { index: formatNumber(index + 1, lang) })}
                 onClick={() => set(list.filter((_, at) => at !== index))}
               >
                 <XIcon strokeWidth={1.6} aria-hidden="true" />

@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react"
-import { Bar, BarChart } from "recharts"
+import { Bar, BarChart, XAxis, YAxis } from "recharts"
 import { describe, expect, it, vi } from "vitest"
 import { ChartContainer, ChartStyle, ChartTooltipContent, type ChartConfig } from "./chart"
 
@@ -40,6 +40,27 @@ describe("ChartContainer", () => {
       </ChartContainer>,
     )
     expect(container.querySelector("[data-chart=chart-demand]")).not.toBeNull()
+  })
+
+  it("colours axis tick labels with the muted-foreground token (Recharts 3 tick-value class), not Recharts' #666", () => {
+    const { container } = render(
+      <ChartContainer id="ticks" config={config}>
+        <BarChart width={400} height={200} layout="vertical" data={[{ name: "Revenues", heat: 1 }]}>
+          <XAxis type="number" />
+          <YAxis type="category" dataKey="name" />
+          <Bar dataKey="heat" />
+        </BarChart>
+      </ChartContainer>,
+    )
+    const wrapper = container.querySelector("[data-slot=chart]") as HTMLElement
+    expect(wrapper.className).toContain("[&_.recharts-cartesian-axis-tick-value]:fill-muted-foreground")
+    const tick = container.querySelector("text.recharts-cartesian-axis-tick-value")
+    // Recharts 3 draws labels in g.recharts-cartesian-axis-tick-label with a hard-coded fill="#666";
+    // the wrapper must target the label's own class so the token wins over that attribute.
+    expect(tick).not.toBeNull()
+    expect(tick?.closest(".recharts-cartesian-axis-tick")).toBeNull()
+    const selector = /\[&_\.([\w-]+)\]:fill-muted-foreground/.exec(wrapper.className)?.[1]
+    expect(selector !== undefined && tick?.classList.contains(selector)).toBe(true)
   })
 })
 

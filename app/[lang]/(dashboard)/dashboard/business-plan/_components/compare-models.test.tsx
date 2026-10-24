@@ -27,4 +27,10 @@ describe("CompareModels (D-29)", () => {
     const { container } = renderDashboard(<CompareModels />, { store: tab.store })
     expect(container).toBeEmptyDOMElement()
   })
+
+  it("is a complementary landmark named by its title", async () => {
+    const tab = await openProject({ example: "housing-cooperatives" })
+    renderDashboard(<CompareModels />, { store: tab.store })
+    expect(screen.getByRole("complementary", { name: "Compare business models" })).toBeInTheDocument()
+  })
 })

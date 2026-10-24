@@ -2,7 +2,7 @@
  * Six illustrative example projects, both modules filled (D-04, OQ-23). Picking one copies it:
  * `getProjectStore().addCopy(localizeExample(example, lang))`. Label them "Illustrative inputs
  * only" (DESIGN-TOKENS section 6) wherever they appear: that label is UI copy, so it lives in the
- * `start` dictionary (`examples.illustrative`), not here.
+ * `shell` dictionary (`illustrative`), not here.
  */
 import { housingCooperatives } from "./housing-cooperatives"
 import { newBuildQuarter } from "./new-build-quarter"

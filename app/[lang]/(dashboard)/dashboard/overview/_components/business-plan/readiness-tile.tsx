@@ -6,7 +6,7 @@ import Link from "next/link"
 import { Progress } from "@/components/ui/progress"
 import { pitchReadiness } from "@/lib/business-plan"
 import { dashboardHref } from "@/lib/dashboard/routes"
-import { formatPercent } from "@/lib/i18n/format"
+import { formatNumber, formatPercent } from "@/lib/i18n/format"
 import { interpolate } from "@/lib/i18n/interpolate"
 import type { Project } from "@/lib/project"
 import { useDictionary, useLocale } from "../../../_components/i18n-provider"
@@ -28,7 +28,7 @@ export function ReadinessTile({ project }: { project: Project }) {
         <span className="font-mono text-xs tracking-[0.04em] text-muted-foreground uppercase">{readiness.level[result.level]}</span>
       </p>
       <Progress tone="hot" value={Math.round(result.score * 100)} aria-label={copy.title} />
-      <p className="text-sm leading-relaxed text-text-secondary">{interpolate(readiness.summary, { met, total })}</p>
+      <p className="text-sm leading-relaxed text-text-secondary">{interpolate(readiness.summary, { met: formatNumber(met, lang), total: formatNumber(total, lang) })}</p>
       <p className="text-sm leading-snug text-muted-foreground">{copy.caveat}</p>
       <Link
         href={`${dashboardHref(lang, { page: "business-plan", step: "implementation" })}#readiness`}

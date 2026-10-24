@@ -2,8 +2,10 @@ import { screen } from "@testing-library/react"
 import { afterEach, describe, expect, it, vi } from "vitest"
 import { exampleCards } from "@/lib/dashboard/example-cards"
 import { testTab, type TestTab } from "@/lib/store/test-utils/harness"
+import { UNKNOWN_HEALTH } from "@/lib/storage/persist"
 import { ImportProvider } from "../_components/import/import-provider"
 import { testDictionaries } from "../_components/test-utils/dictionaries"
+import { fakeStore } from "../_components/test-utils/fake-store"
 import { renderDashboard } from "../_components/test-utils/render"
 import { StartScreen } from "./start-screen"
 
@@ -34,5 +36,19 @@ describe("StartScreen (D-03)", () => {
     await tab.store.start()
     expect(await screen.findByRole("heading", { name: start.continue.welcomeTitle })).toBeInTheDocument()
     expect(screen.getByText(start.projects.empty)).toBeInTheDocument()
+  })
+
+  it("places the storage warning after the Continue/Import row, so its late arrival does not push the first screen down", () => {
+    const { store } = fakeStore({ health: { ...UNKNOWN_HEALTH, warning: "not-persisted" } })
+    const { container } = renderDashboard(
+      <ImportProvider>
+        <StartScreen examples={exampleCards("en")} />
+      </ImportProvider>,
+      { store },
+    )
+    const banner = container.querySelector("[data-warning]")
+    expect(banner).not.toBeNull()
+    const importZone = screen.getByRole("region", { name: testDictionaries().start.import.title })
+    expect(importZone.compareDocumentPosition(banner!) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
   })
 })

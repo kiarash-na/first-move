@@ -5,6 +5,7 @@ import Link from "next/link"
 
 import { Button } from "@/components/ui/button"
 import { dashboardHref } from "@/lib/dashboard/routes"
+import { IllustrativeBadge } from "../../_components/illustrative-badge"
 import { ModuleBadges } from "../../_components/module-badges"
 import { PageHeader } from "../../_components/page-header"
 import { useDictionary, useLocale } from "../../_components/i18n-provider"
@@ -31,7 +32,12 @@ export function OverviewView() {
       <PageHeader
         eyebrow={copy.header.eyebrow}
         title={project.meta.name}
-        description={<ModuleBadges modules={modules} />}
+        description={
+          <span className="flex flex-wrap items-center gap-1.5">
+            <ModuleBadges modules={modules} />
+            <IllustrativeBadge />
+          </span>
+        }
         actions={
           modules.quickCheck ? (
             <>

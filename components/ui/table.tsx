@@ -2,9 +2,21 @@ import * as React from "react"
 
 import { cn } from "@/lib/utils"
 
-function Table({ className, ...props }: React.ComponentProps<"table">) {
+/**
+ * A table in a sideways scroller. With a label (`scrollLabel`, else the table's `aria-label`) the
+ * scroller is a named, focusable region, so keyboard users can scroll a table that is wider than
+ * a phone; its hidden edge fades out (`scroll-fade-x`).
+ */
+function Table({ className, scrollLabel, ...props }: React.ComponentProps<"table"> & { scrollLabel?: string }) {
+  const label = scrollLabel ?? props["aria-label"]
   return (
-    <div data-slot="table-container" className="relative w-full overflow-x-auto">
+    <div
+      data-slot="table-container"
+      role={label ? "region" : undefined}
+      aria-label={label}
+      tabIndex={label ? 0 : undefined}
+      className="scroll-fade-x relative w-full focus-visible:-outline-offset-2"
+    >
       <table data-slot="table" className={cn("w-full caption-bottom text-sm", className)} {...props} />
     </div>
   )

@@ -26,7 +26,7 @@ export function Stepper({ current }: { current: QuickCheckPage }) {
           const isStep = page !== "results"
           const state = !result || !isStep ? null : missing.has(page) ? "missing" : "done"
           return (
-            <li key={page} className={cn("flex min-w-0 flex-1 bg-background", active && "max-sm:flex-[4]")}>
+            <li key={page} className={cn("flex min-w-11 flex-1 bg-background", active && "max-sm:flex-[4]")}>
               <Link
                 href={dashboardHref(lang, { page: "quick-check", step: page })}
                 aria-current={active ? "step" : undefined}

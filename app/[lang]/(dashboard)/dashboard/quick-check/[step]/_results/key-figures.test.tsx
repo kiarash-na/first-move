@@ -18,4 +18,13 @@ describe("KeyFigures (D-33)", () => {
     expect(container.querySelector("[data-figure=annualCosts]")).toHaveTextContent(/€\/a$/)
     expect(screen.getByText(quickCheck.ui.results.network.estimated)).toBeInTheDocument()
   })
+
+  it("keeps valid definition-list groups: only dt and dd inside each row, the info button inside the dd", () => {
+    const project = exampleProject("school-kindergarten-flats")
+    const { container } = renderDashboard(<KeyFigures result={run(project) as QuickCheckComplete} />, { store: projectStore(project).store })
+    for (const row of container.querySelectorAll("dl > div")) {
+      expect(Array.from(row.children).map((child) => child.tagName)).toEqual(["DT", "DD"])
+      expect(row.querySelector("dd button")).not.toBeNull()
+    }
+  })
 })
