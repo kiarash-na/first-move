@@ -24,6 +24,7 @@
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "gen:reference": "node scripts/gen-reference.mjs",
+    "gen:knowledge": "node scripts/gen-knowledge.mjs",
     "gen:de-review": "node scripts/de-copy-review.mjs"
   },
   "dependencies": {
@@ -37,16 +38,19 @@
     "clsx": "^2.1.1",
     "idb": "^8.0.4",
     "lucide-react": "^0.562.0",
+    "mammoth": "1.13.0",
     "next": "16.4.2",
     "radix-ui": "^1.8.1",
     "react": "19.3.0",
     "react-dom": "19.3.0",
+    "read-excel-file": "9.3.12",
     "recharts": "^3.10.1",
     "remark-gfm": "^4.0.1",
     "server-only": "^0.0.1",
     "sonner": "^2.0.8",
     "tailwind-merge": "^3.7.0",
     "three": "^0.186.1",
+    "unpdf": "1.9.1",
     "workflow": "5.2.3",
     "zod": "^4.6.7",
     "zustand": "^5.0.16"

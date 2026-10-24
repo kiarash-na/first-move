@@ -13,7 +13,7 @@ Bilingual (EN/DE) Next.js app for 5GDHC (5th-gen district heating and cooling) s
 
 ## Commands
 
-`pnpm dev` · `pnpm lint` · `pnpm typecheck` · `pnpm test` · `pnpm test:e2e` · `pnpm build` · `pnpm gen:reference`
+`pnpm dev` · `pnpm lint` · `pnpm typecheck` · `pnpm test` · `pnpm test:e2e` · `pnpm build` · `pnpm gen:reference` · `pnpm gen:knowledge`
 
 ## Rules
 

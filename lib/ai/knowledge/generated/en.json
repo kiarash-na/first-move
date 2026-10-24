@@ -1,0 +1,394 @@
+[
+  {
+    "id": "calc:steps.area",
+    "lang": "en",
+    "title": "How we calculate · Quick Check · Project area",
+    "url": "/en/dashboard/quick-check/area",
+    "text": "The number of buildings and the project area give the building density in buildings per hectare. Unless you enter a network length, the tool estimates the length from this density. The number of buildings also sets the heat pump investment and the connection fees.",
+    "source": "dictionaries/en/calc.json#steps.area"
+  },
+  {
+    "id": "calc:steps.buildings",
+    "lang": "en",
+    "title": "How we calculate · Quick Check · Buildings",
+    "url": "/en/dashboard/quick-check/buildings",
+    "text": "The shares split the buildings into types and construction periods. Each group gets the default heating demand, cooling demand and floor area of Tables 1 to 3; together they give the total annual demand. Industry has no default values: it adds no demand and leads to “Further analysis required”.",
+    "source": "dictionaries/en/calc.json#steps.buildings"
+  },
+  {
+    "id": "calc:steps.sources",
+    "lang": "en",
+    "title": "How we calculate · Quick Check · Energy sources",
+    "url": "/en/dashboard/quick-check/sources",
+    "text": "Each selected source adds the default annual capacity of its potential (Tables 4 and 5). The heat pump turns it into delivered heating and cooling, which sets the coverage, the installation costs and the electricity costs. A source with unknown potential adds nothing and leads to “Further analysis required”.",
+    "source": "dictionaries/en/calc.json#steps.sources"
+  },
+  {
+    "id": "calc:steps.options",
+    "lang": "en",
+    "title": "How we calculate · Quick Check · Options",
+    "url": "/en/dashboard/quick-check/options",
+    "text": "A known heating or cooling demand replaces the estimated total, and a known network length replaces the estimated length. PV lowers the electricity costs of the heat pumps by the PV cost reduction of Table 6.",
+    "source": "dictionaries/en/calc.json#steps.options"
+  },
+  {
+    "id": "calc:steps.assumptions",
+    "lang": "en",
+    "title": "How we calculate · Quick Check · Assumptions",
+    "url": "/en/dashboard/assumptions",
+    "text": "A changed parameter replaces the default of Tables 4 to 6 in every equation that uses it. Results then carry the “Custom parameters” badge.",
+    "source": "dictionaries/en/calc.json#steps.assumptions"
+  },
+  {
+    "id": "calc:results.heatingDemandKwh",
+    "lang": "en",
+    "title": "How we calculate · Heating demand",
+    "url": "/en/dashboard/quick-check/results",
+    "text": "The buildings of each type and construction period times their default heating demand per m² and their default floor area, summed over all groups.\nYou entered the total heating demand, so it replaces the estimate.",
+    "source": "dictionaries/en/calc.json#results.heatingDemandKwh"
+  },
+  {
+    "id": "calc:results.coolingDemandKwh",
+    "lang": "en",
+    "title": "How we calculate · Cooling demand",
+    "url": "/en/dashboard/quick-check/results",
+    "text": "The buildings of each type and construction period times their default cooling demand per m² and their default floor area, summed over all groups.\nYou entered the total cooling demand, so it replaces the estimate.",
+    "source": "dictionaries/en/calc.json#results.coolingDemandKwh"
+  },
+  {
+    "id": "calc:results.buildingDensity",
+    "lang": "en",
+    "title": "How we calculate · Building density",
+    "url": "/en/dashboard/quick-check/results",
+    "text": "The number of buildings per hectare of project area.",
+    "source": "dictionaries/en/calc.json#results.buildingDensity"
+  },
+  {
+    "id": "calc:results.densityCategory",
+    "lang": "en",
+    "title": "How we calculate · Building density category",
+    "url": "/en/dashboard/quick-check/results",
+    "text": "Follows from the building density class of Table 8: low density is rural, medium is sub-urban, high is urban.",
+    "source": "dictionaries/en/calc.json#results.densityCategory"
+  },
+  {
+    "id": "calc:results.specificNetworkLength",
+    "lang": "en",
+    "title": "How we calculate · Specific network length",
+    "url": "/en/dashboard/quick-check/results",
+    "text": "Network metres per hectare, estimated from the building density with the predefined relationship of the methodology.",
+    "source": "dictionaries/en/calc.json#results.specificNetworkLength"
+  },
+  {
+    "id": "calc:results.networkLengthM",
+    "lang": "en",
+    "title": "How we calculate · Network length",
+    "url": "/en/dashboard/quick-check/results",
+    "text": "The specific network length times the project area in hectares.\nYou entered the network length, so it replaces the estimate.",
+    "source": "dictionaries/en/calc.json#results.networkLengthM"
+  },
+  {
+    "id": "calc:results.heatDensityMwhPerM",
+    "lang": "en",
+    "title": "How we calculate · Heat density",
+    "url": "/en/dashboard/quick-check/results",
+    "text": "The total heating demand divided by the network length. It is classified in MWh per metre (Table 9).",
+    "source": "dictionaries/en/calc.json#results.heatDensityMwhPerM"
+  },
+  {
+    "id": "calc:results.heatingSupplyKwh",
+    "lang": "en",
+    "title": "How we calculate · Heating supply",
+    "url": "/en/dashboard/quick-check/results",
+    "text": "For each selected source, the default capacity of its potential plus the share the heat pump adds (COP), summed over all sources. Solar thermal works without a heat pump.",
+    "source": "dictionaries/en/calc.json#results.heatingSupplyKwh"
+  },
+  {
+    "id": "calc:results.coolingSupplyKwh",
+    "lang": "en",
+    "title": "How we calculate · Cooling supply",
+    "url": "/en/dashboard/quick-check/results",
+    "text": "For each selected source, the default cooling capacity of its potential adjusted by the COP, summed over all sources. Waste heat and solar thermal supply no cooling.",
+    "source": "dictionaries/en/calc.json#results.coolingSupplyKwh"
+  },
+  {
+    "id": "calc:results.heatingCoverage",
+    "lang": "en",
+    "title": "How we calculate · Heating supply coverage",
+    "url": "/en/dashboard/quick-check/results",
+    "text": "The heating supply divided by the heating demand: the share of the annual heating demand the selected sources can cover.",
+    "source": "dictionaries/en/calc.json#results.heatingCoverage"
+  },
+  {
+    "id": "calc:results.coolingCoverage",
+    "lang": "en",
+    "title": "How we calculate · Cooling supply coverage",
+    "url": "/en/dashboard/quick-check/results",
+    "text": "The cooling supply divided by the cooling demand: the share of the annual cooling demand the selected sources can cover.",
+    "source": "dictionaries/en/calc.json#results.coolingCoverage"
+  },
+  {
+    "id": "calc:results.chRatio",
+    "lang": "en",
+    "title": "How we calculate · Cooling-to-heating ratio",
+    "url": "/en/dashboard/quick-check/results",
+    "text": "The smaller of the heating and cooling demand divided by the larger one. The closer it is to one, the more balanced the demands.",
+    "source": "dictionaries/en/calc.json#results.chRatio"
+  },
+  {
+    "id": "calc:results.heatingRevenue",
+    "lang": "en",
+    "title": "How we calculate · Annual heating revenue",
+    "url": "/en/dashboard/quick-check/results",
+    "text": "The heating base price for every m² of floor area per year, plus the heating energy price for every kWh of heating demand.",
+    "source": "dictionaries/en/calc.json#results.heatingRevenue"
+  },
+  {
+    "id": "calc:results.coolingRevenue",
+    "lang": "en",
+    "title": "How we calculate · Annual cooling revenue",
+    "url": "/en/dashboard/quick-check/results",
+    "text": "The cooling base price for every m² of floor area per year, plus the cooling energy price for every kWh of cooling demand.",
+    "source": "dictionaries/en/calc.json#results.coolingRevenue"
+  },
+  {
+    "id": "calc:results.connectionFeeRevenue",
+    "lang": "en",
+    "title": "How we calculate · Connection fee",
+    "url": "/en/dashboard/quick-check/results",
+    "text": "The one-time connection fee of every building, spread over the depreciation period with the annuity factor.",
+    "source": "dictionaries/en/calc.json#results.connectionFeeRevenue"
+  },
+  {
+    "id": "calc:results.overallRevenue",
+    "lang": "en",
+    "title": "How we calculate · Overall revenues",
+    "url": "/en/dashboard/quick-check/results",
+    "text": "Heating revenue, cooling revenue and the annualized connection fees.",
+    "source": "dictionaries/en/calc.json#results.overallRevenue"
+  },
+  {
+    "id": "calc:results.networkInvestment",
+    "lang": "en",
+    "title": "How we calculate · Network investment",
+    "url": "/en/dashboard/quick-check/results",
+    "text": "The network construction costs per metre times the network length.",
+    "source": "dictionaries/en/calc.json#results.networkInvestment"
+  },
+  {
+    "id": "calc:results.supplyInvestment",
+    "lang": "en",
+    "title": "How we calculate · Total installation investment",
+    "url": "/en/dashboard/quick-check/results",
+    "text": "For each selected source, its installation costs per kWh/a times its heating supply, summed over all sources. Ambient air adds no installation costs, as the heat pumps are counted separately.",
+    "source": "dictionaries/en/calc.json#results.supplyInvestment"
+  },
+  {
+    "id": "calc:results.heatPumpInvestment",
+    "lang": "en",
+    "title": "How we calculate · Heat pump",
+    "url": "/en/dashboard/quick-check/results",
+    "text": "The investment in one heat pump times the number of buildings.",
+    "source": "dictionaries/en/calc.json#results.heatPumpInvestment"
+  },
+  {
+    "id": "calc:results.overallInvestment",
+    "lang": "en",
+    "title": "How we calculate · Overall investment",
+    "url": "/en/dashboard/quick-check/results",
+    "text": "Heat pumps, network and the installations of all sources. The installations are counted once.",
+    "source": "dictionaries/en/calc.json#results.overallInvestment"
+  },
+  {
+    "id": "calc:results.annuityFactor",
+    "lang": "en",
+    "title": "How we calculate · Annuity factor",
+    "url": "/en/dashboard/quick-check/results",
+    "text": "Turns an investment into equal yearly payments over the depreciation period at the interest rate.",
+    "source": "dictionaries/en/calc.json#results.annuityFactor"
+  },
+  {
+    "id": "calc:results.annualizedCosts",
+    "lang": "en",
+    "title": "How we calculate · Annualized costs",
+    "url": "/en/dashboard/quick-check/results",
+    "text": "The overall investment times the annuity factor: its cost per year.",
+    "source": "dictionaries/en/calc.json#results.annualizedCosts"
+  },
+  {
+    "id": "calc:results.electricityCosts",
+    "lang": "en",
+    "title": "How we calculate · Electricity costs",
+    "url": "/en/dashboard/quick-check/results",
+    "text": "The electricity the heat pumps need (supply divided by COP) times the electricity price. With PV, the costs are lowered by the PV cost reduction.",
+    "source": "dictionaries/en/calc.json#results.electricityCosts"
+  },
+  {
+    "id": "calc:results.operationAndMaintenance",
+    "lang": "en",
+    "title": "How we calculate · Operation and maintenance",
+    "url": "/en/dashboard/quick-check/results",
+    "text": "A fixed share of the overall investment every year.",
+    "source": "dictionaries/en/calc.json#results.operationAndMaintenance"
+  },
+  {
+    "id": "calc:results.annualCosts",
+    "lang": "en",
+    "title": "How we calculate · Annual costs",
+    "url": "/en/dashboard/quick-check/results",
+    "text": "Annualized investment, electricity costs, and operation and maintenance costs.",
+    "source": "dictionaries/en/calc.json#results.annualCosts"
+  },
+  {
+    "id": "calc:results.economicRatio",
+    "lang": "en",
+    "title": "How we calculate · Economic ratio",
+    "url": "/en/dashboard/quick-check/results",
+    "text": "The overall revenues divided by the annual costs. The economic assessment rates this ratio as favorable, unclear or clearly unfavorable.",
+    "source": "dictionaries/en/calc.json#results.economicRatio"
+  },
+  {
+    "id": "calc:results.level",
+    "lang": "en",
+    "title": "How we calculate · Overall result",
+    "url": "/en/dashboard/quick-check/results",
+    "text": "The overall result combines the supply coverage, the building and heat density and the economic assessment (Table 11). Industry in the project area or a source with unknown potential always leads to “Further analysis required”.",
+    "source": "dictionaries/en/calc.json#results.level"
+  },
+  {
+    "id": "quick-check:results.levels",
+    "lang": "en",
+    "title": "Quick Check · Overall result",
+    "url": "/en/dashboard/quick-check/results",
+    "text": "Promising: Favorable conditions identified\nFurther analysis required: Mixed conditions, uncertainties or missing information\nNot promising: Unfavorable conditions identified",
+    "source": "dictionaries/en/quick-check.json#results.levels"
+  },
+  {
+    "id": "quick-check:results.classes.coverage",
+    "lang": "en",
+    "title": "Quick Check · Supply coverage",
+    "url": "/en/dashboard/quick-check/results",
+    "text": "Feasible: Sufficient annual energy potential to cover the total demand with additional potential available.\nConditionally feasible: A small share of supplementary supply is required.\nLimited feasibility: A significant share of supplementary supply is required.\nNot feasible as the sole supply concept: Too much demand remains uncovered.",
+    "source": "dictionaries/en/quick-check.json#results.classes.coverage"
+  },
+  {
+    "id": "quick-check:results.classes.buildingDensity",
+    "lang": "en",
+    "title": "Quick Check · Building density",
+    "url": "/en/dashboard/quick-check/results",
+    "text": "High density: Densely built areas can benefit from shorter network lengths, although low energy demand may still weaken economic performance.\nMedium density: The structure may be suitable for a network.\nLow density: Buildings are more distributed, potentially increasing network length. High energy demand or suitable local energy sources may still make a project promising.",
+    "source": "dictionaries/en/quick-check.json#results.classes.buildingDensity"
+  },
+  {
+    "id": "quick-check:results.classes.heatDensity",
+    "lang": "en",
+    "title": "Quick Check · Heat density",
+    "url": "/en/dashboard/quick-check/results",
+    "text": "High density: A relatively short network serves a high heating demand, potentially improving economic performance.\nMedium density: The network may be viable.\nLow density: A relatively long network serves a low heating demand. Substantial cooling demand or low network costs may improve the outlook.",
+    "source": "dictionaries/en/quick-check.json#results.classes.heatDensity"
+  },
+  {
+    "id": "quick-check:results.classes.chRatio",
+    "lang": "en",
+    "title": "Quick Check · Cooling-to-heating ratio",
+    "url": "/en/dashboard/quick-check/results",
+    "text": "Balanced: Heating and cooling demand are similar, potentially supporting thermal exchange.\nPartially balanced: One demand is higher than the other, but thermal exchange may still be possible.\nUnbalanced: One demand clearly dominates, potentially increasing the need for external energy sources or thermal storage.",
+    "source": "dictionaries/en/quick-check.json#results.classes.chRatio"
+  },
+  {
+    "id": "quick-check:results.classes.economic",
+    "lang": "en",
+    "title": "Quick Check · Economic assessment",
+    "url": "/en/dashboard/quick-check/results",
+    "text": "Favorable: The revenues cover the annual costs.\nUnclear: The revenues cover a large part, but not all, of the annual costs.\nClearly unfavorable: The revenues fall far short of the annual costs.",
+    "source": "dictionaries/en/quick-check.json#results.classes.economic"
+  },
+  {
+    "id": "quick-check:ui.results.screening",
+    "lang": "en",
+    "title": "Quick Check · Screening, not a full feasibility study",
+    "url": "/en/dashboard/quick-check/results",
+    "text": "This is an initial indication based on simplified default values. Actual values depend on project-specific conditions and should be refined through further analysis.",
+    "source": "dictionaries/en/quick-check.json#ui.results.screening"
+  },
+  {
+    "id": "quick-check:fields.area",
+    "lang": "en",
+    "title": "Quick Check · Project area",
+    "url": "/en/dashboard/quick-check/area",
+    "text": "Total number of buildings: All buildings in the project area, including industrial buildings.\nTotal project area: Enter the area in m². The value in hectares is shown next to it.",
+    "source": "dictionaries/en/quick-check.json#fields"
+  },
+  {
+    "id": "quick-check:fields.buildings",
+    "lang": "en",
+    "title": "Quick Check · Buildings",
+    "url": "/en/dashboard/quick-check/buildings",
+    "text": "Share of buildings: Enter the share of each building type and construction period in %. All shares must add up to 100 %.",
+    "source": "dictionaries/en/quick-check.json#fields"
+  },
+  {
+    "id": "quick-check:fields.sources",
+    "lang": "en",
+    "title": "Quick Check · Energy sources",
+    "url": "/en/dashboard/quick-check/sources",
+    "text": "Energy sources: Select the energy sources available or potentially available in the project area and rate their potential.",
+    "source": "dictionaries/en/quick-check.json#fields"
+  },
+  {
+    "id": "quick-check:fields.options",
+    "lang": "en",
+    "title": "Quick Check · Options",
+    "url": "/en/dashboard/quick-check/options",
+    "text": "Photovoltaic (PV) available: PV lowers the electricity costs of the heat pumps by the PV cost reduction of Table 6.\nKnown heating and cooling demand: Optional. If you know the buildings' energy demand, enter it here instead of the default estimate.\nTotal heating demand: Optional. Replaces the estimated total heating demand.\nTotal cooling demand: Optional. Replaces the estimated total cooling demand.\nNetwork length: Optional. Leave empty to estimate the length from the building density and the project area.",
+    "source": "dictionaries/en/quick-check.json#fields"
+  },
+  {
+    "id": "quick-check:fields.assumptions",
+    "lang": "en",
+    "title": "Quick Check · Assumptions",
+    "url": "/en/dashboard/assumptions",
+    "text": "Heating capacity per source (Table 4): Annual capacity per potential level in kWh/a, and the heat pump COP. Leave a cell empty to keep the default.\nCooling capacity per source (Table 5): Annual capacity per potential level in kWh/a, and the COP. Leave a cell empty to keep the default.\nEconomic parameters (Table 6): Leave a value empty to keep the default.",
+    "source": "dictionaries/en/quick-check.json#fields"
+  },
+  {
+    "id": "business-plan:fields.opportunity-1",
+    "lang": "en",
+    "title": "Business Plan · Opportunity",
+    "url": "/en/dashboard/business-plan/opportunity",
+    "text": "Site or district: Describe the site or district the business model is for.\nLocation: Municipality, region or country.\nType of site: For example a rural village, the urban outskirts or an existing neighbourhood.\nProperty and usage types: Who owns the buildings and how they are used, for example private ownership, rental housing or tourism.\nUnits or buildings: As far as known, for example \"20-70 units, phased development\".\nCurrent energy supply: One entry per energy carrier, for example natural gas or biomass.\nStakeholders: One entry per stakeholder, for example private households or a hotel.\nOther partners: One entry per partner, for example the municipality.\nUse case: Start from a predefined scenario or describe your own use case.\nThe opportunity: What the network is for, and for whom.\nCustomer segments: Who would connect to the network?\nHeating and cooling needs: What heating and cooling do the buildings need?\nRelevant heat sources: Which local sources could supply the network, and what is known about them?\nKey pain point: What problem does the site have today?\nAvailable alternatives: What else could the buildings do, for example individual heat pumps?",
+    "source": "dictionaries/en/business-plan.json#fields"
+  },
+  {
+    "id": "business-plan:fields.opportunity-2",
+    "lang": "en",
+    "title": "Business Plan · Opportunity",
+    "url": "/en/dashboard/business-plan/opportunity",
+    "text": "Why a shared low-temperature network: Why does a shared network offer value compared with the alternatives?",
+    "source": "dictionaries/en/business-plan.json#fields"
+  },
+  {
+    "id": "business-plan:fields.business-logic",
+    "lang": "en",
+    "title": "Business Plan · Business logic",
+    "url": "/en/dashboard/business-plan/business-logic",
+    "text": "Business Model Canvas: Pay particular attention to the value proposition, customer relationships, key partners, operator responsibilities, cost structure and revenue streams.\nOperator responsibilities: Who owns and operates the source, the network and the heat pumps, and who is responsible for what?\nAllocation of investment, risk and benefit: Make explicit who invests, who carries which risk and who benefits.",
+    "source": "dictionaries/en/business-plan.json#fields"
+  },
+  {
+    "id": "business-plan:fields.reality-check",
+    "lang": "en",
+    "title": "Business Plan · Reality check",
+    "url": "/en/dashboard/business-plan/reality-check",
+    "text": "Rough assumptions: Use rough but transparent assumptions rather than detailed engineering calculations.\nCritical assumptions: The top critical assumptions, and how each could be validated.\nRisks: The top risks, including one potential deal-breaker, and how each could be validated.",
+    "source": "dictionaries/en/business-plan.json#fields"
+  },
+  {
+    "id": "business-plan:fields.implementation",
+    "lang": "en",
+    "title": "Business Plan · Implementation",
+    "url": "/en/dashboard/business-plan/implementation",
+    "text": "Refinements: Refine the business model based on the Reality Check, expert feedback and the challenges found.\nScalability and replication: Could the model work under different geographical, economic and organisational conditions?\nNext steps: The next practical steps towards implementation.",
+    "source": "dictionaries/en/business-plan.json#fields"
+  }
+]
