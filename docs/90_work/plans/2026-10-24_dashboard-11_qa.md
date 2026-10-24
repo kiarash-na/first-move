@@ -32,7 +32,7 @@ QCT-SCOPE-11 (evaluation criteria), QCT-SCOPE-12 (testing and validation), DESIG
    Plus one run in light theme.
 2. Check responsive layout at 375/768/1024/1440. Check a11y: keyboard, focus, labels, 4.5:1 contrast in both themes, reduced motion. Fix what fails.
 3. Performance: record first-load JS per route from `pnpm build` in the note. Confirm charts are lazy, no layout shift, no hydration warnings.
-4. Write `notes/YYYY-MM-DD_de-copy-review.md`, listing the DE dictionary files for native review.
+4. Write `notes/YYYY-MM-DD_de-copy-review.md`: per area, the EN keys still missing in DE (D-32), as the to-do list for the translation pass.
 5. Final build log note: what is done and what is left (PDF export D-09, public docs content D-22, ingestion agent D-05).
 
 ## Open questions this depends on

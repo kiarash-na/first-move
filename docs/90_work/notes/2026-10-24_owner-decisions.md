@@ -55,6 +55,15 @@ Answers given by the project owner in chat on 2026-10-24. The plan is [PLAN-DASH
 | D-30 | Pitch-readiness checklist built from the V02 pitch sections + V01 jury criteria, labelled unofficial. |
 | D-31 | QC inputs: the share grid starts empty with a live sum; area is entered in m², with ha shown; the team sets the validation limits. |
 
+## Decisions added at build start (2026-10-24)
+
+| ID | Decision |
+|---|---|
+| D-32 | German: only the basis now. `de` routes, the locale switch, DE number formatting and a DE dictionary file per area exist, but DE files may be partial: missing keys fall back to EN (deep merge in `getDictionary`). No translation work until the owner has tested everything. Replaces the "write natural German copy" steps. |
+| D-33 | **How we calculate.** Wherever data is collected (each QC step) or a number is shown (results, KPI cards, BP read-only QC numbers), offer a quiet, collapsed explanation: plain-language sentence + the equation(s) used, with their ID (`EQ-3.4a`). Hidden by default (a small "How we calculate" disclosure or an info popover), never in the way. Equations come from the `latex:` field of each equation file, pre-rendered to MathML at `pnpm gen:reference` time, so no math library ships to the client. |
+| D-34 | **Co-location in the App Router.** Route groups are named after the two layouts: `(website)` (landing) and `(dashboard)` (app), plus `(docs)`. A component used by one route lives in that route's private `_components/` folder; one shared by several routes of a layout lives in the nearest common segment's `_components/`; only components used by more than one layout go in global `components/` (`components/ui/` = shadcn). Domain logic (no JSX) stays in `lib/`. No `features/` folder. |
+| D-35 | Delivery refined (replaces D-26 "one after another"): phases that do not depend on each other run in parallel, each in its own git worktree; dependent phases run layer by layer. The orchestrator merges, checks, updates the plan status and pushes. Small phases use a cheaper model, big ones a stronger one. |
+
 ## Defaults added in plan review (2026-10-24)
 
 | ID | Default |

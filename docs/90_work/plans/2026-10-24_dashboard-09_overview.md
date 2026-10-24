@@ -25,6 +25,8 @@ QCT-SCOPE-01/13 (key results visualized), QCT-KF-01/05, QCT-RES-LEVELS, DESIGN-T
    - heating coverage, cooling coverage
    - total heating and cooling demand
    - revenue, investment, annual cost
+
+   Each KPI card and tile has the small info popover from `how-we-calculate/` (D-33).
 4. Secondary tiles: building density, heat density, CH ratio, network length (manual/estimated), electricity, O&M, annuity.
 5. Default charts:
    - coverage vs demand (SVG bullet bars)

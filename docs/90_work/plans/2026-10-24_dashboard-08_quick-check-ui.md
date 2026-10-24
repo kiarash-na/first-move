@@ -19,13 +19,13 @@ Step-by-step inputs with live results, a full results page and a transparent ass
 
 ## Steps
 
-1. `features/quick-check/steps/`, one folder per step:
+1. `app/[lang]/(dashboard)/dashboard/quick-check/[step]/_steps/<step>/`, one folder per step (D-34):
    - `area`: QCT-IN-01, 02; derived density + category read-only (OQ-04)
    - `buildings`: QCT-IN-04 5×5 share grid (Industry included, period labels verbatim per OQ-03) with a live sum
    - `sources`: QCT-IN-06/07 source cards with Low/Medium/High/Unknown
    - `options`: QCT-IN-05, 08, 09
 
-   Fields render from the registry, and errors come from `applyPatch`.
+   Fields render from the registry, and errors come from `applyPatch`. Each step ends with a collapsed **How we calculate** (D-33): what the step's inputs are used for, in plain words, and the equations they feed.
 2. A live result rail next to the steps (compact verdict + 4 indicators). It collapses below 1100px.
 3. `results` page:
    - verdict, with its forced reasons
@@ -35,7 +35,8 @@ Step-by-step inputs with live results, a full results page and a transparent ass
    - unknown-source explanation
    - manual vs estimated network-length tag
    - the "screening, not a full feasibility study" line
-4. `features/assumptions/`:
+   - an info popover on every result value with the equations that produced it (D-33)
+4. `assumptions/` route with its own `_components/`:
    - TBL-1..6 as read-only tables
    - the OQ answers in use
    - **Play with parameters** toggle (TBL-4/5/6 overrides), with a "Custom parameters" badge everywhere and a reset

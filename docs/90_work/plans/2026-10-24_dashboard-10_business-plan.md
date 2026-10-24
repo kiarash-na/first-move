@@ -19,14 +19,14 @@ All of `20_business-models/`; `01_shared/` as the source for guiding prompts and
 
 ## Steps
 
-1. `features/business-plan/steps/`, one folder per step:
+1. `app/[lang]/(dashboard)/dashboard/business-plan/[step]/_steps/<step>/`, one folder per step (D-34):
    - `opportunity` (BM-STEP-01): site, segments, needs, heat sources, pain point, why 5GDHC beats the alternatives
    - `business-logic` (BM-STEP-02): 9-block canvas + stakeholder allocation of investment / risk / benefit; compare models by duplicating the project (D-29)
    - `reality-check` (BM-STEP-03): rough assumptions, critical assumptions, risk register, one deal-breaker, validation for each risk and each critical assumption
    - `implementation` (BM-STEP-04): refinements, scalability by context, next steps
 2. Scenario picker: BM-SCN-01..04 presets that prefill only the stated fields (OQ-25), or a custom use case (BM-SCOPE-05/06).
 3. Free navigation with progress per step (BM-SCOPE-11). Guiding prompts come from BM-SCOPE-03 key questions and ALG-05/09/10, in `lib/business-plan/prompts.ts` with i18n keys.
-4. QC prefill (ALG-09): shared site, buildings and sources; QC demand, revenue and investment shown read-only in steps 1 and 3. Show a link to Quick Check when the QC module is off.
+4. QC prefill (ALG-09): shared site, buildings and sources; QC demand, revenue and investment shown read-only in steps 1 and 3, each with the info popover (D-33). Show a link to Quick Check when the QC module is off.
 5. Pitch readiness: the 6 pitch sections (BM-SCOPE-07) + the V01 jury criteria (BM-SCOPE-08, labelled unofficial), computed from filled fields in `lib/business-plan/readiness.ts`.
 6. Orange emphasis on panels (DESIGN-TOKENS §6). User text is stored as typed.
 7. Tests: each step's patching and progress, preset prefill, readiness scoring, QC prefill with and without the QC module.

@@ -19,7 +19,7 @@ A pure TypeScript engine: project in, full result out. It is exactly the methodo
 
 ## Steps
 
-1. `scripts/gen-reference.mjs` converts `docs/10_quick-check-tool/_reference/*.yaml` into `lib/quick-check/reference/*.gen.ts` (`pnpm gen:reference`). A test fails if the generated files are out of sync with the YAML.
+1. `scripts/gen-reference.mjs` converts `docs/10_quick-check-tool/_reference/*.yaml` into `lib/quick-check/reference/*.gen.ts` (`pnpm gen:reference`). A test fails if the generated files are out of sync with the YAML. The same script reads the `latex:` of every equation file in `docs/10_quick-check-tool/02_run-quick-check/` and writes `lib/quick-check/explain/equations.gen.ts` (ID → MathML via `katex.renderToString(…, { output: 'mathml' })`, plus the equation's output symbol), for the How we calculate UI (D-33). Add `lib/quick-check/explain/map.ts`: which equation IDs each QC step's inputs feed and which produce each result value, with `calc` dictionary keys for the plain-language sentence (EN only, D-32).
 2. `equations/`: one pure function per EQ (`eq-3-04a-specific-net-length.ts`, …). Each file cites its ID and `latex:` in a one-line comment. Guard against division by zero and `i = 0` in the annuity. Input rules:
    - Manual totals replace Q_heat,total / Q_cool,total; base-price terms still use N_i,p · A (OQ-05).
    - A manual network length replaces EQ-3.4b (QCT-IN-08).
