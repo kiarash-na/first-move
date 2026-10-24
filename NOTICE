@@ -1,0 +1,31 @@
+First Move
+Copyright 2026 Kiarash N.A.
+
+This product includes software developed by Kiarash N.A.
+Source code: https://github.com/kiarash-na/first-move
+Website: https://firstmove.energy
+
+The code and the documentation in this repository are licensed under the
+Apache License, Version 2.0 (see the LICENSE file).
+
+Methodology
+-----------
+The Quick Check methodology (equations, default tables and reference values)
+is derived from the AQC methodology supplied with the 5GDHC hackathon
+challenge. It is published here with the permission of its rights holders and
+is covered by the same licence as the rest of this repository. The originators
+of the methodology are credited for it.
+
+Name
+----
+"First Move" is a trade name, not a registered trademark. The licence does not
+grant permission to use it as the name of another product or service, except
+for describing the origin of this work (Apache License 2.0, section 6).
+
+Third-party material
+--------------------
+First Move ships third-party software under MIT, ISC and Apache-2.0 licences,
+and three fonts (Archivo, Instrument Serif, IBM Plex Mono) under the SIL Open
+Font License 1.1, delivered through the Fontsource packages. The list with
+licences is on the Licence page of the website (/license) and in the
+dependencies of package.json. Each package keeps its own licence and notices.

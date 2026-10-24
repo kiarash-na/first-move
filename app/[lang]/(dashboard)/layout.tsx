@@ -4,6 +4,7 @@ import "@fontsource/instrument-serif/400-italic.css"
 import "@fontsource/ibm-plex-mono/latin-400.css"
 import "../../globals.css"
 
+import { CookieNotice } from "@/components/cookie-notice/cookie-notice"
 import { ThemeScript } from "@/components/theme/theme-script"
 import { ThemeSync } from "@/components/theme/theme-sync"
 import { getDictionary } from "@/lib/i18n/get-dictionary"
@@ -31,6 +32,7 @@ export function generateStaticParams() {
 /** Root layout of the app. Dark by default; the stored light/dark choice applies before paint (D-16). */
 export default async function DashboardRootLayout({ children, params }: LayoutProps<"/[lang]">) {
   const lang = requireLocale((await params).lang)
+  const legal = await getDictionary(lang, "legal")
 
   return (
     <html lang={lang} data-theme="dark" data-scroll-behavior="smooth" suppressHydrationWarning>
@@ -40,6 +42,8 @@ export default async function DashboardRootLayout({ children, params }: LayoutPr
       <body>
         <ThemeSync />
         {children}
+        {/* Offset past the 18rem sidebar (md and up) so the notice never covers its privacy note. */}
+        <CookieNotice lang={lang} copy={legal.cookieNotice} className="md:left-[19rem]" />
       </body>
     </html>
   )

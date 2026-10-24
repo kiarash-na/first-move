@@ -1,0 +1,125 @@
+{
+  "meta": {
+    "title": "Cookie-Richtlinie",
+    "description": "Das eine Cookie und der Browserspeicher, die First Move verwendet, warum keine Einwilligung nötig ist und wie Sie beides löschen oder blockieren."
+  },
+  "title": "Cookie-Richtlinie",
+  "intro": "Diese Richtlinie erklärt, welches Cookie und welche weiteren Browserspeicher First Move verwendet, wofür sie dienen und wie Sie sie löschen oder blockieren können.",
+  "updated": "2026-10-24",
+  "version": "1.0",
+  "sections": [
+    {
+      "id": "summary",
+      "heading": "Zusammenfassung",
+      "body": [
+        "Diese Richtlinie gilt für {{site.domain}}. Das Wichtigste in Kürze:",
+        "- First Move setzt **ein einziges Cookie**, `NEXT_LOCALE`. Es speichert Ihre Sprache und enthält keine personenbezogenen Daten.",
+        "- Ihre Einstellungen und Projekte liegen im **Speicher Ihres Browsers** (localStorage, sessionStorage und IndexedDB), nicht auf einem Server. Es gibt keine Konten und keine Serverdatenbank, daher erhalten wir diese Daten nie.",
+        "- Alle Einträge stammen von uns als Erstanbieter, bleiben auf Ihrem Gerät und dienen nur dazu, den von Ihnen gewünschten Dienst bereitzustellen.",
+        "- Keine Analyse, keine Werbung, kein Tracking und keine Cookies von Drittanbietern.",
+        "- Da all dies unbedingt erforderlich ist, fragen wir nicht nach Ihrer Einwilligung. Es gibt nichts anzunehmen oder abzulehnen.",
+        "- Wenn Sie Ihre Browserdaten löschen, werden auch Ihre Projekte gelöscht. Exportieren Sie sie daher vorher ([Löschen oder blockieren](#manage))."
+      ]
+    },
+    {
+      "id": "what-we-use",
+      "heading": "Was wir in Ihrem Browser speichern",
+      "body": [
+        "Die Tabelle nennt jedes Cookie und jeden Speichereintrag, den First Move verwendet. Alle Einträge stammen von uns als Erstanbieter: Sie gehören zu {{site.domain}} und bleiben in Ihrem Browser.",
+        "| Name | Art | Zweck | Speicherdauer |",
+        "|---|---|---|---|",
+        "| `NEXT_LOCALE` | Cookie (Erstanbieter, Pfad `/`, `SameSite=Lax`) | Merkt sich Ihre Sprache (`en` oder `de`). Enthält keine personenbezogenen Daten. | 1 Jahr |",
+        "| `first-move:theme` | localStorage | Merkt sich, ob Sie das helle oder das dunkle Design gewählt haben. | Bis zur Löschung |",
+        "| `first-move:mirror:` gefolgt von der Projekt-ID | localStorage | Eine Kopie jedes Projekts, ein Eintrag je Projekt, als Absicherung neben der Datenbank. | Bis zur Löschung |",
+        "| `first-move:last-project` | localStorage | Welches Projekt Sie zuletzt verwendet haben, damit Sie dort weitermachen können, wo Sie aufgehört haben. | Bis zur Löschung |",
+        "| `first-move:notice-ack` | localStorage | Hält fest, dass Sie den Cookie-Hinweis geschlossen haben. | Bis zur Löschung |",
+        "| `first-move:active-project` | sessionStorage | Welches Projekt in diesem Tab geöffnet ist. | Bis der Tab geschlossen wird |",
+        "| `first-move` | IndexedDB-Datenbank mit den Speicherbereichen `projects`, `snapshots`, `backups` und `file-links` | Ihre Projekte (`projects`, der Hauptspeicher), frühere Stände jedes Projekts (`snapshots`), Angaben zu Ihren Exporten (`backups`) und Verweise auf verknüpfte Dateien (`file-links`). | Bis zur Löschung |",
+        "| `first-move:storage` | BroadcastChannel | Hält mehrere Tabs von First Move im selben Browser synchron. Speichert nichts. | Solange ein Tab geöffnet ist |",
+        "„Bis zur Löschung“ bedeutet: Der Eintrag bleibt bestehen, bis Sie oder die App ihn löschen oder Ihr Browser ihn entfernt.",
+        "Um zu prüfen, ob der Speicher funktioniert, schreibt die App kurz einen Testeintrag, `first-move:probe`, in localStorage oder sessionStorage und entfernt ihn sofort wieder.",
+        "Die App bittet Ihren Browser außerdem, diesen Speicher dauerhaft zu erhalten (`navigator.storage.persist()`), damit er Ihre Projekte seltener von sich aus löscht. Ob er dem nachkommt, entscheidet Ihr Browser.",
+        "In Chromium-basierten Browsern können Sie ein Projekt mit einer Datei auf Ihrem Datenträger verknüpfen (File System Access API). Der Browser speichert dann einen Verweis (Handle) auf diese Datei im Speicherbereich `file-links`. Die Datei bleibt auf Ihrem Datenträger, und es wird nichts hochgeladen."
+      ]
+    },
+    {
+      "id": "language-cookie",
+      "heading": "Das Sprach-Cookie",
+      "body": [
+        "`NEXT_LOCALE` ist das einzige Cookie, das First Move setzt. Es enthält nur den Sprachcode `en` oder `de`. Es gilt für die gesamte Website (Pfad `/`) und wird mit `SameSite=Lax` gesetzt. Das schränkt ein, wann Ihr Browser es bei Anfragen mitsendet, die von anderen Websites ausgehen.",
+        "Die Website setzt oder erneuert es:",
+        "- wenn Sie eine Adresse ohne Sprachangabe aufrufen, zum Beispiel {{site.url}}: Die Website leitet Sie dann auf die englische oder deutsche Fassung weiter und wählt dafür Ihre gespeicherte Sprache, sonst die von Ihrem Browser angefragte Sprache (`Accept-Language`-Header), sonst Englisch;",
+        "- wenn Sie die Sprache über die Sprachauswahl wechseln.",
+        "Das Cookie kann daher schon bei Ihrem ersten Besuch gesetzt werden, bevor Sie selbst eine Sprache wählen. Bei jedem Setzen beginnt seine Laufzeit von einem Jahr neu. So öffnet sich die Website in Ihrer Sprache, wenn Sie wiederkommen.",
+        "Ihr Browser sendet das Cookie, wie jedes Cookie, mit seinen Anfragen an {{site.domain}}. Wir verwenden es für nichts anderes."
+      ]
+    },
+    {
+      "id": "legal-basis",
+      "heading": "Rechtsgrundlage",
+      "body": [
+        "Das Speichern von Informationen in Ihrer Endeinrichtung und der Zugriff auf dort bereits gespeicherte Informationen bedürfen keiner Einwilligung, wenn sie unbedingt erforderlich sind, damit wir einen von Ihnen ausdrücklich gewünschten digitalen Dienst zur Verfügung stellen können (§ 25 Abs. 2 Nr. 2 TDDDG, der Art. 5 Abs. 3 der ePrivacy-Richtlinie 2002/58/EG umsetzt).",
+        "Jeder Eintrag in der [Tabelle](#what-we-use) erfüllt diese Voraussetzung. Jeder zeigt die Website in Ihrer Sprache an, merkt sich eine Einstellung oder speichert und synchronisiert die Projekte, an denen Sie arbeiten. Keiner dient einem anderen Zweck.",
+        "Soweit diese Einträge personenbezogene Daten enthalten, etwa Angaben, die Sie in ein Projekt eingeben, ist die Rechtsgrundlage Art. 6 Abs. 1 lit. b DSGVO (Bereitstellung des Dienstes nach unseren [Nutzungsbedingungen](/terms)) und Art. 6 Abs. 1 lit. f DSGVO (unser berechtigtes Interesse an einer zuverlässig funktionierenden App, die sich Ihre Einstellungen merkt). Wie First Move mit personenbezogenen Daten umgeht, erklärt die [Datenschutzerklärung](/privacy)."
+      ]
+    },
+    {
+      "id": "no-tracking",
+      "heading": "Kein Tracking",
+      "body": [
+        "First Move enthält keine Analysewerkzeuge, keine Werbung, keine Tracking-Pixel und keine Social-Media-Plugins.",
+        "Es lädt keine Skripte, Schriften, Karten oder eingebetteten Inhalte von Dritten. Unsere Schriften werden von unserer eigenen Website ausgeliefert.",
+        "Wir nutzen keinen der Einträge, um Sie zu identifizieren, ein Profil zu erstellen oder Sie über Websites hinweg zu verfolgen.",
+        "Die Website sendet den Header `Referrer-Policy: no-referrer`, damit Ihr Browser anderen Websites nicht mitteilt, von welcher Seite von First Move Sie kommen. Ihre Content Security Policy beschränkt die Verbindungen der App auf die eigene Herkunft (Origin)."
+      ]
+    },
+    {
+      "id": "third-parties",
+      "heading": "Dritte",
+      "body": [
+        "First Move setzt keine Cookies von Drittanbietern und gibt keinem Dritten Zugriff auf die hier aufgeführten Speicher.",
+        "Unser Hosting-Anbieter, {{hosting.name}}, liefert die Seiten aus und verarbeitet dafür die üblichen Anfragedaten. Was er verarbeitet und warum, beschreibt die [Datenschutzerklärung](/privacy).",
+        "Links zu anderen Websites, etwa zu GitHub in der Fußzeile, führen zu Diensten mit eigenen Cookie- und Datenschutzrichtlinien. Diese gelten, sobald Sie dem Link folgen.",
+        "Wenn die optionalen KI-Funktionen verfügbar sind und Sie sie einrichten, sendet Ihr Browser die von Ihnen ausgelösten Anfragen direkt an den KI-Anbieter Ihrer Wahl, und es gelten dessen Bedingungen und Richtlinien. Die Einträge, die diese Funktionen in Ihrem Browser speichern, etwa Ihren API-Schlüssel, führt diese Richtlinie auf, sobald die Funktionen verfügbar sind. Mehr dazu unter [KI-Transparenz](/ai)."
+      ]
+    },
+    {
+      "id": "manage",
+      "heading": "Löschen oder blockieren",
+      "body": [
+        "All dies liegt in Ihrem Browser, deshalb steuern Sie es auch dort.",
+        "- **Alles löschen**: Löschen Sie in den Einstellungen Ihres Browsers die Cookies und Websitedaten für {{site.domain}}. Viele Browser nennen das „Websitedaten löschen“; wo Sie die Funktion finden, hängt von Ihrem Browser ab.",
+        "- **Einzelne Einträge löschen**: Die Entwicklerwerkzeuge der meisten Browser zeigen Cookies, localStorage, sessionStorage und IndexedDB einer Website an und erlauben es, einzelne Einträge zu entfernen.",
+        "- **Sitzungseintrag**: `first-move:active-project` verschwindet von selbst, wenn Sie den Tab schließen.",
+        "> Wenn Sie die Websitedaten löschen, werden alle in diesem Browser gespeicherten Projekte gelöscht. Wir können sie nicht wiederherstellen, weil wir sie nie erhalten. Exportieren Sie daher vorher jedes Projekt, das Sie behalten möchten, als `.firstmove.json`-Datei; Sie können es später wieder importieren.",
+        "Cookies blockieren Sie in den Cookie-Einstellungen Ihres Browsers für {{site.domain}}. First Move funktioniert auch ohne das Cookie, vergisst aber Ihre Sprachwahl: Eine Adresse ohne Sprachangabe öffnet sich dann in der Sprache Ihres Browsers oder auf Englisch.",
+        "Manche Browser sperren beim Blockieren von Cookies für eine Website den gesamten Websitespeicher, nicht nur Cookies, und auch private Fenster können den Speicher einschränken. First Move kann Projekte dann in diesem Browser nicht zuverlässig speichern und zeigt einen Hinweis an. Exportieren Sie Ihre Arbeit, bevor Sie die Seite schließen."
+      ]
+    },
+    {
+      "id": "notice",
+      "heading": "Der Cookie-Hinweis",
+      "body": [
+        "First Move zeigt einen kurzen Cookie-Hinweis, bis Sie ihn schließen. Er dient Ihrer Information, nicht der Einholung einer Einwilligung: Alles hier Aufgeführte ist unbedingt erforderlich, daher gibt es kein optionales Cookie, das Sie annehmen oder ablehnen könnten.",
+        "Wenn Sie den Hinweis schließen, speichert die App `first-move:notice-ack` im localStorage, damit er nicht erneut erscheint. Löschen Sie die Websitedaten oder blockiert Ihr Browser den Speicher, erscheint der Hinweis bei Ihrem nächsten Besuch wieder."
+      ]
+    },
+    {
+      "id": "changes",
+      "heading": "Änderungen dieser Richtlinie",
+      "body": [
+        "Wir aktualisieren diese Richtlinie, wenn First Move ein neues Cookie oder einen neuen Speichereintrag verwendet, einen Eintrag nicht mehr verwendet oder ihn für einen anderen Zweck nutzt. Datum und Version dieser Richtlinie zeigen, wann sie zuletzt geändert wurde.",
+        "Sollte ein künftiger Eintrag Ihre Einwilligung erfordern, holen wir sie ein, bevor wir ihn setzen."
+      ]
+    },
+    {
+      "id": "contact",
+      "heading": "Kontakt",
+      "body": [
+        "First Move wird von {{operator.name}} betrieben. Fragen zu Cookies und Browserspeicher richten Sie bitte an [{{operator.emailHuman}}](mailto:{{operator.emailHuman}}). Dieses Postfach liest ein Mensch.",
+        "Senden Sie Datenschutz- und Rechtsanfragen bitte nur an diese Adresse. Unsere zweite Adresse, {{operator.emailAgent}}, wird von einem KI-System beantwortet.",
+        "Ihre Rechte nach der DSGVO beschreibt die [Datenschutzerklärung](/privacy); den Anbieter von First Move nennt das [Impressum](/imprint)."
+      ]
+    }
+  ]
+}

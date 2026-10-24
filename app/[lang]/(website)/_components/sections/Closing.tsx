@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import { ArrowUp, ArrowUpRight, Check } from 'lucide-react'
+import { LegalLinks } from '@/components/site-footer/legal-links'
 import { withLocale } from '@/lib/i18n/locale-path'
+import { REPOSITORY } from '@/lib/legal/operator'
 import { RichText } from '../rich-text'
 import type { LandingCopyProps } from '../types'
 
@@ -56,6 +58,13 @@ export function Closing({ t, lang }: LandingCopyProps) {
           <a href="#methodology">{footer.methodology}</a>
         </nav>
         <a className="back-to-top" href="#overview">{footer.backToTop}<ArrowUp size={15} strokeWidth={1.6} aria-hidden="true" /></a>
+        <LegalLinks
+          className="footer-legal"
+          lang={lang}
+          labels={footer.legal}
+          navLabel={footer.legal.nav}
+          extra={{ label: footer.legal.source, href: REPOSITORY.url }}
+        />
       </footer>
     </>
   )

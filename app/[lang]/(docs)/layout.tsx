@@ -6,6 +6,8 @@ import "../../globals.css"
 
 import { AppHeader } from "./_components/app-header"
 import { ThemeScript } from "@/components/theme/theme-script"
+import { CookieNotice } from "@/components/cookie-notice/cookie-notice"
+import { SiteFooter } from "@/components/site-footer/site-footer"
 import { ThemeSync } from "@/components/theme/theme-sync"
 import { getDictionary } from "@/lib/i18n/get-dictionary"
 import { localeParams } from "@/lib/i18n/locales"
@@ -29,10 +31,10 @@ export function generateStaticParams() {
   return localeParams()
 }
 
-/** Root layout of the public MDX docs (D-22). Dark by default, light/dark toggle (D-16). */
+/** Root layout of the public MDX docs (D-22) and the legal pages. Dark by default, light/dark toggle (D-16). */
 export default async function DocsRootLayout({ children, params }: LayoutProps<"/[lang]">) {
   const lang = requireLocale((await params).lang)
-  const common = await getDictionary(lang, "common")
+  const [common, legal] = await Promise.all([getDictionary(lang, "common"), getDictionary(lang, "legal")])
 
   return (
     <html lang={lang} data-theme="dark" data-scroll-behavior="smooth" suppressHydrationWarning>
@@ -44,7 +46,9 @@ export default async function DocsRootLayout({ children, params }: LayoutProps<"
         <div className="flex min-h-dvh flex-col">
           <AppHeader lang={lang} common={common} />
           {children}
+          <SiteFooter lang={lang} copy={legal} />
         </div>
+        <CookieNotice lang={lang} copy={legal.cookieNotice} />
       </body>
     </html>
   )

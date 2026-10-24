@@ -67,6 +67,21 @@ Answers given by the project owner in chat on 2026-10-24. The plan is [PLAN-DASH
 | D-37 | Pitch-readiness checks stay labelled "unofficial" (BM-SCOPE-07/08 interpretation). |
 | D-38 | v0.1.0 is a checkpoint: no further building until the owner has tested it locally and confirms. ALG-02/03 placement (none, an "About the project" box, or a framing line in BP step 4) is waiting for the owner. |
 
+## Decisions added for the legal pages (2026-10-24)
+
+Given by the project owner in chat for [PLAN-DASH-12](../plans/2026-10-24_dashboard-12_legal.md); details in [the phase 12 note](2026-10-24_phase-12_legal.md).
+
+| ID | Decision |
+|---|---|
+| D-39 | Legal pages are added: `/terms /privacy /cookies /imprint /ai /license` (flat, each with `/en` and `/de`), a footer with the legal links on the landing and docs pages, a bottom-left cookie notice on all three layouts, and `LICENSE` and `NOTICE`. This lifts D-38 for this work only. **Scope: legal documents only; no change to app behaviour** (no edit to `proxy.ts`, the CSP, storage, the calculations or the dashboard logic). The dashboard gets the cookie notice but no legal links. |
+| D-40 | The operator is an individual, **Kiarash N.A.**, trade name "First Move" (not registered). The operator will later become a company. Every legal fact lives in `lib/legal/operator.ts`, the Terms have a successor clause, and the phase 12 note has the transition checklist. |
+| D-41 | Licence: **Apache-2.0** for code and documentation (the owner delegated the choice). `LICENSE` is GitHub's canonical text; the copyright line is in `NOTICE`. The owner states they have permission from the rights holders to publish the AQC methodology material under the same licence; no written proof is in the repo. |
+| D-42 | AI features (answering questions about project data; filling fields from documents such as PDFs) will be **bring-your-own-key**: the browser calls the provider the user chose, with the user's key. Nothing is built (D-05). `AI_FEATURES_LIVE` in `lib/legal/ai.ts` is `false` and the AI page says so. Going live needs a new decision: an exception to D-14 and "never send project data over the network", and a CSP change. |
+| D-43 | Owner clauses 01 (Responsible A.I. Usage) and 02 (Human Led Feedback) are **adapted to the open-source tool**: no fee or project-scope language, and Clause 01 states openly that the project is built with substantial help from AI coding tools. They are sections `responsible-ai` and `human-led-feedback` of the Terms; Clause 01 is also on the AI page. |
+| D-44 | Terms: German law excluding the CISG, without prejudice to the mandatory consumer protection of the user's home country; exclusive place of jurisdiction Hamburg for merchants only. All legal pages have a full German text, drafted by Claude and marked "draft, not legally reviewed" (`DE_REVIEW_PENDING`); EN is the reference. |
+| D-45 | Risks the owner accepted: the Imprint gives only a **P.O. box** (§ 5 DDG asks for a serviceable street address); the surname is abbreviated ("N.A."; § 5 DDG asks for the full name); there is no second contact channel beyond two e-mail addresses; no written proof of the methodology permission; the `NEXT_LOCALE` cookie is still set on the first language redirect, before an explicit choice. |
+| D-46 | `agent@mail.firstmove.energy` is **answered by an AI system** and is disclosed as such (AI Act Art. 50(1)). Privacy and legal-rights requests go to `human@mail.firstmove.energy` only. Mail runs through Resend (EU region). The AI provider behind agent@ is not named yet. |
+
 ## Defaults added in plan review (2026-10-24)
 
 | ID | Default |

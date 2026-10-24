@@ -1,0 +1,192 @@
+{
+  "meta": {
+    "title": "Privacy Policy",
+    "description": "How First Move handles personal data: your projects stay in your browser, there is no tracking, and only our web host and e-mail provider process the data needed to run the site and answer you."
+  },
+  "title": "Privacy Policy",
+  "intro": "This Privacy Policy explains which personal data is processed when you use First Move at {{site.domain}} or write to us, for what purposes and on which legal basis, and which rights you have. It provides the information required by Art. 13 and 14 of the General Data Protection Regulation (GDPR, Regulation (EU) 2016/679). Personal data means any information relating to an identified or identifiable person (Art. 4(1) GDPR).",
+  "updated": "2026-10-24",
+  "version": "1.0",
+  "sections": [
+    {
+      "id": "summary",
+      "heading": "Summary",
+      "body": [
+        "First Move is built so that your work does not leave your device. In short:",
+        "- **Your projects stay in your browser.** There are no accounts, passwords or project databases on any server. We never receive your projects, so we cannot read, share or recover them.",
+        "- **No tracking.** There is no analytics, no advertising, no social widget and no third-party script, font, map or embed.",
+        "- **Our web host** processes the technical data that every website visit involves, such as your IP address, to deliver the site and keep it secure.",
+        "- **If you write to us**, we process your e-mail to answer it. Messages to `{{operator.emailAgent}}` are answered by an AI system.",
+        "- **AI features**, once available, are optional. Your browser then talks directly to the AI provider you chose, with your own key. We receive neither the content nor the key.",
+        "- **Your rights** are set out under [Your rights](#rights). To exercise them, write to [{{operator.emailHuman}}](mailto:{{operator.emailHuman}}).",
+        "You are not obliged by law or contract to provide personal data. Without the technical data of a request, however, your browser cannot load the site, and without your e-mail address we cannot reply to you."
+      ]
+    },
+    {
+      "id": "controller",
+      "heading": "Controller",
+      "body": [
+        "The controller responsible for the processing of personal data in connection with First Move (Art. 4(7) GDPR) is:",
+        "- {{operator.name}}, an individual who operates the service under the name {{operator.tradeName}}",
+        "- Postal address: {{operator.address}}",
+        "- E-mail: [{{operator.emailHuman}}](mailto:{{operator.emailHuman}}) (read by a person)",
+        "We have not appointed a data protection officer, because none is required.",
+        "Please send privacy questions and requests about your rights only to {{operator.emailHuman}}. The address {{operator.emailAgent}} is answered by an AI system and is not the channel for these requests (see [E-mail](#email))."
+      ]
+    },
+    {
+      "id": "hosting",
+      "heading": "Visiting the website (hosting)",
+      "body": [
+        "First Move is delivered by {{hosting.name}} ({{hosting.country}}, [{{hosting.url}}]({{hosting.url}})). When you open a page, your browser sends a request to the host's servers, as with any website. Like any web host, the provider processes the following data in its server logs:",
+        "- your IP address;",
+        "- the date and time of the request;",
+        "- the requested address (URL);",
+        "- information about your browser and device (user agent);",
+        "- the response status, for example whether the page was delivered.",
+        "**Purpose**: to deliver the site to you and to keep it secure.",
+        "**Language**: when you open the site without choosing a language, it reads the language your browser prefers (the `Accept-Language` header) and redirects you to the English or German version. The `NEXT_LOCALE` cookie then remembers the language (en or de) and is sent with later requests. It contains no personal data. Details are in the [Cookie Policy](/cookies).",
+        "Every file the site needs, including its fonts, comes from the same site. Loading a page contacts no other server.",
+        "**Legal basis**: Art. 6(1)(f) GDPR. Our legitimate interest is to deliver the website reliably and securely.",
+        "**Recipient**: {{hosting.name}} processes this data on our behalf as a processor (Art. 28 GDPR).",
+        "**Transfer outside the EU**: the provider is based in the {{hosting.country}}. The transfer rests on the provider's certification under the EU-U.S. Data Privacy Framework, for which the European Commission adopted an adequacy decision on 10 July 2023 (Art. 45 GDPR).",
+        "**Retention**: the log data is kept as long as needed for these purposes and is not combined with other data."
+      ]
+    },
+    {
+      "id": "local-storage",
+      "heading": "Your projects in the browser",
+      "body": [
+        "Your projects, settings and choices are stored only in your own browser: in its IndexedDB database, its local storage and its session storage. None of this is sent to us or to the host. We never receive, see or store your projects, and there are no accounts or databases on any server. The [Cookie Policy](/cookies) lists every cookie and storage entry by name.",
+        "- **Export**: you can export a project as a `.firstmove.json` file. It contains your inputs, is created in your browser and is saved where you choose.",
+        "- **Import**: a file you import is read and checked in your browser. It is not uploaded.",
+        "- **Linked file**: in Chromium-based browsers you can optionally link a project to a file on your own disk (File System Access API). Nothing is uploaded.",
+        "- **Persistent storage**: the app asks your browser to keep its storage persistent, so the browser is less likely to remove your projects on its own.",
+        "**Legal basis**: storing and reading this information on your device is strictly necessary to provide the service you expressly requested (§ 25(2) no. 2 TDDDG; Art. 5(3) ePrivacy Directive 2002/58/EC), so no consent is needed. To the extent the stored data is personal data, the legal basis is Art. 6(1)(b) GDPR (providing the app you use) and Art. 6(1)(f) GDPR (our legitimate interest in an app that keeps your work on your own device).",
+        "**Retention**: the data stays in your browser until you delete it. If you clear your browser's data for this site, your projects are deleted. We cannot recover them, because we never had them. Export your projects to keep a copy.",
+        "If you enter personal data about other people in a project, for example the names of contacts, you decide what is stored and you need a legal basis for it. That data, too, stays on your device."
+      ]
+    },
+    {
+      "id": "email",
+      "heading": "E-mail",
+      "body": [
+        "You can write to us at two addresses:",
+        "- [{{operator.emailHuman}}](mailto:{{operator.emailHuman}}) is read by a person. Use it for privacy questions, requests about your rights and legal matters.",
+        "- [{{operator.emailAgent}}](mailto:{{operator.emailAgent}}) is answered by an AI system.",
+        "> Replies from {{operator.emailAgent}} are written by an AI system. They may be wrong and are not legally binding statements. Send privacy and legal-rights requests only to {{operator.emailHuman}}.",
+        "**What we process**: your e-mail address, your name if you give it, the content of your message and anything you include in it, and the time it was sent.",
+        "**Purpose and legal basis**: to read and answer your message. The legal basis is Art. 6(1)(f) GDPR, our legitimate interest in answering messages sent to us, and Art. 6(1)(b) GDPR where your message concerns your use of First Move under our [Terms of Use](/terms).",
+        "**E-mail provider**: e-mails to and from both addresses are sent and received through {{mail.name}} ([{{mail.url}}]({{mail.url}})), using its {{mail.region}}. The provider processes them on our behalf as a processor (Art. 28 GDPR). Because it is a company based in the {{mail.country}}, access from outside the EU cannot be fully excluded. That transfer relies on the EU standard contractual clauses (Art. 46(2)(c) GDPR).",
+        "**AI-answered mailbox**: messages to {{operator.emailAgent}} are also processed by an AI service provider, which processes the text of the message to prepare the reply. Replies from that address are written by an AI system, and you are told so (Art. 50(1) AI Act, Regulation (EU) 2024/1689). The legal basis is Art. 6(1)(f) GDPR: our legitimate interest in answering general enquiries quickly. If you do not want your message processed by an AI service, write to {{operator.emailHuman}} instead.",
+        "**Retention**: we keep e-mails as long as needed to handle your request and then delete them, unless statutory retention duties apply."
+      ]
+    },
+    {
+      "id": "ai-features",
+      "heading": "AI features in the app",
+      "body": [
+        "First Move plans two optional AI features: answering questions about your project data, and reading documents you supply (for example PDFs) to propose values for a project's fields. The [AI transparency](/ai) page shows whether they are available today and which providers you can choose.",
+        "When the AI features are available, they work as follows:",
+        "- **Off until you set them up**: nothing is sent to an AI provider until you set up a feature and use it.",
+        "- **Your own key**: your browser sends your request directly to the AI provider you chose, with your own API key. We run no AI server.",
+        "- **We receive nothing**: we never receive the content you send or your key, and we are not a processor for this data. The provider is a separate party, and its own terms and privacy policy apply to what you send. As with any server your browser connects to, the provider also sees your IP address.",
+        "- **Your key stays with you**: the key is kept only in your browser. You can remove it in the app at any time.",
+        "- **You decide what is sent**: the provider receives only the questions, project data and documents you choose to send. Do not send personal data of other people or confidential documents unless you are allowed to.",
+        "- **You confirm every value**: the AI only proposes values. Nothing is applied to a project until you confirm it.",
+        "Keeping your key and your settings for these features on your device is strictly necessary for a function you expressly set up (§ 25(2) no. 2 TDDDG). The [AI transparency](/ai) page explains in detail how the features work and what to check."
+      ]
+    },
+    {
+      "id": "external-links",
+      "heading": "Links to other websites and GitHub",
+      "body": [
+        "First Move contains a few links to other websites: the Business Plan guidance links to geothermie-oesterreich.at, and the footer links to the source code on GitHub. Nothing is loaded from these sites until you follow a link. When you do, your browser connects to that site, and the site's own privacy policy applies.",
+        "The site sends `Referrer-Policy: no-referrer`, so a linked site is not told which First Move page you came from.",
+        "The source code is published at [{{repo.url}}]({{repo.url}}). If you open an issue, comment or submit a pull request there, GitHub processes your data under its own terms, and what you post is public. We read and use what you post there to handle your feedback or contribution (Art. 6(1)(f) GDPR)."
+      ]
+    },
+    {
+      "id": "recipients",
+      "heading": "Recipients and transfers",
+      "body": [
+        "We pass personal data only to the recipients below, and only as described on this page. We do not sell personal data and use none of it for advertising.",
+        "| Recipient | Purpose | Location and safeguard |",
+        "|---|---|---|",
+        "| {{hosting.name}}, web hosting | Delivers the website and processes server log data ([Hosting](#hosting)) | {{hosting.country}}; EU-U.S. Data Privacy Framework, adequacy decision of 10 July 2023 (Art. 45 GDPR) |",
+        "| {{mail.name}}, e-mail | Sends and receives e-mail for both addresses ([E-mail](#email)) | {{mail.country}} company, {{mail.region}}; EU standard contractual clauses (Art. 46(2)(c) GDPR) |",
+        "| An AI service provider for {{operator.emailAgent}} | Processes the text of messages to that address to prepare the reply | To be named on this page; a transfer outside the EU takes place only with a safeguard under Art. 44 to 46 GDPR |",
+        "| The AI provider you choose (planned) | Answers your questions and proposes values, only when you use the AI features ([AI features](#ai-features)) | Chosen by you; your browser contacts it directly under the provider's own terms; we send it nothing |"
+      ]
+    },
+    {
+      "id": "retention",
+      "heading": "How long data is kept",
+      "body": [
+        "We keep personal data only as long as we need it:",
+        "- **Server logs**: as long as needed to deliver the site and keep it secure, and not combined with other data.",
+        "- **E-mails**: as long as needed to handle your request, then deleted, unless statutory retention duties apply.",
+        "- **Projects and settings in your browser**: they stay until you delete them. We hold no copy.",
+        "- **Exported files**: they stay wherever you saved them, under your control.",
+        "- **AI features**: what you send to an AI provider is kept according to that provider's terms."
+      ]
+    },
+    {
+      "id": "rights",
+      "heading": "Your rights",
+      "body": [
+        "Under the GDPR you have the following rights regarding your personal data:",
+        "- **Access** (Art. 15): to learn whether we process data about you, and to receive a copy of it.",
+        "- **Rectification** (Art. 16): to have inaccurate data corrected.",
+        "- **Erasure** (Art. 17): to have your data deleted, unless we still have to keep it.",
+        "- **Restriction** (Art. 18): to have the processing limited, for example while the accuracy of the data is checked.",
+        "- **Portability** (Art. 20): to receive data you gave us in a common, machine-readable format.",
+        "- **Objection** (Art. 21): to object to processing based on our legitimate interests, as explained in the note below.",
+        "- **Withdrawal of consent** (Art. 7(3)): where processing relies on your consent (Art. 6(1)(a)), to withdraw it at any time with effect for the future. Processing up to the withdrawal remains lawful. None of the processing described on this page currently relies on consent.",
+        "> **Right to object**: where we process your data on the basis of our legitimate interests (Art. 6(1)(f) GDPR), you may object at any time on grounds relating to your particular situation (Art. 21 GDPR). We then stop the processing, unless we can show compelling legitimate grounds that override your interests, rights and freedoms, or the processing serves to establish, exercise or defend legal claims.",
+        "To exercise a right, write to [{{operator.emailHuman}}](mailto:{{operator.emailHuman}}). Do not use {{operator.emailAgent}} for this. We answer without undue delay and within one month (Art. 12(3) GDPR).",
+        "Your projects never reach us, so we cannot access, correct or delete them for you. You control them in your browser: you can change or delete them in the app, export them as a file, or clear the site's data.",
+        "**Complaint**: you have the right to lodge a complaint with a supervisory authority (Art. 77 GDPR). The supervisory authority responsible for us is: {{authority.name}}, {{authority.address}}, [{{authority.url}}]({{authority.url}}). You may also complain to the supervisory authority where you habitually live or work, or where the alleged infringement took place."
+      ]
+    },
+    {
+      "id": "automated-decisions",
+      "heading": "No automated decisions",
+      "body": [
+        "We make no decisions based solely on automated processing, including profiling, that have legal effects on you or affect you in a similarly significant way (Art. 22 GDPR).",
+        "- Quick Check and Business Plan results are calculations from published equations and default values, shown to you as an initial indication. They are not decisions about you.",
+        "- Replies from {{operator.emailAgent}} are written by an AI system. They answer your message and are not decisions about you.",
+        "- When the AI features are available, they only propose values. You decide what to accept."
+      ]
+    },
+    {
+      "id": "security",
+      "heading": "Security",
+      "body": [
+        "First Move is designed to keep the data that leaves your device to a minimum:",
+        "- The host delivers the site over an encrypted connection (HTTPS).",
+        "- Your projects are stored only on your device, not on any server.",
+        "- A Content-Security-Policy limits the connections the page may open to the site itself.",
+        "- The site loads no third-party scripts, fonts or embeds.",
+        "- The site sends `Referrer-Policy: no-referrer`, so other sites are not told which page you came from.",
+        "Your projects are only as safe as your device. Anyone with access to your browser profile can open them. Protect your device, and keep exported files as carefully as your other work files."
+      ]
+    },
+    {
+      "id": "children",
+      "heading": "Children",
+      "body": [
+        "First Move is a screening tool for energy projects and is not directed at children. If you are under 16, use it only with the consent of a parent or guardian."
+      ]
+    },
+    {
+      "id": "changes",
+      "heading": "Changes to this policy",
+      "body": [
+        "We update this policy when First Move or the law changes, for example when the AI features become available or a service provider changes. The date and version shown at the top of this page tell you which text applies.",
+        "If the operator transfers the service to a company or another successor, that successor becomes the controller. We announce such a change on the website at least 30 days before it takes effect, as set out in the [Terms of Use](/terms).",
+        "Questions about this policy: [{{operator.emailHuman}}](mailto:{{operator.emailHuman}})."
+      ]
+    }
+  ]
+}

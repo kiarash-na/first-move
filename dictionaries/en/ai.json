@@ -1,0 +1,183 @@
+{
+  "meta": {
+    "title": "AI Transparency",
+    "description": "How First Move uses AI, how its optional AI features work, and how they are classified under the EU AI Act."
+  },
+  "title": "AI Transparency",
+  "intro": "This page explains where First Move uses artificial intelligence and where it does not, how the optional AI features work, how we classify them under the EU Artificial Intelligence Act (Regulation (EU) 2024/1689, the \"AI Act\") and what you should check when you use them.",
+  "updated": "2026-10-24",
+  "version": "1.0",
+  "status": {
+    "planned": "The AI features in the app described on this page are not available yet, and the First Move app currently contains no AI system. This page explains how the features will work once they are released.",
+    "live": "The AI features described on this page are available. They are optional, stay off until you set them up, and run only when you use them."
+  },
+  "sections": [
+    {
+      "id": "scope",
+      "heading": "What this page covers",
+      "body": [
+        "This page covers three uses of AI:",
+        "- the optional AI features in the First Move app, described under [What the AI features do](#functions);",
+        "- the e-mail address {{operator.emailAgent}}, which is answered by an AI system, described under [AI-answered e-mail](#ai-email);",
+        "- our own use of AI tools to build First Move, described under [Responsible AI use](#responsible-ai).",
+        "The Quick Check and Business Plan results are not produced by AI. They come from deterministic calculations: published equations and default tables that give the same result for the same inputs. This holds whether or not you use the AI features.",
+        "The status notice on this page shows whether the AI features are available today. The rest of the page describes how they work when they are available."
+      ]
+    },
+    {
+      "id": "functions",
+      "heading": "What the AI features do",
+      "body": [
+        "When the AI features are available, First Move offers two functions:",
+        "1. **Questions about your project.** You ask a question about your project data in your own words, and an AI model answers it.",
+        "2. **Values from your documents.** You supply a document, for example a PDF. The AI reads it and proposes values for the project's structured input fields. You review each proposal and decide whether to apply it.",
+        "Both functions are optional. They stay off until you set them up with an AI provider of your choice, as described under [How the features run](#how-it-runs), and they run only when you use them.",
+        "The AI does not:",
+        "- compute the Quick Check results: the deterministic calculation engine does that, with the same equations whether a value was typed in or proposed by the AI;",
+        "- change your project on its own: it proposes, and you confirm;",
+        "- control or operate any plant, network or other infrastructure, or make decisions about people."
+      ]
+    },
+    {
+      "id": "how-it-runs",
+      "heading": "How the features run: your provider, your key",
+      "body": [
+        "When the AI features are available, they work on a bring-your-own-key basis:",
+        "1. You choose an AI provider and obtain an API key from your account with that provider.",
+        "2. You enter the key in First Move. It is kept only in your browser.",
+        "3. When you use a function, your browser sends the request directly to that provider, with your key, and receives the response.",
+        "4. First Move shows you the answer or the proposed values, marked as AI-generated.",
+        "We run no AI server. Your key and the content you send never reach us: we do not receive, store or see them, and we are not a processor acting on your behalf for this content (GDPR Art. 28). The provider is a separate party, and its own terms and privacy policy govern what it does with your requests.",
+        "This page lists the providers you can connect, once there are any."
+      ]
+    },
+    {
+      "id": "roles",
+      "heading": "Who is responsible for what",
+      "body": [
+        "The AI Act assigns duties by role. For the AI features of First Move, the roles are:",
+        "| Who | Role under the AI Act | What this means |",
+        "|---|---|---|",
+        "| We, {{operator.name}}, trading as {{operator.tradeName}} | Provider of the AI features (Art. 3(3)) | We develop the features and offer them under the name First Move. We are responsible for how they are designed, labelled and explained. |",
+        "| You, when you use the features in a professional capacity | Deployer (Art. 3(4)) | You use the features under your own authority and decide what to send, what to accept and what to publish. |",
+        "| The AI provider you choose | Third-party provider of the model you connect | It supplies the model under its own terms. We do not control the model or how the provider processes your requests. |",
+        "If you use the features only for personal, non-professional purposes, you are not a deployer under the AI Act (Art. 3(4)). The guidance on this page still applies to you.",
+        "First Move is open source: its code is published at [{{repo.url}}]({{repo.url}}) under the {{license.name}}. Open-source release does not change these roles, and it does not exempt the features from the transparency duties (see [Risk classification](#risk-classification))."
+      ]
+    },
+    {
+      "id": "risk-classification",
+      "heading": "Risk classification under the AI Act",
+      "body": [
+        "We have assessed the AI features against the categories of the AI Act. In short, they are not prohibited and not high-risk, and the transparency duties for certain AI systems apply to them.",
+        "- **Not a prohibited practice (Art. 5).** The features use none of the practices the AI Act bans, such as manipulating people, social scoring, emotion recognition, biometric categorisation or untargeted scraping of facial images. They answer questions and propose input values for a planning tool.",
+        "- **Not high-risk (Art. 6 with Annex III point 2).** In critical infrastructure, including the supply of heating, the AI Act treats an AI system as high-risk when it is used as a safety component in the management and operation of that infrastructure. First Move is a screening tool for the planning stage. It controls and operates nothing: no plant, no network, no supply. Its results are an initial indication for people to review, not a feasibility study and not engineering advice. It also makes no decisions about people.",
+        "- **Transparency duties apply (Art. 50).** AI systems that interact with people or generate text must meet transparency duties. These duties have applied since 2 August 2026. How we meet them is described under [How we label AI](#transparency).",
+        "- **Open source does not exempt them (Art. 2(12)).** The AI Act does not apply to many AI systems released under free and open-source licences, but this exemption does not cover systems that fall under Art. 50. First Move's open-source release therefore does not remove these duties, and we apply them in full."
+      ]
+    },
+    {
+      "id": "transparency",
+      "heading": "How we label AI",
+      "body": [
+        "When the AI features are available, we take these measures:",
+        "- **You know when you are dealing with AI (Art. 50(1)).** The assistant that answers your questions is labelled as AI.",
+        "- **AI-generated text is marked (Art. 50(2)).** Text written by the AI is marked as AI-generated, both in the interface and in machine-readable form.",
+        "- **AI-proposed values stay recognisable.** A value the AI proposes is shown as AI-proposed and is recorded as AI-proposed in the project data.",
+        "- **The features are explained.** This page and the guidance in the app explain what the AI does and where its limits are (see [Limits of the AI](#limits)).",
+        "Independently of the app features, the mailbox {{operator.emailAgent}} is disclosed as AI-answered (Art. 50(1)); see [AI-answered e-mail](#ai-email).",
+        "Some duties fall on you as a deployer. If you publish text generated by the AI to inform the public on matters of public interest, for example in a public notice or a press release, you must disclose that the text was generated by AI, unless a person has reviewed or edited it and a person or organisation holds editorial responsibility for its publication (Art. 50(4)). The duties for emotion recognition and biometric categorisation systems (Art. 50(3)) do not arise, because First Move uses neither."
+      ]
+    },
+    {
+      "id": "human-oversight",
+      "heading": "You stay in control",
+      "body": [
+        "> The AI only proposes. Nothing it suggests is applied to your project until you confirm it.",
+        "When the AI features are available, human oversight is part of how they work:",
+        "- **You start every request.** The features stay off until you set them up, and they run only when you use them.",
+        "- **You confirm before anything changes.** Proposed values are shown to you first, and only the values you confirm are applied to your project.",
+        "- **The same checks apply.** Every value, whether you typed it in or the AI proposed it, goes through the same validation as manual input.",
+        "- **The results stay deterministic.** The Quick Check results are always computed by the deterministic engine from the published equations and default values, never by the AI.",
+        "- **You can work without AI.** Quick Check and Business Plan work without the AI features, and you can always enter values by hand."
+      ]
+    },
+    {
+      "id": "limits",
+      "heading": "Limits of the AI",
+      "body": [
+        "AI models can be helpful, but they are not reliable in the way a calculation is. Keep these limits in mind:",
+        "- **Models can be wrong.** They can misunderstand a question, give a wrong answer with confidence, or invent content, such as figures, sources or quotations that do not exist.",
+        "- **Extraction can fail.** Reading values from documents is error-prone, especially with scanned pages, tables, units and documents in mixed languages. A value can be taken from the wrong row, carry the wrong unit or be missed.",
+        "- **Check every proposed value against the source document** before you confirm it.",
+        "- **AI does not make the results more reliable.** Values proposed by the AI do not make the screening results more accurate or more reliable than values you enter yourself.",
+        "- **Not engineering advice.** Neither the AI's answers nor the screening results are engineering advice or a feasibility study. The results are an initial indication based on simplified assumptions, and they must be refined before you base investment or planning decisions on them.",
+        "How well the features work also depends on the model and provider you choose. We give no warranty for the accuracy of AI output; the [Terms](/terms#ai-features) set out your responsibilities when you use the features."
+      ]
+    },
+    {
+      "id": "data-handling",
+      "heading": "Your data, your key, your provider",
+      "body": [
+        "When the AI features are available, the following applies:",
+        "- **You decide what is sent.** A request leaves your browser only when you start it, and it goes only to the provider you chose. Before you supply a document or ask a question, consider what it contains.",
+        "- **Take care with personal and confidential data.** Do not send personal data of other people, such as the names or contact details of residents, owners or colleagues, or confidential documents, unless you are allowed to, for example under a legal basis in data protection law, your organisation's rules or a contract.",
+        "- **The provider's terms apply.** The provider processes your requests under its own terms and privacy policy. Before you send anything, check where it processes data, whether it uses your inputs to train models, and how long it keeps them.",
+        "- **The costs are yours.** Requests are billed to your account with the provider at its prices. First Move itself is free and charges nothing for the AI features.",
+        "- **Protect your key.** Treat the API key like a password. Do not share it, use spending limits if your provider offers them, and rotate the key regularly, and at once if you think it has been exposed.",
+        "- **You can remove the key in the app at any time.** Removing it from First Move does not revoke it; to revoke it, delete it in your account with the provider.",
+        "We never receive your key, your questions, your documents or the answers, so we cannot see, recover or delete them. How First Move handles data in general is described in the [Privacy Policy](/privacy#ai-features)."
+      ]
+    },
+    {
+      "id": "ai-literacy",
+      "heading": "Using AI with care",
+      "body": [
+        "The AI Act asks providers and deployers to take measures to promote AI literacy among the people who deal with AI systems on their behalf (Art. 4). Our part is to explain in plain words what the AI does, where it errs and what to check: on this page and, when the AI features are available, in the guidance next to them in the app.",
+        "Before you confirm a value the AI proposes, check:",
+        "1. **Source:** the value really appears in your document.",
+        "2. **Unit:** the unit matches the field, for example kW or MW, kWh or MWh.",
+        "3. **Number format:** decimal and thousands separators were read correctly. German documents write 1.000,5 where English ones write 1,000.5.",
+        "4. **Scope and year:** the value refers to the building, area or network and to the year that the field asks for.",
+        "5. **Plausibility:** the value fits what you know about the project.",
+        "If you deploy the features in your organisation, Art. 4 applies to you too: make sure the staff who use them understand these points. This page can serve as a starting point."
+      ]
+    },
+    {
+      "id": "ai-email",
+      "heading": "AI-answered e-mail",
+      "body": [
+        "Messages to [{{operator.emailAgent}}](mailto:{{operator.emailAgent}}) are answered by an AI system. We say so here and in the [Imprint](/imprint) so that you know before you write that you will be dealing with an AI system (Art. 50(1)). This mailbox is separate from the AI features in the app and does not depend on them.",
+        "- Replies from this address are written by an AI system and may be wrong.",
+        "- They are not legally binding statements and bind no one, neither us nor you.",
+        "- To prepare a reply, an AI service provider processes the text of your message, in addition to our e-mail provider {{mail.name}}. The [Privacy Policy](/privacy#email) has the details.",
+        "> For privacy requests, legal matters and anything sensitive, write to [{{operator.emailHuman}}](mailto:{{operator.emailHuman}}), which is read by a person. Requests to exercise your data protection rights must go to that address."
+      ]
+    },
+    {
+      "id": "responsible-ai",
+      "heading": "Responsible AI use",
+      "body": [
+        "First Move is built and operated by a human maintainer, who is responsible for it. AI tools support research, ideation, coding and production efficiency, and a human reviews AI-assisted work and makes the final product, methodology and design decisions. This project is built with substantial help from AI coding tools, and we say so openly rather than present it as purely hand-written.",
+        "Quick Check and Business Plan results come from deterministic calculations on published equations and defaults, not from AI. AI features in the app are optional, labelled as AI, and only propose; you decide what to accept. We handle our use of AI transparently and ethically.",
+        "We ask the same of feedback. If you send us ideas, issues or pull requests, the clause on [human-led feedback and AI use](/terms#human-led-feedback) in our Terms applies: you may use AI to brainstorm or organise your thoughts, but please review and prioritise AI-assisted ideas yourself before you submit them."
+      ]
+    },
+    {
+      "id": "concerns",
+      "heading": "Questions and concerns",
+      "body": [
+        "If an AI output was not labelled, a feature behaves differently from what this page describes, or you have any other concern about how First Move uses AI, write to [{{operator.emailHuman}}](mailto:{{operator.emailHuman}}). That address is read by a person.",
+        "For your data protection rights, including the right to lodge a complaint with a supervisory authority, see the [Privacy Policy](/privacy#rights).",
+        "First Move's code is public at [{{repo.url}}]({{repo.url}}), so you can check how it works."
+      ]
+    },
+    {
+      "id": "changes",
+      "heading": "Changes to this page",
+      "body": [
+        "We update this page when the AI features become available, when providers are added or removed, when the features change, and when the law or our assessment under it changes. The date and version of this page show when it last changed, and the status notice shows whether the AI features are available today."
+      ]
+    }
+  ]
+}

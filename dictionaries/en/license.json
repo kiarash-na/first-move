@@ -1,0 +1,112 @@
+{
+  "meta": {
+    "title": "Open-source licence",
+    "description": "Which licence covers the code, documentation and Quick Check methodology of First Move, what it allows, and which parts use other licences."
+  },
+  "title": "Open-source licence",
+  "intro": "First Move is open source. This page explains which licence covers the code, the documentation and the Quick Check methodology, what it allows, what it requires in return, and which parts are under other licences.",
+  "updated": "2026-10-24",
+  "version": "1.0",
+  "sections": [
+    {
+      "id": "summary",
+      "heading": "Summary",
+      "body": [
+        "| Part | Licence |",
+        "|---|---|",
+        "| Source code | {{license.name}} (`{{license.spdx}}`) |",
+        "| Documentation | {{license.name}} (`{{license.spdx}}`) |",
+        "| Quick Check methodology | {{license.name}} (`{{license.spdx}}`), published with the permission of its rights holders |",
+        "| Third-party packages | Their own licences, see [Third-party software](#third-party) |",
+        "| Fonts | SIL Open Font License 1.1 (`OFL-1.1`) |",
+        "| The name {{operator.tradeName}} | Not licensed, see [Name and trademark](#trademark) |",
+        "> This page summarises the licence in plain words and does not replace it. The full text of the {{license.name}} in the [LICENSE]({{repo.licenseUrl}}) file governs your rights and duties."
+      ]
+    },
+    {
+      "id": "code",
+      "heading": "Source code",
+      "body": [
+        "The source code of First Move is published at [{{repo.url}}]({{repo.url}}) under the {{license.name}}. Its SPDX identifier is `{{license.spdx}}`. The licence text is in the [LICENSE]({{repo.licenseUrl}}) file of the repository, and the official text is at [{{license.url}}]({{license.url}}). The repository also contains a `NOTICE` file with the attribution notices for First Move. Section numbers in brackets on this page refer to the sections of the licence.",
+        "The code is © {{copyright.year}} {{operator.name}}. Contributions remain the copyright of their authors, who license them on the same terms (see [Contributions](#contributions)).",
+        "The licence lets you, free of charge and worldwide (Section 2):",
+        "- use and copy the software for any purpose, including commercial use;",
+        "- modify it and build your own works on it;",
+        "- distribute it, changed or unchanged, as source code or in compiled form, and sublicense it.",
+        "If you distribute First Move or a work based on it, you must (Section 4):",
+        "- give every recipient a copy of the licence;",
+        "- mark every file you changed with a prominent notice that you changed it;",
+        "- keep, in the source code of your version, the copyright, patent, trademark and attribution notices of First Move that relate to it;",
+        "- pass on the attribution notices from the `NOTICE` file in one of the places the licence names, for example in a `NOTICE` file of your own.",
+        "You may add your own copyright notice to your changes and license them on other terms, as long as your use and distribution of First Move itself complies with the licence.",
+        "Each contributor also grants you a patent licence (Section 3). It covers those of the contributor's patent claims that their contribution necessarily infringes, alone or combined with First Move. If you start patent litigation claiming that First Move or a contribution in it infringes a patent, the patent licences you received under the licence end on the date that litigation is filed.",
+        "The software comes without warranty: see [No warranty](#no-warranty)."
+      ]
+    },
+    {
+      "id": "methodology",
+      "heading": "Quick Check methodology",
+      "body": [
+        "The Quick Check methodology, meaning its equations, tables and default values, is derived from the AQC methodology supplied with the 5GDHC hackathon challenge. We publish it under the {{license.name}}, the same licence as the code, with the permission of its rights holders. Credit for the original methodology goes to its originators.",
+        "If you reuse or change the equations, tables or default values, the conditions under [Source code](#code) apply in the same way: pass on the licence and the attribution notices, and mark what you changed.",
+        "The methodology is a screening method. Its results are an initial indication, not a feasibility study and not engineering advice. They rest on simplified assumptions and must be refined. The calculations are deterministic: they follow the published equations and default tables and are not produced by AI."
+      ]
+    },
+    {
+      "id": "documentation",
+      "heading": "Documentation",
+      "body": [
+        "The documentation in the repository, including the pages under [Docs](/docs), is published under the {{license.name}} as well. You may copy, translate, adapt and republish it, also commercially, on the same conditions as the code: pass on the licence and the notices, and mark what you changed."
+      ]
+    },
+    {
+      "id": "trademark",
+      "heading": "Name and trademark",
+      "body": [
+        "{{operator.tradeName}} is the trade name under which {{operator.name}} offers this service. It is not a registered business name and not a registered trademark.",
+        "The {{license.name}} grants no permission to use the trade names, trademarks, service marks or product names of the licensor (Section 6). The name is therefore not licensed as a name for your product. You may use it only as far as is reasonable and customary to describe where your work comes from, for example by saying that it is based on First Move, and to reproduce the content of the `NOTICE` file.",
+        "If you publish a modified version or run your own copy of the app, give it a different name and do not suggest that it is First Move or that we endorse it."
+      ]
+    },
+    {
+      "id": "third-party",
+      "heading": "Third-party software",
+      "body": [
+        "First Move is built on open-source packages by other authors. Each package stays under the licence its authors chose: the {{license.name}} of First Move does not change that licence, and the package licence governs the package. The table below lists the packages shipped with First Move, including the fonts, with the licence of each and a link to its project."
+      ]
+    },
+    {
+      "id": "fonts",
+      "heading": "Fonts",
+      "body": [
+        "First Move uses three typefaces: Archivo, Instrument Serif and IBM Plex Mono. They are licensed under the SIL Open Font License 1.1 (SPDX identifier `OFL-1.1`), not under the {{license.name}}. They are delivered with the `@fontsource` packages `@fontsource-variable/archivo`, `@fontsource/instrument-serif` and `@fontsource/ibm-plex-mono`, which carry the licence texts. The fonts are served from this site, not from an external font service."
+      ]
+    },
+    {
+      "id": "contributions",
+      "heading": "Contributions",
+      "body": [
+        "You can contribute through the [repository]({{repo.url}}) on GitHub. GitHub's own terms apply to your use of that platform.",
+        "Unless you explicitly state otherwise, any contribution you intentionally submit for inclusion in First Move, such as code, documentation or changes to the methodology, is licensed under the {{license.name}}, without any additional terms or conditions (Section 5). You keep the copyright in your contribution. Submit only work you have the right to license on these terms.",
+        "We are not obliged to accept, review or merge a contribution. The [Terms of Use](/terms#contributions) set out the further rules for contributions, including how we handle AI-assisted feedback, issues and pull requests."
+      ]
+    },
+    {
+      "id": "no-warranty",
+      "heading": "No warranty",
+      "body": [
+        "The software is provided \"as is\" (Section 7). Unless applicable law requires it or it was agreed in writing, the licensor and the contributors give no warranties or conditions of any kind, express or implied, including those of title, non-infringement, merchantability or fitness for a particular purpose. You alone are responsible for deciding whether it is appropriate to use or redistribute the software, and you bear the risks of exercising your rights under the licence.",
+        "Under Section 8, no contributor is liable to you for damages arising from the licence or from using or being unable to use the software, unless applicable law requires it, for example for deliberate and grossly negligent acts, or it was agreed in writing.",
+        "These licence terms govern the software you copy, change or distribute. Your use of the website at {{site.domain}} is governed by the [Terms of Use](/terms#liability), which set out warranty and liability for the service."
+      ]
+    },
+    {
+      "id": "contact",
+      "heading": "Contact",
+      "body": [
+        "For questions about the licence, permissions or attribution, write to [{{operator.emailHuman}}](mailto:{{operator.emailHuman}}). Please do not send licence or legal questions to {{operator.emailAgent}}: that mailbox is answered by an AI system.",
+        "For bugs and technical questions, open an issue in the [repository]({{repo.url}}). The full provider details are in the [Imprint](/imprint)."
+      ]
+    }
+  ]
+}

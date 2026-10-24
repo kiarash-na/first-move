@@ -1,0 +1,71 @@
+{
+  "meta": {
+    "title": "Impressum",
+    "description": "Wer First Move anbietet: Name, Postanschrift, E-Mail-Kontakt, Umsatzsteuer-Identifikationsnummer und Verantwortlicher für den Inhalt, nach § 5 DDG."
+  },
+  "title": "Impressum",
+  "intro": "Dieses Impressum nennt den Anbieter von First Move unter {{site.domain}}, wie es § 5 Digitale-Dienste-Gesetz (DDG) verlangt. Es gilt für die Website und die Web-App.",
+  "updated": "2026-10-24",
+  "version": "1.0",
+  "sections": [
+    {
+      "id": "provider",
+      "heading": "Angaben gemäß § 5 DDG",
+      "body": [
+        "First Move wird angeboten von:",
+        "- **{{operator.name}}**, natürliche Person",
+        "- Geschäftsbezeichnung: {{operator.tradeName}}",
+        "- Postanschrift: {{operator.address}}",
+        "{{operator.tradeName}} ist eine Geschäftsbezeichnung. Sie ist weder eine eingetragene Firma noch eine eingetragene Marke. Eine Eintragung in einem Handelsregister besteht nicht."
+      ]
+    },
+    {
+      "id": "contact",
+      "heading": "Kontakt",
+      "body": [
+        "Sie erreichen uns per E-Mail unter zwei Adressen:",
+        "- [{{operator.emailHuman}}](mailto:{{operator.emailHuman}}): wird von einem Menschen gelesen und beantwortet. Nutzen Sie diese Adresse für Datenschutzanfragen, für alle rechtlichen Anliegen und Mitteilungen sowie für vertrauliche Themen.",
+        "- [{{operator.emailAgent}}](mailto:{{operator.emailAgent}}): wird von einem KI-System beantwortet. Nutzen Sie diese Adresse nicht für Datenschutzanfragen oder rechtliche Anliegen.",
+        "> Nachrichten an {{operator.emailAgent}} beantwortet ein KI-System, kein Mensch. Die Antworten können fehlerhaft sein und sind keine rechtsverbindlichen Erklärungen. Senden Sie Datenschutzanfragen und rechtliche Anliegen ausschließlich an {{operator.emailHuman}}.",
+        "Diesen Hinweis geben wir, damit Sie wissen, wann Sie mit einem KI-System kommunizieren (Art. 50 Abs. 1 KI-Verordnung, Verordnung (EU) 2024/1689). Wie wir E-Mails verarbeiten, einschließlich der Verarbeitung von Nachrichten an {{operator.emailAgent}} durch einen KI-Dienstleister, erklärt die [Datenschutzerklärung](/privacy)."
+      ]
+    },
+    {
+      "id": "tax",
+      "heading": "Umsatzsteuer-Identifikationsnummer",
+      "body": [
+        "Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz (UStG): {{operator.vatId}}"
+      ]
+    },
+    {
+      "id": "responsible-content",
+      "heading": "Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV",
+      "body": [
+        "{{operator.name}}, {{operator.address}}"
+      ]
+    },
+    {
+      "id": "dispute-resolution",
+      "heading": "Verbraucherstreitbeilegung",
+      "body": [
+        "Wir sind weder bereit noch verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen (§ 36 Verbraucherstreitbeilegungsgesetz, VSBG).",
+        "Die Plattform der EU zur Online-Streitbeilegung wurde am 20. Juli 2025 eingestellt."
+      ]
+    },
+    {
+      "id": "liability-links",
+      "heading": "Haftung für Links",
+      "body": [
+        "First Move enthält Links zu Websites Dritter, zum Beispiel zum eigenen Quellcode auf GitHub. Für deren Inhalte sind die jeweiligen Anbieter verantwortlich; es gelten deren eigene Bedingungen und Datenschutzerklärungen. Wir haben keinen Einfluss auf diese Websites und machen uns ihre Inhalte nicht zu eigen. Erfahren wir, dass eine verlinkte Seite rechtswidrige Inhalte enthält, entfernen wir den Link."
+      ]
+    },
+    {
+      "id": "copyright",
+      "heading": "Urheberrecht und Lizenz",
+      "body": [
+        "© {{copyright.year}} {{operator.name}}. Code und Dokumentation von First Move sind Open Source unter der {{license.name}} ({{license.spdx}}) und unter [{{repo.url}}]({{repo.url}}) veröffentlicht.",
+        "Die Methodik des Quick Check ist aus der AQC-Methodik abgeleitet, die mit der Challenge des 5GDHC-Hackathons bereitgestellt wurde, und wird mit Erlaubnis ihrer Rechteinhaber veröffentlicht. Für Komponenten Dritter und Schriftarten gelten deren eigene Lizenzen. Die Lizenz gewährt kein Recht, den Namen {{operator.tradeName}} als Produktnamen zu verwenden. Einzelheiten finden Sie auf der Seite [Open-Source-Lizenz](/license)."
+      ]
+    }
+  ]
+}

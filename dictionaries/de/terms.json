@@ -1,0 +1,195 @@
+{
+  "meta": {
+    "title": "Nutzungsbedingungen",
+    "description": "Die Bedingungen für die Nutzung von First Move, der kostenlosen Web-App für das 5GDHC-Screening: Ihre Daten, KI-Funktionen, Open Source, Haftung und anwendbares Recht."
+  },
+  "title": "Nutzungsbedingungen",
+  "intro": "Diese Bedingungen regeln Ihre Nutzung von First Move. Sie erklären, was der Dienst leistet, was Sie von ihm erwarten können und was wir von Ihnen erwarten. First Move ist kostenlos, braucht kein Konto und speichert Ihre Projekte in Ihrem Browser.",
+  "updated": "2026-10-24",
+  "version": "1.0",
+  "sections": [
+    {
+      "id": "provider",
+      "heading": "Anbieter und Geltungsbereich",
+      "body": [
+        "First Move wird von {{operator.name}}, einer natürlichen Person, unter der Geschäftsbezeichnung „{{operator.tradeName}}“ angeboten („wir“, „uns“). Die Geschäftsbezeichnung ist weder eine eingetragene Firma noch eine eingetragene Marke. Postanschrift: {{operator.address}}. Die vollständigen Anbieterangaben finden Sie im [Impressum](/imprint).",
+        "Diese Bedingungen gelten für jede Nutzung der Web-App First Move unter [{{site.domain}}]({{site.url}}) (der „Dienst“), durch Verbraucher ebenso wie durch Unternehmen und öffentliche Stellen, soweit unten nichts anderes bestimmt ist. Abweichende Geschäftsbedingungen von Nutzern gelten nicht, es sei denn, wir stimmen ihnen ausdrücklich zu.",
+        "Was Sie mit dem Quellcode und der Dokumentation tun dürfen, regelt die Open-Source-Lizenz (siehe [Open Source, Lizenz und Name](#open-source)). Wie wir mit personenbezogenen Daten umgehen, erklärt die [Datenschutzerklärung](/privacy)."
+      ]
+    },
+    {
+      "id": "service",
+      "heading": "Der Dienst",
+      "body": [
+        "First Move ist eine zweisprachige Web-App (Englisch und Deutsch) für das erste Screening von Projekten für Wärme- und Kältenetze der 5. Generation (5GDHC). Ein Projekt hat zwei optionale Module:",
+        "- **Quick Check**: eine erste Einschätzung auf Grundlage vereinfachter Standardwerte und veröffentlichter Gleichungen.",
+        "- **Business Plan**: eine angeleitete Ausarbeitung des Geschäftsmodells des Projekts.",
+        "Die Berechnungen sind deterministisch, folgen veröffentlichten Gleichungen und Standardtabellen und werden nicht durch KI erzeugt.",
+        "> Die Ergebnisse sind eine erste Einschätzung, **keine Machbarkeitsstudie und keine ingenieurtechnische Beratung**. Da sie auf vereinfachten Annahmen beruhen, müssen sie vertieft werden, etwa in einer detaillierten Untersuchung durch qualifizierte Fachleute, bevor Sie eine Investitions-, Planungs- oder Förderentscheidung darauf stützen.",
+        "Der Dienst ist kostenlos und erfordert weder eine Registrierung noch ein Nutzerkonto. Mit der Nutzung kommt zwischen Ihnen und uns ein unentgeltlicher Nutzungsvertrag zu diesen Bedingungen zustande."
+      ]
+    },
+    {
+      "id": "use",
+      "heading": "Zulässige Nutzung",
+      "body": [
+        "Sie dürfen First Move für jeden rechtmäßigen Zweck nutzen, privat oder beruflich, etwa in der kommunalen Arbeit, in Planung und Beratung oder gewerblich. Sie dürfen dabei nicht:",
+        "- den Dienst oder die Systeme, auf denen er läuft, angreifen, ausforschen oder stören, etwa durch Versuche, Sicherheitsmaßnahmen zu umgehen, oder durch das Einschleusen von Schadcode;",
+        "- den Dienst überlasten, etwa durch automatisierte Massenanfragen;",
+        "- den Dienst für rechtswidrige Zwecke oder in einer Weise nutzen, die Rechte anderer verletzt;",
+        "- Screening-Ergebnisse von First Move als Machbarkeitsstudie oder als zertifizierte, geprüfte oder freigegebene Ingenieurergebnisse ausgeben;",
+        "- den Eindruck erwecken, wir hätten Ihre Ergebnisse, Berichte oder Produkte geprüft, bestätigt oder empfohlen.",
+        "Wenn Sie Ergebnisse weitergeben oder veröffentlichen, machen Sie bitte deutlich, dass es sich um eine erste Screening-Einschätzung aus First Move auf Grundlage vereinfachter Annahmen handelt.",
+        "Wir können angemessene Maßnahmen gegen eine Nutzung ergreifen, die gegen diese Regeln verstößt, einschließlich einer Sperrung des Zugangs, soweit dies zum Schutz des Dienstes und anderer Nutzer erforderlich ist."
+      ]
+    },
+    {
+      "id": "your-data",
+      "heading": "Ihre Daten",
+      "body": [
+        "Sie behalten die Kontrolle über die Daten, die Sie eingeben. Ein Projekt wird nur in Ihrem Browser auf Ihrem Gerät gespeichert (in IndexedDB). Es gibt keine Konten, keine Passwörter und keine Datenbanken auf einem Server, und wir erhalten Ihre Projektdaten nicht.",
+        "Sie können ein Projekt als Datei exportieren (`.firstmove.json`, nur Eingaben), die Ihr Browser erstellt und Sie speichern, und später wieder importieren. In Chromium-basierten Browsern können Sie außerdem eine Datei auf Ihrem Datenträger verknüpfen; dabei wird nichts hochgeladen.",
+        "> Wenn Sie Ihre Browserdaten löschen, werden Ihre Projekte gelöscht. Wir können sie nicht wiederherstellen, weil wir sie nie erhalten. Exportieren Sie Ihre Projekte regelmäßig und bewahren Sie eigene Sicherungskopien auf.",
+        "Sie sind für Ihre Eingaben und deren Sicherung verantwortlich. Geben Sie personenbezogene Daten anderer Personen (etwa Namen oder Kontaktdaten von Eigentümern, Bewohnern oder Kolleginnen und Kollegen) nur ein, wenn Sie dafür eine datenschutzrechtliche Rechtsgrundlage haben.",
+        "Wir beanspruchen keine Rechte an Ihren Projektdaten. Wie die App den Speicher Ihres Browsers nutzt, erklärt die [Cookie-Richtlinie](/cookies)."
+      ]
+    },
+    {
+      "id": "ai-features",
+      "heading": "Optionale KI-Funktionen",
+      "body": [
+        "Sobald die KI-Funktionen verfügbar sind, bietet First Move zwei optionale Funktionen: Antworten auf Fragen zu Ihren Projektdaten und das Auslesen von Dokumenten, die Sie bereitstellen (zum Beispiel PDFs), um Werte für die Felder des Projekts vorzuschlagen. Ob sie heute verfügbar sind und wie sie funktionieren, erklärt die Seite [KI-Transparenz](/ai).",
+        "Die KI-Funktionen sind ausgeschaltet, bis Sie sie einrichten. Die Funktionen arbeiten mit Ihrem eigenen API-Schlüssel für einen KI-Anbieter Ihrer Wahl („Bring your own key“): Ihr Browser sendet jede Anfrage direkt an diesen Anbieter. Wir betreiben keinen KI-Server und erhalten weder die Inhalte, die Sie senden, noch Ihren Schlüssel. Der Schlüssel wird nur in Ihrem Browser gespeichert.",
+        "Wenn Sie die KI-Funktionen nutzen, gilt:",
+        "- Der von Ihnen gewählte Anbieter ist ein von uns unabhängiger Dritter. Seine Nutzungsbedingungen, Nutzungsrichtlinien und Datenschutzbestimmungen gelten zwischen Ihnen und dem Anbieter, und Sie sind für deren Einhaltung verantwortlich;",
+        "- Kosten, die der Anbieter für Ihren Schlüssel berechnet, tragen Sie;",
+        "- Sie entscheiden, was Sie senden. Senden Sie personenbezogene Daten anderer oder vertrauliche Dokumente nur, wenn Sie dazu berechtigt sind;",
+        "- Sie müssen jede Ausgabe prüfen. Die KI macht nur Vorschläge: Nichts wird in ein Projekt übernommen, bevor Sie es bestätigen, und jeder Wert durchläuft dieselbe Prüfung wie eine manuelle Eingabe;",
+        "- Sie sind dafür verantwortlich, Ihren Schlüssel sicher aufzubewahren. Sie können ihn jederzeit aus der App entfernen.",
+        "KI-Ausgaben können falsch oder unvollständig sein, und Modelle können Inhalte erfinden. Die KI berechnet nie die Ergebnisse des Quick Check, und von der KI vorgeschlagene Werte machen die Screening-Ergebnisse nicht zuverlässiger. Wir haben keinen Einfluss auf den KI-Anbieter und seine Modelle und sind nicht für deren Verfügbarkeit oder Ausgaben verantwortlich; für unsere eigene Haftung gilt der Abschnitt [Haftung](#liability).",
+        "Wenn Sie die KI-Funktionen beruflich nutzen, sind Sie „Betreiber“ eines KI-Systems im Sinne der KI-Verordnung (Verordnung (EU) 2024/1689, Art. 3 Nr. 4; englisch „deployer“) und für Ihre eigene Nutzung verantwortlich."
+      ]
+    },
+    {
+      "id": "responsible-ai",
+      "heading": "Verantwortungsvoller Umgang mit KI",
+      "body": [
+        "Entwicklung, Betrieb und Verantwortung für First Move liegen bei einem menschlichen Maintainer. KI-Werkzeuge unterstützen Recherche, Ideenfindung, Programmierung und eine effiziente Umsetzung; ein Mensch prüft KI-gestützte Arbeit und trifft die abschließenden Entscheidungen über Produkt, Methodik und Gestaltung. Dieses Projekt entsteht mit erheblicher Unterstützung durch KI-Programmierwerkzeuge, und wir sagen das offen, statt es als rein von Hand geschrieben darzustellen. Die Ergebnisse von Quick Check und Business Plan beruhen auf deterministischen Berechnungen mit veröffentlichten Gleichungen und Standardwerten, nicht auf KI. KI-Funktionen in der App sind optional, als KI gekennzeichnet und machen nur Vorschläge; Sie entscheiden, was Sie übernehmen. Wir gehen mit unserem Einsatz von KI transparent und ethisch verantwortungsvoll um."
+      ]
+    },
+    {
+      "id": "human-led-feedback",
+      "heading": "Feedback von Menschen und Einsatz von KI",
+      "body": [
+        "Unsere Ausrichtung stützt sich auf Rückmeldungen, die auf Ihrem Wissen über Ihre Projekte, Netze und Ziele beruhen. Menschlicher Kontext, menschliches Urteilsvermögen und Erfahrung sind unverzichtbar. Sie können KI nutzen, um Ideen zu sammeln oder Ihre Gedanken zu ordnen. Bitte prüfen, bewerten und priorisieren Sie KI-gestützte Ideen, bevor Sie sie einreichen, damit Ihre Einsendung Ihr eigenes Urteil widerspiegelt. Unbearbeitete KI-generierte Kritiken, umfangreiche Änderungslisten, Neufassungen sowie ungeprüfte, von KI verfasste Issues und Pull Requests sollen nicht eingereicht werden. Wir können um eine zusammengefasste, von Menschen geprüfte Fassung bitten oder solche Einsendungen ohne Antwort auf jeden einzelnen Punkt schließen. Wir sind nicht verpflichtet, auf Rückmeldungen zu antworten.",
+        "Dies gilt für Rückmeldungen über jeden Kanal, auch per E-Mail, Issue oder Pull Request. Für Beiträge zu Code und Dokumentation siehe auch [Beiträge](#contributions)."
+      ]
+    },
+    {
+      "id": "open-source",
+      "heading": "Open Source, Lizenz und Name",
+      "body": [
+        "Quellcode und Dokumentation von First Move sind unter [{{repo.url}}]({{repo.url}}) unter der {{license.name}} ({{license.spdx}}) veröffentlicht. Diese Lizenz regelt, was Sie damit tun dürfen, darunter Nutzen, Vervielfältigen, Ändern und Verbreiten, auch zu kommerziellen Zwecken. Die Seite [Open-Source-Lizenz](/license) erläutert sie.",
+        "Die Methodik des Quick Check (Gleichungen, Tabellen und Standardwerte) ist aus der AQC-Methodik abgeleitet, die mit der Aufgabenstellung des 5GDHC-Hackathons bereitgestellt wurde. Wir haben die Erlaubnis ihrer Rechteinhaber, sie unter derselben Lizenz zu veröffentlichen, und nennen ihre Urheber.",
+        "„{{operator.tradeName}}“ ist eine Geschäftsbezeichnung, keine eingetragene Marke. Die Lizenz erlaubt nicht, sie zu verwenden, außer soweit dies nötig ist, um die Herkunft des Werks zu beschreiben (Apache License 2.0, Abschnitt 6). Wenn Sie eine geänderte Fassung veröffentlichen, geben Sie ihr bitte einen eigenen Namen und erwecken Sie nicht den Eindruck, dass wir sie unterstützen."
+      ]
+    },
+    {
+      "id": "contributions",
+      "heading": "Beiträge",
+      "body": [
+        "Beiträge zu First Move über das Repository sind willkommen, etwa als Issues oder Pull Requests. Sofern Sie nicht ausdrücklich etwas anderes erklären, steht jeder Beitrag, den Sie absichtlich zur Aufnahme einreichen, unter der {{license.name}}, ohne zusätzliche Bedingungen (Abschnitt 5 der Lizenz).",
+        "Reichen Sie nur Inhalte ein, die Sie auf diese Weise lizenzieren dürfen. Wir sind nicht verpflichtet, Beiträge zu prüfen, anzunehmen, zu übernehmen oder zu beantworten. Es gelten die Regeln unter [Feedback von Menschen und Einsatz von KI](#human-led-feedback).",
+        "Das Repository liegt bei GitHub. Für Ihr Konto und Ihre Aktivitäten dort gelten die eigenen Bedingungen von GitHub."
+      ]
+    },
+    {
+      "id": "third-party-links",
+      "heading": "Links zu anderen Websites",
+      "body": [
+        "First Move verlinkt auf andere Websites, etwa auf den Quellcode bei GitHub und in den Hinweisen zum Business Plan auf geothermie-oesterreich.at. Wenn Sie einem solchen Link folgen, verlassen Sie First Move. Die verlinkten Seiten werden von anderen unter deren eigenen Bedingungen und Datenschutzbestimmungen betrieben.",
+        "Wir haben keinen Einfluss auf die Inhalte verlinkter Seiten und sind für sie nicht verantwortlich. Erfahren wir, dass eine verlinkte Seite rechtswidrige Inhalte enthält, entfernen wir den Link."
+      ]
+    },
+    {
+      "id": "availability",
+      "heading": "Verfügbarkeit und Änderungen des Dienstes",
+      "body": [
+        "First Move ist ein kostenloser Dienst und wird so angeboten, wie er jeweils verfügbar ist. Es besteht kein Anspruch auf eine bestimmte Verfügbarkeit, Reaktionszeit oder einen bestimmten Funktionsumfang. Unterbrechungen können vorkommen, etwa bei Wartungsarbeiten oder durch Störungen beim Hosting-Anbieter oder im Internet.",
+        "Wir können Funktionen, Inhalte, Berechnungen oder den gesamten Dienst jederzeit ändern, erweitern, einschränken oder einstellen, vorübergehend oder dauerhaft, etwa um Fehler zu beheben, die Sicherheit zu gewährleisten, Rechtsänderungen umzusetzen oder den Dienst weiterzuentwickeln.",
+        "Exportieren Sie Ihre Projekte regelmäßig, damit Ihre Eingaben erhalten bleiben, auch wenn sich der Dienst ändert oder eingestellt wird."
+      ]
+    },
+    {
+      "id": "warranty",
+      "heading": "Keine Gewähr",
+      "body": [
+        "First Move wird unentgeltlich bereitgestellt. Unbeschadet des Abschnitts [Haftung](#liability) und zwingender gesetzlicher Rechte übernehmen wir keine Gewähr dafür, dass der Dienst:",
+        "- jederzeit, ohne Unterbrechung oder mit einer bestimmten Geschwindigkeit verfügbar ist;",
+        "- fehlerfrei ist oder dass seine Ergebnisse richtig, vollständig oder aktuell sind;",
+        "- für einen bestimmten Zweck geeignet ist, insbesondere für Investitions-, Planungs-, Förder- oder Ingenieurentscheidungen.",
+        "Sie sind dafür verantwortlich zu prüfen, ob die Standardwerte und Annahmen zu Ihrem Projekt passen, und die Ergebnisse vertiefen zu lassen, bevor Sie sich auf sie verlassen."
+      ]
+    },
+    {
+      "id": "liability",
+      "heading": "Haftung",
+      "body": [
+        "Für unsere Haftung auf Schadensersatz gelten, gleich aus welchem Rechtsgrund, die folgenden Regeln.",
+        "Wir haften unbeschränkt:",
+        "- bei Vorsatz und grober Fahrlässigkeit;",
+        "- bei Verletzung des Lebens, des Körpers oder der Gesundheit;",
+        "- bei Arglist, einschließlich des arglistigen Verschweigens eines Mangels;",
+        "- im Rahmen einer von uns übernommenen Garantie;",
+        "- nach dem Produkthaftungsgesetz (ProdHaftG) und soweit eine Haftung sonst gesetzlich zwingend vorgeschrieben ist.",
+        "Bei leichter Fahrlässigkeit haften wir nur bei Verletzung einer wesentlichen Vertragspflicht (Kardinalpflicht), also einer Pflicht, deren Erfüllung die ordnungsgemäße Durchführung des Vertrags überhaupt erst ermöglicht und auf deren Einhaltung Sie regelmäßig vertrauen dürfen. In diesem Fall ist unsere Haftung auf den vorhersehbaren, vertragstypischen Schaden begrenzt.",
+        "Im Übrigen ist unsere Haftung ausgeschlossen, soweit das Gesetz dies zulässt.",
+        "Screening-Ergebnisse sind eine erste Einschätzung. Wenn Sie sich bei Investitions- oder Planungsentscheidungen auf sie stützen, liegen Folgeschäden aus diesem Vertrauen in Ihrer Verantwortung, vorbehaltlich der oben genannten Fälle unbeschränkter Haftung.",
+        "Diese Regeln gelten auch zugunsten der Personen, die wir zur Erfüllung unserer Pflichten einsetzen."
+      ]
+    },
+    {
+      "id": "successors",
+      "heading": "Übertragung auf einen Nachfolger",
+      "body": [
+        "Wir können den Dienst, diese Bedingungen einschließlich unseres Vertrags mit Ihnen sowie das Repository auf ein von uns gegründetes Unternehmen oder einen anderen Nachfolger übertragen. Wir kündigen die Übertragung mindestens 30 Tage vor ihrem Wirksamwerden auf der Website an. Wenn Sie nicht mit dem Nachfolger weitermachen möchten, können Sie die Nutzung des Dienstes vorher beenden.",
+        "Ihre Projekte werden nicht übertragen, weil sie in Ihrem Browser bleiben. Bereits unter der {{license.name}} erteilte Lizenzen bleiben bestehen."
+      ]
+    },
+    {
+      "id": "changes",
+      "heading": "Änderungen dieser Bedingungen",
+      "body": [
+        "Wir können diese Bedingungen ändern, etwa wenn der Dienst neue Funktionen wie die KI-Funktionen erhält, wenn sich die Rechtslage ändert oder wenn der Dienst auf einen Nachfolger übergeht. Auf dieser Seite steht immer die aktuelle Fassung mit Datum und Versionsnummer.",
+        "Wesentliche Änderungen kündigen wir vor ihrem Inkrafttreten auf der Website an. Ab dann gelten die geänderten Bedingungen für Ihre Nutzung des Dienstes. Wenn Sie nicht einverstanden sind, können Sie die Nutzung des Dienstes beenden.",
+        "Die wesentlichen Pflichten eines Vertrags mit Verbrauchern, also die Hauptleistungspflichten von Ihnen und uns, ändern wir nicht einseitig."
+      ]
+    },
+    {
+      "id": "governing-law",
+      "heading": "Anwendbares Recht und Gerichtsstand",
+      "body": [
+        "Für diese Bedingungen und den Nutzungsvertrag gilt das Recht der Bundesrepublik Deutschland unter Ausschluss des UN-Kaufrechts (CISG).",
+        "Sind Sie Verbraucher, nutzen Sie den Dienst also zu Zwecken, die überwiegend weder Ihrer gewerblichen noch Ihrer selbständigen beruflichen Tätigkeit zugerechnet werden können, entzieht Ihnen diese Rechtswahl nicht den Schutz der zwingenden Verbraucherschutzvorschriften des Staates, in dem Sie Ihren gewöhnlichen Aufenthalt haben (Art. 6 Rom-I-Verordnung, Verordnung (EG) Nr. 593/2008).",
+        "Sind Sie Kaufmann, juristische Person des öffentlichen Rechts oder öffentlich-rechtliches Sondervermögen, ist ausschließlicher Gerichtsstand für alle Streitigkeiten aus oder im Zusammenhang mit diesen Bedingungen Hamburg (§ 38 ZPO). Für Verbraucher gelten die gesetzlichen Gerichtsstände."
+      ]
+    },
+    {
+      "id": "severability",
+      "heading": "Teilunwirksamkeit und Sprachfassungen",
+      "body": [
+        "Ist oder wird eine Bestimmung dieser Bedingungen unwirksam oder undurchführbar, bleiben die übrigen Bestimmungen wirksam. An die Stelle der unwirksamen Bestimmung treten die gesetzlichen Vorschriften.",
+        "Diese Bedingungen liegen auf Englisch und Deutsch vor. Maßgeblich ist die englische Fassung; die deutsche Fassung ist eine Übersetzung. Weichen die Fassungen voneinander ab, geht die englische Fassung vor."
+      ]
+    },
+    {
+      "id": "contact",
+      "heading": "Kontakt",
+      "body": [
+        "Fragen zu diesen Bedingungen, Erklärungen und rechtliche Anliegen: [{{operator.emailHuman}}](mailto:{{operator.emailHuman}}). Dieses Postfach wird von einem Menschen gelesen.",
+        "[{{operator.emailAgent}}](mailto:{{operator.emailAgent}}) wird von einem KI-System beantwortet. Die Antworten können falsch sein und sind keine rechtsverbindlichen Erklärungen. Rechtliche und datenschutzbezogene Anliegen sowie Anfragen zu Ihren Rechten senden Sie bitte nur an {{operator.emailHuman}}.",
+        "Weitere Kontaktangaben finden Sie im [Impressum](/imprint)."
+      ]
+    }
+  ]
+}

@@ -4,6 +4,7 @@ import "@fontsource/instrument-serif/400-italic.css"
 import "@fontsource/ibm-plex-mono/latin-400.css"
 import "../../globals.css"
 
+import { CookieNotice } from "@/components/cookie-notice/cookie-notice"
 import { getDictionary } from "@/lib/i18n/get-dictionary"
 import { localeParams } from "@/lib/i18n/locales"
 import { requireLocale } from "@/lib/i18n/require-locale"
@@ -27,10 +28,14 @@ export function generateStaticParams() {
 /** Root layout of the landing page: always dark (D-16), no theme script. */
 export default async function WebsiteLayout({ children, params }: LayoutProps<"/[lang]">) {
   const lang = requireLocale((await params).lang)
+  const legal = await getDictionary(lang, "legal")
 
   return (
     <html lang={lang} data-theme="dark" data-scroll-behavior="smooth">
-      <body>{children}</body>
+      <body>
+        {children}
+        <CookieNotice lang={lang} copy={legal.cookieNotice} />
+      </body>
     </html>
   )
 }

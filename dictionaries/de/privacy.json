@@ -1,0 +1,192 @@
+{
+  "meta": {
+    "title": "Datenschutzerklärung",
+    "description": "Wie First Move mit personenbezogenen Daten umgeht: Ihre Projekte bleiben in Ihrem Browser, es gibt kein Tracking, und nur unser Webhoster und unser E-Mail-Anbieter verarbeiten die Daten, die für den Betrieb der Website und für unsere Antworten nötig sind."
+  },
+  "title": "Datenschutzerklärung",
+  "intro": "Diese Datenschutzerklärung erläutert, welche personenbezogenen Daten verarbeitet werden, wenn Sie First Move unter {{site.domain}} nutzen oder uns schreiben, zu welchen Zwecken und auf welcher Rechtsgrundlage dies geschieht und welche Rechte Sie haben. Sie enthält die Informationen nach Art. 13 und 14 der Datenschutz-Grundverordnung (DSGVO, Verordnung (EU) 2016/679). Personenbezogene Daten sind alle Informationen, die sich auf eine identifizierte oder identifizierbare Person beziehen (Art. 4 Nr. 1 DSGVO).",
+  "updated": "2026-10-24",
+  "version": "1.0",
+  "sections": [
+    {
+      "id": "summary",
+      "heading": "Zusammenfassung",
+      "body": [
+        "First Move ist so gebaut, dass Ihre Arbeit Ihr Gerät nicht verlässt. Kurz gesagt:",
+        "- **Ihre Projekte bleiben in Ihrem Browser.** Es gibt keine Konten, keine Passwörter und keine Projektdatenbanken auf einem Server. Wir erhalten Ihre Projekte nie und können sie daher weder lesen noch weitergeben oder wiederherstellen.",
+        "- **Kein Tracking.** Es gibt keine Analyse, keine Werbung, keine Social-Media-Widgets und keine Skripte, Schriften, Karten oder eingebetteten Inhalte von Dritten.",
+        "- **Unser Webhoster** verarbeitet die technischen Daten, die bei jedem Website-Besuch anfallen, etwa Ihre IP-Adresse, um die Website auszuliefern und sicher zu betreiben.",
+        "- **Wenn Sie uns schreiben**, verarbeiten wir Ihre E-Mail, um sie zu beantworten. Nachrichten an `{{operator.emailAgent}}` beantwortet ein KI-System.",
+        "- **KI-Funktionen** sind, sobald sie verfügbar sind, freiwillig. Ihr Browser kommuniziert dann direkt mit dem KI-Anbieter, den Sie gewählt haben, und nutzt dabei Ihren eigenen Schlüssel. Wir erhalten weder die Inhalte noch den Schlüssel.",
+        "- **Ihre Rechte** finden Sie unter [Ihre Rechte](#rights). Um sie auszuüben, schreiben Sie an [{{operator.emailHuman}}](mailto:{{operator.emailHuman}}).",
+        "Sie sind weder gesetzlich noch vertraglich verpflichtet, personenbezogene Daten bereitzustellen. Ohne die technischen Daten einer Anfrage kann Ihr Browser die Website jedoch nicht laden, und ohne Ihre E-Mail-Adresse können wir Ihnen nicht antworten."
+      ]
+    },
+    {
+      "id": "controller",
+      "heading": "Verantwortlicher",
+      "body": [
+        "Verantwortlicher für die Verarbeitung personenbezogener Daten im Zusammenhang mit First Move (Art. 4 Nr. 7 DSGVO) ist:",
+        "- {{operator.name}}, eine natürliche Person, die den Dienst unter dem Namen {{operator.tradeName}} betreibt",
+        "- Postanschrift: {{operator.postBox}}, {{operator.postcode}} {{operator.city}}",
+        "- E-Mail: [{{operator.emailHuman}}](mailto:{{operator.emailHuman}}) (wird von einem Menschen gelesen)",
+        "Wir haben keinen Datenschutzbeauftragten benannt, da hierzu keine Pflicht besteht.",
+        "Bitte richten Sie Datenschutzfragen und Anfragen zu Ihren Rechten ausschließlich an {{operator.emailHuman}}. Die Adresse {{operator.emailAgent}} wird von einem KI-System beantwortet und ist für diese Anfragen nicht vorgesehen (siehe [E-Mail](#email))."
+      ]
+    },
+    {
+      "id": "hosting",
+      "heading": "Besuch der Website (Hosting)",
+      "body": [
+        "First Move wird von {{hosting.name}} ({{hosting.country}}, [{{hosting.url}}]({{hosting.url}})) ausgeliefert. Wenn Sie eine Seite öffnen, sendet Ihr Browser wie bei jeder Website eine Anfrage an die Server des Hosters. Wie jeder Webhoster verarbeitet der Anbieter dabei folgende Daten in seinen Server-Logs:",
+        "- Ihre IP-Adresse;",
+        "- Datum und Uhrzeit der Anfrage;",
+        "- die aufgerufene Adresse (URL);",
+        "- Angaben zu Ihrem Browser und Gerät (User-Agent);",
+        "- den Antwortstatus, zum Beispiel ob die Seite ausgeliefert wurde.",
+        "**Zweck**: die Website an Sie auszuliefern und sie sicher zu betreiben.",
+        "**Sprache**: Wenn Sie die Website ohne Sprachwahl öffnen, liest sie die von Ihrem Browser bevorzugte Sprache (den `Accept-Language`-Header) und leitet Sie zur englischen oder deutschen Fassung weiter. Das Cookie `NEXT_LOCALE` merkt sich danach die Sprache (en oder de) und wird bei späteren Anfragen mitgesendet. Es enthält keine personenbezogenen Daten. Einzelheiten finden Sie in der [Cookie-Richtlinie](/cookies).",
+        "Alle Dateien, die die Website benötigt, einschließlich der Schriften, stammen von derselben Website. Beim Laden einer Seite wird kein anderer Server kontaktiert.",
+        "**Rechtsgrundlage**: Art. 6 Abs. 1 lit. f DSGVO. Unser berechtigtes Interesse besteht darin, die Website zuverlässig und sicher bereitzustellen.",
+        "**Empfänger**: {{hosting.name}} verarbeitet diese Daten in unserem Auftrag als Auftragsverarbeiter (Art. 28 DSGVO).",
+        "**Übermittlung außerhalb der EU**: Der Anbieter hat seinen Sitz in den {{hosting.country}}. Die Übermittlung stützt sich auf die Zertifizierung des Anbieters nach dem EU-US-Datenschutzrahmen (EU-U.S. Data Privacy Framework), für den die Europäische Kommission am 10. Juli 2023 einen Angemessenheitsbeschluss erlassen hat (Art. 45 DSGVO).",
+        "**Speicherdauer**: Die Log-Daten werden so lange gespeichert, wie es für diese Zwecke erforderlich ist, und nicht mit anderen Daten zusammengeführt."
+      ]
+    },
+    {
+      "id": "local-storage",
+      "heading": "Ihre Projekte im Browser",
+      "body": [
+        "Ihre Projekte, Einstellungen und Auswahlen werden ausschließlich in Ihrem eigenen Browser gespeichert: in dessen IndexedDB-Datenbank, im Local Storage und im Session Storage. Nichts davon wird an uns oder an den Hoster gesendet. Wir erhalten, sehen oder speichern Ihre Projekte nie, und es gibt keine Konten und keine Datenbanken auf einem Server. Die [Cookie-Richtlinie](/cookies) führt jedes Cookie und jeden Speichereintrag mit Namen auf.",
+        "- **Export**: Sie können ein Projekt als Datei `.firstmove.json` exportieren. Die Datei enthält Ihre Eingaben, wird in Ihrem Browser erstellt und dort gespeichert, wo Sie es wählen.",
+        "- **Import**: Eine Datei, die Sie importieren, wird in Ihrem Browser gelesen und geprüft. Sie wird nicht hochgeladen.",
+        "- **Verknüpfte Datei**: In Chromium-basierten Browsern können Sie ein Projekt optional mit einer Datei auf Ihrem eigenen Datenträger verknüpfen (File System Access API). Dabei wird nichts hochgeladen.",
+        "- **Dauerhafter Speicher**: Die App bittet Ihren Browser, seinen Speicher dauerhaft zu erhalten, damit der Browser Ihre Projekte seltener von sich aus entfernt.",
+        "**Rechtsgrundlage**: Das Speichern und Auslesen dieser Informationen auf Ihrem Gerät ist unbedingt erforderlich, um den von Ihnen ausdrücklich gewünschten Dienst bereitzustellen (§ 25 Abs. 2 Nr. 2 TDDDG; Art. 5 Abs. 3 ePrivacy-Richtlinie 2002/58/EG). Eine Einwilligung ist daher nicht erforderlich. Soweit die gespeicherten Daten personenbezogen sind, ist die Rechtsgrundlage Art. 6 Abs. 1 lit. b DSGVO (Bereitstellung der App, die Sie nutzen) und Art. 6 Abs. 1 lit. f DSGVO (unser berechtigtes Interesse an einer App, die Ihre Arbeit auf Ihrem eigenen Gerät hält).",
+        "**Speicherdauer**: Die Daten bleiben in Ihrem Browser, bis Sie sie löschen. Wenn Sie die Browserdaten dieser Website löschen, werden Ihre Projekte gelöscht. Wir können sie nicht wiederherstellen, weil wir sie nie hatten. Exportieren Sie Ihre Projekte, um eine Kopie zu behalten.",
+        "Wenn Sie in einem Projekt personenbezogene Daten anderer Personen eingeben, etwa Namen von Ansprechpersonen, entscheiden Sie, was gespeichert wird, und benötigen dafür eine Rechtsgrundlage. Auch diese Daten bleiben auf Ihrem Gerät."
+      ]
+    },
+    {
+      "id": "email",
+      "heading": "E-Mail",
+      "body": [
+        "Sie können uns unter zwei Adressen schreiben:",
+        "- [{{operator.emailHuman}}](mailto:{{operator.emailHuman}}) wird von einem Menschen gelesen. Nutzen Sie diese Adresse für Datenschutzfragen, Anfragen zu Ihren Rechten und rechtliche Anliegen.",
+        "- [{{operator.emailAgent}}](mailto:{{operator.emailAgent}}) wird von einem KI-System beantwortet.",
+        "> Antworten von {{operator.emailAgent}} verfasst ein KI-System. Sie können fehlerhaft sein und sind keine rechtsverbindlichen Erklärungen. Senden Sie Datenschutzanfragen und Anfragen zu Ihren Rechten ausschließlich an {{operator.emailHuman}}.",
+        "**Was wir verarbeiten**: Ihre E-Mail-Adresse, Ihren Namen, falls Sie ihn angeben, den Inhalt Ihrer Nachricht und alles, was Sie ihr beifügen, sowie den Zeitpunkt des Versands.",
+        "**Zweck und Rechtsgrundlage**: Ihre Nachricht zu lesen und zu beantworten. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO, unser berechtigtes Interesse an der Beantwortung von Nachrichten, die an uns gerichtet sind, sowie Art. 6 Abs. 1 lit. b DSGVO, soweit Ihre Nachricht Ihre Nutzung von First Move nach unseren [Nutzungsbedingungen](/terms) betrifft.",
+        "**E-Mail-Anbieter**: E-Mails an und von beiden Adressen werden über {{mail.name}} ([{{mail.url}}]({{mail.url}})) gesendet und empfangen, und zwar über dessen Serverregion „{{mail.region}}“. Der Anbieter verarbeitet sie in unserem Auftrag als Auftragsverarbeiter (Art. 28 DSGVO). Da es sich um ein Unternehmen mit Sitz in den {{mail.country}} handelt, lässt sich ein Zugriff von außerhalb der EU nicht vollständig ausschließen. Diese Übermittlung stützt sich auf die EU-Standardvertragsklauseln (Art. 46 Abs. 2 lit. c DSGVO).",
+        "**KI-beantwortetes Postfach**: Nachrichten an {{operator.emailAgent}} werden zusätzlich von einem KI-Dienstleister verarbeitet, der den Text der Nachricht verarbeitet, um die Antwort vorzubereiten. Antworten von dieser Adresse verfasst ein KI-System, und Sie werden darauf hingewiesen (Art. 50 Abs. 1 KI-Verordnung, Verordnung (EU) 2024/1689). Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO: unser berechtigtes Interesse, allgemeine Anfragen zügig zu beantworten. Wenn Sie nicht möchten, dass Ihre Nachricht von einem KI-Dienst verarbeitet wird, schreiben Sie stattdessen an {{operator.emailHuman}}.",
+        "**Speicherdauer**: Wir bewahren E-Mails so lange auf, wie es zur Bearbeitung Ihrer Anfrage erforderlich ist, und löschen sie danach, sofern keine gesetzlichen Aufbewahrungspflichten bestehen."
+      ]
+    },
+    {
+      "id": "ai-features",
+      "heading": "KI-Funktionen in der App",
+      "body": [
+        "First Move plant zwei optionale KI-Funktionen: Fragen zu Ihren Projektdaten beantworten und von Ihnen bereitgestellte Dokumente (zum Beispiel PDFs) lesen, um Werte für die Felder eines Projekts vorzuschlagen. Die Seite [KI-Transparenz](/ai) zeigt, ob sie heute verfügbar sind und welche Anbieter Sie wählen können.",
+        "Sobald die KI-Funktionen verfügbar sind, funktionieren sie so:",
+        "- **Aus, bis Sie sie einrichten**: An einen KI-Anbieter wird nichts gesendet, bis Sie eine Funktion einrichten und nutzen.",
+        "- **Ihr eigener Schlüssel**: Ihr Browser sendet Ihre Anfrage direkt an den KI-Anbieter, den Sie gewählt haben, mit Ihrem eigenen API-Schlüssel. Wir betreiben keinen KI-Server.",
+        "- **Wir erhalten nichts**: Wir erhalten weder die Inhalte, die Sie senden, noch Ihren Schlüssel und sind für diese Daten kein Auftragsverarbeiter. Der Anbieter ist eine eigenständige Stelle; für das, was Sie senden, gelten seine eigenen Bedingungen und seine Datenschutzerklärung. Wie jeder Server, mit dem sich Ihr Browser verbindet, sieht auch der Anbieter Ihre IP-Adresse.",
+        "- **Ihr Schlüssel bleibt bei Ihnen**: Der Schlüssel wird nur in Ihrem Browser aufbewahrt. Sie können ihn jederzeit in der App entfernen.",
+        "- **Sie entscheiden, was gesendet wird**: Der Anbieter erhält nur die Fragen, Projektdaten und Dokumente, die Sie senden möchten. Senden Sie keine personenbezogenen Daten anderer Personen und keine vertraulichen Dokumente, sofern Sie dazu nicht berechtigt sind.",
+        "- **Sie bestätigen jeden Wert**: Die KI schlägt Werte nur vor. Nichts wird in ein Projekt übernommen, bevor Sie es bestätigen.",
+        "Ihren Schlüssel und Ihre Einstellungen für diese Funktionen auf Ihrem Gerät zu speichern, ist für eine Funktion, die Sie ausdrücklich einrichten, unbedingt erforderlich (§ 25 Abs. 2 Nr. 2 TDDDG). Die Seite [KI-Transparenz](/ai) erklärt ausführlich, wie die Funktionen arbeiten und was Sie prüfen sollten."
+      ]
+    },
+    {
+      "id": "external-links",
+      "heading": "Links zu anderen Websites und GitHub",
+      "body": [
+        "First Move enthält wenige Links zu anderen Websites: Die Hinweise im Business Plan verlinken auf geothermie-oesterreich.at, und die Fußzeile verlinkt auf den Quellcode bei GitHub. Von diesen Websites wird nichts geladen, bevor Sie einem Link folgen. Wenn Sie das tun, verbindet sich Ihr Browser mit der jeweiligen Website, und es gilt deren eigene Datenschutzerklärung.",
+        "Die Website sendet `Referrer-Policy: no-referrer`. Eine verlinkte Website erfährt daher nicht, von welcher Seite von First Move Sie kommen.",
+        "Der Quellcode ist unter [{{repo.url}}]({{repo.url}}) veröffentlicht. Wenn Sie dort ein Issue eröffnen, kommentieren oder einen Pull Request einreichen, verarbeitet GitHub Ihre Daten nach eigenen Bedingungen, und was Sie dort veröffentlichen, ist öffentlich. Wir lesen und nutzen Ihre Beiträge dort, um Ihr Feedback oder Ihren Beitrag zu bearbeiten (Art. 6 Abs. 1 lit. f DSGVO)."
+      ]
+    },
+    {
+      "id": "recipients",
+      "heading": "Empfänger und Übermittlungen",
+      "body": [
+        "Wir geben personenbezogene Daten nur an die folgenden Empfänger weiter und nur so, wie auf dieser Seite beschrieben. Wir verkaufen keine personenbezogenen Daten und nutzen sie nicht für Werbung.",
+        "| Empfänger | Zweck | Standort und Garantie |",
+        "|---|---|---|",
+        "| {{hosting.name}}, Webhosting | Liefert die Website aus und verarbeitet Server-Log-Daten ([Hosting](#hosting)) | {{hosting.country}}; EU-US-Datenschutzrahmen, Angemessenheitsbeschluss vom 10. Juli 2023 (Art. 45 DSGVO) |",
+        "| {{mail.name}}, E-Mail | Sendet und empfängt E-Mails für beide Adressen ([E-Mail](#email)) | Unternehmen in den {{mail.country}}, Serverregion „{{mail.region}}“; EU-Standardvertragsklauseln (Art. 46 Abs. 2 lit. c DSGVO) |",
+        "| Ein KI-Dienstleister für {{operator.emailAgent}} | Verarbeitet den Text von Nachrichten an diese Adresse, um die Antwort vorzubereiten | Wird auf dieser Seite benannt; eine Übermittlung außerhalb der EU erfolgt nur mit einer Garantie nach Art. 44 bis 46 DSGVO |",
+        "| Der KI-Anbieter Ihrer Wahl (geplant) | Beantwortet Ihre Fragen und schlägt Werte vor, nur wenn Sie die KI-Funktionen nutzen ([KI-Funktionen](#ai-features)) | Von Ihnen gewählt; Ihr Browser kontaktiert ihn direkt nach dessen eigenen Bedingungen; wir senden ihm nichts |"
+      ]
+    },
+    {
+      "id": "retention",
+      "heading": "Speicherdauer",
+      "body": [
+        "Wir speichern personenbezogene Daten nur so lange, wie wir sie benötigen:",
+        "- **Server-Logs**: so lange, wie es zur Auslieferung und Absicherung der Website erforderlich ist, und ohne Zusammenführung mit anderen Daten.",
+        "- **E-Mails**: so lange, wie es zur Bearbeitung Ihrer Anfrage erforderlich ist, danach werden sie gelöscht, sofern keine gesetzlichen Aufbewahrungspflichten bestehen.",
+        "- **Projekte und Einstellungen in Ihrem Browser**: Sie bleiben, bis Sie sie löschen. Wir haben keine Kopie.",
+        "- **Exportierte Dateien**: Sie bleiben dort, wo Sie sie gespeichert haben, unter Ihrer Kontrolle.",
+        "- **KI-Funktionen**: Was Sie an einen KI-Anbieter senden, wird nach dessen Bedingungen gespeichert."
+      ]
+    },
+    {
+      "id": "rights",
+      "heading": "Ihre Rechte",
+      "body": [
+        "Nach der DSGVO haben Sie in Bezug auf Ihre personenbezogenen Daten folgende Rechte:",
+        "- **Auskunft** (Art. 15): zu erfahren, ob wir Daten über Sie verarbeiten, und eine Kopie davon zu erhalten.",
+        "- **Berichtigung** (Art. 16): unrichtige Daten berichtigen zu lassen.",
+        "- **Löschung** (Art. 17): Ihre Daten löschen zu lassen, soweit wir sie nicht weiter aufbewahren müssen.",
+        "- **Einschränkung der Verarbeitung** (Art. 18): die Verarbeitung einschränken zu lassen, etwa während die Richtigkeit der Daten geprüft wird.",
+        "- **Datenübertragbarkeit** (Art. 20): Daten, die Sie uns bereitgestellt haben, in einem gängigen, maschinenlesbaren Format zu erhalten.",
+        "- **Widerspruch** (Art. 21): einer Verarbeitung auf Grundlage unserer berechtigten Interessen zu widersprechen, wie im Hinweis unten erläutert.",
+        "- **Widerruf einer Einwilligung** (Art. 7 Abs. 3): eine Einwilligung (Art. 6 Abs. 1 lit. a), auf der eine Verarbeitung beruht, jederzeit mit Wirkung für die Zukunft zu widerrufen. Die Verarbeitung bis zum Widerruf bleibt rechtmäßig. Keine der auf dieser Seite beschriebenen Verarbeitungen beruht derzeit auf einer Einwilligung.",
+        "> **Widerspruchsrecht**: Soweit wir Ihre Daten auf Grundlage unserer berechtigten Interessen verarbeiten (Art. 6 Abs. 1 lit. f DSGVO), können Sie jederzeit aus Gründen, die sich aus Ihrer besonderen Situation ergeben, widersprechen (Art. 21 DSGVO). Wir beenden die Verarbeitung dann, es sei denn, wir können zwingende schutzwürdige Gründe nachweisen, die Ihre Interessen, Rechte und Freiheiten überwiegen, oder die Verarbeitung dient der Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen.",
+        "Um ein Recht auszuüben, schreiben Sie an [{{operator.emailHuman}}](mailto:{{operator.emailHuman}}). Nutzen Sie dafür nicht {{operator.emailAgent}}. Wir antworten unverzüglich, spätestens innerhalb eines Monats (Art. 12 Abs. 3 DSGVO).",
+        "Ihre Projekte erreichen uns nie. Daher können wir sie für Sie weder einsehen noch berichtigen oder löschen. Sie verwalten sie selbst in Ihrem Browser: Sie können sie in der App ändern oder löschen, als Datei exportieren oder die Daten der Website löschen.",
+        "**Beschwerde**: Sie haben das Recht, sich bei einer Aufsichtsbehörde zu beschweren (Art. 77 DSGVO). Die für uns zuständige Aufsichtsbehörde ist: {{authority.name}}, {{authority.address}}, [{{authority.url}}]({{authority.url}}). Sie können sich auch an die Aufsichtsbehörde an Ihrem gewöhnlichen Aufenthaltsort, an Ihrem Arbeitsplatz oder am Ort des mutmaßlichen Verstoßes wenden."
+      ]
+    },
+    {
+      "id": "automated-decisions",
+      "heading": "Keine automatisierten Entscheidungen",
+      "body": [
+        "Wir treffen keine ausschließlich auf einer automatisierten Verarbeitung, einschließlich Profiling, beruhenden Entscheidungen, die Ihnen gegenüber rechtliche Wirkung entfalten oder Sie in ähnlicher Weise erheblich beeinträchtigen (Art. 22 DSGVO).",
+        "- Ergebnisse von Quick Check und Business Plan sind Berechnungen aus veröffentlichten Gleichungen und Standardwerten, die Ihnen als erste Einschätzung angezeigt werden. Sie sind keine Entscheidungen über Sie.",
+        "- Antworten von {{operator.emailAgent}} verfasst ein KI-System. Sie beantworten Ihre Nachricht und sind keine Entscheidungen über Sie.",
+        "- Sobald die KI-Funktionen verfügbar sind, schlagen sie Werte nur vor. Sie entscheiden, was Sie übernehmen."
+      ]
+    },
+    {
+      "id": "security",
+      "heading": "Sicherheit",
+      "body": [
+        "First Move ist darauf ausgelegt, dass möglichst wenige Daten Ihr Gerät verlassen:",
+        "- Der Hoster liefert die Website über eine verschlüsselte Verbindung (HTTPS) aus.",
+        "- Ihre Projekte werden nur auf Ihrem Gerät gespeichert, nicht auf einem Server.",
+        "- Eine Content-Security-Policy beschränkt die Verbindungen, die die Seite aufbauen darf, auf die Website selbst.",
+        "- Die Website lädt keine Skripte, Schriften oder eingebetteten Inhalte von Dritten.",
+        "- Die Website sendet `Referrer-Policy: no-referrer`, sodass andere Websites nicht erfahren, von welcher Seite Sie kommen.",
+        "Ihre Projekte sind nur so sicher wie Ihr Gerät. Wer Zugriff auf Ihr Browserprofil hat, kann sie öffnen. Schützen Sie Ihr Gerät, und bewahren Sie exportierte Dateien so sorgfältig auf wie Ihre anderen Arbeitsdateien."
+      ]
+    },
+    {
+      "id": "children",
+      "heading": "Kinder",
+      "body": [
+        "First Move ist ein Screening-Werkzeug für Energieprojekte und richtet sich nicht an Kinder. Wenn Sie jünger als 16 Jahre sind, nutzen Sie First Move nur mit Einwilligung eines Elternteils oder einer erziehungsberechtigten Person."
+      ]
+    },
+    {
+      "id": "changes",
+      "heading": "Änderungen dieser Datenschutzerklärung",
+      "body": [
+        "Wir aktualisieren diese Datenschutzerklärung, wenn sich First Move oder die Rechtslage ändert, zum Beispiel wenn die KI-Funktionen verfügbar werden oder ein Dienstleister wechselt. Datum und Version oben auf dieser Seite zeigen, welche Fassung gilt.",
+        "Überträgt der Betreiber den Dienst auf ein Unternehmen oder einen anderen Nachfolger, wird dieser Nachfolger Verantwortlicher. Wir kündigen eine solche Änderung mindestens 30 Tage vor ihrem Wirksamwerden auf der Website an, wie in den [Nutzungsbedingungen](/terms) festgelegt.",
+        "Fragen zu dieser Datenschutzerklärung: [{{operator.emailHuman}}](mailto:{{operator.emailHuman}})."
+      ]
+    }
+  ]
+}

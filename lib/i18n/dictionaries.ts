@@ -15,6 +15,13 @@ export const AREAS = [
   "business-plan",
   "assumptions",
   "calc",
+  "legal",
+  "terms",
+  "privacy",
+  "cookies",
+  "imprint",
+  "ai",
+  "license",
 ] as const
 
 export type Area = (typeof AREAS)[number]
@@ -31,6 +38,13 @@ const en = {
   "business-plan": () => import("@/dictionaries/en/business-plan.json").then((m) => m.default),
   assumptions: () => import("@/dictionaries/en/assumptions.json").then((m) => m.default),
   calc: () => import("@/dictionaries/en/calc.json").then((m) => m.default),
+  legal: () => import("@/dictionaries/en/legal.json").then((m) => m.default),
+  terms: () => import("@/dictionaries/en/terms.json").then((m) => m.default),
+  privacy: () => import("@/dictionaries/en/privacy.json").then((m) => m.default),
+  cookies: () => import("@/dictionaries/en/cookies.json").then((m) => m.default),
+  imprint: () => import("@/dictionaries/en/imprint.json").then((m) => m.default),
+  ai: () => import("@/dictionaries/en/ai.json").then((m) => m.default),
+  license: () => import("@/dictionaries/en/license.json").then((m) => m.default),
 }
 
 const de: Record<Area, Loader> = {
@@ -43,6 +57,13 @@ const de: Record<Area, Loader> = {
   "business-plan": () => import("@/dictionaries/de/business-plan.json").then((m) => m.default),
   assumptions: () => import("@/dictionaries/de/assumptions.json").then((m) => m.default),
   calc: () => import("@/dictionaries/de/calc.json").then((m) => m.default),
+  legal: () => import("@/dictionaries/de/legal.json").then((m) => m.default),
+  terms: () => import("@/dictionaries/de/terms.json").then((m) => m.default),
+  privacy: () => import("@/dictionaries/de/privacy.json").then((m) => m.default),
+  cookies: () => import("@/dictionaries/de/cookies.json").then((m) => m.default),
+  imprint: () => import("@/dictionaries/de/imprint.json").then((m) => m.default),
+  ai: () => import("@/dictionaries/de/ai.json").then((m) => m.default),
+  license: () => import("@/dictionaries/de/license.json").then((m) => m.default),
 }
 
 /** The typed shape of one area, taken from the EN file. */

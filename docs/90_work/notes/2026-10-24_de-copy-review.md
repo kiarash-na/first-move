@@ -17,21 +17,33 @@ Things to check in the translation pass, not just the keys:
 - Business Plan presets (`business-plan.presets.*`) are written **into the project** in the UI language when a use case is picked, so they are data as well as copy.
 - Equation texts (`calc.*`) explain the formulas of `docs/10_quick-check-tool`; keep the equation IDs (`EQ-3.4a`) unchanged.
 - German exists for only a few keys of `common`, `landing`, `shell`, `start` and `calc` (language and theme labels, the 404 page, the landing header and closing links, and the page title); every other key is still English.
+- The legal areas (`legal`, `terms`, `privacy`, `cookies`, `imprint`, `ai`, `license`) have a complete German draft (D-44). It is **not legally reviewed**: they are not part of this to-do list, but they need the owner's or a lawyer's review before launch (see the phase 12 note).
 
 ## Summary
 
 | Area | Keys in EN | Missing in DE | DE coverage |
 |---|---:|---:|---:|
+| [ai](#ai) | 9 | 0 | 100 % |
 | [assumptions](#assumptions) | 87 | 87 | 0 % |
 | [business-plan](#business-plan) | 286 | 286 | 0 % |
 | [calc](#calc) | 68 | 67 | 1 % |
 | [common](#common) | 20 | 9 | 55 % |
-| [landing](#landing) | 204 | 188 | 8 % |
+| [cookies](#cookies) | 7 | 0 | 100 % |
+| [imprint](#imprint) | 7 | 0 | 100 % |
+| [landing](#landing) | 212 | 188 | 11 % |
+| [legal](#legal) | 27 | 0 | 100 % |
+| [license](#license) | 7 | 0 | 100 % |
 | [overview](#overview) | 116 | 116 | 0 % |
+| [privacy](#privacy) | 7 | 0 | 100 % |
 | [quick-check](#quick-check) | 274 | 274 | 0 % |
 | [shell](#shell) | 162 | 158 | 2 % |
 | [start](#start) | 50 | 49 | 2 % |
-| **All** | **1267** | **1234** | **3 %** |
+| [terms](#terms) | 7 | 0 | 100 % |
+| **All** | **1346** | **1234** | **8 %** |
+
+## ai
+
+Complete: German provides every key.
 
 ## assumptions
 
@@ -753,9 +765,17 @@ Things to check in the translation pass, not just the keys:
 - `docs.title`
 - `docs.body`
 
+## cookies
+
+Complete: German provides every key.
+
+## imprint
+
+Complete: German provides every key.
+
 ## landing
 
-188 of 204 keys missing (`dictionaries/de/landing.json`).
+188 of 212 keys missing (`dictionaries/de/landing.json`).
 
 **`header`** (3)
 
@@ -996,6 +1016,14 @@ Things to check in the translation pass, not just the keys:
 - `closing.footer.nav`
 - `closing.footer.quickCheck`
 
+## legal
+
+Complete: German provides every key.
+
+## license
+
+Complete: German provides every key.
+
 ## overview
 
 116 of 116 keys missing (`dictionaries/de/overview.json`).
@@ -1175,6 +1203,10 @@ Things to check in the translation pass, not just the keys:
 **`bp`** (1)
 
 - `bp.open`
+
+## privacy
+
+Complete: German provides every key.
 
 ## quick-check
 
@@ -1968,3 +2000,7 @@ Things to check in the translation pass, not just the keys:
 - `projects.updated`
 - `projects.actions`
 - `projects.current`
+
+## terms
+
+Complete: German provides every key.

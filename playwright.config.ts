@@ -1,5 +1,7 @@
 import { defineConfig, devices } from "@playwright/test"
 
+import { noticeDismissed } from "./e2e/support/notice"
+
 /**
  * E2E against a production build (Playwright guide). Chromium comes preinstalled
  * (PLAYWRIGHT_BROWSERS_PATH); `@playwright/test` is pinned to match it.
@@ -17,6 +19,8 @@ export default defineConfig({
   use: {
     baseURL,
     trace: "on-first-retry",
+    // The cookie notice starts dismissed, so it never covers what a test clicks (legal.spec.ts opts out).
+    storageState: noticeDismissed(baseURL),
   },
   projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
   webServer: {

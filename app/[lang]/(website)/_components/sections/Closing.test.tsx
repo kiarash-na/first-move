@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen, within } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 import en from '@/dictionaries/en/landing.json'
 import { Closing } from './Closing'
@@ -10,6 +10,17 @@ describe('landing Closing', () => {
     expect(screen.getByRole('link', { name: en.closing.footer.quickCheck })).toHaveAttribute('href', '/de/dashboard')
     expect(screen.getByRole('link', { name: en.closing.footer.businessModels })).toHaveAttribute('href', '/de/dashboard')
     expect(screen.getByRole('link', { name: en.closing.getStarted.secondary })).toHaveAttribute('href', '#business-use-cases')
+  })
+
+  it('links the six legal pages and the source code from the footer, localized', () => {
+    render(<Closing t={en} lang="de" />)
+    const nav = screen.getByRole('navigation', { name: en.closing.footer.legal.nav })
+    const hrefs = within(nav).getAllByRole('link').map((link) => link.getAttribute('href'))
+    expect(hrefs).toEqual([
+      '/de/terms', '/de/privacy', '/de/cookies', '/de/imprint', '/de/ai', '/de/license',
+      'https://github.com/kiarash-na/first-move',
+    ])
+    expect(within(nav).getByRole('link', { name: en.closing.footer.legal.imprint })).toBeInTheDocument()
   })
 
   it('renders the methodology rows from the dictionary', () => {

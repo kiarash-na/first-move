@@ -1,0 +1,71 @@
+{
+  "meta": {
+    "title": "Imprint",
+    "description": "Who provides First Move: name, postal address, e-mail contact, VAT ID and the person responsible for content, under § 5 DDG."
+  },
+  "title": "Imprint",
+  "intro": "This imprint identifies the provider of First Move at {{site.domain}}, as required by § 5 of the German Digital Services Act (Digitale-Dienste-Gesetz, DDG). It covers the website and the web app.",
+  "updated": "2026-10-24",
+  "version": "1.0",
+  "sections": [
+    {
+      "id": "provider",
+      "heading": "Provider",
+      "body": [
+        "First Move is provided by:",
+        "- **{{operator.name}}**, an individual",
+        "- Trade name: {{operator.tradeName}}",
+        "- Postal address: {{operator.address}}",
+        "{{operator.tradeName}} is a trade name. It is not a registered business name and not a registered trademark. There is no entry in a commercial register."
+      ]
+    },
+    {
+      "id": "contact",
+      "heading": "Contact",
+      "body": [
+        "You can reach us by e-mail at two addresses:",
+        "- [{{operator.emailHuman}}](mailto:{{operator.emailHuman}}): read and answered by a person. Use this address for privacy requests, for any legal request or notice, and for anything sensitive.",
+        "- [{{operator.emailAgent}}](mailto:{{operator.emailAgent}}): answered by an AI system. Do not use this address for privacy or legal requests.",
+        "> Messages to {{operator.emailAgent}} are answered by an AI system, not by a person. Its replies may be wrong and are not legally binding statements. Send privacy and legal requests only to {{operator.emailHuman}}.",
+        "We tell you this so that you know when you are communicating with an AI system (Art. 50(1) of the EU AI Act, Regulation (EU) 2024/1689). How we process e-mails, including the processing of messages to {{operator.emailAgent}} by an AI service provider, is explained in the [Privacy Policy](/privacy)."
+      ]
+    },
+    {
+      "id": "tax",
+      "heading": "VAT identification number",
+      "body": [
+        "VAT identification number under § 27a of the German VAT Act (Umsatzsteuergesetz, UStG): {{operator.vatId}}"
+      ]
+    },
+    {
+      "id": "responsible-content",
+      "heading": "Responsible for content",
+      "body": [
+        "Responsible for content under § 18(2) of the German Interstate Media Treaty (Medienstaatsvertrag, MStV): {{operator.name}}, {{operator.address}}"
+      ]
+    },
+    {
+      "id": "dispute-resolution",
+      "heading": "Consumer dispute resolution",
+      "body": [
+        "We are neither willing nor obliged to take part in dispute resolution proceedings before a consumer arbitration board (§ 36 of the German Consumer Dispute Resolution Act, Verbraucherstreitbeilegungsgesetz, VSBG).",
+        "The EU online dispute resolution platform was discontinued on 20 July 2025."
+      ]
+    },
+    {
+      "id": "liability-links",
+      "heading": "Liability for links",
+      "body": [
+        "First Move links to websites of third parties, for example to its source code on GitHub. The providers of those websites are responsible for their content, and their own terms and privacy policies apply. We have no control over these websites and do not adopt their content as our own. If we learn that a linked page contains unlawful content, we will remove the link."
+      ]
+    },
+    {
+      "id": "copyright",
+      "heading": "Copyright and licence",
+      "body": [
+        "© {{copyright.year}} {{operator.name}}. The code and documentation of First Move are open source under the {{license.name}} ({{license.spdx}}) and published at [{{repo.url}}]({{repo.url}}).",
+        "The Quick Check methodology is derived from the AQC methodology supplied with the 5GDHC hackathon challenge and is published with the permission of its rights holders. Third-party components and fonts are under their own licences. The licence does not grant permission to use the name {{operator.tradeName}} as a product name. The [Open-source licence](/license) page has the details."
+      ]
+    }
+  ]
+}

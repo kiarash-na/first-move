@@ -1,0 +1,125 @@
+{
+  "meta": {
+    "title": "Cookie Policy",
+    "description": "The one cookie and the browser storage First Move uses, why they need no consent, and how to delete or block them."
+  },
+  "title": "Cookie Policy",
+  "intro": "This policy explains which cookie and which other browser storage First Move uses, what each one is for, and how you can delete or block them.",
+  "updated": "2026-10-24",
+  "version": "1.0",
+  "sections": [
+    {
+      "id": "summary",
+      "heading": "Summary",
+      "body": [
+        "This policy covers {{site.domain}}. In short:",
+        "- First Move sets **one cookie**, `NEXT_LOCALE`. It remembers your language and contains no personal data.",
+        "- Your settings and projects are kept in **your browser's storage** (localStorage, sessionStorage and IndexedDB), not on a server. There are no accounts and no server database, so we never receive this data.",
+        "- Everything is first-party, stays on your device and is used only to provide the service you asked for.",
+        "- No analytics, no advertising, no tracking and no third-party cookies.",
+        "- Because all of it is strictly necessary, we do not ask for consent. There is nothing to accept or reject.",
+        "- Clearing your browser data deletes your projects, so export them first ([Delete or block](#manage))."
+      ]
+    },
+    {
+      "id": "what-we-use",
+      "heading": "What we store in your browser",
+      "body": [
+        "The table lists every cookie and storage entry First Move uses. All of them are first-party: they belong to {{site.domain}} and stay in your browser.",
+        "| Name | Type | Purpose | Duration |",
+        "|---|---|---|---|",
+        "| `NEXT_LOCALE` | Cookie (first party, path `/`, `SameSite=Lax`) | Remembers your language (`en` or `de`). Contains no personal data. | 1 year |",
+        "| `first-move:theme` | localStorage | Remembers whether you chose the light or the dark theme. | Until deleted |",
+        "| `first-move:mirror:` followed by the project id | localStorage | A copy of each project, one entry per project, kept as a safeguard next to the database. | Until deleted |",
+        "| `first-move:last-project` | localStorage | Which project you used last, so you can continue where you left off. | Until deleted |",
+        "| `first-move:notice-ack` | localStorage | Records that you dismissed the cookie notice. | Until deleted |",
+        "| `first-move:active-project` | sessionStorage | Which project is open in this tab. | Until the tab closes |",
+        "| `first-move` | IndexedDB database with the stores `projects`, `snapshots`, `backups` and `file-links` | Your projects (`projects`, the primary store), earlier states of each project (`snapshots`), export bookkeeping (`backups`) and handles of files you linked (`file-links`). | Until deleted |",
+        "| `first-move:storage` | BroadcastChannel | Keeps several tabs of First Move in the same browser in sync. Stores nothing. | While a tab is open |",
+        "‘Until deleted’ means the entry stays until you or the app delete it, or your browser clears it.",
+        "To check that storage works, the app briefly writes a test entry, `first-move:probe`, to localStorage or sessionStorage and removes it straight away.",
+        "The app also asks your browser to keep this storage persistent (`navigator.storage.persist()`), so the browser is less likely to clear your projects on its own. Your browser decides whether to grant this.",
+        "In Chromium-based browsers you can link a project to a file on your disk (File System Access API). The browser then keeps a handle to that file in the `file-links` store. The file stays on your disk, and nothing is uploaded."
+      ]
+    },
+    {
+      "id": "language-cookie",
+      "heading": "The language cookie",
+      "body": [
+        "`NEXT_LOCALE` is the only cookie First Move sets. It holds the language code `en` or `de` and nothing else. It applies to the whole site (path `/`) and is set with `SameSite=Lax`, which limits when your browser sends it along with requests started from other sites.",
+        "The site sets or renews it:",
+        "- when you open an address without a language, for example {{site.url}}: the site redirects you to the English or German version, choosing your saved language if there is one, otherwise the language your browser asks for (its `Accept-Language` header), otherwise English;",
+        "- when you switch the language with the language switch.",
+        "This means the cookie can be set on your first visit, before you choose a language yourself. Each time it is set, its lifetime of one year starts again. It lets the site open in your language when you come back.",
+        "Your browser sends the cookie with its requests to {{site.domain}}, as it does with every cookie. We use it for nothing else."
+      ]
+    },
+    {
+      "id": "legal-basis",
+      "heading": "Legal basis",
+      "body": [
+        "Storing information on your device, or reading information already stored there, needs no consent when it is strictly necessary to provide a service you have expressly requested (§ 25(2) no. 2 TDDDG, which implements Art. 5(3) of the ePrivacy Directive 2002/58/EC).",
+        "Every entry in the [table](#what-we-use) meets this test. Each one shows the site in your language, remembers a setting, or keeps and syncs the projects you work on. None serves any other purpose.",
+        "To the extent these entries contain personal data, for example details you enter in a project, the legal basis is Art. 6(1)(b) GDPR (providing the service under our [Terms of Use](/terms)) and Art. 6(1)(f) GDPR (our legitimate interest in an app that works reliably and remembers your settings). The [Privacy Policy](/privacy) explains how First Move handles personal data."
+      ]
+    },
+    {
+      "id": "no-tracking",
+      "heading": "No tracking",
+      "body": [
+        "First Move contains no analytics, no advertising, no tracking pixels and no social media widgets.",
+        "It loads no scripts, fonts, maps or embedded content from third parties. Our fonts are served from our own site.",
+        "We do not use any of the entries to identify you, build a profile or follow you across websites.",
+        "The site sends the header `Referrer-Policy: no-referrer`, so your browser does not tell other sites which page of First Move you came from. Its Content Security Policy limits the app's connections to its own origin."
+      ]
+    },
+    {
+      "id": "third-parties",
+      "heading": "Third parties",
+      "body": [
+        "First Move sets no third-party cookies and gives no third party access to the storage listed here.",
+        "Our hosting provider, {{hosting.name}}, delivers the pages and processes ordinary request data to do so. The [Privacy Policy](/privacy) describes what it processes and why.",
+        "Links to other websites, such as GitHub in the footer, take you to services with their own cookie and privacy policies. Those apply once you follow the link.",
+        "When the optional AI features are available and you set them up, your browser sends the requests you trigger directly to the AI provider you chose, and that provider's terms and policies apply. This policy lists the entries those features keep in your browser, such as your API key, once they are available. See [AI transparency](/ai)."
+      ]
+    },
+    {
+      "id": "manage",
+      "heading": "Delete or block",
+      "body": [
+        "All of this sits in your browser, so you control it there.",
+        "- **Delete everything**: in your browser's settings, delete the cookies and site data for {{site.domain}}. Many browsers call this ‘Clear site data’; where to find it depends on your browser.",
+        "- **Delete single entries**: the developer tools of most browsers list a site's cookies, localStorage, sessionStorage and IndexedDB and let you remove individual entries.",
+        "- **Session entry**: `first-move:active-project` disappears by itself when you close the tab.",
+        "> Deleting site data deletes every project stored in this browser. We cannot recover it, because we never have it. Export each project you want to keep as a `.firstmove.json` file first; you can import it again later.",
+        "To block cookies, use your browser's cookie settings for {{site.domain}}. First Move still works without the cookie, but it forgets your language choice: an address without a language then opens in your browser's language, or in English.",
+        "Some browsers block all site storage, not only cookies, when you block cookies for a site, and private windows can limit storage too. First Move then cannot keep projects reliably in this browser and shows a warning. Export your work before you close the page."
+      ]
+    },
+    {
+      "id": "notice",
+      "heading": "The cookie notice",
+      "body": [
+        "First Move shows a short cookie notice until you dismiss it. It is there to inform you, not to collect consent: everything listed here is strictly necessary, so there is no optional cookie to accept or reject.",
+        "When you dismiss the notice, the app stores `first-move:notice-ack` in localStorage so the notice does not appear again. If you clear site data, or your browser blocks storage, the notice appears again on your next visit."
+      ]
+    },
+    {
+      "id": "changes",
+      "heading": "Changes to this policy",
+      "body": [
+        "We update this policy when First Move starts using a new cookie or storage entry, stops using one, or uses one for a different purpose. The date and version of this policy show when it last changed.",
+        "If a future entry needed your consent, we would ask for it before setting that entry."
+      ]
+    },
+    {
+      "id": "contact",
+      "heading": "Contact",
+      "body": [
+        "First Move is operated by {{operator.name}}. Questions about cookies and browser storage go to [{{operator.emailHuman}}](mailto:{{operator.emailHuman}}). A person reads this mailbox.",
+        "Please send privacy and legal requests only to that address. Our second address, {{operator.emailAgent}}, is answered by an AI system.",
+        "Your rights under the GDPR are set out in the [Privacy Policy](/privacy), and the provider of First Move is named in the [Imprint](/imprint)."
+      ]
+    }
+  ]
+}

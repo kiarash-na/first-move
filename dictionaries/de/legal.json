@@ -1,0 +1,41 @@
+{
+  "page": {
+    "eyebrow": "Rechtliches",
+    "updated": "Zuletzt aktualisiert",
+    "version": "Version",
+    "contents": "Auf dieser Seite",
+    "reviewNotice": "Diese deutsche Fassung ist ein Entwurf und wurde rechtlich noch nicht geprüft. Maßgeblich ist die englische Fassung."
+  },
+  "docs": {
+    "terms": "Nutzungsbedingungen",
+    "privacy": "Datenschutzerklärung",
+    "cookies": "Cookie-Richtlinie",
+    "imprint": "Impressum",
+    "ai": "KI-Transparenz",
+    "license": "Open-Source-Lizenz"
+  },
+  "footer": {
+    "nav": "Rechtliches",
+    "copyright": "© {{copyright.year}} {{operator.name}}",
+    "licensed": "Open Source unter {{license.spdx}}",
+    "source": "Quellcode auf GitHub"
+  },
+  "cookieNotice": {
+    "label": "Cookie-Hinweis",
+    "text": "First Move setzt ein funktionales Cookie (Ihre Sprache) und speichert Ihre Arbeit im Speicher dieses Browsers, damit die App funktioniert. Kein Tracking, keine Werbung, keine Cookies von Dritten.",
+    "cookies": "Cookie-Richtlinie",
+    "privacy": "Datenschutzerklärung",
+    "dismiss": "Verstanden"
+  },
+  "thirdParty": {
+    "package": "Paket",
+    "license": "Lizenz",
+    "role": "Verwendung",
+    "caption": "Mit First Move ausgelieferte Softwarepakete und ihre Lizenzen"
+  },
+  "aiProviders": {
+    "label": "KI-Anbieter, die Sie verbinden können",
+    "none": "Noch ist kein KI-Anbieter angebunden. Sobald die KI-Funktionen verfügbar sind, werden die Anbieter hier aufgeführt.",
+    "region": "Verarbeitungsregion"
+  }
+}

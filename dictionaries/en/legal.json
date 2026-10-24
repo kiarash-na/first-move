@@ -1,0 +1,41 @@
+{
+  "page": {
+    "eyebrow": "Legal",
+    "updated": "Last updated",
+    "version": "Version",
+    "contents": "On this page",
+    "reviewNotice": "This German version is a draft and has not been legally reviewed. The English version is the reference."
+  },
+  "docs": {
+    "terms": "Terms of Use",
+    "privacy": "Privacy Policy",
+    "cookies": "Cookie Policy",
+    "imprint": "Imprint",
+    "ai": "AI transparency",
+    "license": "Open-source licence"
+  },
+  "footer": {
+    "nav": "Legal",
+    "copyright": "© {{copyright.year}} {{operator.name}}",
+    "licensed": "Open source under {{license.spdx}}",
+    "source": "Source code on GitHub"
+  },
+  "cookieNotice": {
+    "label": "Cookie notice",
+    "text": "First Move sets one functional cookie (your language) and keeps your work in this browser's storage so the app works. No tracking, no advertising, no third-party cookies.",
+    "cookies": "Cookie Policy",
+    "privacy": "Privacy Policy",
+    "dismiss": "Got it"
+  },
+  "thirdParty": {
+    "package": "Package",
+    "license": "Licence",
+    "role": "Use",
+    "caption": "Software packages shipped with First Move, with their licences"
+  },
+  "aiProviders": {
+    "label": "AI providers you can connect",
+    "none": "No AI provider is connected yet. Providers are listed here once the AI features are available.",
+    "region": "Processing region"
+  }
+}

@@ -85,6 +85,7 @@ export function render(areas) {
     "- Business Plan presets (`business-plan.presets.*`) are written **into the project** in the UI language when a use case is picked, so they are data as well as copy.",
     "- Equation texts (`calc.*`) explain the formulas of `docs/10_quick-check-tool`; keep the equation IDs (`EQ-3.4a`) unchanged.",
     "- German exists for only a few keys of `common`, `landing`, `shell`, `start` and `calc` (language and theme labels, the 404 page, the landing header and closing links, and the page title); every other key is still English.",
+    "- The legal areas (`legal`, `terms`, `privacy`, `cookies`, `imprint`, `ai`, `license`) have a complete German draft (D-44). It is **not legally reviewed**: they are not part of this to-do list, but they need the owner's or a lawyer's review before launch (see the phase 12 note).",
     "",
     "## Summary",
     "",

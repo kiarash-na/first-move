@@ -298,7 +298,17 @@
       "quickCheck": "Quick Check",
       "businessModels": "Business Models",
       "methodology": "Methodology",
-      "backToTop": "Back to top"
+      "backToTop": "Back to top",
+      "legal": {
+        "nav": "Legal",
+        "terms": "Terms of Use",
+        "privacy": "Privacy Policy",
+        "cookies": "Cookie Policy",
+        "imprint": "Imprint",
+        "ai": "AI transparency",
+        "license": "Open-source licence",
+        "source": "Source code on GitHub"
+      }
     }
   }
 }

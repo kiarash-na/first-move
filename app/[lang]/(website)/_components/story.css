@@ -1427,6 +1427,23 @@
   color: var(--accent-cool);
 }
 
+/* Legal links: their own full-width row, so they stay visible where the product nav is hidden. */
+.site-footer nav.footer-legal {
+  display: flex;
+  grid-column: 1 / -1;
+  padding-top: 18px;
+  border-top: 1px solid var(--line-subtle);
+}
+
+.site-footer nav.footer-legal ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 22px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
 @media (max-width: 1100px) {
   .split-layout > .section-copy {
     grid-column: 1 / 7;

@@ -1,0 +1,183 @@
+{
+  "meta": {
+    "title": "KI-Transparenz",
+    "description": "Wie First Move KI einsetzt, wie die optionalen KI-Funktionen arbeiten und wie sie nach der KI-Verordnung der EU eingestuft sind."
+  },
+  "title": "KI-Transparenz",
+  "intro": "Diese Seite erklärt, wo First Move künstliche Intelligenz (KI) einsetzt und wo nicht, wie die optionalen KI-Funktionen arbeiten, wie wir sie nach der KI-Verordnung der EU (Verordnung (EU) 2024/1689, „KI-VO“) einstufen und was Sie prüfen sollten, wenn Sie sie nutzen.",
+  "updated": "2026-10-24",
+  "version": "1.0",
+  "status": {
+    "planned": "Die auf dieser Seite beschriebenen KI-Funktionen der App sind noch nicht verfügbar, und die App First Move enthält derzeit kein KI-System. Diese Seite erklärt, wie die Funktionen arbeiten werden, sobald sie freigegeben sind.",
+    "live": "Die auf dieser Seite beschriebenen KI-Funktionen sind verfügbar. Sie sind optional, bleiben ausgeschaltet, bis Sie sie einrichten, und laufen nur, wenn Sie sie nutzen."
+  },
+  "sections": [
+    {
+      "id": "scope",
+      "heading": "Gegenstand dieser Seite",
+      "body": [
+        "Diese Seite betrifft drei Einsatzbereiche von KI:",
+        "- die optionalen KI-Funktionen der App First Move, beschrieben unter [Was die KI-Funktionen tun](#functions);",
+        "- die E-Mail-Adresse {{operator.emailAgent}}, die von einem KI-System beantwortet wird, beschrieben unter [KI-beantwortete E-Mails](#ai-email);",
+        "- unseren eigenen Einsatz von KI-Werkzeugen bei der Entwicklung von First Move, beschrieben unter [Verantwortungsvoller KI-Einsatz](#responsible-ai).",
+        "Die Ergebnisse von Quick Check und Business Plan werden nicht von KI erzeugt. Sie beruhen auf deterministischen Berechnungen: veröffentlichten Gleichungen und Standardtabellen, die bei gleichen Eingaben stets dasselbe Ergebnis liefern. Das gilt unabhängig davon, ob Sie die KI-Funktionen nutzen.",
+        "Der Statushinweis auf dieser Seite zeigt, ob die KI-Funktionen heute verfügbar sind. Der übrige Text beschreibt, wie sie arbeiten, wenn sie verfügbar sind."
+      ]
+    },
+    {
+      "id": "functions",
+      "heading": "Was die KI-Funktionen tun",
+      "body": [
+        "Sobald die KI-Funktionen verfügbar sind, bietet First Move zwei Funktionen:",
+        "1. **Fragen zu Ihrem Projekt.** Sie stellen in eigenen Worten eine Frage zu Ihren Projektdaten, und ein KI-Modell beantwortet sie.",
+        "2. **Werte aus Ihren Dokumenten.** Sie stellen ein Dokument bereit, zum Beispiel ein PDF. Die KI liest es und schlägt Werte für die strukturierten Eingabefelder des Projekts vor. Sie prüfen jeden Vorschlag und entscheiden, ob er übernommen wird.",
+        "Beide Funktionen sind optional. Sie bleiben ausgeschaltet, bis Sie sie mit einem KI-Anbieter Ihrer Wahl einrichten (siehe [So laufen die Funktionen](#how-it-runs)), und sie laufen nur, wenn Sie sie nutzen.",
+        "Was die KI nicht tut:",
+        "- Sie berechnet nicht die Ergebnisse des Quick Check. Das übernimmt die deterministische Berechnung, mit denselben Gleichungen, ob ein Wert eingetippt oder von der KI vorgeschlagen wurde.",
+        "- Sie ändert Ihr Projekt nicht eigenständig. Sie schlägt vor, und Sie bestätigen.",
+        "- Sie steuert oder betreibt keine Anlage, kein Netz und keine sonstige Infrastruktur und trifft keine Entscheidungen über Personen."
+      ]
+    },
+    {
+      "id": "how-it-runs",
+      "heading": "So laufen die Funktionen: Ihr Anbieter, Ihr Schlüssel",
+      "body": [
+        "Sobald die KI-Funktionen verfügbar sind, arbeiten sie nach dem Prinzip „Bring Your Own Key“, also mit Ihrem eigenen API-Schlüssel:",
+        "1. Sie wählen einen KI-Anbieter und erhalten in Ihrem Konto bei diesem Anbieter einen API-Schlüssel.",
+        "2. Sie geben den Schlüssel in First Move ein. Er wird nur in Ihrem Browser gespeichert.",
+        "3. Wenn Sie eine Funktion nutzen, sendet Ihr Browser die Anfrage mit Ihrem Schlüssel direkt an diesen Anbieter und empfängt die Antwort.",
+        "4. First Move zeigt Ihnen die Antwort oder die vorgeschlagenen Werte, gekennzeichnet als KI-generiert.",
+        "Wir betreiben keinen KI-Server. Ihr Schlüssel und die von Ihnen gesendeten Inhalte erreichen uns nie: Wir empfangen, speichern und sehen sie nicht und sind für diese Inhalte kein Auftragsverarbeiter, der in Ihrem Auftrag tätig wird (Art. 28 DSGVO). Der Anbieter ist eine eigenständige Partei; was er mit Ihren Anfragen tut, richtet sich nach seinen eigenen Bedingungen und seiner Datenschutzerklärung.",
+        "Sobald es Anbieter gibt, die Sie verbinden können, sind sie auf dieser Seite aufgeführt."
+      ]
+    },
+    {
+      "id": "roles",
+      "heading": "Wer wofür verantwortlich ist",
+      "body": [
+        "Die KI-VO verteilt Pflichten nach Rollen. Für die KI-Funktionen von First Move gilt:",
+        "| Wer | Rolle nach der KI-VO | Was das bedeutet |",
+        "|---|---|---|",
+        "| Wir, {{operator.name}}, unter dem Namen {{operator.tradeName}} | Anbieter der KI-Funktionen (Art. 3 Nr. 3) | Wir entwickeln die Funktionen und bieten sie unter dem Namen First Move an. Wir sind dafür verantwortlich, wie sie gestaltet, gekennzeichnet und erklärt werden. |",
+        "| Sie, wenn Sie die Funktionen beruflich nutzen | Betreiber (Art. 3 Nr. 4) | Sie nutzen die Funktionen in eigener Verantwortung und entscheiden, was Sie senden, was Sie übernehmen und was Sie veröffentlichen. |",
+        "| Der von Ihnen gewählte KI-Anbieter | Drittanbieter des verbundenen Modells | Er stellt das Modell nach seinen eigenen Bedingungen bereit. Wir haben keinen Einfluss auf das Modell oder darauf, wie der Anbieter Ihre Anfragen verarbeitet. |",
+        "Nutzen Sie die Funktionen ausschließlich für persönliche, nicht berufliche Zwecke, sind Sie kein Betreiber im Sinne der KI-VO (Art. 3 Nr. 4). Die Hinweise auf dieser Seite gelten trotzdem für Sie.",
+        "First Move ist Open Source: Der Code ist unter [{{repo.url}}]({{repo.url}}) unter der {{license.name}} veröffentlicht. Die Veröffentlichung als Open Source ändert diese Rollen nicht und befreit die Funktionen nicht von den Transparenzpflichten (siehe [Risikoeinstufung](#risk-classification))."
+      ]
+    },
+    {
+      "id": "risk-classification",
+      "heading": "Risikoeinstufung nach der KI-VO",
+      "body": [
+        "Wir haben die KI-Funktionen anhand der Kategorien der KI-VO bewertet. Kurz gesagt: Sie sind weder verboten noch hochriskant, und für sie gelten die Transparenzpflichten für bestimmte KI-Systeme.",
+        "- **Keine verbotene Praktik (Art. 5).** Die Funktionen nutzen keine der Praktiken, die die KI-VO verbietet, etwa die Manipulation von Menschen, Social Scoring, Emotionserkennung, biometrische Kategorisierung oder das ungezielte Auslesen von Gesichtsbildern. Sie beantworten Fragen und schlagen Eingabewerte für ein Planungswerkzeug vor.",
+        "- **Kein Hochrisiko-KI-System (Art. 6 in Verbindung mit Anhang III Nummer 2).** Im Bereich kritischer Infrastruktur, einschließlich der Wärmeversorgung, gilt ein KI-System als hochriskant, wenn es als Sicherheitsbauteil bei der Verwaltung und dem Betrieb dieser Infrastruktur verwendet wird. First Move ist ein Screening-Werkzeug für die Planungsphase. Es steuert und betreibt nichts: keine Anlage, kein Netz, keine Versorgung. Seine Ergebnisse sind eine erste Einschätzung zur Prüfung durch Menschen, keine Machbarkeitsstudie und keine Ingenieurberatung. Es trifft auch keine Entscheidungen über Personen.",
+        "- **Transparenzpflichten gelten (Art. 50).** KI-Systeme, die mit Menschen interagieren oder Text erzeugen, müssen Transparenzpflichten erfüllen. Diese Pflichten gelten seit dem 2. August 2026. Wie wir sie erfüllen, steht unter [So kennzeichnen wir KI](#transparency).",
+        "- **Open Source befreit nicht (Art. 2 Abs. 12).** Die KI-VO gilt für viele KI-Systeme nicht, die unter freien und quelloffenen Lizenzen veröffentlicht werden. Diese Ausnahme erfasst aber keine Systeme, die unter Art. 50 fallen. Die Veröffentlichung von First Move als Open Source hebt diese Pflichten daher nicht auf, und wir wenden sie vollständig an."
+      ]
+    },
+    {
+      "id": "transparency",
+      "heading": "So kennzeichnen wir KI",
+      "body": [
+        "Sobald die KI-Funktionen verfügbar sind, treffen wir diese Maßnahmen:",
+        "- **Sie wissen, wann Sie mit KI zu tun haben (Art. 50 Abs. 1).** Der Assistent, der Ihre Fragen beantwortet, ist als KI gekennzeichnet.",
+        "- **KI-generierter Text ist gekennzeichnet (Art. 50 Abs. 2).** Von der KI geschriebener Text wird als KI-generiert gekennzeichnet, sowohl in der Oberfläche als auch in maschinenlesbarer Form.",
+        "- **KI-Vorschläge bleiben erkennbar.** Ein von der KI vorgeschlagener Wert wird als KI-Vorschlag angezeigt und in den Projektdaten als KI-Vorschlag erfasst.",
+        "- **Die Funktionen werden erklärt.** Diese Seite und die Hinweise in der App erklären, was die KI tut und wo ihre Grenzen liegen (siehe [Grenzen der KI](#limits)).",
+        "Unabhängig von den Funktionen der App ist das Postfach {{operator.emailAgent}} als KI-beantwortet offengelegt (Art. 50 Abs. 1); siehe [KI-beantwortete E-Mails](#ai-email).",
+        "Einige Pflichten treffen Sie als Betreiber. Veröffentlichen Sie von der KI erzeugten Text, um die Öffentlichkeit über Angelegenheiten von öffentlichem Interesse zu informieren, etwa in einer öffentlichen Bekanntmachung oder einer Pressemitteilung, müssen Sie offenlegen, dass der Text von KI erzeugt wurde. Das gilt nicht, wenn ein Mensch den Text überprüft oder redaktionell bearbeitet hat und eine Person oder Organisation die redaktionelle Verantwortung für die Veröffentlichung trägt (Art. 50 Abs. 4). Die Pflichten für Systeme zur Emotionserkennung und zur biometrischen Kategorisierung (Art. 50 Abs. 3) entstehen nicht, weil First Move keines von beiden einsetzt."
+      ]
+    },
+    {
+      "id": "human-oversight",
+      "heading": "Sie behalten die Kontrolle",
+      "body": [
+        "> Die KI macht nur Vorschläge. Nichts davon wird in Ihr Projekt übernommen, bevor Sie es bestätigen.",
+        "Sobald die KI-Funktionen verfügbar sind, ist menschliche Aufsicht Teil ihrer Arbeitsweise:",
+        "- **Sie starten jede Anfrage.** Die Funktionen bleiben ausgeschaltet, bis Sie sie einrichten, und laufen nur, wenn Sie sie nutzen.",
+        "- **Sie bestätigen, bevor sich etwas ändert.** Vorgeschlagene Werte werden Ihnen zuerst angezeigt, und nur die Werte, die Sie bestätigen, werden in Ihr Projekt übernommen.",
+        "- **Es gelten dieselben Prüfungen.** Jeder Wert, ob von Ihnen eingetippt oder von der KI vorgeschlagen, durchläuft dieselbe Validierung wie eine manuelle Eingabe.",
+        "- **Die Ergebnisse bleiben deterministisch.** Die Ergebnisse des Quick Check werden stets von der deterministischen Berechnung aus den veröffentlichten Gleichungen und Standardwerten ermittelt, nie von der KI.",
+        "- **Sie können ohne KI arbeiten.** Quick Check und Business Plan funktionieren ohne die KI-Funktionen, und Sie können Werte jederzeit von Hand eingeben."
+      ]
+    },
+    {
+      "id": "limits",
+      "heading": "Grenzen der KI",
+      "body": [
+        "KI-Modelle können hilfreich sein, sind aber nicht so verlässlich wie eine Berechnung. Beachten Sie diese Grenzen:",
+        "- **Modelle können sich irren.** Sie können eine Frage missverstehen, überzeugt eine falsche Antwort geben oder Inhalte erfinden, etwa Zahlen, Quellen oder Zitate, die es nicht gibt.",
+        "- **Das Auslesen kann scheitern.** Werte aus Dokumenten auszulesen ist fehleranfällig, besonders bei gescannten Seiten, Tabellen, Einheiten und gemischtsprachigen Dokumenten. Ein Wert kann aus der falschen Zeile stammen, die falsche Einheit tragen oder fehlen.",
+        "- **Prüfen Sie jeden vorgeschlagenen Wert anhand des Quelldokuments,** bevor Sie ihn bestätigen.",
+        "- **KI macht die Ergebnisse nicht verlässlicher.** Von der KI vorgeschlagene Werte machen die Screening-Ergebnisse nicht genauer oder verlässlicher als Werte, die Sie selbst eingeben.",
+        "- **Keine Ingenieurberatung.** Weder die Antworten der KI noch die Screening-Ergebnisse sind Ingenieurberatung oder eine Machbarkeitsstudie. Die Ergebnisse sind eine erste Einschätzung auf Grundlage vereinfachter Annahmen und müssen verfeinert werden, bevor Sie Investitions- oder Planungsentscheidungen darauf stützen.",
+        "Wie gut die Funktionen arbeiten, hängt auch vom gewählten Modell und Anbieter ab. Für die Richtigkeit von KI-Ausgaben übernehmen wir keine Gewähr; welche Verantwortung Sie bei der Nutzung tragen, regeln die [Nutzungsbedingungen](/terms#ai-features)."
+      ]
+    },
+    {
+      "id": "data-handling",
+      "heading": "Ihre Daten, Ihr Schlüssel, Ihr Anbieter",
+      "body": [
+        "Sobald die KI-Funktionen verfügbar sind, gilt Folgendes:",
+        "- **Sie entscheiden, was gesendet wird.** Eine Anfrage verlässt Ihren Browser nur, wenn Sie sie starten, und geht nur an den von Ihnen gewählten Anbieter. Überlegen Sie, was ein Dokument oder eine Frage enthält, bevor Sie es senden.",
+        "- **Vorsicht bei personenbezogenen und vertraulichen Daten.** Senden Sie keine personenbezogenen Daten anderer Personen, etwa Namen oder Kontaktdaten von Anwohnenden, Eigentümerinnen und Eigentümern oder Kolleginnen und Kollegen, und keine vertraulichen Dokumente, es sei denn, Sie dürfen das, zum Beispiel aufgrund einer datenschutzrechtlichen Rechtsgrundlage, der Regeln Ihrer Organisation oder eines Vertrags.",
+        "- **Es gelten die Bedingungen des Anbieters.** Der Anbieter verarbeitet Ihre Anfragen nach seinen eigenen Bedingungen und seiner Datenschutzerklärung. Prüfen Sie, bevor Sie etwas senden, wo er Daten verarbeitet, ob er Ihre Eingaben zum Training von Modellen nutzt und wie lange er sie speichert.",
+        "- **Die Kosten tragen Sie.** Anfragen werden Ihrem Konto beim Anbieter zu dessen Preisen berechnet. First Move selbst ist kostenlos und berechnet für die KI-Funktionen nichts.",
+        "- **Schützen Sie Ihren Schlüssel.** Behandeln Sie den API-Schlüssel wie ein Passwort. Geben Sie ihn nicht weiter, nutzen Sie Ausgabenlimits, wenn Ihr Anbieter sie anbietet, und tauschen Sie den Schlüssel regelmäßig aus, und zwar sofort, wenn Sie vermuten, dass er offengelegt wurde.",
+        "- **Sie können den Schlüssel jederzeit in der App entfernen.** Das Entfernen in First Move widerruft ihn nicht; dazu löschen Sie ihn in Ihrem Konto beim Anbieter.",
+        "Wir erhalten weder Ihren Schlüssel noch Ihre Fragen, Ihre Dokumente oder die Antworten. Deshalb können wir sie weder einsehen noch wiederherstellen oder löschen. Wie First Move allgemein mit Daten umgeht, beschreibt die [Datenschutzerklärung](/privacy#ai-features)."
+      ]
+    },
+    {
+      "id": "ai-literacy",
+      "heading": "Sorgfältiger Umgang mit KI",
+      "body": [
+        "Die KI-VO verlangt von Anbietern und Betreibern Maßnahmen zur Förderung der KI-Kompetenz der Personen, die in ihrem Auftrag mit KI-Systemen umgehen (Art. 4). Unser Beitrag ist, in klaren Worten zu erklären, was die KI tut, wo sie Fehler macht und was Sie prüfen sollten: auf dieser Seite und, sobald die KI-Funktionen verfügbar sind, in den Hinweisen neben ihnen in der App.",
+        "Bevor Sie einen von der KI vorgeschlagenen Wert bestätigen, prüfen Sie:",
+        "1. **Quelle:** Der Wert steht tatsächlich in Ihrem Dokument.",
+        "2. **Einheit:** Die Einheit passt zum Feld, zum Beispiel kW oder MW, kWh oder MWh.",
+        "3. **Zahlenformat:** Dezimal- und Tausendertrennzeichen wurden richtig gelesen. Deutsche Dokumente schreiben 1.000,5, wo englische 1,000.5 schreiben.",
+        "4. **Bezug und Jahr:** Der Wert bezieht sich auf das Gebäude, das Gebiet oder das Netz und auf das Jahr, nach dem das Feld fragt.",
+        "5. **Plausibilität:** Der Wert passt zu dem, was Sie über das Projekt wissen.",
+        "Setzen Sie die Funktionen in Ihrer Organisation ein, gilt Art. 4 auch für Sie: Sorgen Sie dafür, dass die Beschäftigten, die sie nutzen, diese Punkte kennen. Diese Seite kann dafür als Ausgangspunkt dienen."
+      ]
+    },
+    {
+      "id": "ai-email",
+      "heading": "KI-beantwortete E-Mails",
+      "body": [
+        "Nachrichten an [{{operator.emailAgent}}](mailto:{{operator.emailAgent}}) werden von einem KI-System beantwortet. Wir weisen hier und im [Impressum](/imprint) darauf hin, damit Sie schon vor dem Schreiben wissen, dass Sie mit einem KI-System zu tun haben (Art. 50 Abs. 1). Dieses Postfach ist von den KI-Funktionen der App getrennt und hängt nicht von ihnen ab.",
+        "- Antworten von dieser Adresse werden von einem KI-System verfasst und können falsch sein.",
+        "- Sie sind keine rechtsverbindlichen Erklärungen und binden niemanden, weder uns noch Sie.",
+        "- Um eine Antwort vorzubereiten, verarbeitet neben unserem E-Mail-Anbieter {{mail.name}} ein KI-Dienstleister den Text Ihrer Nachricht. Einzelheiten stehen in der [Datenschutzerklärung](/privacy#email).",
+        "> Für Datenschutzanfragen, rechtliche Angelegenheiten und alles Vertrauliche schreiben Sie an [{{operator.emailHuman}}](mailto:{{operator.emailHuman}}); diese Adresse liest ein Mensch. Anfragen zur Ausübung Ihrer Datenschutzrechte müssen an diese Adresse gehen."
+      ]
+    },
+    {
+      "id": "responsible-ai",
+      "heading": "Verantwortungsvoller KI-Einsatz",
+      "body": [
+        "First Move wird von einem menschlichen Maintainer entwickelt und betrieben, der die Verantwortung dafür trägt. KI-Werkzeuge unterstützen Recherche, Ideenfindung, Programmierung und eine effiziente Produktion; ein Mensch prüft KI-gestützte Arbeit und trifft die abschließenden Entscheidungen über Produkt, Methodik und Gestaltung. Dieses Projekt entsteht mit erheblicher Unterstützung durch KI-Programmierwerkzeuge, und wir sagen das offen, statt es als rein von Hand geschrieben darzustellen.",
+        "Die Ergebnisse von Quick Check und Business Plan stammen aus deterministischen Berechnungen auf Grundlage veröffentlichter Gleichungen und Standardwerte, nicht von KI. KI-Funktionen in der App sind optional, als KI gekennzeichnet und machen nur Vorschläge; Sie entscheiden, was Sie übernehmen. Wir gehen mit unserem Einsatz von KI transparent und ethisch um.",
+        "Dasselbe erwarten wir bei Feedback. Wenn Sie uns Ideen, Issues oder Pull Requests senden, gilt die Klausel zu [menschengeführtem Feedback und KI-Einsatz](/terms#human-led-feedback) in unseren Nutzungsbedingungen: Sie dürfen KI nutzen, um Ideen zu sammeln oder Ihre Gedanken zu ordnen, prüfen und gewichten Sie KI-gestützte Ideen aber bitte selbst, bevor Sie sie einreichen."
+      ]
+    },
+    {
+      "id": "concerns",
+      "heading": "Fragen und Anliegen",
+      "body": [
+        "Wenn eine KI-Ausgabe nicht gekennzeichnet war, eine Funktion anders arbeitet als auf dieser Seite beschrieben oder Sie ein anderes Anliegen dazu haben, wie First Move KI einsetzt, schreiben Sie an [{{operator.emailHuman}}](mailto:{{operator.emailHuman}}). Diese Adresse liest ein Mensch.",
+        "Zu Ihren Datenschutzrechten, einschließlich des Rechts auf Beschwerde bei einer Aufsichtsbehörde, siehe die [Datenschutzerklärung](/privacy#rights).",
+        "Der Code von First Move ist unter [{{repo.url}}]({{repo.url}}) öffentlich, sodass Sie nachvollziehen können, wie First Move arbeitet."
+      ]
+    },
+    {
+      "id": "changes",
+      "heading": "Änderungen dieser Seite",
+      "body": [
+        "Wir aktualisieren diese Seite, wenn die KI-Funktionen verfügbar werden, wenn Anbieter hinzukommen oder wegfallen, wenn sich die Funktionen ändern und wenn sich die Rechtslage oder unsere Bewertung danach ändert. Datum und Version dieser Seite zeigen, wann sie zuletzt geändert wurde; der Statushinweis zeigt, ob die KI-Funktionen heute verfügbar sind."
+      ]
+    }
+  ]
+}

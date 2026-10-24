@@ -1,7 +1,18 @@
 {
   "name": "5gdhc",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
+  "description": "First Move: initial screening of 5th-generation district heating and cooling (5GDHC) projects, in the browser.",
+  "license": "Apache-2.0",
+  "author": "Kiarash N.A.",
+  "homepage": "https://firstmove.energy",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kiarash-na/first-move.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kiarash-na/first-move/issues"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",

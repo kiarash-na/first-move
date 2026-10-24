@@ -1,0 +1,195 @@
+{
+  "meta": {
+    "title": "Terms of Use",
+    "description": "The terms for using First Move, the free 5GDHC screening web app: your data, AI features, open source, liability and governing law."
+  },
+  "title": "Terms of Use",
+  "intro": "These terms govern your use of First Move. They explain what the service does, what you can expect from it and what we expect from you. First Move is free, needs no account and keeps your projects in your browser.",
+  "updated": "2026-10-24",
+  "version": "1.0",
+  "sections": [
+    {
+      "id": "provider",
+      "heading": "Provider and scope",
+      "body": [
+        "First Move is offered by {{operator.name}}, an individual, under the trade name “{{operator.tradeName}}” (“we”, “us”). The trade name is neither a registered business name nor a registered trademark. Postal address: {{operator.address}}. Full provider details are in the [Imprint](/imprint).",
+        "These terms apply to every use of the First Move web app at [{{site.domain}}]({{site.url}}) (the “service”), by consumers as well as by businesses and public bodies, unless a provision below says otherwise. Terms and conditions of users that differ from these do not apply unless we expressly agree to them.",
+        "What you may do with the source code and documentation is governed by the open-source licence (see [Open source, licence and name](#open-source)). How we handle personal data is explained in the [Privacy Policy](/privacy)."
+      ]
+    },
+    {
+      "id": "service",
+      "heading": "The service",
+      "body": [
+        "First Move is a bilingual (English and German) web app for the initial screening of 5th-generation district heating and cooling (5GDHC) projects. A project has two optional modules:",
+        "- **Quick Check**: an initial indication from simplified default values and published equations.",
+        "- **Business Plan**: guided work on the project's business model.",
+        "The calculations are deterministic: they follow published equations and default tables and are not produced by AI.",
+        "> Results are an initial indication, **not a feasibility study and not engineering advice**. Because they rest on simplified assumptions, they must be refined, for example in a detailed study by qualified experts, before you base an investment, planning or funding decision on them.",
+        "The service is free of charge and needs no registration or user account. When you use it, a free contract of use on these terms comes into being between you and us."
+      ]
+    },
+    {
+      "id": "use",
+      "heading": "Acceptable use",
+      "body": [
+        "You may use First Move for any lawful purpose, privately or professionally, for example in municipal, planning, consulting or commercial work. You must not:",
+        "- attack, probe or disrupt the service or the systems it runs on, for example by trying to get around security measures or by introducing malicious code;",
+        "- overload the service, for example with automated mass requests;",
+        "- use the service for unlawful purposes or in a way that infringes the rights of others;",
+        "- present screening results from First Move as a feasibility study or as certified, verified or approved engineering results;",
+        "- suggest that we have reviewed, verified or endorsed your results, reports or products.",
+        "When you share or publish results, please make clear that they are an initial screening indication from First Move based on simplified assumptions.",
+        "We may take reasonable measures against use that breaks these rules, including blocking access, as far as this is needed to protect the service and other users."
+      ]
+    },
+    {
+      "id": "your-data",
+      "heading": "Your data",
+      "body": [
+        "You keep control of the data you enter. A project is stored only in your browser on your device (in IndexedDB). There are no accounts, passwords or databases on any server, and we do not receive your project data.",
+        "You can export a project as a file (`.firstmove.json`, inputs only), which your browser creates and you save, and import it again later. In Chromium-based browsers you can also link a file on your disk; nothing is uploaded.",
+        "> Clearing your browser data deletes your projects. We cannot recover them, because we never have them. Export your projects regularly and keep your own backups.",
+        "You are responsible for what you enter and for keeping copies of it. Do not enter personal data of other people (for example names or contact details of property owners, residents or colleagues) unless you have a legal basis for it under data protection law.",
+        "We claim no rights in your project data. How the app uses your browser's storage is explained in the [Cookie Policy](/cookies)."
+      ]
+    },
+    {
+      "id": "ai-features",
+      "heading": "Optional AI features",
+      "body": [
+        "When the AI features are available, First Move offers two optional functions: answering questions about your project data, and reading documents you supply (for example PDFs) to propose values for the project's fields. The [AI transparency](/ai) page says whether they are available today and explains how they work.",
+        "The AI features are off until you set them up. They work with your own API key for an AI provider you choose (“bring your own key”): your browser sends each request directly to that provider. We run no AI server and never receive the content you send or your key. The key is kept only in your browser.",
+        "If you use the AI features:",
+        "- the provider you chose is a third party independent of us. Its terms, usage policies and privacy policy apply between you and the provider, and you are responsible for complying with them;",
+        "- any costs the provider charges for your key are yours;",
+        "- you decide what you send. Send other people's personal data or confidential documents only if you are allowed to;",
+        "- you must review every output. The AI only proposes: nothing is applied to a project until you confirm it, and every value goes through the same validation as manual input;",
+        "- you are responsible for keeping your key secure. You can remove it from the app at any time.",
+        "AI output can be wrong or incomplete, and models can invent content. The AI never computes the Quick Check results, and AI-proposed values do not make the screening results more reliable. We do not control the AI provider or its models and are not responsible for their availability or output; our own liability is governed by [Liability](#liability).",
+        "If you use the AI features in a professional capacity, you are a deployer of an AI system within the meaning of the EU AI Act (Regulation (EU) 2024/1689, Art. 3(4)) and responsible for your own use of it."
+      ]
+    },
+    {
+      "id": "responsible-ai",
+      "heading": "Responsible AI use",
+      "body": [
+        "First Move is built and operated by a human maintainer, who is responsible for it. AI tools support research, ideation, coding and production efficiency, and a human reviews AI-assisted work and makes the final product, methodology and design decisions. This project is built with substantial help from AI coding tools, and we say so openly rather than present it as purely hand-written. Quick Check and Business Plan results come from deterministic calculations on published equations and defaults, not from AI. AI features in the app are optional, labelled as AI, and only propose; you decide what to accept. We handle our use of AI transparently and ethically."
+      ]
+    },
+    {
+      "id": "human-led-feedback",
+      "heading": "Human-led feedback and AI use",
+      "body": [
+        "Our direction relies on feedback informed by your knowledge of your projects, networks and goals. Human context, judgment and experience are essential. You may use AI to brainstorm or organise your thoughts. Please review, evaluate and prioritise AI-assisted ideas before submitting them, so what you send reflects your own judgment. Raw AI-generated critiques, bulk change lists, rewrites, or unreviewed AI-written issues and pull requests should not be submitted. We may ask for a consolidated, human-reviewed version or close such submissions without a point-by-point reply. We are not obliged to respond to any feedback.",
+        "This applies to feedback through any channel, including e-mail, issues and pull requests. For contributions of code and documentation, see also [Contributions](#contributions)."
+      ]
+    },
+    {
+      "id": "open-source",
+      "heading": "Open source, licence and name",
+      "body": [
+        "The source code and documentation of First Move are published at [{{repo.url}}]({{repo.url}}) under the {{license.name}} ({{license.spdx}}). That licence governs what you may do with them, including using, copying, modifying and distributing them, also commercially. The [Open-source licence](/license) page explains it.",
+        "The Quick Check methodology (equations, tables and default values) is derived from the AQC methodology supplied with the 5GDHC hackathon challenge. We have the permission of its rights holders to publish it under the same licence, and we credit its originators.",
+        "“{{operator.tradeName}}” is a trade name, not a registered trademark. The licence grants no permission to use it, except as needed to describe the origin of the work (Apache License 2.0, section 6). If you publish a modified version, please give it a name of your own and do not suggest that we endorse it."
+      ]
+    },
+    {
+      "id": "contributions",
+      "heading": "Contributions",
+      "body": [
+        "You are welcome to contribute to First Move through the repository, for example with issues or pull requests. Unless you explicitly state otherwise, any contribution you intentionally submit for inclusion is licensed under the {{license.name}}, without any additional terms or conditions (section 5 of the licence).",
+        "Submit only material you have the right to license in this way. We are not obliged to review, accept, merge or answer any contribution. The rules in [Human-led feedback and AI use](#human-led-feedback) apply.",
+        "The repository is hosted on GitHub. Your account and activity there are subject to GitHub's own terms."
+      ]
+    },
+    {
+      "id": "third-party-links",
+      "heading": "Links to other websites",
+      "body": [
+        "First Move links to other websites, for example to the source code on GitHub and, in the Business Plan guidance, to geothermie-oesterreich.at. When you follow such a link, you leave First Move. The linked sites are run by others under their own terms and privacy policies.",
+        "We have no influence on the content of linked sites and are not responsible for it. If we become aware that a linked page contains unlawful content, we will remove the link."
+      ]
+    },
+    {
+      "id": "availability",
+      "heading": "Availability and changes to the service",
+      "body": [
+        "First Move is a free service, offered as it is currently available. There is no entitlement to a particular availability, response time or set of functions. Interruptions can occur, for example during maintenance or because of faults at the hosting provider or on the internet.",
+        "We may change, extend, restrict or discontinue functions, content, calculations or the whole service at any time, temporarily or permanently, for example to fix errors, to keep the service secure, to follow changes in the law or to develop it further.",
+        "Export your projects regularly, so you keep your inputs even if the service changes or ends."
+      ]
+    },
+    {
+      "id": "warranty",
+      "heading": "No warranty",
+      "body": [
+        "First Move is provided free of charge. Without prejudice to [Liability](#liability) and to mandatory statutory rights, we do not warrant or guarantee that the service:",
+        "- is available at all times, without interruption or at a particular speed;",
+        "- is free of errors, or that its results are accurate, complete or up to date;",
+        "- is fit for a particular purpose, in particular for investment, planning, funding or engineering decisions.",
+        "You are responsible for checking whether the default values and assumptions suit your project, and for having the results refined before you rely on them."
+      ]
+    },
+    {
+      "id": "liability",
+      "heading": "Liability",
+      "body": [
+        "Our liability for damages, whatever the legal ground, is governed by the following rules.",
+        "We are liable without limitation:",
+        "- for intent and gross negligence;",
+        "- for injury to life, body or health;",
+        "- for fraud, including the fraudulent concealment of a defect;",
+        "- under a guarantee we have assumed;",
+        "- under the Product Liability Act (Produkthaftungsgesetz, ProdHaftG) and wherever else liability is mandatory by law.",
+        "For slight negligence, we are liable only if we breach an essential contractual duty (a cardinal duty, Kardinalpflicht): a duty whose fulfilment makes the proper performance of the contract possible in the first place and on whose fulfilment you may regularly rely. In that case, our liability is limited to the foreseeable damage typical for this kind of contract.",
+        "In all other cases, our liability is excluded as far as the law allows.",
+        "Screening results are an initial indication. If you rely on them for investment or planning decisions, consequential loss from that reliance is your responsibility, subject to the cases of unlimited liability listed above.",
+        "These rules also apply in favour of the people we engage to perform our obligations."
+      ]
+    },
+    {
+      "id": "successors",
+      "heading": "Transfer to a successor",
+      "body": [
+        "We may transfer the service, these terms together with our contract with you, and the repository to a company we found or to another successor. We will announce the transfer on the website at least 30 days before it takes effect. If you do not want to continue with the successor, you may stop using the service before then.",
+        "Your projects are not transferred, because they stay in your browser. Licences already granted under the {{license.name}} remain in force."
+      ]
+    },
+    {
+      "id": "changes",
+      "heading": "Changes to these terms",
+      "body": [
+        "We may change these terms, for example when the service gains new functions such as the AI features, when the law changes or when the service passes to a successor. This page always shows the current version with its date and version number.",
+        "We announce substantial changes on the website before they take effect. From then on, the changed terms apply to your use of the service. If you do not agree with them, you may stop using the service.",
+        "We do not unilaterally change the essential duties of a contract with a consumer, meaning the main obligations of you and us."
+      ]
+    },
+    {
+      "id": "governing-law",
+      "heading": "Governing law and jurisdiction",
+      "body": [
+        "These terms and the contract of use are governed by the law of the Federal Republic of Germany, excluding the UN Convention on Contracts for the International Sale of Goods (CISG).",
+        "If you are a consumer, meaning you use the service for purposes that lie mainly outside your trade, business or profession, this choice of law does not deprive you of the protection of the mandatory consumer-protection rules of the country where you habitually live (Rome I Regulation (EC) 593/2008, Art. 6).",
+        "If you are a merchant (Kaufmann), a legal entity under public law or a special fund under public law (öffentlich-rechtliches Sondervermögen), the exclusive place of jurisdiction for all disputes arising from or in connection with these terms is Hamburg (§ 38 ZPO). For consumers, the statutory places of jurisdiction apply."
+      ]
+    },
+    {
+      "id": "severability",
+      "heading": "Severability and language",
+      "body": [
+        "If a provision of these terms is or becomes invalid or unenforceable, the remaining provisions stay in force. The statutory provisions take the place of the invalid provision.",
+        "These terms are available in English and German. The English version is the reference version; the German version is a translation of it. If the two versions differ, the English version prevails."
+      ]
+    },
+    {
+      "id": "contact",
+      "heading": "Contact",
+      "body": [
+        "Questions about these terms, notices and legal requests: [{{operator.emailHuman}}](mailto:{{operator.emailHuman}}). This mailbox is read by a person.",
+        "[{{operator.emailAgent}}](mailto:{{operator.emailAgent}}) is answered by an AI system. Its replies may be wrong and are not legally binding statements. Send legal, privacy and rights requests only to {{operator.emailHuman}}.",
+        "Further contact details are in the [Imprint](/imprint)."
+      ]
+    }
+  ]
+}

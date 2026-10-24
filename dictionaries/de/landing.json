@@ -24,7 +24,17 @@
     "footer": {
       "businessModels": "Geschäftsmodelle",
       "methodology": "Methodik",
-      "backToTop": "Nach oben"
+      "backToTop": "Nach oben",
+      "legal": {
+        "nav": "Rechtliches",
+        "terms": "Nutzungsbedingungen",
+        "privacy": "Datenschutzerklärung",
+        "cookies": "Cookie-Richtlinie",
+        "imprint": "Impressum",
+        "ai": "KI-Transparenz",
+        "license": "Open-Source-Lizenz",
+        "source": "Quellcode auf GitHub"
+      }
     }
   }
 }

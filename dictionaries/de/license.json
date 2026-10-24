@@ -1,0 +1,112 @@
+{
+  "meta": {
+    "title": "Open-Source-Lizenz",
+    "description": "Welche Lizenz für den Code, die Dokumentation und die Methodik des Quick Check von First Move gilt, was sie erlaubt und welche Bestandteile anderen Lizenzen unterliegen."
+  },
+  "title": "Open-Source-Lizenz",
+  "intro": "First Move ist Open Source. Diese Seite erklärt, welche Lizenz für den Code, die Dokumentation und die Methodik des Quick Check gilt, was sie erlaubt, was sie im Gegenzug verlangt und welche Bestandteile anderen Lizenzen unterliegen.",
+  "updated": "2026-10-24",
+  "version": "1.0",
+  "sections": [
+    {
+      "id": "summary",
+      "heading": "Überblick",
+      "body": [
+        "| Bestandteil | Lizenz |",
+        "|---|---|",
+        "| Quellcode | {{license.name}} (`{{license.spdx}}`) |",
+        "| Dokumentation | {{license.name}} (`{{license.spdx}}`) |",
+        "| Methodik des Quick Check | {{license.name}} (`{{license.spdx}}`), veröffentlicht mit Erlaubnis ihrer Rechteinhaber |",
+        "| Pakete Dritter | Jeweils eigene Lizenzen, siehe [Software Dritter](#third-party) |",
+        "| Schriftarten | SIL Open Font License 1.1 (`OFL-1.1`) |",
+        "| Der Name {{operator.tradeName}} | Nicht lizenziert, siehe [Name und Marke](#trademark) |",
+        "> Diese Seite fasst die Lizenz in einfachen Worten zusammen und ersetzt sie nicht. Für Ihre Rechte und Pflichten ist allein der vollständige Text der {{license.name}} in der Datei [LICENSE]({{repo.licenseUrl}}) maßgeblich."
+      ]
+    },
+    {
+      "id": "code",
+      "heading": "Quellcode",
+      "body": [
+        "Der Quellcode von First Move ist im Repository [{{repo.url}}]({{repo.url}}) veröffentlicht und steht unter der {{license.name}}. Die SPDX-Kennung lautet `{{license.spdx}}`. Der Lizenztext steht in der Datei [LICENSE]({{repo.licenseUrl}}) des Repositorys, der offizielle Text ist unter [{{license.url}}]({{license.url}}) abrufbar. Das Repository enthält außerdem eine Datei `NOTICE` mit den Namensnennungshinweisen für First Move. Abschnittsangaben in Klammern beziehen sich auf die Abschnitte der Lizenz.",
+        "Urheberrechtsvermerk für den Code: © {{copyright.year}} {{operator.name}}. Die Urheberrechte an Beiträgen bleiben bei deren Urhebern, die ihre Beiträge zu denselben Bedingungen lizenzieren (siehe [Beiträge](#contributions)).",
+        "Die Lizenz erlaubt Ihnen, unentgeltlich und weltweit (Abschnitt 2):",
+        "- die Software für jeden Zweck zu nutzen und zu vervielfältigen, auch kommerziell;",
+        "- sie zu verändern und eigene Werke darauf aufzubauen;",
+        "- sie verändert oder unverändert als Quellcode oder in kompilierter Form zu verbreiten und Unterlizenzen zu erteilen.",
+        "Wenn Sie First Move oder ein darauf beruhendes Werk verbreiten, müssen Sie (Abschnitt 4):",
+        "- allen, die es von Ihnen erhalten, eine Kopie der Lizenz mitgeben;",
+        "- jede von Ihnen geänderte Datei mit einem deutlich sichtbaren Hinweis auf die Änderung versehen;",
+        "- im Quellcode Ihrer Version die Urheberrechts-, Patent-, Marken- und Namensnennungshinweise von First Move beibehalten, die sich auf diese Version beziehen;",
+        "- die Namensnennungshinweise aus der Datei `NOTICE` an einer der in der Lizenz genannten Stellen weitergeben, zum Beispiel in einer eigenen Datei `NOTICE`.",
+        "Sie dürfen Ihren Änderungen einen eigenen Urheberrechtsvermerk hinzufügen und sie unter anderen Bedingungen lizenzieren, sofern Ihre Nutzung und Verbreitung von First Move selbst der Lizenz entspricht.",
+        "Alle Beitragenden räumen Ihnen außerdem eine Patentlizenz ein (Abschnitt 3). Sie erfasst die Patentansprüche der jeweiligen Beitragenden, die durch deren Beitrag allein oder in Verbindung mit First Move zwangsläufig verletzt werden. Leiten Sie ein Patentverfahren ein, in dem Sie geltend machen, First Move oder ein darin enthaltener Beitrag verletze ein Patent, enden die Patentlizenzen, die Sie unter der Lizenz erhalten haben, mit dem Tag, an dem das Verfahren eingeleitet wird.",
+        "Die Software wird ohne Gewährleistung bereitgestellt: siehe [Keine Gewährleistung](#no-warranty)."
+      ]
+    },
+    {
+      "id": "methodology",
+      "heading": "Methodik des Quick Check",
+      "body": [
+        "Die Methodik des Quick Check, also ihre Gleichungen, Tabellen und Standardwerte, ist aus der AQC-Methodik abgeleitet, die mit der Aufgabenstellung des 5GDHC-Hackathons bereitgestellt wurde. Wir veröffentlichen sie mit Erlaubnis ihrer Rechteinhaber unter der {{license.name}}, der Lizenz, unter der auch der Code steht. Die Anerkennung für die ursprüngliche Methodik gebührt ihren Urhebern.",
+        "Wenn Sie die Gleichungen, Tabellen oder Standardwerte weiterverwenden oder ändern, gelten die Bedingungen unter [Quellcode](#code) entsprechend: Geben Sie die Lizenz und die Namensnennungshinweise weiter, und kennzeichnen Sie Ihre Änderungen.",
+        "Die Methodik ist ein Screening-Verfahren. Ihre Ergebnisse sind eine erste Einschätzung, keine Machbarkeitsstudie und keine ingenieurtechnische Beratung. Sie beruhen auf vereinfachten Annahmen und müssen weiter präzisiert werden. Die Berechnungen sind deterministisch: Sie folgen den veröffentlichten Gleichungen und Standardtabellen und werden nicht von KI erzeugt."
+      ]
+    },
+    {
+      "id": "documentation",
+      "heading": "Dokumentation",
+      "body": [
+        "Die Dokumentation im Repository, einschließlich der Seiten unter [Dokumentation](/docs), steht ebenfalls unter der {{license.name}}. Sie dürfen sie zu denselben Bedingungen wie den Code vervielfältigen, übersetzen, bearbeiten und erneut veröffentlichen, auch kommerziell: Geben Sie die Lizenz und die Hinweise weiter, und kennzeichnen Sie Ihre Änderungen."
+      ]
+    },
+    {
+      "id": "trademark",
+      "heading": "Name und Marke",
+      "body": [
+        "{{operator.tradeName}} ist die Geschäftsbezeichnung, unter der {{operator.name}} diesen Dienst anbietet. Sie ist weder eine eingetragene Firma noch eine eingetragene Marke.",
+        "Die {{license.name}} gewährt keine Erlaubnis, die Handelsnamen, Marken, Dienstleistungsmarken oder Produktnamen des Lizenzgebers zu verwenden (Abschnitt 6). Der Name ist daher nicht als Name für Ihr Produkt lizenziert. Sie dürfen ihn nur verwenden, soweit dies angemessen und üblich ist, um die Herkunft Ihres Werks zu beschreiben, etwa mit dem Hinweis, dass es auf First Move beruht, und um den Inhalt der Datei `NOTICE` wiederzugeben.",
+        "Wenn Sie eine veränderte Version veröffentlichen oder eine eigene Kopie der App betreiben, geben Sie ihr einen anderen Namen, und erwecken Sie nicht den Eindruck, es handle sich um First Move oder sie werde von uns empfohlen."
+      ]
+    },
+    {
+      "id": "third-party",
+      "heading": "Software Dritter",
+      "body": [
+        "First Move baut auf Open-Source-Paketen anderer Urheber auf. Jedes Paket bleibt unter der Lizenz, die seine Urheber gewählt haben: Die {{license.name}} von First Move ändert diese Lizenz nicht, und für das Paket gilt dessen eigene Lizenz. Die folgende Tabelle führt die mit First Move ausgelieferten Pakete einschließlich der Schriftarten auf, jeweils mit ihrer Lizenz und einem Link zum Projekt."
+      ]
+    },
+    {
+      "id": "fonts",
+      "heading": "Schriftarten",
+      "body": [
+        "First Move verwendet drei Schriftarten: Archivo, Instrument Serif und IBM Plex Mono. Sie stehen unter der SIL Open Font License 1.1 (SPDX-Kennung `OFL-1.1`), nicht unter der {{license.name}}. Sie werden mit den `@fontsource`-Paketen `@fontsource-variable/archivo`, `@fontsource/instrument-serif` und `@fontsource/ibm-plex-mono` ausgeliefert, die die Lizenztexte enthalten. Die Schriftarten werden von dieser Website selbst bereitgestellt, nicht von einem externen Schriftdienst."
+      ]
+    },
+    {
+      "id": "contributions",
+      "heading": "Beiträge",
+      "body": [
+        "Sie können über das [Repository]({{repo.url}}) auf GitHub beitragen. Für Ihre Nutzung dieser Plattform gelten die eigenen Bedingungen von GitHub.",
+        "Sofern Sie nicht ausdrücklich etwas anderes erklären, steht jeder Beitrag, den Sie bewusst zur Aufnahme in First Move einreichen, etwa Code, Dokumentation oder Änderungen an der Methodik, unter der {{license.name}}, ohne zusätzliche Bedingungen (Abschnitt 5). Das Urheberrecht an Ihrem Beitrag bleibt bei Ihnen. Reichen Sie nur Arbeiten ein, die Sie zu diesen Bedingungen lizenzieren dürfen.",
+        "Wir sind nicht verpflichtet, Beiträge anzunehmen, zu prüfen oder zu übernehmen. Die [Nutzungsbedingungen](/terms#contributions) regeln weitere Einzelheiten zu Beiträgen, darunter, wie wir mit KI-gestütztem Feedback, Issues und Pull Requests umgehen."
+      ]
+    },
+    {
+      "id": "no-warranty",
+      "heading": "Keine Gewährleistung",
+      "body": [
+        "Die Software wird in der vorliegenden Form („as is“) bereitgestellt (Abschnitt 7). Soweit nicht durch anwendbares Recht vorgeschrieben oder schriftlich vereinbart, übernehmen der Lizenzgeber und die Beitragenden keinerlei ausdrückliche oder stillschweigende Gewährleistungen oder Bedingungen, auch nicht für Rechtsinhaberschaft, Nichtverletzung von Rechten Dritter, Marktgängigkeit oder Eignung für einen bestimmten Zweck. Sie allein entscheiden, ob es angemessen ist, die Software zu nutzen oder weiterzugeben, und tragen die Risiken, die mit der Ausübung Ihrer Rechte aus der Lizenz verbunden sind.",
+        "Nach Abschnitt 8 haftet keiner der Beitragenden Ihnen gegenüber für Schäden, die aus der Lizenz oder aus der Nutzung oder Nichtnutzbarkeit der Software entstehen, es sei denn, anwendbares Recht schreibt dies vor, etwa bei vorsätzlichem und grob fahrlässigem Handeln, oder es wurde schriftlich vereinbart.",
+        "Diese Lizenzbedingungen gelten für die Software, die Sie vervielfältigen, ändern oder verbreiten. Für Ihre Nutzung der Website unter {{site.domain}} gelten die [Nutzungsbedingungen](/terms#liability), die Gewährleistung und Haftung für den Dienst regeln."
+      ]
+    },
+    {
+      "id": "contact",
+      "heading": "Kontakt",
+      "body": [
+        "Bei Fragen zur Lizenz, zu Genehmigungen oder zur Namensnennung schreiben Sie an [{{operator.emailHuman}}](mailto:{{operator.emailHuman}}). Bitte senden Sie Lizenz- oder Rechtsfragen nicht an {{operator.emailAgent}}: Dieses Postfach wird von einem KI-System beantwortet.",
+        "Für Fehler und technische Fragen eröffnen Sie bitte ein Issue im [Repository]({{repo.url}}). Die vollständigen Angaben zum Anbieter finden Sie im [Impressum](/imprint)."
+      ]
+    }
+  ]
+}
