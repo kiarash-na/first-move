@@ -1,0 +1,10 @@
+/** The project schema, one file per section (PLAN-DASH-03 step 1). */
+export * from "./buildings"
+export * from "./business-plan"
+export * from "./meta"
+export * from "./overrides"
+export * from "./project"
+export * from "./quick-check"
+export * from "./schema-at"
+export * from "./site"
+export * from "./sources"

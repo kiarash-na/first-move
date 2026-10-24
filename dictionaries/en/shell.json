@@ -1,1 +1,41 @@
-{}
+{
+  "fields": {
+    "meta": {
+      "name": {
+        "label": "Project name",
+        "placeholder": "Untitled project"
+      },
+      "modules": {
+        "label": "Modules",
+        "help": "Turn a module on or off. Its data is kept while it is off.",
+        "quickCheck": {
+          "label": "Quick Check",
+          "help": "Screen the site with the 5GDHC Quick Check methodology."
+        },
+        "businessPlan": {
+          "label": "Business Plan",
+          "help": "Develop a business model for the network, step by step."
+        }
+      }
+    }
+  },
+  "validation": {
+    "unknown-field": "This field does not exist.",
+    "read-only": "This value is managed by the app and cannot be changed.",
+    "not-found": "This row no longer exists.",
+    "required": "Enter a value.",
+    "type": "This value has the wrong format.",
+    "integer": "Enter a whole number.",
+    "min": "Enter {min} or more.",
+    "above": "Enter a value above {min}.",
+    "max": "Enter {max} or less.",
+    "below": "Enter a value below {max}.",
+    "too-long": "Use at most {max} characters.",
+    "too-many": "Add at most {max} entries.",
+    "choice": "Choose one of the options.",
+    "format": "This value has the wrong format.",
+    "duplicate-id": "Two rows have the same id.",
+    "at-least-one-module": "Keep at least one module turned on.",
+    "invalid": "This value is not valid."
+  }
+}

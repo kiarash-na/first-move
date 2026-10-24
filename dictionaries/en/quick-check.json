@@ -1,1 +1,145 @@
-{}
+{
+  "fields": {
+    "buildings": {
+      "total": {
+        "label": "Total number of buildings",
+        "help": "All buildings in the project area, including industrial buildings."
+      },
+      "areaM2": {
+        "label": "Total project area",
+        "help": "Enter the area in m². The value in hectares is shown next to it."
+      },
+      "shares": {
+        "label": "Share of buildings",
+        "help": "Enter the share of each building type and construction period in %. All shares must add up to 100 %."
+      }
+    },
+    "sources": {
+      "potentials": {
+        "label": "Energy sources",
+        "help": "Select the energy sources available or potentially available in the project area and rate their potential."
+      },
+      "pv": {
+        "label": "Photovoltaic (PV) available",
+        "help": "PV lowers the electricity costs of the heat pumps by the PV cost reduction of Table 6."
+      }
+    },
+    "quickCheck": {
+      "manualDemand": {
+        "label": "Known heating and cooling demand",
+        "help": "Optional. If you know the buildings' energy demand, enter it here instead of the default estimate.",
+        "heatingKwhPerYear": {
+          "label": "Total heating demand",
+          "help": "Optional. Replaces the estimated total heating demand."
+        },
+        "coolingKwhPerYear": {
+          "label": "Total cooling demand",
+          "help": "Optional. Replaces the estimated total cooling demand."
+        }
+      },
+      "networkLengthM": {
+        "label": "Network length",
+        "help": "Optional. Leave empty to estimate the length from the building density and the project area."
+      },
+      "overrides": {
+        "heating": {
+          "label": "Heating capacity per source (Table 4)",
+          "help": "Annual capacity per potential level in kWh/a, and the heat pump COP. Leave a cell empty to keep the default."
+        },
+        "cooling": {
+          "label": "Cooling capacity per source (Table 5)",
+          "help": "Annual capacity per potential level in kWh/a, and the COP. Leave a cell empty to keep the default."
+        },
+        "economic": {
+          "label": "Economic parameters (Table 6)",
+          "help": "Leave a value empty to keep the default."
+        }
+      }
+    }
+  },
+  "buildingTypes": {
+    "residential": {
+      "label": "Residential buildings",
+      "description": "Residential buildings of different construction periods."
+    },
+    "category_a": {
+      "label": "Category A",
+      "description": "Retail, museums, supermarkets, schools, offices and fitness studios."
+    },
+    "category_b": {
+      "label": "Category B",
+      "description": "Kindergartens, sports halls, hotels and theatres."
+    },
+    "category_c": {
+      "label": "Category C",
+      "description": "Hospitals, restaurants, swimming pools and canteens."
+    },
+    "industry": {
+      "label": "Industry",
+      "description": "Industrial buildings and facilities. No default values exist, so any industry share leads to \"Further analysis required\"."
+    }
+  },
+  "periods": {
+    "until_1919": { "label": "-1919" },
+    "1919_1960": { "label": "1919-1960" },
+    "1961_1990": { "label": "1961-1990" },
+    "1991_2010": { "label": "1991-2010" },
+    "2011_today": { "label": "2011-today" }
+  },
+  "sources": {
+    "geothermal": { "label": "Geothermal" },
+    "waste_heat": { "label": "Waste heat" },
+    "ground_water": { "label": "Ground water" },
+    "surface_water": { "label": "Surface water" },
+    "solar_thermal": { "label": "Solar thermal" },
+    "ambient_air": { "label": "Ambient air" }
+  },
+  "potentials": {
+    "low": { "label": "Low" },
+    "medium": { "label": "Medium" },
+    "high": { "label": "High" },
+    "unknown": { "label": "Unknown" }
+  },
+  "capacityCells": {
+    "low": { "label": "Low" },
+    "medium": { "label": "Medium" },
+    "high": { "label": "High" },
+    "cop": { "label": "COP" }
+  },
+  "parameters": {
+    "heating_base_price": { "label": "Heating base price" },
+    "heating_energy_price": { "label": "Heating energy price" },
+    "cooling_base_price": { "label": "Cooling base price" },
+    "cooling_energy_price": { "label": "Cooling energy price" },
+    "connection_fee": { "label": "Connection fee" },
+    "network_construction_costs": {
+      "label": "Network construction costs",
+      "help": "Pipes, materials, excavation and installation."
+    },
+    "installation_costs_geothermal": { "label": "Geothermal installation costs" },
+    "installation_costs_waste_heat": { "label": "Waste heat installation costs" },
+    "installation_costs_ground_water": { "label": "Ground water installation costs" },
+    "installation_costs_surface_water": { "label": "Surface water installation costs" },
+    "installation_costs_solar_thermal": { "label": "Solar thermal installation costs" },
+    "installation_costs_ambient_air": {
+      "label": "Ambient air installation costs",
+      "help": "Table 6 gives no value; the Quick Check uses 0."
+    },
+    "heat_pump": { "label": "Heat pump" },
+    "electricity_cost": { "label": "Electricity cost" },
+    "pv_cost_reduction": { "label": "PV cost reduction" },
+    "depreciation_period": { "label": "Depreciation period" },
+    "interest_rate": { "label": "Interest rate" }
+  },
+  "derived": {
+    "densityCategory": {
+      "label": "Building density category",
+      "help": "Calculated from the building density, not entered.",
+      "options": {
+        "rural": { "label": "Rural" },
+        "sub_urban": { "label": "Sub-urban" },
+        "urban": { "label": "Urban" }
+      }
+    }
+  }
+}

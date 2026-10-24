@@ -1,1 +1,154 @@
-{}
+{
+  "fields": {
+    "site": {
+      "label": "Site or district",
+      "help": "Describe the site or district the business model is for.",
+      "name": { "label": "Name of the site or district" },
+      "location": {
+        "label": "Location",
+        "help": "Municipality, region or country."
+      },
+      "siteType": {
+        "label": "Type of site",
+        "help": "For example a rural village, the urban outskirts or an existing neighbourhood."
+      },
+      "ownership": {
+        "label": "Property and usage types",
+        "help": "Who owns the buildings and how they are used, for example private ownership, rental housing or tourism."
+      },
+      "units": {
+        "label": "Units or buildings",
+        "help": "As far as known, for example \"20-70 units, phased development\"."
+      },
+      "currentSupply": {
+        "label": "Current energy supply",
+        "help": "One entry per energy carrier, for example natural gas or biomass."
+      },
+      "stakeholders": {
+        "label": "Stakeholders",
+        "help": "One entry per stakeholder, for example private households or a hotel."
+      },
+      "partners": {
+        "label": "Other partners",
+        "help": "One entry per partner, for example the municipality."
+      }
+    },
+    "businessPlan": {
+      "scenarioId": {
+        "label": "Use case",
+        "help": "Start from a predefined scenario or describe your own use case."
+      },
+      "opportunity": {
+        "label": "The opportunity",
+        "help": "What the network is for, and for whom.",
+        "customerSegments": {
+          "label": "Customer segments",
+          "help": "Who would connect to the network?"
+        },
+        "needs": {
+          "label": "Heating and cooling needs",
+          "help": "What heating and cooling do the buildings need?"
+        },
+        "heatSources": {
+          "label": "Relevant heat sources",
+          "help": "Which local sources could supply the network, and what is known about them?"
+        },
+        "painPoint": {
+          "label": "Key pain point",
+          "help": "What problem does the site have today?"
+        },
+        "alternatives": {
+          "label": "Available alternatives",
+          "help": "What else could the buildings do, for example individual heat pumps?"
+        },
+        "advantage": {
+          "label": "Why a shared low-temperature network",
+          "help": "Why does a shared network offer value compared with the alternatives?"
+        }
+      },
+      "canvas": {
+        "label": "Business Model Canvas",
+        "help": "Pay particular attention to the value proposition, customer relationships, key partners, operator responsibilities, cost structure and revenue streams.",
+        "keyPartners": { "label": "Key partners" },
+        "keyActivities": { "label": "Key activities" },
+        "keyResources": { "label": "Key resources" },
+        "valueProposition": { "label": "Value proposition" },
+        "customerRelationships": { "label": "Customer relationships" },
+        "channels": { "label": "Channels" },
+        "customerSegments": { "label": "Customer segments" },
+        "costStructure": { "label": "Cost structure" },
+        "revenueStreams": { "label": "Revenue streams" },
+        "operatorResponsibilities": {
+          "label": "Operator responsibilities",
+          "help": "Who owns and operates the source, the network and the heat pumps, and who is responsible for what?"
+        }
+      },
+      "allocation": {
+        "label": "Allocation of investment, risk and benefit",
+        "help": "Make explicit who invests, who carries which risk and who benefits.",
+        "item": {
+          "stakeholder": { "label": "Stakeholder" },
+          "investment": { "label": "Investment" },
+          "risk": { "label": "Risk" },
+          "benefit": { "label": "Benefit" }
+        }
+      },
+      "assumptions": {
+        "label": "Rough assumptions",
+        "help": "Use rough but transparent assumptions rather than detailed engineering calculations.",
+        "connectionRate": { "label": "Connection rate" },
+        "tariffs": { "label": "Tariffs" },
+        "capex": { "label": "Capital expenditure" },
+        "financing": { "label": "Financing" },
+        "subsidies": { "label": "Subsidy dependence" }
+      },
+      "criticalAssumptions": {
+        "label": "Critical assumptions",
+        "help": "The top critical assumptions, and how each could be validated.",
+        "item": {
+          "statement": { "label": "Assumption" },
+          "validation": { "label": "How to validate it" }
+        }
+      },
+      "risks": {
+        "label": "Risks",
+        "help": "The top risks, including one potential deal-breaker, and how each could be validated.",
+        "item": {
+          "title": { "label": "Risk" },
+          "description": { "label": "Description" },
+          "dealBreaker": { "label": "Potential deal-breaker" },
+          "validation": { "label": "How to validate it" }
+        }
+      },
+      "refinements": {
+        "label": "Refinements",
+        "help": "Refine the business model based on the Reality Check, expert feedback and the challenges found.",
+        "feedback": { "label": "Feedback and challenges" },
+        "changes": { "label": "What changed in the model, and why" }
+      },
+      "scalability": {
+        "label": "Scalability and replication",
+        "help": "Could the model work under different geographical, economic and organisational conditions?",
+        "geographical": { "label": "Geographical conditions" },
+        "economic": { "label": "Economic conditions" },
+        "organisational": { "label": "Organisational conditions" }
+      },
+      "nextSteps": {
+        "label": "Next steps",
+        "help": "The next practical steps towards implementation.",
+        "data": { "label": "Data to collect" },
+        "stakeholders": { "label": "Stakeholders to engage" },
+        "partnerships": { "label": "Partnerships to secure" },
+        "pilots": { "label": "Pilot opportunities" },
+        "decisions": { "label": "Key decisions and the decision gate" }
+      }
+    }
+  },
+  "scenarios": {
+    "BM-SCN-01": { "label": "Scenario 01: Rural village" },
+    "BM-SCN-02": { "label": "Scenario 02: Urban outskirts, no district heating planned" },
+    "BM-SCN-03": { "label": "Scenario 03: Urban outskirts, mixed ownership" },
+    "BM-SCN-04": { "label": "Scenario 04: Urban outskirts, thermal spa and hotels" },
+    "custom": { "label": "Your own use case" }
+  }
+}
