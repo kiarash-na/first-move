@@ -32,7 +32,7 @@ All of `10_quick-check-tool/` and `20_business-models/`, split across phases 01�
 | `/[lang]/dashboard/assumptions` | (app) | defaults, OQ answers, parameter playground |
 | `/[lang]/docs/[[...slug]]` | `app/[lang]/(docs)/layout.tsx` | public MDX docs (empty now) |
 
-Every root layout sets `<html lang>` and lists `en` and `de` in `generateStaticParams`. Page shells stay static (Cache Components), and project data is read on the client only. The active project is kept per tab in sessionStorage, falling back to the last-used project. It never goes in the URL.
+Every root layout sets `<html lang>` and lists `en` and `de` in `generateStaticParams`. Every `[step]` page and the docs `[[...slug]]` page also return their params from `generateStaticParams` and call `notFound()` for unknown values. Never export `dynamicParams`: with Cache Components it fails the build. `app/global-not-found.tsx` handles unmatched URLs. Page shells stay static (Cache Components), and project data is read on the client only. The active project is kept per tab in sessionStorage, falling back to the last-used project. It never goes in the URL.
 
 **Folders**
 
@@ -51,18 +51,18 @@ Every root layout sets `<html lang>` and lists `en` and `de` in `generateStaticP
 | `components/landing/` | existing landing |
 | `content/docs/{en,de}/` | public MDX (later) |
 
-Small files, one job each (D-24). Tests sit next to the unit they test (`x.ts` → `x.test.ts`). E2E tests go in `e2e/`.
+Small files, one job each (D-24). Tests sit next to the unit they test (`x.ts` → `x.test.ts`). E2E tests go in `e2e/` and are excluded from Vitest. Dashboard pages load their area dictionaries on the server and pass them to a client `I18nProvider` (`features/shell/`). Never import dictionary JSON in client code.
 
 **Data model.** Shared data is stored once (D-01). Results are derived, never stored or exported.
 
 ```
 Project
   meta          id, name, createdAt, updatedAt, schemaVersion, methodologyVersion, modules {quickCheck, businessPlan}, exampleId?
-  site          name, location, siteType, currentSupply[], stakeholders[]          BM-SCN-*, BM-STEP-01
+  site          name, location, siteType (free text, not the OQ-04 category), currentSupply[], stakeholders[]          BM-SCN-*, BM-STEP-01
   buildings     total QCT-IN-01 · areaM2 QCT-IN-02 · shares[type][period] QCT-IN-04
   sources       [{ id, potential }] QCT-IN-06/07 · pv QCT-IN-09
   quickCheck    manualDemand? QCT-IN-05 · networkLengthM? QCT-IN-08 · overrides? D-10
-  businessPlan  scenarioId · opportunity · canvas · allocation · assumptions · risks · scalability · nextSteps   BM-STEP-01..04
+  businessPlan  scenarioId · opportunity · canvas · allocation · assumptions · criticalAssumptions · risks · refinements · scalability · nextSteps   BM-STEP-01..04
 ```
 
 How the modules share data:
@@ -81,7 +81,7 @@ The UI renders inputs from this registry. `applyPatch(project, patch)` validates
 - React 19.3, Tailwind v4, shadcn/ui, lucide-react
 - Zod 4, Zustand, `idb`
 - shadcn Charts (Recharts)
-- Vitest, Testing Library, `fake-indexeddb`; Playwright on the preinstalled Chromium
+- Vitest, Testing Library, `fake-indexeddb`; `@playwright/test@1.63.0`, pinned exactly to match the preinstalled Chromium 1243 in `/opt/pw-browsers`
 - `@next/mdx`
 
 Add a dependency only when a phase needs it.

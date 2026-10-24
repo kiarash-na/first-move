@@ -15,13 +15,13 @@ Step-by-step inputs with live results, a full results page and a transparent ass
 
 ## Requirements covered
 
-`10_quick-check-tool/01_input-project-data/` and `04_understand-key-factors/` (KF-02, 03, 04, 06, 07); QCT-SCOPE-03/04 (intro copy); QCT-SCOPE-07/08 (disclaimers); D-10.
+`10_quick-check-tool/01_input-project-data/` and `04_understand-key-factors/` (KF-02, 03, 04, 06, 07); QCT-SCOPE-03/04 (intro copy); QCT-SCOPE-07/08 (disclaimers); D-10, D-31.
 
 ## Steps
 
 1. `features/quick-check/steps/`, one folder per step:
-   - `area`: QCT-IN-01, 02; derived density + category read-only (OQ-03, OQ-04)
-   - `buildings`: QCT-IN-04 5×5 share grid with a live sum
+   - `area`: QCT-IN-01, 02; derived density + category read-only (OQ-04)
+   - `buildings`: QCT-IN-04 5×5 share grid (Industry included, period labels verbatim per OQ-03) with a live sum
    - `sources`: QCT-IN-06/07 source cards with Low/Medium/High/Unknown
    - `options`: QCT-IN-05, 08, 09
 

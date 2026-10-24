@@ -28,9 +28,13 @@ All input requirements in `10_quick-check-tool/01_input-project-data/`, plus the
      - stakeholder allocation (investment / risk / benefit)
      - assumptions (connection rate, tariffs, capex, financing, subsidy dependence)
      - a risk register with a deal-breaker flag and validation
+     - critical assumptions (statement + how to validate)
+     - refinements
      - scalability by context
      - next steps (data, partners, pilots, decisions)
-2. `lib/project/fields/` — the registry (D-05), one file per module. Write validation limits as data, e.g. buildings 1–100 000, area > 0, share sum 100 ± 0.1. The density category (OQ-04) is derived, not an input. Manual demand (OQ-05) is two optional totals.
+
+   Dates are ISO strings. Use no transforms or preprocess in the schema (number parsing stays in `lib/i18n/format`), so `z.toJSONSchema()` works.
+2. `lib/project/fields/` — the registry (D-05), one file per module. Write validation limits as data, e.g. buildings 1–100 000, area > 0, share sum = 100 (float tolerance only; otherwise incomplete, no result). The density category (OQ-04) is derived, not an input. Manual demand (OQ-05) is two optional totals.
 3. `create-project.ts` builds an empty project for a chosen set of modules. `apply-patch.ts` validates and applies a partial patch, returning per-field errors.
 4. `versions.ts` holds `SCHEMA_VERSION = 1` and `METHODOLOGY_VERSION`. `migrations/` holds a runner and a v1 baseline.
 5. Tests:

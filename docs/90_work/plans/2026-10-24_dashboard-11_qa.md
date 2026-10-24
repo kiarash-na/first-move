@@ -4,7 +4,7 @@ date: 2026-10-24
 status: todo
 challenge: [quick-check-tool, business-models]
 covers: [QCT-SCOPE-11, QCT-SCOPE-12, DESIGN-TOKENS]
-blocked_by: [PLAN-DASH-09, PLAN-DASH-10]
+blocked_by: [PLAN-DASH-09]
 ---
 
 # Phase 11 · QA, e2e and polish

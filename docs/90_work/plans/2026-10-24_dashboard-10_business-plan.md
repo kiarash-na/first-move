@@ -15,14 +15,14 @@ A guided, qualitative workspace that turns a use case into pitch-ready content, 
 
 ## Requirements covered
 
-All of `20_business-models/`; `01_shared/` as the source for guiding prompts and tips.
+All of `20_business-models/`; `01_shared/` as the source for guiding prompts and tips; D-27, D-28, D-29, D-30.
 
 ## Steps
 
 1. `features/business-plan/steps/`, one folder per step:
    - `opportunity` (BM-STEP-01): site, segments, needs, heat sources, pain point, why 5GDHC beats the alternatives
-   - `business-logic` (BM-STEP-02): 9-block canvas + stakeholder allocation of investment / risk / benefit
-   - `reality-check` (BM-STEP-03): rough assumptions, risk register, one deal-breaker, validation per risk
+   - `business-logic` (BM-STEP-02): 9-block canvas + stakeholder allocation of investment / risk / benefit; compare models by duplicating the project (D-29)
+   - `reality-check` (BM-STEP-03): rough assumptions, critical assumptions, risk register, one deal-breaker, validation for each risk and each critical assumption
    - `implementation` (BM-STEP-04): refinements, scalability by context, next steps
 2. Scenario picker: BM-SCN-01..04 presets that prefill only the stated fields (OQ-25), or a custom use case (BM-SCOPE-05/06).
 3. Free navigation with progress per step (BM-SCOPE-11). Guiding prompts come from BM-SCOPE-03 key questions and ALG-05/09/10, in `lib/business-plan/prompts.ts` with i18n keys.

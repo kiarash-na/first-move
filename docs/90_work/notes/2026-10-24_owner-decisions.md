@@ -49,6 +49,19 @@ Answers given by the project owner in chat on 2026-10-24. The plan is [PLAN-DASH
 | D-24 | Small files: one component per file, one equation per file, one step per file; separate folders per area. |
 | D-25 | Hosting: Vercel. |
 | D-26 | Delivery: one sub-agent per phase, phases run one after another; each phase commits and pushes. PR only when the owner says so. |
+| D-27 | Business Plan is a qualitative workspace. QC economics are shown read-only; no BP-specific calculations. |
+| D-28 | Business Plan steps: free navigation with progress per step. |
+| D-29 | One business model per project; models are compared by duplicating the project. |
+| D-30 | Pitch-readiness checklist built from the V02 pitch sections + V01 jury criteria, labelled unofficial. |
+| D-31 | QC inputs: the share grid starts empty with a live sum; area is entered in m², with ha shown; the team sets the validation limits. |
+
+## Defaults added in plan review (2026-10-24)
+
+| ID | Default |
+|---|---|
+| R-01 | A source with Unknown potential adds 0 supply, cost and electricity (QCT-RULE-UNKNOWN still forces the result). |
+| R-02 | N_total terms (EQ-3.3, EQ-3.9c, EQ-3.10d) use the entered total, industry included (the result is forced anyway, OQ-02). |
+| R-03 | The share sum must equal 100 (float tolerance only); otherwise the project is incomplete and shows no result. |
 
 ## Open questions answered
 

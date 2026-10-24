@@ -21,7 +21,9 @@ QCT-SCOPE-06 (flow entry), QCT-SCOPE-10 (report entry point), BM-SCOPE-05 (choos
 
 1. `features/shell/`:
    - sidebar (Overview · Quick Check steps · Results · Business Plan steps · Assumptions; a sheet below 899px). Module sections show only when the module is on.
-   - top bar: `SaveStatus` (always visible), Export, Import, Report (disabled with a "coming soon" tooltip), `LanguageSwitch`, `ThemeToggle`, `ProjectMenu` (rename, duplicate, delete with confirm + undo, turn modules on/off).
+   - top bar: `SaveStatus` (always visible), Export, Import, Report (disabled with a "coming soon" tooltip), `LanguageSwitch`, `ThemeToggle`, `ProjectMenu` (rename, duplicate, delete with confirm + undo, turn modules on/off, restore snapshot, link to a file when supported).
+   - toasts for the tab-sync notice and the export reminder
+   - placeholder pages for every `/[lang]/dashboard/*` route in PLAN-DASH-00 (filled in phases 08–10); opening a project or example goes to overview
 2. `features/start/` at `/[lang]/dashboard`:
    - **Continue where you left off**: large card for the last project, with its time
    - path tiles Quick Check / Business Plan / Both → name dialog → create → first step

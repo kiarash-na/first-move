@@ -19,7 +19,7 @@ QCT-SCOPE-05, QCT-SCOPE-12 (reference scenarios), BM-SCN-01..04, OQ-23, OQ-25; D
 
 ## Steps
 
-1. `lib/examples/`: one file per example plus `index.ts`. Each is a valid Project. Visible text is stored as `{ en, de }` and copied in the current language when the user picks the example.
+1. `lib/examples/`: one file per example plus `index.ts`. Visible text is stored as `{ en, de }`, an allowed exception to the dictionary rule. `localizeExample(example, lang)` returns a valid Project, and that project is copied when the user picks the example.
 
    | # | Based on | Target verdict |
    |---|---|---|
@@ -32,7 +32,7 @@ QCT-SCOPE-05, QCT-SCOPE-12 (reference scenarios), BM-SCN-01..04, OQ-23, OQ-25; D
 
 2. Tune the inputs with the real engine. "Promising" needs small projects (about 2–15 buildings, several medium/high sources; OQ-26). Map building types with QCT-REF-TYPES: school → A, kindergarten/hotel → B, spa/pool → C.
 3. Fill the Business Plan with plausible content per BM-STEP-01..04. Use only the facts the scenario states, and mark invented details as illustrative.
-4. Tests: each example validates against the schema and reaches its target verdict.
+4. Tests: each localized example (en and de) validates against the schema and reaches its target verdict.
 
 ## Open questions this depends on
 
