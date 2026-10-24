@@ -30,7 +30,7 @@ Things to check in the translation pass, not just the keys:
 | [calc](#calc) | 68 | 67 | 1 % |
 | [common](#common) | 15 | 7 | 53 % |
 | [cookies](#cookies) | 7 | 0 | 100 % |
-| [docs](#docs) | 20 | 19 | 5 % |
+| [docs](#docs) | 20 | 18 | 10 % |
 | [imprint](#imprint) | 7 | 0 | 100 % |
 | [landing](#landing) | 212 | 188 | 11 % |
 | [legal](#legal) | 27 | 0 | 100 % |
@@ -42,7 +42,7 @@ Things to check in the translation pass, not just the keys:
 | [shell](#shell) | 167 | 163 | 2 % |
 | [start](#start) | 50 | 49 | 2 % |
 | [terms](#terms) | 7 | 0 | 100 % |
-| **All** | **1398** | **1288** | **8 %** |
+| **All** | **1398** | **1287** | **8 %** |
 
 ## ai
 
@@ -778,7 +778,7 @@ Complete: German provides every key.
 
 ## docs
 
-19 of 20 keys missing (`dictionaries/de/docs.json`).
+18 of 20 keys missing (`dictionaries/de/docs.json`).
 
 **`nav`** (1)
 
@@ -818,10 +818,6 @@ Complete: German provides every key.
 
 - `pages.data-and-privacy.title`
 - `pages.data-and-privacy.description`
-
-**`page`** (1)
-
-- `page.englishOnly`
 
 **`pager`** (3)
 

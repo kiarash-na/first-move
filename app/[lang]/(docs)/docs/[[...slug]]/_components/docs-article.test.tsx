@@ -1,7 +1,9 @@
 import { render, screen } from "@testing-library/react"
 import type { MDXProps } from "mdx/types"
 import { describe, expect, it, vi } from "vitest"
+import de from "@/dictionaries/de/docs.json"
 import en from "@/dictionaries/en/docs.json"
+import { getDictionary } from "@/lib/i18n/get-dictionary"
 import { DocsArticle } from "./docs-article"
 
 const received: MDXProps[] = []
@@ -30,5 +32,11 @@ describe("DocsArticle", () => {
     render(await DocsArticle({ slug: "index", lang: "de", copy: en, live: false }))
     expect(screen.getByRole("note")).toHaveTextContent(en.page.englishOnly)
     expect(screen.getByRole("heading", { level: 1 }).parentElement).toHaveAttribute("lang", "en")
+  })
+
+  it("writes that note in German, as only German readers see it", async () => {
+    render(await DocsArticle({ slug: "index", lang: "de", copy: await getDictionary("de", "docs"), live: false }))
+    expect(screen.getByRole("note")).toHaveTextContent(de.page.englishOnly)
+    expect(de.page.englishOnly).not.toBe(en.page.englishOnly)
   })
 })

@@ -1,5 +1,7 @@
 import { expect, test } from "@playwright/test"
 
+import { text } from "./support/dictionary"
+
 test.describe("locale routing (PLAN-DASH-01)", () => {
   test("/ redirects to /en by default and stores the choice", async ({ page, context }) => {
     await page.goto("/")
@@ -57,9 +59,9 @@ test.describe("dashboard shell", () => {
 })
 
 test.describe("docs", () => {
-  test("the index shows the coming-soon page", async ({ page }) => {
+  test("the index shows the introduction", async ({ page }) => {
     await page.goto("/de/docs")
-    await expect(page.getByRole("heading", { level: 1 })).toBeVisible()
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText(text("de", "docs", "pages.index.title"))
   })
 
   // `ensureStatic = "navigation"` makes the first request for an unlisted slug wait for the

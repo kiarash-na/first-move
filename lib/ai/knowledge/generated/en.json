@@ -220,7 +220,7 @@
     "lang": "en",
     "title": "Data and privacy",
     "url": "/en/docs/data-and-privacy",
-    "text": "First Move keeps your work on your device. There is no account, no password and no project database on any server. Your projects are stored in the browser you use, and we never receive them, so we cannot read, share or recover them.",
+    "text": "First Move keeps your work on your device. There is no account and no password, and the projects you create are stored only in the browser you use. We never receive them, so we cannot read, share or recover them.",
     "source": "content/docs/en/data-and-privacy.mdx"
   },
   {
@@ -308,7 +308,7 @@
     "lang": "en",
     "title": "Email agent · The first email: confirm once",
     "url": "/en/docs/email-agent#the-first-email-confirm-once",
-    "text": "The first time you write, nothing is processed by AI. Your message is kept, encrypted, and you get a short email with a confirmation link. On the confirmation page, tick the box and press the button: you accept the Terms of Use and emails about your request, with no marketing. Then your message is processed.\nIf you do not confirm, your message is deleted after 7 days. If you did not write to us, ignore the email. You confirm only once; your confirmation is kept for 12 months after your last message.",
+    "text": "The first time you write, nothing is processed by AI. Your message waits, unread, and you get a short email with a confirmation link. On the confirmation page, tick the box and press the button: you accept the Terms of Use and emails about your request, with no marketing. Then your message is processed.\nIf you do not confirm within 7 days, your message is never processed. If you did not write to us, ignore the email. You confirm only once; your confirmation is kept for 12 months after your last message.",
     "source": "content/docs/en/email-agent.mdx#the-first-email-confirm-once"
   },
   {
@@ -372,7 +372,7 @@
     "lang": "en",
     "title": "Email agent · How long data is kept",
     "url": "/en/docs/email-agent#how-long-data-is-kept",
-    "text": "- An unconfirmed first message: 7 days.\n- The conversation: 30 days after your last message.\n- A warning: 90 days. A pause: 30 days. A block: until we delete it.\n- Your confirmation: 12 months after your last message.\nFor these records your address is stored only in hashed form, and the conversation and any waiting messages are stored encrypted. The emails themselves stay with our email provider for 30 days. Our emails carry minimal open and click tracking (E-mail tracking). The Privacy Policy has the details.",
+    "text": "- An unconfirmed first message waits for your confirmation for 7 days.\n- The conversation: 30 days after your last message.\n- A warning: 90 days. A pause: 30 days. A block: until we delete it.\n- Your confirmation: 12 months after your last message.\nFor these records your address is stored only in hashed form, and the conversation and the list of waiting messages are stored encrypted. The emails themselves stay with our email provider for 30 days. Our emails carry minimal open and click tracking (E-mail tracking). The Privacy Policy has the details.",
     "source": "content/docs/en/email-agent.mdx#how-long-data-is-kept"
   },
   {
@@ -404,7 +404,7 @@
     "lang": "en",
     "title": "Introduction · Your data stays in your browser",
     "url": "/en/docs#your-data-stays-in-your-browser",
-    "text": "There is no account and no server database. Your projects are stored only in the browser you use, and First Move never receives them. Export a project to keep a copy or to move it to another browser. Data and privacy explains the details.",
+    "text": "There is no account, and your projects are stored only in the browser you use. First Move never receives them. Export a project to keep a copy or to move it to another browser. Data and privacy explains the details.",
     "source": "content/docs/en/index.mdx#your-data-stays-in-your-browser"
   },
   {
@@ -588,7 +588,7 @@
     "lang": "en",
     "title": "Quick Check · The verdict: what the overall result means",
     "url": "/en/docs/quick-check#the-verdict-what-the-overall-result-means",
-    "text": "The overall result, the verdict of the Quick Check, is one of three levels:\n- Promising: favorable conditions identified.\n- Further analysis required: mixed conditions, uncertainties or missing information.\n- Not promising: unfavorable conditions identified.\nThe indicator is intentionally broad, to avoid false precision and to make clear that it is a general initial assessment, not a detailed feasibility study. It combines the supply coverage, the building and heat density and the economic assessment (TBL-11), checked in this order (OQ-22):\n1. Set by a fixed rule: if the project area includes industry, or if any selected source has an Unknown potential, the result is \"Further analysis required\".\n2. Not promising: if the economic assessment is clearly unfavorable, or if a relevant supply coverage is below 70 % and both the building density and the heat density are low.\n3. Promising: if every relevant demand has at least 90 % annual supply coverage, the economic assessment is favorable, and neither the building density nor the heat density is low.\n4. Further analysis required: in every other case.\nA demand is relevant when it is above 0 (OQ-22).",
+    "text": "The overall result, the verdict of the Quick Check, is one of three levels:\n- Promising: favorable conditions identified.\n- Further analysis required: mixed conditions, uncertainties or missing information.\n- Not promising: unfavorable conditions identified.\nThe indicator is intentionally broad, to avoid false precision and to make clear that it is a general initial assessment, not a detailed feasibility study. It combines the supply coverage, the building and heat density and the economic assessment (TBL-11), checked in this order (OQ-22):\n1. Set by a fixed rule: if the project area includes industry, or if any selected source has an Unknown potential, the result is \"Further analysis required\".\n2. Not promising: if the economic assessment is clearly unfavorable, or if a relevant supply coverage is below 70 % and both the building density and the heat density are low.\n3. Promising: if there is at least one relevant demand, every relevant demand has at least 90 % annual supply coverage, the economic assessment is favorable, and neither the building density nor the heat density is low.\n4. Further analysis required: in every other case.\nA demand is relevant when it is above 0 (OQ-22).",
     "source": "content/docs/en/quick-check.mdx#the-verdict-what-the-overall-result-means"
   },
   {

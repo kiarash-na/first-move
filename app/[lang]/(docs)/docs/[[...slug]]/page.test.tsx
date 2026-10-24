@@ -7,6 +7,9 @@ import { DocsArticle } from "./_components/docs-article"
 import { DocsNav } from "./_components/docs-nav"
 import DocsPage, { ensureStatic, generateMetadata, generateStaticParams, instant } from "./page"
 
+/** What `notFound()` throws; any other error would fail these tests. */
+const NOT_FOUND = { digest: "NEXT_HTTP_ERROR_FALLBACK;404" }
+
 const props = (lang: string, slug?: string[]) =>
   ({ params: Promise.resolve({ lang, slug }) }) as PageProps<"/[lang]/docs/[[...slug]]">
 
@@ -59,9 +62,9 @@ describe("docs page (PLAN-AGENT-04)", () => {
   })
 
   it("answers 404 for an unknown slug and for the AI pages while the AI features are off", async () => {
-    await expect(DocsPage(props("en", ["missing"]))).rejects.toThrow()
-    await expect(DocsPage(props("en", ["assistant"]))).rejects.toThrow()
-    await expect(DocsPage(props("en", ["email-agent"]))).rejects.toThrow()
-    await expect(DocsPage(props("en", ["quick-check", "extra"]))).rejects.toThrow()
+    await expect(DocsPage(props("en", ["missing"]))).rejects.toMatchObject(NOT_FOUND)
+    await expect(DocsPage(props("en", ["assistant"]))).rejects.toMatchObject(NOT_FOUND)
+    await expect(DocsPage(props("en", ["email-agent"]))).rejects.toMatchObject(NOT_FOUND)
+    await expect(DocsPage(props("en", ["quick-check", "extra"]))).rejects.toMatchObject(NOT_FOUND)
   })
 })
