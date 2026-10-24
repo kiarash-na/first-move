@@ -32,7 +32,7 @@ D-23 (tests and one Playwright journey), D-55, D-61, D-62.
    - axe on all panel states;
    - the performance budget with the launcher on.
 2. **Full suite:** `pnpm lint && pnpm typecheck && pnpm test && pnpm build && pnpm test:e2e`.
-3. **Guard calibration:** `node scripts/mail-agent-eval.mjs` with the owner's keys in `.env.local`; adjust `thresholds.ts` only if the targets fail; record the matrix.
+3. **Guard calibration:** first the threat cases the A06 note lists as open (owner) in `lib/mail-agent/guard/eval/cases.jsonl`; then the live run (`guard/eval/guard.live.test.ts`, command in the A06 note; it replaced `scripts/mail-agent-eval.mjs`) with the owner's keys in `.env.local`; adjust `thresholds.ts` only if the targets fail; record the matrix and the threat recall.
 4. **Independent security review** (one reviewer agent; give it the diff and PLAN-AGENT-00 § Security model, not our conclusions; ask "how would you get us hacked or abused, or make us leak data or money?"). Cover:
    - webhook and consent endpoints, gates and recipient rules;
    - store crypto and key handling, logs and Workflow payloads;

@@ -1,1 +1,1138 @@
-[]
+[
+  {
+    "id": "docs:assistant",
+    "lang": "de",
+    "title": "KI-Assistent",
+    "url": "/de/docs/assistant",
+    "text": "Der KI-Assistent ist eine optionale Hilfe im Dashboard. Er beantwortet Fragen zu Ihrem geöffneten Projekt, und er liest Werte aus Dokumenten wie einem PDF oder einer Tabelle aus und schlägt sie vor; Sie prüfen sie, bevor sie übernommen werden. Er arbeitet mit Ihrem eigenen Schlüssel für einen KI-Anbieter Ihrer Wahl: Ihr Browser kommuniziert direkt mit diesem Anbieter, und nichts läuft über unsere Server.\nDer Assistent berechnet nie die Ergebnisse des Quick Check. Das übernimmt der Rechenkern, mit denselben Gleichungen, gleich ob ein Wert eingetippt oder von der KI vorgeschlagen wurde.",
+    "source": "content/docs/de/assistant.mdx"
+  },
+  {
+    "id": "docs:assistant#den-assistenten-offnen",
+    "lang": "de",
+    "title": "KI-Assistent · Den Assistenten öffnen",
+    "url": "/de/docs/assistant#den-assistenten-offnen",
+    "text": "Die Bot-Schaltfläche unten rechts auf jeder Seite des Dashboards öffnet den Assistenten als kompakten Chat. Sie können ihn zu einem Bereich erweitern, der rechts angedockt ist; die Seite macht dafür Platz, sodass der Bereich nichts verdeckt. Auf einem Smartphone öffnet er sich als Ansicht in voller Höhe. Die Escape-Taste schließt ihn. Der Assistent ist als KI-Assistent gekennzeichnet.",
+    "source": "content/docs/de/assistant.mdx#den-assistenten-offnen"
+  },
+  {
+    "id": "docs:assistant#anbieter-und-schlussel-wahlen",
+    "lang": "de",
+    "title": "KI-Assistent · Anbieter und Schlüssel wählen",
+    "url": "/de/docs/assistant#anbieter-und-schlussel-wahlen",
+    "text": "Der Assistent arbeitet mit zwei Anbietern:\n- Anthropic: Erstellen Sie in Ihrem Anthropic-Konto einen API-Schlüssel und fügen Sie ihn ein.\n- OpenRouter: Fügen Sie einen API-Schlüssel ein, oder wählen Sie OpenRouter verbinden, um sich dort anzumelden und einen Schlüssel für First Move zu erstellen, ohne ihn zu kopieren. OpenRouter bietet außerdem den Auto Router, der für jede Frage ein Modell auswählt.\nDer Assistent testet den Schlüssel beim Anbieter, bevor Sie ihn nutzen. Anfragen werden Ihrem Konto beim Anbieter zu dessen Preisen in Rechnung gestellt; First Move selbst verlangt nichts.",
+    "source": "content/docs/de/assistant.mdx#anbieter-und-schlussel-wahlen"
+  },
+  {
+    "id": "docs:assistant#ein-modell-wahlen",
+    "lang": "de",
+    "title": "KI-Assistent · Ein Modell wählen",
+    "url": "/de/docs/assistant#ein-modell-wahlen",
+    "text": "Chips zeigen die Preisstufe jedes Modells, von $ bis $$$$, und seine Art: Schnell, Ausgewogen, Beste, Frontier oder Auto. Ein Tooltip nennt die Preise, mit dem Datum, an dem sie geprüft wurden. Voreingestellt sind Claude Sonnet 5.5 für Anthropic und der Auto Router für OpenRouter. Sie können auch die ID eines anderen Modells eingeben; es muss die Nutzung von Tools unterstützen.",
+    "source": "content/docs/de/assistant.mdx#ein-modell-wahlen"
+  },
+  {
+    "id": "docs:assistant#ein-ausgabenlimit-beim-anbieter-festlegen",
+    "lang": "de",
+    "title": "KI-Assistent · Ein Ausgabenlimit beim Anbieter festlegen",
+    "url": "/de/docs/assistant#ein-ausgabenlimit-beim-anbieter-festlegen",
+    "text": "Der Assistent ist darauf ausgelegt, Ihren Schlüssel zu schützen, das eigentliche Sicherheitsnetz ist aber ein Ausgabenlimit bei Ihrem Anbieter. Legen Sie in Ihrem Konto beim Anbieter ein Ausgabenlimit für den Schlüssel fest, bevor Sie ihn nutzen. Der Assistent bittet Sie, das zu bestätigen, und ohne Bestätigung können Sie nicht beginnen. Bei einem OpenRouter-Schlüssel zeigt er das Limit, das für den Schlüssel festgelegt ist, oder warnt Sie, wenn es keines gibt.",
+    "source": "content/docs/de/assistant.mdx#ein-ausgabenlimit-beim-anbieter-festlegen"
+  },
+  {
+    "id": "docs:assistant#den-schlussel-fur-diese-sitzung-oder-mit-einer-pin-behalten",
+    "lang": "de",
+    "title": "KI-Assistent · Den Schlüssel für diese Sitzung oder mit einer PIN behalten",
+    "url": "/de/docs/assistant#den-schlussel-fur-diese-sitzung-oder-mit-einer-pin-behalten",
+    "text": "- Für diese Sitzung, die Voreinstellung: Der Schlüssel wird nur im Arbeitsspeicher des Browser-Tabs gehalten und ist weg, wenn Sie den Tab schließen.\n- Auf diesem Gerät merken: Der Schlüssel wird verschlüsselt in diesem Browser gespeichert und mit einer 6-stelligen PIN gesperrt, die Sie zweimal eingeben; sehr häufige PINs werden nicht akzeptiert. Wenn Sie zurückkommen, entsperren Sie ihn mit der PIN. Nach fünf falschen PIN-Eingaben wird der Schlüssel gelöscht, und Sie erfahren, warum. Nach 30 Minuten ohne Nutzung sperrt sich der Schlüssel wieder.\nDie PIN schützt vor anderen Personen, die denselben Browser nutzen. Einen Angriff auf eine Kopie Ihres Browserprofils kann sie nicht verhindern, daher bleibt das Ausgabenlimit bei Ihrem Anbieter das eigentliche Sicherheitsnetz. Der Schlüssel gelangt nie in Projektexporte, frühere Versionen oder die Adressleiste.",
+    "source": "content/docs/de/assistant.mdx#den-schlussel-fur-diese-sitzung-oder-mit-einer-pin-behalten"
+  },
+  {
+    "id": "docs:assistant#was-der-assistent-sehen-kann",
+    "lang": "de",
+    "title": "KI-Assistent · Was der Assistent sehen kann",
+    "url": "/de/docs/assistant#was-der-assistent-sehen-kann",
+    "text": "Wenn Sie eine Frage stellen, liest der Assistent das geöffnete Projekt: seine Eingaben und seine Ergebnisse sowie die Dokumente, die Sie anhängen. Er sieht nichts aus Ihren anderen Projekten und kann keine Webseiten aufrufen. Für seine Antworten nutzt er die Ergebnisse des Rechenkerns des Quick Check, die Erklärungen unter „So rechnen wir“ mit ihren Gleichungsnummern und diese Seiten der Dokumentation. Seine Antworten sind kurz und in der Sprache der App.\nIhr Browser sendet jede Anfrage an den Anbieter, den Sie gewählt haben, und es gelten dessen Bedingungen. Überlegen Sie vor einer Frage, was Ihre Frage und Ihre Dokumente enthalten: Senden Sie keine personenbezogenen Daten anderer Personen und keine vertraulichen Dokumente, sofern Sie dazu nicht berechtigt sind. Die Seite KI-Transparenz und die Datenschutzerklärung erklären, wie die KI-Funktionen mit Daten umgehen.",
+    "source": "content/docs/de/assistant.mdx#was-der-assistent-sehen-kann"
+  },
+  {
+    "id": "docs:assistant#dokumente-anhangen",
+    "lang": "de",
+    "title": "KI-Assistent · Dokumente anhängen",
+    "url": "/de/docs/assistant#dokumente-anhangen",
+    "text": "Hängen Sie Dateien mit der Schaltfläche zum Anhängen an, oder ziehen Sie sie in den Chat:\n- Dateien im Format PDF, Word (.docx), Excel (.xlsx), CSV, Markdown, Text und JSON;\n- bis zu 5 Dateien pro Nachricht, 10 MB pro Datei und 20 MB insgesamt;\n- von einem PDF werden die ersten 60 Seiten gelesen, und sehr lange Dokumente werden gekürzt.\nDer Dateityp wird anhand des Inhalts geprüft, nicht anhand des Namens. Dateien mit Makros, verschlüsselte Dateien und andere Formate, etwa ältere Excel-Dateien (.xls), werden abgelehnt. Der Text eines Dokuments wird als Daten behandelt, nie als Anweisung an den Assistenten. Er wird nicht im Chatverlauf aufbewahrt, nur der Dateiname.",
+    "source": "content/docs/de/assistant.mdx#dokumente-anhangen"
+  },
+  {
+    "id": "docs:assistant#vorgeschlagene-werte-prufen",
+    "lang": "de",
+    "title": "KI-Assistent · Vorgeschlagene Werte prüfen",
+    "url": "/de/docs/assistant#vorgeschlagene-werte-prufen",
+    "text": "Der Assistent ändert Ihr Projekt nie eigenständig. Werte, die er aus einem Dokument oder einer Nachricht liest, erscheinen als Vorschläge in einer Prüfkarte. Jede Zeile zeigt das Feld und seinen Schritt, den aktuellen Wert, den vorgeschlagenen Wert mit seiner Einheit, das Zitat und die Seite, aus denen er stammt, und ob er die Prüfungen besteht. Wählen Sie die gewünschten Werte aus, alle oder keine, und klicken Sie auf Auswahl übernehmen. Nur die ausgewählten Werte werden übernommen, und sie durchlaufen dieselben Prüfungen wie Werte, die Sie eintippen. Wenn zwei Dokumente unterschiedliche Werte für ein Feld nennen, werden beide angezeigt, und Sie entscheiden.\nBevor Sie einen Wert übernehmen, prüfen Sie ihn anhand des Dokuments: ob der Wert dort wirklich steht, die Einheit, das Zahlenformat (deutsche Dokumente schreiben 1.000,5, wo englische 1,000.5 schreiben), auf welches Gebäude, welche Fläche und welches Jahr er sich bezieht und ob er plausibel ist.",
+    "source": "content/docs/de/assistant.mdx#vorgeschlagene-werte-prufen"
+  },
+  {
+    "id": "docs:assistant#die-ki-kennzeichnung",
+    "lang": "de",
+    "title": "KI-Assistent · Die KI-Kennzeichnung",
+    "url": "/de/docs/assistant#die-ki-kennzeichnung",
+    "text": "Alles, was der Assistent schreibt, ist als KI-generiert gekennzeichnet, im Chat und in maschinenlesbarer Form. Ein Feldwert, der aus einem Vorschlag übernommen wurde, zeigt einen Chip KI mit einem Tooltip, der die Datei nennt, aus der er stammt. Die Kennzeichnung wird im Projekt und in seinem Export gespeichert. Wenn Sie den Wert selbst bearbeiten, wird er zu Ihrem Wert, und der Chip verschwindet.",
+    "source": "content/docs/de/assistant.mdx#die-ki-kennzeichnung"
+  },
+  {
+    "id": "docs:assistant#chatverlauf",
+    "lang": "de",
+    "title": "KI-Assistent · Chatverlauf",
+    "url": "/de/docs/assistant#chatverlauf",
+    "text": "Der Chatverlauf wird in diesem Browser aufbewahrt, für jedes Projekt getrennt, und ist standardmäßig eingeschaltet. Er enthält die Nachrichten und die Namen angehängter Dateien, nie den Text der Dokumente und nie Ihren Schlüssel, und er behält höchstens 200 Nachrichten. Sie können ihn in den Einstellungen des Assistenten ausschalten und löschen. Wenn ein Projekt nicht mehr existiert, wird sein Chatverlauf gelöscht, sobald Sie den Assistenten das nächste Mal öffnen.",
+    "source": "content/docs/de/assistant.mdx#chatverlauf"
+  },
+  {
+    "id": "docs:assistant#einstellungen",
+    "lang": "de",
+    "title": "KI-Assistent · Einstellungen",
+    "url": "/de/docs/assistant#einstellungen",
+    "text": "In den Einstellungen des Assistenten können Sie den Anbieter und das Modell wechseln, Ihre PIN ändern, den Schlüssel entfernen, den Chatverlauf ein- oder ausschalten und löschen und festlegen, wie sich der Bereich öffnet. Die Einstellungen werden in diesem Browser aufbewahrt; der Schlüssel gehört nie dazu.",
+    "source": "content/docs/de/assistant.mdx#einstellungen"
+  },
+  {
+    "id": "docs:assistant#den-schlussel-entfernen",
+    "lang": "de",
+    "title": "KI-Assistent · Den Schlüssel entfernen",
+    "url": "/de/docs/assistant#den-schlussel-entfernen",
+    "text": "Wählen Sie in den Einstellungen des Assistenten Schlüssel entfernen, und der Schlüssel wird sofort aus diesem Browser gelöscht. Beim Anbieter wird der Schlüssel dadurch nicht widerrufen. Um ihn zu widerrufen, löschen Sie ihn in Ihrem Konto beim Anbieter, und tun Sie das sofort, wenn Sie vermuten, dass der Schlüssel offengelegt wurde.",
+    "source": "content/docs/de/assistant.mdx#den-schlussel-entfernen"
+  },
+  {
+    "id": "docs:assistant#wenn-etwas-schiefgeht",
+    "lang": "de",
+    "title": "KI-Assistent · Wenn etwas schiefgeht",
+    "url": "/de/docs/assistant#wenn-etwas-schiefgeht",
+    "text": "Der Assistent sagt Ihnen, was der Anbieter gemeldet hat:\n- der Schlüssel wurde nicht akzeptiert;\n- das Ausgabenlimit oder das Guthaben ist aufgebraucht;\n- das Modell ist für diesen Schlüssel nicht zugelassen;\n- zu viele Anfragen, bitte warten Sie einen Moment;\n- der Anbieter hat Probleme, oder er ist nicht erreichbar.\nSie können eine Antwort anhalten, während sie geschrieben wird, und sie erneut anfordern.",
+    "source": "content/docs/de/assistant.mdx#wenn-etwas-schiefgeht"
+  },
+  {
+    "id": "docs:assistant#grenzen",
+    "lang": "de",
+    "title": "KI-Assistent · Grenzen",
+    "url": "/de/docs/assistant#grenzen",
+    "text": "KI-Modelle können sich irren. Sie können eine Frage missverstehen, selbstsicher eine falsche Antwort geben oder Zahlen und Quellen erfinden. Werte aus Dokumenten auszulesen ist fehleranfällig, besonders bei gescannten Seiten, Tabellen, Einheiten und gemischtsprachigen Dokumenten. Prüfen Sie jeden vorgeschlagenen Wert, und denken Sie daran, dass weder die Antworten des Assistenten noch die Screening-Ergebnisse eine Ingenieurberatung sind.",
+    "source": "content/docs/de/assistant.mdx#grenzen"
+  },
+  {
+    "id": "docs:business-plan",
+    "lang": "de",
+    "title": "Business Plan",
+    "url": "/de/docs/business-plan",
+    "text": "Der Business Plan ist ein Arbeitsbereich, um ein Geschäftsmodell für ein 5GDHC-Netz zu entwickeln: wer profitiert und wer zahlt, wem das Netz gehört und wer es betreibt, was Kunden zum Anschluss bewegt und wie Investitionen, Erlöse und Risiken verteilt sind. Er folgt vier vorgeschlagenen Schritten. Sie können sie in beliebiger Reihenfolge bearbeiten; der Fortschritt wird pro Schritt gezählt.\nDer Business Plan ist qualitativ. Sie schreiben in eigenen Worten, und er berechnet selbst nichts. Wenn der Quick Check eingeschaltet ist, werden seine Zahlen schreibgeschützt als Kontext angezeigt. Beginnen Sie im Dashboard mit einem neuen Projekt oder einem der Beispiele.",
+    "source": "content/docs/de/business-plan.mdx"
+  },
+  {
+    "id": "docs:business-plan#schritt-1-chance",
+    "lang": "de",
+    "title": "Business Plan · Schritt 1: Chance",
+    "url": "/de/docs/business-plan#schritt-1-chance",
+    "text": "Beschreiben Sie den Standort oder das Quartier, die Kundensegmente, den Wärme- und Kältebedarf, die relevanten Wärmequellen und das zentrale Problem. Erklären Sie dann, welchen Mehrwert ein gemeinsames Niedertemperaturnetz im Vergleich zu den verfügbaren Alternativen bietet, zum Beispiel zu eigenen Wärmepumpen.\nSie können mit einem der Beispielszenarien oder mit Ihrem eigenen Anwendungsfall beginnen. Die Gebäude und die Energiequellen werden mit dem Quick Check geteilt: Sie ändern sie dort, und der Business Plan zeigt sie an.",
+    "source": "content/docs/de/business-plan.mdx#schritt-1-chance"
+  },
+  {
+    "id": "docs:business-plan#schritt-2-geschaftslogik",
+    "lang": "de",
+    "title": "Business Plan · Schritt 2: Geschäftslogik",
+    "url": "/de/docs/business-plan#schritt-2-geschaftslogik",
+    "text": "Füllen Sie ein Business Model Canvas für Ihren Anwendungsfall aus, mit besonderem Augenmerk auf Wertangebot, Kundenbeziehungen, Schlüsselpartner, Betreiberverantwortung, Kostenstruktur und Einnahmequellen. Das Canvas enthält außerdem die Schlüsselaktivitäten, Schlüsselressourcen, Kanäle und Kundensegmente.\nMachen Sie dann die Verteilung von Investition, Risiko und Nutzen deutlich: für jeden Akteur, was er investiert, welches Risiko er trägt und wie er profitiert.",
+    "source": "content/docs/de/business-plan.mdx#schritt-2-geschaftslogik"
+  },
+  {
+    "id": "docs:business-plan#schritt-3-realitatscheck",
+    "lang": "de",
+    "title": "Business Plan · Schritt 3: Realitätscheck",
+    "url": "/de/docs/business-plan#schritt-3-realitatscheck",
+    "text": "Verwenden Sie grobe, aber transparente Annahmen statt detaillierter technischer Berechnungen. Testen Sie plausible Anschlussquoten, Tarife, Investitionsausgaben, Finanzierung und Abhängigkeiten von Förderungen. Benennen Sie die größten Risiken und die wichtigsten kritischen Annahmen, darunter ein mögliches K.-o.-Kriterium, und erklären Sie, wie sich jeder Punkt überprüfen ließe. Ein Risiko kann als mögliches K.-o.-Kriterium markiert werden.",
+    "source": "content/docs/de/business-plan.mdx#schritt-3-realitatscheck"
+  },
+  {
+    "id": "docs:business-plan#schritt-4-umsetzung",
+    "lang": "de",
+    "title": "Business Plan · Schritt 4: Umsetzung",
+    "url": "/de/docs/business-plan#schritt-4-umsetzung",
+    "text": "Verfeinern Sie Ihr Geschäftsmodell auf Grundlage des Realitätschecks, der Rückmeldungen von Fachleuten und der Herausforderungen, auf die Sie gestoßen sind. Schätzen Sie sein Potenzial für Skalierbarkeit und Übertragung unter unterschiedlichen geografischen, wirtschaftlichen und organisatorischen Bedingungen ein. Skizzieren Sie dann die nächsten praktischen Schritte: die zu erhebenden Daten, die einzubindenden Akteure, die zu sichernden Partnerschaften, die Möglichkeiten für Pilotprojekte und die wichtigen Entscheidungen, einschließlich eines realistischen Entscheidungspunkts, um das Konzept voranzubringen.",
+    "source": "content/docs/de/business-plan.mdx#schritt-4-umsetzung"
+  },
+  {
+    "id": "docs:business-plan#leitfragen",
+    "lang": "de",
+    "title": "Business Plan · Leitfragen",
+    "url": "/de/docs/business-plan#leitfragen",
+    "text": "Jeder Schritt zeigt Leitfragen und Tipps aus der Aufgabenstellung der Challenge und aus den Erkenntnissen des Forschungsprojekts „Anergie Leicht Gemacht“. Zum Beispiel: Wer profitiert, und wer zahlt? Wem gehören die Quelle, das Netz und die Wärmepumpen, und wer betreibt sie? Der Anschluss ist freiwillig: Was bringt Eigentümer dazu, Ja zu sagen? Nutzen Sie, was hilft.",
+    "source": "content/docs/de/business-plan.mdx#leitfragen"
+  },
+  {
+    "id": "docs:business-plan#beispielszenarien-1",
+    "lang": "de",
+    "title": "Business Plan · Beispielszenarien",
+    "url": "/de/docs/business-plan#beispielszenarien",
+    "text": "Ein Business Plan kann mit einem von vier vordefinierten Szenarien beginnen (BM-SCN-01 bis BM-SCN-04). Wenn Sie eines wählen, wird nur das ausgefüllt, was das Szenario angibt. Sie können danach alles ändern, und die App fragt nach, bevor ein Szenario Text ersetzt, den Sie geschrieben haben. Sie können stattdessen auch Ihren eigenen Anwendungsfall beschreiben.",
+    "source": "content/docs/de/business-plan.mdx#beispielszenarien"
+  },
+  {
+    "id": "docs:business-plan#beispielszenarien-2",
+    "lang": "de",
+    "title": "Business Plan · Beispielszenarien",
+    "url": "/de/docs/business-plan#beispielszenarien",
+    "text": "- Szenario 01, ländliches Dorf: Privathaushalte und ein Hotel; Privateigentum, touristische Unterkünfte und gewerbliche Nutzung; weitere Partner: die Gemeinde und ein Skigebiet; 20–70 Einheiten in schrittweiser Entwicklung; aktuelle Energieversorgung nicht angegeben.\n- Szenario 02, Stadtrand ohne geplante Fernwärme: eine weiterführende Schule, ein Kindergarten und Mehrfamilienhäuser; Gemeindeeigentum und Mietwohnungen; weiterer Partner: der Eigentümer der Bildungseinrichtungen; etwa 80 Einheiten; aktuelle Energieversorgung Erdgas.\n- Szenario 03, Stadtrand mit gemischten Eigentumsverhältnissen: private Hauseigentümer, Wohnbaugenossenschaften, die Gemeinde und Bildungseinrichtungen; Wohnungseigentum (WEG), Mietwohnungen (MRG) und gemeinnütziger Wohnbau (WGG); weitere Partner noch zu bestimmen; 3–20 Gebäude; aktuelle Energieversorgung Erdgas und Biomasse.\n- Szenario 04, Stadtrand mit Therme und Hotels: eine Therme, Hotels und Privathaushalte; überwiegend Tourismus- und Thermeneinrichtungen, wenig Wohnnutzung; weitere Partner noch zu bestimmen; 3–20 Gebäude; aktuelle Energieversorgung Erdgas und Biomasse.",
+    "source": "content/docs/de/business-plan.mdx#beispielszenarien"
+  },
+  {
+    "id": "docs:business-plan#beispielszenarien-3",
+    "lang": "de",
+    "title": "Business Plan · Beispielszenarien",
+    "url": "/de/docs/business-plan#beispielszenarien",
+    "text": "Der Startbildschirm bietet außerdem sechs beispielhafte Projekte, in denen beide Module ausgefüllt sind, vier davon auf Grundlage dieser Szenarien. Beim Öffnen eines Beispiels entsteht Ihre eigene Kopie.",
+    "source": "content/docs/de/business-plan.mdx#beispielszenarien"
+  },
+  {
+    "id": "docs:business-plan#pitch-reife-inoffiziell-1",
+    "lang": "de",
+    "title": "Business Plan · Pitch-Reife (inoffiziell)",
+    "url": "/de/docs/business-plan#pitch-reife-inoffiziell",
+    "text": "Der letzte Schritt zeigt, wie weit Ihr Pitch ist: wie viel des finalen Pitches bereits Inhalt hat, gemessen an Ihren Eingaben. Gezählt wird, was ausgefüllt ist, nicht wie gut der Inhalt ist, und die Anzeige ist als inoffiziell gekennzeichnet.\nDie Anzeige prüft die sechs Teile des finalen Pitches (BM-SCOPE-07): Anwendungsfall und Wertangebot, Geschäftsmodell, wirtschaftliche und praktische Machbarkeit, Realitätscheck, Skalierbarkeit und Übertragbarkeit sowie die nächsten Schritte. Daneben zeigt sie die Jurykriterien, die in der ersten Fassung der Aufgabenstellung der Challenge vorgeschlagen wurden (BM-SCOPE-08). Diese Kriterien sind keine offizielle Bewertungsregel.",
+    "source": "content/docs/de/business-plan.mdx#pitch-reife-inoffiziell"
+  },
+  {
+    "id": "docs:business-plan#pitch-reife-inoffiziell-2",
+    "lang": "de",
+    "title": "Business Plan · Pitch-Reife (inoffiziell)",
+    "url": "/de/docs/business-plan#pitch-reife-inoffiziell",
+    "text": "Jeder Teil hat eine kurze Liste von Punkten. Ein Textpunkt zählt, wenn sein Feld Text enthält, ein Listenpunkt, wenn seine Liste einen Eintrag hat, und ein Punkt zu Risiken oder kritischen Annahmen, wenn mindestens eine Zeile vollständig und keine Zeile nur halb ausgefüllt ist. Der Anteil der abgedeckten Punkte ergibt den Wert des Teils, und die Pitch-Reife ist der Durchschnitt der sechs Teile. Ein Teil ist pitch-reif, wenn alle seine Punkte abgedeckt sind. Dahinter steht keine Gleichung und keine Beurteilung des Inhalts.",
+    "source": "content/docs/de/business-plan.mdx#pitch-reife-inoffiziell"
+  },
+  {
+    "id": "docs:business-plan#zahlen-des-quick-check-im-business-plan",
+    "lang": "de",
+    "title": "Business Plan · Zahlen des Quick Check im Business Plan",
+    "url": "/de/docs/business-plan#zahlen-des-quick-check-im-business-plan",
+    "text": "Wenn der Quick Check eingeschaltet und vollständig ist, zeigt der Business Plan seine groben Zahlen als Kontext: den Wärme- und Kältebedarf, die Erlöse und die Gesamtinvestition, neben den Gebäuden, dem Projektgebiet und den ausgewählten Quellen. Es sind Screening-Werte, keine Machbarkeitsstudie, und sie sind schreibgeschützt: Die Eingaben ändern Sie im Quick Check. Mit Ihren eigenen Parametern tragen sie das Kennzeichen „Eigene Parameter“. Die im Quick Check geprüften Quellen lassen sich mit einem Klick zum Text der Wärmequellen hinzufügen.",
+    "source": "content/docs/de/business-plan.mdx#zahlen-des-quick-check-im-business-plan"
+  },
+  {
+    "id": "docs:business-plan#geschaftsmodelle-vergleichen",
+    "lang": "de",
+    "title": "Business Plan · Geschäftsmodelle vergleichen",
+    "url": "/de/docs/business-plan#geschaftsmodelle-vergleichen",
+    "text": "Ein Projekt enthält genau ein Geschäftsmodell. Um eine Alternative zu vergleichen, duplizieren Sie das Projekt und ändern Sie die Kopie.",
+    "source": "content/docs/de/business-plan.mdx#geschaftsmodelle-vergleichen"
+  },
+  {
+    "id": "docs:data-and-privacy",
+    "lang": "de",
+    "title": "Daten und Datenschutz",
+    "url": "/de/docs/data-and-privacy",
+    "text": "Bei First Move bleibt Ihre Arbeit auf Ihrem Gerät. Es gibt kein Konto und kein Passwort, und die Projekte, die Sie anlegen, werden nur in dem Browser gespeichert, den Sie verwenden. Wir erhalten sie nie und können sie daher weder lesen noch weitergeben noch wiederherstellen.",
+    "source": "content/docs/de/data-and-privacy.mdx"
+  },
+  {
+    "id": "docs:data-and-privacy#wo-ihre-projekte-liegen",
+    "lang": "de",
+    "title": "Daten und Datenschutz · Wo Ihre Projekte liegen",
+    "url": "/de/docs/data-and-privacy#wo-ihre-projekte-liegen",
+    "text": "Ihre Projekte, Einstellungen und Auswahlen werden nur im Speicher Ihres Browsers abgelegt: die Projekte in seiner Datenbank (IndexedDB), mit einer Kopie jedes Projekts im Local Storage als Absicherung. Sie bleiben in diesem Browser auf diesem Gerät. Ein anderer Browser oder ein anderes Gerät sieht sie nicht, und ein privates Fenster behält sie möglicherweise gar nicht.\nFirst Move bittet Ihren Browser, diesen Speicher dauerhaft zu erhalten, damit der Browser Ihre Projekte seltener von sich aus entfernt. Ob er das gewährt, entscheidet Ihr Browser.",
+    "source": "content/docs/de/data-and-privacy.mdx#wo-ihre-projekte-liegen"
+  },
+  {
+    "id": "docs:data-and-privacy#speichern",
+    "lang": "de",
+    "title": "Daten und Datenschutz · Speichern",
+    "url": "/de/docs/data-and-privacy#speichern",
+    "text": "First Move speichert jede Änderung automatisch, und der Speicherstatus in der oberen Leiste zeigt, wann das Projekt zuletzt gespeichert wurde; eine Schaltfläche zum Speichern gibt es nicht. Ist dasselbe Projekt in zwei Tabs geöffnet, bleiben die Tabs synchron. Ändern beide Tabs das Projekt, bleibt Ihre Version erhalten, und die andere wird als frühere Version gespeichert.",
+    "source": "content/docs/de/data-and-privacy.mdx#speichern"
+  },
+  {
+    "id": "docs:data-and-privacy#export-und-import",
+    "lang": "de",
+    "title": "Daten und Datenschutz · Export und Import",
+    "url": "/de/docs/data-and-privacy#export-und-import",
+    "text": "- Exportieren speichert das geöffnete Projekt als Datei .firstmove.json an einem Ort Ihrer Wahl. Die Datei enthält Ihre Eingaben. Die Ergebnisse werden nicht gespeichert; sie werden beim Import der Datei neu berechnet.\n- Importieren liest eine Datei .firstmove.json und prüft sie in Ihrem Browser; nichts wird hochgeladen. Ist das Projekt bereits in diesem Browser, wählen Sie, ob Sie beide behalten oder die gespeicherte Version ersetzen. Eine ersetzte Version wird aufbewahrt, sodass Sie sie wiederherstellen können.\n- Eine Datei aus einer früheren Version von First Move wird beim Import auf das aktuelle Format aktualisiert.\n- Bericht zeigt das geöffnete Projekt als druckbare Seite. Ihr Browser druckt sie oder speichert sie als PDF; nichts wird hochgeladen.\nExportieren Sie Ihre Projekte regelmäßig, denn ein Export ist Ihre Kopie außerhalb dieses Browsers. First Move erinnert Sie von Zeit zu Zeit an den Export.",
+    "source": "content/docs/de/data-and-privacy.mdx#export-und-import"
+  },
+  {
+    "id": "docs:data-and-privacy#fruhere-versionen",
+    "lang": "de",
+    "title": "Daten und Datenschutz · Frühere Versionen",
+    "url": "/de/docs/data-and-privacy#fruhere-versionen",
+    "text": "Während Sie arbeiten, bewahrt First Move frühere Versionen jedes Projekts in diesem Browser auf, bis zu 20 pro Projekt, zum Beispiel vor einer Wiederherstellung, einem Import oder einer Löschung. Version wiederherstellen im Projektmenü holt eine davon zurück, und der aktuelle Stand wird ebenfalls als Version aufbewahrt.\nIn Chromium-basierten Browsern speichert Mit Datei verknüpfen im Projektmenü das Projekt zusätzlich in einer Datei auf Ihrem eigenen Datenträger. Die Datei bleibt auf Ihrem Datenträger, und nichts wird hochgeladen.",
+    "source": "content/docs/de/data-and-privacy.mdx#fruhere-versionen"
+  },
+  {
+    "id": "docs:data-and-privacy#daten-loschen",
+    "lang": "de",
+    "title": "Daten und Datenschutz · Daten löschen",
+    "url": "/de/docs/data-and-privacy#daten-loschen",
+    "text": "- Löschen Sie ein Projekt über das Projektmenü oder über die Liste auf dem Startbildschirm. Rückgängig machen können Sie das nur direkt nach dem Löschen, solange die Meldung angezeigt wird; exportieren Sie das Projekt also vorher, wenn Sie eine Kopie behalten möchten.\n- Löschen Sie die Websitedaten von First Move in den Einstellungen Ihres Browsers, um alles zu entfernen, was First Move dort gespeichert hat: alle Projekte, früheren Versionen und Einstellungen. Wir können sie nicht wiederherstellen, weil wir sie nie hatten.",
+    "source": "content/docs/de/data-and-privacy.mdx#daten-loschen"
+  },
+  {
+    "id": "docs:data-and-privacy#cookies-und-einstellungen",
+    "lang": "de",
+    "title": "Daten und Datenschutz · Cookies und Einstellungen",
+    "url": "/de/docs/data-and-privacy#cookies-und-einstellungen",
+    "text": "First Move setzt ein einziges funktionales Cookie, das sich Ihre Sprache merkt. Ihr Farbschema und Ihre anderen Einstellungen werden im Speicher Ihres Browsers aufbewahrt. Die Website verwendet kein Tracking, keine Werbung und keine Cookies von Drittanbietern, daher gibt es nichts zu akzeptieren. Die Cookie-Richtlinie führt jedes Cookie und jeden Speichereintrag mit Namen auf.",
+    "source": "content/docs/de/data-and-privacy.mdx#cookies-und-einstellungen"
+  },
+  {
+    "id": "docs:data-and-privacy#die-ki-funktionen-und-ihre-daten",
+    "lang": "de",
+    "title": "Daten und Datenschutz · Die KI-Funktionen und Ihre Daten",
+    "url": "/de/docs/data-and-privacy#die-ki-funktionen-und-ihre-daten",
+    "text": "First Move hat zwei optionale KI-Ebenen, getrennt von der App und voneinander. Die Seite KI-Transparenz gibt an, ob sie derzeit verfügbar sind.\n- Der KI-Assistent im Dashboard arbeitet mit Ihrem eigenen Schlüssel für einen KI-Anbieter Ihrer Wahl. Wenn Sie ihn nutzen, sendet Ihr Browser Ihre Anfrage direkt an diesen Anbieter: Ihre Frage, die Eingaben und Ergebnisse des geöffneten Projekts und die Dokumente, die Sie anhängen; nichts aus Ihren anderen Projekten. Wir erhalten weder die Inhalte noch den Schlüssel. Der Schlüssel bleibt in Ihrem Browser, nur für die Sitzung oder mit einer PIN gesperrt auf diesem Gerät, und auch der Chatverlauf bleibt in Ihrem Browser.\n- Der E-Mail-Agent unter agent@mail.firstmove.energy verarbeitet auf dem Server, was Sie ihm senden, über die in der Datenschutzerklärung genannten Dienstleister, und erst, nachdem Sie einmal bestätigt haben. Die Unterhaltung wird verschlüsselt gespeichert, bis 30 Tage nach Ihrer letzten Nachricht.\nDie Ergebnisse von Quick Check und Business Plan stammen nie von KI, und die Projekte in Ihrem Browser gelangen nie auf unsere Server.\nDie Seiten KI-Assistent und E-Mail-Agent erklären beides ausführlich.",
+    "source": "content/docs/de/data-and-privacy.mdx#die-ki-funktionen-und-ihre-daten"
+  },
+  {
+    "id": "docs:data-and-privacy#rechtliche-seiten",
+    "lang": "de",
+    "title": "Daten und Datenschutz · Rechtliche Seiten",
+    "url": "/de/docs/data-and-privacy#rechtliche-seiten",
+    "text": "Maßgeblich sind die rechtlichen Seiten: die Datenschutzerklärung, die Cookie-Richtlinie, die Nutzungsbedingungen, die Seite KI-Transparenz und das Impressum. Für Datenschutzfragen und Anfragen zu Ihren Rechten schreiben Sie an human@mail.firstmove.energy; diese Adresse liest ein Mensch.",
+    "source": "content/docs/de/data-and-privacy.mdx#rechtliche-seiten"
+  },
+  {
+    "id": "docs:email-agent",
+    "lang": "de",
+    "title": "E-Mail-Agent",
+    "url": "/de/docs/email-agent",
+    "text": "Sie können First Move auch per E-Mail nutzen: Schreiben Sie an agent@mail.firstmove.energy. Dieses Postfach beantwortet ein KI-System. Es beantwortet kurze Fragen zu First Move und zu Fernwärme und -kälte der 5. Generation auf Grundlage dieser öffentlichen Dokumentation, und es kann mit Ihnen per E-Mail einen Quick Check, einen Business Plan oder beides durchführen. Vorerst schreibt der E-Mail-Agent auf Englisch.\nFür Datenschutzfragen, rechtliche Angelegenheiten und Anfragen zu Ihren Datenschutzrechten schreiben Sie stattdessen an human@mail.firstmove.energy. Dieses Postfach liest ein Mensch.",
+    "source": "content/docs/de/email-agent.mdx"
+  },
+  {
+    "id": "docs:email-agent#was-der-agent-kann",
+    "lang": "de",
+    "title": "E-Mail-Agent · Was der Agent kann",
+    "url": "/de/docs/email-agent#was-der-agent-kann",
+    "text": "- Fragen beantworten zu First Move, 5GDHC, dem Quick Check und dem Business Plan, nur auf Grundlage dieser Dokumentation. Wenn die Dokumentation eine Frage nicht abdeckt, sagt er das.\n- Einen Quick Check per E-Mail durchführen: Er fragt nach den Eingaben und sendet Ihnen das Ergebnis.\n- Einen Business Plan per E-Mail entwickeln, Schritt für Schritt.\n- Eine Projektdatei senden, die Sie im Dashboard importieren können, wenn Sie eine möchten.\nDie Antworten verfasst ein KI-System, und sie werden automatisch versendet; ein Mensch prüft sie nicht. Sie können falsch sein und sind nicht rechtsverbindlich.",
+    "source": "content/docs/de/email-agent.mdx#was-der-agent-kann"
+  },
+  {
+    "id": "docs:email-agent#die-erste-e-mail-einmal-bestatigen",
+    "lang": "de",
+    "title": "E-Mail-Agent · Die erste E-Mail: einmal bestätigen",
+    "url": "/de/docs/email-agent#die-erste-e-mail-einmal-bestatigen",
+    "text": "Wenn Sie zum ersten Mal schreiben, wird nichts von KI verarbeitet. Ihre Nachricht wartet ungelesen, und Sie erhalten eine kurze E-Mail mit einem Bestätigungslink. Setzen Sie auf der Bestätigungsseite das Häkchen und klicken Sie auf die Schaltfläche: Damit akzeptieren Sie die Nutzungsbedingungen und E-Mails zu Ihrer Anfrage, ohne Werbung. Danach wird Ihre Nachricht verarbeitet.\nWenn Sie nicht innerhalb von 7 Tagen bestätigen, wird Ihre Nachricht nie verarbeitet. Wenn Sie uns nicht geschrieben haben, ignorieren Sie die E-Mail. Sie bestätigen nur einmal; Ihre Bestätigung wird bis 12 Monate nach Ihrer letzten Nachricht aufbewahrt.",
+    "source": "content/docs/de/email-agent.mdx#die-erste-e-mail-einmal-bestatigen"
+  },
+  {
+    "id": "docs:email-agent#wer-schreiben-kann",
+    "lang": "de",
+    "title": "E-Mail-Agent · Wer schreiben kann",
+    "url": "/de/docs/email-agent#wer-schreiben-kann",
+    "text": "Ihr E-Mail-Anbieter muss Ihre E-Mail authentifizieren (DMARC); die meisten Anbieter tun das. E-Mails, die diese Prüfung nicht bestehen, werden ohne Antwort ignoriert. Automatische Antworten, Mailinglisten und Unzustellbarkeitsmeldungen werden ebenfalls ignoriert. Der Agent antwortet nur an die Adresse, von der die E-Mail kam, und nie an jemand anderen.",
+    "source": "content/docs/de/email-agent.mdx#wer-schreiben-kann"
+  },
+  {
+    "id": "docs:email-agent#ein-quick-check-per-e-mail-1",
+    "lang": "de",
+    "title": "E-Mail-Agent · Ein Quick Check per E-Mail",
+    "url": "/de/docs/email-agent#ein-quick-check-per-e-mail",
+    "text": "1. Zuerst fragt der Agent, welches Modul Sie möchten, 1 Quick Check, 2 Business Plan oder 3 beides, und ob Sie eine Projektdatei zum Import im Dashboard möchten, ja oder nein. Eine kurze Antwort wie „1, yes“ oder „both, no“ genügt, und Sie können es auch in eigenen Worten schreiben.\n2. Für einen Quick Check sendet er eine nummerierte Liste von Fragen, jede mit einer Beispielantwort. Gefragt wird nach dem Projektnamen (optional), der Anzahl der Gebäude, der Fläche des Projektgebiets in m² (Hektar sind auch möglich), dem Gebäudemix nach Typ und Baualtersklasse (die Anteile müssen zusammen 100 % ergeben), den Energiequellen und ihrem Potenzial, ob PV vorhanden ist und, falls Sie sie kennen, nach dem Wärme- und Kältebedarf in kWh/a und der Netzlänge in m.\n3. Antworten Sie mit der Nummer der Frage, zum Beispiel „2: 40 Gebäude“. Sie können in mehreren E-Mails antworten und einen Wert auf dieselbe Weise oder in Worten korrigieren, zum Beispiel „Fläche auf 4 ha ändern“.\n4. Jede Antwort des Agenten führt auf, was er verstanden hat, was unklar ist und was noch fehlt.\n5. Wenn die erforderlichen Eingaben vollständig sind, erhalten Sie das Ergebnis.",
+    "source": "content/docs/de/email-agent.mdx#ein-quick-check-per-e-mail"
+  },
+  {
+    "id": "docs:email-agent#ein-quick-check-per-e-mail-2",
+    "lang": "de",
+    "title": "E-Mail-Agent · Ein Quick Check per E-Mail",
+    "url": "/de/docs/email-agent#ein-quick-check-per-e-mail",
+    "text": "Das Ergebnis berechnet der eigene Rechenkern des Quick Check von First Move, genau wie im Dashboard; die KI sammelt nur Ihre Eingaben. Die Seite Quick Check erklärt, wie das Ergebnis berechnet wird.",
+    "source": "content/docs/de/email-agent.mdx#ein-quick-check-per-e-mail"
+  },
+  {
+    "id": "docs:email-agent#ein-business-plan-per-e-mail",
+    "lang": "de",
+    "title": "E-Mail-Agent · Ein Business Plan per E-Mail",
+    "url": "/de/docs/email-agent#ein-business-plan-per-e-mail",
+    "text": "Für einen Business Plan geht der Agent die vier Schritte in je einer Runde durch: Chance, Geschäftslogik, Realitätscheck und Umsetzung. Jede Runde enthält die Leitfragen des Schritts und nennt die Beispielszenarien als Beispiele. Ihre Antworten werden in Ihren eigenen Worten übernommen. Wenn Sie beide Module wählen, zeigt der Business Plan die Zahlen des Quick Check schreibgeschützt an.\nDie Zusammenfassung führt die ausgefüllten Abschnitte, die kritischen Annahmen, die Risiken und die inoffizielle Checkliste zur Pitch-Reife auf. Die Seite Business Plan erklärt die Schritte.",
+    "source": "content/docs/de/email-agent.mdx#ein-business-plan-per-e-mail"
+  },
+  {
+    "id": "docs:email-agent#dateien-an-eine-e-mail-anhangen",
+    "lang": "de",
+    "title": "E-Mail-Agent · Dateien an eine E-Mail anhängen",
+    "url": "/de/docs/email-agent#dateien-an-eine-e-mail-anhangen",
+    "text": "Statt die Fragen zu beantworten, können Sie Dokumente anhängen, und der Agent liest sie im Hintergrund:\n- Dateien im Format PDF, Word (.docx), Excel (.xlsx), CSV, Markdown und Text;\n- eine Projektdatei von First Move (.firstmove.json), die unverändert importiert wird;\n- bis zu 5 Dateien pro E-Mail, 10 MB pro Datei und 20 MB insgesamt; von einem PDF werden die ersten 60 Seiten gelesen.\nEine Datei, die der Agent nicht lesen kann, wird übersprungen, und die Antwort nennt sie. Jede Datei wird außerdem auf versteckte Anweisungen geprüft. Eine Datei, die versucht, den Assistenten zu manipulieren, wird übersprungen, aber nicht gegen Sie gewertet, weil Menschen Dokumente weiterleiten, die sie nicht selbst geschrieben haben.",
+    "source": "content/docs/de/email-agent.mdx#dateien-an-eine-e-mail-anhangen"
+  },
+  {
+    "id": "docs:email-agent#ergebnisse-und-die-projektdatei",
+    "lang": "de",
+    "title": "E-Mail-Agent · Ergebnisse und die Projektdatei",
+    "url": "/de/docs/email-agent#ergebnisse-und-die-projektdatei",
+    "text": "Das Ergebnis des Quick Check kommt als E-Mail im Stil von First Move, mit einer Fassung in reinem Text: das Gesamtergebnis und seine wichtigsten Einflussfaktoren, die Kennzahlen, die Annahmen und wie die Zahlen berechnet wurden, die verwendeten Eingaben und der Hinweis, dass es sich um ein Screening handelt, nicht um eine Machbarkeitsstudie. Ein Business Plan kommt als Zusammenfassung derselben Art. Einen Bericht als PDF gibt es noch nicht.\nWenn Sie eine Projektdatei angefordert haben, ist eine Datei .firstmove.json angehängt. Importieren Sie sie im Dashboard, um dort weiterzuarbeiten; die per E-Mail gesammelten Werte tragen eine KI-Kennzeichnung. Sie können die Datei auch später anfordern, indem Sie „file“ schreiben.\nWeitere Antworten nach dem Ergebnis aktualisieren es, und der Agent sendet es erneut. Schreiben Sie „new“, um neu zu beginnen, oder „stop“, um die Unterhaltung zu beenden und zu löschen.",
+    "source": "content/docs/de/email-agent.mdx#ergebnisse-und-die-projektdatei"
+  },
+  {
+    "id": "docs:email-agent#die-regeln",
+    "lang": "de",
+    "title": "E-Mail-Agent · Die Regeln",
+    "url": "/de/docs/email-agent#die-regeln",
+    "text": "Das Postfach ist für Fragen zu First Move und zu Fernwärme und -kälte der 5. Generation gedacht sowie für Ihren Quick Check und Ihren Business Plan. Grüße und Dank sind in Ordnung.\n- Bleiben Sie beim Thema. Auf eine erste E-Mail ohne Themenbezug folgt ein Hinweis. Nach einer zweiten pausiert das Postfach für Sie 30 Tage lang.\n- Kein Missbrauch. Versuche, den Assistenten zu manipulieren, seine Anweisungen offenzulegen oder ihn dazu zu bringen, anderen Personen E-Mails zu schreiben, Belästigung sowie Betrug, Phishing, Malware oder Spam führen zur Sperrung des Absenders. Sie erhalten eine Mitteilung, und der Betreiber erfährt, was geschehen ist.\n- Nach einer Pause oder einer Sperre antwortet der Agent nicht.\nWenn der Agent nicht sicher ist, ob eine E-Mail Missbrauch ist, wertet er sie als Hinweis und nicht als Sperre.",
+    "source": "content/docs/de/email-agent.mdx#die-regeln"
+  },
+  {
+    "id": "docs:email-agent#wie-lange-daten-aufbewahrt-werden",
+    "lang": "de",
+    "title": "E-Mail-Agent · Wie lange Daten aufbewahrt werden",
+    "url": "/de/docs/email-agent#wie-lange-daten-aufbewahrt-werden",
+    "text": "- Eine unbestätigte erste Nachricht wartet 7 Tage auf Ihre Bestätigung.\n- Die Unterhaltung: 30 Tage nach Ihrer letzten Nachricht.\n- Ein Hinweis: 90 Tage. Eine Pause: 30 Tage. Eine Sperre: bis wir sie löschen.\n- Ihre Bestätigung: 12 Monate nach Ihrer letzten Nachricht.\nFür diese Einträge wird Ihre Adresse nur als Hashwert gespeichert, und die Unterhaltung und die Liste der wartenden Nachrichten werden verschlüsselt gespeichert. Die E-Mails selbst bleiben 30 Tage bei unserem E-Mail-Anbieter. Unsere E-Mails enthalten ein minimales Tracking von Öffnungen und Klicks (E-Mail-Tracking). Die Einzelheiten stehen in der Datenschutzerklärung.",
+    "source": "content/docs/de/email-agent.mdx#wie-lange-daten-aufbewahrt-werden"
+  },
+  {
+    "id": "docs:email-agent#wer-ihre-e-mail-verarbeitet",
+    "lang": "de",
+    "title": "E-Mail-Agent · Wer Ihre E-Mail verarbeitet",
+    "url": "/de/docs/email-agent#wer-ihre-e-mail-verarbeitet",
+    "text": "Für die Antwort verarbeiten diese Dienstleister Ihre E-Mail und ihre Anhänge: Resend für E-Mails, Vercel für die Funktionen, die Workflows und das AI Gateway, TypeSafe AI für Jev, ein Entscheidungsmodell, das jede E-Mail auf Themenbezug und Missbrauch prüft, Anthropic für Claude Haiku, das die E-Mail liest und die Antwort schreibt, und Upstash für die verschlüsselten Einträge. Die Datenschutzerklärung nennt sie mit ihren Standorten und Garantien.",
+    "source": "content/docs/de/email-agent.mdx#wer-ihre-e-mail-verarbeitet"
+  },
+  {
+    "id": "docs:index",
+    "lang": "de",
+    "title": "Einführung",
+    "url": "/de/docs",
+    "text": "First Move ist eine kostenlose Web-App für die ersten Schritte eines Projekts für Fernwärme und -kälte der 5. Generation (5GDHC). Sie hilft Gemeinden, Energiedienstleistern und anderen Projektinitiatoren, ein Projektgebiet zu prüfen und ein Geschäftsmodell für ein Netz in diesem Gebiet zu entwickeln.",
+    "source": "content/docs/de/index.mdx"
+  },
+  {
+    "id": "docs:index#zwei-module",
+    "lang": "de",
+    "title": "Einführung · Zwei Module",
+    "url": "/de/docs#zwei-module",
+    "text": "Ein Projekt in First Move hat zwei optionale Module. Sie können eines davon nutzen oder beide, und Sie können jedes jederzeit ein- oder ausschalten; die Daten eines Moduls bleiben erhalten, solange es ausgeschaltet ist.\n- Quick Check: eine erste Einschätzung des technischen und wirtschaftlichen Potenzials eines 5GDHC-Netzes für ein Projektgebiet. Sie geben einige zentrale Parameter ein, und der Quick Check wendet eine vordefinierte Berechnungs- und Bewertungsmethodik an. Das Ergebnis ist eine von drei Stufen – Vielversprechend, Weitere Analyse erforderlich oder Nicht vielversprechend – und wird zusammen mit den wichtigsten Einflussfaktoren dahinter angezeigt.\n- Business Plan: ein Arbeitsbereich, um in vier Schritten ein Geschäftsmodell für das Netz zu entwickeln, von der Chance bis zu den nächsten Schritten in Richtung Umsetzung. Sie schreiben in eigenen Worten; der Business Plan berechnet selbst nichts.\nBeide Module teilen die Daten des Standorts, etwa die Gebäude und die Energiequellen, sodass Sie sie nur einmal eingeben.",
+    "source": "content/docs/de/index.mdx#zwei-module"
+  },
+  {
+    "id": "docs:index#ihre-daten-bleiben-in-ihrem-browser",
+    "lang": "de",
+    "title": "Einführung · Ihre Daten bleiben in Ihrem Browser",
+    "url": "/de/docs#ihre-daten-bleiben-in-ihrem-browser",
+    "text": "Es gibt kein Konto, und Ihre Projekte werden nur in dem Browser gespeichert, den Sie verwenden. First Move erhält sie nie. Exportieren Sie ein Projekt, um eine Kopie zu behalten oder es in einen anderen Browser zu übertragen. Die Seite Daten und Datenschutz erklärt die Einzelheiten.",
+    "source": "content/docs/de/index.mdx#ihre-daten-bleiben-in-ihrem-browser"
+  },
+  {
+    "id": "docs:index#wo-sie-anfangen",
+    "lang": "de",
+    "title": "Einführung · Wo Sie anfangen",
+    "url": "/de/docs#wo-sie-anfangen",
+    "text": "1. Öffnen Sie das Dashboard.\n2. Starten Sie ein neues Projekt mit dem Quick Check, dem Business Plan oder beidem, oder öffnen Sie eines der sechs Beispiele. Beim Öffnen eines Beispiels entsteht Ihre eigene Kopie; die Beispiele verwenden nur beispielhafte Eingaben.\n3. Oder importieren Sie eine Projektdatei (.firstmove.json), die Sie zuvor exportiert haben.\nNeu bei 5GDHC? Lesen Sie zuerst Was ist 5GDHC?.",
+    "source": "content/docs/de/index.mdx#wo-sie-anfangen"
+  },
+  {
+    "id": "docs:index#weiterlesen",
+    "lang": "de",
+    "title": "Einführung · Weiterlesen",
+    "url": "/de/docs#weiterlesen",
+    "text": "- Was ist 5GDHC?: die Idee hinter den Netzen, wo sie passen und wo nicht.\n- Quick Check: jede Eingabe, wie das Ergebnis berechnet wird und was es bedeutet.\n- Business Plan: die vier Schritte, die Beispielszenarien und die Checkliste zur Pitch-Reife.\n- Daten und Datenschutz: wo Ihre Projekte liegen, Export, Import und das Löschen von Daten.\n- KI-Assistent: der optionale Assistent im Dashboard, mit Ihrem eigenen Schlüssel.\n- E-Mail-Agent: ein Quick Check oder ein Business Plan per E-Mail.",
+    "source": "content/docs/de/index.mdx#weiterlesen"
+  },
+  {
+    "id": "docs:index#ein-screening-keine-machbarkeitsstudie",
+    "lang": "de",
+    "title": "Einführung · Ein Screening, keine Machbarkeitsstudie",
+    "url": "/de/docs#ein-screening-keine-machbarkeitsstudie",
+    "text": "Der Quick Check gibt eine erste Einschätzung, keine abschließende Entscheidung über die Machbarkeit. Seine Parameter und seine Methodik beruhen auf vereinfachten Annahmen; die tatsächlichen Werte können je nach den Bedingungen des Projekts abweichen und sollten durch weitere Analysen verfeinert werden. Weder die Ergebnisse noch diese Seiten sind eine Ingenieurberatung.",
+    "source": "content/docs/de/index.mdx#ein-screening-keine-machbarkeitsstudie"
+  },
+  {
+    "id": "docs:quick-check",
+    "lang": "de",
+    "title": "Quick Check",
+    "url": "/de/docs/quick-check",
+    "text": "Der Quick Check gibt eine erste Einschätzung des technischen und wirtschaftlichen Potenzials eines 5GDHC-Netzes für ein Projektgebiet. Sie geben einige zentrale Parameter ein. Der Quick Check schätzt den Energiebedarf, die Netzlänge, den Deckungsgrad der Versorgung und die Wirtschaftlichkeit, stuft die Indikatoren ein und gibt eines von drei Gesamtergebnissen aus, zusammen mit den wichtigsten Einflussfaktoren dahinter. Er liefert einen ersten Anhaltspunkt, keine abschließende Entscheidung über die Machbarkeit.\nDie Berechnung folgt einer vordefinierten 5GDHC-Methodik für den Quick Check; First Move setzt sie um und verändert sie nicht. Auf dieser Seite werden Gleichungen mit ihrer Nummer in der Methodik zitiert (zum Beispiel EQ-3.4a), Standardtabellen ebenso mit ihrer Nummer (zum Beispiel TBL-6). Wo die Methodik einen Punkt offenlässt, wird die Antwort, die First Move anwendet, mit ihrer Nummer zitiert (zum Beispiel OQ-20). In der App hat jeder Eingabeschritt und jedes Ergebnis einen Abschnitt „So rechnen wir“ mit den verwendeten Gleichungen.",
+    "source": "content/docs/de/quick-check.mdx"
+  },
+  {
+    "id": "docs:quick-check#die-schritte",
+    "lang": "de",
+    "title": "Quick Check · Die Schritte",
+    "url": "/de/docs/quick-check#die-schritte",
+    "text": "Der Quick Check hat vier Eingabeschritte und eine Ergebnisseite:\n1. Projektgebiet: die Anzahl der Gebäude und die Fläche des Projektgebiets.\n2. Gebäude: der Anteil jedes Gebäudetyps und jeder Baualtersklasse.\n3. Energiequellen: die im Gebiet verfügbaren Quellen und ihr Potenzial.\n4. Optionen: ein bekannter Bedarf, eine bekannte Netzlänge und Photovoltaik, alle optional.\n5. Ergebnisse: das Gesamtergebnis, die wichtigsten Einflussfaktoren, die Indikatoren und die Kennzahlen.\nDas Ergebnis erscheint, sobald die erforderlichen Eingaben vollständig sind: die Anzahl der Gebäude, die Fläche des Projektgebiets, Anteile, die zusammen 100 % ergeben, und mindestens eine Energiequelle. Alle Berechnungen laufen automatisch in Ihrem Browser. Die Seite Annahmen zeigt jeden Standardwert und lässt Sie eigene Parameter ausprobieren.",
+    "source": "content/docs/de/quick-check.mdx#die-schritte"
+  },
+  {
+    "id": "docs:quick-check#anzahl-der-gebaude",
+    "lang": "de",
+    "title": "Quick Check · Anzahl der Gebäude",
+    "url": "/de/docs/quick-check#anzahl-der-gebaude",
+    "text": "Die Gesamtzahl der Gebäude im Projektgebiet, als ganze Zahl, einschließlich der Industriegebäude. Zusammen mit der Fläche des Projektgebiets ergibt sie die Gebäudedichte (EQ-3.3). Sie bestimmt außerdem die Anzahl der Gebäude in jeder Gruppe (EQ-3.1), die Investition in Wärmepumpen, mit einer Wärmepumpe pro Gebäude (EQ-3.10d), und die Anschlussgebühren (EQ-3.9c).\nWo Sie die Angabe finden: eine Karte des Gebiets, das Gebäude- oder Adressregister der Gemeinde oder ein Rundgang durch das Gebiet.",
+    "source": "content/docs/de/quick-check.mdx#anzahl-der-gebaude"
+  },
+  {
+    "id": "docs:quick-check#projektgebiet",
+    "lang": "de",
+    "title": "Quick Check · Projektgebiet",
+    "url": "/de/docs/quick-check#projektgebiet",
+    "text": "Die gesamte Fläche des Projektgebiets in m². Die App zeigt daneben den Wert in Hektar; 1 ha sind 10.000 m². Die Fläche bestimmt die Gebäudedichte in Gebäuden pro Hektar (EQ-3.3) und, sofern Sie keine Netzlänge eingeben, die geschätzte Netzlänge (EQ-3.4b).\nWo Sie die Angabe finden: Zeichnen Sie das Gebiet auf einer Karte oder in einem GIS-Werkzeug ein, oder entnehmen Sie die Fläche einem Flächennutzungs- oder Bebauungsplan.",
+    "source": "content/docs/de/quick-check.mdx#projektgebiet"
+  },
+  {
+    "id": "docs:quick-check#gebaudetypen-und-baualtersklassen-1",
+    "lang": "de",
+    "title": "Quick Check · Gebäudetypen und Baualtersklassen",
+    "url": "/de/docs/quick-check#gebaudetypen-und-baualtersklassen",
+    "text": "Geben Sie den Anteil jedes Gebäudetyps und jeder Baualtersklasse in % ein, in einem Raster mit den Gebäudetypen als Zeilen und den Baualtersklassen als Spalten. Alle Anteile müssen zusammen 100 % ergeben; bis dahin gibt es kein Ergebnis.\n- Wohngebäude: Wohngebäude unterschiedlicher Baualtersklassen.\n- Kategorie A: Einzelhandel, Museen, Supermärkte, Schulen, Büros und Fitnessstudios.\n- Kategorie B: Kindergärten, Sporthallen, Hotels und Theater.\n- Kategorie C: Krankenhäuser, Restaurants, Schwimmbäder und Kantinen.\n- Industrie: Industriegebäude und -anlagen.\nDie Baualtersklassen sind -1919, 1919-1960, 1961-1990, 1991-2010 und 2011-heute, bezeichnet wie in der Methodik; keine Berechnung hängt vom Grenzjahr ab (OQ-03).\nEin Projektgebiet könnte zum Beispiel zu 50 % aus Wohngebäuden von 1991-2010, zu 25 % aus Wohngebäuden von 2011-heute und zu 25 % aus Gebäuden der Kategorie A von 2011-heute bestehen.",
+    "source": "content/docs/de/quick-check.mdx#gebaudetypen-und-baualtersklassen"
+  },
+  {
+    "id": "docs:quick-check#gebaudetypen-und-baualtersklassen-2",
+    "lang": "de",
+    "title": "Quick Check · Gebäudetypen und Baualtersklassen",
+    "url": "/de/docs/quick-check#gebaudetypen-und-baualtersklassen",
+    "text": "Für Industrie gibt es keine Standardwerte. Ein Industrieanteil fügt keinen Bedarf, keine Nutzfläche und keine Erlöse aus Grund- oder Arbeitspreis hinzu, und jeder Industrieanteil setzt das Gesamtergebnis auf „Weitere Analyse erforderlich“ (OQ-02). Industriegebäude zählen dennoch zur Anzahl der Gebäude, zum Beispiel bei der Gebäudedichte, den Anschlussgebühren und der Investition in Wärmepumpen (OQ-02).\nWo Sie die Angabe finden: das Gebäuderegister oder die Zensusstatistik der Gemeinde, Energieausweise oder ein Rundgang durch das Gebiet.",
+    "source": "content/docs/de/quick-check.mdx#gebaudetypen-und-baualtersklassen"
+  },
+  {
+    "id": "docs:quick-check#warme--und-kaltebedarf",
+    "lang": "de",
+    "title": "Quick Check · Wärme- und Kältebedarf",
+    "url": "/de/docs/quick-check#warme--und-kaltebedarf",
+    "text": "Die Anteile teilen die Anzahl der Gebäude in Gruppen auf: Die Anzahl der Gebäude eines Typs und einer Baualtersklasse ist die Gesamtzahl der Gebäude multipliziert mit ihrem Anteil (EQ-3.1). Anteile und andere Prozentwerte werden zuerst durch 100 geteilt, und eine Gruppe kann eine nicht ganzzahlige Anzahl von Gebäuden enthalten (OQ-01).\nJede Gruppe erhält den Standardwert für den jährlichen Wärmebedarf pro m² Nutzfläche (TBL-1), den Standardwert für den jährlichen Kältebedarf pro m² (TBL-2) und die Standard-Nutzfläche pro Gebäude (TBL-3) ihres Typs und ihrer Baualtersklasse. Anzahl der Gebäude mal Bedarf pro m² mal Nutzfläche ergibt den jährlichen Wärme- und Kältebedarf jeder Gruppe (EQ-3.2a, EQ-3.2b). Die Summe über alle Gruppen ist der gesamte jährliche Wärmebedarf und der gesamte jährliche Kältebedarf des Projektgebiets (EQ-3.2c, EQ-3.2d). Ein bekannter Bedarf, den Sie unter Optionen eingeben, ersetzt diese Summen.",
+    "source": "content/docs/de/quick-check.mdx#warme--und-kaltebedarf"
+  },
+  {
+    "id": "docs:quick-check#energiequellen-1",
+    "lang": "de",
+    "title": "Quick Check · Energiequellen",
+    "url": "/de/docs/quick-check#energiequellen",
+    "text": "Wählen Sie die Energiequellen, die im Projektgebiet verfügbar oder potenziell verfügbar sind, und bewerten Sie das Potenzial jeder Quelle: Gering, Mittel, Hoch oder Unbekannt. Sie können mehrere Quellen wählen; ihr Angebot wird addiert (OQ-11).\nFür jede Quelle verwendet der Quick Check die vordefinierte jährliche Kapazität ihres Potenzials, TBL-4 für Wärme und TBL-5 für Kälte, und den COP ihrer Wärmepumpe. Die Kapazitäten sind die Energie, die der Quelle entnommen wird, nicht die Energie, die an die Gebäude geliefert wird; erst der COP der Wärmepumpe macht daraus das Angebot (siehe Angebot).\n- Solarthermie hat in der Methodik keinen COP, daher zählt ihre Kapazität direkt als Wärmeangebot, ohne Strom für eine Wärmepumpe (OQ-13).\n- Abwärme und Solarthermie haben keine Standard-Kühlkapazität, daher liefern sie keine Kälte (OQ-13).\n- Ein Potenzial Unbekannt fügt kein Angebot hinzu. Es setzt das Gesamtergebnis auf „Weitere Analyse erforderlich“, weil das Potenzial geklärt werden muss, bevor eine belastbare erste Einschätzung möglich ist.",
+    "source": "content/docs/de/quick-check.mdx#energiequellen"
+  },
+  {
+    "id": "docs:quick-check#energiequellen-2",
+    "lang": "de",
+    "title": "Quick Check · Energiequellen",
+    "url": "/de/docs/quick-check#energiequellen",
+    "text": "Die Methodik sagt nicht, ob die Kapazitäten pro Projekt, pro Gebäude oder pro Fläche gelten. First Move wendet sie für jede ausgewählte Quelle als absolute Werte für das gesamte Projekt an und weist auf der Seite Annahmen darauf hin (OQ-26). Mit den Standardkapazitäten decken die Quellen nur den Bedarf kleiner Projekte: Ein Wohngebäude braucht etwa 30.000 bis 68.000 kWh/a Wärme, während die höchste Standardkapazität einer Quelle 150.000 kWh/a beträgt. Andere Kapazitäten können Sie unter „Mit Parametern spielen“ ausprobieren.\nWo Sie die Angabe finden: geologische und hydrogeologische Karten, Studien zum Gebiet, der Betreiber einer möglichen Abwärmequelle oder die für Wasser und Geologie zuständigen Behörden. Wenn Sie eine Quelle noch nicht bewerten können, wählen Sie Unbekannt.",
+    "source": "content/docs/de/quick-check.mdx#energiequellen"
+  },
+  {
+    "id": "docs:quick-check#optionen",
+    "lang": "de",
+    "title": "Quick Check · Optionen",
+    "url": "/de/docs/quick-check#optionen",
+    "text": "Alle Optionen sind freiwillig. Lassen Sie ein Feld leer, um die Schätzung der Methodik beizubehalten.\n- Bekannter Wärme- und Kältebedarf: Wenn Sie genauere Angaben zum Energiebedarf der Gebäude haben, geben Sie den gesamten jährlichen Wärmebedarf und den gesamten jährlichen Kältebedarf in kWh/a ein. Jeder Wert ersetzt die geschätzte Summe (EQ-3.2c, EQ-3.2d) überall dort, wo die Summe verwendet wird; die Erlöse aus dem Grundpreis verwenden weiterhin die Standard-Nutzflächen (OQ-05).\n- Netzlänge: Wenn Sie die voraussichtliche gesamte Netzlänge kennen, geben Sie sie in m ein. Sie ersetzt die Schätzung (EQ-3.4a, EQ-3.4b), und die Ergebnisse weisen aus, dass die Länge eingegeben wurde.\n- Photovoltaik (PV) vorhanden: Mit PV sinken die Stromkosten der Wärmepumpen um die PV-Kostenreduktion von 30 % (TBL-6, OQ-06).\nWo Sie die Angaben finden: Energierechnungen, Zählerdaten oder der Energieversorger für den Bedarf; eine erste Netzskizze für die Länge.",
+    "source": "content/docs/de/quick-check.mdx#optionen"
+  },
+  {
+    "id": "docs:quick-check#gebaudedichte",
+    "lang": "de",
+    "title": "Quick Check · Gebäudedichte",
+    "url": "/de/docs/quick-check#gebaudedichte",
+    "text": "Die Gebäudedichte ist die Anzahl der Gebäude pro Hektar Projektgebiet (EQ-3.3). Sie wird nach TBL-8 eingestuft:\n- Hohe Dichte: über 30 Gebäude/ha. Dicht bebaute Gebiete können von kürzeren Netzlängen profitieren, ein geringer Energiebedarf kann die Wirtschaftlichkeit aber dennoch schwächen.\n- Mittlere Dichte: von 10 bis 30 Gebäude/ha. Die Struktur kann für ein Netz geeignet sein.\n- Geringe Dichte: unter 10 Gebäude/ha. Die Gebäude liegen weiter auseinander, was die Netzlänge erhöhen kann. Ein hoher Energiebedarf oder geeignete lokale Energiequellen können ein Projekt dennoch vielversprechend machen.\nDie Kategorie der Gebäudedichte (ländlich, vorstädtisch oder städtisch) ist keine Eingabe. Sie ergibt sich aus dieser Klasse: Geringe Dichte ist ländlich, mittlere ist vorstädtisch, hohe ist städtisch (OQ-04).",
+    "source": "content/docs/de/quick-check.mdx#gebaudedichte"
+  },
+  {
+    "id": "docs:quick-check#netzlange",
+    "lang": "de",
+    "title": "Quick Check · Netzlänge",
+    "url": "/de/docs/quick-check#netzlange",
+    "text": "Sofern Sie keine Netzlänge eingeben, schätzt der Quick Check sie in zwei Schritten. Zuerst ergibt sich die spezifische Netzlänge in Metern pro Hektar über einen vordefinierten Zusammenhang aus der Gebäudedichte (EQ-3.4a); die Anzahl der Gebäude pro Hektar in dieser Gleichung ist die Gebäudedichte (OQ-09). Dann ergibt die spezifische Netzlänge multipliziert mit der Fläche des Projektgebiets in Hektar die gesamte Netzlänge in Metern (EQ-3.4b).\nDie Ergebnisse geben immer an, ob die Netzlänge eingegeben oder geschätzt wurde.",
+    "source": "content/docs/de/quick-check.mdx#netzlange"
+  },
+  {
+    "id": "docs:quick-check#warmedichte",
+    "lang": "de",
+    "title": "Quick Check · Wärmedichte",
+    "url": "/de/docs/quick-check#warmedichte",
+    "text": "Die Wärmedichte ist der gesamte jährliche Wärmebedarf geteilt durch die Netzlänge (EQ-3.5). Eine höhere Wärmedichte kann die wirtschaftlichen Aussichten verbessern, weil pro Meter Netz mehr Wärmebedarf bedient wird. Sie wird in kWh pro Meter berechnet und in MWh pro Meter eingestuft (OQ-10), nach TBL-9:\n- Hohe Dichte: über 1,5 MWh/m. Ein relativ kurzes Netz bedient einen hohen Wärmebedarf, was die Wirtschaftlichkeit verbessern kann.\n- Mittlere Dichte: von 0,5 bis 1,5 MWh/m. Das Netz kann tragfähig sein.\n- Geringe Dichte: unter 0,5 MWh/m. Ein relativ langes Netz bedient einen geringen Wärmebedarf. Ein erheblicher Kältebedarf oder niedrige Netzkosten können die Aussichten verbessern.",
+    "source": "content/docs/de/quick-check.mdx#warmedichte"
+  },
+  {
+    "id": "docs:quick-check#angebot",
+    "lang": "de",
+    "title": "Quick Check · Angebot",
+    "url": "/de/docs/quick-check#angebot",
+    "text": "Für jede ausgewählte Quelle ist das Wärmeangebot ihre Kapazität plus der Anteil, den die Wärmepumpe hinzufügt: Kapazität mal COP / (COP − 1) (EQ-3.8a). Das Kälteangebot ist ihre Kühlkapazität, angepasst um den COP: Kapazität mal COP / (COP + 1) (EQ-3.8b). Der COP ist die Leistungszahl der Wärmepumpe; der COP für Wärme stammt aus TBL-4 und der COP für Kälte aus TBL-5 (OQ-14). Das Angebot aller ausgewählten Quellen wird addiert (OQ-11).",
+    "source": "content/docs/de/quick-check.mdx#angebot"
+  },
+  {
+    "id": "docs:quick-check#deckungsgrad",
+    "lang": "de",
+    "title": "Quick Check · Deckungsgrad",
+    "url": "/de/docs/quick-check#deckungsgrad",
+    "text": "Der Deckungsgrad ist der Anteil des jährlichen Bedarfs, den die ausgewählten Quellen liefern können: das Wärmeangebot geteilt durch den Wärmebedarf (EQ-3.6a) und das Kälteangebot geteilt durch den Kältebedarf (EQ-3.6b). Ein Wert von 1,0 entspricht einem Deckungsgrad von 100 %. Der Deckungsgrad für Wärme und der für Kälte werden getrennt angezeigt und eingestuft, damit Versorgungslücken sichtbar bleiben (TBL-7):\n- Machbar: 100 % oder mehr. Das jährliche Energiepotenzial reicht aus, um den gesamten Bedarf zu decken, und es bleibt weiteres Potenzial verfügbar.\n- Bedingt machbar: von 90 % bis unter 100 %. Ein kleiner Anteil ergänzender Versorgung ist erforderlich.\n- Eingeschränkt machbar: von 70 % bis unter 90 %. Ein erheblicher Anteil ergänzender Versorgung ist erforderlich.\n- Als alleiniges Versorgungskonzept nicht machbar: unter 70 %. Zu viel Bedarf bleibt ungedeckt.\nEin Bedarf von 0 ist nicht relevant und erhält daher keine Klasse für den Deckungsgrad (OQ-22).",
+    "source": "content/docs/de/quick-check.mdx#deckungsgrad"
+  },
+  {
+    "id": "docs:quick-check#kalte-warme-verhaltnis",
+    "lang": "de",
+    "title": "Quick Check · Kälte-Wärme-Verhältnis",
+    "url": "/de/docs/quick-check#kalte-warme-verhaltnis",
+    "text": "Das Kälte-Wärme-Verhältnis zeigt, wie ausgeglichen der jährliche Wärme- und Kältebedarf sind. Die Methodik gibt dafür keine Formel an (EQ-3.7). First Move teilt den kleineren der beiden Bedarfe durch den größeren, sodass das Verhältnis immer zwischen 0 und 1 liegt, und nennt den Bedarf, der höher ist (OQ-12). Ein Wert von 1 bedeutet gleich hohe Bedarfe; Werte nahe 0 zeigen ein zunehmendes Ungleichgewicht. Wenn beide Bedarfe 0 sind, ist das Verhältnis nicht anwendbar. Es wird nach TBL-10 eingestuft:\n- Ausgeglichen: 0,8 oder mehr. Wärme- und Kältebedarf sind ähnlich, was den thermischen Austausch begünstigen kann.\n- Teilweise ausgeglichen: von 0,3 bis unter 0,8. Ein Bedarf ist höher als der andere, ein thermischer Austausch kann aber dennoch möglich sein.\n- Unausgeglichen: unter 0,3. Ein Bedarf überwiegt deutlich, was externe Energiequellen oder thermische Speicher eher nötig machen kann.\nDas Verhältnis zeigt das Potenzial für einen thermischen Ausgleich. Es entscheidet nicht allein darüber, ob ein Netz machbar ist, kann aber die Auslegung des Systems und die Wirtschaftlichkeit beeinflussen. Ein unausgeglichenes Bedarfsprofil macht ein 5GDHC-Netz nicht automatisch ungeeignet.",
+    "source": "content/docs/de/quick-check.mdx#kalte-warme-verhaltnis"
+  },
+  {
+    "id": "docs:quick-check#erlose",
+    "lang": "de",
+    "title": "Quick Check · Erlöse",
+    "url": "/de/docs/quick-check#erlose",
+    "text": "- Erlöse aus Wärme: der Grundpreis Wärme für jeden m² Nutzfläche pro Jahr, plus der Arbeitspreis Wärme für jede kWh Wärmebedarf (EQ-3.9a). Die Grundpreise gelten pro m² Nutzfläche und Jahr (OQ-16), und die Nutzfläche ist die Standard-Nutzfläche jeder Gebäudegruppe (TBL-3).\n- Erlöse aus Kälte: der Grundpreis Kälte für jeden m² Nutzfläche pro Jahr, plus der Arbeitspreis Kälte für jede kWh Kältebedarf (EQ-3.9b, OQ-15).\n- Gesamterlöse: die Erlöse aus Wärme, die Erlöse aus Kälte und die Anschlussgebühren. Die Anschlussgebühr ist eine einmalige Gebühr pro Gebäude, die mit dem Annuitätenfaktor über die Abschreibungsdauer verteilt wird (EQ-3.9c).",
+    "source": "content/docs/de/quick-check.mdx#erlose"
+  },
+  {
+    "id": "docs:quick-check#kosten-1",
+    "lang": "de",
+    "title": "Quick Check · Kosten",
+    "url": "/de/docs/quick-check#kosten",
+    "text": "- Netzinvestition: die Netzbaukosten pro Meter multipliziert mit der Netzlänge (EQ-3.10a).\n- Installationsinvestition: für jede ausgewählte Quelle ihre Installationskosten pro kWh/a multipliziert mit ihrem Wärmeangebot (EQ-3.10b), summiert über alle Quellen (EQ-3.10c). TBL-6 nennt keine Installationskosten für Umgebungsluft; First Move verwendet 0, weil die Wärmepumpen bereits in der Investition in Wärmepumpen enthalten sind (OQ-18).\n- Gesamtinvestition: die Investition in eine Wärmepumpe multipliziert mit der Anzahl der Gebäude, plus die Netzinvestition und die Installationsinvestition aller Quellen (EQ-3.10d). Die Installationen werden nur einmal gezählt (OQ-17).\n- Annualisierte Kosten: die Gesamtinvestition multipliziert mit dem Annuitätenfaktor (EQ-3.10f). Der Annuitätenfaktor wandelt eine Investition in gleiche jährliche Zahlungen über die Abschreibungsdauer zum Zinssatz um (EQ-3.10e).\n- Stromkosten: für jede Quelle das Wärmeangebot geteilt durch den COP für Wärme und das Kälteangebot geteilt durch den COP für Kälte, multipliziert mit dem Strompreis, in € pro Jahr (EQ-3.11, OQ-19). Mit PV werden sie mit 1 − 0,30 multipliziert (OQ-06).\n- Betrieb und Wartung: 0,02 multipliziert",
+    "source": "content/docs/de/quick-check.mdx#kosten"
+  },
+  {
+    "id": "docs:quick-check#kosten-2",
+    "lang": "de",
+    "title": "Quick Check · Kosten",
+    "url": "/de/docs/quick-check#kosten",
+    "text": "mit der Gesamtinvestition, also jedes Jahr 2 % davon (EQ-3.12).",
+    "source": "content/docs/de/quick-check.mdx#kosten"
+  },
+  {
+    "id": "docs:quick-check#wirtschaftliche-bewertung",
+    "lang": "de",
+    "title": "Quick Check · Wirtschaftliche Bewertung",
+    "url": "/de/docs/quick-check#wirtschaftliche-bewertung",
+    "text": "Die Methodik legt nicht fest, wann die wirtschaftliche Bewertung günstig oder deutlich ungünstig ist, daher verwendet First Move eine Wirtschaftlichkeitskennzahl E (OQ-21): die Gesamterlöse geteilt durch die jährlichen Kosten, also die annualisierten Kosten plus die Stromkosten plus Betrieb und Wartung.\n- Günstig: E ist 1,0 oder mehr. Die Erlöse decken die jährlichen Kosten.\n- Unklar: E ist 0,7 oder mehr, aber unter 1,0. Die Erlöse decken einen großen Teil der jährlichen Kosten, aber nicht alle.\n- Deutlich ungünstig: E ist unter 0,7. Die Erlöse bleiben weit hinter den jährlichen Kosten zurück.\nDie wirtschaftlichen Parameter (TBL-6) sind nur vorläufige Annahmen; behandeln Sie die wirtschaftlichen Ergebnisse daher mit Vorsicht.",
+    "source": "content/docs/de/quick-check.mdx#wirtschaftliche-bewertung"
+  },
+  {
+    "id": "docs:quick-check#die-bewertung-was-das-gesamtergebnis-bedeutet-1",
+    "lang": "de",
+    "title": "Quick Check · Die Bewertung: Was das Gesamtergebnis bedeutet",
+    "url": "/de/docs/quick-check#die-bewertung-was-das-gesamtergebnis-bedeutet",
+    "text": "Das Gesamtergebnis, die Bewertung des Quick Check, ist eine von drei Stufen:\n- Vielversprechend: günstige Bedingungen festgestellt.\n- Weitere Analyse erforderlich: gemischte Bedingungen, Unsicherheiten oder fehlende Informationen.\n- Nicht vielversprechend: ungünstige Bedingungen festgestellt.\nDer Indikator ist bewusst grob gehalten, um Scheingenauigkeit zu vermeiden und deutlich zu machen, dass er eine allgemeine erste Einschätzung ist, keine detaillierte Machbarkeitsstudie. Er verbindet den Deckungsgrad der Versorgung, die Gebäude- und die Wärmedichte und die wirtschaftliche Bewertung (TBL-11), geprüft in dieser Reihenfolge (OQ-22):",
+    "source": "content/docs/de/quick-check.mdx#die-bewertung-was-das-gesamtergebnis-bedeutet"
+  },
+  {
+    "id": "docs:quick-check#die-bewertung-was-das-gesamtergebnis-bedeutet-2",
+    "lang": "de",
+    "title": "Quick Check · Die Bewertung: Was das Gesamtergebnis bedeutet",
+    "url": "/de/docs/quick-check#die-bewertung-was-das-gesamtergebnis-bedeutet",
+    "text": "1. Durch eine feste Regel festgelegt: Wenn das Projektgebiet Industrie enthält oder eine ausgewählte Quelle das Potenzial Unbekannt hat, ist das Ergebnis „Weitere Analyse erforderlich“.\n2. Nicht vielversprechend: wenn die wirtschaftliche Bewertung deutlich ungünstig ist oder wenn ein relevanter Deckungsgrad unter 70 % liegt und sowohl die Gebäudedichte als auch die Wärmedichte gering sind.\n3. Vielversprechend: wenn es mindestens einen relevanten Bedarf gibt, jeder relevante Bedarf einen jährlichen Deckungsgrad von mindestens 90 % hat, die wirtschaftliche Bewertung günstig ist und weder die Gebäudedichte noch die Wärmedichte gering ist.\n4. Weitere Analyse erforderlich: in allen anderen Fällen.\nEin Bedarf ist relevant, wenn er über 0 liegt (OQ-22).",
+    "source": "content/docs/de/quick-check.mdx#die-bewertung-was-das-gesamtergebnis-bedeutet"
+  },
+  {
+    "id": "docs:quick-check#wichtigste-einflussfaktoren",
+    "lang": "de",
+    "title": "Quick Check · Wichtigste Einflussfaktoren",
+    "url": "/de/docs/quick-check#wichtigste-einflussfaktoren",
+    "text": "Neben dem Gesamtergebnis zeigt der Quick Check die wichtigsten Einflussfaktoren, die es fördern oder einschränken, und unter „Warum dieses Ergebnis“ die Gründe für die erreichte Stufe.\n- Ein Indikator ist förderlich, wenn er seine Bedingung für Vielversprechend erfüllt: ein Deckungsgrad von mindestens 90 %, eine günstige wirtschaftliche Bewertung, eine Gebäudedichte oder Wärmedichte, die nicht gering ist.\n- Andernfalls ist er einschränkend.\n- Industrie im Projektgebiet und ein unbekanntes Potenzial einer Quelle wirken immer einschränkend.\n- Ein Bedarf von 0 bleibt außen vor. Das Kälte-Wärme-Verhältnis wird mit seiner Klasse angezeigt, aber nicht als Faktor gezählt, weil es das Ergebnis nicht allein entscheidet.\nJeder Indikator wird mit seiner Einstufung und einer kurzen Erklärung angezeigt, was er für das Projekt bedeutet. Die Ergebnisse zeigen außerdem die Kennzahlen, etwa den Bedarf, das Angebot, die Netzlänge, die Erlöse, die Investition und die jährlichen Kosten.",
+    "source": "content/docs/de/quick-check.mdx#wichtigste-einflussfaktoren"
+  },
+  {
+    "id": "docs:quick-check#standardkapazitaten-der-quellen",
+    "lang": "de",
+    "title": "Quick Check · Standardkapazitäten der Quellen",
+    "url": "/de/docs/quick-check#standardkapazitaten-der-quellen",
+    "text": "Die jährliche Standardkapazität bei geringem, mittlerem und hohem Potenzial und der COP der Wärmepumpe (TBL-4 für Wärme, TBL-5 für Kälte):\n- Geothermie: Wärme 10.000, 50.000 und 150.000 kWh/a, COP 4,5; Kälte 10.000, 50.000 und 150.000 kWh/a, COP 5,0.\n- Abwärme: Wärme 5.000, 30.000 und 100.000 kWh/a, COP 4,5; keine Kälte.\n- Grundwasser: Wärme 10.000, 50.000 und 150.000 kWh/a, COP 5,0; Kälte 10.000, 50.000 und 150.000 kWh/a, COP 5,0.\n- Oberflächenwasser: Wärme 10.000, 50.000 und 150.000 kWh/a, COP 4,0; Kälte 10.000, 50.000 und 150.000 kWh/a, COP 4,5.\n- Solarthermie: Wärme 5.000, 20.000 und 50.000 kWh/a, ohne Wärmepumpe; keine Kälte.\n- Umgebungsluft: Wärme 10.000, 50.000 und 150.000 kWh/a, COP 3,0; Kälte 10.000, 50.000 und 150.000 kWh/a, COP 3,5.\nDer Standardbedarf pro m² und die Standard-Nutzfläche jedes Gebäudetyps und jeder Baualtersklasse (TBL-1 bis TBL-3) stehen auf der Seite Annahmen.",
+    "source": "content/docs/de/quick-check.mdx#standardkapazitaten-der-quellen"
+  },
+  {
+    "id": "docs:quick-check#wirtschaftliche-standardparameter",
+    "lang": "de",
+    "title": "Quick Check · Wirtschaftliche Standardparameter",
+    "url": "/de/docs/quick-check#wirtschaftliche-standardparameter",
+    "text": "Die wirtschaftlichen Standardparameter (TBL-6):\n- Grundpreis Wärme: 6,00 €/m² pro Jahr\n- Arbeitspreis Wärme: 0,12 €/kWh\n- Grundpreis Kälte: 3,00 €/m² pro Jahr\n- Arbeitspreis Kälte: 0,08 €/kWh\n- Anschlussgebühr: 1.000 € pro Gebäude\n- Netzbaukosten, für Rohre, Material, Erdarbeiten und Montage: 500 €/m\n- Installationskosten pro kWh/a Wärmeangebot: Geothermie 1,50 €, Abwärme 0,50 €, Grundwasser 1,00 €, Oberflächenwasser 0,80 €, Solarthermie 0,70 €, Umgebungsluft keine, verwendet als 0\n- Wärmepumpe: 15.000 € pro Gebäude\n- Strompreis: 0,20 €/kWh\n- PV-Kostenreduktion: 30 %\n- Abschreibungsdauer: 20 Jahre\n- Zinssatz: 3 %",
+    "source": "content/docs/de/quick-check.mdx#wirtschaftliche-standardparameter"
+  },
+  {
+    "id": "docs:quick-check#ihre-eigenen-parameter",
+    "lang": "de",
+    "title": "Quick Check · Ihre eigenen Parameter",
+    "url": "/de/docs/quick-check#ihre-eigenen-parameter",
+    "text": "Auf der Seite Annahmen lässt Sie Mit Parametern spielen die Kapazitäten und COP-Werte aus TBL-4 und TBL-5 und die wirtschaftlichen Parameter aus TBL-6 überschreiben. Die Ergebnisse tragen dann das Kennzeichen „Eigene Parameter“, Ihre Werte werden im Projekt gespeichert, und Auf Standardwerte zurücksetzen stellt die Standardwerte wieder her. Die Schwellenwerte der Einstufung (TBL-7 bis TBL-11) sind fest. Die Seite Annahmen führt außerdem die Antworten auf die offenen Punkte der Methodik auf, die First Move in jeder Berechnung anwendet.",
+    "source": "content/docs/de/quick-check.mdx#ihre-eigenen-parameter"
+  },
+  {
+    "id": "docs:quick-check#der-bericht",
+    "lang": "de",
+    "title": "Quick Check · Der Bericht",
+    "url": "/de/docs/quick-check#der-bericht",
+    "text": "Bericht in der oberen Leiste öffnet einen Bericht über das geöffnete Projekt, als Grundlage für Gespräche und nächste Schritte: das Gesamtergebnis mit seinen Gründen und Einflussfaktoren, den Deckungsgrad, die Indikatoren und die Kennzahlen, Ihre Eingaben, die verwendeten Parameter, die Gleichungen hinter jedem Schritt und, wenn dieses Modul aktiv ist, den Business Plan so, wie Sie ihn geschrieben haben. Drucken oder als PDF speichern öffnet den Druckdialog Ihres Browsers; wählen Sie dort „Als PDF speichern“, um eine PDF-Datei zu erhalten. Der Bericht entsteht in Ihrem Browser, und nichts wird hochgeladen.",
+    "source": "content/docs/de/quick-check.mdx#der-bericht"
+  },
+  {
+    "id": "docs:quick-check#grenzen-des-quick-check",
+    "lang": "de",
+    "title": "Quick Check · Grenzen des Quick Check",
+    "url": "/de/docs/quick-check#grenzen-des-quick-check",
+    "text": "- Ein Screening, keine Ingenieurberatung. Der Quick Check ist für ein vorläufiges Screening gedacht, nicht für eine detaillierte Systemauslegung. Er ersetzt keine detaillierte technische oder wirtschaftliche Machbarkeitsstudie.\n- Vereinfachte Annahmen. Die Parameter, die Eingaben und die Methodik beruhen auf vereinfachten Annahmen und sollten mit Sorgfalt interpretiert werden. Die tatsächlichen Werte können je nach den Bedingungen des Projekts abweichen und sollten durch weitere Analysen verfeinert werden.\n- Nur Ihre Eingaben. Der Quick Check fragt keine externen Datenbanken ab. Er arbeitet mit dem, was Sie eingeben, und mit den Standardwerten.\n- Gleiche Eingaben, gleiches Ergebnis. Die Berechnung ist deterministisch und läuft in Ihrem Browser; sie verwendet keine KI.\n- Beispielhafte Eingaben. Die Beispielprojekte auf dem Startbildschirm verwenden nur beispielhafte Eingaben.",
+    "source": "content/docs/de/quick-check.mdx#grenzen-des-quick-check"
+  },
+  {
+    "id": "docs:what-is-5gdhc",
+    "lang": "de",
+    "title": "Was ist 5GDHC?",
+    "url": "/de/docs/what-is-5gdhc",
+    "text": "5GDHC steht für Fernwärme und -kälte der 5. Generation (englisch fifth-generation district heating and cooling). Ein 5GDHC-Netz ist ein Niedertemperatursystem, das Gebäude mit Wärme und Kälte versorgt. Solche Netze heißen auch Anergienetze oder Ambient-Loop-Netze.",
+    "source": "content/docs/de/what-is-5gdhc.mdx"
+  },
+  {
+    "id": "docs:what-is-5gdhc#ein-niedertemperaturnetz",
+    "lang": "de",
+    "title": "Was ist 5GDHC? · Ein Niedertemperaturnetz",
+    "url": "/de/docs/what-is-5gdhc#ein-niedertemperaturnetz",
+    "text": "In einem 5GDHC-Netz zirkuliert Wasser mit etwa 5 bis 25 °C. Bei diesen Temperaturen kann das Netz erneuerbare Energien und Abwärme ohne gedämmte Leitungen effizient nutzen, und seine Verluste sind minimal.\nDas Netz verbindet die Gebäude mit Energiequellen und mit thermischen Speichern, etwa Erdsondenfeldern, Pufferspeichern oder saisonalen Speichern.",
+    "source": "content/docs/de/what-is-5gdhc.mdx#ein-niedertemperaturnetz"
+  },
+  {
+    "id": "docs:what-is-5gdhc#warmepumpen-in-jedem-gebaude",
+    "lang": "de",
+    "title": "Was ist 5GDHC? · Wärmepumpen in jedem Gebäude",
+    "url": "/de/docs/what-is-5gdhc#warmepumpen-in-jedem-gebaude",
+    "text": "Jedes Gebäude nutzt eine eigene Wärmepumpe, um zu heizen oder zu kühlen. Die dezentralen Wärmepumpen heben die Temperatur auf das Niveau an, das das jeweilige Gebäude für Heizkörper oder eine Fußbodenheizung braucht. Die Herausforderung: eine höhere Anfangsinvestition und eine komplexere Regelung.",
+    "source": "content/docs/de/what-is-5gdhc.mdx#warmepumpen-in-jedem-gebaude"
+  },
+  {
+    "id": "docs:what-is-5gdhc#warme-und-kalte-teilen",
+    "lang": "de",
+    "title": "Was ist 5GDHC? · Wärme und Kälte teilen",
+    "url": "/de/docs/what-is-5gdhc#warme-und-kalte-teilen",
+    "text": "Ein wesentlicher Vorteil ist der bidirektionale Energieaustausch. Überschüssige Wärme kann ins Netz zurückgespeist und von anderen Gebäuden genutzt werden, was die gesamte Energieeffizienz verbessert. Wenn einige Gebäude heizen, während andere kühlen, gleichen sich ihre Bedarfe aus, sodass die Kühlung im Sommer zu einem Grund wird, sich anzuschließen.",
+    "source": "content/docs/de/what-is-5gdhc.mdx#warme-und-kalte-teilen"
+  },
+  {
+    "id": "docs:what-is-5gdhc#typische-quellen",
+    "lang": "de",
+    "title": "Was ist 5GDHC? · Typische Quellen",
+    "url": "/de/docs/what-is-5gdhc#typische-quellen",
+    "text": "Typische Quellen sind Grundwasser, Geothermie, Abwärme und Abwasser. Der Quick Check arbeitet mit sechs Arten von Quellen: Geothermie, Abwärme, Grundwasser, Oberflächenwasser, Solarthermie und Umgebungsluft.\nIn den Anwendungsfällen des Forschungsprojekts „Anergie Leicht Gemacht“ war Grundwasser die wirtschaftlichste Quelle.",
+    "source": "content/docs/de/what-is-5gdhc.mdx#typische-quellen"
+  },
+  {
+    "id": "docs:what-is-5gdhc#warum-das-wichtig-ist",
+    "lang": "de",
+    "title": "Was ist 5GDHC? · Warum das wichtig ist",
+    "url": "/de/docs/what-is-5gdhc#warum-das-wichtig-ist",
+    "text": "5GDHC-Netze binden erneuerbare Energien und Abwärme effizient ein und verringern die Abhängigkeit von fossilen Brennstoffen. Sie können außerdem zu einer resilienten, sicheren und lokal verfügbaren Energieversorgung beitragen, weil sie lokale Energiequellen einbinden, die Abhängigkeit von einzelnen Energieträgern verringern und Wärme und Kälte flexibel austauschen und speichern lassen.",
+    "source": "content/docs/de/what-is-5gdhc.mdx#warum-das-wichtig-ist"
+  },
+  {
+    "id": "docs:what-is-5gdhc#wo-es-passt",
+    "lang": "de",
+    "title": "Was ist 5GDHC? · Wo es passt",
+    "url": "/de/docs/what-is-5gdhc#wo-es-passt",
+    "text": "5GDHC-Netze lassen sich in unterschiedlichen Siedlungs- und Gebäudetypen bauen, sie brauchen aber geeignete technische und wirtschaftliche Bedingungen. Das Forschungsprojekt „Anergie Leicht Gemacht“ hat aus seinen Anwendungsfällen diese Erkenntnisse gewonnen:\n- Bestandsgebäude lassen sich einbinden, die meisten sogar ohne größere thermische Sanierung.\n- Die Wärmebelegungsdichte entscheidet über die Wirtschaftlichkeit: Oberhalb von etwa 1 MWh pro Meter Trasse können Netze wirtschaftlicher sein als Einzellösungen.\n- Leitungen und Hausanschlüsse sind die Kostentreiber; die Trassenlänge bestimmt maßgeblich die Investition.\n- Mikronetze zwischen direkten Nachbarn sind eine vielversprechende Option.\nGut zu wissen: Die Investition kommt zuerst, die Erlöse fließen über 25 bis 30 Jahre, und jedes Gebäude, das sich nicht anschließt, erhöht die Kosten für die übrigen.",
+    "source": "content/docs/de/what-is-5gdhc.mdx#wo-es-passt"
+  },
+  {
+    "id": "docs:what-is-5gdhc#wo-es-schwieriger-ist",
+    "lang": "de",
+    "title": "Was ist 5GDHC? · Wo es schwieriger ist",
+    "url": "/de/docs/what-is-5gdhc#wo-es-schwieriger-ist",
+    "text": "Die Indikatoren des Quick Check zeigen, was die Argumente für ein Netz schwächen kann:\n- Geringe Gebäudedichte: Die Gebäude liegen weiter auseinander, was die Netzlänge erhöhen kann.\n- Geringe Wärmedichte: Ein relativ langes Netz bedient einen geringen Wärmebedarf.\n- Unausgeglichener Bedarf: Wenn der Wärme- oder der Kältebedarf klar überwiegt, können mehr externe Energiequellen oder thermische Speicher nötig sein. Ein unausgeglichenes Bedarfsprofil macht ein 5GDHC-Netz nicht automatisch ungeeignet.\nDie meisten Herausforderungen sind eher organisatorisch als technisch: Koordination, Eigentumsstrukturen, Finanzierung und langfristiger Betrieb. Nach den Erfahrungen des Projekts ist der Anschluss freiwillig, und viele Eigentümer entscheiden einzeln: Hauseigentümer, Wohnungsunternehmen und öffentliche Gebäude.",
+    "source": "content/docs/de/what-is-5gdhc.mdx#wo-es-schwieriger-ist"
+  },
+  {
+    "id": "docs:what-is-5gdhc#beispiele-aus-der-praxis",
+    "lang": "de",
+    "title": "Was ist 5GDHC? · Beispiele aus der Praxis",
+    "url": "/de/docs/what-is-5gdhc#beispiele-aus-der-praxis",
+    "text": "- Viertel Zwei, Wien: Wohn-, Gewerbe- und öffentliche Gebäude mit dezentralen Wärmepumpen, versorgt aus Geothermie, Abwasser und Grundwasser; seit 2017 in Betrieb.\n- Bregenz, Vorarlberg: Wasser aus dem Bodensee als Quelle für Wärme und Kälte, betrieben vom kommunalen Versorger, den Stadtwerken Bregenz; in Betrieb, und das Netz wird erweitert.\n- Lagarde, Bamberg: Bestands- und Neubauten mit etwa 1.200 Wohnungen, 70 dezentralen Wärmepumpen und 5,5 km Leitungen, versorgt aus Geothermie und Abwasserwärme; seit 2023 in Betrieb, mit den Stadtwerken Bamberg.",
+    "source": "content/docs/de/what-is-5gdhc.mdx#beispiele-aus-der-praxis"
+  },
+  {
+    "id": "docs:what-is-5gdhc#wie-first-move-hilft",
+    "lang": "de",
+    "title": "Was ist 5GDHC? · Wie First Move hilft",
+    "url": "/de/docs/what-is-5gdhc#wie-first-move-hilft",
+    "text": "Der Quick Check prüft ein Projektgebiet: Erscheint ein 5GDHC-Netz dort vielversprechend, und welche Faktoren entscheiden darüber? Der Business Plan hilft Ihnen herauszuarbeiten, wer profitiert und wer zahlt, wem das Netz gehört und wer es betreibt und welche Risiken es scheitern lassen könnten.",
+    "source": "content/docs/de/what-is-5gdhc.mdx#wie-first-move-hilft"
+  },
+  {
+    "id": "calc:steps.area",
+    "lang": "de",
+    "title": "So rechnen wir · Quick Check · Projektgebiet",
+    "url": "/de/dashboard/quick-check/area",
+    "text": "Aus der Anzahl der Gebäude und der Fläche des Projektgebiets ergibt sich die Gebäudedichte in Gebäuden pro Hektar. Wenn Sie keine Netzlänge eingeben, schätzt das Werkzeug die Länge aus dieser Dichte. Die Anzahl der Gebäude bestimmt außerdem die Investition in Wärmepumpen und die Anschlussgebühren.",
+    "source": "dictionaries/de/calc.json#steps.area"
+  },
+  {
+    "id": "calc:steps.buildings",
+    "lang": "de",
+    "title": "So rechnen wir · Quick Check · Gebäude",
+    "url": "/de/dashboard/quick-check/buildings",
+    "text": "Die Anteile teilen die Gebäude nach Typen und Baualtersklassen auf. Jede Gruppe erhält die Standardwerte für Wärmebedarf, Kältebedarf und Nutzfläche aus den Tabellen 1 bis 3; zusammen ergeben sie den gesamten jährlichen Bedarf. Für Industrie gibt es keine Standardwerte: Der Industrieanteil fügt keinen Bedarf hinzu und führt zu „Weitere Analyse erforderlich“.",
+    "source": "dictionaries/de/calc.json#steps.buildings"
+  },
+  {
+    "id": "calc:steps.sources",
+    "lang": "de",
+    "title": "So rechnen wir · Quick Check · Energiequellen",
+    "url": "/de/dashboard/quick-check/sources",
+    "text": "Jede gewählte Quelle fügt die jährliche Standardkapazität ihres Potenzials hinzu (Tabellen 4 und 5). Die Wärmepumpe macht daraus gelieferte Wärme und Kälte, und davon hängen der Deckungsgrad, die Installationskosten und die Stromkosten ab. Eine Quelle mit unbekanntem Potenzial fügt nichts hinzu und führt zu „Weitere Analyse erforderlich“.",
+    "source": "dictionaries/de/calc.json#steps.sources"
+  },
+  {
+    "id": "calc:steps.options",
+    "lang": "de",
+    "title": "So rechnen wir · Quick Check · Optionen",
+    "url": "/de/dashboard/quick-check/options",
+    "text": "Ein bekannter Wärme- oder Kältebedarf ersetzt den geschätzten Gesamtbedarf, und eine bekannte Netzlänge ersetzt die geschätzte Länge. PV senkt die Stromkosten der Wärmepumpen um die PV-Kostenreduktion aus Tabelle 6.",
+    "source": "dictionaries/de/calc.json#steps.options"
+  },
+  {
+    "id": "calc:steps.assumptions",
+    "lang": "de",
+    "title": "So rechnen wir · Quick Check · Annahmen",
+    "url": "/de/dashboard/assumptions",
+    "text": "Ein geänderter Parameter ersetzt den Standardwert der Tabellen 4 bis 6 in jeder Gleichung, die ihn verwendet. Die Ergebnisse tragen dann das Kennzeichen „Eigene Parameter“.",
+    "source": "dictionaries/de/calc.json#steps.assumptions"
+  },
+  {
+    "id": "calc:results.heatingDemandKwh",
+    "lang": "de",
+    "title": "So rechnen wir · Wärmebedarf",
+    "url": "/de/dashboard/quick-check/results",
+    "text": "Für jeden Gebäudetyp und jede Baualtersklasse die Anzahl der Gebäude multipliziert mit dem Standard-Wärmebedarf pro m² und der Standard-Nutzfläche, summiert über alle Gruppen.\nSie haben den gesamten Wärmebedarf eingegeben, daher ersetzt er die Schätzung.",
+    "source": "dictionaries/de/calc.json#results.heatingDemandKwh"
+  },
+  {
+    "id": "calc:results.coolingDemandKwh",
+    "lang": "de",
+    "title": "So rechnen wir · Kältebedarf",
+    "url": "/de/dashboard/quick-check/results",
+    "text": "Für jeden Gebäudetyp und jede Baualtersklasse die Anzahl der Gebäude multipliziert mit dem Standard-Kältebedarf pro m² und der Standard-Nutzfläche, summiert über alle Gruppen.\nSie haben den gesamten Kältebedarf eingegeben, daher ersetzt er die Schätzung.",
+    "source": "dictionaries/de/calc.json#results.coolingDemandKwh"
+  },
+  {
+    "id": "calc:results.buildingDensity",
+    "lang": "de",
+    "title": "So rechnen wir · Gebäudedichte",
+    "url": "/de/dashboard/quick-check/results",
+    "text": "Die Anzahl der Gebäude pro Hektar Projektgebiet.",
+    "source": "dictionaries/de/calc.json#results.buildingDensity"
+  },
+  {
+    "id": "calc:results.densityCategory",
+    "lang": "de",
+    "title": "So rechnen wir · Kategorie der Gebäudedichte",
+    "url": "/de/dashboard/quick-check/results",
+    "text": "Ergibt sich aus der Klasse der Gebäudedichte nach Tabelle 8: Geringe Dichte bedeutet ländlich, mittlere vorstädtisch, hohe städtisch.",
+    "source": "dictionaries/de/calc.json#results.densityCategory"
+  },
+  {
+    "id": "calc:results.specificNetworkLength",
+    "lang": "de",
+    "title": "So rechnen wir · Spezifische Netzlänge",
+    "url": "/de/dashboard/quick-check/results",
+    "text": "Meter Netz pro Hektar, geschätzt aus der Gebäudedichte mit dem vorgegebenen Zusammenhang der Methodik.",
+    "source": "dictionaries/de/calc.json#results.specificNetworkLength"
+  },
+  {
+    "id": "calc:results.networkLengthM",
+    "lang": "de",
+    "title": "So rechnen wir · Netzlänge",
+    "url": "/de/dashboard/quick-check/results",
+    "text": "Die spezifische Netzlänge multipliziert mit der Fläche des Projektgebiets in Hektar.\nSie haben die Netzlänge eingegeben, daher ersetzt sie die Schätzung.",
+    "source": "dictionaries/de/calc.json#results.networkLengthM"
+  },
+  {
+    "id": "calc:results.heatDensityMwhPerM",
+    "lang": "de",
+    "title": "So rechnen wir · Wärmedichte",
+    "url": "/de/dashboard/quick-check/results",
+    "text": "Der gesamte Wärmebedarf geteilt durch die Netzlänge. Die Einstufung erfolgt in MWh pro Meter (Tabelle 9).",
+    "source": "dictionaries/de/calc.json#results.heatDensityMwhPerM"
+  },
+  {
+    "id": "calc:results.heatingSupplyKwh",
+    "lang": "de",
+    "title": "So rechnen wir · Wärmeangebot",
+    "url": "/de/dashboard/quick-check/results",
+    "text": "Für jede gewählte Quelle die Standardkapazität ihres Potenzials plus den Anteil, den die Wärmepumpe hinzufügt (COP), summiert über alle Quellen. Solarthermie arbeitet ohne Wärmepumpe.",
+    "source": "dictionaries/de/calc.json#results.heatingSupplyKwh"
+  },
+  {
+    "id": "calc:results.coolingSupplyKwh",
+    "lang": "de",
+    "title": "So rechnen wir · Kälteangebot",
+    "url": "/de/dashboard/quick-check/results",
+    "text": "Für jede gewählte Quelle die Standard-Kühlkapazität ihres Potenzials, angepasst um den COP, summiert über alle Quellen. Abwärme und Solarthermie liefern keine Kälte.",
+    "source": "dictionaries/de/calc.json#results.coolingSupplyKwh"
+  },
+  {
+    "id": "calc:results.heatingCoverage",
+    "lang": "de",
+    "title": "So rechnen wir · Deckungsgrad Wärme",
+    "url": "/de/dashboard/quick-check/results",
+    "text": "Das Wärmeangebot geteilt durch den Wärmebedarf: der Anteil des jährlichen Wärmebedarfs, den die gewählten Quellen decken können.",
+    "source": "dictionaries/de/calc.json#results.heatingCoverage"
+  },
+  {
+    "id": "calc:results.coolingCoverage",
+    "lang": "de",
+    "title": "So rechnen wir · Deckungsgrad Kälte",
+    "url": "/de/dashboard/quick-check/results",
+    "text": "Das Kälteangebot geteilt durch den Kältebedarf: der Anteil des jährlichen Kältebedarfs, den die gewählten Quellen decken können.",
+    "source": "dictionaries/de/calc.json#results.coolingCoverage"
+  },
+  {
+    "id": "calc:results.chRatio",
+    "lang": "de",
+    "title": "So rechnen wir · Kälte-Wärme-Verhältnis",
+    "url": "/de/dashboard/quick-check/results",
+    "text": "Der kleinere Wert von Wärme- und Kältebedarf geteilt durch den größeren. Je näher das Ergebnis an eins liegt, desto ausgeglichener sind die Bedarfe.",
+    "source": "dictionaries/de/calc.json#results.chRatio"
+  },
+  {
+    "id": "calc:results.heatingRevenue",
+    "lang": "de",
+    "title": "So rechnen wir · Jährliche Erlöse aus Wärme",
+    "url": "/de/dashboard/quick-check/results",
+    "text": "Der Grundpreis Wärme für jeden m² Nutzfläche pro Jahr plus der Arbeitspreis Wärme für jede kWh Wärmebedarf.",
+    "source": "dictionaries/de/calc.json#results.heatingRevenue"
+  },
+  {
+    "id": "calc:results.coolingRevenue",
+    "lang": "de",
+    "title": "So rechnen wir · Jährliche Erlöse aus Kälte",
+    "url": "/de/dashboard/quick-check/results",
+    "text": "Der Grundpreis Kälte für jeden m² Nutzfläche pro Jahr plus der Arbeitspreis Kälte für jede kWh Kältebedarf.",
+    "source": "dictionaries/de/calc.json#results.coolingRevenue"
+  },
+  {
+    "id": "calc:results.connectionFeeRevenue",
+    "lang": "de",
+    "title": "So rechnen wir · Anschlussgebühr",
+    "url": "/de/dashboard/quick-check/results",
+    "text": "Die einmalige Anschlussgebühr jedes Gebäudes, mit dem Annuitätenfaktor auf die Abschreibungsdauer verteilt.",
+    "source": "dictionaries/de/calc.json#results.connectionFeeRevenue"
+  },
+  {
+    "id": "calc:results.overallRevenue",
+    "lang": "de",
+    "title": "So rechnen wir · Gesamterlöse",
+    "url": "/de/dashboard/quick-check/results",
+    "text": "Erlöse aus Wärme, Erlöse aus Kälte und die annualisierten Anschlussgebühren.",
+    "source": "dictionaries/de/calc.json#results.overallRevenue"
+  },
+  {
+    "id": "calc:results.networkInvestment",
+    "lang": "de",
+    "title": "So rechnen wir · Netzinvestition",
+    "url": "/de/dashboard/quick-check/results",
+    "text": "Die Netzbaukosten pro Meter multipliziert mit der Netzlänge.",
+    "source": "dictionaries/de/calc.json#results.networkInvestment"
+  },
+  {
+    "id": "calc:results.supplyInvestment",
+    "lang": "de",
+    "title": "So rechnen wir · Gesamte Installationsinvestition",
+    "url": "/de/dashboard/quick-check/results",
+    "text": "Für jede gewählte Quelle ihre Installationskosten pro kWh/a multipliziert mit ihrem Wärmeangebot, summiert über alle Quellen. Umgebungsluft verursacht keine Installationskosten, da die Wärmepumpen gesondert gezählt werden.",
+    "source": "dictionaries/de/calc.json#results.supplyInvestment"
+  },
+  {
+    "id": "calc:results.heatPumpInvestment",
+    "lang": "de",
+    "title": "So rechnen wir · Wärmepumpe",
+    "url": "/de/dashboard/quick-check/results",
+    "text": "Die Investition in eine Wärmepumpe multipliziert mit der Anzahl der Gebäude.",
+    "source": "dictionaries/de/calc.json#results.heatPumpInvestment"
+  },
+  {
+    "id": "calc:results.overallInvestment",
+    "lang": "de",
+    "title": "So rechnen wir · Gesamtinvestition",
+    "url": "/de/dashboard/quick-check/results",
+    "text": "Wärmepumpen, Netz und die Installationen aller Quellen. Die Installationen werden nur einmal gezählt.",
+    "source": "dictionaries/de/calc.json#results.overallInvestment"
+  },
+  {
+    "id": "calc:results.annuityFactor",
+    "lang": "de",
+    "title": "So rechnen wir · Annuitätenfaktor",
+    "url": "/de/dashboard/quick-check/results",
+    "text": "Wandelt eine Investition in gleich hohe jährliche Zahlungen über die Abschreibungsdauer zum Zinssatz um.",
+    "source": "dictionaries/de/calc.json#results.annuityFactor"
+  },
+  {
+    "id": "calc:results.annualizedCosts",
+    "lang": "de",
+    "title": "So rechnen wir · Annualisierte Kosten",
+    "url": "/de/dashboard/quick-check/results",
+    "text": "Die Gesamtinvestition multipliziert mit dem Annuitätenfaktor: ihre Kosten pro Jahr.",
+    "source": "dictionaries/de/calc.json#results.annualizedCosts"
+  },
+  {
+    "id": "calc:results.electricityCosts",
+    "lang": "de",
+    "title": "So rechnen wir · Stromkosten",
+    "url": "/de/dashboard/quick-check/results",
+    "text": "Der Strom, den die Wärmepumpen brauchen (Angebot geteilt durch COP), multipliziert mit dem Strompreis. Mit PV sinken die Kosten um die PV-Kostenreduktion.",
+    "source": "dictionaries/de/calc.json#results.electricityCosts"
+  },
+  {
+    "id": "calc:results.operationAndMaintenance",
+    "lang": "de",
+    "title": "So rechnen wir · Betrieb und Wartung",
+    "url": "/de/dashboard/quick-check/results",
+    "text": "Ein fester Anteil der Gesamtinvestition pro Jahr.",
+    "source": "dictionaries/de/calc.json#results.operationAndMaintenance"
+  },
+  {
+    "id": "calc:results.annualCosts",
+    "lang": "de",
+    "title": "So rechnen wir · Jährliche Kosten",
+    "url": "/de/dashboard/quick-check/results",
+    "text": "Annualisierte Investition, Stromkosten sowie Kosten für Betrieb und Wartung.",
+    "source": "dictionaries/de/calc.json#results.annualCosts"
+  },
+  {
+    "id": "calc:results.economicRatio",
+    "lang": "de",
+    "title": "So rechnen wir · Wirtschaftlichkeitskennzahl",
+    "url": "/de/dashboard/quick-check/results",
+    "text": "Die Gesamterlöse geteilt durch die jährlichen Kosten. Die wirtschaftliche Bewertung stuft dieses Verhältnis als günstig, unklar oder deutlich ungünstig ein.",
+    "source": "dictionaries/de/calc.json#results.economicRatio"
+  },
+  {
+    "id": "calc:results.level",
+    "lang": "de",
+    "title": "So rechnen wir · Gesamtergebnis",
+    "url": "/de/dashboard/quick-check/results",
+    "text": "Das Gesamtergebnis verbindet den Deckungsgrad, die Gebäude- und Wärmedichte und die wirtschaftliche Bewertung (Tabelle 11). Industrie im Projektgebiet oder eine Quelle mit unbekanntem Potenzial führt immer zu „Weitere Analyse erforderlich“.",
+    "source": "dictionaries/de/calc.json#results.level"
+  },
+  {
+    "id": "quick-check:results.levels",
+    "lang": "de",
+    "title": "Quick Check · Gesamtergebnis",
+    "url": "/de/dashboard/quick-check/results",
+    "text": "Vielversprechend: Günstige Bedingungen festgestellt\nWeitere Analyse erforderlich: Gemischte Bedingungen, Unsicherheiten oder fehlende Informationen\nNicht vielversprechend: Ungünstige Bedingungen festgestellt",
+    "source": "dictionaries/de/quick-check.json#results.levels"
+  },
+  {
+    "id": "quick-check:results.classes.coverage",
+    "lang": "de",
+    "title": "Quick Check · Deckungsgrad",
+    "url": "/de/dashboard/quick-check/results",
+    "text": "Machbar: Das jährliche Energiepotenzial reicht aus, um den gesamten Bedarf zu decken, und es bleibt weiteres Potenzial verfügbar.\nBedingt machbar: Ein kleiner Anteil ergänzender Versorgung ist erforderlich.\nEingeschränkt machbar: Ein erheblicher Anteil ergänzender Versorgung ist erforderlich.\nAls alleiniges Versorgungskonzept nicht machbar: Zu viel Bedarf bleibt ungedeckt.",
+    "source": "dictionaries/de/quick-check.json#results.classes.coverage"
+  },
+  {
+    "id": "quick-check:results.classes.buildingDensity",
+    "lang": "de",
+    "title": "Quick Check · Gebäudedichte",
+    "url": "/de/dashboard/quick-check/results",
+    "text": "Hohe Dichte: Dicht bebaute Gebiete können von kürzeren Netzlängen profitieren, ein geringer Energiebedarf kann die Wirtschaftlichkeit aber dennoch schwächen.\nMittlere Dichte: Die Struktur kann für ein Netz geeignet sein.\nGeringe Dichte: Die Gebäude liegen weiter auseinander, was die Netzlänge erhöhen kann. Ein hoher Energiebedarf oder geeignete lokale Energiequellen können ein Projekt dennoch vielversprechend machen.",
+    "source": "dictionaries/de/quick-check.json#results.classes.buildingDensity"
+  },
+  {
+    "id": "quick-check:results.classes.heatDensity",
+    "lang": "de",
+    "title": "Quick Check · Wärmedichte",
+    "url": "/de/dashboard/quick-check/results",
+    "text": "Hohe Dichte: Ein relativ kurzes Netz bedient einen hohen Wärmebedarf, was die Wirtschaftlichkeit verbessern kann.\nMittlere Dichte: Das Netz kann tragfähig sein.\nGeringe Dichte: Ein relativ langes Netz bedient einen geringen Wärmebedarf. Ein erheblicher Kältebedarf oder niedrige Netzkosten können die Aussichten verbessern.",
+    "source": "dictionaries/de/quick-check.json#results.classes.heatDensity"
+  },
+  {
+    "id": "quick-check:results.classes.chRatio",
+    "lang": "de",
+    "title": "Quick Check · Kälte-Wärme-Verhältnis",
+    "url": "/de/dashboard/quick-check/results",
+    "text": "Ausgeglichen: Wärme- und Kältebedarf sind ähnlich, was den thermischen Austausch begünstigen kann.\nTeilweise ausgeglichen: Ein Bedarf ist höher als der andere, ein thermischer Austausch kann aber dennoch möglich sein.\nUnausgeglichen: Ein Bedarf überwiegt deutlich, was externe Energiequellen oder thermische Speicher eher nötig machen kann.",
+    "source": "dictionaries/de/quick-check.json#results.classes.chRatio"
+  },
+  {
+    "id": "quick-check:results.classes.economic",
+    "lang": "de",
+    "title": "Quick Check · Wirtschaftliche Bewertung",
+    "url": "/de/dashboard/quick-check/results",
+    "text": "Günstig: Die Erlöse decken die jährlichen Kosten.\nUnklar: Die Erlöse decken einen großen Teil der jährlichen Kosten, aber nicht alle.\nDeutlich ungünstig: Die Erlöse bleiben weit hinter den jährlichen Kosten zurück.",
+    "source": "dictionaries/de/quick-check.json#results.classes.economic"
+  },
+  {
+    "id": "quick-check:ui.results.screening",
+    "lang": "de",
+    "title": "Quick Check · Ein Screening, keine vollständige Machbarkeitsstudie",
+    "url": "/de/dashboard/quick-check/results",
+    "text": "Dies ist eine erste Einschätzung auf Basis vereinfachter Standardwerte. Die tatsächlichen Werte hängen von den Bedingungen des jeweiligen Projekts ab und sollten durch weitere Analysen verfeinert werden.",
+    "source": "dictionaries/de/quick-check.json#ui.results.screening"
+  },
+  {
+    "id": "quick-check:fields.area",
+    "lang": "de",
+    "title": "Quick Check · Projektgebiet",
+    "url": "/de/dashboard/quick-check/area",
+    "text": "Gesamtzahl der Gebäude: Alle Gebäude im Projektgebiet, einschließlich der Industriegebäude.\nGesamtfläche des Projektgebiets: Geben Sie die Fläche in m² ein. Daneben wird der Wert in Hektar angezeigt.",
+    "source": "dictionaries/de/quick-check.json#fields"
+  },
+  {
+    "id": "quick-check:fields.buildings",
+    "lang": "de",
+    "title": "Quick Check · Gebäude",
+    "url": "/de/dashboard/quick-check/buildings",
+    "text": "Gebäudeanteile: Geben Sie den Anteil jedes Gebäudetyps und jeder Baualtersklasse in % ein. Alle Anteile müssen zusammen 100 % ergeben.",
+    "source": "dictionaries/de/quick-check.json#fields"
+  },
+  {
+    "id": "quick-check:fields.sources",
+    "lang": "de",
+    "title": "Quick Check · Energiequellen",
+    "url": "/de/dashboard/quick-check/sources",
+    "text": "Energiequellen: Wählen Sie die Energiequellen, die im Projektgebiet verfügbar oder potenziell verfügbar sind, und bewerten Sie ihr Potenzial.",
+    "source": "dictionaries/de/quick-check.json#fields"
+  },
+  {
+    "id": "quick-check:fields.options",
+    "lang": "de",
+    "title": "Quick Check · Optionen",
+    "url": "/de/dashboard/quick-check/options",
+    "text": "Photovoltaik (PV) vorhanden: PV senkt die Stromkosten der Wärmepumpen um die PV-Kostenreduktion aus Tabelle 6.\nBekannter Wärme- und Kältebedarf: Optional. Wenn Sie den Energiebedarf der Gebäude kennen, geben Sie ihn hier statt der Standardschätzung ein.\nGesamter Wärmebedarf: Optional. Ersetzt den geschätzten gesamten Wärmebedarf.\nGesamter Kältebedarf: Optional. Ersetzt den geschätzten gesamten Kältebedarf.\nNetzlänge: Optional. Lassen Sie das Feld leer, um die Länge aus der Gebäudedichte und der Fläche des Projektgebiets zu schätzen.",
+    "source": "dictionaries/de/quick-check.json#fields"
+  },
+  {
+    "id": "quick-check:fields.assumptions",
+    "lang": "de",
+    "title": "Quick Check · Annahmen",
+    "url": "/de/dashboard/assumptions",
+    "text": "Heizkapazität je Quelle (Tabelle 4): Jährliche Kapazität je Potenzialstufe in kWh/a sowie der COP der Wärmepumpe. Lassen Sie eine Zelle leer, um den Standardwert zu behalten.\nKühlkapazität je Quelle (Tabelle 5): Jährliche Kapazität je Potenzialstufe in kWh/a sowie der COP. Lassen Sie eine Zelle leer, um den Standardwert zu behalten.\nWirtschaftliche Parameter (Tabelle 6): Lassen Sie einen Wert leer, um den Standardwert zu behalten.",
+    "source": "dictionaries/de/quick-check.json#fields"
+  },
+  {
+    "id": "business-plan:fields.opportunity-1",
+    "lang": "de",
+    "title": "Business Plan · Chance",
+    "url": "/de/dashboard/business-plan/opportunity",
+    "text": "Standort oder Quartier: Beschreiben Sie den Standort oder das Quartier, für das das Geschäftsmodell gedacht ist.\nOrt: Gemeinde, Region oder Land.\nArt des Standorts: Zum Beispiel ein ländliches Dorf, der Stadtrand oder ein bestehendes Quartier.\nEigentums- und Nutzungsformen: Wem die Gebäude gehören und wie sie genutzt werden, zum Beispiel Privateigentum, Mietwohnungen oder Tourismus.\nEinheiten oder Gebäude: Soweit bekannt, zum Beispiel „20–70 Einheiten, schrittweise Entwicklung“.\nAktuelle Energieversorgung: Ein Eintrag pro Energieträger, zum Beispiel Erdgas oder Biomasse.\nAkteure: Ein Eintrag pro Akteur, zum Beispiel Privathaushalte oder ein Hotel.\nWeitere Partner: Ein Eintrag pro Partner, zum Beispiel die Gemeinde.\nAnwendungsfall: Beginnen Sie mit einem vordefinierten Szenario oder beschreiben Sie Ihren eigenen Anwendungsfall.\nDie Chance: Wofür das Netz gedacht ist und für wen.\nKundensegmente: Wer würde sich an das Netz anschließen?\nWärme- und Kältebedarf: Welchen Wärme- und Kältebedarf haben die Gebäude?\nRelevante Wärmequellen: Welche lokalen Quellen könnten das Netz versorgen, und was ist über sie bekannt?\nZentrales Problem: Welches Problem hat der Standort heute?",
+    "source": "dictionaries/de/business-plan.json#fields"
+  },
+  {
+    "id": "business-plan:fields.opportunity-2",
+    "lang": "de",
+    "title": "Business Plan · Chance",
+    "url": "/de/dashboard/business-plan/opportunity",
+    "text": "Verfügbare Alternativen: Was könnten die Gebäude sonst tun, zum Beispiel auf eigene Wärmepumpen setzen?\nWarum ein gemeinsames Niedertemperaturnetz: Warum bietet ein gemeinsames Netz im Vergleich zu den Alternativen einen Mehrwert?",
+    "source": "dictionaries/de/business-plan.json#fields"
+  },
+  {
+    "id": "business-plan:fields.business-logic",
+    "lang": "de",
+    "title": "Business Plan · Geschäftslogik",
+    "url": "/de/dashboard/business-plan/business-logic",
+    "text": "Business Model Canvas: Achten Sie besonders auf Wertangebot, Kundenbeziehungen, Schlüsselpartner, Betreiberverantwortung, Kostenstruktur und Einnahmequellen.\nBetreiberverantwortung: Wem gehören die Quelle, das Netz und die Wärmepumpen, wer betreibt sie, und wer ist wofür zuständig?\nVerteilung von Investition, Risiko und Nutzen: Machen Sie deutlich, wer investiert, wer welches Risiko trägt und wer profitiert.",
+    "source": "dictionaries/de/business-plan.json#fields"
+  },
+  {
+    "id": "business-plan:fields.reality-check",
+    "lang": "de",
+    "title": "Business Plan · Realitätscheck",
+    "url": "/de/dashboard/business-plan/reality-check",
+    "text": "Grobe Annahmen: Verwenden Sie grobe, aber transparente Annahmen statt detaillierter technischer Berechnungen.\nKritische Annahmen: Die wichtigsten kritischen Annahmen und wie sich jede überprüfen ließe.\nRisiken: Die größten Risiken, darunter ein mögliches K.-o.-Kriterium, und wie sich jedes überprüfen ließe.",
+    "source": "dictionaries/de/business-plan.json#fields"
+  },
+  {
+    "id": "business-plan:fields.implementation",
+    "lang": "de",
+    "title": "Business Plan · Umsetzung",
+    "url": "/de/dashboard/business-plan/implementation",
+    "text": "Verbesserungen: Verfeinern Sie das Geschäftsmodell auf Grundlage des Realitätschecks, der Rückmeldungen von Fachleuten und der gefundenen Herausforderungen.\nSkalierbarkeit und Übertragung: Könnte das Modell unter anderen geografischen, wirtschaftlichen und organisatorischen Bedingungen funktionieren?\nNächste Schritte: Die nächsten praktischen Schritte in Richtung Umsetzung.",
+    "source": "dictionaries/de/business-plan.json#fields"
+  }
+]

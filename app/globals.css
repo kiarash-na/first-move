@@ -31,7 +31,6 @@
   --report-accent: oklch(0.55 0.14 215);
 
   --font-display: 'Archivo Variable', sans-serif;
-  --font-editorial: 'Instrument Serif', serif;
   --font-mono: 'IBM Plex Mono', monospace;
 
   font-synthesis: none;
@@ -173,7 +172,6 @@
   --radius-4xl: 0px;
 
   --font-sans: 'Archivo Variable', sans-serif;
-  --font-serif: 'Instrument Serif', serif;
   --font-mono: 'IBM Plex Mono', monospace;
 
   --ease-signature: cubic-bezier(0.23, 1, 0.32, 1);

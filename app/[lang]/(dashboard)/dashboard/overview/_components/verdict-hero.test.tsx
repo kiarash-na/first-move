@@ -34,9 +34,9 @@ describe("VerdictHero", () => {
     expect(screen.getByRole("button", { name: /How we calculate this: Quick Check verdict/ })).toBeInTheDocument()
   })
 
-  it("is German on the German route, falling back to English for missing copy", () => {
+  it("is German on the German route", () => {
     const project = exampleWith("school-kindergarten-flats")
     renderOverview(<VerdictHero result={completeRun(project)} />, project, "de")
-    expect(screen.getByRole("link", { name: /see why/i })).toHaveAttribute("href", "/de/dashboard/quick-check/results")
+    expect(screen.getByRole("link", { name: /Begründung ansehen/ })).toHaveAttribute("href", "/de/dashboard/quick-check/results")
   })
 })

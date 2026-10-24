@@ -37,7 +37,7 @@ describe("useProjectActions", () => {
     expect(tab.store.getState().activeId).toBe(project.meta.id)
 
     await userEvent.click(screen.getByRole("button", { name: "duplicate" }))
-    await waitFor(() => expect(tab.store.getState().projects.map((entry) => entry.name)).toContain("Quarry (copy)"))
+    await waitFor(() => expect(tab.store.getState().projects.map((entry) => entry.name)).toContain("Quarry (Kopie)"))
   })
 
   it("does not navigate when the project is gone", async () => {

@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next"
 import "@fontsource-variable/archivo/wdth.css"
-import "@fontsource/instrument-serif/400-italic.css"
+import "@fontsource-variable/archivo/wdth-italic.css"
 import "@fontsource/ibm-plex-mono/latin-400.css"
 import "../../globals.css"
 
@@ -48,7 +48,7 @@ export default async function DashboardRootLayout({ children, params }: LayoutPr
         <ThemeSync />
         {children}
         {/* Offset past the sidebar (md and up; 18rem, or the 4rem rail) so the notice never covers its privacy note. */}
-        <CookieNotice lang={lang} copy={legal.cookieNotice} className="md:left-[calc(var(--sidebar-width)_+_1rem)]" />
+        <CookieNotice lang={lang} copy={legal.cookieNotice} className="md:left-[calc(var(--sidebar-width)_+_1rem)] print:hidden" />
       </body>
     </html>
   )

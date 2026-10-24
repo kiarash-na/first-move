@@ -4,6 +4,9 @@
     "description": "First Move führt Sie vom ersten 5GDHC-Screening zu einem tragfähigen Geschäftsmodell für Fernwärme und -kälte der 5. Generation."
   },
   "header": {
+    "brandBack": "zurück nach oben",
+    "brandName": "First Move",
+    "brandDescriptor": "5GDHC-\nScreening",
     "primaryNav": "Hauptnavigation",
     "mobileNav": "Mobile Navigation",
     "openMenu": "Navigation öffnen",
@@ -16,12 +19,297 @@
       "methodology": "Methodik"
     }
   },
+  "hero": {
+    "eyebrow": "Fernwärme und -kälte der 5. Generation",
+    "titleLabel": "Starten Sie jetzt Ihre 5GDHC-Reise",
+    "titleLine1": "Starten Sie",
+    "titleLine2": "jetzt Ihre",
+    "titleLine3": "5GDHC-Reise.",
+    "intro": "Vom ersten Screening zum tragfähigen Geschäftsmodell: für bidirektionale Niedertemperaturnetze, die Gebäude mit lokalen erneuerbaren Energien und Abwärme verbinden.",
+    "discover": "Das System entdecken",
+    "sceneDefault": "Interaktives Quartier · Niedertemperaturnetz",
+    "legendLabel": "Legende des Energienetzes",
+    "cooling": "Kälte",
+    "heating": "Wärme",
+    "temperature": "5–25 °C",
+    "annotationTop": "Fluss in beide Richtungen",
+    "annotationSide": "Lokale Quellen",
+    "hint": "Bewegen, um die Perspektive zu ändern",
+    "reverseFlow": "Fluss umkehren",
+    "restoreFlow": "Fluss zurücksetzen",
+    "gatewayLabel": "Zwei Werkzeuge.\nEin Ablauf.",
+    "tools": {
+      "quickCheck": {
+        "title": "Quick Check",
+        "description": "Das Potenzial prüfen. Die entscheidenden Faktoren sehen.",
+        "sceneLabel": "Screening-Modus · dreistufige Bewertung"
+      },
+      "businessModels": {
+        "title": "Geschäftsmodelle",
+        "description": "Wert, Investition, Risiko und Verantwortung verteilen.",
+        "sceneLabel": "Geschäftsmodus · Verteilung von Wert und Risiko"
+      }
+    }
+  },
+  "product": {
+    "promise": {
+      "kicker": "Ein durchgängiger Ablauf",
+      "title": "Vom ersten Signal\nzum tragfähigen\n*Geschäftsmodell.*",
+      "body": "First Move ist ein digitales Werkzeug für bidirektionale 5GDHC-Niedertemperaturnetze, die Gebäude über Wärmepumpen mit erneuerbaren Energien und Abwärme verbinden: vom ersten Projektgebiet bis zu einem Modell, das sich tatsächlich umsetzen lässt.",
+      "link": "So greift das System ineinander"
+    },
+    "audiences": [
+      { "title": "Gemeinden", "text": "Machen Sie aus lokalem Energiepotenzial einen klaren Projektpfad." },
+      { "title": "Energiedienstleister", "text": "Machen Sie aus der Chance auf ein Netz eine Betriebsstruktur." },
+      { "title": "Projektinitiatoren", "text": "Testen Sie die erste Idee, bevor Sie sich auf eine vollständige Machbarkeitsstudie festlegen." }
+    ],
+    "tools": {
+      "kicker": "Zwei Werkzeuge. Ein System.",
+      "title": "Erst wissen, ob.\n*Dann wissen, wie.*",
+      "quickCheck": {
+        "title": "Quick Check",
+        "subtitle": "Prüfen Sie das technische und wirtschaftliche Potenzial.",
+        "meta": "Dreistufige Bewertung · entscheidende Faktoren · Ergebnisdokument"
+      },
+      "businessModels": {
+        "title": "Geschäftsmodelle",
+        "subtitle": "Strukturieren Sie Wert, Eigentum, Risiko und Betrieb.",
+        "meta": "Canvas · Realitätscheck · Übertragung · nächste Schritte"
+      }
+    }
+  },
+  "quickCheck": {
+    "inputs": {
+      "kicker": "Quick Check · Eingaben",
+      "title": "Beginnen Sie\nmit dem Gebiet.\n*Sehen Sie, was zählt.*",
+      "body": "Wenige gezielte Projektparameter ergeben ein schnelles erstes Screening, ohne den Anspruch, eine vollständige Machbarkeitsstudie zu ersetzen. Wechseln Sie das Szenario oder passen Sie die beispielhaften Eingaben an.",
+      "scenariosLabel": "Vorschau vordefinierter Szenarien",
+      "consoleTitle": "Eingabeprofil des Projekts",
+      "consoleTag": "Interaktive Vorschau",
+      "low": "Gering",
+      "medium": "Mittel",
+      "high": "Hoch",
+      "note": "Nur beispielhafte Eingaben · in dieser Vorschau auf der Startseite wird keine Bewertung berechnet.",
+      "parameters": {
+        "demand": { "label": "Wärmebedarfsdichte", "note": "Wie stark sich der Bedarf im Projektgebiet konzentriert" },
+        "source": { "label": "Verfügbarkeit lokaler Wärmequellen", "note": "Möglicher Zugang zu lokalen erneuerbaren Energien oder Abwärme" },
+        "capex": { "label": "Investitionskosten", "note": "Frühe Investitionsannahme im Rahmen des Screenings" }
+      },
+      "scenarios": {
+        "urban": "Dichtes Quartier",
+        "waste": "Abwärmestandort",
+        "rural": "Dünn besiedeltes Gebiet"
+      }
+    },
+    "assessment": {
+      "kicker": "Quick Check · Gesamtbewertung",
+      "title": "Eine klare Antwort.\n*Und die Gründe dafür.*",
+      "body": "Das dreistufige Ergebnis ist nur die Überschrift. Die entscheidenden technischen und wirtschaftlichen Faktoren bleiben damit verbunden, sodass sich das Ergebnis diskutieren und hinterfragen lässt.",
+      "scaleLabel": "Beispielhafte Bewertungsstufen",
+      "resultLabel": "Beispielhafte Gesamtbewertung",
+      "note": "Beispielhafter Ergebnisstand · die tatsächlichen Ergebnisse hängen von den Projekteingaben und der Berechnungsmethodik ab.",
+      "technical": "Technisch",
+      "source": "Quelle",
+      "economic": "Wirtschaftlich",
+      "states": {
+        "promising": {
+          "label": "Vielversprechend",
+          "summary": "Das erste Screening zeigt sehr günstige Bedingungen.",
+          "technical": "Hohe Wärmebedarfsdichte im gesamten Projektgebiet.",
+          "source": "Eine geeignete lokale Wärmequelle ist verfügbar.",
+          "economic": "Die Investitionskosten liegen im vordefinierten Bereich."
+        },
+        "further": {
+          "label": "Weitere Analyse erforderlich",
+          "summary": "Das Ergebnis reagiert empfindlich auf Annahmen, die genauer geprüft werden müssen.",
+          "technical": "Die Netzbedingungen müssen genauer untersucht werden.",
+          "source": "Verfügbarkeit, Temperatur oder Zeitplan müssen bestätigt werden.",
+          "economic": "Wichtige Annahmen zu Kosten oder Anschlüssen bleiben unsicher."
+        },
+        "notPromising": {
+          "label": "Nicht vielversprechend",
+          "summary": "Die aktuelle Kombination ergibt kein positives erstes Screening.",
+          "technical": "Die Bedarfsbedingungen schwächen die Ausgangslage für ein Netz.",
+          "source": "Es wurde keine ausreichend geeignete lokale Quelle gefunden.",
+          "economic": "Die Investitionsannahmen liegen außerhalb des Screening-Bereichs."
+        }
+      }
+    },
+    "results": {
+      "kicker": "Quick Check · Ergebnisse und Ausgabe",
+      "title": "Klar genug\nfür die Diskussion.\n*Bereit für den Export.*",
+      "body": "Die wichtigsten Ergebnisse werden zu einer visuellen Projektausgabe mit der Gesamtbewertung und ihrer Begründung. Dasselbe Ergebnis kann als Online-Ansicht, als PDF oder als anderes Ergebnisdokument vorliegen.",
+      "modesLabel": "Format der Berichtsvorschau",
+      "online": "Online-Ansicht",
+      "document": "PDF-Seite",
+      "link": "Weiter zu den Geschäftsmodellen",
+      "captionOnline": "Aufbau der Online-Ausgabe · Beispielinhalt",
+      "captionDocument": "Aufbau der Dokumentausgabe · Beispielinhalt",
+      "report": {
+        "topLeft": "5GDHC / QUICK CHECK",
+        "topRight": "BEISPIELAUSGABE",
+        "kicker": "Projekt-Screening",
+        "title": "Netzpotenzial",
+        "assessment": "Gesamtbewertung",
+        "result": "Vielversprechend",
+        "demand": "Wärmebedarfsdichte",
+        "demandValue": "Hoch",
+        "source": "Lokale Wärmequelle",
+        "sourceValue": "Verfügbar",
+        "capex": "Investitionskosten",
+        "capexValue": "Im Rahmen",
+        "reasonLabel": "Warum dieses Ergebnis",
+        "reason": "Hohe Bedarfsdichte, eine geeignete lokale Quelle und Investitionskosten im vordefinierten Bereich.",
+        "footerLeft": "SCREENING · KEINE VOLLSTÄNDIGE MACHBARKEITSSTUDIE",
+        "footerRight": "01 / 01"
+      }
+    }
+  },
+  "businessModels": {
+    "useCases": {
+      "kicker": "Geschäftsmodelle · Anwendungsfälle",
+      "title": "Ein System.\n*Unterschiedliche Realitäten.*",
+      "groupLabel": "Anwendungsfall des Geschäftsmodells",
+      "inputsLabel": "Eingabekategorien des Geschäftsmodells",
+      "diagramSuffix": "(Netzdiagramm)",
+      "diagramTitle": "BEISPIELHAFTE NETZTYPOLOGIE",
+      "diagramFooter": "5GDHC / ANWENDUNGSFALL",
+      "diagramSource": "LOKALE QUELLE",
+      "inputs": ["Kundensegmente", "Wärme- und Kältebedarf", "Wärmequellen", "Anschlussquoten", "Tarife", "Investitionskosten", "Finanzierung", "Förderungen"],
+      "items": {
+        "refurbishment": {
+          "title": "Sanierung im Bestandsquartier",
+          "shortTitle": "Quartier",
+          "description": "Verbinden Sie bestehende Gebäude über einen Sanierungspfad zur Niedertemperaturversorgung.",
+          "focus": "Kundensegmente, Anschlussquoten, Tarife und Zeitpunkt der Sanierung."
+        },
+        "wasteHeat": {
+          "title": "Einbindung von Abwärme",
+          "shortTitle": "Abwärme",
+          "description": "Machen Sie aus einer verfügbaren lokalen Quelle einen gemeinsamen Nutzen für das ganze Netz.",
+          "focus": "Verfügbarkeit der Quelle, Temperatur, Eigentum, Investitionskosten und Wärmeabnahme."
+        },
+        "rural": {
+          "title": "Ländliche Netze / Netze mit geringer Dichte",
+          "shortTitle": "Geringe Dichte",
+          "description": "Prüfen Sie die Tragfähigkeit dort, wo der Bedarf verstreut ist und jede Annahme zählt.",
+          "focus": "Anschlussquoten, Netzlänge, Finanzierung und Annahmen zu Förderungen."
+        }
+      }
+    },
+    "canvas": {
+      "kicker": "Angepasstes Business Model Canvas",
+      "title": "Machen Sie das ganze\n*Modell sichtbar.*",
+      "body": "Nicht nur Kosten und Erlöse. Das Canvas verbindet das Wertangebot mit Partnern, Zuständigkeiten und der ausdrücklichen Verteilung von Investition, Risiko und Nutzen.",
+      "blocks": [
+        { "title": "Wertangebot", "text": "Der Wert, den jedes Kundensegment tatsächlich erhält." },
+        { "title": "Schlüsselpartner", "text": "Die Organisationen, die das Modell braucht, damit es funktioniert." },
+        { "title": "Betreiberverantwortung", "text": "Klare Zuständigkeit für Betrieb, Koordination und Umsetzung." },
+        { "title": "Kostenstruktur", "text": "Investitions- und Betriebskosten sichtbar in einer Struktur." },
+        { "title": "Einnahmequellen", "text": "Tarife, Anschlüsse und weitere Einnahmen, verknüpft mit dem Modell." },
+        { "title": "Investition · Risiko · Nutzen", "text": "Ausdrückliche Verteilung statt stillschweigender Annahmen." }
+      ],
+      "allocationLabel": "Verteilungsansicht des Geschäftsmodells",
+      "allocationKicker": "Verteilungsansicht",
+      "roles": {
+        "benefits": { "label": "Profitiert", "title": "Wer profitiert?", "text": "Kundensegmente und der Nutzen für das lokale System werden neben dem Wertangebot sichtbar." },
+        "pays": { "label": "Zahlt", "title": "Wer zahlt?", "text": "Annahmen zu Anschlüssen und Tarifen werden mit den Kunden und Einnahmequellen verknüpft, die sie betreffen." },
+        "owns": { "label": "Besitzt", "title": "Wem gehört es?", "text": "Eigentum und Investitionsverantwortung werden für den gewählten Anwendungsfall ausdrücklich zugeordnet." },
+        "operates": { "label": "Betreibt", "title": "Wer betreibt es?", "text": "Betreiberaufgaben und Schlüsselpartnerschaften werden Teil des Modells und nicht erst bei der Umsetzung bedacht." }
+      }
+    },
+    "reality": {
+      "kicker": "Realitätscheck",
+      "title": "Stresstest\nfür die Geschichte.\n*Bevor die Realität ihn macht.*",
+      "body": "Kritische Annahmen, die größten Risiken und das mögliche K.-o.-Kriterium kommen offen auf den Tisch. Das Ziel ist keine schönere Präsentation, sondern ein Modell, das schwierige Fragen übersteht.",
+      "consoleTitle": "Prüfung der Annahmen",
+      "consoleTag": "03 PRÜFUNGEN",
+      "dealBreakerLabel": "Mögliches K.-o.-Kriterium",
+      "dealBreaker": "Die Bedingung, die das Modell zu Fall bringt, wird offen benannt und nicht in einer Fußnote versteckt.",
+      "risks": {
+        "connection": {
+          "title": "Abhängigkeit von der Anschlussquote",
+          "assumption": "Kritische Annahme",
+          "text": "Testen Sie, wie stark das Modell vom erwarteten Anteil der Gebäude abhängt, die sich tatsächlich an das Netz anschließen."
+        },
+        "source": {
+          "title": "Verfügbarkeit der Wärmequelle",
+          "assumption": "Größtes Risiko",
+          "text": "Machen Sie Unsicherheiten bei Temperatur, Zeitplan und Beständigkeit der Quelle sichtbar, ebenso die Vereinbarungen, die nötig sind, um sie zu sichern."
+        },
+        "finance": {
+          "title": "Abhängigkeit von Finanzierung und Förderung",
+          "assumption": "Mögliches K.-o.-Kriterium",
+          "text": "Machen Sie die Abhängigkeit des Modells von Finanzierungsbedingungen oder öffentlicher Förderung sichtbar, bevor die Umsetzung beginnt."
+        }
+      }
+    },
+    "scalability": {
+      "kicker": "Skalierbarkeit und Übertragbarkeit",
+      "title": "Die Logik übertragen.\n*Das Netz anpassen.*",
+      "body": "Ein tragfähiges Modell sollte sich auf andere Siedlungstypen übertragen lassen, ohne die lokale Realität zu ignorieren. Die Betriebsstruktur bleibt stimmig, während sich Quellen, Dichte und Kundenbedürfnisse ändern.",
+      "items": [
+        { "label": "01 / TYPOLOGIEN", "title": "Über Siedlungstypen hinweg", "text": "Bewerten Sie Skalierbarkeit und Übertragbarkeit als Teil des Modells selbst." },
+        { "label": "02 / RESILIENZ", "title": "Stärkere lokale Systeme", "text": "Stärken Sie die Resilienz durch strukturierte, transparente Entscheidungen zum Netz." },
+        { "label": "03 / LOKALE VERSORGUNG", "title": "Energie direkt vor Ort", "text": "Bauen Sie auf lokal verfügbaren erneuerbaren Energien und Abwärmepotenzialen auf." }
+      ]
+    },
+    "implementation": {
+      "kicker": "Skizze der nächsten Umsetzungsschritte",
+      "title": "Am Ende steht\n*der nächste Zug.*",
+      "body": "Das Ergebnis endet nicht beim Canvas. Es macht aus dem gewählten Modell eine praktische Skizze für die Arbeit, die Abstimmung und die Entscheidungen, die als Nächstes anstehen.",
+      "link": "Methodik prüfen",
+      "steps": [
+        { "title": "Bestätigen", "text": "Prüfen Sie die entscheidenden Annahmen des Screenings und die Bedingungen der lokalen Quelle." },
+        { "title": "Vertiefen", "text": "Überführen Sie das vielversprechende Konzept in die nötigen technischen und wirtschaftlichen Machbarkeitsuntersuchungen." },
+        { "title": "Abstimmen", "text": "Vereinbaren Sie mit den Partnern Eigentum, Betreiberverantwortung, Finanzierung und Risikoverteilung." },
+        { "title": "Umsetzen", "text": "Machen Sie aus dem gewählten Modell eine geordnete Umsetzungsskizze mit klaren nächsten Schritten." }
+      ]
+    }
+  },
   "closing": {
+    "methodology": {
+      "kicker": "Methodik und Glaubwürdigkeit",
+      "title": "Gemacht zum Prüfen.\n*Nicht nur zum Glauben.*",
+      "body": "Die Anwendung ist auf methodische Korrektheit, Benutzerfreundlichkeit, klare Ergebnisse und praktische Anwendbarkeit im Screening ausgelegt, nicht allein auf visuelle Gewissheit.",
+      "rows": [
+        { "title": "Vordefinierte Berechnungsmethodik", "text": "Eine festgelegte Screening-Methode macht aus Projektparametern einen einheitlichen, dreistufigen Bewertungsindikator." },
+        { "title": "Forschungsgrundlage", "text": "Aufgebaut auf dem Forschungsprojekt „Anergie Leicht Gemacht“ und seinem Ansatz, lokales Energiepotenzial nutzbar zu machen." },
+        { "title": "Vordefinierte Projektszenarien", "text": "Tests mit Szenarien unterstützen die Prüfung der Methodik, die Benutzerfreundlichkeit und die praktische Anwendbarkeit im Screening." },
+        { "title": "Flexible Ausgabe", "text": "Ergebnisse lassen sich als PDF, Online-Ansicht oder anderes Ergebnisdokument vermitteln, ohne dass die Begründung verloren geht." }
+      ],
+      "boundaryLabel": "Klare Abgrenzung",
+      "boundaryLead": "Schnelles erstes Screening,",
+      "boundaryStrong": "keine vollständige Machbarkeitsstudie."
+    },
+    "partners": {
+      "label": "Präsentiert von",
+      "placeholder": "Ihr Unternehmen",
+      "cta": "Partner werden",
+      "pause": "Anhalten",
+      "play": "Abspielen",
+      "dialog": {
+        "title": "Partner werden",
+        "body": "Hier könnte das Logo Ihres Unternehmens stehen. Kontaktieren Sie uns, um Partner von First Move zu werden.",
+        "contact": "Kontakt aufnehmen",
+        "newTab": "(öffnet in einem neuen Tab)",
+        "close": "Schließen"
+      }
+    },
     "getStarted": {
+      "kicker": "Ihr Projektgebiet ist der Ausgangspunkt",
+      "title": "Damit der erste\n*Zug zählt.*",
+      "body": "Beginnen Sie mit einem Quick Check. Machen Sie aus einer vielversprechenden Richtung ein tragfähiges Geschäftsmodell.",
       "primary": "Jetzt starten",
       "secondary": "Geschäftsmodelle erkunden"
     },
     "footer": {
+      "brandBack": "zurück nach oben",
+      "brandName": "First Move",
+      "brandTag": "5GDHC",
+      "openSource": "Open Source",
+      "nav": "Fußzeilennavigation",
+      "quickCheck": "Quick Check",
       "businessModels": "Geschäftsmodelle",
       "methodology": "Methodik",
       "backToTop": "Nach oben",

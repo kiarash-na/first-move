@@ -52,8 +52,8 @@ describe("OverviewView", () => {
     const project = exampleWith("school-kindergarten-flats")
     renderOverview(<OverviewView />, project, "de")
     const header = screen.getByRole("heading", { level: 1 }).closest("header")!
-    expect(within(header).getByRole("link", { name: /Edit inputs/ })).toHaveAttribute("href", "/de/dashboard/quick-check/area")
-    expect(within(header).getByRole("link", { name: /Full result/ })).toHaveAttribute("href", "/de/dashboard/quick-check/results")
+    expect(within(header).getByRole("link", { name: /Eingaben bearbeiten/ })).toHaveAttribute("href", "/de/dashboard/quick-check/area")
+    expect(within(header).getByRole("link", { name: /Vollständiges Ergebnis/ })).toHaveAttribute("href", "/de/dashboard/quick-check/results")
   })
 
   it("renders nothing without an open project", () => {

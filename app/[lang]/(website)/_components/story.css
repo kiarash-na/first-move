@@ -152,11 +152,11 @@
 
 .section-title em,
 .get-started-section h2 em {
-  font-family: var(--font-editorial);
-  font-size: 1.08em;
+  font-family: var(--font-display);
+  font-stretch: 88%;
   font-style: italic;
-  font-weight: 400;
-  letter-spacing: -0.035em;
+  font-weight: 300;
+  letter-spacing: -0.045em;
   text-transform: none;
 }
 
@@ -1280,6 +1280,168 @@
   font-weight: 520;
 }
 
+/* "Brought to you by" (D-69): a sliding row of partner placeholders under the screening boundary */
+.partners {
+  grid-column: 1 / 3;
+  min-width: 0;
+  /* Closer to the boundary than the section's grid gap: the two read as one closing block. */
+  margin-top: calc(clamp(50px, 7vw, 120px) * -0.55);
+}
+
+.partners__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 14px;
+}
+
+.partners__label {
+  margin: 0;
+  color: oklch(0.5 0.12 220);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.075em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.partners__toggle {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  gap: 8px;
+  padding: 0 14px;
+  border: 1px solid oklch(0.2 0.02 220 / 0.24);
+  background: transparent;
+  color: var(--ink-950);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 180ms ease;
+}
+
+.partners__toggle:hover {
+  border-color: oklch(0.5 0.12 220);
+}
+
+/* The band is light under a dark page: the dark focus ring would be invisible here (WCAG 2.4.7). */
+.partners__toggle:focus-visible {
+  outline: 2px solid oklch(0.5 0.12 220);
+  outline-offset: 3px;
+}
+
+/* Vertical room so a lifted card and its focus ring are not clipped. */
+.partners__viewport {
+  overflow: hidden;
+  padding: 8px 0 12px;
+  mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+}
+
+.partners__track {
+  display: flex;
+  width: max-content;
+  animation: partners-slide 48s linear infinite;
+}
+
+.partners:hover .partners__track,
+.partners:focus-within .partners__track,
+.partners__track[data-paused] {
+  animation-play-state: paused;
+}
+
+/* Keyboard focus brings the row back to its start, so the focused card is always in view. */
+.partners:has(.partner-card:focus-visible) .partners__track {
+  animation: none;
+}
+
+.partners:has(.partner-card:focus-visible) .partners__viewport {
+  mask-image: none;
+}
+
+/* Each set ends with one gap, so moving by half the track (two sets) loops without a seam. */
+.partners__set {
+  display: flex;
+  gap: 16px;
+  margin: 0;
+  padding: 0 16px 0 0;
+  list-style: none;
+}
+
+.partner-card {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  column-gap: 16px;
+  align-items: center;
+  width: clamp(240px, 22vw, 300px);
+  min-height: 96px;
+  padding: 20px 22px;
+  border: 1px solid oklch(0.2 0.02 220 / 0.24);
+  background: oklch(0.97 0.008 200);
+  color: var(--ink-950);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color 220ms cubic-bezier(0.23, 1, 0.32, 1),
+    box-shadow 220ms cubic-bezier(0.23, 1, 0.32, 1),
+    transform 220ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.partner-card__logo {
+  grid-row: 1 / 3;
+  width: 44px;
+  height: 44px;
+  border: 1px dashed oklch(0.2 0.02 220 / 0.4);
+  transition: border-color 220ms ease, background-color 220ms ease;
+}
+
+.partner-card__name {
+  font-size: 20px;
+  font-stretch: 82%;
+  font-weight: 640;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+.partner-card__cta {
+  color: oklch(0.45 0.1 220);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.07em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.partner-card:hover,
+.partner-card:focus-visible {
+  border-color: oklch(0.5 0.12 220);
+  box-shadow:
+    0 0 0 1px oklch(0.5 0.12 220),
+    0 16px 36px oklch(0.5 0.12 220 / 0.2);
+  transform: translateY(-3px);
+}
+
+.partner-card:focus-visible {
+  outline: 2px solid oklch(0.5 0.12 220);
+  outline-offset: 3px;
+}
+
+.partner-card:hover .partner-card__logo,
+.partner-card:focus-visible .partner-card__logo {
+  border-style: solid;
+  border-color: oklch(0.5 0.12 220);
+  background-color: oklch(0.88 0.19 213 / 0.18);
+}
+
+@keyframes partners-slide {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 /* Final CTA and footer */
 .get-started-section {
   position: relative;
@@ -1379,7 +1541,7 @@
   letter-spacing: -0.04em;
 }
 
-.footer-brand span {
+.footer-brand span:not(.sr-only) {
   margin-left: 8px;
   color: var(--text-muted);
   font-family: var(--font-mono);
@@ -1569,6 +1731,10 @@
   }
 
   .screening-boundary {
+    grid-column: 1;
+  }
+
+  .partners {
     grid-column: 1;
   }
 
@@ -1930,6 +2096,31 @@
 
   .report-object,
   .report-stage--document .report-object {
+    transform: none;
+  }
+
+  /* The strip stands still: one row of cards, wrapping, without the sliding copies or Pause. */
+  .partners__track {
+    width: auto;
+    animation: none;
+  }
+
+  .partners__set {
+    flex-wrap: wrap;
+    padding: 0;
+  }
+
+  .partners__set[aria-hidden='true'],
+  .partners__toggle {
+    display: none;
+  }
+
+  .partners__viewport {
+    mask-image: none;
+  }
+
+  .partner-card:hover,
+  .partner-card:focus-visible {
     transform: none;
   }
 }

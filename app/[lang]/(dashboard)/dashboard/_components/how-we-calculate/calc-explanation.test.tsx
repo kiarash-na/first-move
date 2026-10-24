@@ -29,13 +29,14 @@ function renderIn(lang: "en" | "de", ui: ReactElement) {
 
 describe("CalcExplanation (D-33)", () => {
   it.each(["en", "de"] as const)("shows the sentence, every formula with its ID and name, and the tables (%s)", (lang) => {
+    const copy = testDictionaries(lang).calc
     const { container } = renderIn(lang, <CalcExplanation source={STEP_EXPLAIN.area} />)
-    expect(screen.getByText(calc.steps.area)).toBeInTheDocument()
+    expect(screen.getByText(copy.steps.area)).toBeInTheDocument()
     const items = screen.getAllByRole("listitem")
     expect(items.map((item) => item.querySelector("span")?.textContent)).toEqual([...STEP_EXPLAIN.area.formulas])
-    expect(screen.getByText(calc.formulas["eq-03-04a"])).toBeInTheDocument()
+    expect(screen.getByText(copy.formulas["eq-03-04a"])).toBeInTheDocument()
     expect(container.querySelectorAll("math").length).toBe(STEP_EXPLAIN.area.formulas.length)
-    expect(screen.getByText(`${calc.ui.tables} · TBL-8`)).toBeInTheDocument()
+    expect(screen.getByText(`${copy.ui.tables} · TBL-8`)).toBeInTheDocument()
   })
 
   it("explains a value without an equation and lists the resolved formula after it", () => {

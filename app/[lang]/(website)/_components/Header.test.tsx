@@ -20,4 +20,19 @@ describe('landing Header', () => {
     expect(screen.getAllByRole('navigation', { name: common.language.label, hidden: true })).toHaveLength(2)
     expect(screen.getAllByRole('link', { name: 'EN, English' })[0]).toHaveAttribute('href', '/en')
   })
+
+  it('names the brand link by its visible text and where it leads (WCAG 2.5.3 label in name)', () => {
+    render(
+      <Header
+        t={en}
+        lang="en"
+        language={{ label: common.language.label, names: common.language.names, short: common.language.short }}
+        onToolSelect={() => {}}
+      />,
+    )
+    // jsdom gives the descriptor's line break no space; browsers do.
+    const brand = screen.getByRole('link', { name: new RegExp(`^${en.header.brandName} 5GDHC ?screening, ${en.header.brandBack}$`) })
+    expect(brand).toHaveAttribute('href', '#overview')
+    expect(brand).not.toHaveAttribute('aria-label')
+  })
 })

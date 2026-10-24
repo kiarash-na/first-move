@@ -1,12 +1,244 @@
 {
+  "fields": {
+    "meta": {
+      "name": {
+        "label": "Projektname",
+        "placeholder": "Unbenanntes Projekt"
+      },
+      "modules": {
+        "label": "Module",
+        "help": "Schalten Sie ein Modul ein oder aus. Seine Daten bleiben erhalten, solange es ausgeschaltet ist.",
+        "quickCheck": {
+          "label": "Quick Check",
+          "help": "Prüfen Sie den Standort mit der 5GDHC-Methodik des Quick Check."
+        },
+        "businessPlan": {
+          "label": "Business Plan",
+          "help": "Entwickeln Sie Schritt für Schritt ein Geschäftsmodell für das Netz."
+        }
+      }
+    }
+  },
+  "validation": {
+    "unknown-field": "Dieses Feld gibt es nicht.",
+    "read-only": "Diesen Wert verwaltet die App; er kann nicht geändert werden.",
+    "not-found": "Diese Zeile gibt es nicht mehr.",
+    "required": "Geben Sie einen Wert ein.",
+    "type": "Dieser Wert hat das falsche Format.",
+    "integer": "Geben Sie eine ganze Zahl ein.",
+    "min": "Geben Sie {min} oder mehr ein.",
+    "above": "Geben Sie einen Wert über {min} ein.",
+    "max": "Geben Sie {max} oder weniger ein.",
+    "below": "Geben Sie einen Wert unter {max} ein.",
+    "too-long": "Verwenden Sie höchstens {max} Zeichen.",
+    "too-many": "Fügen Sie höchstens {max} Einträge hinzu.",
+    "choice": "Wählen Sie eine der Optionen.",
+    "format": "Dieser Wert hat das falsche Format.",
+    "duplicate-id": "Zwei Zeilen haben dieselbe ID.",
+    "at-least-one-module": "Lassen Sie mindestens ein Modul eingeschaltet.",
+    "invalid": "Dieser Wert ist ungültig."
+  },
+  "storage": {
+    "saveStatus": {
+      "idle": "Noch nicht gespeichert",
+      "saving": "Wird gespeichert…",
+      "saved": "Gespeichert {time}",
+      "error": "Nicht gespeichert",
+      "storage-warning": "Gespeichert {time}, Speicher gefährdet"
+    },
+    "saveError": {
+      "quota-exceeded": "Der Browserspeicher ist voll. Exportieren Sie Ihr Projekt und löschen Sie dann Projekte, die Sie nicht mehr brauchen.",
+      "unavailable": "In diesem Browser kann First Move nicht speichern. Exportieren Sie Ihr Projekt, um es zu behalten.",
+      "write-failed": "Das Speichern ist fehlgeschlagen. First Move versucht es in wenigen Sekunden erneut.",
+      "mirrored": "Eine Sicherungskopie Ihrer Änderungen wird in diesem Browser aufbewahrt."
+    },
+    "warning": {
+      "unavailable": "Dieser Browser kann Projekte nicht zuverlässig speichern, zum Beispiel in einem privaten Fenster. Exportieren Sie Ihr Projekt, um es zu behalten.",
+      "low-space": "Der Browserspeicher ist fast voll. Exportieren Sie Ihre Projekte und löschen Sie die, die Sie nicht mehr brauchen.",
+      "not-persisted": "Ihr Browser löscht gespeicherte Daten möglicherweise, wenn der Speicherplatz knapp wird. Exportieren Sie Ihr Projekt regelmäßig."
+    },
+    "notice": {
+      "changed-elsewhere": "Dieses Projekt wurde in einem anderen Tab geändert. Sie sehen jetzt die neueste Version.",
+      "conflict": "Dieses Projekt wurde auch in einem anderen Tab geändert. Ihre Version bleibt erhalten, die andere wird als frühere Version gespeichert.",
+      "deleted-elsewhere": "Dieses Projekt wurde in einem anderen Tab gelöscht und deshalb hier geschlossen.",
+      "export-reminder": "Ihr Projekt ist nur in diesem Browser gespeichert. Exportieren Sie eine Kopie, um es zu sichern.",
+      "recovered": "Aus einer Sicherungskopie wiederhergestellte Projekte: {count}",
+      "unreadable": "Gespeicherte Projekte, die nicht gelesen werden konnten und unverändert blieben: {count}",
+      "reload-required": "First Move wurde in einem anderen Tab aktualisiert. Laden Sie diese Seite neu, um weiter zu speichern."
+    },
+    "snapshotReason": {
+      "autosave": "Automatisch gespeichert",
+      "conflict": "Version aus einem anderen Tab",
+      "before-restore": "Vor einer Wiederherstellung",
+      "before-delete": "Vor dem Löschen",
+      "before-import": "Vor einem Import",
+      "before-migration": "Vor einer Formataktualisierung",
+      "deleted-elsewhere": "Ungespeicherte Änderungen beim Löschen in einem anderen Tab",
+      "recovery": "Vor der Wiederherstellung aus der Sicherungskopie"
+    },
+    "import": {
+      "error": {
+        "too-large": "Diese Datei ist größer als {max} MB.",
+        "empty": "Diese Datei ist leer.",
+        "unreadable": "Diese Datei konnte nicht gelesen werden.",
+        "not-json": "Diese Datei ist keine Projektdatei von First Move (sie ist kein gültiges JSON).",
+        "not-first-move": "Diese Datei ist keine Projektdatei von First Move.",
+        "newer-version": "Diese Datei stammt aus einer neueren Version von First Move (Format {version}). Laden Sie die App neu und versuchen Sie es erneut.",
+        "unsupported-version": "Diese Datei verwendet ein Format, das nicht mehr unterstützt wird (Format {version}).",
+        "invalid": "Diese Datei enthält Werte, die First Move nicht übernehmen kann:"
+      },
+      "moreErrors": "und {count} weitere",
+      "migrated": "Die Datei wurde auf das aktuelle Format aktualisiert.",
+      "methodologyChanged": "Die Ergebnisse werden mit der Methodik {current} neu berechnet. Die Datei wurde mit {file} gespeichert."
+    },
+    "fileLink": {
+      "status": {
+        "off": "Nicht mit einer Datei verknüpft",
+        "on": "Speichert auch in {file}",
+        "needs-permission": "Speichern in {file} wieder erlauben",
+        "error": "Speichern in {file} fehlgeschlagen"
+      },
+      "error": {
+        "permission": "Der Browser erlaubt nicht mehr, in diese Datei zu schreiben.",
+        "not-found": "Die verknüpfte Datei wurde verschoben oder gelöscht. Verknüpfen Sie erneut eine Datei.",
+        "write-failed": "Das Schreiben in die verknüpfte Datei ist fehlgeschlagen."
+      }
+    }
+  },
   "nav": {
+    "label": "Dashboard-Navigation",
+    "sidebar": "Seitenleiste des Projekts",
+    "open": "Navigation öffnen",
+    "close": "Navigation schließen",
+    "title": "Navigation",
     "start": "Alle Projekte",
+    "sections": {
+      "project": "Projekt",
+      "quickCheck": "Quick Check",
+      "businessPlan": "Business Plan"
+    },
     "items": {
-      "overview": "Übersicht"
+      "overview": "Übersicht",
+      "assumptions": "Annahmen",
+      "quickCheck": {
+        "area": "Projektgebiet",
+        "buildings": "Gebäude",
+        "sources": "Energiequellen",
+        "options": "Optionen",
+        "results": "Ergebnisse"
+      },
+      "businessPlan": {
+        "opportunity": "Chance",
+        "business-logic": "Geschäftslogik",
+        "reality-check": "Realitätscheck",
+        "implementation": "Umsetzung"
+      }
+    },
+    "currentProject": "Aktuelles Projekt",
+    "noProject": "Kein Projekt geöffnet",
+    "noProjectHint": "Öffnen Sie ein Projekt oder starten Sie ein neues auf dem Startbildschirm.",
+    "example": "Beispiel",
+    "privacy": "Ihre Daten bleiben in diesem Browser. Exportieren Sie eine Kopie, um sie zu sichern.",
+    "rail": {
+      "collapse": "Seitenleiste einklappen",
+      "expand": "Seitenleiste ausklappen",
+      "entry": "{section} · {label}",
+      "project": "Aktuelles Projekt: {name}",
+      "privacy": "Zu Ihren Daten"
     }
   },
   "topBar": {
+    "label": "Projektaktionen",
     "export": "Exportieren",
-    "import": "Importieren"
-  }
+    "import": "Importieren",
+    "report": "Bericht",
+    "settings": "Sprache und Farbschema"
+  },
+  "saveStatus": {
+    "noProject": "Kein Projekt geöffnet",
+    "label": "Speicherstatus"
+  },
+  "projectMenu": {
+    "label": "Projektmenü",
+    "rename": "Umbenennen",
+    "duplicate": "Duplizieren",
+    "modules": "Module",
+    "restore": "Version wiederherstellen",
+    "linkFile": "Mit Datei verknüpfen",
+    "resumeFile": "Speichern in der Datei erlauben",
+    "unlinkFile": "Nicht mehr in der Datei speichern",
+    "delete": "Löschen",
+    "close": "Projekt schließen"
+  },
+  "rename": {
+    "title": "Projekt umbenennen",
+    "label": "Projektname",
+    "save": "Speichern",
+    "cancel": "Abbrechen"
+  },
+  "duplicate": {
+    "name": "{name} (Kopie)",
+    "done": "Dupliziert als „{name}“"
+  },
+  "delete": {
+    "title": "„{name}“ löschen?",
+    "body": "Das Projekt wird aus diesem Browser entfernt. Rückgängig machen können Sie das nur direkt nach dem Löschen, solange die Meldung angezeigt wird. Exportieren Sie es vorher, um eine Kopie zu behalten.",
+    "confirm": "Projekt löschen",
+    "cancel": "Abbrechen",
+    "done": "„{name}“ wurde gelöscht",
+    "undo": "Rückgängig",
+    "undone": "„{name}“ ist wieder da"
+  },
+  "modules": {
+    "title": "Module",
+    "close": "Fertig"
+  },
+  "restore": {
+    "title": "Version wiederherstellen",
+    "body": "First Move bewahrt frühere Versionen dieses Projekts in diesem Browser auf. Beim Wiederherstellen wird auch der aktuelle Stand als Version aufbewahrt.",
+    "loading": "Versionen werden geladen…",
+    "empty": "Noch keine früheren Versionen. Sie werden angelegt, während Sie arbeiten.",
+    "action": "Wiederherstellen",
+    "done": "Version von {time} wiederhergestellt",
+    "failed": "Diese Version konnte nicht wiederhergestellt werden.",
+    "close": "Schließen"
+  },
+  "export": {
+    "done": "{file} exportiert",
+    "failed": "Der Export ist fehlgeschlagen. Versuchen Sie es erneut."
+  },
+  "importFlow": {
+    "choose": "Eine .firstmove.json-Datei auswählen",
+    "failedTitle": "Die Datei konnte nicht importiert werden",
+    "conflictTitle": "Dieses Projekt ist bereits vorhanden",
+    "conflictBody": "„{name}“ ist bereits in diesem Browser gespeichert. Beide behalten oder die gespeicherte Version ersetzen? Eine ersetzte Version wird aufbewahrt, sodass Sie sie wiederherstellen können.",
+    "copy": "Beide behalten",
+    "replace": "Ersetzen",
+    "cancel": "Abbrechen",
+    "close": "Schließen",
+    "done": "„{name}“ importiert",
+    "field": "{field}: {message}"
+  },
+  "notices": {
+    "dismiss": "Ausblenden",
+    "export": "Exportieren",
+    "reload": "Neu laden",
+    "region": "Benachrichtigungen"
+  },
+  "gate": {
+    "noProject": {
+      "title": "Kein Projekt geöffnet",
+      "body": "Öffnen Sie ein Projekt auf dem Startbildschirm oder starten Sie ein neues.",
+      "action": "Zum Startbildschirm"
+    },
+    "moduleOff": {
+      "title": "{module} ist ausgeschaltet",
+      "body": "Schalten Sie das Modul ein, um daran zu arbeiten. Seine Daten bleiben erhalten, solange es ausgeschaltet ist.",
+      "action": "{module} einschalten"
+    }
+  },
+  "close": "Schließen",
+  "skipToContent": "Zum Inhalt springen",
+  "illustrative": "Nur beispielhafte Eingaben",
+  "loading": "Ihre Projekte werden geladen…"
 }

@@ -1,1 +1,600 @@
-{}
+{
+  "fields": {
+    "buildings": {
+      "total": {
+        "label": "Gesamtzahl der Gebäude",
+        "help": "Alle Gebäude im Projektgebiet, einschließlich der Industriegebäude."
+      },
+      "areaM2": {
+        "label": "Gesamtfläche des Projektgebiets",
+        "help": "Geben Sie die Fläche in m² ein. Daneben wird der Wert in Hektar angezeigt."
+      },
+      "shares": {
+        "label": "Gebäudeanteile",
+        "help": "Geben Sie den Anteil jedes Gebäudetyps und jeder Baualtersklasse in % ein. Alle Anteile müssen zusammen 100 % ergeben."
+      }
+    },
+    "sources": {
+      "potentials": {
+        "label": "Energiequellen",
+        "help": "Wählen Sie die Energiequellen, die im Projektgebiet verfügbar oder potenziell verfügbar sind, und bewerten Sie ihr Potenzial."
+      },
+      "pv": {
+        "label": "Photovoltaik (PV) vorhanden",
+        "help": "PV senkt die Stromkosten der Wärmepumpen um die PV-Kostenreduktion aus Tabelle 6."
+      }
+    },
+    "quickCheck": {
+      "manualDemand": {
+        "label": "Bekannter Wärme- und Kältebedarf",
+        "help": "Optional. Wenn Sie den Energiebedarf der Gebäude kennen, geben Sie ihn hier statt der Standardschätzung ein.",
+        "heatingKwhPerYear": {
+          "label": "Gesamter Wärmebedarf",
+          "help": "Optional. Ersetzt den geschätzten gesamten Wärmebedarf."
+        },
+        "coolingKwhPerYear": {
+          "label": "Gesamter Kältebedarf",
+          "help": "Optional. Ersetzt den geschätzten gesamten Kältebedarf."
+        }
+      },
+      "networkLengthM": {
+        "label": "Netzlänge",
+        "help": "Optional. Lassen Sie das Feld leer, um die Länge aus der Gebäudedichte und der Fläche des Projektgebiets zu schätzen."
+      },
+      "overrides": {
+        "heating": {
+          "label": "Heizkapazität je Quelle (Tabelle 4)",
+          "help": "Jährliche Kapazität je Potenzialstufe in kWh/a sowie der COP der Wärmepumpe. Lassen Sie eine Zelle leer, um den Standardwert zu behalten."
+        },
+        "cooling": {
+          "label": "Kühlkapazität je Quelle (Tabelle 5)",
+          "help": "Jährliche Kapazität je Potenzialstufe in kWh/a sowie der COP. Lassen Sie eine Zelle leer, um den Standardwert zu behalten."
+        },
+        "economic": {
+          "label": "Wirtschaftliche Parameter (Tabelle 6)",
+          "help": "Lassen Sie einen Wert leer, um den Standardwert zu behalten."
+        }
+      }
+    }
+  },
+  "buildingTypes": {
+    "residential": {
+      "label": "Wohngebäude",
+      "description": "Wohngebäude verschiedener Baualtersklassen."
+    },
+    "category_a": {
+      "label": "Kategorie A",
+      "description": "Einzelhandel, Museen, Supermärkte, Schulen, Büros und Fitnessstudios."
+    },
+    "category_b": {
+      "label": "Kategorie B",
+      "description": "Kindergärten, Sporthallen, Hotels und Theater."
+    },
+    "category_c": {
+      "label": "Kategorie C",
+      "description": "Krankenhäuser, Restaurants, Schwimmbäder und Kantinen."
+    },
+    "industry": {
+      "label": "Industrie",
+      "description": "Industriegebäude und -anlagen. Es gibt keine Standardwerte, daher führt jeder Industrieanteil zu „Weitere Analyse erforderlich“."
+    }
+  },
+  "periods": {
+    "until_1919": {
+      "label": "-1919"
+    },
+    "1919_1960": {
+      "label": "1919-1960"
+    },
+    "1961_1990": {
+      "label": "1961-1990"
+    },
+    "1991_2010": {
+      "label": "1991-2010"
+    },
+    "2011_today": {
+      "label": "2011-heute"
+    }
+  },
+  "sources": {
+    "geothermal": {
+      "label": "Geothermie",
+      "inText": "Geothermie"
+    },
+    "waste_heat": {
+      "label": "Abwärme",
+      "inText": "Abwärme"
+    },
+    "ground_water": {
+      "label": "Grundwasser",
+      "inText": "Grundwasser"
+    },
+    "surface_water": {
+      "label": "Oberflächenwasser",
+      "inText": "Oberflächenwasser"
+    },
+    "solar_thermal": {
+      "label": "Solarthermie",
+      "inText": "Solarthermie"
+    },
+    "ambient_air": {
+      "label": "Umgebungsluft",
+      "inText": "Umgebungsluft"
+    }
+  },
+  "potentials": {
+    "low": {
+      "label": "Gering"
+    },
+    "medium": {
+      "label": "Mittel"
+    },
+    "high": {
+      "label": "Hoch"
+    },
+    "unknown": {
+      "label": "Unbekannt"
+    }
+  },
+  "capacityCells": {
+    "low": {
+      "label": "Gering"
+    },
+    "medium": {
+      "label": "Mittel"
+    },
+    "high": {
+      "label": "Hoch"
+    },
+    "cop": {
+      "label": "COP"
+    }
+  },
+  "parameters": {
+    "heating_base_price": {
+      "label": "Grundpreis Wärme"
+    },
+    "heating_energy_price": {
+      "label": "Arbeitspreis Wärme"
+    },
+    "cooling_base_price": {
+      "label": "Grundpreis Kälte"
+    },
+    "cooling_energy_price": {
+      "label": "Arbeitspreis Kälte"
+    },
+    "connection_fee": {
+      "label": "Anschlussgebühr"
+    },
+    "network_construction_costs": {
+      "label": "Netzbaukosten",
+      "help": "Rohre, Material, Erdarbeiten und Montage."
+    },
+    "installation_costs_geothermal": {
+      "label": "Installationskosten Geothermie"
+    },
+    "installation_costs_waste_heat": {
+      "label": "Installationskosten Abwärme"
+    },
+    "installation_costs_ground_water": {
+      "label": "Installationskosten Grundwasser"
+    },
+    "installation_costs_surface_water": {
+      "label": "Installationskosten Oberflächenwasser"
+    },
+    "installation_costs_solar_thermal": {
+      "label": "Installationskosten Solarthermie"
+    },
+    "installation_costs_ambient_air": {
+      "label": "Installationskosten Umgebungsluft",
+      "help": "Tabelle 6 nennt keinen Wert; der Quick Check verwendet 0."
+    },
+    "heat_pump": {
+      "label": "Wärmepumpe"
+    },
+    "electricity_cost": {
+      "label": "Strompreis"
+    },
+    "pv_cost_reduction": {
+      "label": "PV-Kostenreduktion"
+    },
+    "depreciation_period": {
+      "label": "Abschreibungsdauer"
+    },
+    "interest_rate": {
+      "label": "Zinssatz"
+    }
+  },
+  "derived": {
+    "densityCategory": {
+      "label": "Kategorie der Gebäudedichte",
+      "help": "Aus der Gebäudedichte berechnet, keine Eingabe.",
+      "options": {
+        "rural": {
+          "label": "Ländlich"
+        },
+        "sub_urban": {
+          "label": "Vorstädtisch"
+        },
+        "urban": {
+          "label": "Städtisch"
+        }
+      }
+    }
+  },
+  "results": {
+    "levels": {
+      "promising": {
+        "label": "Vielversprechend",
+        "description": "Günstige Bedingungen festgestellt"
+      },
+      "further_analysis": {
+        "label": "Weitere Analyse erforderlich",
+        "description": "Gemischte Bedingungen, Unsicherheiten oder fehlende Informationen"
+      },
+      "not_promising": {
+        "label": "Nicht vielversprechend",
+        "description": "Ungünstige Bedingungen festgestellt"
+      }
+    },
+    "classes": {
+      "coverage": {
+        "feasible": {
+          "label": "Machbar",
+          "interpretation": "Das jährliche Energiepotenzial reicht aus, um den gesamten Bedarf zu decken, und es bleibt weiteres Potenzial verfügbar."
+        },
+        "conditionally_feasible": {
+          "label": "Bedingt machbar",
+          "interpretation": "Ein kleiner Anteil ergänzender Versorgung ist erforderlich."
+        },
+        "limited_feasibility": {
+          "label": "Eingeschränkt machbar",
+          "interpretation": "Ein erheblicher Anteil ergänzender Versorgung ist erforderlich."
+        },
+        "not_feasible": {
+          "label": "Als alleiniges Versorgungskonzept nicht machbar",
+          "interpretation": "Zu viel Bedarf bleibt ungedeckt."
+        }
+      },
+      "buildingDensity": {
+        "high": {
+          "label": "Hohe Dichte",
+          "interpretation": "Dicht bebaute Gebiete können von kürzeren Netzlängen profitieren, ein geringer Energiebedarf kann die Wirtschaftlichkeit aber dennoch schwächen."
+        },
+        "medium": {
+          "label": "Mittlere Dichte",
+          "interpretation": "Die Struktur kann für ein Netz geeignet sein."
+        },
+        "low": {
+          "label": "Geringe Dichte",
+          "interpretation": "Die Gebäude liegen weiter auseinander, was die Netzlänge erhöhen kann. Ein hoher Energiebedarf oder geeignete lokale Energiequellen können ein Projekt dennoch vielversprechend machen."
+        }
+      },
+      "heatDensity": {
+        "high": {
+          "label": "Hohe Dichte",
+          "interpretation": "Ein relativ kurzes Netz bedient einen hohen Wärmebedarf, was die Wirtschaftlichkeit verbessern kann."
+        },
+        "medium": {
+          "label": "Mittlere Dichte",
+          "interpretation": "Das Netz kann tragfähig sein."
+        },
+        "low": {
+          "label": "Geringe Dichte",
+          "interpretation": "Ein relativ langes Netz bedient einen geringen Wärmebedarf. Ein erheblicher Kältebedarf oder niedrige Netzkosten können die Aussichten verbessern."
+        }
+      },
+      "chRatio": {
+        "balanced": {
+          "label": "Ausgeglichen",
+          "interpretation": "Wärme- und Kältebedarf sind ähnlich, was den thermischen Austausch begünstigen kann."
+        },
+        "partially_balanced": {
+          "label": "Teilweise ausgeglichen",
+          "interpretation": "Ein Bedarf ist höher als der andere, ein thermischer Austausch kann aber dennoch möglich sein."
+        },
+        "unbalanced": {
+          "label": "Unausgeglichen",
+          "interpretation": "Ein Bedarf überwiegt deutlich, was externe Energiequellen oder thermische Speicher eher nötig machen kann."
+        }
+      },
+      "economic": {
+        "favorable": {
+          "label": "Günstig",
+          "interpretation": "Die Erlöse decken die jährlichen Kosten."
+        },
+        "unclear": {
+          "label": "Unklar",
+          "interpretation": "Die Erlöse decken einen großen Teil der jährlichen Kosten, aber nicht alle."
+        },
+        "clearly_unfavorable": {
+          "label": "Deutlich ungünstig",
+          "interpretation": "Die Erlöse bleiben weit hinter den jährlichen Kosten zurück."
+        }
+      },
+      "notRelevant": {
+        "label": "Nicht relevant",
+        "interpretation": "Im Projektgebiet gibt es keinen Bedarf dieser Art."
+      },
+      "notApplicable": {
+        "label": "Nicht anwendbar",
+        "interpretation": "Dieser Indikator lässt sich für diese Eingaben nicht berechnen."
+      }
+    },
+    "demands": {
+      "heating": {
+        "label": "Wärme",
+        "inText": "Wärme"
+      },
+      "cooling": {
+        "label": "Kälte",
+        "inText": "Kälte"
+      }
+    },
+    "dominantDemand": {
+      "heating": {
+        "label": "Der Wärmebedarf ist höher"
+      },
+      "cooling": {
+        "label": "Der Kältebedarf ist höher"
+      },
+      "equal": {
+        "label": "Wärme- und Kältebedarf sind gleich"
+      }
+    },
+    "reasons": {
+      "industry": {
+        "label": "Das Projektgebiet umfasst Industrie. Für Industriegebäude gibt es keine Standardwerte, daher wird das Ergebnis auf „Weitere Analyse erforderlich“ gesetzt."
+      },
+      "unknown_source": {
+        "label": "Das Potenzial von {sources} ist unbekannt. Es muss geklärt werden, bevor eine belastbare erste Einschätzung möglich ist."
+      },
+      "economics_clearly_unfavorable": {
+        "label": "Die wirtschaftliche Bewertung ist deutlich ungünstig."
+      },
+      "low_coverage_and_densities": {
+        "label": "Als alleiniges Versorgungskonzept kann das Angebot den Bedarf an {demands} nicht decken, und Gebäudedichte und Wärmedichte sind beide gering."
+      },
+      "coverage_sufficient": {
+        "label": "Die gewählten Quellen decken den Bedarf an {demands}."
+      },
+      "economics_favorable": {
+        "label": "Die wirtschaftliche Bewertung ist günstig."
+      },
+      "densities_not_low": {
+        "label": "Weder die Gebäudedichte noch die Wärmedichte ist gering."
+      },
+      "no_relevant_demand": {
+        "label": "Es gibt keinen Wärme- oder Kältebedarf, der bewertet werden kann."
+      },
+      "coverage_below_promising": {
+        "label": "Für ein vielversprechendes Ergebnis decken die gewählten Quellen einen zu kleinen Teil des Bedarfs an {demands}."
+      },
+      "economics_unclear": {
+        "label": "Die wirtschaftlichen Ergebnisse lassen keine eindeutige Schlussfolgerung zu."
+      },
+      "building_density_low": {
+        "label": "Die Gebäudedichte ist gering."
+      },
+      "heat_density_low": {
+        "label": "Die Wärmedichte ist gering."
+      }
+    },
+    "drivers": {
+      "industry": {
+        "limiting": {
+          "label": "Industrie im Projektgebiet"
+        }
+      },
+      "unknown_sources": {
+        "limiting": {
+          "label": "Unbekanntes Quellenpotenzial: {sources}"
+        }
+      },
+      "economics": {
+        "supporting": {
+          "label": "Die Erlöse decken die jährlichen Kosten"
+        },
+        "limiting": {
+          "label": "Die Erlöse decken die jährlichen Kosten nicht eindeutig"
+        }
+      },
+      "heating_coverage": {
+        "supporting": {
+          "label": "Lokale Quellen decken den Wärmebedarf"
+        },
+        "limiting": {
+          "label": "Lokale Quellen decken den Wärmebedarf nicht ausreichend"
+        }
+      },
+      "cooling_coverage": {
+        "supporting": {
+          "label": "Lokale Quellen decken den Kältebedarf"
+        },
+        "limiting": {
+          "label": "Lokale Quellen decken den Kältebedarf nicht ausreichend"
+        }
+      },
+      "heat_density": {
+        "supporting": {
+          "label": "Ausreichende Wärmedichte"
+        },
+        "limiting": {
+          "label": "Geringe Wärmedichte"
+        }
+      },
+      "building_density": {
+        "supporting": {
+          "label": "Die Gebäude liegen nah genug beieinander"
+        },
+        "limiting": {
+          "label": "Geringe Gebäudedichte"
+        }
+      }
+    }
+  },
+  "ui": {
+    "customParameters": {
+      "label": "Eigene Parameter",
+      "hint": "Einige Standardwerte sind auf der Seite „Annahmen“ überschrieben. Die Ergebnisse verwenden Ihre Werte."
+    },
+    "stepper": {
+      "label": "Schritte des Quick Check",
+      "progress": "Schritt {number} von {total}",
+      "missing": "In diesem Schritt fehlt noch etwas",
+      "done": "Schritt abgeschlossen"
+    },
+    "footer": {
+      "previous": "Zurück",
+      "next": "Weiter: {step}",
+      "results": "Ergebnisse ansehen"
+    },
+    "intro": {
+      "area": "Eine erste Einschätzung des technischen und wirtschaftlichen Potenzials eines 5GDHC-Netzes für Ihr Projektgebiet. Geben Sie einige wichtige Parameter ein und sehen Sie, ob ein Netz vielversprechend erscheint und welche Faktoren das Ergebnis bestimmen.",
+      "buildings": "Teilen Sie die Gebäude nach Typen und Baualtersklassen auf. Aus diesen Anteilen schätzt das Werkzeug die Anzahl der Gebäude in jeder Gruppe und ihren Wärme- und Kältebedarf.",
+      "sources": "Wählen Sie die Energiequellen, die im Projektgebiet verfügbar oder potenziell verfügbar sind, und bewerten Sie das Potenzial jeder Quelle.",
+      "options": "Optionale Angaben. Lassen Sie ein Feld leer, um die Schätzung der Methodik zu behalten."
+    },
+    "field": {
+      "optional": "Optional",
+      "estimated": "Leer: Es gilt die Schätzung",
+      "estimate": "Schätzung: {value}",
+      "default": "Standardwert: {value}",
+      "noDefault": "Kein Standardwert",
+      "on": "Ja",
+      "off": "Nein"
+    },
+    "area": {
+      "derived": "Aus Ihren Eingaben berechnet",
+      "density": "Gebäudedichte",
+      "densityUnit": "Gebäude/ha",
+      "pending": "Geben Sie die Anzahl der Gebäude und die Fläche des Projektgebiets ein, um die Gebäudedichte zu sehen."
+    },
+    "buildings": {
+      "periods": "Baualtersklasse",
+      "types": "Gebäudetyp",
+      "cell": "{type}, {period}",
+      "rowTotal": "Summe",
+      "columnTotal": "Summe je Baualtersklasse",
+      "sum": "Summe aller Anteile",
+      "state": {
+        "empty": "Noch nichts eingegeben. Die Anteile müssen zusammen 100 % ergeben.",
+        "under": "{value} noch zu verteilen",
+        "exact": "Alle Anteile ergeben zusammen 100 %",
+        "over": "{value} zu viel. Verringern Sie die Anteile auf 100 %."
+      },
+      "clear": "Alle Anteile löschen",
+      "confirmClear": {
+        "title": "Alle Anteile löschen?",
+        "body": "Alle 25 Anteilswerte dieses Schritts werden entfernt. Das lässt sich nicht rückgängig machen.",
+        "cancel": "Behalten",
+        "clear": "Anteile löschen"
+      },
+      "industry": "Für Industrie gibt es keine Standardwerte. Jeder Industrieanteil führt zu „Weitere Analyse erforderlich“."
+    },
+    "sources": {
+      "selected": "{count} von {total} ausgewählt",
+      "none": "Wählen Sie mindestens eine Quelle, um ein Ergebnis zu erhalten.",
+      "potential": "Potenzial von {source}",
+      "notSelected": "Nicht ausgewählt",
+      "remove": "{source} entfernen",
+      "heating": "Wärme",
+      "cooling": "Kälte",
+      "cop": "COP",
+      "noCooling": "Keine Kälteversorgung",
+      "noHeatPump": "Ohne Wärmepumpe",
+      "pending": "Wählen Sie ein Potenzial, um die Standardkapazität zu sehen.",
+      "unknown": "Ein unbekanntes Potenzial trägt nichts zum Angebot bei und führt zu „Weitere Analyse erforderlich“, bis es geklärt ist."
+    },
+    "rail": {
+      "title": "Live-Ergebnis",
+      "toggle": "Live-Ergebnis",
+      "open": "Vollständiges Ergebnis öffnen",
+      "incomplete": {
+        "title": "Noch kein Ergebnis",
+        "body": "Schließen Sie diese Schritte ab, um das Ergebnis zu sehen:"
+      },
+      "indicators": {
+        "coverage": "Deckungsgrad",
+        "buildingDensity": "Gebäudedichte",
+        "heatDensity": "Wärmedichte",
+        "economic": "Wirtschaftlichkeitskennzahl"
+      },
+      "screening": "Erste Einschätzung, keine Entscheidung über die Machbarkeit."
+    },
+    "results": {
+      "title": "Ergebnis des Quick Check",
+      "overall": "Gesamtergebnis",
+      "forced": "Durch eine feste Regel festgelegt",
+      "reasons": "Warum dieses Ergebnis",
+      "edit": "Eingaben bearbeiten",
+      "assumptions": "Annahmen ansehen",
+      "screening": {
+        "title": "Ein Screening, keine vollständige Machbarkeitsstudie",
+        "body": "Dies ist eine erste Einschätzung auf Basis vereinfachter Standardwerte. Die tatsächlichen Werte hängen von den Bedingungen des jeweiligen Projekts ab und sollten durch weitere Analysen verfeinert werden."
+      },
+      "drivers": {
+        "title": "Wichtigste Einflussfaktoren",
+        "supporting": "Förderlich",
+        "limiting": "Einschränkend",
+        "none": "Keine"
+      },
+      "coverage": {
+        "title": "Deckungsgrad",
+        "lead": "Wärme und Kälte werden getrennt bewertet, damit Versorgungslücken sichtbar bleiben.",
+        "supply": "Angebot",
+        "demand": "Bedarf",
+        "manual": "Eingegebener Bedarf",
+        "scale": "Schwellenwerte: 70 %, 90 %, 100 %"
+      },
+      "indicators": {
+        "title": "Indikatoren",
+        "buildingDensity": "Gebäudedichte",
+        "heatDensity": "Wärmedichte",
+        "chRatio": "Kälte-Wärme-Verhältnis",
+        "economic": "Wirtschaftliche Bewertung",
+        "densityUnit": "Gebäude/ha",
+        "heatUnit": "MWh/m",
+        "ratio": "E = {value}",
+        "category": "Kategorie: {category}"
+      },
+      "network": {
+        "title": "Netzlänge",
+        "manual": "Eingegeben",
+        "estimated": "Geschätzt",
+        "manualHint": "Sie haben die Netzlänge eingegeben.",
+        "estimatedHint": "Aus der Gebäudedichte und der Fläche des Projektgebiets geschätzt. Eine bekannte Länge geben Sie unter „Optionen“ ein."
+      },
+      "unknown": {
+        "title": "Potenzial der Quellen klären",
+        "body": "Das Potenzial von {sources} ist unbekannt. Es muss geklärt werden, bevor eine belastbare erste Einschätzung möglich ist. Bis dahin trägt die Quelle nichts zum Angebot bei, und das Ergebnis bleibt „Weitere Analyse erforderlich“.",
+        "action": "Quellen bewerten"
+      },
+      "figures": {
+        "title": "Kennzahlen",
+        "demand": "Bedarf",
+        "network": "Netz",
+        "economics": "Wirtschaftlichkeit",
+        "heatingDemandKwh": "Wärmebedarf",
+        "coolingDemandKwh": "Kältebedarf",
+        "heatingSupplyKwh": "Wärmeangebot",
+        "coolingSupplyKwh": "Kälteangebot",
+        "networkLengthM": "Netzlänge",
+        "specificNetworkLength": "Spezifische Netzlänge",
+        "overallRevenue": "Gesamterlöse",
+        "overallInvestment": "Gesamtinvestition",
+        "annualizedCosts": "Annualisierte Kosten",
+        "electricityCosts": "Stromkosten",
+        "operationAndMaintenance": "Betrieb und Wartung",
+        "annualCosts": "Jährliche Kosten",
+        "perYear": "/a",
+        "metresPerHectare": "m/ha"
+      },
+      "incomplete": {
+        "title": "Noch kein Ergebnis",
+        "body": "Der Quick Check braucht die Anzahl der Gebäude, die Fläche des Projektgebiets, Anteile, die zusammen 100 % ergeben, und mindestens eine Energiequelle.",
+        "step": "{step} vervollständigen"
+      }
+    }
+  }
+}

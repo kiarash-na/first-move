@@ -7,6 +7,9 @@ import { DocsArticle } from "./_components/docs-article"
 import { DocsNav } from "./_components/docs-nav"
 import DocsPage, { ensureStatic, generateMetadata, generateStaticParams, instant } from "./page"
 
+/** What `notFound()` throws; any other error would fail these tests. */
+const NOT_FOUND = { digest: "NEXT_HTTP_ERROR_FALLBACK;404" }
+
 const props = (lang: string, slug?: string[]) =>
   ({ params: Promise.resolve({ lang, slug }) }) as PageProps<"/[lang]/docs/[[...slug]]">
 
@@ -30,10 +33,11 @@ describe("docs page (PLAN-AGENT-04)", () => {
 
   it("titles each page from the docs dictionary", async () => {
     expect(await generateMetadata(props("en"))).toEqual({ title: en.pages.index.title, description: en.pages.index.description })
-    expect(await generateMetadata(props("de", ["quick-check"]))).toEqual({
-      title: en.pages["quick-check"].title,
-      description: en.pages["quick-check"].description,
+    expect(await generateMetadata(props("de", ["data-and-privacy"]))).toEqual({
+      title: de.pages["data-and-privacy"].title,
+      description: de.pages["data-and-privacy"].description,
     })
+    expect(de.pages["data-and-privacy"].title).not.toBe(en.pages["data-and-privacy"].title)
   })
 
   it("adds no metadata for a page that answers 404", async () => {
@@ -59,9 +63,9 @@ describe("docs page (PLAN-AGENT-04)", () => {
   })
 
   it("answers 404 for an unknown slug and for the AI pages while the AI features are off", async () => {
-    await expect(DocsPage(props("en", ["missing"]))).rejects.toThrow()
-    await expect(DocsPage(props("en", ["assistant"]))).rejects.toThrow()
-    await expect(DocsPage(props("en", ["email-agent"]))).rejects.toThrow()
-    await expect(DocsPage(props("en", ["quick-check", "extra"]))).rejects.toThrow()
+    await expect(DocsPage(props("en", ["missing"]))).rejects.toMatchObject(NOT_FOUND)
+    await expect(DocsPage(props("en", ["assistant"]))).rejects.toMatchObject(NOT_FOUND)
+    await expect(DocsPage(props("en", ["email-agent"]))).rejects.toMatchObject(NOT_FOUND)
+    await expect(DocsPage(props("en", ["quick-check", "extra"]))).rejects.toMatchObject(NOT_FOUND)
   })
 })

@@ -20,7 +20,7 @@ describe("ExampleCard (D-04)", () => {
     expect(article).toHaveTextContent(copy["business-plan"].scenarios["BM-SCN-01"].label)
     expect(article).toHaveTextContent(copy.shell.illustrative)
     expect(article).toHaveTextContent(copy["quick-check"].results.levels.not_promising.label)
-    expect(article).toHaveTextContent("45 buildings · 150 ha")
+    expect(article).toHaveTextContent({ en: "45 buildings · 150 ha", de: "45 Gebäude · 150 ha" }[lang])
     await userEvent.click(screen.getByRole("button", { name: new RegExp(copy.start.examples.open) }))
     expect(onOpen).toHaveBeenCalledWith(card.id)
   })

@@ -1,0 +1,40 @@
+/*
+ * Printing the report (D-70). On screen it is a light sheet inside the dashboard; on paper only
+ * the sheet prints, edge to edge within the page margins, in its own colours. The dashboard
+ * frame, the toolbar, the cookie notice and the toasts carry `print:hidden`.
+ */
+
+@media print {
+  @page {
+    size: A4;
+    margin: 14mm 13mm 16mm;
+  }
+
+  /* Light paper: the page margins take the canvas colour of the colour scheme, not the background. */
+  :root[data-theme] {
+    color-scheme: light;
+  }
+
+  html,
+  body {
+    background: #fff;
+  }
+
+  .report-sheet {
+    max-width: none;
+    padding: 0;
+    border: 0;
+    box-shadow: none;
+    gap: 2.5rem;
+    print-color-adjust: exact;
+  }
+
+  /* Keep a card, a table row or a figure group on one page. */
+  .report-sheet :is(article, li, tr, figure, [data-slot="key-figures"] dl > div) {
+    break-inside: avoid;
+  }
+
+  .report-sheet :is(h2, h3) {
+    break-after: avoid;
+  }
+}

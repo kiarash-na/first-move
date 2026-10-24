@@ -1,1 +1,6 @@
-{}
+{
+  "launcher": {
+    "open": "KI-Assistenten öffnen",
+    "close": "KI-Assistenten schließen"
+  }
+}

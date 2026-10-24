@@ -7,10 +7,10 @@ import english from "@/lib/ai/knowledge/generated/en.json"
 import { DOCS_DIR, slugify } from "./gen-knowledge.mjs"
 
 const root = path.resolve(__dirname, "..")
-const pagesDir = path.join(root, DOCS_DIR, "en")
-const pages = readdirSync(pagesDir).filter((file) => file.endsWith(".mdx"))
-const headings = (file: string) =>
-  readFileSync(path.join(pagesDir, file), "utf8")
+const pagesDir = (lang: string) => path.join(root, DOCS_DIR, lang)
+const pages = readdirSync(pagesDir("en")).filter((file) => file.endsWith(".mdx"))
+const headings = (file: string, lang = "en") =>
+  readFileSync(path.join(pagesDir(lang), file), "utf8")
     .split("\n")
     .filter((line) => /^##\s/.test(line))
     .map((line) => line.replace(/^##\s+/, "").trim())
@@ -40,10 +40,10 @@ describe("heading anchors: generator and docs route agree", () => {
     expect(headingId(heading)).toBe(slugify(heading))
   })
 
-  it("gives every heading of the public pages the same id in both", () => {
+  it.each(["en", "de"])("gives every heading of the public %s pages the same id in both", (lang) => {
     expect(pages.length).toBeGreaterThan(0)
     for (const file of pages) {
-      for (const heading of headings(file)) expect(headingId(heading), `${file}: ${heading}`).toBe(slugify(heading))
+      for (const heading of headings(file, lang)) expect(headingId(heading), `${lang}/${file}: ${heading}`).toBe(slugify(heading))
     }
   })
 

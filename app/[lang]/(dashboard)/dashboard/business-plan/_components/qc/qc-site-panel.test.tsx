@@ -3,6 +3,7 @@ import userEvent from "@testing-library/user-event"
 import { afterEach, describe, expect, it } from "vitest"
 import { run } from "@/lib/quick-check"
 import { formatEnergy } from "@/lib/i18n/format"
+import { testDictionaries } from "../../../_components/test-utils/dictionaries"
 import { renderDashboard } from "../../../_components/test-utils/render"
 import { openProject, stopTabs } from "../test-utils/open-project"
 import { QcSitePanel } from "./qc-site-panel"
@@ -15,18 +16,20 @@ const spaces = (text: string) => text.replace(/\s/g, " ")
 describe("QcSitePanel (ALG-09)", () => {
   it.each(["en", "de"] as const)("shows shared site data and the Quick Check demand read-only (%s)", async (lang) => {
     const tab = await openProject({ example: "housing-cooperatives" })
+    const { calc, "business-plan": bp } = testDictionaries(lang)
     renderDashboard(<QcSitePanel />, { store: tab.store, lang })
     const result = run(tab.store.getState().active!)
     if (result.status !== "complete") throw new Error("expected a result")
-    const region = screen.getByRole("region", { name: "From the Quick Check" })
+    const region = screen.getByRole("region", { name: bp.qc.title })
     expect(region).toHaveTextContent(spaces(formatEnergy(result.values.heatingDemandKwh, lang, { perYear: true })))
     expect(region).toHaveTextContent(spaces(formatEnergy(result.values.coolingDemandKwh, lang, { perYear: true })))
-    expect(region).toHaveTextContent("Read-only")
+    expect(region).toHaveTextContent(bp.qc.readOnly)
     // no input in the panel: nothing to change here
     expect(region.querySelectorAll("input, textarea")).toHaveLength(0)
     // each number carries the "How we calculate" popover (D-33)
-    expect(screen.getByRole("button", { name: /How we calculate this: Heating demand/ })).toBeInTheDocument()
-    expect(screen.getByRole("button", { name: /How we calculate this: Cooling demand/ })).toBeInTheDocument()
+    const explains = (label: string) => (name: string) => name.includes(`${calc.ui.info}: ${label}`)
+    expect(screen.getByRole("button", { name: explains(bp.qc.heatingDemand) })).toBeInTheDocument()
+    expect(screen.getByRole("button", { name: explains(bp.qc.coolingDemand) })).toBeInTheDocument()
   })
 
   it("opens the explanation with the equation and its ID", async () => {
@@ -49,10 +52,11 @@ describe("QcSitePanel (ALG-09)", () => {
   it("links to the Quick Check when the module is off, with no numbers", async () => {
     const tab = await openProject({ example: "housing-cooperatives" })
     tab.store.patch({ "meta.modules.quickCheck": false })
+    const { qc } = testDictionaries("de")["business-plan"]
     renderDashboard(<QcSitePanel />, { store: tab.store, lang: "de" })
-    expect(screen.getByText("The Quick Check is off for this project")).toBeInTheDocument()
-    expect(screen.getByRole("link", { name: /Open Quick Check/ })).toHaveAttribute("href", "/de/dashboard/quick-check/area")
-    expect(screen.queryByText("Heating demand")).toBeNull()
+    expect(screen.getByText(qc.off.title)).toBeInTheDocument()
+    expect(screen.getByRole("link", { name: (name) => name.includes(qc.off.action) })).toHaveAttribute("href", "/de/dashboard/quick-check/area")
+    expect(screen.queryByText(qc.heatingDemand)).toBeNull()
   })
 
   it("points at the step to finish when the Quick Check is incomplete, and still shows the shared inputs", async () => {

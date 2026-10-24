@@ -167,9 +167,9 @@ export function ProjectMenu() {
               <UploadIcon strokeWidth={1.6} aria-hidden="true" />
               {shell.topBar.import}
             </DropdownMenuItem>
-            <DropdownMenuItem disabled>
+            <DropdownMenuItem disabled={!active} onSelect={() => go({ page: "report" })}>
               <FileTextIcon strokeWidth={1.6} aria-hidden="true" />
-              {shell.topBar.report} · {shell.topBar.reportSoon}
+              {shell.topBar.report}
             </DropdownMenuItem>
           </DropdownMenuGroup>
           {active && (

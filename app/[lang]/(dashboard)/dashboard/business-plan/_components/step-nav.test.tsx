@@ -18,21 +18,26 @@ vi.mock("@/lib/i18n/format", async (importOriginal) => {
 
 afterEach(stopTabs)
 
+const copy = {
+  en: { nav: "Business Plan steps", progress: (done: number) => new RegExp(`^${done} of \\d+ filled in$`) },
+  de: { nav: "Schritte des Business Plan", progress: (done: number) => new RegExp(`^${done} von \\d+ ausgefüllt$`) },
+}
+
 describe("StepNav (BM-SCOPE-11, D-28)", () => {
   it.each(["en", "de"] as const)("links all four steps in any order with progress per step (%s)", async (lang) => {
     const tab = await openProject()
     tab.store.patch({ "site.name": "Village", "businessPlan.scalability.geographical": "Other valleys" })
     renderDashboard(<StepNav current="business-logic" />, { store: tab.store, lang })
-    const nav = screen.getByRole("navigation", { name: "Business Plan steps" })
+    const nav = screen.getByRole("navigation", { name: copy[lang].nav })
     const links = within(nav).getAllByRole("link")
     expect(links.map((link) => link.getAttribute("href"))).toEqual(
       ["opportunity", "business-logic", "reality-check", "implementation"].map((step) => `/${lang}/dashboard/business-plan/${step}`),
     )
     expect(links[1]).toHaveAttribute("aria-current", "step")
     expect(links[0]).not.toHaveAttribute("aria-current")
-    expect(within(links[0]).getByText(/^1 of \d+ filled in$/)).toBeInTheDocument()
-    expect(within(links[2]).getByText(/^0 of \d+ filled in$/)).toBeInTheDocument()
-    expect(within(links[3]).getByText(/^1 of \d+ filled in$/)).toBeInTheDocument()
+    expect(within(links[0]).getByText(copy[lang].progress(1))).toBeInTheDocument()
+    expect(within(links[2]).getByText(copy[lang].progress(0))).toBeInTheDocument()
+    expect(within(links[3]).getByText(copy[lang].progress(1))).toBeInTheDocument()
   })
 
   it("marks a finished step as done", async () => {

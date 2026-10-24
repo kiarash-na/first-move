@@ -37,7 +37,7 @@ export function CalcInfo({
         onPointerEnter={preloadCalcExplanation}
         onFocus={preloadCalcExplanation}
         className={cn(
-          "inline-flex size-11 shrink-0 cursor-pointer items-center justify-center text-muted-foreground transition-colors duration-[180ms] hover:text-primary data-[state=open]:text-primary",
+          "inline-flex size-11 shrink-0 cursor-pointer items-center justify-center text-muted-foreground transition-colors duration-[180ms] hover:text-primary data-[state=open]:text-primary print:hidden",
           className,
         )}
       >

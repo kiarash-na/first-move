@@ -2,7 +2,7 @@ import { Fragment, type ReactNode } from 'react'
 
 /**
  * Renders dictionary copy with two bits of markup: "\n" is a line break and
- * "*text*" is emphasis (the serif italic of the landing headlines).
+ * "*text*" is emphasis (the Archivo italic of the landing headlines).
  */
 export function RichText({ text }: { text: string }) {
   const lines = text.split('\n')

@@ -4,6 +4,9 @@ import type { Resend } from "resend"
 /** Older or newer signatures than this are refused (on top of the library's own check). */
 export const TIMESTAMP_WINDOW_SECONDS = 300
 
+/** Svix message ids become store keys (`evt:{svixId}`), so only their usual characters pass. */
+const MESSAGE_ID = /^[A-Za-z0-9_.:-]{1,128}$/
+
 export type Verified = { ok: true; payload: unknown; svixId: string } | { ok: false }
 
 /**
@@ -15,7 +18,7 @@ export function verifyWebhook(resend: Pick<Resend, "webhooks">, raw: string, hea
   const id = headers.get("svix-id")
   const timestamp = headers.get("svix-timestamp")
   const signature = headers.get("svix-signature")
-  if (!id || !timestamp || !signature || !/^\d{1,12}$/.test(timestamp)) return { ok: false }
+  if (!id || !timestamp || !signature || !MESSAGE_ID.test(id) || !/^\d{1,12}$/.test(timestamp)) return { ok: false }
   if (Math.abs(now / 1000 - Number(timestamp)) > TIMESTAMP_WINDOW_SECONDS) return { ok: false }
   try {
     const payload = resend.webhooks.verify({ payload: raw, headers: { id, timestamp, signature }, webhookSecret: secret })

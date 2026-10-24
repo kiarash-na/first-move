@@ -1,5 +1,6 @@
 // @vitest-environment node
 import { describe, expect, it } from "vitest"
+import startDe from "@/dictionaries/de/start.json"
 import start from "@/dictionaries/en/start.json"
 import DashboardPage, { generateMetadata } from "./page"
 
@@ -14,7 +15,7 @@ describe("start page", () => {
   it("passes the start copy and the six example cards with their verdicts", async () => {
     const tree = await DashboardPage(props("de"))
     expect(tree.props.lang).toBe("de")
-    expect(tree.props.dictionaries.start.paths.title).toBe(start.paths.title)
+    expect(tree.props.dictionaries.start.paths.title).toBe(startDe.paths.title)
     const examples = tree.props.children.props.examples
     expect(examples).toHaveLength(6)
     expect(examples.every((card: { level: string | null }) => card.level !== null)).toBe(true)

@@ -1,10 +1,11 @@
 import { describe, expect, it } from "vitest"
-import { DEFAULT_LOCALE, LOCALES, isLocale, localeParams } from "./locales"
+import { DEFAULT_LOCALE, FALLBACK_LOCALE, LOCALES, isLocale, localeParams } from "./locales"
 
 describe("locales", () => {
-  it("supports en and de with en as default", () => {
+  it("supports en and de, with de as default and en as fallback (D-67, D-32)", () => {
     expect(LOCALES).toEqual(["en", "de"])
-    expect(DEFAULT_LOCALE).toBe("en")
+    expect(DEFAULT_LOCALE).toBe("de")
+    expect(FALLBACK_LOCALE).toBe("en")
   })
 
   it("accepts supported locales", () => {

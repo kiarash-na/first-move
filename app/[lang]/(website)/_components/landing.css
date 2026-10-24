@@ -42,21 +42,6 @@
 .brand__mark {
   width: 31px;
   height: 31px;
-  overflow: visible;
-  fill: none;
-  stroke: var(--accent-cool);
-  stroke-linecap: square;
-  stroke-linejoin: miter;
-  stroke-width: 1.5;
-  transition: transform 220ms cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-.brand:hover .brand__mark {
-  transform: translateY(-2px);
-}
-
-.brand__mark-hot {
-  stroke: var(--accent-hot);
 }
 
 .brand__name {
@@ -290,13 +275,14 @@
   white-space: nowrap;
 }
 
-.title-line--serif {
+.title-line--accent {
   margin-top: 0.05em;
-  font-family: var(--font-editorial);
-  font-size: 1.12em;
+  font-family: var(--font-display);
+  font-size: 1em;
+  font-stretch: 88%;
   font-style: italic;
-  font-weight: 400;
-  letter-spacing: -0.035em;
+  font-weight: 300;
+  letter-spacing: -0.045em;
   line-height: 0.9;
   text-transform: none;
 }

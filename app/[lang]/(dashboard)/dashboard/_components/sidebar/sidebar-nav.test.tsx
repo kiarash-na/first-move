@@ -1,6 +1,7 @@
 import { act, screen, within } from "@testing-library/react"
 import { describe, expect, it, vi } from "vitest"
 import shell from "@/dictionaries/en/shell.json"
+import { testDictionaries } from "../test-utils/dictionaries"
 import { renderDashboard } from "../test-utils/render"
 import { fakeStore } from "../test-utils/fake-store"
 import { emptyProject, exampleProject, projectStore } from "../test-utils/project-store"
@@ -29,9 +30,10 @@ describe("SidebarNav (D-07)", () => {
 
   it("hides the steps of a module that is off and reports navigation", async () => {
     const onNavigate = vi.fn()
+    const de = testDictionaries("de").shell
     renderDashboard(<SidebarNav onNavigate={onNavigate} />, { store: projectStore(emptyProject()).store, lang: "de" })
-    expect(screen.queryByRole("link", { name: shell.nav.items.businessPlan.opportunity })).not.toBeInTheDocument()
-    const area = screen.getByRole("link", { name: shell.nav.items.quickCheck.area })
+    expect(screen.queryByRole("link", { name: de.nav.items.businessPlan.opportunity })).not.toBeInTheDocument()
+    const area = screen.getByRole("link", { name: de.nav.items.quickCheck.area })
     expect(area).toHaveAttribute("href", "/de/dashboard/quick-check/area")
     area.click()
     expect(onNavigate).toHaveBeenCalled()

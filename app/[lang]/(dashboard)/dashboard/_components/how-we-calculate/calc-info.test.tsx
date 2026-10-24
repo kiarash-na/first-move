@@ -19,7 +19,7 @@ describe("CalcInfo (D-33)", () => {
     const panel = screen.getByRole("dialog", { name: dictionary.ui.title })
     // The body loads on first open (lazy-calc-explanation.tsx).
     await within(panel).findByText("EQ-3.3")
-    expect(panel).toHaveTextContent(calc.results.buildingDensity.text)
+    expect(panel).toHaveTextContent(dictionary.results.buildingDensity.text)
     expect(panel).toHaveTextContent("EQ-3.3")
   })
 

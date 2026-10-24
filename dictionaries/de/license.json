@@ -79,7 +79,7 @@
       "id": "fonts",
       "heading": "Schriftarten",
       "body": [
-        "First Move verwendet drei Schriftarten: Archivo, Instrument Serif und IBM Plex Mono. Sie stehen unter der SIL Open Font License 1.1 (SPDX-Kennung `OFL-1.1`), nicht unter der {{license.name}}. Sie werden mit den `@fontsource`-Paketen `@fontsource-variable/archivo`, `@fontsource/instrument-serif` und `@fontsource/ibm-plex-mono` ausgeliefert, die die Lizenztexte enthalten. Die Schriftarten werden von dieser Website selbst bereitgestellt, nicht von einem externen Schriftdienst."
+        "First Move verwendet zwei Schriftarten: Archivo und IBM Plex Mono. Sie stehen unter der SIL Open Font License 1.1 (SPDX-Kennung `OFL-1.1`), nicht unter der {{license.name}}. Sie werden mit den `@fontsource`-Paketen `@fontsource-variable/archivo` und `@fontsource/ibm-plex-mono` ausgeliefert, die die Lizenztexte enthalten. Die Schriftarten werden von dieser Website selbst bereitgestellt, nicht von einem externen Schriftdienst."
       ]
     },
     {

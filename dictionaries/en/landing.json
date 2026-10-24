@@ -4,7 +4,7 @@
     "description": "First Move guides you from a first 5GDHC screening to a viable business model for 5th Generation District Heating and Cooling."
   },
   "header": {
-    "brandLabel": "First Move, back to top",
+    "brandBack": "back to top",
     "brandName": "First Move",
     "brandDescriptor": "5GDHC\nscreening",
     "primaryNav": "Primary navigation",
@@ -282,6 +282,20 @@
       "boundaryLead": "Fast initial screening",
       "boundaryStrong": "not a full feasibility study."
     },
+    "partners": {
+      "label": "Brought to you by",
+      "placeholder": "Your Company",
+      "cta": "Become a partner",
+      "pause": "Pause",
+      "play": "Play",
+      "dialog": {
+        "title": "Become a partner",
+        "body": "Your company’s logo could appear here. Contact us to become a partner of First Move.",
+        "contact": "Contact us",
+        "newTab": "(opens in a new tab)",
+        "close": "Close"
+      }
+    },
     "getStarted": {
       "kicker": "Your project area is the starting point",
       "title": "Make the first\n*move count.*",
@@ -290,7 +304,7 @@
       "secondary": "Explore Business Models"
     },
     "footer": {
-      "brandLabel": "First Move, back to top",
+      "brandBack": "back to top",
       "brandName": "First Move",
       "brandTag": "5GDHC",
       "openSource": "Open source",

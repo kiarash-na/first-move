@@ -1,0 +1,48 @@
+{"id":"en-question-01","lang":"en","kind":"question","subject":"What is 5GDHC?","body":"Hello, what is the difference between fifth-generation district heating and cooling and a classic district heating network?","expect":"allow"}
+{"id":"en-question-02","lang":"en","kind":"question","subject":"Quick Check inputs","body":"Which data do I need for the Quick Check? We are a small municipality and only have rough numbers.","expect":"allow"}
+{"id":"en-question-03","lang":"en","kind":"question","subject":"Heat sources","body":"Can a 5GDHC network use waste heat from a supermarket and a sewage pipe at the same time?","expect":"allow"}
+{"id":"en-question-04","lang":"en","kind":"question","subject":"Business Plan","body":"How does the Business Plan module work, and does it need the Quick Check first?","expect":"allow"}
+{"id":"en-question-05","lang":"en","kind":"question","subject":"Coverage result","body":"Our Quick Check says the heat sources cover 70 percent of the demand. Is that good enough to continue?","expect":"allow"}
+{"id":"en-question-06","lang":"en","kind":"question","subject":"Cooling","body":"Our new office district needs cooling in summer. Does the Quick Check consider cooling demand too?","expect":"allow"}
+{"id":"en-question-07","lang":"en","kind":"question","subject":"Data privacy","body":"Where is my project data stored when I use First Move, and can I delete it?","expect":"allow"}
+{"id":"en-choose-01","lang":"en","kind":"answers","subject":"Re: Your request","body":"Let's start with the Quick Check please.","expect":"allow"}
+{"id":"en-choose-02","lang":"en","kind":"answers","subject":"Re: Your request","body":"Both please: the Quick Check and then the Business Plan.","expect":"allow"}
+{"id":"en-answers-01","lang":"en","kind":"answers","subject":"Re: Quick Check questions","body":"The area is about 12 hectares with 120 buildings, mostly single-family houses from the 1970s.","expect":"allow"}
+{"id":"en-answers-02","lang":"en","kind":"answers","subject":"Re: Quick Check questions","body":"Heat demand is around 2.4 GWh per year. There is a river 300 m from the area and a data centre nearby.","expect":"allow"}
+{"id":"en-answers-03","lang":"en","kind":"answers","subject":"Re: Business Plan","body":"The utility would own the network, and the municipality would provide the land for the energy centre.","expect":"allow"}
+{"id":"en-documents-01","lang":"en","kind":"documents","subject":"Building list","body":"Attached is the list of buildings with their floor areas and construction years.","attachments":[{"name":"buildings.xlsx","type":"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet","size":48213}],"expect":"allow"}
+{"id":"en-documents-02","lang":"en","kind":"documents","subject":"Feasibility study","body":"Here is the feasibility study our consultant wrote in 2024. Can you use it for the Quick Check?","attachments":[{"name":"feasibility-study.pdf","type":"application/pdf","size":1820331}],"expect":"allow"}
+{"id":"en-file-01","lang":"en","kind":"answers","subject":"Re: Project file","body":"Yes, please send me the project file so I can open it in the browser.","expect":"allow"}
+{"id":"en-file-02","lang":"en","kind":"answers","subject":"Re: Project file","body":"No thanks, I don't need the file.","expect":"allow"}
+{"id":"en-stop-01","lang":"en","kind":"answers","subject":"Stop","body":"Please stop and delete everything you stored about my request.","expect":"allow"}
+{"id":"en-small-01","lang":"en","kind":"small_talk","subject":"Thanks","body":"Thank you very much!","expect":"small_talk"}
+{"id":"en-small-02","lang":"en","kind":"small_talk","subject":"Hi","body":"Hi there, good morning.","expect":"small_talk"}
+{"id":"en-small-03","lang":"en","kind":"small_talk","subject":"Re: Results","body":"Great, thanks a lot, have a nice weekend.","expect":"small_talk"}
+{"id":"en-offtopic-01","lang":"en","kind":"off_topic","subject":"Recipe","body":"Can you give me a recipe for lasagne for six people?","expect":"off_topic"}
+{"id":"en-offtopic-02","lang":"en","kind":"off_topic","subject":"Homework","body":"Please write my history essay about the French Revolution, 1,500 words.","expect":"off_topic"}
+{"id":"en-offtopic-03","lang":"en","kind":"off_topic","subject":"Football","body":"Who do you think will win the league this season?","expect":"off_topic"}
+{"id":"en-offtopic-04","lang":"en","kind":"off_topic","subject":"Travel","body":"What are the best places to visit in Lisbon in three days?","expect":"off_topic"}
+{"id":"en-offtopic-05","lang":"en","kind":"off_topic","subject":"Code","body":"Can you write a Python script that sorts my photo folder by date?","expect":"off_topic"}
+{"id":"de-question-01","lang":"de","kind":"question","subject":"Was ist 5GDHC?","body":"Hallo, was unterscheidet ein kaltes Nahwärmenetz der fünften Generation von einem klassischen Fernwärmenetz?","expect":"allow"}
+{"id":"de-question-02","lang":"de","kind":"question","subject":"Daten für den Quick Check","body":"Welche Angaben brauche ich für den Quick Check? Wir haben nur grobe Zahlen aus dem Klimaschutzkonzept.","expect":"allow"}
+{"id":"de-question-03","lang":"de","kind":"question","subject":"Wärmequellen","body":"Kann man Abwärme aus einer Kläranlage und Erdwärmesonden im selben Netz nutzen?","expect":"allow"}
+{"id":"de-question-04","lang":"de","kind":"question","subject":"Businessplan","body":"Wie funktioniert der Businessplan, und muss ich vorher den Quick Check machen?","expect":"allow"}
+{"id":"de-question-05","lang":"de","kind":"question","subject":"Kosten","body":"Wie schätzt der Quick Check die Investitionskosten für das Netz ab?","expect":"allow"}
+{"id":"de-question-06","lang":"de","kind":"question","subject":"Kühlung","body":"Unser Gewerbegebiet braucht im Sommer Kühlung. Wird das im Quick Check berücksichtigt?","expect":"allow"}
+{"id":"de-choose-01","lang":"de","kind":"answers","subject":"Re: Ihre Anfrage","body":"Ich möchte mit dem Quick Check anfangen.","expect":"allow"}
+{"id":"de-choose-02","lang":"de","kind":"answers","subject":"Re: Ihre Anfrage","body":"Bitte nur den Businessplan, den Quick Check haben wir schon gemacht.","expect":"allow"}
+{"id":"de-answers-01","lang":"de","kind":"answers","subject":"Re: Fragen zum Quick Check","body":"Das Gebiet hat etwa 8 Hektar und 85 Gebäude, überwiegend Reihenhäuser aus den 1960er Jahren.","expect":"allow"}
+{"id":"de-answers-02","lang":"de","kind":"answers","subject":"Re: Fragen zum Quick Check","body":"Der Wärmebedarf liegt bei rund 1,8 GWh pro Jahr. In der Nähe gibt es einen Baggersee.","expect":"allow"}
+{"id":"de-answers-03","lang":"de","kind":"answers","subject":"Re: Businessplan","body":"Betreiben soll das Netz eine Bürgerenergiegenossenschaft, die Stadtwerke übernehmen die Abrechnung.","expect":"allow"}
+{"id":"de-documents-01","lang":"de","kind":"documents","subject":"Gebäudeliste","body":"Anbei die Gebäudeliste mit Wohnflächen und Baujahren.","attachments":[{"name":"gebaeude.xlsx","type":"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet","size":39102}],"expect":"allow"}
+{"id":"de-documents-02","lang":"de","kind":"documents","subject":"Wärmeplan","body":"Hier ist unser kommunaler Wärmeplan als PDF. Können Sie die Daten übernehmen?","attachments":[{"name":"waermeplan.pdf","type":"application/pdf","size":2511870}],"expect":"allow"}
+{"id":"de-file-01","lang":"de","kind":"answers","subject":"Re: Projektdatei","body":"Ja, bitte schicken Sie mir die Projektdatei.","expect":"allow"}
+{"id":"de-stop-01","lang":"de","kind":"answers","subject":"Abmelden","body":"Bitte beenden Sie die Unterhaltung und löschen Sie meine Daten.","expect":"allow"}
+{"id":"de-small-01","lang":"de","kind":"small_talk","subject":"Danke","body":"Vielen Dank für die schnelle Antwort!","expect":"small_talk"}
+{"id":"de-small-02","lang":"de","kind":"small_talk","subject":"Hallo","body":"Guten Tag zusammen.","expect":"small_talk"}
+{"id":"de-small-03","lang":"de","kind":"small_talk","subject":"Re: Ergebnis","body":"Super, danke, schönes Wochenende!","expect":"small_talk"}
+{"id":"de-offtopic-01","lang":"de","kind":"off_topic","subject":"Rezept","body":"Haben Sie ein gutes Rezept für Apfelstrudel?","expect":"off_topic"}
+{"id":"de-offtopic-02","lang":"de","kind":"off_topic","subject":"Steuererklärung","body":"Können Sie mir bei meiner Steuererklärung für 2025 helfen?","expect":"off_topic"}
+{"id":"de-offtopic-03","lang":"de","kind":"off_topic","subject":"Urlaub","body":"Wohin sollten wir im Oktober mit Kindern in den Urlaub fahren?","expect":"off_topic"}
+{"id":"de-offtopic-04","lang":"de","kind":"off_topic","subject":"Gedicht","body":"Schreiben Sie mir bitte ein Gedicht zum 60. Geburtstag meiner Mutter.","expect":"off_topic"}
+{"id":"de-offtopic-05","lang":"de","kind":"off_topic","subject":"Auto","body":"Welches Elektroauto ist für eine Familie mit drei Kindern am besten?","expect":"off_topic"}

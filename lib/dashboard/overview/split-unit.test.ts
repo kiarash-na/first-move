@@ -10,7 +10,8 @@ describe("splitUnit", () => {
 
   it("keeps text without a space whole", () => {
     expect(splitUnit("126%")).toEqual({ number: "126%", unit: "" })
-    expect(splitUnit(formatEur(1_234_567, "en", { compact: true }))).toEqual({ number: "€1.2M", unit: "" })
+    // `€1.2M` up to CLDR 47, `€1.2m` from CLDR 48 (en-GB): either way one piece without a unit.
+    expect(splitUnit(formatEur(1_234_567, "en", { compact: true }))).toEqual({ number: expect.stringMatching(/^€1\.2[Mm]$/), unit: "" })
   })
 
   it("splits a German euro amount at its symbol", () => {

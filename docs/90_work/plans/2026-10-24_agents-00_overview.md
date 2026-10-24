@@ -61,7 +61,7 @@ No challenge requirement asks for AI. This builds the ingestion agent that D-05 
 | `emails/` | React Email templates (JSX rendered on the server; not a route, not a layout component) |
 | `dictionaries/{en,de}/assistant.json`, `mail.json` | All copy (D-32); DE files start empty |
 | `content/docs/{en,de}/` | Public docs (D-22, D-57) |
-| `scripts/gen-knowledge.mjs`, `scripts/mail-agent-doctor.mjs`, `scripts/mail-agent-eval.mjs` | Knowledge index, read-only setup check, guard evaluation |
+| `scripts/gen-knowledge.mjs`, `scripts/mail-agent-doctor.mjs`, `lib/mail-agent/guard/eval/guard.live.test.ts` | Knowledge index, read-only setup check, guard evaluation (a live vitest file, A06 note) |
 
 **Boundary** (ESLint `no-restricted-imports` plus a Vitest import scan, phase 01): core (`lib/project`, `lib/quick-check`, `lib/business-plan`, `lib/storage`, `lib/store`, `lib/i18n`, `lib/dashboard`, `lib/legal`, `lib/examples`, `components/`, existing routes) never imports `lib/ai`, `lib/assistant`, `lib/mail-agent`, `workflows`, `emails` or `_agent`. `lib/assistant` and `lib/mail-agent` never import each other. `lib/ai` imports core only. Core gets only these additive touch points: the `provenance` section (schema v2), an `applyPatch` provenance option, a store action, an AI chip in field components, the launcher in `DashboardShell`, the `assistant` dictionary area in the dashboard layout, and the collapsible sidebar.
 

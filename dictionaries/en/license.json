@@ -79,7 +79,7 @@
       "id": "fonts",
       "heading": "Fonts",
       "body": [
-        "First Move uses three typefaces: Archivo, Instrument Serif and IBM Plex Mono. They are licensed under the SIL Open Font License 1.1 (SPDX identifier `OFL-1.1`), not under the {{license.name}}. They are delivered with the `@fontsource` packages `@fontsource-variable/archivo`, `@fontsource/instrument-serif` and `@fontsource/ibm-plex-mono`, which carry the licence texts. The fonts are served from this site, not from an external font service."
+        "First Move uses two typefaces: Archivo and IBM Plex Mono. They are licensed under the SIL Open Font License 1.1 (SPDX identifier `OFL-1.1`), not under the {{license.name}}. They are delivered with the `@fontsource` packages `@fontsource-variable/archivo` and `@fontsource/ibm-plex-mono`, which carry the licence texts. The fonts are served from this site, not from an external font service."
       ]
     },
     {

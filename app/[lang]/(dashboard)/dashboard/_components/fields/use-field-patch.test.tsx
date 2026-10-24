@@ -20,6 +20,6 @@ describe("useFieldPatch", () => {
     expect(current().buildings.total).toBe(3)
     const [error] = result.current.patch({ "buildings.total": 200_000 })
     expect(error).toMatchObject({ path: "buildings.total", code: "max" })
-    expect(result.current.message(error)).toBe("Enter 100.000 or less.")
+    expect(result.current.message(error)).toBe("Geben Sie 100.000 oder weniger ein.")
   })
 })

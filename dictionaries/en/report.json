@@ -1,0 +1,47 @@
+{
+  "meta": {
+    "title": "Report"
+  },
+  "toolbar": {
+    "label": "Report actions",
+    "back": "Back to the overview",
+    "print": "Print or save as PDF",
+    "hint": "In the print dialog, choose “Save as PDF” as the destination."
+  },
+  "header": {
+    "eyebrow": "Screening report",
+    "created": "Created on {date}"
+  },
+  "sections": {
+    "quickCheck": "Quick Check",
+    "inputs": "Inputs",
+    "inputsLead": "The values entered for this project, step by step.",
+    "parameters": "Parameters used",
+    "parametersLead": "The default values of Tables 4 to 6, or your own values where you changed them on the Assumptions page.",
+    "calculation": "How the figures are calculated",
+    "calculationLead": "The equations of the methodology behind each input step.",
+    "businessPlan": "Business Plan",
+    "readiness": "Pitch readiness"
+  },
+  "inputs": {
+    "yes": "Yes",
+    "no": "No",
+    "empty": {
+      "not-entered": "Not entered",
+      "not-selected": "Not selected",
+      "estimated": "Estimated",
+      "default": "Default value"
+    }
+  },
+  "businessPlan": {
+    "progress": "{done} of {total} filled in",
+    "empty": "Nothing filled in yet.",
+    "row": "Entry {number}"
+  },
+  "readiness": {
+    "summary": "{met} of {total} checks covered"
+  },
+  "footer": {
+    "created": "Created with First Move ({site}) on {date}."
+  }
+}

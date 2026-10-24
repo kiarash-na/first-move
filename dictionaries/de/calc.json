@@ -1,5 +1,132 @@
 {
+  "steps": {
+    "area": "Aus der Anzahl der Gebäude und der Fläche des Projektgebiets ergibt sich die Gebäudedichte in Gebäuden pro Hektar. Wenn Sie keine Netzlänge eingeben, schätzt das Werkzeug die Länge aus dieser Dichte. Die Anzahl der Gebäude bestimmt außerdem die Investition in Wärmepumpen und die Anschlussgebühren.",
+    "buildings": "Die Anteile teilen die Gebäude nach Typen und Baualtersklassen auf. Jede Gruppe erhält die Standardwerte für Wärmebedarf, Kältebedarf und Nutzfläche aus den Tabellen 1 bis 3; zusammen ergeben sie den gesamten jährlichen Bedarf. Für Industrie gibt es keine Standardwerte: Der Industrieanteil fügt keinen Bedarf hinzu und führt zu „Weitere Analyse erforderlich“.",
+    "sources": "Jede gewählte Quelle fügt die jährliche Standardkapazität ihres Potenzials hinzu (Tabellen 4 und 5). Die Wärmepumpe macht daraus gelieferte Wärme und Kälte, und davon hängen der Deckungsgrad, die Installationskosten und die Stromkosten ab. Eine Quelle mit unbekanntem Potenzial fügt nichts hinzu und führt zu „Weitere Analyse erforderlich“.",
+    "options": "Ein bekannter Wärme- oder Kältebedarf ersetzt den geschätzten Gesamtbedarf, und eine bekannte Netzlänge ersetzt die geschätzte Länge. PV senkt die Stromkosten der Wärmepumpen um die PV-Kostenreduktion aus Tabelle 6.",
+    "assumptions": "Ein geänderter Parameter ersetzt den Standardwert der Tabellen 4 bis 6 in jeder Gleichung, die ihn verwendet. Die Ergebnisse tragen dann das Kennzeichen „Eigene Parameter“."
+  },
+  "results": {
+    "heatingDemandKwh": {
+      "text": "Für jeden Gebäudetyp und jede Baualtersklasse die Anzahl der Gebäude multipliziert mit dem Standard-Wärmebedarf pro m² und der Standard-Nutzfläche, summiert über alle Gruppen.",
+      "manual": "Sie haben den gesamten Wärmebedarf eingegeben, daher ersetzt er die Schätzung."
+    },
+    "coolingDemandKwh": {
+      "text": "Für jeden Gebäudetyp und jede Baualtersklasse die Anzahl der Gebäude multipliziert mit dem Standard-Kältebedarf pro m² und der Standard-Nutzfläche, summiert über alle Gruppen.",
+      "manual": "Sie haben den gesamten Kältebedarf eingegeben, daher ersetzt er die Schätzung."
+    },
+    "buildingDensity": {
+      "text": "Die Anzahl der Gebäude pro Hektar Projektgebiet."
+    },
+    "densityCategory": {
+      "text": "Ergibt sich aus der Klasse der Gebäudedichte nach Tabelle 8: Geringe Dichte bedeutet ländlich, mittlere vorstädtisch, hohe städtisch."
+    },
+    "specificNetworkLength": {
+      "text": "Meter Netz pro Hektar, geschätzt aus der Gebäudedichte mit dem vorgegebenen Zusammenhang der Methodik."
+    },
+    "networkLengthM": {
+      "text": "Die spezifische Netzlänge multipliziert mit der Fläche des Projektgebiets in Hektar.",
+      "manual": "Sie haben die Netzlänge eingegeben, daher ersetzt sie die Schätzung."
+    },
+    "heatDensityMwhPerM": {
+      "text": "Der gesamte Wärmebedarf geteilt durch die Netzlänge. Die Einstufung erfolgt in MWh pro Meter (Tabelle 9)."
+    },
+    "heatingSupplyKwh": {
+      "text": "Für jede gewählte Quelle die Standardkapazität ihres Potenzials plus den Anteil, den die Wärmepumpe hinzufügt (COP), summiert über alle Quellen. Solarthermie arbeitet ohne Wärmepumpe."
+    },
+    "coolingSupplyKwh": {
+      "text": "Für jede gewählte Quelle die Standard-Kühlkapazität ihres Potenzials, angepasst um den COP, summiert über alle Quellen. Abwärme und Solarthermie liefern keine Kälte."
+    },
+    "heatingCoverage": {
+      "text": "Das Wärmeangebot geteilt durch den Wärmebedarf: der Anteil des jährlichen Wärmebedarfs, den die gewählten Quellen decken können."
+    },
+    "coolingCoverage": {
+      "text": "Das Kälteangebot geteilt durch den Kältebedarf: der Anteil des jährlichen Kältebedarfs, den die gewählten Quellen decken können."
+    },
+    "chRatio": {
+      "text": "Der kleinere Wert von Wärme- und Kältebedarf geteilt durch den größeren. Je näher das Ergebnis an eins liegt, desto ausgeglichener sind die Bedarfe."
+    },
+    "heatingRevenue": {
+      "text": "Der Grundpreis Wärme für jeden m² Nutzfläche pro Jahr plus der Arbeitspreis Wärme für jede kWh Wärmebedarf."
+    },
+    "coolingRevenue": {
+      "text": "Der Grundpreis Kälte für jeden m² Nutzfläche pro Jahr plus der Arbeitspreis Kälte für jede kWh Kältebedarf."
+    },
+    "connectionFeeRevenue": {
+      "text": "Die einmalige Anschlussgebühr jedes Gebäudes, mit dem Annuitätenfaktor auf die Abschreibungsdauer verteilt."
+    },
+    "overallRevenue": {
+      "text": "Erlöse aus Wärme, Erlöse aus Kälte und die annualisierten Anschlussgebühren."
+    },
+    "networkInvestment": {
+      "text": "Die Netzbaukosten pro Meter multipliziert mit der Netzlänge."
+    },
+    "supplyInvestment": {
+      "text": "Für jede gewählte Quelle ihre Installationskosten pro kWh/a multipliziert mit ihrem Wärmeangebot, summiert über alle Quellen. Umgebungsluft verursacht keine Installationskosten, da die Wärmepumpen gesondert gezählt werden."
+    },
+    "heatPumpInvestment": {
+      "text": "Die Investition in eine Wärmepumpe multipliziert mit der Anzahl der Gebäude."
+    },
+    "overallInvestment": {
+      "text": "Wärmepumpen, Netz und die Installationen aller Quellen. Die Installationen werden nur einmal gezählt."
+    },
+    "annuityFactor": {
+      "text": "Wandelt eine Investition in gleich hohe jährliche Zahlungen über die Abschreibungsdauer zum Zinssatz um."
+    },
+    "annualizedCosts": {
+      "text": "Die Gesamtinvestition multipliziert mit dem Annuitätenfaktor: ihre Kosten pro Jahr."
+    },
+    "electricityCosts": {
+      "text": "Der Strom, den die Wärmepumpen brauchen (Angebot geteilt durch COP), multipliziert mit dem Strompreis. Mit PV sinken die Kosten um die PV-Kostenreduktion."
+    },
+    "operationAndMaintenance": {
+      "text": "Ein fester Anteil der Gesamtinvestition pro Jahr."
+    },
+    "annualCosts": {
+      "text": "Annualisierte Investition, Stromkosten sowie Kosten für Betrieb und Wartung."
+    },
+    "economicRatio": {
+      "text": "Die Gesamterlöse geteilt durch die jährlichen Kosten. Die wirtschaftliche Bewertung stuft dieses Verhältnis als günstig, unklar oder deutlich ungünstig ein."
+    },
+    "level": {
+      "text": "Das Gesamtergebnis verbindet den Deckungsgrad, die Gebäude- und Wärmedichte und die wirtschaftliche Bewertung (Tabelle 11). Industrie im Projektgebiet oder eine Quelle mit unbekanntem Potenzial führt immer zu „Weitere Analyse erforderlich“."
+    }
+  },
+  "formulas": {
+    "eq-03-01": "Anzahl der Gebäude je Typ und Baualtersklasse",
+    "eq-03-02a": "Jährlicher Wärmebedarf je Gebäudegruppe",
+    "eq-03-02b": "Jährlicher Kältebedarf je Gebäudegruppe",
+    "eq-03-02c": "Gesamter jährlicher Wärmebedarf",
+    "eq-03-02d": "Gesamter jährlicher Kältebedarf",
+    "eq-03-03": "Gebäudedichte",
+    "eq-03-04a": "Spezifische Netzlänge",
+    "eq-03-04b": "Gesamte Netzlänge",
+    "eq-03-05": "Wärmedichte",
+    "eq-03-06a": "Deckungsgrad Wärme",
+    "eq-03-06b": "Deckungsgrad Kälte",
+    "eq-03-07": "Kälte-Wärme-Verhältnis",
+    "eq-03-08a": "Wärmeangebot je Quelle",
+    "eq-03-08b": "Kälteangebot je Quelle",
+    "eq-03-09a": "Jährliche Erlöse aus Wärme",
+    "eq-03-09b": "Jährliche Erlöse aus Kälte",
+    "eq-03-09c": "Gesamterlöse",
+    "eq-03-10a": "Netzinvestition",
+    "eq-03-10b": "Installationsinvestition je Quelle",
+    "eq-03-10c": "Gesamte Installationsinvestition",
+    "eq-03-10d": "Gesamtinvestition",
+    "eq-03-10e": "Annuitätenfaktor",
+    "eq-03-10f": "Annualisierte Kosten",
+    "eq-03-11": "Stromkosten",
+    "eq-03-12": "Kosten für Betrieb und Wartung",
+    "oq-06": "Stromkosten mit PV",
+    "oq-12": "Kälte-Wärme-Verhältnis",
+    "oq-17": "Gesamtinvestition, Installationen nur einmal gezählt",
+    "oq-21": "Wirtschaftlichkeitskennzahl"
+  },
   "ui": {
-    "title": "So rechnen wir"
+    "title": "So rechnen wir",
+    "info": "So berechnen wir das",
+    "tables": "Standardwerte",
+    "noEquation": "Die Methodik nennt für diesen Wert keine Gleichung; verwendet wird die folgende geklärte Antwort."
   }
 }

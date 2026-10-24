@@ -1,0 +1,47 @@
+{
+  "meta": {
+    "title": "Bericht"
+  },
+  "toolbar": {
+    "label": "Aktionen für den Bericht",
+    "back": "Zurück zur Übersicht",
+    "print": "Drucken oder als PDF speichern",
+    "hint": "Wählen Sie im Druckdialog „Als PDF speichern“ als Ziel."
+  },
+  "header": {
+    "eyebrow": "Screening-Bericht",
+    "created": "Erstellt am {date}"
+  },
+  "sections": {
+    "quickCheck": "Quick Check",
+    "inputs": "Eingaben",
+    "inputsLead": "Die für dieses Projekt eingegebenen Werte, Schritt für Schritt.",
+    "parameters": "Verwendete Parameter",
+    "parametersLead": "Die Standardwerte der Tabellen 4 bis 6 oder Ihre eigenen Werte, wo Sie sie auf der Seite Annahmen geändert haben.",
+    "calculation": "So werden die Werte berechnet",
+    "calculationLead": "Die Gleichungen der Methodik hinter jedem Eingabeschritt.",
+    "businessPlan": "Business Plan",
+    "readiness": "Pitch-Reife"
+  },
+  "inputs": {
+    "yes": "Ja",
+    "no": "Nein",
+    "empty": {
+      "not-entered": "Nicht eingegeben",
+      "not-selected": "Nicht ausgewählt",
+      "estimated": "Geschätzt",
+      "default": "Standardwert"
+    }
+  },
+  "businessPlan": {
+    "progress": "{done} von {total} ausgefüllt",
+    "empty": "Noch nichts ausgefüllt.",
+    "row": "Eintrag {number}"
+  },
+  "readiness": {
+    "summary": "{met} von {total} Punkten abgedeckt"
+  },
+  "footer": {
+    "created": "Erstellt mit First Move ({site}) am {date}."
+  }
+}

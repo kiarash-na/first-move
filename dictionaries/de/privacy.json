@@ -6,7 +6,7 @@
   "title": "Datenschutzerklärung",
   "intro": "Diese Datenschutzerklärung erläutert, welche personenbezogenen Daten verarbeitet werden, wenn Sie First Move unter {{site.domain}} nutzen oder uns schreiben, zu welchen Zwecken und auf welcher Rechtsgrundlage dies geschieht und welche Rechte Sie haben. Sie enthält die Informationen nach Art. 13 und 14 der Datenschutz-Grundverordnung (DSGVO, Verordnung (EU) 2016/679). Personenbezogene Daten sind alle Informationen, die sich auf eine identifizierte oder identifizierbare Person beziehen (Art. 4 Nr. 1 DSGVO).",
   "updated": "2026-10-24",
-  "version": "1.1",
+  "version": "1.2",
   "sections": [
     {
       "id": "summary",
@@ -45,7 +45,7 @@
         "- Angaben zu Ihrem Browser und Gerät (User-Agent);",
         "- den Antwortstatus, zum Beispiel ob die Seite ausgeliefert wurde.",
         "**Zweck**: die Website an Sie auszuliefern und sie sicher zu betreiben.",
-        "**Sprache**: Wenn Sie die Website ohne Sprachwahl öffnen, liest sie die von Ihrem Browser bevorzugte Sprache (den `Accept-Language`-Header) und leitet Sie zur englischen oder deutschen Fassung weiter. Das Cookie `NEXT_LOCALE` merkt sich danach die Sprache (en oder de) und wird bei späteren Anfragen mitgesendet. Es enthält keine personenbezogenen Daten. Einzelheiten finden Sie in der [Cookie-Richtlinie](/cookies).",
+        "**Sprache**: Wenn Sie die Website ohne Sprachwahl öffnen, leitet sie Sie zur deutschen Fassung weiter, oder zur englischen, wenn Sie zuvor Englisch gewählt haben. Die Spracheinstellungen Ihres Browsers liest sie nicht aus. Das Cookie `NEXT_LOCALE` merkt sich danach die Sprache (en oder de) und wird bei späteren Anfragen mitgesendet. Es enthält keine personenbezogenen Daten. Einzelheiten finden Sie in der [Cookie-Richtlinie](/cookies).",
         "Alle Dateien, die die Website benötigt, einschließlich der Schriften, stammen von derselben Website. Beim Laden einer Seite wird kein anderer Server kontaktiert.",
         "**Rechtsgrundlage**: Art. 6 Abs. 1 lit. f DSGVO. Unser berechtigtes Interesse besteht darin, die Website zuverlässig und sicher bereitzustellen.",
         "**Empfänger**: {{hosting.name}} verarbeitet diese Daten in unserem Auftrag als Auftragsverarbeiter (Art. 28 DSGVO).",

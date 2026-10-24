@@ -36,26 +36,27 @@ describe("proxy matcher", () => {
 })
 
 describe("proxy redirect", () => {
-  it("redirects / to /en by default and stores the choice", () => {
+  it("redirects / to /de by default and stores the choice (D-67)", () => {
     const response = proxy(request("/"))
-    expect(getRedirectUrl(response)).toBe("http://localhost:3000/en")
-    expect(response.cookies.get("NEXT_LOCALE")?.value).toBe("en")
+    expect(getRedirectUrl(response)).toBe("http://localhost:3000/de")
+    expect(response.cookies.get("NEXT_LOCALE")?.value).toBe("de")
     expect(response.headers.get("set-cookie")).toMatch(/Path=\/.*Max-Age=31536000|Max-Age=31536000.*Path=\//)
   })
 
-  it("follows Accept-Language and keeps path and query", () => {
-    const response = proxy(request("/dashboard/overview?x=1", { "accept-language": "de-DE,de;q=0.9,en;q=0.8" }))
+  it("does not follow the browser language, and keeps path and query", () => {
+    const response = proxy(request("/dashboard/overview?x=1", { "accept-language": "en-US,en;q=0.9" }))
     expect(getRedirectUrl(response)).toBe("http://localhost:3000/de/dashboard/overview?x=1")
     expect(response.cookies.get("NEXT_LOCALE")?.value).toBe("de")
   })
 
-  it("prefers the NEXT_LOCALE cookie over the browser language", () => {
-    const response = proxy(request("/", { "accept-language": "en-US", cookie: "NEXT_LOCALE=de" }))
-    expect(getRedirectUrl(response)).toBe("http://localhost:3000/de")
+  it("follows a saved English choice", () => {
+    const response = proxy(request("/", { "accept-language": "de-DE", cookie: "NEXT_LOCALE=en" }))
+    expect(getRedirectUrl(response)).toBe("http://localhost:3000/en")
+    expect(response.cookies.get("NEXT_LOCALE")?.value).toBe("en")
   })
 
   it("ignores an unsupported cookie value", () => {
     const response = proxy(request("/docs", { cookie: "NEXT_LOCALE=fr" }))
-    expect(getRedirectUrl(response)).toBe("http://localhost:3000/en/docs")
+    expect(getRedirectUrl(response)).toBe("http://localhost:3000/de/docs")
   })
 })

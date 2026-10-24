@@ -1,7 +1,8 @@
 // @vitest-environment node
 import type { ReactElement } from "react"
 import { describe, expect, it } from "vitest"
-import assumptions from "@/dictionaries/en/assumptions.json"
+import assumptionsDe from "@/dictionaries/de/assumptions.json"
+import shellDe from "@/dictionaries/de/shell.json"
 import shell from "@/dictionaries/en/shell.json"
 import { I18nProvider } from "../_components/i18n-provider"
 import { ProjectGate } from "../_components/project-gate"
@@ -18,9 +19,9 @@ describe("assumptions page", () => {
     const tree = (await AssumptionsPage(props("de"))) as Element
     expect(tree.type).toBe(I18nProvider)
     expect(tree.props.lang).toBe("de")
-    expect((tree.props.dictionaries as { assumptions: unknown }).assumptions).toMatchObject({ lead: assumptions.lead })
+    expect((tree.props.dictionaries as { assumptions: unknown }).assumptions).toMatchObject({ lead: assumptionsDe.lead })
     const [header, gate] = (tree.props.children as unknown as ReactElement<{ children: Element[] }>).props.children
-    expect(header.props).toMatchObject({ title: shell.nav.items.assumptions, tone: "cool" })
+    expect(header.props).toMatchObject({ title: shellDe.nav.items.assumptions, tone: "cool" })
     expect(gate.type).toBe(ProjectGate)
     expect(gate.props.module).toBe("quickCheck")
     expect(gate.props.children.type).toBe(AssumptionsView)

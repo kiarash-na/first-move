@@ -31,7 +31,7 @@ describe("ShareSumBar (R-03)", () => {
     const onClear = vi.fn()
     renderBar(sum(62.5, "under"), "de", onClear)
     expect(screen.getByText("62,5 %")).toBeInTheDocument()
-    await userEvent.click(screen.getByRole("button", { name: quickCheck.ui.buildings.clear }))
+    await userEvent.click(screen.getByRole("button", { name: testDictionaries("de")["quick-check"].ui.buildings.clear }))
     expect(onClear).toHaveBeenCalledOnce()
   })
 })

@@ -3,6 +3,7 @@ import userEvent from "@testing-library/user-event"
 import { afterEach, describe, expect, it } from "vitest"
 import { formatEur } from "@/lib/i18n/format"
 import { run } from "@/lib/quick-check"
+import { testDictionaries } from "../../../_components/test-utils/dictionaries"
 import { renderDashboard } from "../../../_components/test-utils/render"
 import { openProject, stopTabs } from "../test-utils/open-project"
 import { QcEconomicsPanel } from "./qc-economics-panel"
@@ -18,7 +19,7 @@ describe("QcEconomicsPanel (ALG-09, D-27)", () => {
     renderDashboard(<QcEconomicsPanel />, { store: tab.store, lang })
     const result = run(tab.store.getState().active!)
     if (result.status !== "complete") throw new Error("expected a result")
-    const region = screen.getByRole("region", { name: "From the Quick Check" })
+    const region = screen.getByRole("region", { name: testDictionaries(lang)["business-plan"].qc.title })
     expect(region).toHaveTextContent(spaces(formatEur(result.values.overallRevenue, lang, { compact: true })))
     expect(region).toHaveTextContent(spaces(formatEur(result.values.overallInvestment, lang, { compact: true })))
     expect(region.querySelectorAll("input, textarea")).toHaveLength(0)

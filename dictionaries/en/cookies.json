@@ -6,7 +6,7 @@
   "title": "Cookie Policy",
   "intro": "This policy explains which cookie and which other browser storage First Move uses, what each one is for, and how you can delete or block them.",
   "updated": "2026-10-24",
-  "version": "1.1",
+  "version": "1.2",
   "sections": [
     {
       "id": "summary",
@@ -52,7 +52,7 @@
       "body": [
         "`NEXT_LOCALE` is the only cookie First Move sets. It holds the language code `en` or `de` and nothing else. It applies to the whole site (path `/`) and is set with `SameSite=Lax`, which limits when your browser sends it along with requests started from other sites.",
         "The site sets or renews it:",
-        "- when you open an address without a language, for example {{site.url}}: the site redirects you to the English or German version, choosing your saved language if there is one, otherwise the language your browser asks for (its `Accept-Language` header), otherwise English;",
+        "- when you open an address without a language, for example {{site.url}}: the site redirects you to the English or German version, choosing your saved language if there is one, otherwise German;",
         "- when you switch the language with the language switch.",
         "This means the cookie can be set on your first visit, before you choose a language yourself. Each time it is set, its lifetime of one year starts again. It lets the site open in your language when you come back.",
         "Your browser sends the cookie with its requests to {{site.domain}}, as it does with every cookie. We use it for nothing else."

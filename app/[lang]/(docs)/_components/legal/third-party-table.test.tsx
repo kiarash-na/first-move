@@ -11,6 +11,6 @@ describe("ThirdPartyTable", () => {
     const region = screen.getByRole("region", { name: en.thirdParty.caption })
     expect(within(region).getAllByRole("row")).toHaveLength(THIRD_PARTY.length + 1)
     expect(within(region).getByRole("link", { name: "next" })).toHaveAttribute("href", "https://nextjs.org")
-    expect(within(region).getAllByText("OFL-1.1")).toHaveLength(3)
+    expect(within(region).getAllByText("OFL-1.1")).toHaveLength(2)
   })
 })
