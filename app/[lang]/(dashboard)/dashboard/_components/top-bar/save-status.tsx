@@ -31,7 +31,12 @@ export function SaveStatus({ className }: { className?: string }) {
   const status = useStoreState(selectSaveStatus)
 
   if (phase !== "ready") {
-    return <Skeleton className={cn("h-4 w-28", className)} aria-label={shell.loading} />
+    // Same height as the loaded status (min-h-11), so the bar does not move when the store is ready.
+    return (
+      <span className={cn("inline-flex min-h-11 items-center", className)}>
+        <Skeleton className="h-4 w-28" aria-label={shell.loading} />
+      </span>
+    )
   }
 
   const copy = shell.storage

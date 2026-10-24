@@ -23,7 +23,7 @@ describe("MobileNav", () => {
     await userEvent.click(screen.getByRole("button", { name: shell.nav.open }))
     const sheet = screen.getByRole("dialog", { name: shell.nav.title })
     expect(sheet).toBeInTheDocument()
-    expect(screen.getByRole("link", { name: common.language.names.de })).toBeInTheDocument()
+    expect(screen.getByRole("link", { name: `${common.language.short.de}, ${common.language.names.de}` })).toBeInTheDocument()
     expect(screen.getByRole("button", { name: common.theme.switchToLight })).toBeInTheDocument()
     await userEvent.click(screen.getByRole("link", { name: shell.nav.start }))
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument()

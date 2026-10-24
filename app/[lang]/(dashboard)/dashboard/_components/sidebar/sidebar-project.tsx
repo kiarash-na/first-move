@@ -14,12 +14,13 @@ export function SidebarProject() {
   const active = useStoreState((state) => state.active)
 
   return (
-    <div data-slot="sidebar-project" className="flex flex-col gap-2 border-b px-5 py-5">
+    <div data-slot="sidebar-project" className="flex min-h-[10.65rem] flex-col gap-2 border-b px-5 py-5">
       <p className="font-mono text-xs tracking-[0.075em] text-muted-foreground uppercase">{shell.nav.currentProject}</p>
       {phase !== "ready" ? (
         <div className="flex flex-col gap-2" aria-busy="true" aria-label={shell.loading}>
-          <Skeleton className="h-6 w-40" />
-          <Skeleton className="h-5 w-28" />
+          <Skeleton className="h-12 w-40" />
+          <Skeleton className="h-6 w-48" />
+          <Skeleton className="h-4 w-24" />
         </div>
       ) : active ? (
         <>

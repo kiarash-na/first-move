@@ -50,6 +50,31 @@ describe("ProjectMenu (D-08)", () => {
     expect(await screen.findByRole("dialog", { name: "Rename project" })).toBeInTheDocument()
   })
 
+  it("gives focus back to the menu button when a dialog closes (keyboard users keep their place)", async () => {
+    await setup()
+    const trigger = screen.getByRole("button", { name: /Project menu/ })
+    await userEvent.click(trigger)
+    await userEvent.click(screen.getByRole("menuitem", { name: "Rename" }))
+    await screen.findByRole("dialog", { name: "Rename project" })
+    await userEvent.keyboard("{Escape}")
+    await waitFor(() => expect(screen.queryByRole("dialog")).not.toBeInTheDocument())
+    await waitFor(() => expect(trigger).toHaveFocus())
+  })
+
+  it("keeps one fixed-width button while the store loads, so the top bar does not shift", () => {
+    const tab = testTab()
+    tabs.push(tab)
+    renderDashboard(
+      <ImportProvider>
+        <ProjectMenu />
+      </ImportProvider>,
+      { store: tab.store },
+    )
+    const loading = screen.getByRole("button", { name: "Project menu" })
+    expect(loading).toHaveClass("lg:w-64")
+    expect(loading).toHaveTextContent("")
+  })
+
   it("closes the project and goes to the start screen", async () => {
     const store = await setup()
     await userEvent.click(screen.getByRole("button", { name: /Project menu/ }))
@@ -69,7 +94,7 @@ describe("ProjectMenu (D-08)", () => {
 
   it("disables project actions without an open project", async () => {
     await setup("en", false)
-    await userEvent.click(screen.getByRole("button", { name: "Project menu" }))
+    await userEvent.click(screen.getByRole("button", { name: "Project menu: No project open" }))
     expect(screen.getByRole("menuitem", { name: "Rename" })).toHaveAttribute("aria-disabled", "true")
     expect(screen.queryByRole("menuitem", { name: "Delete" })).not.toBeInTheDocument()
   })

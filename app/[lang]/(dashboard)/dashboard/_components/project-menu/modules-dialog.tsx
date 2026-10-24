@@ -13,7 +13,16 @@ import { useStore, useStoreState } from "../store-provider"
 const MODULES = ["quickCheck", "businessPlan"] as const satisfies readonly (keyof ProjectModules)[]
 
 /** Turns the open project's modules on or off (D-01); data of a module that is off is kept. */
-export function ModulesDialog({ open, onOpenChange }: { open: boolean; onOpenChange: (open: boolean) => void }) {
+export function ModulesDialog({
+  open,
+  onOpenChange,
+  onCloseAutoFocus,
+}: {
+  open: boolean
+  onOpenChange: (open: boolean) => void
+  /** Where focus goes when the dialog closes (the menu item that opened it is gone). */
+  onCloseAutoFocus?: (event: Event) => void
+}) {
   const shell = useDictionary("shell")
   const lang = useLocale()
   const store = useStore()
@@ -35,7 +44,7 @@ export function ModulesDialog({ open, onOpenChange }: { open: boolean; onOpenCha
         onOpenChange(next)
       }}
     >
-      <DialogContent closeLabel={shell.close}>
+      <DialogContent closeLabel={shell.close} onCloseAutoFocus={onCloseAutoFocus}>
         <DialogHeader>
           <DialogTitle>{shell.modules.title}</DialogTitle>
           <DialogDescription>{copy.help}</DialogDescription>

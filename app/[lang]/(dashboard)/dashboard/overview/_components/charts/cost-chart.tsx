@@ -6,7 +6,7 @@ import { ChartContainer, ChartTooltip, ChartTooltipContent, type ChartConfig } f
 import type { CostStructure } from "@/lib/dashboard/overview"
 import { formatEur, formatPercent } from "@/lib/i18n/format"
 import { useDictionary, useLocale } from "../../../_components/i18n-provider"
-import { BAR_GAP, BAR_SIZE, barChartHeight, CATEGORY_AXIS, GRID, niceMax, SERIES, VALUE_AXIS } from "../../../_components/charts"
+import { BAR_GAP, BAR_SIZE, barChartHeight, barMotion, CATEGORY_AXIS, GRID, niceMax, SERIES, VALUE_AXIS } from "../../../_components/charts"
 
 type Row = { name: string; value: number; label: string }
 
@@ -20,7 +20,7 @@ function CostBars({ id, rows, unitSuffix, label }: { id: string; rows: Row[]; un
         <YAxis {...CATEGORY_AXIS} dataKey="name" width={112} />
         <XAxis {...VALUE_AXIS} domain={[0, niceMax(Math.max(...rows.map((row) => row.value)))]} tickFormatter={(value: number) => formatEur(value, lang, { compact: true })} />
         <ChartTooltip cursor={{ fill: "var(--muted)", fillOpacity: 0.5 }} content={<ChartTooltipContent valueFormatter={(value) => `${formatEur(value, lang)}${unitSuffix}`} />} />
-        <Bar dataKey="value" fill="var(--color-value)" barSize={BAR_SIZE} {...BAR_GAP}>
+        <Bar dataKey="value" fill="var(--color-value)" barSize={BAR_SIZE} {...BAR_GAP} {...barMotion()}>
           <LabelList dataKey="label" position="right" className="fill-foreground font-mono text-xs" />
         </Bar>
       </BarChart>

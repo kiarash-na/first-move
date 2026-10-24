@@ -1,5 +1,5 @@
-import { describe, expect, it } from "vitest"
-import { barChartHeight, BAR_SIZE, niceMax } from "./chart-style"
+import { afterEach, describe, expect, it, vi } from "vitest"
+import { barChartHeight, barMotion, BAR_SIZE, niceMax } from "./chart-style"
 
 describe("chart style", () => {
   it("keeps bars within the 24px mark spec", () => {
@@ -19,5 +19,28 @@ describe("chart style", () => {
     expect(niceMax(0.9)).toBe(1)
     expect(niceMax(0)).toBe(1)
     expect(niceMax(Number.NaN)).toBe(1)
+  })
+
+  describe("bar motion", () => {
+    afterEach(() => vi.unstubAllGlobals())
+
+    function stubMotion(reduce: boolean) {
+      vi.stubGlobal("matchMedia", (query: string) => ({ matches: reduce && query.includes("reduce") }))
+    }
+
+    it("animates by default", () => {
+      stubMotion(false)
+      expect(barMotion()).toEqual({ isAnimationActive: true })
+    })
+
+    it("stops animating when the visitor prefers reduced motion", () => {
+      stubMotion(true)
+      expect(barMotion()).toEqual({ isAnimationActive: false })
+    })
+
+    it("animates when the browser cannot tell", () => {
+      vi.stubGlobal("matchMedia", undefined)
+      expect(barMotion()).toEqual({ isAnimationActive: true })
+    })
   })
 })

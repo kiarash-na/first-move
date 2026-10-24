@@ -6,7 +6,7 @@ import { ChartContainer, ChartTooltip, ChartTooltipContent, type ChartConfig } f
 import type { Part, InvestmentId } from "@/lib/dashboard/overview"
 import { formatEur } from "@/lib/i18n/format"
 import { useDictionary, useLocale } from "../../../_components/i18n-provider"
-import { BAR_GAP, BAR_SIZE, barChartHeight, CATEGORY_AXIS, GRID, niceMax, SERIES, VALUE_AXIS } from "../../../_components/charts"
+import { BAR_GAP, BAR_SIZE, barChartHeight, barMotion, CATEGORY_AXIS, GRID, niceMax, SERIES, VALUE_AXIS } from "../../../_components/charts"
 
 /** Where the overall investment goes: one orange bar per part, the value at the tip of each. */
 export default function InvestmentChart({ parts }: { parts: Part<InvestmentId>[] }) {
@@ -22,7 +22,7 @@ export default function InvestmentChart({ parts }: { parts: Part<InvestmentId>[]
         <YAxis {...CATEGORY_AXIS} dataKey="name" width={100} />
         <XAxis {...VALUE_AXIS} domain={[0, niceMax(Math.max(...parts.map((part) => part.value)))]} tickFormatter={(value: number) => formatEur(value, lang, { compact: true })} />
         <ChartTooltip cursor={{ fill: "var(--muted)", fillOpacity: 0.5 }} content={<ChartTooltipContent valueFormatter={(value) => formatEur(value, lang)} />} />
-        <Bar dataKey="value" fill="var(--color-value)" barSize={BAR_SIZE} {...BAR_GAP}>
+        <Bar dataKey="value" fill="var(--color-value)" barSize={BAR_SIZE} {...BAR_GAP} {...barMotion()}>
           <LabelList dataKey="value" position="right" className="fill-foreground font-mono text-xs" formatter={(value) => formatEur(Number(value), lang, { compact: true })} />
         </Bar>
       </BarChart>

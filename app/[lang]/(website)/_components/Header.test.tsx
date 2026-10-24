@@ -18,6 +18,6 @@ describe('landing Header', () => {
     )
     expect(screen.getByRole('link', { name: /get started/i })).toHaveAttribute('href', '/de/dashboard')
     expect(screen.getAllByRole('navigation', { name: common.language.label, hidden: true })).toHaveLength(2)
-    expect(screen.getAllByRole('link', { name: 'English' })[0]).toHaveAttribute('href', '/en')
+    expect(screen.getAllByRole('link', { name: 'EN, English' })[0]).toHaveAttribute('href', '/en')
   })
 })

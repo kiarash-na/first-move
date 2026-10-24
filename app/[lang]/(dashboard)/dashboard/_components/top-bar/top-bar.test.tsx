@@ -32,7 +32,7 @@ describe("TopBar (D-08)", () => {
     expect(toolbar).toContainElement(screen.getByRole("button", { name: new RegExp(shell.topBar.report) }))
     expect(screen.getByRole("navigation", { name: common.language.label })).toBeInTheDocument()
     expect(screen.getByRole("button", { name: common.theme.switchToLight })).toBeInTheDocument()
-    expect(screen.getByRole("button", { name: shell.projectMenu.label })).toBeInTheDocument()
+    expect(screen.getByRole("button", { name: `${shell.projectMenu.label}: ${shell.nav.noProject}` })).toBeInTheDocument()
     expect(screen.getByRole("button", { name: shell.nav.open })).toBeInTheDocument()
     expect(screen.queryByRole("button", { name: /save/i })).not.toBeInTheDocument()
   })

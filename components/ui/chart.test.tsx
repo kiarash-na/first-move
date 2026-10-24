@@ -31,6 +31,19 @@ describe("ChartStyle", () => {
 })
 
 describe("ChartContainer", () => {
+  it("never hides the keyboard focus ring of the chart surface (WCAG 2.4.7)", () => {
+    const { container } = render(
+      <ChartContainer id="focus" config={config}>
+        <BarChart accessibilityLayer data={[{ name: "a", heat: 1 }]}>
+          <Bar dataKey="heat" fill="var(--color-heat)" />
+        </BarChart>
+      </ChartContainer>,
+    )
+    const classes = container.querySelector("[data-chart]")?.className ?? ""
+    expect(classes).not.toMatch(/recharts-surface\]:outline-hidden/)
+    expect(classes).toContain("recharts-surface:focus-visible")
+  })
+
   it("wraps a Recharts chart with its config", () => {
     const { container } = render(
       <ChartContainer id="demand" config={config}>

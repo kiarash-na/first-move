@@ -232,6 +232,7 @@
     }
   },
   "close": "Close",
+  "skipToContent": "Skip to content",
   "illustrative": "Illustrative inputs only",
   "loading": "Loading your projects…"
 }

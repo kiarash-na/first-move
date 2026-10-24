@@ -15,9 +15,12 @@ import { useStore } from "../store-provider"
 export function RenameDialog({
   project,
   onOpenChange,
+  onCloseAutoFocus,
 }: {
   project: { id: string; name: string } | null
   onOpenChange: (open: boolean) => void
+  /** Where focus goes when the dialog closes (the menu item that opened it is gone). */
+  onCloseAutoFocus?: (event: Event) => void
 }) {
   const shell = useDictionary("shell")
   const lang = useLocale()
@@ -45,7 +48,7 @@ export function RenameDialog({
         onOpenChange(open)
       }}
     >
-      <DialogContent closeLabel={shell.close}>
+      <DialogContent closeLabel={shell.close} onCloseAutoFocus={onCloseAutoFocus}>
         <form onSubmit={(event) => void submit(event)} className="grid gap-5">
           <DialogHeader>
             <DialogTitle>{shell.rename.title}</DialogTitle>

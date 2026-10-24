@@ -6,7 +6,7 @@ import { ChartContainer, ChartTooltip, ChartTooltipContent, type ChartConfig } f
 import type { EconomicsData } from "@/lib/dashboard/overview"
 import { formatEur } from "@/lib/i18n/format"
 import { useDictionary, useLocale } from "../../../_components/i18n-provider"
-import { BAR_GAP, BAR_SIZE, barChartHeight, CATEGORY_AXIS, GRID, HatchDefs, niceMax, VALUE_AXIS } from "../../../_components/charts"
+import { BAR_GAP, BAR_SIZE, barChartHeight, barMotion, CATEGORY_AXIS, GRID, HatchDefs, niceMax, VALUE_AXIS } from "../../../_components/charts"
 import { ECONOMICS_SERIES } from "./economics-series"
 
 /** Revenues and annual costs as two stacked horizontal bars on one axis (never two axes). */
@@ -44,7 +44,7 @@ export default function EconomicsChart({ data }: { data: EconomicsData }) {
             stackId="stack"
             fill={series.hatched ? "url(#hatch-economics)" : `var(--color-${series.id})`}
             barSize={BAR_SIZE}
-            {...BAR_GAP}
+            {...BAR_GAP} {...barMotion()}
           />
         ))}
       </BarChart>

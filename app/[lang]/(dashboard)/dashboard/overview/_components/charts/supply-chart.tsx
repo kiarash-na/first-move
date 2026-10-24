@@ -6,7 +6,7 @@ import { ChartContainer, ChartTooltip, ChartTooltipContent, type ChartConfig } f
 import type { SupplyBySource } from "@/lib/dashboard/overview"
 import { formatEnergy } from "@/lib/i18n/format"
 import { useDictionary, useLocale } from "../../../_components/i18n-provider"
-import { BAR_GAP, BAR_SIZE, barChartHeight, CATEGORY_AXIS, GRID, niceMax, SERIES, VALUE_AXIS } from "../../../_components/charts"
+import { BAR_GAP, BAR_SIZE, barChartHeight, barMotion, CATEGORY_AXIS, GRID, niceMax, SERIES, VALUE_AXIS } from "../../../_components/charts"
 
 /** What each selected source supplies, grouped heating (orange) and cooling (cyan), with both demands as solid reference lines. */
 export default function SupplyChart({ data }: { data: SupplyBySource }) {
@@ -29,8 +29,8 @@ export default function SupplyChart({ data }: { data: SupplyBySource }) {
         <ChartTooltip cursor={{ fill: "var(--muted)", fillOpacity: 0.5 }} content={<ChartTooltipContent valueFormatter={(value) => formatEnergy(value, lang, { perYear: true })} />} />
         {data.heatingDemandKwh > 0 && <ReferenceLine x={data.heatingDemandKwh} stroke={SERIES.hot} strokeWidth={2} />}
         {data.coolingDemandKwh > 0 && <ReferenceLine x={data.coolingDemandKwh} stroke={SERIES.cool} strokeWidth={2} />}
-        <Bar dataKey="heating" fill="var(--color-heating)" barSize={BAR_SIZE / 2 + 2} {...BAR_GAP} />
-        <Bar dataKey="cooling" fill="var(--color-cooling)" barSize={BAR_SIZE / 2 + 2} {...BAR_GAP} />
+        <Bar dataKey="heating" fill="var(--color-heating)" barSize={BAR_SIZE / 2 + 2} {...BAR_GAP} {...barMotion()} />
+        <Bar dataKey="cooling" fill="var(--color-cooling)" barSize={BAR_SIZE / 2 + 2} {...BAR_GAP} {...barMotion()} />
       </BarChart>
     </ChartContainer>
   )

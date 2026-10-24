@@ -12,7 +12,7 @@ export interface LanguageSwitchProps {
   lang: Locale
   /** Accessible name of the group, e.g. "Language". */
   label: string
-  /** Full names, used as each link's accessible name. */
+  /** Full names; each link's accessible name is its visible code plus the name (WCAG 2.5.3 label in name). */
   names: Record<Locale, string>
   /** Visible short codes, e.g. "EN". */
   short: Record<Locale, string>
@@ -33,7 +33,7 @@ export function LanguageSwitch({ lang, label, names, short, className }: Languag
             href={switchLocalePath(pathname, locale)}
             hrefLang={locale}
             lang={locale}
-            aria-label={names[locale]}
+            aria-label={`${short[locale]}, ${names[locale]}`}
             aria-current={active ? "true" : undefined}
             onClick={() => writeLocaleCookie(locale)}
             className={cn(

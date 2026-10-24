@@ -14,7 +14,16 @@ import { useDictionary, useLocale } from "../i18n-provider"
 import { useStore } from "../store-provider"
 
 /** Lists the kept versions of a project and restores one (D-11); the current state is kept as a version first. */
-export function RestoreDialog({ projectId, onOpenChange }: { projectId: string | null; onOpenChange: (open: boolean) => void }) {
+export function RestoreDialog({
+  projectId,
+  onOpenChange,
+  onCloseAutoFocus,
+}: {
+  projectId: string | null
+  onOpenChange: (open: boolean) => void
+  /** Where focus goes when the dialog closes (the menu item that opened it is gone). */
+  onCloseAutoFocus?: (event: Event) => void
+}) {
   const shell = useDictionary("shell")
   const lang = useLocale()
   const store = useStore()
@@ -47,7 +56,7 @@ export function RestoreDialog({ projectId, onOpenChange }: { projectId: string |
 
   return (
     <Dialog open={projectId !== null} onOpenChange={onOpenChange}>
-      <DialogContent closeLabel={shell.close} className="sm:max-w-xl">
+      <DialogContent closeLabel={shell.close} className="sm:max-w-xl" onCloseAutoFocus={onCloseAutoFocus}>
         <DialogHeader>
           <DialogTitle>{shell.restore.title}</DialogTitle>
           <DialogDescription>{shell.restore.body}</DialogDescription>

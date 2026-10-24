@@ -9,6 +9,7 @@ import { useDictionary } from "./i18n-provider"
 import { ImportProvider } from "./import/import-provider"
 import { NoticeToasts } from "./notices/notice-toasts"
 import { Sidebar } from "./sidebar/sidebar"
+import { SkipLink } from "./skip-link"
 import { useStore } from "./store-provider"
 import { TopBar } from "./top-bar/top-bar"
 
@@ -25,11 +26,12 @@ export function DashboardShell({ children }: { children: ReactNode }) {
   return (
     <TooltipProvider>
       <ImportProvider>
+        <SkipLink />
         <div className="flex min-h-dvh">
           <Sidebar />
           <div className="flex min-w-0 flex-1 flex-col">
             <TopBar />
-            <main id="main" className="mx-auto w-full max-w-content flex-1 px-[clamp(16px,3.2vw,52px)] pt-8 pb-16 sm:pt-10">
+            <main id="main" tabIndex={-1} className="mx-auto outline-none w-full max-w-content flex-1 px-[clamp(16px,3.2vw,52px)] pt-8 pb-16 sm:pt-10">
               {children}
             </main>
           </div>

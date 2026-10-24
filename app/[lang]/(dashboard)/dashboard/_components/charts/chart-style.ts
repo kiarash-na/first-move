@@ -22,6 +22,16 @@ export const CATEGORY_AXIS: Pick<YAxisProps, "type" | "tickLine" | "axisLine" | 
   tickMargin: 8,
 }
 
+/**
+ * Bar animation props: off when the visitor asks for reduced motion. Recharts animates in
+ * JavaScript, so the global `prefers-reduced-motion` CSS rule does not reach it. Call during
+ * render of a chart; the charts are client-only chunks (`ssr: false`), so no hydration is involved.
+ */
+export function barMotion(): { isAnimationActive: boolean } {
+  const reduced = typeof window !== "undefined" && typeof window.matchMedia === "function" && window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  return { isAnimationActive: !reduced }
+}
+
 /** The gap between touching bars and stacked segments: a stroke in the card colour. */
 export const BAR_GAP = { stroke: "var(--card)", strokeWidth: 2 } as const
 

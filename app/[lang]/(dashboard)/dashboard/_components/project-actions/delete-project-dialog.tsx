@@ -27,11 +27,14 @@ export function DeleteProjectDialog({
   project,
   onOpenChange,
   onDeleted,
+  onCloseAutoFocus,
 }: {
   /** The project to delete; null keeps the dialog closed. */
   project: { id: string; name: string } | null
   onOpenChange: (open: boolean) => void
   onDeleted?: (receipt: DeleteReceipt) => void
+  /** Where focus goes when the dialog closes, if the opener is gone (the project menu). */
+  onCloseAutoFocus?: (event: Event) => void
 }) {
   const shell = useDictionary("shell")
   const store = useStore()
@@ -54,7 +57,7 @@ export function DeleteProjectDialog({
 
   return (
     <AlertDialog open={project !== null} onOpenChange={onOpenChange}>
-      <AlertDialogContent>
+      <AlertDialogContent onCloseAutoFocus={onCloseAutoFocus}>
         <AlertDialogHeader>
           <AlertDialogMedia>
             <Trash2Icon strokeWidth={1.5} aria-hidden="true" />

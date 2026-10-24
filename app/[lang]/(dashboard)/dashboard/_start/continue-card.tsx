@@ -33,7 +33,7 @@ export function ContinueCard() {
   return (
     <section
       aria-labelledby="continue-title"
-      className="relative flex min-h-64 flex-col justify-between gap-8 overflow-hidden border bg-card p-[clamp(22px,3vw,40px)] before:absolute before:inset-x-0 before:-top-px before:h-0.5 before:bg-primary"
+      className="relative flex min-h-72 flex-col lg:min-h-[21.5rem] justify-between gap-8 overflow-hidden border bg-card p-[clamp(22px,3vw,40px)] before:absolute before:inset-x-0 before:-top-px before:h-0.5 before:bg-primary"
     >
       <NetworkMark className="absolute -right-6 -bottom-6 w-[min(300px,55%)] opacity-60 max-sm:hidden" />
       <div className="relative flex max-w-[44ch] flex-col gap-3">

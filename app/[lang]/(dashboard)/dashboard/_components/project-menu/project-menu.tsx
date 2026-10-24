@@ -28,6 +28,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { Skeleton } from "@/components/ui/skeleton"
 import { dashboardHref, isActivePath } from "@/lib/dashboard/routes"
 import { interpolate } from "@/lib/i18n/interpolate"
 import { EXPORT_EXTENSION } from "@/lib/storage"
@@ -53,15 +54,34 @@ export function ProjectMenu() {
   const store = useStore()
   const pathname = usePathname()
   const active = useStoreState((state) => state.active)
+  const ready = useStoreState((state) => state.phase === "ready")
   const fileLink = useStoreState((state) => state.fileLink)
   const { duplicate, exportProject, go } = useProjectActions()
   const { importFile } = useImport()
   const [menuOpen, setMenuOpen] = useState(false)
   const [dialog, setDialog] = useState<MenuDialog>(null)
   const input = useRef<HTMLInputElement>(null)
+  const trigger = useRef<HTMLButtonElement>(null)
   // Transient: close when Activity hides the route (preserving-ui-state guide).
   useLayoutEffect(() => () => setMenuOpen(false), [])
 
+  // A dialog opens only after the menu has closed and given up focus. Opening it at once leaves
+  // focus in the fading menu, so keyboard and screen-reader users are not inside the dialog.
+  const pending = useRef<MenuDialog>(null)
+  const choose = (next: Exclude<MenuDialog, null>) => {
+    pending.current = next
+  }
+  const afterMenuClose = (event: Event) => {
+    if (!pending.current) return
+    event.preventDefault()
+    setDialog(pending.current)
+    pending.current = null
+  }
+  // The menu item that opened a dialog is gone when the dialog closes: hand focus back to the menu button.
+  const returnFocus = (event: Event) => {
+    event.preventDefault()
+    trigger.current?.focus()
+  }
   const copy = shell.projectMenu
   const name = active ? active.meta.name || shell.fields.meta.name.placeholder : shell.nav.noProject
   const target = active ? { id: active.meta.id, name: active.meta.name } : null
@@ -74,23 +94,27 @@ export function ProjectMenu() {
     <>
       <DropdownMenu open={menuOpen} onOpenChange={setMenuOpen} modal={false}>
         <DropdownMenuTrigger asChild>
-          {active ? (
-            <Button variant="secondary" className="max-w-[16rem] gap-2 px-3 max-lg:size-11 max-lg:px-0" aria-label={`${copy.label}: ${name}`}>
+          {/* One button in every state, with a fixed width from 1024px, so the top bar does not move when the store is ready. */}
+          <Button
+            ref={trigger}
+            variant="secondary"
+            className="gap-2 px-3 max-lg:size-11 max-lg:px-0 lg:w-64 lg:justify-between"
+            aria-label={ready ? `${copy.label}: ${name}` : copy.label}
+          >
+            {ready ? (
               <span className="truncate font-sans text-sm font-[520] tracking-normal normal-case max-lg:sr-only">{name}</span>
-              <ChevronDownIcon className="max-lg:hidden" strokeWidth={1.6} aria-hidden="true" />
-              <EllipsisVerticalIcon className="lg:hidden" strokeWidth={1.6} aria-hidden="true" />
-            </Button>
-          ) : (
-            <Button variant="secondary" size="icon" aria-label={copy.label}>
-              <EllipsisVerticalIcon strokeWidth={1.6} aria-hidden="true" />
-            </Button>
-          )}
+            ) : (
+              <Skeleton className="h-4 w-32 max-lg:hidden" />
+            )}
+            <ChevronDownIcon className="max-lg:hidden" strokeWidth={1.6} aria-hidden="true" />
+            <EllipsisVerticalIcon className="lg:hidden" strokeWidth={1.6} aria-hidden="true" />
+          </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="w-72">
+        <DropdownMenuContent align="end" className="w-72" onCloseAutoFocus={afterMenuClose}>
           <DropdownMenuLabel className="truncate">{name}</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
-            <DropdownMenuItem disabled={!active} onSelect={() => setDialog("rename")}>
+            <DropdownMenuItem disabled={!active} onSelect={() => choose("rename")}>
               <PencilIcon strokeWidth={1.6} aria-hidden="true" />
               {copy.rename}
             </DropdownMenuItem>
@@ -98,11 +122,11 @@ export function ProjectMenu() {
               <CopyIcon strokeWidth={1.6} aria-hidden="true" />
               {copy.duplicate}
             </DropdownMenuItem>
-            <DropdownMenuItem disabled={!active} onSelect={() => setDialog("modules")}>
+            <DropdownMenuItem disabled={!active} onSelect={() => choose("modules")}>
               <ToggleRightIcon strokeWidth={1.6} aria-hidden="true" />
               {copy.modules}
             </DropdownMenuItem>
-            <DropdownMenuItem disabled={!active} onSelect={() => setDialog("restore")}>
+            <DropdownMenuItem disabled={!active} onSelect={() => choose("restore")}>
               <HistoryIcon strokeWidth={1.6} aria-hidden="true" />
               {copy.restore}
             </DropdownMenuItem>
@@ -160,7 +184,7 @@ export function ProjectMenu() {
                 <XIcon strokeWidth={1.6} aria-hidden="true" />
                 {copy.close}
               </DropdownMenuItem>
-              <DropdownMenuItem variant="destructive" onSelect={() => setDialog("delete")}>
+              <DropdownMenuItem variant="destructive" onSelect={() => choose("delete")}>
                 <Trash2Icon strokeWidth={1.6} aria-hidden="true" />
                 {copy.delete}
               </DropdownMenuItem>
@@ -182,12 +206,17 @@ export function ProjectMenu() {
           if (file) void importFile(file)
         }}
       />
-      <RenameDialog project={dialog === "rename" ? target : null} onOpenChange={(open) => !open && setDialog(null)} />
-      <ModulesDialog open={dialog === "modules"} onOpenChange={(open) => !open && setDialog(null)} />
-      <RestoreDialog projectId={dialog === "restore" && active ? active.meta.id : null} onOpenChange={(open) => !open && setDialog(null)} />
+      <RenameDialog project={dialog === "rename" ? target : null} onOpenChange={(open) => !open && setDialog(null)} onCloseAutoFocus={returnFocus} />
+      <ModulesDialog open={dialog === "modules"} onOpenChange={(open) => !open && setDialog(null)} onCloseAutoFocus={returnFocus} />
+      <RestoreDialog
+        projectId={dialog === "restore" && active ? active.meta.id : null}
+        onOpenChange={(open) => !open && setDialog(null)}
+        onCloseAutoFocus={returnFocus}
+      />
       <DeleteProjectDialog
         project={dialog === "delete" ? target : null}
         onOpenChange={(open) => !open && setDialog(null)}
+        onCloseAutoFocus={returnFocus}
         onDeleted={() => {
           if (!onStart) go({ page: "start" })
         }}
