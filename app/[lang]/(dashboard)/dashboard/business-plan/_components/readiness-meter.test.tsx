@@ -13,7 +13,7 @@ describe("ReadinessMeter", () => {
     const link = screen.getByRole("link")
     expect(link).toHaveAttribute("href", "/de/dashboard/business-plan/implementation#readiness")
     expect(screen.getByText(/^0\s?%$/)).toBeInTheDocument()
-    expect(screen.getByText("Not started")).toBeInTheDocument()
+    expect(screen.getByText("Nicht begonnen")).toBeInTheDocument()
   })
 
   it("reads 100% and pitch-ready for a filled example", async () => {

@@ -1,0 +1,225 @@
+# Quick Check
+
+Der Quick Check gibt eine erste Einschätzung des technischen und wirtschaftlichen Potenzials eines 5GDHC-Netzes für ein Projektgebiet. Sie geben einige zentrale Parameter ein. Der Quick Check schätzt den Energiebedarf, die Netzlänge, den Deckungsgrad der Versorgung und die Wirtschaftlichkeit, stuft die Indikatoren ein und gibt eines von drei Gesamtergebnissen aus, zusammen mit den wichtigsten Einflussfaktoren dahinter. Er liefert einen ersten Anhaltspunkt, keine abschließende Entscheidung über die Machbarkeit.
+
+Die Berechnung folgt einer vordefinierten 5GDHC-Methodik für den Quick Check; First Move setzt sie um und verändert sie nicht. Auf dieser Seite werden Gleichungen mit ihrer Nummer in der Methodik zitiert (zum Beispiel EQ-3.4a), Standardtabellen ebenso mit ihrer Nummer (zum Beispiel TBL-6). Wo die Methodik einen Punkt offenlässt, wird die Antwort, die First Move anwendet, mit ihrer Nummer zitiert (zum Beispiel OQ-20). In der App hat jeder Eingabeschritt und jedes Ergebnis einen Abschnitt „So rechnen wir“ mit den verwendeten Gleichungen.
+
+## Die Schritte
+
+Der Quick Check hat vier Eingabeschritte und eine Ergebnisseite:
+
+1. **Projektgebiet**: die Anzahl der Gebäude und die Fläche des Projektgebiets.
+2. **Gebäude**: der Anteil jedes Gebäudetyps und jeder Baualtersklasse.
+3. **Energiequellen**: die im Gebiet verfügbaren Quellen und ihr Potenzial.
+4. **Optionen**: ein bekannter Bedarf, eine bekannte Netzlänge und Photovoltaik, alle optional.
+5. **Ergebnisse**: das Gesamtergebnis, die wichtigsten Einflussfaktoren, die Indikatoren und die Kennzahlen.
+
+Das Ergebnis erscheint, sobald die erforderlichen Eingaben vollständig sind: die Anzahl der Gebäude, die Fläche des Projektgebiets, Anteile, die zusammen 100 % ergeben, und mindestens eine Energiequelle. Alle Berechnungen laufen automatisch in Ihrem Browser. Die Seite [Annahmen](/dashboard/assumptions) zeigt jeden Standardwert und lässt Sie eigene Parameter ausprobieren.
+
+## Anzahl der Gebäude
+
+Die Gesamtzahl der Gebäude im Projektgebiet, als ganze Zahl, einschließlich der Industriegebäude. Zusammen mit der Fläche des Projektgebiets ergibt sie die Gebäudedichte (EQ-3.3). Sie bestimmt außerdem die Anzahl der Gebäude in jeder Gruppe (EQ-3.1), die Investition in Wärmepumpen, mit einer Wärmepumpe pro Gebäude (EQ-3.10d), und die Anschlussgebühren (EQ-3.9c).
+
+Wo Sie die Angabe finden: eine Karte des Gebiets, das Gebäude- oder Adressregister der Gemeinde oder ein Rundgang durch das Gebiet.
+
+## Projektgebiet
+
+Die gesamte Fläche des Projektgebiets in m². Die App zeigt daneben den Wert in Hektar; 1 ha sind 10.000 m². Die Fläche bestimmt die Gebäudedichte in Gebäuden pro Hektar (EQ-3.3) und, sofern Sie keine Netzlänge eingeben, die geschätzte Netzlänge (EQ-3.4b).
+
+Wo Sie die Angabe finden: Zeichnen Sie das Gebiet auf einer Karte oder in einem GIS-Werkzeug ein, oder entnehmen Sie die Fläche einem Flächennutzungs- oder Bebauungsplan.
+
+## Gebäudetypen und Baualtersklassen
+
+Geben Sie den Anteil jedes Gebäudetyps und jeder Baualtersklasse in % ein, in einem Raster mit den Gebäudetypen als Zeilen und den Baualtersklassen als Spalten. Alle Anteile müssen zusammen 100 % ergeben; bis dahin gibt es kein Ergebnis.
+
+- **Wohngebäude**: Wohngebäude unterschiedlicher Baualtersklassen.
+- **Kategorie A**: Einzelhandel, Museen, Supermärkte, Schulen, Büros und Fitnessstudios.
+- **Kategorie B**: Kindergärten, Sporthallen, Hotels und Theater.
+- **Kategorie C**: Krankenhäuser, Restaurants, Schwimmbäder und Kantinen.
+- **Industrie**: Industriegebäude und -anlagen.
+
+Die Baualtersklassen sind -1919, 1919-1960, 1961-1990, 1991-2010 und 2011-heute, bezeichnet wie in der Methodik; keine Berechnung hängt vom Grenzjahr ab (OQ-03).
+
+Ein Projektgebiet könnte zum Beispiel zu 50 % aus Wohngebäuden von 1991-2010, zu 25 % aus Wohngebäuden von 2011-heute und zu 25 % aus Gebäuden der Kategorie A von 2011-heute bestehen.
+
+Für Industrie gibt es keine Standardwerte. Ein Industrieanteil fügt keinen Bedarf, keine Nutzfläche und keine Erlöse aus Grund- oder Arbeitspreis hinzu, und jeder Industrieanteil setzt das Gesamtergebnis auf „Weitere Analyse erforderlich“ (OQ-02). Industriegebäude zählen dennoch zur Anzahl der Gebäude, zum Beispiel bei der Gebäudedichte, den Anschlussgebühren und der Investition in Wärmepumpen (OQ-02).
+
+Wo Sie die Angabe finden: das Gebäuderegister oder die Zensusstatistik der Gemeinde, Energieausweise oder ein Rundgang durch das Gebiet.
+
+## Wärme- und Kältebedarf
+
+Die Anteile teilen die Anzahl der Gebäude in Gruppen auf: Die Anzahl der Gebäude eines Typs und einer Baualtersklasse ist die Gesamtzahl der Gebäude multipliziert mit ihrem Anteil (EQ-3.1). Anteile und andere Prozentwerte werden zuerst durch 100 geteilt, und eine Gruppe kann eine nicht ganzzahlige Anzahl von Gebäuden enthalten (OQ-01).
+
+Jede Gruppe erhält den Standardwert für den jährlichen Wärmebedarf pro m² Nutzfläche (TBL-1), den Standardwert für den jährlichen Kältebedarf pro m² (TBL-2) und die Standard-Nutzfläche pro Gebäude (TBL-3) ihres Typs und ihrer Baualtersklasse. Anzahl der Gebäude mal Bedarf pro m² mal Nutzfläche ergibt den jährlichen Wärme- und Kältebedarf jeder Gruppe (EQ-3.2a, EQ-3.2b). Die Summe über alle Gruppen ist der gesamte jährliche Wärmebedarf und der gesamte jährliche Kältebedarf des Projektgebiets (EQ-3.2c, EQ-3.2d). Ein bekannter Bedarf, den Sie unter Optionen eingeben, ersetzt diese Summen.
+
+## Energiequellen
+
+Wählen Sie die Energiequellen, die im Projektgebiet verfügbar oder potenziell verfügbar sind, und bewerten Sie das Potenzial jeder Quelle: Gering, Mittel, Hoch oder Unbekannt. Sie können mehrere Quellen wählen; ihr Angebot wird addiert (OQ-11).
+
+Für jede Quelle verwendet der Quick Check die vordefinierte jährliche Kapazität ihres Potenzials, TBL-4 für Wärme und TBL-5 für Kälte, und den COP ihrer Wärmepumpe. Die Kapazitäten sind die Energie, die der Quelle entnommen wird, nicht die Energie, die an die Gebäude geliefert wird; erst der COP der Wärmepumpe macht daraus das Angebot (siehe [Angebot](#angebot)).
+
+- **Solarthermie** hat in der Methodik keinen COP, daher zählt ihre Kapazität direkt als Wärmeangebot, ohne Strom für eine Wärmepumpe (OQ-13).
+- **Abwärme** und **Solarthermie** haben keine Standard-Kühlkapazität, daher liefern sie keine Kälte (OQ-13).
+- Ein Potenzial **Unbekannt** fügt kein Angebot hinzu. Es setzt das Gesamtergebnis auf „Weitere Analyse erforderlich“, weil das Potenzial geklärt werden muss, bevor eine belastbare erste Einschätzung möglich ist.
+
+Die Methodik sagt nicht, ob die Kapazitäten pro Projekt, pro Gebäude oder pro Fläche gelten. First Move wendet sie für jede ausgewählte Quelle als absolute Werte für das gesamte Projekt an und weist auf der Seite Annahmen darauf hin (OQ-26). Mit den Standardkapazitäten decken die Quellen nur den Bedarf kleiner Projekte: Ein Wohngebäude braucht etwa 30.000 bis 68.000 kWh/a Wärme, während die höchste Standardkapazität einer Quelle 150.000 kWh/a beträgt. Andere Kapazitäten können Sie unter „Mit Parametern spielen“ ausprobieren.
+
+Wo Sie die Angabe finden: geologische und hydrogeologische Karten, Studien zum Gebiet, der Betreiber einer möglichen Abwärmequelle oder die für Wasser und Geologie zuständigen Behörden. Wenn Sie eine Quelle noch nicht bewerten können, wählen Sie Unbekannt.
+
+## Optionen
+
+Alle Optionen sind freiwillig. Lassen Sie ein Feld leer, um die Schätzung der Methodik beizubehalten.
+
+- **Bekannter Wärme- und Kältebedarf**: Wenn Sie genauere Angaben zum Energiebedarf der Gebäude haben, geben Sie den gesamten jährlichen Wärmebedarf und den gesamten jährlichen Kältebedarf in kWh/a ein. Jeder Wert ersetzt die geschätzte Summe (EQ-3.2c, EQ-3.2d) überall dort, wo die Summe verwendet wird; die Erlöse aus dem Grundpreis verwenden weiterhin die Standard-Nutzflächen (OQ-05).
+- **Netzlänge**: Wenn Sie die voraussichtliche gesamte Netzlänge kennen, geben Sie sie in m ein. Sie ersetzt die Schätzung (EQ-3.4a, EQ-3.4b), und die Ergebnisse weisen aus, dass die Länge eingegeben wurde.
+- **Photovoltaik (PV) vorhanden**: Mit PV sinken die Stromkosten der Wärmepumpen um die PV-Kostenreduktion von 30 % (TBL-6, OQ-06).
+
+Wo Sie die Angaben finden: Energierechnungen, Zählerdaten oder der Energieversorger für den Bedarf; eine erste Netzskizze für die Länge.
+
+## Gebäudedichte
+
+Die Gebäudedichte ist die Anzahl der Gebäude pro Hektar Projektgebiet (EQ-3.3). Sie wird nach TBL-8 eingestuft:
+
+- **Hohe Dichte**: über 30 Gebäude/ha. Dicht bebaute Gebiete können von kürzeren Netzlängen profitieren, ein geringer Energiebedarf kann die Wirtschaftlichkeit aber dennoch schwächen.
+- **Mittlere Dichte**: von 10 bis 30 Gebäude/ha. Die Struktur kann für ein Netz geeignet sein.
+- **Geringe Dichte**: unter 10 Gebäude/ha. Die Gebäude liegen weiter auseinander, was die Netzlänge erhöhen kann. Ein hoher Energiebedarf oder geeignete lokale Energiequellen können ein Projekt dennoch vielversprechend machen.
+
+Die Kategorie der Gebäudedichte (ländlich, vorstädtisch oder städtisch) ist keine Eingabe. Sie ergibt sich aus dieser Klasse: Geringe Dichte ist ländlich, mittlere ist vorstädtisch, hohe ist städtisch (OQ-04).
+
+## Netzlänge
+
+Sofern Sie keine Netzlänge eingeben, schätzt der Quick Check sie in zwei Schritten. Zuerst ergibt sich die spezifische Netzlänge in Metern pro Hektar über einen vordefinierten Zusammenhang aus der Gebäudedichte (EQ-3.4a); die Anzahl der Gebäude pro Hektar in dieser Gleichung ist die Gebäudedichte (OQ-09). Dann ergibt die spezifische Netzlänge multipliziert mit der Fläche des Projektgebiets in Hektar die gesamte Netzlänge in Metern (EQ-3.4b).
+
+Die Ergebnisse geben immer an, ob die Netzlänge eingegeben oder geschätzt wurde.
+
+## Wärmedichte
+
+Die Wärmedichte ist der gesamte jährliche Wärmebedarf geteilt durch die Netzlänge (EQ-3.5). Eine höhere Wärmedichte kann die wirtschaftlichen Aussichten verbessern, weil pro Meter Netz mehr Wärmebedarf bedient wird. Sie wird in kWh pro Meter berechnet und in MWh pro Meter eingestuft (OQ-10), nach TBL-9:
+
+- **Hohe Dichte**: über 1,5 MWh/m. Ein relativ kurzes Netz bedient einen hohen Wärmebedarf, was die Wirtschaftlichkeit verbessern kann.
+- **Mittlere Dichte**: von 0,5 bis 1,5 MWh/m. Das Netz kann tragfähig sein.
+- **Geringe Dichte**: unter 0,5 MWh/m. Ein relativ langes Netz bedient einen geringen Wärmebedarf. Ein erheblicher Kältebedarf oder niedrige Netzkosten können die Aussichten verbessern.
+
+## Angebot
+
+Für jede ausgewählte Quelle ist das Wärmeangebot ihre Kapazität plus der Anteil, den die Wärmepumpe hinzufügt: Kapazität mal COP / (COP − 1) (EQ-3.8a). Das Kälteangebot ist ihre Kühlkapazität, angepasst um den COP: Kapazität mal COP / (COP + 1) (EQ-3.8b). Der COP ist die Leistungszahl der Wärmepumpe; der COP für Wärme stammt aus TBL-4 und der COP für Kälte aus TBL-5 (OQ-14). Das Angebot aller ausgewählten Quellen wird addiert (OQ-11).
+
+## Deckungsgrad
+
+Der Deckungsgrad ist der Anteil des jährlichen Bedarfs, den die ausgewählten Quellen liefern können: das Wärmeangebot geteilt durch den Wärmebedarf (EQ-3.6a) und das Kälteangebot geteilt durch den Kältebedarf (EQ-3.6b). Ein Wert von 1,0 entspricht einem Deckungsgrad von 100 %. Der Deckungsgrad für Wärme und der für Kälte werden getrennt angezeigt und eingestuft, damit Versorgungslücken sichtbar bleiben (TBL-7):
+
+- **Machbar**: 100 % oder mehr. Das jährliche Energiepotenzial reicht aus, um den gesamten Bedarf zu decken, und es bleibt weiteres Potenzial verfügbar.
+- **Bedingt machbar**: von 90 % bis unter 100 %. Ein kleiner Anteil ergänzender Versorgung ist erforderlich.
+- **Eingeschränkt machbar**: von 70 % bis unter 90 %. Ein erheblicher Anteil ergänzender Versorgung ist erforderlich.
+- **Als alleiniges Versorgungskonzept nicht machbar**: unter 70 %. Zu viel Bedarf bleibt ungedeckt.
+
+Ein Bedarf von 0 ist nicht relevant und erhält daher keine Klasse für den Deckungsgrad (OQ-22).
+
+## Kälte-Wärme-Verhältnis
+
+Das Kälte-Wärme-Verhältnis zeigt, wie ausgeglichen der jährliche Wärme- und Kältebedarf sind. Die Methodik gibt dafür keine Formel an (EQ-3.7). First Move teilt den kleineren der beiden Bedarfe durch den größeren, sodass das Verhältnis immer zwischen 0 und 1 liegt, und nennt den Bedarf, der höher ist (OQ-12). Ein Wert von 1 bedeutet gleich hohe Bedarfe; Werte nahe 0 zeigen ein zunehmendes Ungleichgewicht. Wenn beide Bedarfe 0 sind, ist das Verhältnis nicht anwendbar. Es wird nach TBL-10 eingestuft:
+
+- **Ausgeglichen**: 0,8 oder mehr. Wärme- und Kältebedarf sind ähnlich, was den thermischen Austausch begünstigen kann.
+- **Teilweise ausgeglichen**: von 0,3 bis unter 0,8. Ein Bedarf ist höher als der andere, ein thermischer Austausch kann aber dennoch möglich sein.
+- **Unausgeglichen**: unter 0,3. Ein Bedarf überwiegt deutlich, was externe Energiequellen oder thermische Speicher eher nötig machen kann.
+
+Das Verhältnis zeigt das Potenzial für einen thermischen Ausgleich. Es entscheidet nicht allein darüber, ob ein Netz machbar ist, kann aber die Auslegung des Systems und die Wirtschaftlichkeit beeinflussen. Ein unausgeglichenes Bedarfsprofil macht ein 5GDHC-Netz nicht automatisch ungeeignet.
+
+## Erlöse
+
+- **Erlöse aus Wärme**: der Grundpreis Wärme für jeden m² Nutzfläche pro Jahr, plus der Arbeitspreis Wärme für jede kWh Wärmebedarf (EQ-3.9a). Die Grundpreise gelten pro m² Nutzfläche und Jahr (OQ-16), und die Nutzfläche ist die Standard-Nutzfläche jeder Gebäudegruppe (TBL-3).
+- **Erlöse aus Kälte**: der Grundpreis Kälte für jeden m² Nutzfläche pro Jahr, plus der Arbeitspreis Kälte für jede kWh Kältebedarf (EQ-3.9b, OQ-15).
+- **Gesamterlöse**: die Erlöse aus Wärme, die Erlöse aus Kälte und die Anschlussgebühren. Die Anschlussgebühr ist eine einmalige Gebühr pro Gebäude, die mit dem Annuitätenfaktor über die Abschreibungsdauer verteilt wird (EQ-3.9c).
+
+## Kosten
+
+- **Netzinvestition**: die Netzbaukosten pro Meter multipliziert mit der Netzlänge (EQ-3.10a).
+- **Installationsinvestition**: für jede ausgewählte Quelle ihre Installationskosten pro kWh/a multipliziert mit ihrem Wärmeangebot (EQ-3.10b), summiert über alle Quellen (EQ-3.10c). TBL-6 nennt keine Installationskosten für Umgebungsluft; First Move verwendet 0, weil die Wärmepumpen bereits in der Investition in Wärmepumpen enthalten sind (OQ-18).
+- **Gesamtinvestition**: die Investition in eine Wärmepumpe multipliziert mit der Anzahl der Gebäude, plus die Netzinvestition und die Installationsinvestition aller Quellen (EQ-3.10d). Die Installationen werden nur einmal gezählt (OQ-17).
+- **Annualisierte Kosten**: die Gesamtinvestition multipliziert mit dem Annuitätenfaktor (EQ-3.10f). Der Annuitätenfaktor wandelt eine Investition in gleiche jährliche Zahlungen über die Abschreibungsdauer zum Zinssatz um (EQ-3.10e).
+- **Stromkosten**: für jede Quelle das Wärmeangebot geteilt durch den COP für Wärme und das Kälteangebot geteilt durch den COP für Kälte, multipliziert mit dem Strompreis, in € pro Jahr (EQ-3.11, OQ-19). Mit PV werden sie mit 1 − 0,30 multipliziert (OQ-06).
+- **Betrieb und Wartung**: 0,02 multipliziert mit der Gesamtinvestition, also jedes Jahr 2 % davon (EQ-3.12).
+
+## Wirtschaftliche Bewertung
+
+Die Methodik legt nicht fest, wann die wirtschaftliche Bewertung günstig oder deutlich ungünstig ist, daher verwendet First Move eine Wirtschaftlichkeitskennzahl E (OQ-21): die Gesamterlöse geteilt durch die jährlichen Kosten, also die annualisierten Kosten plus die Stromkosten plus Betrieb und Wartung.
+
+- **Günstig**: E ist 1,0 oder mehr. Die Erlöse decken die jährlichen Kosten.
+- **Unklar**: E ist 0,7 oder mehr, aber unter 1,0. Die Erlöse decken einen großen Teil der jährlichen Kosten, aber nicht alle.
+- **Deutlich ungünstig**: E ist unter 0,7. Die Erlöse bleiben weit hinter den jährlichen Kosten zurück.
+
+Die wirtschaftlichen Parameter (TBL-6) sind nur vorläufige Annahmen; behandeln Sie die wirtschaftlichen Ergebnisse daher mit Vorsicht.
+
+## Die Bewertung: Was das Gesamtergebnis bedeutet
+
+Das Gesamtergebnis, die Bewertung des Quick Check, ist eine von drei Stufen:
+
+- **Vielversprechend**: günstige Bedingungen festgestellt.
+- **Weitere Analyse erforderlich**: gemischte Bedingungen, Unsicherheiten oder fehlende Informationen.
+- **Nicht vielversprechend**: ungünstige Bedingungen festgestellt.
+
+Der Indikator ist bewusst grob gehalten, um Scheingenauigkeit zu vermeiden und deutlich zu machen, dass er eine allgemeine erste Einschätzung ist, keine detaillierte Machbarkeitsstudie. Er verbindet den Deckungsgrad der Versorgung, die Gebäude- und die Wärmedichte und die wirtschaftliche Bewertung (TBL-11), geprüft in dieser Reihenfolge (OQ-22):
+
+1. **Durch eine feste Regel festgelegt**: Wenn das Projektgebiet Industrie enthält oder eine ausgewählte Quelle das Potenzial Unbekannt hat, ist das Ergebnis „Weitere Analyse erforderlich“.
+2. **Nicht vielversprechend**: wenn die wirtschaftliche Bewertung deutlich ungünstig ist oder wenn ein relevanter Deckungsgrad unter 70 % liegt und sowohl die Gebäudedichte als auch die Wärmedichte gering sind.
+3. **Vielversprechend**: wenn es mindestens einen relevanten Bedarf gibt, jeder relevante Bedarf einen jährlichen Deckungsgrad von mindestens 90 % hat, die wirtschaftliche Bewertung günstig ist und weder die Gebäudedichte noch die Wärmedichte gering ist.
+4. **Weitere Analyse erforderlich**: in allen anderen Fällen.
+
+Ein Bedarf ist relevant, wenn er über 0 liegt (OQ-22).
+
+## Wichtigste Einflussfaktoren
+
+Neben dem Gesamtergebnis zeigt der Quick Check die wichtigsten Einflussfaktoren, die es fördern oder einschränken, und unter „Warum dieses Ergebnis“ die Gründe für die erreichte Stufe.
+
+- Ein Indikator ist **förderlich**, wenn er seine Bedingung für Vielversprechend erfüllt: ein Deckungsgrad von mindestens 90 %, eine günstige wirtschaftliche Bewertung, eine Gebäudedichte oder Wärmedichte, die nicht gering ist.
+- Andernfalls ist er **einschränkend**.
+- Industrie im Projektgebiet und ein unbekanntes Potenzial einer Quelle wirken immer einschränkend.
+- Ein Bedarf von 0 bleibt außen vor. Das Kälte-Wärme-Verhältnis wird mit seiner Klasse angezeigt, aber nicht als Faktor gezählt, weil es das Ergebnis nicht allein entscheidet.
+
+Jeder Indikator wird mit seiner Einstufung und einer kurzen Erklärung angezeigt, was er für das Projekt bedeutet. Die Ergebnisse zeigen außerdem die Kennzahlen, etwa den Bedarf, das Angebot, die Netzlänge, die Erlöse, die Investition und die jährlichen Kosten.
+
+## Standardkapazitäten der Quellen
+
+Die jährliche Standardkapazität bei geringem, mittlerem und hohem Potenzial und der COP der Wärmepumpe (TBL-4 für Wärme, TBL-5 für Kälte):
+
+- **Geothermie**: Wärme 10.000, 50.000 und 150.000 kWh/a, COP 4,5; Kälte 10.000, 50.000 und 150.000 kWh/a, COP 5,0.
+- **Abwärme**: Wärme 5.000, 30.000 und 100.000 kWh/a, COP 4,5; keine Kälte.
+- **Grundwasser**: Wärme 10.000, 50.000 und 150.000 kWh/a, COP 5,0; Kälte 10.000, 50.000 und 150.000 kWh/a, COP 5,0.
+- **Oberflächenwasser**: Wärme 10.000, 50.000 und 150.000 kWh/a, COP 4,0; Kälte 10.000, 50.000 und 150.000 kWh/a, COP 4,5.
+- **Solarthermie**: Wärme 5.000, 20.000 und 50.000 kWh/a, ohne Wärmepumpe; keine Kälte.
+- **Umgebungsluft**: Wärme 10.000, 50.000 und 150.000 kWh/a, COP 3,0; Kälte 10.000, 50.000 und 150.000 kWh/a, COP 3,5.
+
+Der Standardbedarf pro m² und die Standard-Nutzfläche jedes Gebäudetyps und jeder Baualtersklasse (TBL-1 bis TBL-3) stehen auf der Seite Annahmen.
+
+## Wirtschaftliche Standardparameter
+
+Die wirtschaftlichen Standardparameter (TBL-6):
+
+- Grundpreis Wärme: 6,00 €/m² pro Jahr
+- Arbeitspreis Wärme: 0,12 €/kWh
+- Grundpreis Kälte: 3,00 €/m² pro Jahr
+- Arbeitspreis Kälte: 0,08 €/kWh
+- Anschlussgebühr: 1.000 € pro Gebäude
+- Netzbaukosten, für Rohre, Material, Erdarbeiten und Montage: 500 €/m
+- Installationskosten pro kWh/a Wärmeangebot: Geothermie 1,50 €, Abwärme 0,50 €, Grundwasser 1,00 €, Oberflächenwasser 0,80 €, Solarthermie 0,70 €, Umgebungsluft keine, verwendet als 0
+- Wärmepumpe: 15.000 € pro Gebäude
+- Strompreis: 0,20 €/kWh
+- PV-Kostenreduktion: 30 %
+- Abschreibungsdauer: 20 Jahre
+- Zinssatz: 3 %
+
+## Ihre eigenen Parameter
+
+Auf der Seite Annahmen lässt Sie **Mit Parametern spielen** die Kapazitäten und COP-Werte aus TBL-4 und TBL-5 und die wirtschaftlichen Parameter aus TBL-6 überschreiben. Die Ergebnisse tragen dann das Kennzeichen „Eigene Parameter“, Ihre Werte werden im Projekt gespeichert, und **Auf Standardwerte zurücksetzen** stellt die Standardwerte wieder her. Die Schwellenwerte der Einstufung (TBL-7 bis TBL-11) sind fest. Die Seite Annahmen führt außerdem die Antworten auf die offenen Punkte der Methodik auf, die First Move in jeder Berechnung anwendet.
+
+## Der Bericht
+
+**Bericht** in der oberen Leiste öffnet einen Bericht über das geöffnete Projekt, als Grundlage für Gespräche und nächste Schritte: das Gesamtergebnis mit seinen Gründen und Einflussfaktoren, den Deckungsgrad, die Indikatoren und die Kennzahlen, Ihre Eingaben, die verwendeten Parameter, die Gleichungen hinter jedem Schritt und, wenn dieses Modul aktiv ist, den Business Plan so, wie Sie ihn geschrieben haben. **Drucken oder als PDF speichern** öffnet den Druckdialog Ihres Browsers; wählen Sie dort „Als PDF speichern“, um eine PDF-Datei zu erhalten. Der Bericht entsteht in Ihrem Browser, und nichts wird hochgeladen.
+
+## Grenzen des Quick Check
+
+- **Ein Screening, keine Ingenieurberatung.** Der Quick Check ist für ein vorläufiges Screening gedacht, nicht für eine detaillierte Systemauslegung. Er ersetzt keine detaillierte technische oder wirtschaftliche Machbarkeitsstudie.
+- **Vereinfachte Annahmen.** Die Parameter, die Eingaben und die Methodik beruhen auf vereinfachten Annahmen und sollten mit Sorgfalt interpretiert werden. Die tatsächlichen Werte können je nach den Bedingungen des Projekts abweichen und sollten durch weitere Analysen verfeinert werden.
+- **Nur Ihre Eingaben.** Der Quick Check fragt keine externen Datenbanken ab. Er arbeitet mit dem, was Sie eingeben, und mit den Standardwerten.
+- **Gleiche Eingaben, gleiches Ergebnis.** Die Berechnung ist deterministisch und läuft in Ihrem Browser; sie verwendet keine KI.
+- **Beispielhafte Eingaben.** Die Beispielprojekte auf dem Startbildschirm verwenden nur beispielhafte Eingaben.

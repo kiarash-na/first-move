@@ -14,18 +14,22 @@ interface Violation {
 }
 
 /**
- * Runs axe on the page and returns one line per violating node. `except` turns single rules off
- * where a finding is by design (say why at the call site).
+ * Runs axe on the page, or only inside the elements `include` selects, and returns one line per
+ * violating node. `except` turns single rules off where a finding is by design (say why at the
+ * call site).
  */
-export async function axeViolations(page: Page, { except = [] }: { except?: string[] } = {}): Promise<string[]> {
+export async function axeViolations(
+  page: Page,
+  { except = [], include }: { except?: string[]; include?: string } = {},
+): Promise<string[]> {
   await page.addScriptTag({ content: AXE })
   const found = await page.evaluate(
-    async ({ tags, off }) => {
-      const axe = (window as unknown as { axe: { run: (context: Document, options: object) => Promise<{ violations: Violation[] }> } }).axe
+    async ({ tags, off, within }) => {
+      const axe = (window as unknown as { axe: { run: (context: Document | object, options: object) => Promise<{ violations: Violation[] }> } }).axe
       const rules = Object.fromEntries(off.map((id) => [id, { enabled: false }]))
-      return (await axe.run(document, { runOnly: tags, rules })).violations
+      return (await axe.run(within ? { include: [within] } : document, { runOnly: tags, rules })).violations
     },
-    { tags: AXE_RULES, off: except },
+    { tags: AXE_RULES, off: except, within: include },
   )
   return found.flatMap((violation) => violation.nodes.map((node) => `${violation.id}: ${node.target.join(" ")}`))
 }

@@ -152,7 +152,6 @@
     "export": "Export",
     "import": "Import",
     "report": "Report",
-    "reportSoon": "Coming soon: a report of your project",
     "settings": "Language and theme"
   },
   "saveStatus": {

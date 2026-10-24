@@ -1,1 +1,46 @@
-{}
+{
+  "sender": {
+    "name": "Assistent von First Move (KI)"
+  },
+  "confirm": {
+    "title": "Bestätigen Sie Ihre Anfrage",
+    "lead": "Sie haben dem Assistenten von First Move geschrieben, der mit KI antwortet. Bestätigen Sie einmalig, dann liest er Ihre Nachricht.",
+    "accept": "Ich akzeptiere die Nutzungsbedingungen und E-Mails zu meiner Anfrage. Keine Werbung.",
+    "terms": "Nutzungsbedingungen lesen",
+    "button": "Bestätigen",
+    "sending": "Wird bestätigt…",
+    "missing": "Für diese Seite brauchen Sie den Link aus der Bestätigungs-E-Mail.",
+    "result": {
+      "confirmed": "Vielen Dank. Ihre Anfrage ist bestätigt; der Assistent antwortet per E-Mail.",
+      "expired": "Dieser Link ist abgelaufen. Schreiben Sie dem Assistenten erneut, um einen neuen zu erhalten.",
+      "used": "Dieser Link wurde bereits verwendet. Wenn Sie schon bestätigt haben, liegt dem Assistenten Ihre Anfrage vor.",
+      "invalid": "Dieser Link ist ungültig. Bitte verwenden Sie den Link aus der E-Mail.",
+      "error": "Etwas ist schiefgelaufen. Bitte versuchen Sie es in ein paar Minuten erneut."
+    }
+  },
+  "notices": {
+    "confirm": "Guten Tag,\n\nder Assistent von First Move hat Ihre Nachricht erhalten. Er antwortet mit KI und braucht deshalb einmalig Ihre Bestätigung, bevor er etwas liest:\n\n{link}\n\nMit der Bestätigung akzeptieren Sie die Nutzungsbedingungen ({terms}) und E-Mails zu Ihrer Anfrage. Keine Werbung.\n\nIhre Nachricht wartet bis zu {days} Tage auf Ihre Bestätigung. Wenn Sie uns nicht geschrieben haben, ignorieren Sie diese E-Mail: Es wird nichts verarbeitet.\n\nFirst Move",
+    "warning": "Guten Tag,\n\nder Assistent von First Move hilft nur bei First Move: beim Quick Check, beim Business Plan und bei Fernwärme und -kälte der 5. Generation. Ihre Nachricht wurde nicht beantwortet.\n\nBitte bleiben Sie bei diesen Themen. Nach einer weiteren solchen Nachricht wird diese Adresse für {days} Tage pausiert.\n\nFirst Move",
+    "ban": "Guten Tag,\n\ndiese Adresse ist nach wiederholten Nachrichten außerhalb der Themen des Assistenten für {days} Tage pausiert. Bis dahin werden Nachrichten von dieser Adresse nicht beantwortet.\n\nFirst Move",
+    "block": "Guten Tag,\n\nIhre Anfrage ist vorerst gesperrt, während ein Administrator sie prüft.\n\nFirst Move",
+    "unavailable": "Guten Tag,\n\nder Assistent von First Move kann gerade nicht antworten. Bitte versuchen Sie es später erneut.\n\nFirst Move"
+  },
+  "admin": {
+    "subject": "Assistent von First Move: {kind}",
+    "body": "Was: {kind}\nKategorie: {category}\nBewertungen: {scores}\nWann: {at}\nVon: {address}\nBetreff: {subject}\nE-Mail-ID: {emailId}\n\nAnfang der Nachricht:\n{excerpt}",
+    "system": "Was: {kind}\nWann: {at}\n\n{detail}",
+    "details": {
+      "rate-global": "Das Tageslimit von {limit} E-Mails für alle Absender ist erreicht. Weitere E-Mails werden heute nicht beantwortet.",
+      "budget": "Das heutige Modellbudget von {budget} USD ist aufgebraucht. Der Assistent beantwortet bis zum nächsten Tag (UTC) keine E-Mails."
+    },
+    "more": "Weitere Warnungen wurden heute nicht gesendet (höchstens {max} pro Tag).",
+    "moreKind": "weitere Warnungen heute",
+    "kinds": {
+      "block": "Absender gesperrt",
+      "guard-failed": "Entscheidung der Schutzprüfung fehlgeschlagen",
+      "rate-global": "Tageslimit für alle E-Mails erreicht",
+      "budget": "Tagesbudget aufgebraucht",
+      "attachment-injection": "Anhang übersprungen (Injection)"
+    }
+  }
+}

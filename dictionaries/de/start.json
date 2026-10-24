@@ -1,5 +1,74 @@
 {
   "meta": {
     "title": "Projekte"
+  },
+  "header": {
+    "eyebrow": "Dashboard",
+    "title": "Starten Sie Ihre 5GDHC-Reise",
+    "body": "Prüfen Sie einen Standort mit dem Quick Check, entwickeln Sie einen Business Plan oder beides. Alles, was Sie eingeben, bleibt in diesem Browser."
+  },
+  "continue": {
+    "eyebrow": "Weiterarbeiten, wo Sie aufgehört haben",
+    "action": "Weiter",
+    "updated": "Letzte Änderung: {time}",
+    "welcomeTitle": "Willkommen bei First Move",
+    "welcomeBody": "Wählen Sie unten einen Weg, um ein neues Projekt zu starten, oder öffnen Sie eines der Beispiele, um ein fertiges Screening zu sehen."
+  },
+  "paths": {
+    "title": "Neues Projekt starten",
+    "body": "Wählen Sie, woran Sie arbeiten möchten. Module können Sie später ein- oder ausschalten.",
+    "action": "Starten",
+    "quick-check": {
+      "title": "Quick Check",
+      "body": "Prüfen Sie in vier Schritten das Potenzial des Standorts für ein 5GDHC-Netz und sehen Sie die entscheidenden Faktoren.",
+      "meta": "4 Schritte · Ergebnis"
+    },
+    "business-plan": {
+      "title": "Business Plan",
+      "body": "Entwickeln Sie Schritt für Schritt ein Geschäftsmodell: Wert, Investition, Risiko und Verantwortung.",
+      "meta": "4 Schritte · Canvas"
+    },
+    "both": {
+      "title": "Beides",
+      "body": "Prüfen Sie zuerst den Standort und bauen Sie dann das Geschäftsmodell auf denselben Daten auf.",
+      "meta": "8 Schritte · gesamter Ablauf"
+    }
+  },
+  "newProject": {
+    "title": "Benennen Sie Ihr Projekt",
+    "body": "Sie können es jederzeit umbenennen.",
+    "label": "Projektname",
+    "defaultName": "Neues Projekt",
+    "create": "Projekt anlegen",
+    "cancel": "Abbrechen",
+    "failed": "Das Projekt konnte nicht angelegt werden. Versuchen Sie es erneut."
+  },
+  "examples": {
+    "title": "Beispiele",
+    "body": "Sechs beispielhafte Projekte, in denen beide Module ausgefüllt sind. Beim Öffnen entsteht Ihre eigene Kopie.",
+    "open": "Kopie öffnen",
+    "verdict": "Ergebnis des Quick Check",
+    "forced": "Durch eine Regel festgelegt",
+    "facts": "{buildings} Gebäude · {area}",
+    "opened": "„{name}“ als Kopie geöffnet",
+    "extra": "Zusätzliches Beispiel"
+  },
+  "import": {
+    "title": "Projekt importieren",
+    "body": "Legen Sie hier eine .firstmove.json-Datei ab oder wählen Sie eine aus. Dateien werden geprüft und verlassen diesen Browser nie.",
+    "choose": "Datei auswählen",
+    "drop": "Datei zum Importieren hier ablegen",
+    "busy": "Wird importiert…"
+  },
+  "projects": {
+    "title": "Ihre Projekte",
+    "count": "{count} in diesem Browser",
+    "empty": "Noch keine Projekte. Starten Sie oben eines oder öffnen Sie ein Beispiel.",
+    "open": "Öffnen",
+    "duplicate": "Duplizieren",
+    "delete": "Löschen",
+    "updated": "Geändert {time}",
+    "actions": "Aktionen für „{name}“",
+    "current": "Geöffnet"
   }
 }

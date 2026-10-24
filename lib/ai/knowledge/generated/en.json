@@ -244,7 +244,7 @@
     "lang": "en",
     "title": "Data and privacy · Export and import",
     "url": "/en/docs/data-and-privacy#export-and-import",
-    "text": "- Export saves the open project as a .firstmove.json file, wherever you choose. The file holds your inputs. The results are not stored; they are calculated again when the file is imported.\n- Import reads a .firstmove.json file and checks it in your browser; nothing is uploaded. If the project is already in this browser, you choose whether to keep both or to replace the stored version. A replaced version is kept, so you can restore it.\n- A file from an earlier version of First Move is updated to the current format when you import it.\nExport your projects regularly, because an export is your copy outside this browser. First Move reminds you to export from time to time.",
+    "text": "- Export saves the open project as a .firstmove.json file, wherever you choose. The file holds your inputs. The results are not stored; they are calculated again when the file is imported.\n- Import reads a .firstmove.json file and checks it in your browser; nothing is uploaded. If the project is already in this browser, you choose whether to keep both or to replace the stored version. A replaced version is kept, so you can restore it.\n- A file from an earlier version of First Move is updated to the current format when you import it.\n- Report shows the open project as a printable page. Your browser prints it or saves it as a PDF; nothing is uploaded.\nExport your projects regularly, because an export is your copy outside this browser. First Move reminds you to export from time to time.",
     "source": "content/docs/en/data-and-privacy.mdx#export-and-import"
   },
   {
@@ -622,6 +622,14 @@
     "url": "/en/docs/quick-check#your-own-parameters",
     "text": "On the Assumptions page, Play with parameters lets you override the capacities and COPs of TBL-4 and TBL-5 and the economic parameters of TBL-6. The results then carry the \"Custom parameters\" badge, your values are saved in the project, and Reset to defaults brings the default values back. The classification thresholds (TBL-7 to TBL-11) are fixed. The Assumptions page also lists the answers to the open points of the methodology that First Move applies in every calculation.",
     "source": "content/docs/en/quick-check.mdx#your-own-parameters"
+  },
+  {
+    "id": "docs:quick-check#the-report",
+    "lang": "en",
+    "title": "Quick Check · The report",
+    "url": "/en/docs/quick-check#the-report",
+    "text": "Report in the top bar opens a report of the open project, for discussion and next steps: the overall result with its reasons and main factors, the coverage, the indicators and the key figures, the inputs you entered, the parameters used, the equations behind each step and, when that module is on, the Business Plan as you wrote it. Print or save as PDF opens your browser's print dialog; choose \"Save as PDF\" to get a PDF file. The report is made in your browser, and nothing is uploaded.",
+    "source": "content/docs/en/quick-check.mdx#the-report"
   },
   {
     "id": "docs:quick-check#limits-of-the-quick-check",

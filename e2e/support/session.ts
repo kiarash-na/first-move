@@ -17,6 +17,7 @@ export const PROJECT_PAGES = [
   "business-plan/business-logic",
   "business-plan/reality-check",
   "business-plan/implementation",
+  "report",
 ] as const
 
 /** localStorage key of the theme choice (lib/theme/theme.ts). */

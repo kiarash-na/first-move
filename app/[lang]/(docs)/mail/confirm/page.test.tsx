@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react"
 import { describe, expect, it } from "vitest"
 
+import de from "@/dictionaries/de/mail.json"
 import en from "@/dictionaries/en/mail.json"
 import MailConfirmPage, { generateMetadata } from "./page"
 
@@ -14,9 +15,9 @@ describe("mail confirm page", () => {
   it("renders the title, the lead and the form with the Terms of its language", async () => {
     window.location.hash = "#t=v1.token"
     render(await MailConfirmPage(props("de")))
-    expect(screen.getByRole("heading", { level: 1, name: en.confirm.title })).toBeInTheDocument()
-    expect(screen.getByText(en.confirm.lead)).toBeInTheDocument()
-    expect(screen.getByRole("link", { name: en.confirm.terms })).toHaveAttribute("href", "/de/terms")
+    expect(screen.getByRole("heading", { level: 1, name: de.confirm.title })).toBeInTheDocument()
+    expect(screen.getByText(de.confirm.lead)).toBeInTheDocument()
+    expect(screen.getByRole("link", { name: de.confirm.terms })).toHaveAttribute("href", "/de/terms")
     window.location.hash = ""
   })
 })

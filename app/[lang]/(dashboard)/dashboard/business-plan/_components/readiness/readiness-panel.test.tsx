@@ -35,10 +35,10 @@ describe("ReadinessPanel (D-30)", () => {
   it("links an open check to the step where it is filled in", async () => {
     const tab = await openProject()
     renderDashboard(<ReadinessPanel />, { store: tab.store, lang: "de" })
-    const part = screen.getByRole("article", { name: "Next steps" })
+    const part = screen.getByRole("article", { name: "Nächste Schritte" })
     const links = within(part).getAllByRole("link")
     expect(links[0]).toHaveAttribute("href", "/de/dashboard/business-plan/implementation")
-    expect(links[0]).toHaveAccessibleName("Fill in: Data to collect")
+    expect(links[0]).toHaveAccessibleName("Ausfüllen: Zu erhebende Daten")
   })
 
   it("reaches 100% and pitch-ready when the Business Plan is complete (Example 3)", async () => {

@@ -5,8 +5,8 @@ import { axeViolations } from "./support/axe"
 import { text, type Lang } from "./support/dictionary"
 
 /**
- * PLAN-AGENT-04: the public docs. Every visible page answers in both languages; German shows the
- * English page with a note; the AI pages answer 404 and are never linked while the AI features
+ * PLAN-AGENT-04: the public docs. Every visible page answers in both languages, each in its own
+ * language (D-32); the AI pages answer 404 and are never linked while the AI features
  * are off (`AI_FEATURES_LIVE`). The lists come from `lib/docs/pages.ts`, so the AI pages join
  * these tests by themselves when the flag flips (A08).
  */
@@ -35,10 +35,11 @@ for (const lang of ["en", "de"] as Lang[]) {
   })
 }
 
-test("a German docs page shows the English page with a German note", async ({ page }) => {
-  await page.goto("/de/docs/quick-check")
-  await expect(page.getByRole("note").filter({ hasText: text("de", "docs", "page.englishOnly") })).toBeVisible()
-  await expect(page.getByRole("heading", { level: 1 }).locator("xpath=..")).toHaveAttribute("lang", "en")
+test("a German docs page shows the German page, without the English-only note", async ({ page }) => {
+  await page.goto("/de/docs/data-and-privacy")
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText(text("de", "docs", "pages.data-and-privacy.title"))
+  await expect(page.getByRole("note").filter({ hasText: text("de", "docs", "page.englishOnly") })).toHaveCount(0)
+  await expect(page.getByRole("heading", { level: 1 }).locator("xpath=..")).not.toHaveAttribute("lang", "en")
 })
 
 for (const theme of ["dark", "light"] as const) {

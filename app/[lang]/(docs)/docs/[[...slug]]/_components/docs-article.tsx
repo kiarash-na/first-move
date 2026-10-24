@@ -6,8 +6,9 @@ import { DocsPager } from "./docs-pager"
 import { docsMdxComponents } from "./mdx/docs-mdx-components"
 
 /**
- * One docs page: the MDX content and the pager. A German route shows the English page with a
- * note, and the content carries `lang="en"` (D-32).
+ * One docs page: the MDX content and the pager. A page is shown in the route's language; a page
+ * without a German file shows the English page on a German route with a note, and the content
+ * carries `lang="en"` (D-32).
  */
 export async function DocsArticle({ slug, lang, copy, live }: { slug: DocSlug; lang: Locale; copy: Dictionary<"docs">; live: boolean }) {
   const { Content, lang: shown } = await loadDocContent(slug, lang)

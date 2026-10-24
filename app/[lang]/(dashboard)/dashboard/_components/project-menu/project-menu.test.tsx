@@ -40,7 +40,7 @@ describe("ProjectMenu (D-08)", () => {
     }
     // File links exist only where the File System Access API does (D-12).
     expect(screen.queryByRole("menuitem", { name: shell.projectMenu.linkFile })).not.toBeInTheDocument()
-    expect(screen.getByRole("menuitem", { name: new RegExp(shell.topBar.reportSoon) })).toHaveAttribute("aria-disabled", "true")
+    expect(screen.getByRole("menuitem", { name: shell.topBar.report })).not.toHaveAttribute("aria-disabled")
   })
 
   it("opens the rename dialog from the menu", async () => {

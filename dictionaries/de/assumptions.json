@@ -1,1 +1,162 @@
-{}
+{
+  "lead": "Die Standardwerte, die Antworten auf offene Fragen und die Parameter, die Sie ändern können. Die Schwellenwerte der Einstufung (Tabellen 7 bis 11) sind fest vorgegeben.",
+  "sections": {
+    "buildings": "Standardwerte der Gebäude",
+    "sources": "Energiequellen",
+    "economic": "Wirtschaftliche Parameter",
+    "answers": "Verwendete Antworten auf offene Fragen"
+  },
+  "tables": {
+    "TBL-1": {
+      "title": "Jährlicher Wärmebedarf",
+      "unit": "kWh/m² pro Jahr"
+    },
+    "TBL-2": {
+      "title": "Jährlicher Kältebedarf",
+      "unit": "kWh/m² pro Jahr"
+    },
+    "TBL-3": {
+      "title": "Durchschnittliche Nutzfläche",
+      "unit": "m² pro Gebäude"
+    },
+    "TBL-4": {
+      "title": "Heizkapazität je Quelle",
+      "unit": "kWh/a"
+    },
+    "TBL-5": {
+      "title": "Kühlkapazität je Quelle",
+      "unit": "kWh/a"
+    },
+    "TBL-6": {
+      "title": "Wirtschaftliche Parameter",
+      "unit": ""
+    },
+    "dash": "Kein Standardwert",
+    "type": "Gebäudetyp",
+    "source": "Quelle",
+    "parameter": "Parameter",
+    "value": "Standardwert",
+    "unitColumn": "Einheit",
+    "custom": "Ihr Wert",
+    "used": "Verwendeter Wert"
+  },
+  "playground": {
+    "title": "Mit Parametern spielen",
+    "body": "Überschreiben Sie die Kapazitäten und COP-Werte der Tabellen 4 und 5 und die wirtschaftlichen Parameter aus Tabelle 6. Die Ergebnisse tragen dann das Kennzeichen „Eigene Parameter“. Ihre Werte werden im Projekt gespeichert.",
+    "toggle": "Mit Parametern spielen",
+    "on": "An",
+    "off": "Aus",
+    "count": "{count} eigene Werte aktiv",
+    "none": "Standardwerte aktiv",
+    "reset": "Auf Standardwerte zurücksetzen",
+    "cell": "{row}, {column}",
+    "confirm": {
+      "title": "Alle Parameter zurücksetzen?",
+      "body": "Alle eigenen Werte werden entfernt, und es gelten wieder die Standardwerte der Tabellen 4 bis 6.",
+      "action": "Auf Standardwerte zurücksetzen",
+      "cancel": "Abbrechen"
+    },
+    "reset_done": "Standardwerte wiederhergestellt"
+  },
+  "flags": {
+    "OQ-18": "Tabelle 6 nennt keinen Wert; der Quick Check verwendet 0 (OQ-18).",
+    "OQ-26": "Die Kapazitäten gelten als absolute Werte je gewählter Quelle für das gesamte Projekt (OQ-26)."
+  },
+  "answers": {
+    "lead": "Die Methodik lässt einige Punkte offen. Diese Antworten gelten in jeder Berechnung.",
+    "items": {
+      "OQ-01": {
+        "title": "Prozentwerte direkt in Gleichungen verwendet",
+        "answer": "Alle %-Werte (Anteile, Zinssatz, PV-Reduktion) vor der Verwendung durch 100 teilen. N_i,p behält seine Nachkommastellen (keine Rundung); die Oberfläche rundet nur für die Anzeige."
+      },
+      "OQ-02": {
+        "title": "Keine Standardwerte für Industrie",
+        "answer": "Industrie ist im Anteilsraster wählbar. Jeder Industrieanteil > 0 erzwingt „Weitere Analyse erforderlich“ (QCT-RULE-INDUSTRY). Industrie fügt keinen Bedarf, keine Nutzfläche und keine Erlöse aus Grund- oder Arbeitspreis hinzu (keine Standardwerte). Terme auf Basis von N_total (EQ-3.3, 3.9c, 3.10d) verwenden die eingegebene Gesamtzahl, Industrie eingeschlossen. Die Oberfläche zeigt einen Hinweis."
+      },
+      "OQ-03": {
+        "title": "Baualtersklassen überschneiden sich bei 1919",
+        "answer": "Die Bezeichnungen der Baualtersklassen unverändert anzeigen. Keine Berechnung hängt vom Grenzjahr ab."
+      },
+      "OQ-04": {
+        "title": "Rolle der Eingabe „ländlich, vorstädtisch, städtisch“",
+        "answer": "Keine Nutzereingabe. Die Kategorie wird aus der TBL-8-Klasse des berechneten ρ_building abgeleitet (Gering → ländlich, Mittel → vorstädtisch, Hoch → städtisch) und schreibgeschützt angezeigt."
+      },
+      "OQ-05": {
+        "title": "Form der optionalen manuellen Bedarfseingabe",
+        "answer": "Zwei optionale Gesamtwerte in kWh/a (Wärme, Kälte). Wenn sie angegeben sind, ersetzen sie die Ergebnisse von EQ-3.2c / EQ-3.2d. Erlösterme aus dem Grundpreis verwenden weiterhin N_i,p · A."
+      },
+      "OQ-06": {
+        "title": "PV: Eingabe und Anwendung der Reduktion um 30 %",
+        "answer": "PV ist eine Ja/Nein-Eingabe. Bei Ja wird C_el mit (1 − 0,30) multipliziert."
+      },
+      "OQ-07": {
+        "title": "Q_cool,total in §3.2 als Wärmebedarf erläutert",
+        "answer": "Q_cool,total ist der gesamte jährliche Kältebedarf (die Erläuterung in §3.2 ist ein Versehen)."
+      },
+      "OQ-08": {
+        "title": "Mehrfach belegte Symbole und uneinheitliche Indizes",
+        "answer": "Indizes nach dem Kontext lesen: i = Gebäudetyp (§3.1, 3.2, 3.9) oder Quelle (§3.8, 3.10a-c, 3.11); in EQ-3.10e ist i = Zinssatz und p = Abschreibungsdauer. A = durchschnittliche Nutzfläche von Typ i, Baualtersklasse p (TBL-3). EQ-3.2a/b werden je Zelle (i, p) ausgewertet. C_i,total = Summe von C_i über die gewählten Quellen."
+      },
+      "OQ-09": {
+        "title": "N_ha vs. ρ_building",
+        "answer": "N_ha = ρ_building (EQ-3.3)."
+      },
+      "OQ-10": {
+        "title": "Einheit der Wärmedichte vs. Schwellenwerte",
+        "answer": "ρ_heat wird in kWh/m berechnet und mit den TBL-9-Schwellenwerten in MWh/m verglichen (ρ_heat / 1000). Die Oberfläche zeigt MWh/m."
+      },
+      "OQ-11": {
+        "title": "Angebot je Quelle vs. Gesamtangebot im Deckungsgrad",
+        "answer": "Mehrere Quellen können gewählt werden. Der Deckungsgrad verwendet die Summe der Angebote je Quelle. C_i und C_el werden je Quelle berechnet und summiert."
+      },
+      "OQ-12": {
+        "title": "Keine Formel für das Kälte-Wärme-Verhältnis",
+        "answer": "CH = min(Q_cool,total, Q_heat,total) / max(Q_cool,total, Q_heat,total), immer 0-1. Die Oberfläche nennt den überwiegenden Bedarf. Beide Bedarfe 0 → nicht anwendbar."
+      },
+      "OQ-13": {
+        "title": "Quellen ohne COP oder Kapazität",
+        "answer": "Solarthermie (kein COP): Q_heat,supply = Q_heat,available, kein Wärmepumpenstrom. Quellen ohne Kühlkapazität (Abwärme, Solarthermie): Q_cool,supply = 0."
+      },
+      "OQ-14": {
+        "title": "Definition des COP und COP_H / COP_C",
+        "answer": "COP steht für Leistungszahl (coefficient of performance). COP_H = COP aus TBL-4 und COP_C = COP aus TBL-5 derselben Quelle."
+      },
+      "OQ-15": {
+        "title": "p_C,energy vs. p_HC,energy",
+        "answer": "p_C,energy ist der Arbeitspreis Kälte (TBL-6, cooling_energy_price)."
+      },
+      "OQ-16": {
+        "title": "Grundpreise pro m² ohne Zeiteinheit",
+        "answer": "Grundpreise gelten in € pro m² Nutzfläche und Jahr."
+      },
+      "OQ-17": {
+        "title": "C_overall addiert sowohl C_i als auch C_i,total",
+        "answer": "C_overall = C_HP · N_total + C_net + C_i,total (C_i wird nicht ein zweites Mal addiert)."
+      },
+      "OQ-18": {
+        "title": "Installationskosten Umgebungsluft „-“ mit der Einheit €/kWh",
+        "answer": "Installationskosten Umgebungsluft = 0 €/(kWh/a); die Wärmepumpen sind bereits in C_HP · N_total enthalten. In der Oberfläche als Annahme angezeigt."
+      },
+      "OQ-19": {
+        "title": "Einheit von C_el als kWh/a angegeben",
+        "answer": "C_el wird in €/a angegeben."
+      },
+      "OQ-20": {
+        "title": "Bereichsgrenzen in den Einstufungstabellen",
+        "answer": "Untergrenze inklusive, keine Lücken. Deckungsgrad: ≥100 / ≥90 / ≥70 / <70 %. Gebäudedichte: >30 / ≥10 / <10 Gebäude/ha. Wärmedichte: >1,5 / ≥0,5 / <0,5 MWh/m. CH-Verhältnis: ≥0,8 / ≥0,3 / <0,3."
+      },
+      "OQ-21": {
+        "title": "„Wirtschaftliche Bewertung günstig / deutlich ungünstig“ ist nicht definiert",
+        "answer": "E = R_overall / (C_annual + C_el + C_O&M). E ≥ 1,0 günstig; E < 0,7 deutlich ungünstig; sonst unklar (→ Weitere Analyse erforderlich). Die Konstanten stehen in einer einzigen Konfigurationsdatei."
+      },
+      "OQ-22": {
+        "title": "Von der Gesamtregel nicht abgedeckte Kombinationen",
+        "answer": "Rangfolge: (1) Industrieanteil > 0 oder mindestens eine gewählte Quelle mit unbekanntem Potenzial → Weitere Analyse erforderlich; (2) Nicht vielversprechend; (3) Vielversprechend; (4) sonst Weitere Analyse erforderlich. Ein Bedarf ist relevant, wenn er > 0 ist. Fehlende Pflichteingaben → kein Ergebnis (unvollständig)."
+      },
+      "OQ-26": {
+        "title": "Kapazitäten der Quellen sind klein im Vergleich zum Standardbedarf",
+        "answer": "Die Kapazitäten aus TBL-4/5 unverändert als absolute Werte je gewählter Quelle für das gesamte Projekt verwenden. Dies im Bereich „Annahmen“ kennzeichnen und bei den Veranstaltern nachfragen. „Mit Parametern spielen“ kann die Kapazitäten überschreiben (die Ergebnisse sind dann als „Eigene Parameter“ gekennzeichnet). Prüfung: „Vielversprechend“ bleibt für etwa 2-15 Gebäude mit mehreren Quellen mittleren oder hohen Potenzials erreichbar."
+      }
+    }
+  }
+}

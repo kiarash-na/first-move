@@ -1,1 +1,172 @@
-{}
+{
+  "meta": {
+    "title": "Übersicht"
+  },
+  "header": {
+    "eyebrow": "Projektübersicht",
+    "results": "Vollständiges Ergebnis",
+    "edit": "Eingaben bearbeiten"
+  },
+  "verdict": {
+    "eyebrow": "Bewertung des Quick Check",
+    "details": "Begründung ansehen",
+    "factors": "Was den Ausschlag gibt",
+    "supporting": "Förderlich",
+    "limiting": "Einschränkend",
+    "none": "Keine"
+  },
+  "sections": {
+    "kpis": "Kennzahlen",
+    "energy": "Energie",
+    "economics": "Wirtschaftlichkeit",
+    "indicators": "Weitere Indikatoren",
+    "charts": "Diagramme",
+    "businessPlan": "Business Plan",
+    "quickCheck": "Quick Check"
+  },
+  "kpi": {
+    "heatingCoverage": "Deckungsgrad Wärme",
+    "coolingCoverage": "Deckungsgrad Kälte",
+    "heatingDemand": "Wärmebedarf",
+    "coolingDemand": "Kältebedarf",
+    "revenue": "Gesamterlöse",
+    "investment": "Gesamtinvestition",
+    "annualCosts": "Jährliche Kosten",
+    "supplyOfDemand": "{supply} Angebot bei {demand} Bedarf",
+    "notRelevant": "Kein Bedarf dieser Art",
+    "perYear": "/a",
+    "customParameters": "Eigene Parameter"
+  },
+  "tiles": {
+    "buildingDensity": "Gebäudedichte",
+    "heatDensity": "Wärmedichte",
+    "chRatio": "Kälte-Wärme-Verhältnis",
+    "networkLength": "Netzlänge",
+    "electricity": "Stromkosten",
+    "operation": "Betrieb und Wartung",
+    "annuity": "Annuität",
+    "annuityHint": "Annualisierte Investition",
+    "economicRatio": "Erlös-Kosten-Verhältnis"
+  },
+  "charts": {
+    "view": {
+      "label": "Ansicht",
+      "chart": "Diagramm",
+      "table": "Tabelle"
+    },
+    "tableOf": "Tabellenansicht: {chart}",
+    "loading": "Diagramm wird geladen",
+    "total": "Gesamt",
+    "coverage": {
+      "title": "Deckungsgrad gemessen am Bedarf",
+      "lead": "Angebot als Anteil am Bedarf. Die Markierungen zeigen 70 %, 90 % und 100 %.",
+      "type": "Bedarfsart",
+      "supply": "Angebot",
+      "demand": "Bedarf",
+      "coverage": "Deckungsgrad",
+      "scale": "Skala bis 150 % des Bedarfs",
+      "notRelevant": "Nicht relevant"
+    },
+    "economics": {
+      "title": "Erlöse im Vergleich zu den jährlichen Kosten",
+      "lead": "Beide Werte gelten pro Jahr. Die Erlöse sollten die jährlichen Kosten decken.",
+      "item": "Posten",
+      "amount": "Betrag pro Jahr",
+      "revenues": "Erlöse",
+      "costs": "Jährliche Kosten",
+      "revenue": {
+        "base": "Grundpreise",
+        "energy": "Arbeitspreise",
+        "connection": "Anschlussgebühren"
+      },
+      "cost": {
+        "annualized": "Annuität",
+        "electricity": "Strom",
+        "operation": "Betrieb und Wartung"
+      }
+    },
+    "investment": {
+      "title": "Aufteilung der Investition",
+      "lead": "Wohin die Gesamtinvestition fließt.",
+      "item": "Posten",
+      "amount": "Investition",
+      "parts": {
+        "heatPump": "Wärmepumpen",
+        "network": "Netz",
+        "supply": "Energieversorgung"
+      }
+    },
+    "more": {
+      "title": "Weitere Diagramme",
+      "lead": "Diese Diagramme öffnen sich erst auf Wunsch, damit die Übersicht schnell bleibt.",
+      "close": "Diagramm ausblenden",
+      "demand": {
+        "tab": "Bedarf nach Typ und Baualtersklasse",
+        "title": "Bedarf nach Gebäudetyp und Baualtersklasse",
+        "lead": "Jährlicher Bedarf je Gebäudetyp, aufgeteilt nach Baualtersklasse.",
+        "heating": "Wärme",
+        "cooling": "Kälte",
+        "type": "Gebäudetyp"
+      },
+      "supply": {
+        "tab": "Angebot je Quelle",
+        "title": "Angebot je Quelle im Vergleich zum Bedarf",
+        "lead": "Was jede gewählte Quelle pro Jahr liefern kann, mit beiden Bedarfen als Referenzlinien.",
+        "source": "Quelle",
+        "heatingSupply": "Wärmeangebot",
+        "coolingSupply": "Kälteangebot",
+        "heatingDemand": "Wärmebedarf",
+        "coolingDemand": "Kältebedarf"
+      },
+      "cost": {
+        "tab": "Kostenstruktur",
+        "title": "Kostenstruktur",
+        "lead": "Die jährlichen Kosten nach Bestandteilen und die Investition, aufgeschlüsselt bis auf jede einzelne Quelle.",
+        "annual": "Jährliche Kosten",
+        "investment": "Investition nach Posten",
+        "share": "Anteil",
+        "item": "Posten",
+        "electricity": "Strom je Quelle"
+      }
+    }
+  },
+  "incomplete": {
+    "title": "Noch kein Ergebnis des Quick Check",
+    "body": "Die Bewertung und die Kennzahlen erscheinen hier, sobald der Quick Check alles hat, was er braucht. Diese Schritte sind noch offen:"
+  },
+  "add": {
+    "quickCheck": {
+      "title": "Den Quick Check hinzufügen",
+      "body": "Erhalten Sie eine erste Einschätzung, ob ein 5GDHC-Netz hier vielversprechend aussieht: Bewertung, Deckungsgrad, Dichten und Kosten.",
+      "action": "Quick Check hinzufügen"
+    },
+    "businessPlan": {
+      "title": "Den Business Plan hinzufügen",
+      "body": "Erarbeiten Sie die Geschäftslogik hinter diesem Standort: wer zahlt, wer Eigentümer und Betreiber ist und welche Risiken das Projekt stoppen könnten.",
+      "action": "Business Plan hinzufügen"
+    }
+  },
+  "bp": {
+    "steps": {
+      "title": "Fortschritt je Schritt",
+      "progress": "{done} von {total} ausgefüllt",
+      "overall": "Gesamt"
+    },
+    "readiness": {
+      "title": "Pitch-Reife",
+      "caveat": "Zählt, was ausgefüllt ist, nicht, wie gut es ist."
+    },
+    "risks": {
+      "title": "Größte Risiken",
+      "none": "Noch keine Risiken eingetragen.",
+      "add": "Risiken hinzufügen"
+    },
+    "dealBreaker": {
+      "title": "Mögliches K.-o.-Kriterium",
+      "tag": "K.-o.-Kriterium",
+      "none": "Noch kein K.-o.-Kriterium markiert.",
+      "mark": "Eines markieren"
+    },
+    "open": "Öffnen"
+  }
+}

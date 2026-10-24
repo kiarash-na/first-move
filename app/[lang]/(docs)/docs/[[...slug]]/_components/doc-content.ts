@@ -7,8 +7,9 @@ type Loader = () => Promise<{ default: MDXContent }>
 
 /**
  * The MDX file of every page and language, imported on demand (MDX guide, "Using dynamic
- * imports"). English is complete; German has no pages yet (D-32), so German routes show the
- * English page with a note. A translated page only needs its loader here.
+ * imports"). English is complete, and every page has its German translation (D-32). German stays
+ * partial by type: a page added in English without a German file shows the English page with a
+ * note on German routes until its loader is added here.
  */
 export const DOC_CONTENT: { en: Record<DocSlug, Loader>; de: Partial<Record<DocSlug, Loader>> } = {
   en: {
@@ -20,7 +21,15 @@ export const DOC_CONTENT: { en: Record<DocSlug, Loader>; de: Partial<Record<DocS
     "email-agent": () => import("@/content/docs/en/email-agent.mdx"),
     "data-and-privacy": () => import("@/content/docs/en/data-and-privacy.mdx"),
   },
-  de: {},
+  de: {
+    index: () => import("@/content/docs/de/index.mdx"),
+    "what-is-5gdhc": () => import("@/content/docs/de/what-is-5gdhc.mdx"),
+    "quick-check": () => import("@/content/docs/de/quick-check.mdx"),
+    "business-plan": () => import("@/content/docs/de/business-plan.mdx"),
+    assistant: () => import("@/content/docs/de/assistant.mdx"),
+    "email-agent": () => import("@/content/docs/de/email-agent.mdx"),
+    "data-and-privacy": () => import("@/content/docs/de/data-and-privacy.mdx"),
+  },
 }
 
 /** The language a page is shown in: its own when it exists, else English. */

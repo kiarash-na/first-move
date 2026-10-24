@@ -1,6 +1,7 @@
 import { screen } from "@testing-library/react"
 import { afterEach, describe, expect, it } from "vitest"
 import { testTab, type TestTab } from "@/lib/store/test-utils/harness"
+import { testDictionaries } from "../test-utils/dictionaries"
 import { renderDashboard } from "../test-utils/render"
 import { ChartSkeleton } from "./chart-skeleton"
 
@@ -14,6 +15,6 @@ describe("ChartSkeleton", () => {
     const tab = testTab()
     tabs.push(tab)
     renderDashboard(<ChartSkeleton />, { store: tab.store, lang })
-    expect(screen.getByRole("status", { busy: true })).toHaveTextContent("Loading chart")
+    expect(screen.getByRole("status", { busy: true })).toHaveTextContent(testDictionaries(lang).overview.charts.loading)
   })
 })

@@ -1,33 +1,46 @@
 "use client"
 
 import { FileTextIcon } from "lucide-react"
+import Link from "next/link"
 
 import { Button } from "@/components/ui/button"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
-import { useDictionary } from "../i18n-provider"
+import { dashboardHref } from "@/lib/dashboard/routes"
+import { useDictionary, useLocale } from "../i18n-provider"
+import { useStoreState } from "../store-provider"
 
 /**
- * The report entry point (QCT-SCOPE-10), shown but disabled until the report exists (D-09).
- * It stays focusable (aria-disabled) so the "coming soon" tooltip can be reached by keyboard.
+ * Opens the report of the open project (QCT-SCOPE-06 "Export Results", D-09, D-70), where the
+ * browser prints it or saves it as a PDF. Text label from 1200px, icon below; like Export, it is
+ * disabled while no project is open.
  */
 export function ReportButton() {
+  const lang = useLocale()
   const shell = useDictionary("shell")
+  const hasActive = useStoreState((state) => state.active !== null)
+  const content = (
+    <>
+      <FileTextIcon strokeWidth={1.6} aria-hidden="true" />
+      <span className="max-xl:sr-only">{shell.topBar.report}</span>
+    </>
+  )
 
   return (
     <Tooltip>
       <TooltipTrigger asChild>
-        <Button
-          variant="ghost"
-          aria-disabled="true"
-          aria-label={`${shell.topBar.report}: ${shell.topBar.reportSoon}`}
-          className="cursor-not-allowed px-3 opacity-50 hover:bg-transparent max-xl:size-11 max-xl:px-0"
-          onClick={(event) => event.preventDefault()}
-        >
-          <FileTextIcon strokeWidth={1.6} aria-hidden="true" />
-          <span className="max-xl:sr-only">{shell.topBar.report}</span>
-        </Button>
+        {hasActive ? (
+          <Button asChild variant="ghost" className="px-3 max-xl:size-11 max-xl:px-0">
+            <Link href={dashboardHref(lang, { page: "report" })} aria-label={shell.topBar.report}>
+              {content}
+            </Link>
+          </Button>
+        ) : (
+          <Button variant="ghost" disabled aria-label={shell.topBar.report} className="px-3 max-xl:size-11 max-xl:px-0">
+            {content}
+          </Button>
+        )}
       </TooltipTrigger>
-      <TooltipContent>{shell.topBar.reportSoon}</TooltipContent>
+      <TooltipContent className="xl:hidden">{shell.topBar.report}</TooltipContent>
     </Tooltip>
   )
 }

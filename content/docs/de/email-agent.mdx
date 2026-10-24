@@ -1,0 +1,81 @@
+# E-Mail-Agent
+
+Sie können First Move auch per E-Mail nutzen: Schreiben Sie an agent@mail.firstmove.energy. Dieses Postfach beantwortet ein KI-System. Es beantwortet kurze Fragen zu First Move und zu Fernwärme und -kälte der 5. Generation auf Grundlage dieser öffentlichen Dokumentation, und es kann mit Ihnen per E-Mail einen Quick Check, einen Business Plan oder beides durchführen. Vorerst schreibt der E-Mail-Agent auf Englisch.
+
+Für Datenschutzfragen, rechtliche Angelegenheiten und Anfragen zu Ihren Datenschutzrechten schreiben Sie stattdessen an human@mail.firstmove.energy. Dieses Postfach liest ein Mensch.
+
+## Was der Agent kann
+
+- **Fragen beantworten** zu First Move, 5GDHC, dem Quick Check und dem Business Plan, nur auf Grundlage dieser Dokumentation. Wenn die Dokumentation eine Frage nicht abdeckt, sagt er das.
+- **Einen Quick Check per E-Mail durchführen**: Er fragt nach den Eingaben und sendet Ihnen das Ergebnis.
+- **Einen Business Plan per E-Mail entwickeln**, Schritt für Schritt.
+- **Eine Projektdatei senden**, die Sie im Dashboard importieren können, wenn Sie eine möchten.
+
+Die Antworten verfasst ein KI-System, und sie werden automatisch versendet; ein Mensch prüft sie nicht. Sie können falsch sein und sind nicht rechtsverbindlich.
+
+## Die erste E-Mail: einmal bestätigen
+
+Wenn Sie zum ersten Mal schreiben, wird nichts von KI verarbeitet. Ihre Nachricht wartet ungelesen, und Sie erhalten eine kurze E-Mail mit einem Bestätigungslink. Setzen Sie auf der Bestätigungsseite das Häkchen und klicken Sie auf die Schaltfläche: Damit akzeptieren Sie die Nutzungsbedingungen und E-Mails zu Ihrer Anfrage, ohne Werbung. Danach wird Ihre Nachricht verarbeitet.
+
+Wenn Sie nicht innerhalb von 7 Tagen bestätigen, wird Ihre Nachricht nie verarbeitet. Wenn Sie uns nicht geschrieben haben, ignorieren Sie die E-Mail. Sie bestätigen nur einmal; Ihre Bestätigung wird bis 12 Monate nach Ihrer letzten Nachricht aufbewahrt.
+
+## Wer schreiben kann
+
+Ihr E-Mail-Anbieter muss Ihre E-Mail authentifizieren (DMARC); die meisten Anbieter tun das. E-Mails, die diese Prüfung nicht bestehen, werden ohne Antwort ignoriert. Automatische Antworten, Mailinglisten und Unzustellbarkeitsmeldungen werden ebenfalls ignoriert. Der Agent antwortet nur an die Adresse, von der die E-Mail kam, und nie an jemand anderen.
+
+## Ein Quick Check per E-Mail
+
+1. Zuerst fragt der Agent, welches Modul Sie möchten, 1 Quick Check, 2 Business Plan oder 3 beides, und ob Sie eine Projektdatei zum Import im Dashboard möchten, ja oder nein. Eine kurze Antwort wie „1, yes“ oder „both, no“ genügt, und Sie können es auch in eigenen Worten schreiben.
+2. Für einen Quick Check sendet er eine nummerierte Liste von Fragen, jede mit einer Beispielantwort. Gefragt wird nach dem Projektnamen (optional), der Anzahl der Gebäude, der Fläche des Projektgebiets in m² (Hektar sind auch möglich), dem Gebäudemix nach Typ und Baualtersklasse (die Anteile müssen zusammen 100 % ergeben), den Energiequellen und ihrem Potenzial, ob PV vorhanden ist und, falls Sie sie kennen, nach dem Wärme- und Kältebedarf in kWh/a und der Netzlänge in m.
+3. Antworten Sie mit der Nummer der Frage, zum Beispiel „2: 40 Gebäude“. Sie können in mehreren E-Mails antworten und einen Wert auf dieselbe Weise oder in Worten korrigieren, zum Beispiel „Fläche auf 4 ha ändern“.
+4. Jede Antwort des Agenten führt auf, was er verstanden hat, was unklar ist und was noch fehlt.
+5. Wenn die erforderlichen Eingaben vollständig sind, erhalten Sie das Ergebnis.
+
+Das Ergebnis berechnet der eigene Rechenkern des Quick Check von First Move, genau wie im Dashboard; die KI sammelt nur Ihre Eingaben. Die Seite [Quick Check](/docs/quick-check) erklärt, wie das Ergebnis berechnet wird.
+
+## Ein Business Plan per E-Mail
+
+Für einen Business Plan geht der Agent die vier Schritte in je einer Runde durch: Chance, Geschäftslogik, Realitätscheck und Umsetzung. Jede Runde enthält die Leitfragen des Schritts und nennt die Beispielszenarien als Beispiele. Ihre Antworten werden in Ihren eigenen Worten übernommen. Wenn Sie beide Module wählen, zeigt der Business Plan die Zahlen des Quick Check schreibgeschützt an.
+
+Die Zusammenfassung führt die ausgefüllten Abschnitte, die kritischen Annahmen, die Risiken und die inoffizielle Checkliste zur Pitch-Reife auf. Die Seite [Business Plan](/docs/business-plan) erklärt die Schritte.
+
+## Dateien an eine E-Mail anhängen
+
+Statt die Fragen zu beantworten, können Sie Dokumente anhängen, und der Agent liest sie im Hintergrund:
+
+- Dateien im Format PDF, Word (.docx), Excel (.xlsx), CSV, Markdown und Text;
+- eine Projektdatei von First Move (`.firstmove.json`), die unverändert importiert wird;
+- bis zu 5 Dateien pro E-Mail, 10 MB pro Datei und 20 MB insgesamt; von einem PDF werden die ersten 60 Seiten gelesen.
+
+Eine Datei, die der Agent nicht lesen kann, wird übersprungen, und die Antwort nennt sie. Jede Datei wird außerdem auf versteckte Anweisungen geprüft. Eine Datei, die versucht, den Assistenten zu manipulieren, wird übersprungen, aber nicht gegen Sie gewertet, weil Menschen Dokumente weiterleiten, die sie nicht selbst geschrieben haben.
+
+## Ergebnisse und die Projektdatei
+
+Das Ergebnis des Quick Check kommt als E-Mail im Stil von First Move, mit einer Fassung in reinem Text: das Gesamtergebnis und seine wichtigsten Einflussfaktoren, die Kennzahlen, die Annahmen und wie die Zahlen berechnet wurden, die verwendeten Eingaben und der Hinweis, dass es sich um ein Screening handelt, nicht um eine Machbarkeitsstudie. Ein Business Plan kommt als Zusammenfassung derselben Art. Einen Bericht als PDF gibt es noch nicht.
+
+Wenn Sie eine Projektdatei angefordert haben, ist eine Datei `.firstmove.json` angehängt. Importieren Sie sie im Dashboard, um dort weiterzuarbeiten; die per E-Mail gesammelten Werte tragen eine KI-Kennzeichnung. Sie können die Datei auch später anfordern, indem Sie „file“ schreiben.
+
+Weitere Antworten nach dem Ergebnis aktualisieren es, und der Agent sendet es erneut. Schreiben Sie „new“, um neu zu beginnen, oder „stop“, um die Unterhaltung zu beenden und zu löschen.
+
+## Die Regeln
+
+Das Postfach ist für Fragen zu First Move und zu Fernwärme und -kälte der 5. Generation gedacht sowie für Ihren Quick Check und Ihren Business Plan. Grüße und Dank sind in Ordnung.
+
+- **Bleiben Sie beim Thema.** Auf eine erste E-Mail ohne Themenbezug folgt ein Hinweis. Nach einer zweiten pausiert das Postfach für Sie 30 Tage lang.
+- **Kein Missbrauch.** Versuche, den Assistenten zu manipulieren, seine Anweisungen offenzulegen oder ihn dazu zu bringen, anderen Personen E-Mails zu schreiben, Belästigung sowie Betrug, Phishing, Malware oder Spam führen zur Sperrung des Absenders. Sie erhalten eine Mitteilung, und der Betreiber erfährt, was geschehen ist.
+- **Nach einer Pause oder einer Sperre antwortet der Agent nicht.**
+
+Wenn der Agent nicht sicher ist, ob eine E-Mail Missbrauch ist, wertet er sie als Hinweis und nicht als Sperre.
+
+## Wie lange Daten aufbewahrt werden
+
+- Eine unbestätigte erste Nachricht wartet 7 Tage auf Ihre Bestätigung.
+- Die Unterhaltung: 30 Tage nach Ihrer letzten Nachricht.
+- Ein Hinweis: 90 Tage. Eine Pause: 30 Tage. Eine Sperre: bis wir sie löschen.
+- Ihre Bestätigung: 12 Monate nach Ihrer letzten Nachricht.
+
+Für diese Einträge wird Ihre Adresse nur als Hashwert gespeichert, und die Unterhaltung und die Liste der wartenden Nachrichten werden verschlüsselt gespeichert. Die E-Mails selbst bleiben 30 Tage bei unserem E-Mail-Anbieter. Unsere E-Mails enthalten ein minimales Tracking von Öffnungen und Klicks ([E-Mail-Tracking](/privacy#email-tracking)). Die Einzelheiten stehen in der [Datenschutzerklärung](/privacy#retention).
+
+## Wer Ihre E-Mail verarbeitet
+
+Für die Antwort verarbeiten diese Dienstleister Ihre E-Mail und ihre Anhänge: Resend für E-Mails, Vercel für die Funktionen, die Workflows und das AI Gateway, TypeSafe AI für Jev, ein Entscheidungsmodell, das jede E-Mail auf Themenbezug und Missbrauch prüft, Anthropic für Claude Haiku, das die E-Mail liest und die Antwort schreibt, und Upstash für die verschlüsselten Einträge. Die [Datenschutzerklärung](/privacy#recipients) nennt sie mit ihren Standorten und Garantien.

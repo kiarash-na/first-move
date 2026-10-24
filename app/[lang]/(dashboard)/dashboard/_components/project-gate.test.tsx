@@ -4,6 +4,7 @@ import { afterEach, describe, expect, it } from "vitest"
 import shell from "@/dictionaries/en/shell.json"
 import { testTab, type TestTab } from "@/lib/store/test-utils/harness"
 import { ProjectGate } from "./project-gate"
+import { testDictionaries } from "./test-utils/dictionaries"
 import { renderDashboard } from "./test-utils/render"
 
 const tabs: TestTab[] = []
@@ -28,9 +29,10 @@ describe("ProjectGate", () => {
   it.each(["en", "de"] as const)("links back to the start screen when no project is open (%s)", async (lang) => {
     const { store } = tab()
     await store.start()
+    const { gate } = testDictionaries(lang).shell
     renderDashboard(<ProjectGate>content</ProjectGate>, { store, lang })
-    expect(await screen.findByRole("heading", { name: shell.gate.noProject.title })).toBeInTheDocument()
-    expect(screen.getByRole("link", { name: shell.gate.noProject.action })).toHaveAttribute("href", `/${lang}/dashboard`)
+    expect(await screen.findByRole("heading", { name: gate.noProject.title })).toBeInTheDocument()
+    expect(screen.getByRole("link", { name: gate.noProject.action })).toHaveAttribute("href", `/${lang}/dashboard`)
   })
 
   it("offers to turn a module on, then shows the page", async () => {

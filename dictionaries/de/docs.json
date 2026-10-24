@@ -1,8 +1,44 @@
 {
   "nav": {
+    "label": "Seiten der Dokumentation",
     "title": "Dokumentation"
+  },
+  "pages": {
+    "index": {
+      "title": "Einführung",
+      "description": "Was First Move ist, seine zwei Module, wo Ihre Daten bleiben und wo Sie anfangen."
+    },
+    "what-is-5gdhc": {
+      "title": "Was ist 5GDHC?",
+      "description": "Fernwärme und -kälte der 5. Generation in einfachen Worten: ein Niedertemperaturnetz, Wärmepumpen in den Gebäuden, geteilte Wärme und Kälte."
+    },
+    "quick-check": {
+      "title": "Quick Check",
+      "description": "Jede Eingabe des Quick Check, wie das Ergebnis mit der vordefinierten Methodik berechnet wird und was das Ergebnis und seine wichtigsten Einflussfaktoren bedeuten."
+    },
+    "business-plan": {
+      "title": "Business Plan",
+      "description": "Die vier Schritte des Business Plan, die Beispielszenarien, die inoffizielle Checkliste zur Pitch-Reife und die Zahlen des Quick Check, die er zeigt."
+    },
+    "assistant": {
+      "title": "KI-Assistent",
+      "description": "Der optionale KI-Assistent im Dashboard: Ihr eigener Schlüssel, Ihr Anbieter, vorgeschlagene Werte, die Sie prüfen, und wie Sie den Schlüssel entfernen."
+    },
+    "email-agent": {
+      "title": "E-Mail-Agent",
+      "description": "First Move per E-Mail nutzen: die einmalige Bestätigung, Quick Check und Business Plan per E-Mail, Anhänge, die Regeln und wie lange Daten aufbewahrt werden."
+    },
+    "data-and-privacy": {
+      "title": "Daten und Datenschutz",
+      "description": "Wo Ihre Projekte liegen, Export und Import, frühere Versionen, das Löschen von Daten, Cookies und die rechtlichen Seiten."
+    }
   },
   "page": {
     "englishOnly": "Diese Seite gibt es vorerst nur auf Englisch."
+  },
+  "pager": {
+    "label": "Vorherige und nächste Seite",
+    "previous": "Zurück",
+    "next": "Weiter"
   }
 }

@@ -1,1 +1,543 @@
-{}
+{
+  "fields": {
+    "site": {
+      "label": "Standort oder Quartier",
+      "help": "Beschreiben Sie den Standort oder das Quartier, für das das Geschäftsmodell gedacht ist.",
+      "name": {
+        "label": "Name des Standorts oder Quartiers"
+      },
+      "location": {
+        "label": "Ort",
+        "help": "Gemeinde, Region oder Land."
+      },
+      "siteType": {
+        "label": "Art des Standorts",
+        "help": "Zum Beispiel ein ländliches Dorf, der Stadtrand oder ein bestehendes Quartier."
+      },
+      "ownership": {
+        "label": "Eigentums- und Nutzungsformen",
+        "help": "Wem die Gebäude gehören und wie sie genutzt werden, zum Beispiel Privateigentum, Mietwohnungen oder Tourismus."
+      },
+      "units": {
+        "label": "Einheiten oder Gebäude",
+        "help": "Soweit bekannt, zum Beispiel „20–70 Einheiten, schrittweise Entwicklung“."
+      },
+      "currentSupply": {
+        "label": "Aktuelle Energieversorgung",
+        "help": "Ein Eintrag pro Energieträger, zum Beispiel Erdgas oder Biomasse."
+      },
+      "stakeholders": {
+        "label": "Akteure",
+        "help": "Ein Eintrag pro Akteur, zum Beispiel Privathaushalte oder ein Hotel."
+      },
+      "partners": {
+        "label": "Weitere Partner",
+        "help": "Ein Eintrag pro Partner, zum Beispiel die Gemeinde."
+      }
+    },
+    "businessPlan": {
+      "scenarioId": {
+        "label": "Anwendungsfall",
+        "help": "Beginnen Sie mit einem vordefinierten Szenario oder beschreiben Sie Ihren eigenen Anwendungsfall."
+      },
+      "opportunity": {
+        "label": "Die Chance",
+        "help": "Wofür das Netz gedacht ist und für wen.",
+        "customerSegments": {
+          "label": "Kundensegmente",
+          "help": "Wer würde sich an das Netz anschließen?"
+        },
+        "needs": {
+          "label": "Wärme- und Kältebedarf",
+          "help": "Welchen Wärme- und Kältebedarf haben die Gebäude?"
+        },
+        "heatSources": {
+          "label": "Relevante Wärmequellen",
+          "help": "Welche lokalen Quellen könnten das Netz versorgen, und was ist über sie bekannt?"
+        },
+        "painPoint": {
+          "label": "Zentrales Problem",
+          "help": "Welches Problem hat der Standort heute?"
+        },
+        "alternatives": {
+          "label": "Verfügbare Alternativen",
+          "help": "Was könnten die Gebäude sonst tun, zum Beispiel auf eigene Wärmepumpen setzen?"
+        },
+        "advantage": {
+          "label": "Warum ein gemeinsames Niedertemperaturnetz",
+          "help": "Warum bietet ein gemeinsames Netz im Vergleich zu den Alternativen einen Mehrwert?"
+        }
+      },
+      "canvas": {
+        "label": "Business Model Canvas",
+        "help": "Achten Sie besonders auf Wertangebot, Kundenbeziehungen, Schlüsselpartner, Betreiberverantwortung, Kostenstruktur und Einnahmequellen.",
+        "keyPartners": {
+          "label": "Schlüsselpartner"
+        },
+        "keyActivities": {
+          "label": "Schlüsselaktivitäten"
+        },
+        "keyResources": {
+          "label": "Schlüsselressourcen"
+        },
+        "valueProposition": {
+          "label": "Wertangebot"
+        },
+        "customerRelationships": {
+          "label": "Kundenbeziehungen"
+        },
+        "channels": {
+          "label": "Kanäle"
+        },
+        "customerSegments": {
+          "label": "Kundensegmente"
+        },
+        "costStructure": {
+          "label": "Kostenstruktur"
+        },
+        "revenueStreams": {
+          "label": "Einnahmequellen"
+        },
+        "operatorResponsibilities": {
+          "label": "Betreiberverantwortung",
+          "help": "Wem gehören die Quelle, das Netz und die Wärmepumpen, wer betreibt sie, und wer ist wofür zuständig?"
+        }
+      },
+      "allocation": {
+        "label": "Verteilung von Investition, Risiko und Nutzen",
+        "help": "Machen Sie deutlich, wer investiert, wer welches Risiko trägt und wer profitiert.",
+        "item": {
+          "stakeholder": {
+            "label": "Akteur"
+          },
+          "investment": {
+            "label": "Investition"
+          },
+          "risk": {
+            "label": "Risiko"
+          },
+          "benefit": {
+            "label": "Nutzen"
+          }
+        }
+      },
+      "assumptions": {
+        "label": "Grobe Annahmen",
+        "help": "Verwenden Sie grobe, aber transparente Annahmen statt detaillierter technischer Berechnungen.",
+        "connectionRate": {
+          "label": "Anschlussquote"
+        },
+        "tariffs": {
+          "label": "Tarife"
+        },
+        "capex": {
+          "label": "Investitionsausgaben"
+        },
+        "financing": {
+          "label": "Finanzierung"
+        },
+        "subsidies": {
+          "label": "Abhängigkeit von Förderungen"
+        }
+      },
+      "criticalAssumptions": {
+        "label": "Kritische Annahmen",
+        "help": "Die wichtigsten kritischen Annahmen und wie sich jede überprüfen ließe.",
+        "item": {
+          "statement": {
+            "label": "Annahme"
+          },
+          "validation": {
+            "label": "Wie lässt sich das überprüfen?"
+          }
+        }
+      },
+      "risks": {
+        "label": "Risiken",
+        "help": "Die größten Risiken, darunter ein mögliches K.-o.-Kriterium, und wie sich jedes überprüfen ließe.",
+        "item": {
+          "title": {
+            "label": "Risiko"
+          },
+          "description": {
+            "label": "Beschreibung"
+          },
+          "dealBreaker": {
+            "label": "Mögliches K.-o.-Kriterium"
+          },
+          "validation": {
+            "label": "Wie lässt sich das überprüfen?"
+          }
+        }
+      },
+      "refinements": {
+        "label": "Verbesserungen",
+        "help": "Verfeinern Sie das Geschäftsmodell auf Grundlage des Realitätschecks, der Rückmeldungen von Fachleuten und der gefundenen Herausforderungen.",
+        "feedback": {
+          "label": "Rückmeldungen und Herausforderungen"
+        },
+        "changes": {
+          "label": "Was sich am Modell geändert hat, und warum"
+        }
+      },
+      "scalability": {
+        "label": "Skalierbarkeit und Übertragung",
+        "help": "Könnte das Modell unter anderen geografischen, wirtschaftlichen und organisatorischen Bedingungen funktionieren?",
+        "geographical": {
+          "label": "Geografische Bedingungen"
+        },
+        "economic": {
+          "label": "Wirtschaftliche Bedingungen"
+        },
+        "organisational": {
+          "label": "Organisatorische Bedingungen"
+        }
+      },
+      "nextSteps": {
+        "label": "Nächste Schritte",
+        "help": "Die nächsten praktischen Schritte in Richtung Umsetzung.",
+        "data": {
+          "label": "Zu erhebende Daten"
+        },
+        "stakeholders": {
+          "label": "Einzubindende Akteure"
+        },
+        "partnerships": {
+          "label": "Zu sichernde Partnerschaften"
+        },
+        "pilots": {
+          "label": "Möglichkeiten für Pilotprojekte"
+        },
+        "decisions": {
+          "label": "Wichtige Entscheidungen und der Entscheidungspunkt"
+        }
+      }
+    }
+  },
+  "scenarios": {
+    "BM-SCN-01": {
+      "label": "Szenario 01: Ländliches Dorf"
+    },
+    "BM-SCN-02": {
+      "label": "Szenario 02: Stadtrand, keine Fernwärme geplant"
+    },
+    "BM-SCN-03": {
+      "label": "Szenario 03: Stadtrand, gemischte Eigentumsverhältnisse"
+    },
+    "BM-SCN-04": {
+      "label": "Szenario 04: Stadtrand, Therme und Hotels"
+    },
+    "custom": {
+      "label": "Ihr eigener Anwendungsfall"
+    }
+  },
+  "presets": {
+    "BM-SCN-01": {
+      "siteType": "Ländliches Dorf",
+      "stakeholders": [
+        "Privathaushalte",
+        "Hotel"
+      ],
+      "ownership": "Privateigentum, touristische Unterkünfte, Gewerbe",
+      "partners": [
+        "Gemeinde",
+        "Skigebiet"
+      ],
+      "units": "20–70 Einheiten (schrittweise Entwicklung)"
+    },
+    "BM-SCN-02": {
+      "siteType": "Stadtrand; keine Fernwärme geplant",
+      "stakeholders": [
+        "Weiterführende Schule",
+        "Kindergarten",
+        "Mehrfamilienhäuser"
+      ],
+      "ownership": "Gemeindeeigentum, Mietwohnungen",
+      "partners": [
+        "Eigentümer der Bildungseinrichtungen"
+      ],
+      "units": "Ca. 80 Einheiten",
+      "currentSupply": [
+        "Erdgas"
+      ]
+    },
+    "BM-SCN-03": {
+      "siteType": "Stadtrand",
+      "stakeholders": [
+        "Private Hauseigentümer",
+        "Wohnbaugenossenschaften",
+        "Gemeinde",
+        "Bildungseinrichtungen"
+      ],
+      "ownership": "Wohnungseigentum (WEG), Mietwohnungen (MRG), gemeinnütziger Wohnbau (WGG)",
+      "units": "3–20 Gebäude",
+      "currentSupply": [
+        "Erdgas",
+        "Biomasse"
+      ]
+    },
+    "BM-SCN-04": {
+      "siteType": "Stadtrand",
+      "stakeholders": [
+        "Therme",
+        "Hotels",
+        "Privathaushalte"
+      ],
+      "ownership": "Überwiegend Tourismus- und Thermeneinrichtungen, wenig Wohnnutzung",
+      "units": "3–20 Gebäude",
+      "currentSupply": [
+        "Erdgas",
+        "Biomasse"
+      ]
+    }
+  },
+  "page": {
+    "opportunity": {
+      "lead": "Beschreiben Sie den Standort, wer sich anschließen würde und warum sich ein gemeinsames Niedertemperaturnetz lohnt. Beginnen Sie mit einem Szenario oder mit Ihrem eigenen Anwendungsfall."
+    },
+    "business-logic": {
+      "lead": "Füllen Sie ein Business Model Canvas für den Anwendungsfall aus und machen Sie deutlich, wer investiert, wer welches Risiko trägt und wer profitiert."
+    },
+    "reality-check": {
+      "lead": "Verwenden Sie grobe, aber transparente Annahmen. Benennen Sie die wichtigsten kritischen Annahmen und Risiken, markieren Sie ein mögliches K.-o.-Kriterium und geben Sie an, wie sich jeder Punkt überprüfen ließe."
+    },
+    "implementation": {
+      "lead": "Verfeinern Sie das Modell, schätzen Sie ein, wo es sich übertragen ließe, und skizzieren Sie die praktischen nächsten Schritte. Prüfen Sie dann die Pitch-Reife."
+    }
+  },
+  "stepNav": {
+    "label": "Schritte des Business Plan",
+    "progress": "{done} von {total} ausgefüllt",
+    "done": "Erledigt",
+    "freeOrder": "Arbeiten Sie in beliebiger Reihenfolge; der Fortschritt wird pro Schritt gezählt."
+  },
+  "prompts": {
+    "heading": "Leitfragen",
+    "lead": "Fragen und Tipps aus der Aufgabenstellung der Challenge und den Erkenntnissen aus dem Projekt. Nutzen Sie, was hilft.",
+    "kind": {
+      "question": "Schlüsselfrage",
+      "learning": "Erkenntnis",
+      "tip": "Tipp"
+    },
+    "motivation": "Was motiviert Kunden, sich anzuschließen? Denken Sie an Kosten, Komfort, Preisstabilität und das Ende ihres alten Heizkessels.",
+    "resilience": "Wie kann ein Netz hier zu einer resilienten, lokalen Energieversorgung und zur Versorgungssicherheit beitragen?",
+    "existingBuildings": "Bestandsgebäude lassen sich meist anschließen, die meisten sogar ohne größere thermische Sanierung.",
+    "heatLineDensity": "Die Wärmebelegungsdichte entscheidet über die Wirtschaftlichkeit: Ab etwa 1 MWh pro Meter Trasse kann ein Netz Einzellösungen schlagen.",
+    "groundwater": "Grundwasser ist die wirtschaftlichste Quelle, und ein Mikronetz zwischen direkten Nachbarn ist ein vielversprechender Anfang.",
+    "bothDirections": "In einem 5GDHC-Netz fließt Energie in beide Richtungen, daher kann Kühlung im Sommer ein Grund für den Anschluss werden.",
+    "extraValue": "Suchen Sie nach zusätzlichem Nutzen über die Wärme hinaus: Kühlung, stabile Preise und Entlastung des Stromnetzes.",
+    "networkBasics": "Das Wasser in einem 5GDHC-Netz zirkuliert bei etwa 5–25 °C. So lassen sich erneuerbare Energie und Abwärme ohne gedämmte Leitungen nutzen, und Gebäude können überschüssige Wärme für andere einspeisen. Welche lokalen Quellen und Speicher könnte Ihr Netz einbinden?",
+    "heatingPlan": "Der Wiener Wärmeplan 2040 ordnet Gebiete der Fernwärme, der lokalen kollektiven Wärmeversorgung (Wärmenachbarschaften) oder der individuellen Wärmeversorgung zu. Liegt Ihr Gebiet laut der Wärmeplanung Ihrer Gemeinde dort, wo eine kollektive Lösung passt?",
+    "whoPays": "Wer profitiert, und wer zahlt? Sind das dieselben?",
+    "whoOperates": "Wem gehören die Quelle, das Netz und die Wärmepumpen, und wer betreibt sie?",
+    "distribution": "Wie werden Investitionen, Erlöse und Risiken zwischen den Akteuren aufgeteilt?",
+    "ownership": "Das Eigentum bestimmt den Weg: Energieversorger, Wohnbauträger und private Eigentümer brauchen jeweils ein anderes Modell.",
+    "implementationModels": "Betrachten Sie Eigentum und Betrieb, Organisation und Steuerung sowie (Re-)Finanzierung zusammen als ein Umsetzungsmodell.",
+    "systemBoundary": "Ziehen Sie die Systemgrenze: Wem gehören die Quelle, das Netz und die Wärmepumpen?",
+    "costKey": "Suchen Sie einen fairen Kostenschlüssel, zum Beispiel: die Quelle nach Anschlussleistung, die Leitungen nach denen, die sie nutzen.",
+    "infrastructure": "Denken Sie in Infrastruktur: langfristige Finanzierung, öffentliche Flächen und die Stadt als Partner.",
+    "canvasTemplates": "Vorlagen für das Business Model Canvas können helfen, Modelle zu veranschaulichen und zu vergleichen; nutzen Sie sie oder Ihren eigenen Ansatz. Konzentrieren Sie sich auf wirtschaftliche Machbarkeit, praktische Umsetzung und Skalierbarkeit statt auf eine detaillierte technische Auslegung.",
+    "framework": "Wie wirken sich Energiepreise, Förderungen, Regulierung und langfristige Verpflichtungen auf die Machbarkeit aus?",
+    "reliability": "Welche Risiken, Abhängigkeiten und betrieblichen Zuständigkeiten müssen für eine zuverlässige und sichere Versorgung abgedeckt sein?",
+    "pipesDriveCost": "Leitungen und Hausanschlüsse sind die Kostentreiber; die Trassenlänge bestimmt maßgeblich die Investition.",
+    "costsFirst": "Die Kosten kommen zuerst: Die Investition fällt am Anfang an, die Erlöse fließen über 25 bis 30 Jahre.",
+    "stayingOut": "Jedes Gebäude, das sich nicht anschließt, erhöht die Kosten für die übrigen.",
+    "voluntary": "Der Anschluss ist freiwillig, und ein festes Datum für den Gasausstieg gibt es noch nicht. Was bringt Eigentümer dazu, Ja zu sagen?",
+    "funding": "Förderungen passen nur teilweise und hängen davon ab, wem was gehört.",
+    "scaleHere": "Wie lässt sich das Modell hier entwickeln und skalieren, und wo sonst könnte es funktionieren?",
+    "whatWorks": "Was funktioniert, was nicht, und warum? Ein überzeugendes, kritisch geprüftes Modell schlägt ein perfekt wirkendes.",
+    "organisational": "Die meisten Herausforderungen sind eher organisatorisch als technisch: Koordination, Eigentum, Finanzierung und langfristiger Betrieb.",
+    "alignment": "Stimmen Sie sich früh mit der Gemeinde und den Behörden ab: Raumplanung, Genehmigungen und lokale Strategien prägen die Machbarkeit.",
+    "leadership": "Wer treibt das Projekt engagiert voran? Projekte brauchen lokale Führung und langfristiges Engagement.",
+    "scalableModels": "Standardisierte Geschäfts- und Organisationsmodelle verringern die Komplexität und beschleunigen die Übertragung.",
+    "startSmall": "Fangen Sie klein an: Ankerkunden, modulares Wachstum und Mikronetze.",
+    "examplesInPractice": "Netze laufen bereits im Viertel Zwei in Wien (dezentrale Wärmepumpen mit Geothermie, Abwasser und Grundwasser), in Bregenz (Wasser aus dem Bodensee, betrieben von den Stadtwerken) und in Lagarde in Bamberg (rund 1.200 Wohnungen, 70 Wärmepumpen, 5,5 km Leitung). Was könnte Ihr Projekt davon übernehmen?",
+    "links": {
+      "canvasTemplates": "Informationen zu 5GDHC-Netzen (Geothermie Österreich)"
+    },
+    "external": "öffnet in einem neuen Tab"
+  },
+  "scenario": {
+    "title": "Mit einem Anwendungsfall beginnen",
+    "lead": "Wählen Sie eines der vier vorgegebenen Szenarien, um nur das vorauszufüllen, was es angibt, oder beschreiben Sie Ihren eigenen Anwendungsfall. Sie können danach alles ändern.",
+    "prefills": "Vorausgefüllt",
+    "prefillsNothing": "Nichts wird vorausgefüllt. Sie beschreiben den Anwendungsfall selbst.",
+    "selected": "Ausgewählt",
+    "choose": "Dieses Szenario verwenden",
+    "chooseCustom": "Eigenen Anwendungsfall verwenden",
+    "overwrite": {
+      "title": "Ihren Text ersetzen?",
+      "body": "Dieses Szenario ersetzt diese Felder, die bereits Ihren Text enthalten: {fields}.",
+      "keep": "Meinen Text behalten",
+      "replace": "Ersetzen"
+    },
+    "applied": "Szenario übernommen: {name}."
+  },
+  "qc": {
+    "title": "Aus dem Quick Check",
+    "readOnly": "Schreibgeschützt",
+    "leadSite": "Standort, Gebäude und Quellen werden mit dem Quick Check geteilt. Wenn Sie sie dort ändern, werden sie hier aktualisiert.",
+    "leadEconomics": "Grobe Zahlen aus dem Quick Check als Kontext. Der Business Plan berechnet selbst nichts.",
+    "buildings": "Gebäude",
+    "area": "Projektgebiet",
+    "sources": "Ausgewählte Quellen",
+    "noSources": "Noch keine ausgewählt",
+    "heatingDemand": "Wärmebedarf",
+    "coolingDemand": "Kältebedarf",
+    "revenue": "Erlöse",
+    "investment": "Gesamtinvestition",
+    "perYear": "{value}/a",
+    "customParameters": "Eigene Parameter",
+    "screeningNote": "Screening-Werte, keine Machbarkeitsstudie.",
+    "sourcesSentence": "Im Quick Check geprüfte Quellen: {sources}.",
+    "useSources": "Zu den Wärmequellen hinzufügen",
+    "sourcesAdded": "Zum Text der Wärmequellen hinzugefügt.",
+    "off": {
+      "title": "Der Quick Check ist für dieses Projekt ausgeschaltet",
+      "body": "Schalten Sie ihn ein, um hier Bedarf, Erlöse und Investition zu sehen. Der Business Plan funktioniert auch ohne ihn.",
+      "action": "Quick Check öffnen"
+    },
+    "incomplete": {
+      "title": "Der Quick Check ist noch nicht vollständig",
+      "body": "Vervollständigen Sie seine Eingaben, um hier Bedarf, Erlöse und Investition zu sehen.",
+      "action": "Quick Check fortsetzen"
+    }
+  },
+  "ui": {
+    "addEntry": "Eintrag hinzufügen",
+    "removeEntry": "Eintrag {index} entfernen",
+    "entry": "{label} {index}",
+    "focus": "Schwerpunkt",
+    "emptyRows": "Noch nichts eingetragen.",
+    "add": {
+      "businessPlan.allocation": "Akteur hinzufügen",
+      "businessPlan.criticalAssumptions": "Kritische Annahme hinzufügen",
+      "businessPlan.risks": "Risiko hinzufügen"
+    },
+    "row": {
+      "businessPlan.allocation": "Akteur",
+      "businessPlan.criticalAssumptions": "Kritische Annahme",
+      "businessPlan.risks": "Risiko"
+    },
+    "removeRow": "{row} entfernen",
+    "confirmRemove": {
+      "title": "Diesen Eintrag entfernen?",
+      "body": "Sein Text wird gelöscht. Eine frühere Version können Sie über das Projektmenü wiederherstellen.",
+      "cancel": "Behalten",
+      "remove": "Entfernen"
+    },
+    "dealBreaker": {
+      "label": "Mögliches K.-o.-Kriterium",
+      "hint": "Ein Risiko kann als mögliches K.-o.-Kriterium markiert werden. Wenn Sie ein anderes markieren, wechselt die Markierung dorthin.",
+      "marked": "Als K.-o.-Kriterium markiert"
+    },
+    "saveFailed": "Diese Änderung konnte nicht gespeichert werden."
+  },
+  "compare": {
+    "title": "Geschäftsmodelle vergleichen",
+    "body": "Ein Projekt enthält ein Geschäftsmodell. Um eine Alternative zu vergleichen, duplizieren Sie das Projekt und ändern Sie die Kopie.",
+    "action": "Projekt duplizieren"
+  },
+  "readiness": {
+    "title": "Pitch-Reife",
+    "lead": "Wie viel des finalen Pitches bereits Inhalt hat, gemessen an Ihren Eingaben.",
+    "caveat": "Gezählt wird, was ausgefüllt ist, nicht wie gut der Inhalt ist.",
+    "level": {
+      "not-started": "Nicht begonnen",
+      "in-progress": "In Arbeit",
+      "ready": "Pitch-reif"
+    },
+    "summary": "{met} von {total} Punkten abgedeckt",
+    "open": "Details ansehen",
+    "fill": "Ausfüllen",
+    "met": "Abgedeckt",
+    "missing": "Offen",
+    "unofficial": "Inoffiziell",
+    "sections": {
+      "title": "Die sechs Teile des finalen Pitches",
+      "source": "BM-SCOPE-07",
+      "useCase": {
+        "label": "Anwendungsfall und Wertangebot",
+        "question": "Welches Problem löst das Modell, für wen, und warum ist ein 5GDHC-Netz eine geeignete Lösung?"
+      },
+      "businessModel": {
+        "label": "Geschäftsmodell",
+        "question": "Wie schafft das Modell Wert, und wie schöpft es ihn ab? Wer sind die wichtigsten Akteure, Kunden und Partner?"
+      },
+      "feasibility": {
+        "label": "Wirtschaftliche und praktische Machbarkeit",
+        "question": "Wie werden Investition, Eigentum, Betrieb, Finanzierung, Erlöse und Risiken behandelt?"
+      },
+      "realityCheck": {
+        "label": "Realitätscheck",
+        "question": "Welche kritischen Annahmen, Herausforderungen und möglichen K.-o.-Kriterien gibt es? Was funktioniert, was nicht, und warum?"
+      },
+      "scalability": {
+        "label": "Skalierbarkeit und Übertragbarkeit",
+        "question": "Lässt sich das Modell erweitern oder auf andere Standorte übertragen? Unter welchen Bedingungen?"
+      },
+      "nextSteps": {
+        "label": "Nächste Schritte",
+        "question": "Was wäre nötig, um der Umsetzung in der Praxis näherzukommen?"
+      }
+    },
+    "jury": {
+      "title": "Jurykriterien",
+      "source": "BM-SCOPE-08 (V01)",
+      "note": "Vorgeschlagen in der ersten Fassung der Aufgabenstellung. Sie sind keine offizielle Bewertungsregel für diese Veranstaltung.",
+      "problemSolutionFit": {
+        "label": "Passung von Problem und Lösung und Klarheit des Anwendungsfalls"
+      },
+      "coherence": {
+        "label": "Stimmigkeit des Geschäftsmodells und Anreize für die Akteure"
+      },
+      "plausibility": {
+        "label": "Wirtschaftliche Plausibilität und ein realistischer Umsetzungspfad"
+      },
+      "riskQuality": {
+        "label": "Qualität der Risikoanalyse, der Annahmen und des Ansatzes zur Überprüfung"
+      },
+      "scalabilityClarity": {
+        "label": "Innovation, Skalierbarkeit und Klarheit des finalen Pitches"
+      }
+    },
+    "checks": {
+      "site": "Standort oder Quartier benannt",
+      "painPoint": "Zentrales Problem beschrieben",
+      "customers": "Kundensegmente beschrieben",
+      "needs": "Wärme- und Kältebedarf beschrieben",
+      "heatSources": "Relevante Wärmequellen beschrieben",
+      "advantage": "Warum ein gemeinsames Netz die Alternativen übertrifft",
+      "stakeholders": "Akteure aufgelistet",
+      "valueProposition": "Wertangebot",
+      "canvasCustomers": "Kundensegmente im Canvas",
+      "customerRelationships": "Kundenbeziehungen",
+      "keyPartners": "Schlüsselpartner",
+      "operator": "Betreiberverantwortung",
+      "revenueStreams": "Einnahmequellen",
+      "allocation": "Investition, Risiko und Nutzen einem Akteur zugeordnet",
+      "connectionRate": "Annahme zur Anschlussquote",
+      "tariffs": "Annahme zu den Tarifen",
+      "capex": "Annahme zu den Investitionsausgaben",
+      "financing": "Annahme zur Finanzierung",
+      "subsidies": "Annahme zur Abhängigkeit von Förderungen",
+      "criticalAssumptions": "Kritische Annahmen, jede mit einem Weg zur Überprüfung",
+      "risks": "Risiken, jedes mit einem Weg zur Überprüfung",
+      "dealBreaker": "Ein mögliches K.-o.-Kriterium markiert",
+      "feedback": "Rückmeldungen und Herausforderungen festgehalten",
+      "changes": "Was sich am Modell geändert hat, und warum",
+      "scalabilityGeographical": "Geografische Bedingungen",
+      "scalabilityEconomic": "Wirtschaftliche Bedingungen",
+      "scalabilityOrganisational": "Organisatorische Bedingungen",
+      "nextData": "Zu erhebende Daten",
+      "nextStakeholders": "Einzubindende Akteure",
+      "nextPartnerships": "Zu sichernde Partnerschaften",
+      "nextPilots": "Möglichkeiten für Pilotprojekte",
+      "nextDecisions": "Wichtige Entscheidungen und der Entscheidungspunkt"
+    },
+    "how": {
+      "title": "So wird die Pitch-Reife gezählt",
+      "body": "Jeder Teil des Pitches hat eine kurze Liste von Punkten. Ein Textpunkt zählt, wenn sein Feld Text enthält, ein Listenpunkt, wenn die Liste einen Eintrag hat, und ein Punkt zu Risiken oder kritischen Annahmen, wenn mindestens eine Zeile vollständig und keine Zeile nur halb ausgefüllt ist. Der Anteil der abgedeckten Punkte ist die Bewertung des Teils, und die Pitch-Reife ist der Durchschnitt der sechs Teile. Ein Teil ist pitch-reif, wenn alle seine Punkte abgedeckt sind. Dahinter steht keine Gleichung und keine Beurteilung des Inhalts."
+    }
+  }
+}

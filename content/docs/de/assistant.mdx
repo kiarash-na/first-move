@@ -1,0 +1,87 @@
+# KI-Assistent
+
+Der KI-Assistent ist eine optionale Hilfe im Dashboard. Er beantwortet Fragen zu Ihrem geöffneten Projekt, und er liest Werte aus Dokumenten wie einem PDF oder einer Tabelle aus und schlägt sie vor; Sie prüfen sie, bevor sie übernommen werden. Er arbeitet mit Ihrem eigenen Schlüssel für einen KI-Anbieter Ihrer Wahl: Ihr Browser kommuniziert direkt mit diesem Anbieter, und nichts läuft über unsere Server.
+
+Der Assistent berechnet nie die Ergebnisse des Quick Check. Das übernimmt der Rechenkern, mit denselben Gleichungen, gleich ob ein Wert eingetippt oder von der KI vorgeschlagen wurde.
+
+## Den Assistenten öffnen
+
+Die Bot-Schaltfläche unten rechts auf jeder Seite des Dashboards öffnet den Assistenten als kompakten Chat. Sie können ihn zu einem Bereich erweitern, der rechts angedockt ist; die Seite macht dafür Platz, sodass der Bereich nichts verdeckt. Auf einem Smartphone öffnet er sich als Ansicht in voller Höhe. Die Escape-Taste schließt ihn. Der Assistent ist als KI-Assistent gekennzeichnet.
+
+## Anbieter und Schlüssel wählen
+
+Der Assistent arbeitet mit zwei Anbietern:
+
+- **Anthropic**: Erstellen Sie in Ihrem Anthropic-Konto einen API-Schlüssel und fügen Sie ihn ein.
+- **OpenRouter**: Fügen Sie einen API-Schlüssel ein, oder wählen Sie **OpenRouter verbinden**, um sich dort anzumelden und einen Schlüssel für First Move zu erstellen, ohne ihn zu kopieren. OpenRouter bietet außerdem den Auto Router, der für jede Frage ein Modell auswählt.
+
+Der Assistent testet den Schlüssel beim Anbieter, bevor Sie ihn nutzen. Anfragen werden Ihrem Konto beim Anbieter zu dessen Preisen in Rechnung gestellt; First Move selbst verlangt nichts.
+
+## Ein Modell wählen
+
+Chips zeigen die Preisstufe jedes Modells, von $ bis $$$$, und seine Art: Schnell, Ausgewogen, Beste, Frontier oder Auto. Ein Tooltip nennt die Preise, mit dem Datum, an dem sie geprüft wurden. Voreingestellt sind Claude Sonnet 5.5 für Anthropic und der Auto Router für OpenRouter. Sie können auch die ID eines anderen Modells eingeben; es muss die Nutzung von Tools unterstützen.
+
+## Ein Ausgabenlimit beim Anbieter festlegen
+
+Der Assistent ist darauf ausgelegt, Ihren Schlüssel zu schützen, das eigentliche Sicherheitsnetz ist aber ein Ausgabenlimit bei Ihrem Anbieter. Legen Sie in Ihrem Konto beim Anbieter ein Ausgabenlimit für den Schlüssel fest, bevor Sie ihn nutzen. Der Assistent bittet Sie, das zu bestätigen, und ohne Bestätigung können Sie nicht beginnen. Bei einem OpenRouter-Schlüssel zeigt er das Limit, das für den Schlüssel festgelegt ist, oder warnt Sie, wenn es keines gibt.
+
+## Den Schlüssel für diese Sitzung oder mit einer PIN behalten
+
+- **Für diese Sitzung**, die Voreinstellung: Der Schlüssel wird nur im Arbeitsspeicher des Browser-Tabs gehalten und ist weg, wenn Sie den Tab schließen.
+- **Auf diesem Gerät merken**: Der Schlüssel wird verschlüsselt in diesem Browser gespeichert und mit einer 6-stelligen PIN gesperrt, die Sie zweimal eingeben; sehr häufige PINs werden nicht akzeptiert. Wenn Sie zurückkommen, entsperren Sie ihn mit der PIN. Nach fünf falschen PIN-Eingaben wird der Schlüssel gelöscht, und Sie erfahren, warum. Nach 30 Minuten ohne Nutzung sperrt sich der Schlüssel wieder.
+
+Die PIN schützt vor anderen Personen, die denselben Browser nutzen. Einen Angriff auf eine Kopie Ihres Browserprofils kann sie nicht verhindern, daher bleibt das Ausgabenlimit bei Ihrem Anbieter das eigentliche Sicherheitsnetz. Der Schlüssel gelangt nie in Projektexporte, frühere Versionen oder die Adressleiste.
+
+## Was der Assistent sehen kann
+
+Wenn Sie eine Frage stellen, liest der Assistent das geöffnete Projekt: seine Eingaben und seine Ergebnisse sowie die Dokumente, die Sie anhängen. Er sieht nichts aus Ihren anderen Projekten und kann keine Webseiten aufrufen. Für seine Antworten nutzt er die Ergebnisse des Rechenkerns des Quick Check, die Erklärungen unter „So rechnen wir“ mit ihren Gleichungsnummern und diese Seiten der Dokumentation. Seine Antworten sind kurz und in der Sprache der App.
+
+Ihr Browser sendet jede Anfrage an den Anbieter, den Sie gewählt haben, und es gelten dessen Bedingungen. Überlegen Sie vor einer Frage, was Ihre Frage und Ihre Dokumente enthalten: Senden Sie keine personenbezogenen Daten anderer Personen und keine vertraulichen Dokumente, sofern Sie dazu nicht berechtigt sind. Die Seite [KI-Transparenz](/ai) und die [Datenschutzerklärung](/privacy#ai-features) erklären, wie die KI-Funktionen mit Daten umgehen.
+
+## Dokumente anhängen
+
+Hängen Sie Dateien mit der Schaltfläche zum Anhängen an, oder ziehen Sie sie in den Chat:
+
+- Dateien im Format PDF, Word (.docx), Excel (.xlsx), CSV, Markdown, Text und JSON;
+- bis zu 5 Dateien pro Nachricht, 10 MB pro Datei und 20 MB insgesamt;
+- von einem PDF werden die ersten 60 Seiten gelesen, und sehr lange Dokumente werden gekürzt.
+
+Der Dateityp wird anhand des Inhalts geprüft, nicht anhand des Namens. Dateien mit Makros, verschlüsselte Dateien und andere Formate, etwa ältere Excel-Dateien (.xls), werden abgelehnt. Der Text eines Dokuments wird als Daten behandelt, nie als Anweisung an den Assistenten. Er wird nicht im Chatverlauf aufbewahrt, nur der Dateiname.
+
+## Vorgeschlagene Werte prüfen
+
+Der Assistent ändert Ihr Projekt nie eigenständig. Werte, die er aus einem Dokument oder einer Nachricht liest, erscheinen als Vorschläge in einer Prüfkarte. Jede Zeile zeigt das Feld und seinen Schritt, den aktuellen Wert, den vorgeschlagenen Wert mit seiner Einheit, das Zitat und die Seite, aus denen er stammt, und ob er die Prüfungen besteht. Wählen Sie die gewünschten Werte aus, alle oder keine, und klicken Sie auf **Auswahl übernehmen**. Nur die ausgewählten Werte werden übernommen, und sie durchlaufen dieselben Prüfungen wie Werte, die Sie eintippen. Wenn zwei Dokumente unterschiedliche Werte für ein Feld nennen, werden beide angezeigt, und Sie entscheiden.
+
+Bevor Sie einen Wert übernehmen, prüfen Sie ihn anhand des Dokuments: ob der Wert dort wirklich steht, die Einheit, das Zahlenformat (deutsche Dokumente schreiben 1.000,5, wo englische 1,000.5 schreiben), auf welches Gebäude, welche Fläche und welches Jahr er sich bezieht und ob er plausibel ist.
+
+## Die KI-Kennzeichnung
+
+Alles, was der Assistent schreibt, ist als KI-generiert gekennzeichnet, im Chat und in maschinenlesbarer Form. Ein Feldwert, der aus einem Vorschlag übernommen wurde, zeigt einen Chip **KI** mit einem Tooltip, der die Datei nennt, aus der er stammt. Die Kennzeichnung wird im Projekt und in seinem Export gespeichert. Wenn Sie den Wert selbst bearbeiten, wird er zu Ihrem Wert, und der Chip verschwindet.
+
+## Chatverlauf
+
+Der Chatverlauf wird in diesem Browser aufbewahrt, für jedes Projekt getrennt, und ist standardmäßig eingeschaltet. Er enthält die Nachrichten und die Namen angehängter Dateien, nie den Text der Dokumente und nie Ihren Schlüssel, und er behält höchstens 200 Nachrichten. Sie können ihn in den Einstellungen des Assistenten ausschalten und löschen. Wenn ein Projekt nicht mehr existiert, wird sein Chatverlauf gelöscht, sobald Sie den Assistenten das nächste Mal öffnen.
+
+## Einstellungen
+
+In den Einstellungen des Assistenten können Sie den Anbieter und das Modell wechseln, Ihre PIN ändern, den Schlüssel entfernen, den Chatverlauf ein- oder ausschalten und löschen und festlegen, wie sich der Bereich öffnet. Die Einstellungen werden in diesem Browser aufbewahrt; der Schlüssel gehört nie dazu.
+
+## Den Schlüssel entfernen
+
+Wählen Sie in den Einstellungen des Assistenten **Schlüssel entfernen**, und der Schlüssel wird sofort aus diesem Browser gelöscht. Beim Anbieter wird der Schlüssel dadurch nicht widerrufen. Um ihn zu widerrufen, löschen Sie ihn in Ihrem Konto beim Anbieter, und tun Sie das sofort, wenn Sie vermuten, dass der Schlüssel offengelegt wurde.
+
+## Wenn etwas schiefgeht
+
+Der Assistent sagt Ihnen, was der Anbieter gemeldet hat:
+
+- der Schlüssel wurde nicht akzeptiert;
+- das Ausgabenlimit oder das Guthaben ist aufgebraucht;
+- das Modell ist für diesen Schlüssel nicht zugelassen;
+- zu viele Anfragen, bitte warten Sie einen Moment;
+- der Anbieter hat Probleme, oder er ist nicht erreichbar.
+
+Sie können eine Antwort anhalten, während sie geschrieben wird, und sie erneut anfordern.
+
+## Grenzen
+
+KI-Modelle können sich irren. Sie können eine Frage missverstehen, selbstsicher eine falsche Antwort geben oder Zahlen und Quellen erfinden. Werte aus Dokumenten auszulesen ist fehleranfällig, besonders bei gescannten Seiten, Tabellen, Einheiten und gemischtsprachigen Dokumenten. Prüfen Sie jeden vorgeschlagenen Wert, und denken Sie daran, dass weder die Antworten des Assistenten noch die Screening-Ergebnisse eine Ingenieurberatung sind.

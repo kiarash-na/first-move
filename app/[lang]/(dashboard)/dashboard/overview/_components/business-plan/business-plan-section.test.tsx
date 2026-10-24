@@ -42,6 +42,6 @@ describe("BusinessPlanSection", () => {
   it("follows the German route", () => {
     const project = exampleWith("school-kindergarten-flats")
     renderOverview(<BusinessPlanSection project={project} />, project, "de")
-    expect(within(tile("steps")).getByRole("link", { name: /Reality check/ })).toHaveAttribute("href", "/de/dashboard/business-plan/reality-check")
+    expect(within(tile("steps")).getByRole("link", { name: /Realitätscheck/ })).toHaveAttribute("href", "/de/dashboard/business-plan/reality-check")
   })
 })

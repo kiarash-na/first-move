@@ -1,6 +1,5 @@
 import { render, screen } from "@testing-library/react"
 import { describe, expect, it } from "vitest"
-import shell from "@/dictionaries/en/shell.json"
 import { I18nProvider } from "./i18n-provider"
 import { testDictionaries } from "./test-utils/dictionaries"
 import { MissingSteps } from "./missing-steps"
@@ -18,6 +17,6 @@ describe("MissingSteps (R-03)", () => {
       "/de/dashboard/quick-check/sources",
       "/de/dashboard/assumptions",
     ])
-    expect(links[0]).toHaveTextContent(shell.nav.items.quickCheck.buildings)
+    expect(links[0]).toHaveTextContent(testDictionaries("de").shell.nav.items.quickCheck.buildings)
   })
 })

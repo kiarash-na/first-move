@@ -21,14 +21,17 @@ describe("doc content", () => {
     for (const slug of DOC_SLUGS) expect(existsSync(path.join(root, `content/docs/en/${slug}.mdx`)), slug).toBe(true)
   })
 
-  it("has no German pages yet, so German shows English (D-32)", () => {
-    expect(DOC_CONTENT.de).toEqual({})
-    expect(contentLanguage("quick-check", "de")).toBe("en")
+  it("has a German page for every slug, each with its MDX file, so German shows German (D-32)", () => {
+    expect(Object.keys(DOC_CONTENT.de)).toEqual(DOC_SLUGS)
+    for (const slug of DOC_SLUGS) expect(existsSync(path.join(root, `content/docs/de/${slug}.mdx`)), slug).toBe(true)
+    expect(contentLanguage("quick-check", "de")).toBe("de")
     expect(contentLanguage("quick-check", "en")).toBe("en")
   })
 
-  it("loads the English page and reports the language it is shown in", async () => {
+  it("falls back to the English page when a page has no German file, and reports the language it is shown in", async () => {
+    delete DOC_CONTENT.de.index
     DOC_CONTENT.en.index = async () => ({ default: fake })
+    expect(contentLanguage("index", "de")).toBe("en")
     expect(await loadDocContent("index", "de")).toEqual({ Content: fake, lang: "en" })
   })
 

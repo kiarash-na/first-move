@@ -48,10 +48,12 @@ export function Header({ t, lang, language, onToolSelect }: HeaderProps) {
 
   return (
     <header className="site-header" ref={headerRef}>
-      <a className="brand" href="#overview" aria-label={copy.brandLabel} onClick={() => setMenuOpen(false)}>
+      {/* Named by its visible text plus where it leads, so the name contains the label (WCAG 2.5.3). */}
+      <a className="brand" href="#overview" onClick={() => setMenuOpen(false)}>
         <BrandMark className="brand__mark" />
-        <span className="brand__name">{copy.brandName}</span>
+        <span className="brand__name">{copy.brandName}</span>{' '}
         <span className="brand__descriptor"><RichText text={copy.brandDescriptor} /></span>
+        <span className="sr-only">, {copy.brandBack}</span>
       </a>
 
       <nav className="main-nav" aria-label={copy.primaryNav}>

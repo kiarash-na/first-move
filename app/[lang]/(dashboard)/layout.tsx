@@ -48,7 +48,7 @@ export default async function DashboardRootLayout({ children, params }: LayoutPr
         <ThemeSync />
         {children}
         {/* Offset past the sidebar (md and up; 18rem, or the 4rem rail) so the notice never covers its privacy note. */}
-        <CookieNotice lang={lang} copy={legal.cookieNotice} className="md:left-[calc(var(--sidebar-width)_+_1rem)]" />
+        <CookieNotice lang={lang} copy={legal.cookieNotice} className="md:left-[calc(var(--sidebar-width)_+_1rem)] print:hidden" />
       </body>
     </html>
   )

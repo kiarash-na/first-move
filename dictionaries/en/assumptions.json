@@ -37,7 +37,8 @@
     "parameter": "Parameter",
     "value": "Default",
     "unitColumn": "Unit",
-    "custom": "Your value"
+    "custom": "Your value",
+    "used": "Value used"
   },
   "playground": {
     "title": "Play with parameters",

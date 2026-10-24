@@ -26,23 +26,30 @@ export function DashboardShell({ children }: { children: ReactNode }) {
   return (
     <TooltipProvider>
       <ImportProvider>
-        <SkipLink />
-        <div className="flex min-h-dvh">
-          <Sidebar />
+        {/* On paper only the page content prints (the report, D-70): the frame and toasts stay on screen. */}
+        <div className="contents print:hidden">
+          <SkipLink />
+        </div>
+        <div className="flex min-h-dvh print:block print:min-h-0">
+          <Sidebar className="print:hidden" />
           <div className="flex min-w-0 flex-1 flex-col">
-            <TopBar />
-            <main id="main" tabIndex={-1} className="mx-auto outline-none w-full max-w-content flex-1 px-[clamp(16px,3.2vw,52px)] pt-8 pb-16 sm:pt-10">
+            <div className="contents print:hidden">
+              <TopBar />
+            </div>
+            <main id="main" tabIndex={-1} className="mx-auto outline-none w-full max-w-content flex-1 px-[clamp(16px,3.2vw,52px)] pt-8 pb-16 sm:pt-10 print:max-w-none print:p-0">
               {children}
             </main>
           </div>
         </div>
         <NoticeToasts />
-        <Toaster
-          position="bottom-right"
-          closeButton
-          containerAriaLabel={shell.notices.region}
-          toastOptions={{ closeButtonAriaLabel: shell.notices.dismiss }}
-        />
+        <div className="contents print:hidden">
+          <Toaster
+            position="bottom-right"
+            closeButton
+            containerAriaLabel={shell.notices.region}
+            toastOptions={{ closeButtonAriaLabel: shell.notices.dismiss }}
+          />
+        </div>
       </ImportProvider>
     </TooltipProvider>
   )

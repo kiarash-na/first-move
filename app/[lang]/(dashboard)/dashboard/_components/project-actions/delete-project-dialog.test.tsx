@@ -4,6 +4,7 @@ import { useState } from "react"
 import { toast } from "sonner"
 import { afterEach, describe, expect, it, vi } from "vitest"
 import { Toaster } from "@/components/ui/sonner"
+import { interpolate } from "@/lib/i18n/interpolate"
 import { testTab, type TestTab } from "@/lib/store/test-utils/harness"
 import { testDictionaries } from "../test-utils/dictionaries"
 import { renderDashboard } from "../test-utils/render"
@@ -39,7 +40,7 @@ describe("DeleteProjectDialog (D-02)", () => {
       </>,
       { store: tab.store, lang },
     )
-    expect(screen.getByRole("alertdialog", { name: "Delete “Old mill”?" })).toBeInTheDocument()
+    expect(screen.getByRole("alertdialog", { name: interpolate(shell.delete.title, { name: "Old mill" }) })).toBeInTheDocument()
     await userEvent.click(screen.getByRole("button", { name: shell.delete.confirm }))
     await waitFor(() => expect(tab.store.getState().projects).toHaveLength(0))
     expect(onDeleted).toHaveBeenCalledWith(expect.objectContaining({ projectId: project.meta.id }))

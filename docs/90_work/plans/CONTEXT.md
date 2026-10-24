@@ -19,6 +19,7 @@ One sub-agent per phase. A phase may start when everything in its `Blocked by` c
 | 11 | [QA, e2e and polish](2026-10-24_dashboard-11_qa.md) | 09 | done |
 | perf | Lighter first-load JS ([note](../notes/2026-10-24_perf-pass.md)) | 11 | done |
 | 12 | [Legal pages, licence and cookie notice](2026-10-24_dashboard-12_legal.md) | 11 | done |
+| 13 | [Report and "Save as PDF"](2026-10-24_dashboard-13_report.md) ([note](../notes/2026-10-24_dashboard-13_report.md)) | 12 | done |
 
 ## AI layer: in-app assistant (BYOK) and email agent
 

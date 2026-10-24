@@ -1,15 +1,26 @@
 {
   "app": {
+    "name": "First Move",
+    "slogan": "Starten Sie jetzt Ihre 5GDHC-Reise",
     "homeLabel": "First Move, zurück zur Website"
   },
   "language": {
-    "label": "Sprache"
+    "label": "Sprache",
+    "names": {
+      "en": "English",
+      "de": "Deutsch"
+    },
+    "short": {
+      "en": "EN",
+      "de": "DE"
+    }
   },
   "theme": {
     "switchToLight": "Zum hellen Farbschema wechseln",
     "switchToDark": "Zum dunklen Farbschema wechseln"
   },
   "notFound": {
+    "code": "404",
     "title": "Seite nicht gefunden",
     "body": "Diese Seite gibt es nicht. Vielleicht wurde sie verschoben, oder der Link ist falsch.",
     "home": "Zur Startseite"

@@ -5,9 +5,10 @@ import { withLocale } from '@/lib/i18n/locale-path'
 import { REPOSITORY } from '@/lib/legal/operator'
 import { RichText } from '../rich-text'
 import type { LandingCopyProps } from '../types'
+import { Partners } from './Partners'
 
 export function Closing({ t, lang }: LandingCopyProps) {
-  const { methodology, getStarted, footer } = t.closing
+  const { methodology, partners, getStarted, footer } = t.closing
   const dashboard = withLocale('/dashboard', lang)
 
   return (
@@ -34,6 +35,8 @@ export function Closing({ t, lang }: LandingCopyProps) {
             <span>{methodology.boundaryLabel}</span>
             <p>{methodology.boundaryLead} <strong>{methodology.boundaryStrong}</strong></p>
           </div>
+
+          <Partners copy={partners} />
         </div>
       </section>
 
@@ -50,7 +53,7 @@ export function Closing({ t, lang }: LandingCopyProps) {
       </section>
 
       <footer className="site-footer">
-        <a className="footer-brand" href="#overview" aria-label={footer.brandLabel}>{footer.brandName} <span>{footer.brandTag}</span></a>
+        <a className="footer-brand" href="#overview">{footer.brandName} <span>{footer.brandTag}</span><span className="sr-only">, {footer.brandBack}</span></a>
         <p><i aria-hidden="true" />{footer.openSource}</p>
         <nav aria-label={footer.nav}>
           <Link href={dashboard}>{footer.quickCheck}</Link>

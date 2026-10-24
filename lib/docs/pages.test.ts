@@ -14,10 +14,12 @@ import {
 } from "./pages"
 
 describe("docs pages (PLAN-AGENT-04)", () => {
-  it("lists the seven pages in reading order, each with an English MDX file", () => {
+  it("lists the seven pages in reading order, each with an English and a German MDX file", () => {
     expect(DOC_SLUGS).toEqual(["index", "what-is-5gdhc", "quick-check", "business-plan", "assistant", "email-agent", "data-and-privacy"])
-    for (const slug of DOC_SLUGS) {
-      expect(existsSync(path.resolve(__dirname, `../../content/docs/en/${slug}.mdx`)), slug).toBe(true)
+    for (const lang of ["en", "de"]) {
+      for (const slug of DOC_SLUGS) {
+        expect(existsSync(path.resolve(__dirname, `../../content/docs/${lang}/${slug}.mdx`)), `${lang}/${slug}`).toBe(true)
+      }
     }
   })
 

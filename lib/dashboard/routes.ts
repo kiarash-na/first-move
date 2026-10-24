@@ -19,6 +19,7 @@ export type DashboardRoute =
   | { page: "quick-check"; step: QuickCheckPage }
   | { page: "business-plan"; step: BusinessPlanPage }
   | { page: "assumptions" }
+  | { page: "report" }
 
 export function isQuickCheckPage(value: unknown): value is QuickCheckPage {
   return typeof value === "string" && (QUICK_CHECK_PAGES as readonly string[]).includes(value)
@@ -49,6 +50,7 @@ export const DASHBOARD_ROUTES: readonly DashboardRoute[] = [
   ...QUICK_CHECK_PAGES.map((step) => ({ page: "quick-check" as const, step })),
   ...BUSINESS_PLAN_PAGES.map((step) => ({ page: "business-plan" as const, step })),
   { page: "assumptions" },
+  { page: "report" },
 ]
 
 /** True when `pathname` is the page of `href` (exact match, a trailing slash is ignored). */

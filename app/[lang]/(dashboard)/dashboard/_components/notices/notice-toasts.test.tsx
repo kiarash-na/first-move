@@ -4,6 +4,7 @@ import { toast } from "sonner"
 import { afterEach, describe, expect, it, vi } from "vitest"
 import shell from "@/dictionaries/en/shell.json"
 import { Toaster } from "@/components/ui/sonner"
+import { testDictionaries } from "../test-utils/dictionaries"
 import { fakeStore } from "../test-utils/fake-store"
 import { renderDashboard } from "../test-utils/render"
 import { NoticeToasts } from "./notice-toasts"
@@ -30,7 +31,7 @@ describe("NoticeToasts", () => {
   it.each(["en", "de"] as const)("shows the tab-sync notice as a toast (%s)", async (lang) => {
     const fake = setup(lang)
     act(() => fake.set({ notices: [{ id: 1, kind: "changed-elsewhere", projectId: "p", count: null }] }))
-    expect(await screen.findByText(shell.storage.notice["changed-elsewhere"])).toBeInTheDocument()
+    expect(await screen.findByText(testDictionaries(lang).shell.storage.notice["changed-elsewhere"])).toBeInTheDocument()
   })
 
   it("fills the count and offers Export on the reminder", async () => {
