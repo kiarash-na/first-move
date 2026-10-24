@@ -39,11 +39,11 @@ describe("readMailAgentEnv", () => {
     expect(env.status).toBe("ready")
   })
 
-  it("is off and lists missing names when incomplete", () => {
+  it("is incomplete and lists missing names", () => {
     const { RESEND_API_KEY, EMAIL_CONFIRM_SECRET, ...rest } = COMPLETE
     expect(RESEND_API_KEY && EMAIL_CONFIRM_SECRET).toBeTruthy()
     expect(readMailAgentEnv({ ...rest, KV_REST_API_TOKEN: "  " })).toEqual({
-      status: "off",
+      status: "incomplete",
       enabled: true,
       missing: ["RESEND_API_KEY", "KV_REST_API_TOKEN", "EMAIL_CONFIRM_SECRET"],
       invalid: [],
@@ -59,15 +59,17 @@ describe("readMailAgentEnv", () => {
     ["a plain-http store", { KV_REST_API_URL: "http://eu1-example.upstash.io" }, "KV_REST_API_URL"],
     ["a negative limit", { EMAIL_AGENT_SENDER_PER_DAY: "-1" }, "EMAIL_AGENT_SENDER_PER_DAY"],
     ["a model without provider", { EMAIL_AGENT_TEXT_MODEL: "claude-haiku-5-5" }, "EMAIL_AGENT_TEXT_MODEL"],
-  ])("is off on %s, naming the variable and never its value", (_, change, name) => {
+  ])("is incomplete on %s, naming the variable and never its value", (_, change, name) => {
     const env = readMailAgentEnv({ ...COMPLETE, ...change })
-    expect(env).toEqual({ status: "off", enabled: true, missing: [], invalid: [name] })
+    expect(env).toEqual({ status: "incomplete", enabled: true, missing: [], invalid: [name] })
     expect(JSON.stringify(env)).not.toContain(Object.values(change)[0])
   })
 
-  it("stays off unless switched on, but still reports what is missing", () => {
-    expect(readMailAgentEnv({ ...COMPLETE, EMAIL_AGENT_ENABLED: "false" })).toEqual({ status: "off", enabled: false, missing: [], invalid: [] })
-    expect(readMailAgentEnv({})).toMatchObject({ status: "off", enabled: false, missing: expect.arrayContaining(["SITE_URL", "RESEND_API_KEY"]) })
+  it("is disabled unless switched on, with the config so signatures can still be checked", () => {
+    const env = readMailAgentEnv({ ...COMPLETE, EMAIL_AGENT_ENABLED: "false" })
+    expect(env.status).toBe("disabled")
+    expect(env.status === "disabled" && env.config.resend.webhookSecret).toBe("whsec_c2VjcmV0")
+    expect(readMailAgentEnv({})).toMatchObject({ status: "incomplete", enabled: false, missing: expect.arrayContaining(["SITE_URL", "RESEND_API_KEY"]) })
   })
 })
 

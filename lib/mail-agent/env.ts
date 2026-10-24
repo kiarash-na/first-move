@@ -52,8 +52,10 @@ export interface MailAgentConfig {
 
 export type MailAgentEnv =
   | { status: "ready"; config: MailAgentConfig }
+  /** Complete but switched off: the webhook still verifies signatures, then drops (PLAN-AGENT-06). */
+  | { status: "disabled"; config: MailAgentConfig }
   /** Names only: `missing` are empty, `invalid` have a value that breaks their rule. */
-  | { status: "off"; enabled: boolean; missing: string[]; invalid: string[] }
+  | { status: "incomplete"; enabled: boolean; missing: string[]; invalid: string[] }
 
 /** `EMAIL_AGENT_ENABLED=true` (or `1`) switches the agent on; anything else keeps it off. */
 export function isEnabled(env: Env): boolean {
@@ -62,8 +64,8 @@ export function isEnabled(env: Env): boolean {
 
 /**
  * Reads the email agent's settings (PLAN-AGENT-00 § Environment). The agent runs only when it is
- * switched on and every value is present and valid; otherwise it reports itself off with the
- * names to fix, never their values.
+ * switched on and every value is present and valid. Complete but switched off is `disabled`;
+ * otherwise it is `incomplete`, with the names to fix, never their values.
  */
 export function readMailAgentEnv(env: Env): MailAgentEnv {
   const input: Record<string, string> = {}
@@ -78,13 +80,12 @@ export function readMailAgentEnv(env: Env): MailAgentEnv {
     const names = [...new Set(parsed.error.issues.map((issue) => String(issue.path[0])))]
     const missing = names.filter((name) => !(name in input))
     const invalid = names.filter((name) => name in input)
-    return { status: "off", enabled, missing, invalid }
+    return { status: "incomplete", enabled, missing, invalid }
   }
-  if (!enabled) return { status: "off", enabled, missing: [], invalid: [] }
 
   const v = parsed.data
   return {
-    status: "ready",
+    status: enabled ? "ready" : "disabled",
     config: {
       siteUrl: v.SITE_URL,
       limits: {

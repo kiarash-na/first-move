@@ -1,5 +1,46 @@
 {
+  "sender": {
+    "name": "First Move assistant (AI)"
+  },
   "confirm": {
-    "title": "Confirm your request"
+    "title": "Confirm your request",
+    "lead": "You wrote to the First Move assistant, which answers with AI. Confirm once, and it reads your message.",
+    "accept": "I accept the Terms and emails about my request. No marketing.",
+    "terms": "Read the Terms",
+    "button": "Confirm",
+    "sending": "Confirming…",
+    "missing": "This page needs the link from the confirmation email.",
+    "result": {
+      "confirmed": "Thank you. Your request is confirmed; the assistant answers by email.",
+      "expired": "This link has expired. Write to the assistant again to get a new one.",
+      "used": "This link was already used. If you confirmed before, the assistant has your request.",
+      "invalid": "This link is not valid. Please use the link from the email.",
+      "error": "Something went wrong. Please try again in a few minutes."
+    }
+  },
+  "notices": {
+    "confirm": "Hello,\n\nthe First Move assistant received your message. It answers with AI, so it needs your confirmation once before it reads anything:\n\n{link}\n\nBy confirming you accept the Terms ({terms}) and emails about your request. No marketing.\n\nYour message waits up to {days} days for your confirmation. If you did not write to us, ignore this email: nothing is processed.\n\nFirst Move",
+    "warning": "Hello,\n\nthe First Move assistant only helps with First Move: the Quick Check, the Business Plan and fifth-generation district heating and cooling. Your message was not answered.\n\nPlease keep to these topics. After one more such message, this address is paused for {days} days.\n\nFirst Move",
+    "ban": "Hello,\n\nthis address is paused for {days} days after repeated messages outside the assistant's topics. Until then, messages from it are not answered.\n\nFirst Move",
+    "block": "Hello,\n\nyour request is blocked for now while an admin reviews it.\n\nFirst Move",
+    "unavailable": "Hello,\n\nthe First Move assistant cannot answer right now. Please try again later.\n\nFirst Move"
+  },
+  "admin": {
+    "subject": "First Move assistant: {kind}",
+    "body": "What: {kind}\nCategory: {category}\nScores: {scores}\nWhen: {at}\nFrom: {address}\nSubject: {subject}\nEmail id: {emailId}\n\nStart of the message:\n{excerpt}",
+    "system": "What: {kind}\nWhen: {at}\n\n{detail}",
+    "details": {
+      "rate-global": "The daily limit of {limit} emails for all senders is reached. Further email today gets no answer.",
+      "budget": "Today's model budget of {budget} USD is spent. The assistant answers no email until the next day (UTC)."
+    },
+    "more": "More alerts today were not sent (at most {max} a day).",
+    "moreKind": "more alerts today",
+    "kinds": {
+      "block": "sender blocked",
+      "guard-failed": "guard decision failed",
+      "rate-global": "daily limit for all mail reached",
+      "budget": "daily budget spent",
+      "attachment-injection": "attachment skipped (injection)"
+    }
   }
 }
