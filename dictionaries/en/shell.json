@@ -104,5 +104,136 @@
         "write-failed": "Writing the linked file failed."
       }
     }
-  }
+  },
+  "nav": {
+    "label": "Dashboard navigation",
+    "open": "Open navigation",
+    "close": "Close navigation",
+    "title": "Navigation",
+    "start": "All projects",
+    "sections": {
+      "project": "Project",
+      "quickCheck": "Quick Check",
+      "businessPlan": "Business Plan"
+    },
+    "items": {
+      "overview": "Overview",
+      "assumptions": "Assumptions",
+      "quickCheck": {
+        "area": "Project area",
+        "buildings": "Buildings",
+        "sources": "Energy sources",
+        "options": "Options",
+        "results": "Results"
+      },
+      "businessPlan": {
+        "opportunity": "Opportunity",
+        "business-logic": "Business logic",
+        "reality-check": "Reality check",
+        "implementation": "Implementation"
+      }
+    },
+    "currentProject": "Current project",
+    "noProject": "No project open",
+    "noProjectHint": "Open a project or start a new one on the start screen.",
+    "example": "Example",
+    "privacy": "Your data stays in this browser. Export a copy to keep it safe."
+  },
+  "topBar": {
+    "label": "Project actions",
+    "export": "Export",
+    "import": "Import",
+    "report": "Report",
+    "reportSoon": "Coming soon: a report of your project",
+    "settings": "Language and theme"
+  },
+  "saveStatus": {
+    "noProject": "No project open",
+    "label": "Save status"
+  },
+  "projectMenu": {
+    "label": "Project menu",
+    "rename": "Rename",
+    "duplicate": "Duplicate",
+    "modules": "Modules",
+    "restore": "Restore a version",
+    "linkFile": "Link to a file",
+    "resumeFile": "Allow saving to the file",
+    "unlinkFile": "Stop saving to the file",
+    "delete": "Delete",
+    "close": "Close project"
+  },
+  "rename": {
+    "title": "Rename project",
+    "label": "Project name",
+    "save": "Save",
+    "cancel": "Cancel"
+  },
+  "duplicate": {
+    "name": "{name} (copy)",
+    "done": "Duplicated as “{name}”"
+  },
+  "delete": {
+    "title": "Delete “{name}”?",
+    "body": "The project is removed from this browser. You can undo this right away, and an earlier version is kept for a while.",
+    "confirm": "Delete project",
+    "cancel": "Cancel",
+    "done": "“{name}” was deleted",
+    "undo": "Undo",
+    "undone": "“{name}” is back"
+  },
+  "modules": {
+    "title": "Modules",
+    "close": "Done"
+  },
+  "restore": {
+    "title": "Restore a version",
+    "body": "First Move keeps earlier versions of this project in this browser. Restoring keeps the current state as a version too.",
+    "loading": "Loading versions…",
+    "empty": "No earlier versions yet. They are kept while you work.",
+    "action": "Restore",
+    "done": "Version from {time} restored",
+    "failed": "This version could not be restored.",
+    "close": "Close"
+  },
+  "export": {
+    "done": "Exported {file}",
+    "failed": "The export failed. Try again."
+  },
+  "importFlow": {
+    "choose": "Choose a .firstmove.json file",
+    "failedTitle": "The file could not be imported",
+    "conflictTitle": "This project is already here",
+    "conflictBody": "“{name}” is already stored in this browser. Keep both, or replace the stored version? A replaced version is kept, so you can restore it.",
+    "copy": "Keep both",
+    "replace": "Replace",
+    "cancel": "Cancel",
+    "close": "Close",
+    "done": "“{name}” imported",
+    "field": "{field}: {message}"
+  },
+  "notices": {
+    "dismiss": "Dismiss",
+    "export": "Export",
+    "reload": "Reload",
+    "region": "Notifications"
+  },
+  "gate": {
+    "noProject": {
+      "title": "No project open",
+      "body": "Open a project on the start screen, or start a new one.",
+      "action": "Go to the start screen"
+    },
+    "moduleOff": {
+      "title": "{module} is turned off",
+      "body": "Turn the module on to work on it. Its data is kept while it is off.",
+      "action": "Turn on {module}"
+    }
+  },
+  "placeholder": {
+    "badge": "In development",
+    "body": "This page is being built. Your project is open and saved in this browser."
+  },
+  "close": "Close",
+  "loading": "Loading your projects…"
 }

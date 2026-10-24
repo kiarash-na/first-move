@@ -1,1 +1,12 @@
-{}
+{
+  "nav": {
+    "start": "Alle Projekte",
+    "items": {
+      "overview": "Übersicht"
+    }
+  },
+  "topBar": {
+    "export": "Exportieren",
+    "import": "Importieren"
+  }
+}

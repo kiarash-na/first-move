@@ -31,7 +31,7 @@ test.describe("locale routing (PLAN-DASH-01)", () => {
   })
 })
 
-test.describe("dashboard placeholder", () => {
+test.describe("dashboard shell", () => {
   test("renders in dark and switches to light, and the choice survives a reload", async ({ page }) => {
     await page.goto("/en/dashboard")
     const html = page.locator("html")

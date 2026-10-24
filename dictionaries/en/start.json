@@ -1,13 +1,75 @@
 {
-  "placeholder": {
-    "metaTitle": "Dashboard",
+  "meta": {
+    "title": "Projects"
+  },
+  "header": {
     "eyebrow": "Dashboard",
-    "title": "Your 5GDHC workspace is being set up",
-    "body": "Quick Check and Business Plan will appear here. Your project data stays in this browser.",
-    "status": "In development",
-    "website": "Back to the website"
+    "title": "Start your 5GDHC journey",
+    "body": "Screen a site with the Quick Check, develop a Business Plan, or both. Everything you enter stays in this browser."
+  },
+  "continue": {
+    "eyebrow": "Continue where you left off",
+    "action": "Continue",
+    "updated": "Last change {time}",
+    "welcomeTitle": "Welcome to First Move",
+    "welcomeBody": "Pick a path below to start a new project, or open one of the examples to see a finished screening."
+  },
+  "paths": {
+    "title": "Start a new project",
+    "body": "Choose what you want to work on. You can turn modules on or off later.",
+    "action": "Start",
+    "quick-check": {
+      "title": "Quick Check",
+      "body": "Screen the site's potential for a 5GDHC network in four steps and see the decisive factors.",
+      "meta": "4 steps · result"
+    },
+    "business-plan": {
+      "title": "Business Plan",
+      "body": "Develop a business model step by step: value, investment, risk and responsibility.",
+      "meta": "4 steps · canvas"
+    },
+    "both": {
+      "title": "Both",
+      "body": "Screen the site first, then build the business model on the same data.",
+      "meta": "8 steps · full workflow"
+    }
+  },
+  "newProject": {
+    "title": "Name your project",
+    "body": "You can rename it at any time.",
+    "label": "Project name",
+    "defaultName": "New project",
+    "create": "Create project",
+    "cancel": "Cancel",
+    "failed": "The project could not be created. Try again."
   },
   "examples": {
-    "illustrative": "Illustrative inputs only"
+    "illustrative": "Illustrative inputs only",
+    "title": "Examples",
+    "body": "Six illustrative projects with both modules filled in. Opening one creates your own copy.",
+    "open": "Open a copy",
+    "verdict": "Quick Check result",
+    "forced": "Set by a rule",
+    "facts": "{buildings} buildings · {area}",
+    "opened": "“{name}” opened as a copy",
+    "extra": "Additional example"
+  },
+  "import": {
+    "title": "Import a project",
+    "body": "Drop a .firstmove.json file here, or choose one. Files are checked and never leave this browser.",
+    "choose": "Choose file",
+    "drop": "Drop the file to import it",
+    "busy": "Importing…"
+  },
+  "projects": {
+    "title": "Your projects",
+    "count": "{count} in this browser",
+    "empty": "No projects yet. Start one above or open an example.",
+    "open": "Open",
+    "duplicate": "Duplicate",
+    "delete": "Delete",
+    "updated": "Changed {time}",
+    "actions": "Actions for “{name}”",
+    "current": "Open now"
   }
 }

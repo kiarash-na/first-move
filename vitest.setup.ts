@@ -13,6 +13,7 @@ if (typeof Element !== "undefined") {
   globalThis.ResizeObserver ??= ResizeObserverStub as unknown as typeof ResizeObserver
   Element.prototype.hasPointerCapture ??= () => false
   Element.prototype.releasePointerCapture ??= () => {}
+  Element.prototype.setPointerCapture ??= () => {}
   Element.prototype.scrollIntoView ??= () => {}
 }
 

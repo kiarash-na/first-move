@@ -1,6 +1,5 @@
 {
-  "placeholder": {
-    "status": "In Entwicklung",
-    "website": "Zurück zur Website"
+  "meta": {
+    "title": "Projekte"
   }
 }

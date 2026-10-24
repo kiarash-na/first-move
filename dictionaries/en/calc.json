@@ -15,7 +15,9 @@
       "text": "The buildings of each type and construction period times their default cooling demand per m² and their default floor area, summed over all groups.",
       "manual": "You entered the total cooling demand, so it replaces the estimate."
     },
-    "buildingDensity": { "text": "The number of buildings per hectare of project area." },
+    "buildingDensity": {
+      "text": "The number of buildings per hectare of project area."
+    },
     "densityCategory": {
       "text": "Follows from the building density class of Table 8: low density is rural, medium is sub-urban, high is urban."
     },
@@ -53,24 +55,36 @@
     "connectionFeeRevenue": {
       "text": "The one-time connection fee of every building, spread over the depreciation period with the annuity factor."
     },
-    "overallRevenue": { "text": "Heating revenue, cooling revenue and the annualized connection fees." },
-    "networkInvestment": { "text": "The network construction costs per metre times the network length." },
+    "overallRevenue": {
+      "text": "Heating revenue, cooling revenue and the annualized connection fees."
+    },
+    "networkInvestment": {
+      "text": "The network construction costs per metre times the network length."
+    },
     "supplyInvestment": {
       "text": "For each selected source, its installation costs per kWh/a times its heating supply, summed over all sources. Ambient air adds no installation costs, as the heat pumps are counted separately."
     },
-    "heatPumpInvestment": { "text": "The investment in one heat pump times the number of buildings." },
+    "heatPumpInvestment": {
+      "text": "The investment in one heat pump times the number of buildings."
+    },
     "overallInvestment": {
       "text": "Heat pumps, network and the installations of all sources. The installations are counted once."
     },
     "annuityFactor": {
       "text": "Turns an investment into equal yearly payments over the depreciation period at the interest rate."
     },
-    "annualizedCosts": { "text": "The overall investment times the annuity factor: its cost per year." },
+    "annualizedCosts": {
+      "text": "The overall investment times the annuity factor: its cost per year."
+    },
     "electricityCosts": {
       "text": "The electricity the heat pumps need (supply divided by COP) times the electricity price. With PV, the costs are lowered by the PV cost reduction."
     },
-    "operationAndMaintenance": { "text": "A fixed share of the overall investment every year." },
-    "annualCosts": { "text": "Annualized investment, electricity costs, and operation and maintenance costs." },
+    "operationAndMaintenance": {
+      "text": "A fixed share of the overall investment every year."
+    },
+    "annualCosts": {
+      "text": "Annualized investment, electricity costs, and operation and maintenance costs."
+    },
     "economicRatio": {
       "text": "The overall revenues divided by the annual costs. The economic assessment rates this ratio as favorable, unclear or clearly unfavorable."
     },
@@ -108,5 +122,11 @@
     "oq-12": "Cooling-to-heating ratio",
     "oq-17": "Overall investment, installations counted once",
     "oq-21": "Economic ratio"
+  },
+  "ui": {
+    "title": "How we calculate",
+    "info": "How we calculate this",
+    "tables": "Default values",
+    "noEquation": "The methodology gives no equation for this value; the resolved answer that follows is used."
   }
 }

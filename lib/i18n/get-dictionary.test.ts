@@ -17,6 +17,8 @@ describe("getDictionary", () => {
   it("has the same shape in both languages", async () => {
     const de = await getDictionary("de", "start")
     const enStart = await getDictionary("en", "start")
-    expect(Object.keys(de.placeholder)).toEqual(Object.keys(enStart.placeholder))
+    expect(Object.keys(de)).toEqual(Object.keys(enStart))
+    expect(Object.keys(de.paths)).toEqual(Object.keys(enStart.paths))
+    expect(de.meta.title).toBe("Projekte")
   })
 })

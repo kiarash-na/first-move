@@ -5,9 +5,10 @@ import { CircleCheckIcon, InfoIcon, Loader2Icon, OctagonXIcon, TriangleAlertIcon
 import { Toaster as Sonner, type ToasterProps } from "sonner"
 
 import { useTheme } from "@/lib/theme/use-theme"
+import { cn } from "@/lib/utils"
 
 /** Toasts follow `<html data-theme>`; errors and warnings are orange with an icon (D-17). */
-function Toaster({ ...props }: ToasterProps) {
+function Toaster({ toastOptions, ...props }: ToasterProps) {
   const [theme] = useTheme()
 
   return (
@@ -29,7 +30,10 @@ function Toaster({ ...props }: ToasterProps) {
           "--border-radius": "0px",
         } as React.CSSProperties
       }
-      toastOptions={{ classNames: { toast: "font-sans shadow-none!" } }}
+      toastOptions={{
+        ...toastOptions,
+        classNames: { ...toastOptions?.classNames, toast: cn("font-sans shadow-none!", toastOptions?.classNames?.toast) },
+      }}
       {...props}
     />
   )

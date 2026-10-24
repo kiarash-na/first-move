@@ -14,4 +14,15 @@ describe("Toaster", () => {
     expect(document.querySelector("[data-sonner-toaster]")).toHaveAttribute("data-sonner-theme", "light")
     document.documentElement.setAttribute("data-theme", "dark")
   })
+
+  it("keeps its flat toast style when toast options are passed", async () => {
+    render(<Toaster toastOptions={{ closeButtonAriaLabel: "Dismiss", classNames: { toast: "extra" } }} closeButton />)
+    act(() => {
+      toast("Merged")
+    })
+    const item = (await screen.findByText("Merged")).closest("li")!
+    expect(item.className).toContain("shadow-none!")
+    expect(item.className).toContain("extra")
+    expect(item.querySelector('button[aria-label="Dismiss"]')).not.toBeNull()
+  })
 })
