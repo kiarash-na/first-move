@@ -1,1 +1,304 @@
-{}
+{
+  "meta": {
+    "title": "First Move: Start your 5GDHC Journey now",
+    "description": "First Move guides you from a first 5GDHC screening to a viable business model for 5th Generation District Heating and Cooling."
+  },
+  "header": {
+    "brandLabel": "First Move, back to top",
+    "brandName": "First Move",
+    "brandDescriptor": "5GDHC\nscreening",
+    "primaryNav": "Primary navigation",
+    "mobileNav": "Mobile navigation",
+    "openMenu": "Open navigation",
+    "closeMenu": "Close navigation",
+    "getStarted": "Get Started",
+    "nav": {
+      "system": "The System",
+      "quickCheck": "Quick Check",
+      "businessModels": "Business Models",
+      "methodology": "Methodology"
+    }
+  },
+  "hero": {
+    "eyebrow": "5th Generation District Heating & Cooling",
+    "titleLabel": "Start your 5GDHC Journey now",
+    "titleLine1": "Start your",
+    "titleLine2": "5GDHC",
+    "titleLine3": "journey now.",
+    "intro": "From first screening to a viable business model, for low-temperature, bidirectional networks connecting buildings with local renewables and waste heat.",
+    "discover": "Discover the system",
+    "sceneDefault": "Interactive district · low-temperature network",
+    "legendLabel": "Energy network legend",
+    "cooling": "Cooling",
+    "heating": "Heating",
+    "temperature": "5–25°C",
+    "annotationTop": "Bidirectional flow",
+    "annotationSide": "Local sources",
+    "hint": "Move to shift perspective",
+    "reverseFlow": "Reverse flow",
+    "restoreFlow": "Restore flow",
+    "gatewayLabel": "Two tools.\nOne workflow.",
+    "tools": {
+      "quickCheck": {
+        "title": "Quick Check",
+        "description": "Screen the potential. See the decisive factors.",
+        "sceneLabel": "Screening mode · three-level assessment"
+      },
+      "businessModels": {
+        "title": "Business Models",
+        "description": "Allocate value, investment, risk and responsibility.",
+        "sceneLabel": "Business mode · value and risk allocation"
+      }
+    }
+  },
+  "product": {
+    "promise": {
+      "kicker": "One continuous workflow",
+      "title": "From first signal\nto a viable\n*business case.*",
+      "body": "First Move is a digital tool for low-temperature, bidirectional 5GDHC networks, connecting buildings with renewables and waste heat through heat pumps, from the first project area to a model people can actually implement.",
+      "link": "See how the system fits together"
+    },
+    "audiences": [
+      { "title": "Municipalities", "text": "Turn local energy potential into a clear project pathway." },
+      { "title": "Energy service providers", "text": "Move from network opportunity to an operating structure." },
+      { "title": "Project initiators", "text": "Test the first idea before committing to full feasibility." }
+    ],
+    "tools": {
+      "kicker": "Two tools. One system.",
+      "title": "First know if.\n*Then know how.*",
+      "quickCheck": {
+        "title": "Quick Check",
+        "subtitle": "Screen the technical and economic potential.",
+        "meta": "3-level assessment · decisive factors · output document"
+      },
+      "businessModels": {
+        "title": "Business Models",
+        "subtitle": "Structure value, ownership, risk and operation.",
+        "meta": "Canvas · Reality Check · replication · next steps"
+      }
+    }
+  },
+  "quickCheck": {
+    "inputs": {
+      "kicker": "Quick Check · Inputs",
+      "title": "Start with\nthe area.\n*See what matters.*",
+      "body": "A focused set of project parameters creates a fast initial screen, without pretending to replace a full feasibility study. Switch scenarios or adjust the illustrative inputs.",
+      "scenariosLabel": "Predefined scenario previews",
+      "consoleTitle": "Project input signature",
+      "consoleTag": "Interactive preview",
+      "low": "Low",
+      "medium": "Medium",
+      "high": "High",
+      "note": "Illustrative inputs only · no assessment is calculated in this landing-page preview.",
+      "parameters": {
+        "demand": { "label": "Heat demand density", "note": "Concentration of demand across the project area" },
+        "source": { "label": "Local heat source availability", "note": "Potential access to local renewables or waste heat" },
+        "capex": { "label": "Investment costs", "note": "Early investment assumption for the screening boundary" }
+      },
+      "scenarios": {
+        "urban": "Dense neighbourhood",
+        "waste": "Waste-heat site",
+        "rural": "Low-density area"
+      }
+    },
+    "assessment": {
+      "kicker": "Quick Check · Overall assessment",
+      "title": "A clear answer.\n*And the reasons why.*",
+      "body": "The three-level result is only the headline. Decisive technical and economic factors remain attached to it, so the outcome can be discussed and challenged.",
+      "scaleLabel": "Example assessment states",
+      "resultLabel": "Example overall assessment",
+      "note": "Illustrative output state · actual results depend on project inputs and the calculation methodology.",
+      "technical": "Technical",
+      "source": "Source",
+      "economic": "Economic",
+      "states": {
+        "promising": {
+          "label": "Promising",
+          "summary": "The first screen finds strong supporting conditions.",
+          "technical": "High heat demand density across the project area.",
+          "source": "A suitable local heat source is available.",
+          "economic": "Investment costs fall within the predefined range."
+        },
+        "further": {
+          "label": "Further analysis required",
+          "summary": "The result is sensitive to assumptions that need a closer look.",
+          "technical": "Network conditions need more detailed investigation.",
+          "source": "Availability, temperature or timing must be confirmed.",
+          "economic": "Key cost or connection assumptions remain uncertain."
+        },
+        "notPromising": {
+          "label": "Not promising",
+          "summary": "The current combination does not support a positive first screen.",
+          "technical": "Demand conditions weaken the initial network case.",
+          "source": "No sufficiently suitable local source is identified.",
+          "economic": "Investment assumptions sit outside the screening range."
+        }
+      }
+    },
+    "results": {
+      "kicker": "Quick Check · Results & output",
+      "title": "Clear enough\nto discuss.\n*Ready to export.*",
+      "body": "Key results become a visual project output with the overall assessment and its reasoning. The same result can take the form of an online view, PDF or another output document.",
+      "modesLabel": "Report preview format",
+      "online": "Online view",
+      "document": "PDF page",
+      "link": "Continue to Business Models",
+      "captionOnline": "Online output composition · example content",
+      "captionDocument": "Document output composition · example content",
+      "report": {
+        "topLeft": "5GDHC / QUICK CHECK",
+        "topRight": "EXAMPLE OUTPUT",
+        "kicker": "Project screening",
+        "title": "Network potential",
+        "assessment": "Overall assessment",
+        "result": "Promising",
+        "demand": "Heat demand density",
+        "demandValue": "High",
+        "source": "Local heat source",
+        "sourceValue": "Available",
+        "capex": "Investment costs",
+        "capexValue": "Within range",
+        "reasonLabel": "Why this result",
+        "reason": "High demand density, a suitable local source and investment costs within the predefined range.",
+        "footerLeft": "SCREENING · NOT A FULL FEASIBILITY STUDY",
+        "footerRight": "01 / 01"
+      }
+    }
+  },
+  "businessModels": {
+    "useCases": {
+      "kicker": "Business Models · Use cases",
+      "title": "One system.\n*Different realities.*",
+      "groupLabel": "Business model use case",
+      "inputsLabel": "Business model input categories",
+      "diagramSuffix": "network diagram",
+      "diagramTitle": "ILLUSTRATIVE NETWORK TYPOLOGY",
+      "diagramFooter": "5GDHC / USE CASE",
+      "diagramSource": "LOCAL SOURCE",
+      "inputs": ["Customer segments", "Heating + cooling needs", "Heat sources", "Connection rates", "Tariffs", "Capex", "Financing", "Subsidies"],
+      "items": {
+        "refurbishment": {
+          "title": "Existing neighbourhood refurbishment",
+          "shortTitle": "Neighbourhood",
+          "description": "Connect existing buildings through a low-temperature refurbishment pathway.",
+          "focus": "Customer segments, connection rates, tariffs and renovation timing."
+        },
+        "wasteHeat": {
+          "title": "Waste-heat integration",
+          "shortTitle": "Waste heat",
+          "description": "Turn an available local source into shared value across the network.",
+          "focus": "Source availability, temperature, ownership, capex and heat off-take."
+        },
+        "rural": {
+          "title": "Rural / low-density networks",
+          "shortTitle": "Low density",
+          "description": "Test viability where demand is dispersed and every assumption matters.",
+          "focus": "Connection rates, network length, financing and subsidy assumptions."
+        }
+      }
+    },
+    "canvas": {
+      "kicker": "Tailored Business Model Canvas",
+      "title": "Make the whole\n*model visible.*",
+      "body": "Not just costs and revenues. The canvas connects the value proposition to partners, responsibilities and the explicit allocation of investment, risk and benefits.",
+      "blocks": [
+        { "title": "Value proposition", "text": "The value each customer segment actually receives." },
+        { "title": "Key partners", "text": "The organisations required to make the model work." },
+        { "title": "Operator responsibilities", "text": "Clear ownership of operation, coordination and delivery." },
+        { "title": "Cost structure", "text": "Investment and operating costs visible in one structure." },
+        { "title": "Revenue streams", "text": "Tariffs, connections and other revenues linked to the model." },
+        { "title": "Investment · risk · benefits", "text": "Explicit allocation instead of implicit assumptions." }
+      ],
+      "allocationLabel": "Business model allocation view",
+      "allocationKicker": "Allocation view",
+      "roles": {
+        "benefits": { "label": "Benefits", "title": "Who benefits?", "text": "Customer segments and local system benefits are made visible alongside the value proposition." },
+        "pays": { "label": "Pays", "title": "Who pays?", "text": "Connection and tariff assumptions are connected to the customers and revenue streams they affect." },
+        "owns": { "label": "Owns", "title": "Who owns?", "text": "Ownership and investment responsibilities are assigned explicitly for the selected use case." },
+        "operates": { "label": "Operates", "title": "Who operates?", "text": "Operator duties and key partnerships become part of the model, not an implementation afterthought." }
+      }
+    },
+    "reality": {
+      "kicker": "Reality Check",
+      "title": "Stress-test\nthe story.\n*Before reality does.*",
+      "body": "Critical assumptions, top risks and the potential deal-breaker are brought into the open. The goal is not a nicer presentation, it is a model that survives difficult questions.",
+      "consoleTitle": "Assumption scan",
+      "consoleTag": "03 CHECKS",
+      "dealBreakerLabel": "Potential deal-breaker",
+      "dealBreaker": "The condition that invalidates the model is made explicit, not buried in a footnote.",
+      "risks": {
+        "connection": {
+          "title": "Connection-rate sensitivity",
+          "assumption": "Critical assumption",
+          "text": "Test how dependent the model is on the expected share of buildings actually connecting to the network."
+        },
+        "source": {
+          "title": "Heat-source availability",
+          "assumption": "Top risk",
+          "text": "Expose uncertainty around source temperature, timing, continuity and the agreements needed to secure it."
+        },
+        "finance": {
+          "title": "Financing and subsidy exposure",
+          "assumption": "Potential deal-breaker",
+          "text": "Make the model's dependence on financing conditions or public support explicit before implementation begins."
+        }
+      }
+    },
+    "scalability": {
+      "kicker": "Scalability & replicability",
+      "title": "Replicate the logic.\n*Adapt the network.*",
+      "body": "A viable model should travel across settlement typologies without ignoring local reality. The operating structure stays coherent while sources, density and customer needs change.",
+      "items": [
+        { "label": "01 / TYPOLOGIES", "title": "Across settlement types", "text": "Assess scalability and replicability as part of the model itself." },
+        { "label": "02 / RESILIENCE", "title": "Stronger local systems", "text": "Support resilience through structured, transparent network decisions." },
+        { "label": "03 / LOCAL SUPPLY", "title": "Energy already nearby", "text": "Build around locally available renewables and waste-heat potential." }
+      ]
+    },
+    "implementation": {
+      "kicker": "Next-step implementation outline",
+      "title": "End with\n*a next move.*",
+      "body": "The output does not stop at a canvas. It turns the selected model into a practical outline for the work, alignment and decisions that come next.",
+      "link": "Check the methodology",
+      "steps": [
+        { "title": "Confirm", "text": "Validate the decisive screening assumptions and local source conditions." },
+        { "title": "Detail", "text": "Move the promising setup into the required technical and economic feasibility work." },
+        { "title": "Align", "text": "Agree ownership, operator responsibilities, financing and risk allocation with partners." },
+        { "title": "Implement", "text": "Turn the selected model into a sequenced implementation outline with clear next actions." }
+      ]
+    }
+  },
+  "closing": {
+    "methodology": {
+      "kicker": "Methodology & credibility",
+      "title": "Built to be checked.\n*Not just believed.*",
+      "body": "The experience is designed around methodological correctness, usability, clarity of results and practical screening applicability, not visual certainty alone.",
+      "rows": [
+        { "title": "Predefined calculation methodology", "text": "A defined screening method turns project parameters into a consistent three-stage assessment indicator." },
+        { "title": "Research foundation", "text": "Built on the “Anergie Leicht Gemacht” research project and its approach to making local energy potential actionable." },
+        { "title": "Predefined project scenarios", "text": "Scenario-based testing supports methodology checks, usability and practical screening applicability." },
+        { "title": "Flexible output", "text": "Results can be communicated through a PDF, online view or another output document without losing the reasoning." }
+      ],
+      "boundaryLabel": "Explicit boundary",
+      "boundaryLead": "Fast initial screening",
+      "boundaryStrong": "not a full feasibility study."
+    },
+    "getStarted": {
+      "kicker": "Your project area is the starting point",
+      "title": "Make the first\n*move count.*",
+      "body": "Start with a Quick Check. Turn a promising direction into a viable business model.",
+      "primary": "Get Started",
+      "secondary": "Explore Business Models"
+    },
+    "footer": {
+      "brandLabel": "First Move, back to top",
+      "brandName": "First Move",
+      "brandTag": "5GDHC",
+      "openSource": "Open source",
+      "nav": "Footer navigation",
+      "quickCheck": "Quick Check",
+      "businessModels": "Business Models",
+      "methodology": "Methodology",
+      "backToTop": "Back to top"
+    }
+  }
+}

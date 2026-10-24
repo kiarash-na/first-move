@@ -2,69 +2,38 @@
 
 import { useState, type CSSProperties, type PointerEvent } from 'react'
 import { ArrowDownRight, Check, FileText, Monitor, ScanSearch, X } from 'lucide-react'
+import { RichText } from '../rich-text'
+import type { Landing } from '../types'
 
 interface QuickCheckStoryProps {
+  t: Landing
   onPreviewChange: (demand: number, source: number) => void
 }
 
 type ParameterKey = 'demand' | 'source' | 'capex'
 type AssessmentId = 'promising' | 'further' | 'not-promising'
 
-const parameters: { id: ParameterKey; label: string; note: string }[] = [
-  { id: 'demand', label: 'Heat demand density', note: 'Concentration of demand across the project area' },
-  { id: 'source', label: 'Local heat source availability', note: 'Potential access to local renewables or waste heat' },
-  { id: 'capex', label: 'Investment costs', note: 'Early investment assumption for the screening boundary' },
-]
+const parameterIds: ParameterKey[] = ['demand', 'source', 'capex']
 
 const scenarios = [
-  { id: 'urban', label: 'Dense neighbourhood', values: { demand: 84, source: 62, capex: 58 } },
-  { id: 'waste', label: 'Waste-heat site', values: { demand: 68, source: 90, capex: 54 } },
-  { id: 'rural', label: 'Low-density area', values: { demand: 32, source: 58, capex: 74 } },
-]
+  { id: 'urban', values: { demand: 84, source: 62, capex: 58 } },
+  { id: 'waste', values: { demand: 68, source: 90, capex: 54 } },
+  { id: 'rural', values: { demand: 32, source: 58, capex: 74 } },
+] as const
 
-const assessments = [
-  {
-    id: 'promising' as const,
-    label: 'Promising',
-    icon: Check,
-    summary: 'The first screen finds strong supporting conditions.',
-    reasons: [
-      ['Technical', 'High heat demand density across the project area.'],
-      ['Source', 'A suitable local heat source is available.'],
-      ['Economic', 'Investment costs fall within the predefined range.'],
-    ],
-  },
-  {
-    id: 'further' as const,
-    label: 'Further analysis required',
-    icon: ScanSearch,
-    summary: 'The result is sensitive to assumptions that need a closer look.',
-    reasons: [
-      ['Technical', 'Network conditions need more detailed investigation.'],
-      ['Source', 'Availability, temperature or timing must be confirmed.'],
-      ['Economic', 'Key cost or connection assumptions remain uncertain.'],
-    ],
-  },
-  {
-    id: 'not-promising' as const,
-    label: 'Not promising',
-    icon: X,
-    summary: 'The current combination does not support a positive first screen.',
-    reasons: [
-      ['Technical', 'Demand conditions weaken the initial network case.'],
-      ['Source', 'No sufficiently suitable local source is identified.'],
-      ['Economic', 'Investment assumptions sit outside the screening range.'],
-    ],
-  },
-]
+const assessmentMeta = [
+  { id: 'promising', key: 'promising', icon: Check },
+  { id: 'further', key: 'further', icon: ScanSearch },
+  { id: 'not-promising', key: 'notPromising', icon: X },
+] as const
 
-function levelText(value: number) {
-  if (value >= 67) return 'High'
-  if (value >= 34) return 'Medium'
-  return 'Low'
+function levelKey(value: number) {
+  if (value >= 67) return 'high'
+  if (value >= 34) return 'medium'
+  return 'low'
 }
 
-export function QuickCheckStory({ onPreviewChange }: QuickCheckStoryProps) {
+export function QuickCheckStory({ t, onPreviewChange }: QuickCheckStoryProps) {
   const [values, setValues] = useState({ demand: 78, source: 72, capex: 46 })
   const [scenario, setScenario] = useState('urban')
   const [assessment, setAssessment] = useState<AssessmentId>('promising')
@@ -75,8 +44,11 @@ export function QuickCheckStory({ onPreviewChange }: QuickCheckStoryProps) {
     onPreviewChange(next.demand, next.source)
   }
 
-  const activeAssessment = assessments.find((item) => item.id === assessment) ?? assessments[0]
-  const AssessmentIcon = activeAssessment.icon
+  const { inputs, assessment: assessmentCopy, results } = t.quickCheck
+  const levelText = (value: number) => inputs[levelKey(value)]
+  const activeMeta = assessmentMeta.find((item) => item.id === assessment) ?? assessmentMeta[0]
+  const activeState = assessmentCopy.states[activeMeta.key]
+  const AssessmentIcon = activeMeta.icon
 
   const tiltReport = (event: PointerEvent<HTMLDivElement>) => {
     if (event.pointerType === 'touch') return
@@ -97,13 +69,10 @@ export function QuickCheckStory({ onPreviewChange }: QuickCheckStoryProps) {
       <section className="story-section quick-inputs-section" id="quick-inputs" data-chapter aria-labelledby="quick-inputs-title">
         <div className="story-section__inner split-layout">
           <div className="section-copy" data-reveal>
-            <p className="section-kicker">Quick Check · Inputs</p>
-            <h2 className="section-title" id="quick-inputs-title">Start with<br />the area.<br /><em>See what matters.</em></h2>
-            <p className="section-body">
-              A focused set of project parameters creates a fast initial screen—without pretending
-              to replace a full feasibility study. Switch scenarios or adjust the illustrative inputs.
-            </p>
-            <div className="scenario-switcher" aria-label="Predefined scenario previews">
+            <p className="section-kicker">{inputs.kicker}</p>
+            <h2 className="section-title" id="quick-inputs-title"><RichText text={inputs.title} /></h2>
+            <p className="section-body">{inputs.body}</p>
+            <div className="scenario-switcher" aria-label={inputs.scenariosLabel}>
               {scenarios.map((item) => (
                 <button
                   key={item.id}
@@ -114,7 +83,7 @@ export function QuickCheckStory({ onPreviewChange }: QuickCheckStoryProps) {
                     updateValues({ ...item.values })
                   }}
                 >
-                  {item.label}
+                  {inputs.scenarios[item.id]}
                 </button>
               ))}
             </div>
@@ -122,21 +91,22 @@ export function QuickCheckStory({ onPreviewChange }: QuickCheckStoryProps) {
 
           <div className="parameter-console" data-reveal>
             <div className="console-heading">
-              <span>Project input signature</span>
-              <span>Interactive preview</span>
+              <span>{inputs.consoleTitle}</span>
+              <span>{inputs.consoleTag}</span>
             </div>
-            {parameters.map((parameter) => {
-              const value = values[parameter.id]
+            {parameterIds.map((id) => {
+              const parameter = inputs.parameters[id]
+              const value = values[id]
               const style = { '--range-progress': `${value}%` } as CSSProperties
               return (
-                <div className="parameter-control" key={parameter.id}>
-                  <label htmlFor={`parameter-${parameter.id}`}>
+                <div className="parameter-control" key={id}>
+                  <label htmlFor={`parameter-${id}`}>
                     <span>{parameter.label}</span>
                     <strong>{levelText(value)}</strong>
                   </label>
                   <p>{parameter.note}</p>
                   <input
-                    id={`parameter-${parameter.id}`}
+                    id={`parameter-${id}`}
                     type="range"
                     min="0"
                     max="100"
@@ -146,14 +116,14 @@ export function QuickCheckStory({ onPreviewChange }: QuickCheckStoryProps) {
                     style={style}
                     onChange={(event) => {
                       setScenario('custom')
-                      updateValues({ ...values, [parameter.id]: Number(event.target.value) })
+                      updateValues({ ...values, [id]: Number(event.target.value) })
                     }}
                   />
-                  <div className="parameter-limits" aria-hidden="true"><span>Low</span><span>High</span></div>
+                  <div className="parameter-limits" aria-hidden="true"><span>{inputs.low}</span><span>{inputs.high}</span></div>
                 </div>
               )
             })}
-            <p className="preview-note">Illustrative inputs only · no assessment is calculated in this landing-page preview.</p>
+            <p className="preview-note">{inputs.note}</p>
           </div>
         </div>
       </section>
@@ -161,17 +131,14 @@ export function QuickCheckStory({ onPreviewChange }: QuickCheckStoryProps) {
       <section className="story-section assessment-section" id="quick-assessment" data-chapter aria-labelledby="assessment-title">
         <div className="story-section__inner">
           <div className="section-copy section-copy--wide" data-reveal>
-            <p className="section-kicker">Quick Check · Overall assessment</p>
-            <h2 className="section-title" id="assessment-title">A clear answer.<br /><em>And the reasons why.</em></h2>
-            <p className="section-body">
-              The three-level result is only the headline. Decisive technical and economic factors
-              remain attached to it, so the outcome can be discussed and challenged.
-            </p>
+            <p className="section-kicker">{assessmentCopy.kicker}</p>
+            <h2 className="section-title" id="assessment-title"><RichText text={assessmentCopy.title} /></h2>
+            <p className="section-body">{assessmentCopy.body}</p>
           </div>
 
           <div className="assessment-workbench" data-reveal>
-            <div className="assessment-scale" role="group" aria-label="Example assessment states">
-              {assessments.map((item, index) => {
+            <div className="assessment-scale" role="group" aria-label={assessmentCopy.scaleLabel}>
+              {assessmentMeta.map((item, index) => {
                 const Icon = item.icon
                 return (
                   <button
@@ -183,30 +150,30 @@ export function QuickCheckStory({ onPreviewChange }: QuickCheckStoryProps) {
                   >
                     <span className="assessment-step__index">0{index + 1}</span>
                     <Icon size={21} strokeWidth={1.6} aria-hidden="true" />
-                    <span>{item.label}</span>
+                    <span>{assessmentCopy.states[item.key].label}</span>
                   </button>
                 )
               })}
             </div>
 
-            <div className={`assessment-result assessment-result--${activeAssessment.id}`} aria-live="polite">
+            <div className={`assessment-result assessment-result--${activeMeta.id}`} aria-live="polite">
               <div className="assessment-result__headline">
                 <AssessmentIcon size={35} strokeWidth={1.35} aria-hidden="true" />
                 <div>
-                  <span>Example overall assessment</span>
-                  <h3>{activeAssessment.label}</h3>
+                  <span>{assessmentCopy.resultLabel}</span>
+                  <h3>{activeState.label}</h3>
                 </div>
               </div>
-              <p>{activeAssessment.summary}</p>
+              <p>{activeState.summary}</p>
               <div className="assessment-reasons">
-                {activeAssessment.reasons.map(([label, reason]) => (
-                  <div key={label}>
-                    <span>{label}</span>
-                    <p>{reason}</p>
+                {(['technical', 'source', 'economic'] as const).map((factor) => (
+                  <div key={factor}>
+                    <span>{assessmentCopy[factor]}</span>
+                    <p>{activeState[factor]}</p>
                   </div>
                 ))}
               </div>
-              <p className="preview-note">Illustrative output state · actual results depend on project inputs and the calculation methodology.</p>
+              <p className="preview-note">{assessmentCopy.note}</p>
             </div>
           </div>
         </div>
@@ -215,22 +182,19 @@ export function QuickCheckStory({ onPreviewChange }: QuickCheckStoryProps) {
       <section className="story-section results-section" id="quick-results" data-chapter aria-labelledby="results-title">
         <div className="story-section__inner split-layout split-layout--reverse">
           <div className="section-copy" data-reveal>
-            <p className="section-kicker">Quick Check · Results &amp; output</p>
-            <h2 className="section-title" id="results-title">Clear enough<br />to discuss.<br /><em>Ready to export.</em></h2>
-            <p className="section-body">
-              Key results become a visual project output with the overall assessment and its reasoning.
-              The same result can take the form of an online view, PDF or another output document.
-            </p>
-            <div className="output-modes" role="group" aria-label="Report preview format">
+            <p className="section-kicker">{results.kicker}</p>
+            <h2 className="section-title" id="results-title"><RichText text={results.title} /></h2>
+            <p className="section-body">{results.body}</p>
+            <div className="output-modes" role="group" aria-label={results.modesLabel}>
               <button type="button" aria-pressed={reportMode === 'online'} onClick={() => setReportMode('online')}>
-                <Monitor size={17} strokeWidth={1.6} aria-hidden="true" />Online view
+                <Monitor size={17} strokeWidth={1.6} aria-hidden="true" />{results.online}
               </button>
               <button type="button" aria-pressed={reportMode === 'document'} onClick={() => setReportMode('document')}>
-                <FileText size={17} strokeWidth={1.6} aria-hidden="true" />PDF page
+                <FileText size={17} strokeWidth={1.6} aria-hidden="true" />{results.document}
               </button>
             </div>
             <a className="text-link story-link" href="#business-use-cases">
-              Continue to Business Models
+              {results.link}
               <ArrowDownRight size={17} strokeWidth={1.7} aria-hidden="true" />
             </a>
           </div>
@@ -243,33 +207,33 @@ export function QuickCheckStory({ onPreviewChange }: QuickCheckStoryProps) {
           >
             <div className="report-object">
               <div className="report-topline">
-                <span>5GDHC / QUICK CHECK</span>
-                <span>EXAMPLE OUTPUT</span>
+                <span>{results.report.topLeft}</span>
+                <span>{results.report.topRight}</span>
               </div>
               <div className="report-title-row">
                 <div>
-                  <span>Project screening</span>
-                  <h3>Network potential</h3>
+                  <span>{results.report.kicker}</span>
+                  <h3>{results.report.title}</h3>
                 </div>
                 <ScanSearch size={30} strokeWidth={1.25} aria-hidden="true" />
               </div>
               <div className="report-assessment">
-                <span>Overall assessment</span>
-                <strong><Check size={20} strokeWidth={1.8} aria-hidden="true" />Promising</strong>
+                <span>{results.report.assessment}</span>
+                <strong><Check size={20} strokeWidth={1.8} aria-hidden="true" />{results.report.result}</strong>
                 <div className="report-three-level" aria-hidden="true"><i /><i /><i /></div>
               </div>
               <div className="report-factors">
-                <div><span>Heat demand density</span><strong>High</strong><i className="factor-line factor-line--long" /></div>
-                <div><span>Local heat source</span><strong>Available</strong><i className="factor-line factor-line--medium" /></div>
-                <div><span>Investment costs</span><strong>Within range</strong><i className="factor-line factor-line--short" /></div>
+                <div><span>{results.report.demand}</span><strong>{results.report.demandValue}</strong><i className="factor-line factor-line--long" /></div>
+                <div><span>{results.report.source}</span><strong>{results.report.sourceValue}</strong><i className="factor-line factor-line--medium" /></div>
+                <div><span>{results.report.capex}</span><strong>{results.report.capexValue}</strong><i className="factor-line factor-line--short" /></div>
               </div>
               <div className="report-reason">
-                <span>Why this result</span>
-                <p>High demand density, a suitable local source and investment costs within the predefined range.</p>
+                <span>{results.report.reasonLabel}</span>
+                <p>{results.report.reason}</p>
               </div>
-              <div className="report-footer"><span>SCREENING · NOT A FULL FEASIBILITY STUDY</span><span>01 / 01</span></div>
+              <div className="report-footer"><span>{results.report.footerLeft}</span><span>{results.report.footerRight}</span></div>
             </div>
-            <p className="report-caption">{reportMode === 'online' ? 'Online output composition' : 'Document output composition'} · example content</p>
+            <p className="report-caption">{reportMode === 'online' ? results.captionOnline : results.captionDocument}</p>
           </div>
         </div>
       </section>

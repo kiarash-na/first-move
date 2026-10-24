@@ -1,1 +1,30 @@
-{}
+{
+  "meta": {
+    "title": "First Move: Starten Sie jetzt Ihre 5GDHC-Reise",
+    "description": "First Move führt Sie vom ersten 5GDHC-Screening zu einem tragfähigen Geschäftsmodell für Fernwärme und -kälte der 5. Generation."
+  },
+  "header": {
+    "primaryNav": "Hauptnavigation",
+    "mobileNav": "Mobile Navigation",
+    "openMenu": "Navigation öffnen",
+    "closeMenu": "Navigation schließen",
+    "getStarted": "Jetzt starten",
+    "nav": {
+      "system": "Das System",
+      "quickCheck": "Quick Check",
+      "businessModels": "Geschäftsmodelle",
+      "methodology": "Methodik"
+    }
+  },
+  "closing": {
+    "getStarted": {
+      "primary": "Jetzt starten",
+      "secondary": "Geschäftsmodelle erkunden"
+    },
+    "footer": {
+      "businessModels": "Geschäftsmodelle",
+      "methodology": "Methodik",
+      "backToTop": "Nach oben"
+    }
+  }
+}
