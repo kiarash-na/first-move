@@ -17,6 +17,8 @@ import type { ConnectOutcome } from "../key/key-setup"
 import { useMaskedKey } from "../key/use-masked-key"
 import { useVaultEntries } from "../key/use-vault-entries"
 import { ConnectionView } from "./connection-view"
+import { usePhone } from "./use-phone"
+import { wrapTab } from "./wrap-tab"
 
 const selectActiveId = (state: ProjectStoreState) => state.activeId
 
@@ -25,9 +27,11 @@ const firstProvider = (): Provider => (KEYS.gateway.read() || !KEYS.openrouter.r
 
 /**
  * The assistant's panel (O7): a side sheet on the right from `md` up, the full screen on phones.
- * Not modal, so the page stays usable next to it; Esc and the close button close it, focus moves
- * into it on open and back to the launcher on close (the launcher does that). It stays mounted
- * while closed (`hidden`), so the conversation survives. Loaded with the AI SDK on first open.
+ * From `md` up it is not modal, so the page stays usable next to it. On phones it covers the
+ * page, so it is modal there: `aria-modal` and Tab and Shift+Tab stay inside it. Esc and the
+ * close button close it, focus moves into it on open and back to the launcher on close (the
+ * launcher does that). It stays mounted while closed (`hidden`), so the conversation survives.
+ * Loaded with the AI SDK on first open.
  */
 export function AssistantPanel({ open, onClose }: { open: boolean; onClose: () => void }) {
   const copy = useDictionary("assistant")
@@ -39,6 +43,7 @@ export function AssistantPanel({ open, onClose }: { open: boolean; onClose: () =
   const { entries, refresh } = useVaultEntries()
   const projectId = useStoreState(selectActiveId)
   const panel = useRef<HTMLElement>(null)
+  const modal = usePhone()
   const titleId = useId()
   const showChat = masked !== null && view === "chat"
   const modelId = models[provider]
@@ -55,13 +60,14 @@ export function AssistantPanel({ open, onClose }: { open: boolean; onClose: () =
       event.stopPropagation()
       onClose()
     }
+    if (modal && panel.current) wrapTab(event, panel.current)
   }
 
   return (
     <section
       ref={panel}
       role="dialog"
-      aria-modal="false"
+      aria-modal={modal ? "true" : "false"}
       aria-labelledby={titleId}
       tabIndex={-1}
       hidden={!open}

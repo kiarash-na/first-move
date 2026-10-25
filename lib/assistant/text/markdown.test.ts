@@ -36,6 +36,14 @@ describe("assistant Markdown subset", () => {
     expect(sitePath("https://user:pw@firstmove.energy/en")).toBeNull()
   })
 
+  it("never yields a protocol-relative path that leaves the site", () => {
+    for (const href of ["https://firstmove.energy//evil.example/x", "/en/..//evil.example", "https://firstmove.energy/en/..//evil.example/login", "https://firstmove.energy/"]) {
+      expect(sitePath(href), href).toBeNull()
+      expect(parseInline(`[Open your project](${href})`), href).toEqual([{ type: "text", text: "Open your project" }])
+    }
+    expect(sitePath("https://firstmove.energy/en?tab=1#top")).toBe("/en?tab=1#top")
+  })
+
   it("never turns HTML or images into anything but text", () => {
     const html = '<img src=x onerror="alert(1)"><script>steal()</script>'
     expect(parseMarkdown(html)).toEqual([{ type: "paragraph", inline: [{ type: "text", text: html }] }])

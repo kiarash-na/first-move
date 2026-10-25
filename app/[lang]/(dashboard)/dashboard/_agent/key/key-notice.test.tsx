@@ -25,6 +25,17 @@ describe.each(["en", "de"] as const)("KeyNotice (%s)", (lang) => {
     expect(link).toHaveAttribute("target", "_blank")
   })
 
+  it("backs the OpenRouter expiry rules with their own source; the Gateway's one link covers both", () => {
+    const { unmount } = render(<Harness provider="openrouter" />)
+    const expiry = screen.getByRole("link", { name: copy.openrouter.docsExpiry })
+    expect(expiry).toHaveAttribute("href", "https://openrouter.ai/docs/guides/overview/auth/security-settings#act-on-keys")
+    expect(expiry).toHaveAttribute("rel", "noopener noreferrer")
+    expect(screen.getAllByRole("link")).toHaveLength(2)
+    unmount()
+    render(<Harness provider="gateway" />)
+    expect(screen.getAllByRole("link")).toHaveLength(1)
+  })
+
   it("needs its checkbox, and says so until it is ticked", async () => {
     render(<Harness provider="openrouter" />)
     const box = screen.getByRole("checkbox", { name: copy.ack })

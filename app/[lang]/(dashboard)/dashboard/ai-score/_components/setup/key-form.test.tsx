@@ -48,6 +48,30 @@ describe("KeyForm: spending-limit and expiry notice (O7)", () => {
     await userEvent.click(box)
     expect(screen.getByRole("button", { name: copy.setup.key.use })).toBeEnabled()
   })
+
+  it("asks for the confirmation again for the next key, after a key is used or forgotten", async () => {
+    const { field } = setup()
+    const box = screen.getByRole("checkbox", { name: copy.setup.notice.ack })
+    const use = screen.getByRole("button", { name: copy.setup.key.use })
+    await userEvent.type(field, KEY)
+    await userEvent.click(use)
+    expect(await screen.findByText("Key accepted. Balance: $4.20")).toBeInTheDocument()
+    expect(box).not.toBeChecked()
+    expect(use).toBeDisabled()
+    await userEvent.click(box)
+    await userEvent.click(screen.getByRole("button", { name: copy.setup.key.forget }))
+    expect(readGatewayKey()).toBeNull()
+    expect(box).not.toBeChecked()
+    expect(use).toBeDisabled()
+  })
+
+  it("keeps the confirmation when the Gateway rejects the key, so the next try needs no second tick", async () => {
+    const { field } = setup({ creditsStatus: 401 })
+    await userEvent.type(field, KEY)
+    await userEvent.click(screen.getByRole("button", { name: copy.setup.key.use }))
+    expect(await screen.findByText(/has been forgotten/)).toBeInTheDocument()
+    expect(screen.getByRole("checkbox", { name: copy.setup.notice.ack })).toBeChecked()
+  })
 })
 
 describe("KeyForm: a key remembered in the assistant's vault (D-50)", () => {
@@ -74,6 +98,15 @@ describe("KeyForm: a key remembered in the assistant's vault (D-50)", () => {
     await userEvent.type(screen.getByLabelText(copy.setup.key.label), `${KEY}{Enter}`)
     expect(readGatewayKey()).toBe(KEY)
     expect(await listVault()).toHaveLength(1)
+  })
+
+  it("removes it without the PIN", async () => {
+    await remember()
+    setup()
+    await userEvent.click(await screen.findByRole("button", { name: copy.setup.unlock.remove }))
+    await waitFor(() => expect(screen.queryByRole("heading", { name: copy.setup.unlock.title })).not.toBeInTheDocument())
+    expect(await listVault()).toEqual([])
+    expect(readGatewayKey()).toBeNull()
   })
 
   it("offers nothing to unlock when no key is remembered", async () => {

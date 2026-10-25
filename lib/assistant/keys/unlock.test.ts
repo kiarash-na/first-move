@@ -63,4 +63,18 @@ describe("unlocking into memory (D-50)", () => {
     expect(await rememberCurrent("openrouter", "482915", options)).toBe(true)
     expect((await listVault(options))[0]).toMatchObject({ provider: "openrouter", last4: KEY.slice(-4) })
   })
+
+  it("puts a key it just remembered under the idle lock in this tab", async () => {
+    const options = fresh()
+    KEYS.openrouter.set(KEY)
+    expect(await rememberCurrent("openrouter", "482915", options)).toBe(true)
+    expect(isHeld("openrouter")).toBe(true)
+    vi.useFakeTimers()
+    touchIdleLock()
+    vi.advanceTimersByTime(IDLE_LOCK_MS)
+    expect(KEYS.openrouter.read()).toBeNull()
+    expect(isHeld("openrouter")).toBe(false)
+    vi.useRealTimers()
+    expect(await listVault(options)).toHaveLength(1)
+  })
 })

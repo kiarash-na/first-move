@@ -1,11 +1,13 @@
 import { screen, waitFor, within } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
+import axe from "axe-core"
 import { afterEach, describe, expect, it, vi } from "vitest"
 
 import { exampleProject } from "@/lib/assistant/agent/test-utils/context"
 import { KEYS } from "@/lib/assistant/keys/registry"
 import { scriptedFetch, sseResponse, textStream, toolCallStream } from "@/lib/assistant/openrouter/test-utils/sse"
 import { getAt, parsePath } from "@/lib/project"
+import { emptyProject } from "../../_components/test-utils/project-store"
 import { agentStore, assistantCopy, renderAgent } from "../test-utils/render"
 import { Chat } from "./chat"
 
@@ -27,8 +29,23 @@ function setup(responses: (() => Response)[]) {
   const scripted = scriptedFetch(responses)
   vi.stubGlobal("fetch", scripted.fetch)
   KEYS.openrouter.set(KEY)
-  renderAgent(<Chat provider="openrouter" modelId={MODEL} modelName="Auto Router" />, { store: store.store })
-  return { ...store, scripted, target, field: screen.getByLabelText(copy.chat.label) }
+  const view = renderAgent(<Chat provider="openrouter" modelId={MODEL} modelName="Auto Router" />, { store: store.store })
+  return { ...store, scripted, target, unmount: view.unmount, field: screen.getByLabelText(copy.chat.label) }
+}
+
+/** A provider answer that waits until `release` is called, or fails once the request is aborted. */
+function heldResponse() {
+  let release: (response: Response) => void = () => {}
+  let signal: AbortSignal | undefined
+  const fetch = vi.fn(
+    (_input: RequestInfo | URL, init: RequestInit = {}) =>
+      new Promise<Response>((resolve, reject) => {
+        signal = init.signal ?? undefined
+        signal?.addEventListener("abort", () => reject(signal!.reason))
+        release = resolve
+      }),
+  )
+  return { fetch, release: (response: Response) => release(response), signal: () => signal }
 }
 
 describe("Chat", () => {
@@ -71,6 +88,25 @@ describe("Chat", () => {
     const third = JSON.stringify(scripted.calls[2].body)
     expect(third).toContain("Review card: the user applied buildings.total.")
     expect(third).toContain(`We now have ${target} buildings`)
+  })
+
+  it("keeps the messages a list inside a log that is there before the first answer (axe)", async () => {
+    const target = Number(getAt(exampleProject(), parsePath("buildings.total")!)) + 7
+    const { field } = setup([
+      () => toolCallStream("propose_values", { values: [{ field: "buildings.total", value: target, quote: "x" }] }),
+      () => textStream("Prepared."),
+    ])
+    const log = screen.getByRole("log", { name: copy.panel.title })
+    expect(log.textContent).toBe("")
+    await userEvent.type(field, "Propose{Enter}")
+    await screen.findByRole("region", { name: copy.review.title })
+    await screen.findByText("Prepared.")
+    expect(screen.getByRole("log", { name: copy.panel.title })).toBe(log)
+    expect(within(log).getAllByRole("list")[0].tagName).toBe("UL")
+    // Structure rules only: jsdom has no layout, so contrast and the like are the e2e spec's.
+    const rules = ["list", "listitem", "aria-allowed-role", "aria-required-children", "aria-required-parent", "heading-order"]
+    const { violations } = await axe.run(document.body, { runOnly: { type: "rule", values: rules } })
+    expect(violations.map((violation) => violation.id)).toEqual([])
   })
 
   it("starts a new conversation without the old history", async () => {
@@ -129,6 +165,41 @@ describe("Chat", () => {
     const { field } = setup([() => sseResponse([`data: ${JSON.stringify({ error: { code: 429, message: "Rate limit exceeded" } })}\n\n`])])
     await userEvent.type(field, "Hello{Enter}")
     expect(await screen.findByRole("alert")).toHaveTextContent(copy.errors.rate)
+  })
+
+  it("stops a running turn when the chat closes, as when another project opens", async () => {
+    const { field, unmount } = setup([])
+    const held = heldResponse()
+    vi.stubGlobal("fetch", held.fetch)
+    await userEvent.type(field, "Hello{Enter}")
+    await waitFor(() => expect(held.signal()).toBeDefined())
+    expect(held.signal()!.aborted).toBe(false)
+    unmount()
+    expect(held.signal()!.aborted).toBe(true)
+  })
+
+  it("never lets a turn read a project opened after it started", async () => {
+    const { field, set } = setup([])
+    const other = { ...emptyProject(), meta: { ...emptyProject().meta, name: "Project opened later" } }
+    const bodies: string[] = []
+    let first: ReturnType<typeof heldResponse> | null = heldResponse()
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async (input: RequestInfo | URL, init: RequestInit = {}) => {
+        bodies.push(String(init.body))
+        if (first) return first.fetch(input, init)
+        return textStream("Done.")
+      }),
+    )
+    await userEvent.type(field, "What is in my project?{Enter}")
+    await waitFor(() => expect(bodies).toHaveLength(1))
+    set({ active: other, activeId: other.meta.id })
+    const held = first
+    first = null
+    held.release(toolCallStream("get_project", {}))
+    expect(await screen.findByText("Done.")).toBeInTheDocument()
+    expect(bodies[1]).toContain("No project is open.")
+    expect(bodies[1]).not.toContain("Project opened later")
   })
 
   it("sends nothing without a key", async () => {

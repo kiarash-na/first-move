@@ -87,6 +87,7 @@
       "missing": "No remembered key was found. Paste the key again.",
       "unavailable": "This browser cannot open the remembered key.",
       "other": "Paste a key instead",
+      "remove": "Remove remembered key",
       "provider": "Vercel AI Gateway"
     }
   },

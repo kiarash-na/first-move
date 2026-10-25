@@ -1,8 +1,21 @@
 import { openDB } from "idb"
-import { describe, expect, it } from "vitest"
+import { describe, expect, it, vi } from "vitest"
 import { uniqueDbName } from "@/lib/storage/test-utils/db-name"
 import { DEVICE_KEY, VAULT_DB_NAME } from "./db"
 import { forgetKey, listVault, MAX_ATTEMPTS, rememberKey, unlockKey, type VaultOptions } from "./vault"
+
+/** Holds the PIN derivation while `gate.wait` is pending, to look at the record mid-attempt. */
+const gate = vi.hoisted(() => ({ wait: null as Promise<void> | null }))
+vi.mock("./crypto", async (original) => {
+  const actual = await original<typeof import("./crypto")>()
+  return {
+    ...actual,
+    derivePinKey: async (...args: Parameters<typeof actual.derivePinKey>) => {
+      await gate.wait
+      return actual.derivePinKey(...args)
+    },
+  }
+})
 
 const KEY = "sk-or-v1-0123456789abcdef0123456789abcdefSECRET9f2c"
 const PIN = "482915"
@@ -63,6 +76,42 @@ describe("key vault (D-50)", () => {
     expect(await unlockKey("openrouter", "135790", options)).toEqual({ status: "wiped" })
     expect(await listVault(options)).toEqual([])
     expect(await unlockKey("openrouter", PIN, options)).toEqual({ status: "missing" })
+  })
+
+  it("counts every one of many wrong PINs tried at once, and deletes the key", async () => {
+    const options = fresh()
+    await rememberKey("openrouter", KEY, PIN, options)
+    const results = await Promise.all(Array.from({ length: 8 }, () => unlockKey("openrouter", "135790", options)))
+    const wrong = results.flatMap((result) => (result.status === "wrong" ? [result.remaining] : []))
+    expect(wrong.sort()).toEqual([1, 2, 3, 4])
+    // The fifth and sixth delete the record; any later one finds nothing left.
+    expect(results.filter((result) => result.status === "wiped").length).toBeGreaterThanOrEqual(1)
+    expect(results.every((result) => ["wrong", "wiped", "missing"].includes(result.status))).toBe(true)
+    expect(await listVault(options)).toEqual([])
+  })
+
+  it("still opens with the right PIN as the fifth attempt", async () => {
+    const options = fresh()
+    await rememberKey("openrouter", KEY, PIN, options)
+    for (let attempt = 1; attempt < MAX_ATTEMPTS; attempt++) await unlockKey("openrouter", "135790", options)
+    expect(await unlockKey("openrouter", PIN, options)).toEqual({ status: "ok", key: KEY })
+    expect((await listVault(options))[0].failedAttempts).toBe(0)
+  })
+
+  it("counts an attempt before the PIN is checked", async () => {
+    const options = fresh()
+    await rememberKey("openrouter", KEY, PIN, options)
+    let open = () => {}
+    gate.wait = new Promise((resolve) => (open = resolve))
+    const pending = unlockKey("openrouter", "135790", options)
+    try {
+      // The derivation is held, yet the attempt has counted: closing the tab now would not undo it.
+      await vi.waitFor(async () => expect((await listVault(options))[0].failedAttempts).toBe(1))
+    } finally {
+      open()
+      gate.wait = null
+    }
+    expect(await pending).toEqual({ status: "wrong", remaining: MAX_ATTEMPTS - 1 })
   })
 
   it("deletes a record the device key cannot open", async () => {

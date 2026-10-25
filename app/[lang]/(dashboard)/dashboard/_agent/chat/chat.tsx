@@ -46,7 +46,7 @@ export function Chat({ provider, modelId, modelName, focusOnMount }: { provider:
       </div>
       <div className="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto px-4 py-4">
         {!project && <p className="text-sm text-muted-foreground">{chat.noProject}</p>}
-        {items.length === 0 ? (
+        {items.length === 0 && (
           <div className="flex flex-col gap-2">
             <p className="text-sm text-text-secondary">{chat.empty}</p>
             {EXAMPLES.map((example) => (
@@ -55,23 +55,27 @@ export function Chat({ provider, modelId, modelName, focusOnMount }: { provider:
               </Button>
             ))}
           </div>
-        ) : (
-          <ul role="log" aria-label={copy.panel.title} aria-busy={busy} className="flex flex-col gap-4">
-            {items.map((item, index) => (
-              <ChatMessage
-                key={item.id}
-                item={item}
-                proposals={proposals}
-                project={project}
-                last={index === items.length - 1}
-                onRetry={retry}
-                onApply={apply}
-                onDismiss={dismiss}
-              />
-            ))}
-          </ul>
         )}
-        <div ref={end} />
+        {/* The log wraps the list (a list keeps its list role) and is there from the start, so the first answer is announced. */}
+        <div role="log" aria-label={copy.panel.title} aria-busy={busy}>
+          {items.length > 0 && (
+            <ul className="flex flex-col gap-4">
+              {items.map((item, index) => (
+                <ChatMessage
+                  key={item.id}
+                  item={item}
+                  proposals={proposals}
+                  project={project}
+                  last={index === items.length - 1}
+                  onRetry={retry}
+                  onApply={apply}
+                  onDismiss={dismiss}
+                />
+              ))}
+            </ul>
+          )}
+          <div ref={end} />
+        </div>
       </div>
       <div className="flex flex-col gap-2 border-t px-4 py-3">
         <Composer ref={field} busy={busy} onSend={(text) => void send(text)} onStop={stop} />

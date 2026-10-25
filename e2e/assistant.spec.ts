@@ -115,6 +115,9 @@ test.describe("AI assistant (A05)", () => {
       const card = panel(page).getByRole("region", { name: t("review.title") })
       await expect(card).toBeVisible()
       await expect(panel(page).locator("li[data-ai-generated='true']")).toContainText(t("chat.aiLabel"))
+      // With messages and a review card on screen: the log wraps the message list.
+      await expect(panel(page).getByRole("log", { name: t("panel.title") }).getByRole("listitem").first()).toBeVisible()
+      expect(await axeViolations(page)).toEqual([])
       expect(bodies[0]).toMatchObject({ model: "openrouter/auto", provider: { data_collection: "deny" } })
       await expect(field).toHaveValue(String(before))
 
@@ -133,6 +136,35 @@ test.describe("AI assistant (A05)", () => {
       expect(sheet.height).toBe(844)
       await panel(page).getByRole("button", { name: t("panel.close") }).click()
       await expect(launcher(page)).toBeFocused()
+    })
+
+    test("keeps Tab and Shift+Tab inside the full-screen panel on a phone", async ({ page }) => {
+      await page.setViewportSize({ width: 390, height: 844 })
+      await openExample(page, "en")
+      await settle(page)
+      await launcher(page).click()
+      await expect(panel(page)).toHaveAttribute("aria-modal", "true")
+      const inside = () => panel(page).evaluate((node) => node.contains(document.activeElement))
+      for (const key of [...Array<string>(20).fill("Shift+Tab"), ...Array<string>(20).fill("Tab")]) {
+        await page.keyboard.press(key)
+        expect(await inside(), key).toBe(true)
+      }
+      await expect(launcher(page)).not.toBeFocused()
+    })
+
+    test("never moves focus to the launcher the open panel covers (desktop)", async ({ page }) => {
+      await openExample(page, "en")
+      await settle(page)
+      await launcher(page).click()
+      await expect(panel(page)).toHaveAttribute("aria-modal", "false")
+      await panel(page).getByRole("button", { name: t("panel.close") }).focus()
+      await page.keyboard.press("Shift+Tab")
+      await expect(launcher(page)).not.toBeFocused()
+      await panel(page).getByRole("button", { name: t("panel.close") }).focus()
+      for (let step = 0; step < 20; step++) {
+        await page.keyboard.press("Tab")
+        await expect(launcher(page)).not.toBeFocused()
+      }
     })
 
     for (const theme of ["dark", "light"] as const) {

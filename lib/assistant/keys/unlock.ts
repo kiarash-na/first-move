@@ -45,11 +45,15 @@ export async function unlockInto(provider: Provider, pin: string, options?: Vaul
   return { status: "ok" }
 }
 
-/** Remembers the key now in memory under a PIN. False when there is no key in memory. */
+/**
+ * Remembers the key now in memory under a PIN. False when there is no key in memory. From then
+ * on the key in memory is under the idle lock too, as if it had been unlocked (D-50).
+ */
 export async function rememberCurrent(provider: Provider, pin: string, options?: VaultOptions): Promise<boolean> {
   const key = KEYS[provider].read()
   if (!key) return false
   await rememberKey(provider, key, pin, options)
+  hold(provider)
   return true
 }
 

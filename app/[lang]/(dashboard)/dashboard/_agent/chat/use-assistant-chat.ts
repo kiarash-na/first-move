@@ -1,7 +1,7 @@
 "use client"
 
 import type { ModelMessage } from "ai"
-import { useCallback, useMemo, useRef, useState } from "react"
+import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 
 import type { Texts } from "@/lib/ai/extract/field-label"
 import type { Proposal } from "@/lib/ai/extract/propose"
@@ -42,8 +42,9 @@ const nextId = () => `m${++ids}`
 /**
  * The conversation with the assistant for the open project (memory only: no chat history is
  * stored, O7 "minimal"). Each message runs one turn in the browser with the user's key; tools read
- * a fresh project snapshot; proposals wait for the user in review cards and are applied only
- * through `store.applyProposal`, with AI provenance.
+ * a fresh snapshot of the project the turn started on (none after a switch, D-48); proposals wait
+ * for the user in review cards and are applied only through `store.applyProposal`, with AI
+ * provenance. A turn still running when the chat closes (another project opens) is stopped.
  */
 export function useAssistantChat({ provider, modelId }: { provider: Provider; modelId: string }) {
   const store = useStore()
@@ -59,6 +60,8 @@ export function useAssistantChat({ provider, modelId }: { provider: Provider; mo
   const history = useRef<ModelMessage[]>([])
   const note = useRef<string | null>(null)
   const controller = useRef<AbortController | null>(null)
+
+  useEffect(() => () => controller.current?.abort(), [])
 
   const patchLast = useCallback((update: (item: ChatItem) => ChatItem) => {
     setItems((current) => current.map((item, index) => (index === current.length - 1 ? update(item) : item)))
@@ -81,6 +84,7 @@ export function useAssistantChat({ provider, modelId }: { provider: Provider; mo
       const messages: ModelMessage[] = [...history.current, { role: "user", content }]
       const abort = new AbortController()
       controller.current = abort
+      const startedOn = store.getState().active?.meta.id ?? null
       setBusy(true)
       try {
         const response = await runTurn({
@@ -91,7 +95,10 @@ export function useAssistantChat({ provider, modelId }: { provider: Provider; mo
           tools: assistantTools({
             lang,
             texts,
-            project: () => store.getState().active,
+            project: () => {
+              const active = store.getState().active
+              return active && active.meta.id === startedOn ? active : null
+            },
             search: searchDocs,
             onProposal: (toolCallId, proposal) => {
               setProposals((current) => ({ ...current, [toolCallId]: { proposal, state: "open", applied: 0 } }))

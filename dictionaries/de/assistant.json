@@ -9,7 +9,8 @@
     "close": "Schließen",
     "settings": "Schlüssel und Modell",
     "back": "Zum Chat",
-    "loading": "Der Assistent wird geladen …"
+    "loading": "Der Assistent wird geladen …",
+    "loadFailed": "Der Assistent konnte nicht geladen werden. Prüfen Sie Ihre Verbindung und klicken Sie dann erneut auf die Schaltfläche des Assistenten."
   },
   "providers": {
     "gateway": "Vercel AI Gateway",
@@ -93,7 +94,9 @@
       "limit": "Kreditlimit: Wählen Sie beim Erstellen des Schlüssels unter openrouter.ai/keys ein Kreditlimit und, wenn Sie möchten, eine tägliche, wöchentliche oder monatliche Rücksetzung. Hat der Schlüssel sein Limit verbraucht, lehnt OpenRouter seine Anfragen ab. OpenRouter empfiehlt ein Limit für jeden Schlüssel.",
       "expiry": "Ablaufdatum: Geben Sie dem Schlüssel beim Erstellen ein Ablaufdatum. Bei einem bestehenden Schlüssel lässt es sich nicht mehr ändern, legen Sie es also gleich fest.",
       "docs": "OpenRouter-Dokumentation: API-Schlüssel und Limits",
-      "docsUrl": "https://openrouter.ai/docs/api-reference/authentication"
+      "docsUrl": "https://openrouter.ai/docs/api-reference/authentication",
+      "docsExpiry": "OpenRouter-Dokumentation: Ablauf von Schlüsseln",
+      "docsExpiryUrl": "https://openrouter.ai/docs/guides/overview/auth/security-settings#act-on-keys"
     },
     "ack": "Ich habe für diesen Schlüssel ein Ausgabenlimit und ein Ablaufdatum festgelegt, oder ich lösche den Schlüssel, sobald ich ihn nicht mehr brauche.",
     "required": "Bestätigen Sie das, bevor der Schlüssel verwendet wird."
@@ -108,7 +111,8 @@
     "wiped": "Zu viele falsche PINs: Der gemerkte Schlüssel wurde gelöscht. Fügen Sie den Schlüssel erneut ein.",
     "missing": "Es wurde kein gemerkter Schlüssel gefunden. Fügen Sie den Schlüssel erneut ein.",
     "unavailable": "Dieser Browser kann den gemerkten Schlüssel nicht öffnen.",
-    "other": "Anderen Schlüssel verwenden"
+    "other": "Anderen Schlüssel verwenden",
+    "remove": "Gemerkten Schlüssel entfernen"
   },
   "chat": {
     "noProject": "Es ist kein Projekt geöffnet. Fragen zur Methode von First Move können Sie trotzdem stellen.",

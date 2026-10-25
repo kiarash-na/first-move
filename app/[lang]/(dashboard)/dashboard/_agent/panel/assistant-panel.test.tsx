@@ -36,6 +36,23 @@ describe("AssistantPanel", () => {
     expect(onClose).toHaveBeenCalledOnce()
   })
 
+  it("is modal on a phone, where it covers the page: Tab and Shift+Tab stay inside", async () => {
+    vi.stubGlobal("matchMedia", () => ({ matches: true, addEventListener() {}, removeEventListener() {} }))
+    renderAgent(<AssistantPanel open onClose={vi.fn()} />)
+    const panel = screen.getByRole("dialog", { name: copy.panel.title })
+    expect(panel).toHaveAttribute("aria-modal", "true")
+    await waitFor(() => expect(panel).toHaveFocus())
+    const close = screen.getByRole("button", { name: copy.panel.close })
+    // "Check and use key" is disabled until the notice is confirmed, so the box is the last stop.
+    const last = screen.getByRole("checkbox", { name: copy.notice.ack })
+    await userEvent.tab({ shift: true })
+    expect(last).toHaveFocus()
+    await userEvent.tab()
+    expect(close).toHaveFocus()
+    await userEvent.tab({ shift: true })
+    expect(last).toHaveFocus()
+  })
+
   it("is hidden while closed", () => {
     renderAgent(<AssistantPanel open={false} onClose={vi.fn()} />)
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument()

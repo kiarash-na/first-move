@@ -12,6 +12,9 @@ export interface KeyNoticeCopy {
   expiry: string
   docs: string
   docsUrl: string
+  /** A second source, when the first does not cover the expiry rules. */
+  docsExpiry?: string
+  docsExpiryUrl?: string
   ack: string
   required: string
 }
@@ -25,6 +28,7 @@ export function KeyNotice({ copy, checked, onChange }: { copy: KeyNoticeCopy; ch
   const checkboxId = useId()
   const titleId = useId()
   const requiredId = useId()
+  const links = [{ href: copy.docsUrl, label: copy.docs }, ...(copy.docsExpiry && copy.docsExpiryUrl ? [{ href: copy.docsExpiryUrl, label: copy.docsExpiry }] : [])]
 
   return (
     <section data-slot="key-notice" aria-labelledby={titleId} className="flex flex-col gap-3 border border-hot/60 p-4">
@@ -37,15 +41,20 @@ export function KeyNotice({ copy, checked, onChange }: { copy: KeyNoticeCopy; ch
         <li>{copy.limit}</li>
         <li>{copy.expiry}</li>
       </ul>
-      <a
-        href={copy.docsUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex min-h-11 w-fit items-center gap-1.5 text-sm text-foreground underline decoration-1 underline-offset-4 hover:text-cool"
-      >
-        {copy.docs}
-        <ExternalLinkIcon className="size-3.5" strokeWidth={1.6} aria-hidden="true" />
-      </a>
+      <div className="flex flex-wrap gap-x-5">
+        {links.map((link) => (
+          <a
+            key={link.href}
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex min-h-11 w-fit items-center gap-1.5 text-sm text-foreground underline decoration-1 underline-offset-4 hover:text-cool"
+          >
+            {link.label}
+            <ExternalLinkIcon className="size-3.5" strokeWidth={1.6} aria-hidden="true" />
+          </a>
+        ))}
+      </div>
       <div className="flex items-start gap-3">
         <input
           id={checkboxId}

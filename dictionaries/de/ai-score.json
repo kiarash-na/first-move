@@ -87,6 +87,7 @@
       "missing": "Es wurde kein gemerkter Schlüssel gefunden. Fügen Sie den Schlüssel erneut ein.",
       "unavailable": "Dieser Browser kann den gemerkten Schlüssel nicht öffnen.",
       "other": "Stattdessen einen Schlüssel einfügen",
+      "remove": "Gemerkten Schlüssel entfernen",
       "provider": "Vercel AI Gateway"
     }
   },

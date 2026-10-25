@@ -13,12 +13,19 @@ export type Block = { type: "paragraph"; inline: Inline[] } | { type: "list"; or
 const LIST_ITEM = /^\s{0,3}(?:([-*+•])|(\d{1,3})[.)])\s+(.*)$/
 const HEADING = /^\s{0,3}#{1,6}\s+(.*?)\s*#*\s*$/
 const TOKEN = /\*\*([^*\n]+?)\*\*|`([^`\n]+)`|(!?)\[([^\]\n]*)\]\(\s*<?([^\s<>()]+)>?(?:\s+"[^"\n]*")?\s*\)/g
+/** A normalized path that is a page of the site: `/en` or `/de`, then nothing or a slash. */
+const LOCALE_PAGE = /^\/(?:en|de)(?:\/|$)/
 
-/** A link target as an in-app path, or null when the policy does not allow it. */
+/**
+ * A link target as an in-app path, or null when the policy does not allow it. Only a locale
+ * path passes: `https://firstmove.energy//evil.example` (or `/en/..//evil.example`) has the
+ * pathname `//evil.example`, which a link would follow to another host.
+ */
 export function sitePath(href: string, policy: LinkPolicy = SITE_LINKS): string | null {
   const url = allowedUrl(href, policy)
   if (!url) return null
   const parsed = new URL(url)
+  if (!LOCALE_PAGE.test(parsed.pathname)) return null
   return `${parsed.pathname}${parsed.search}${parsed.hash}`
 }
 

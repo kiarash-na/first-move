@@ -71,7 +71,18 @@ export function ConnectionView({
             </p>
           )}
           {entry && !paste ? (
-            <UnlockForm copy={copy.unlock} provider={provider} providerName={copy.providers[provider]} entry={entry} onDone={unlocked} onOther={() => setPaste(true)} />
+            <UnlockForm
+              copy={copy.unlock}
+              provider={provider}
+              providerName={copy.providers[provider]}
+              entry={entry}
+              onDone={unlocked}
+              onRemoved={() => {
+                setUnlockNote(null)
+                onVaultChange()
+              }}
+              onOther={() => setPaste(true)}
+            />
           ) : (
             <KeySetup
               key={provider}

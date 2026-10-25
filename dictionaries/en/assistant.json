@@ -9,7 +9,8 @@
     "close": "Close",
     "settings": "Key and model",
     "back": "Go to the chat",
-    "loading": "Loading the assistant…"
+    "loading": "Loading the assistant…",
+    "loadFailed": "The assistant could not be loaded. Check your connection, then click the assistant button again."
   },
   "providers": {
     "gateway": "Vercel AI Gateway",
@@ -93,7 +94,9 @@
       "limit": "Credit limit: when you create the key at openrouter.ai/keys, choose a credit limit and, if you like, a daily, weekly or monthly reset. Once the key has used its limit, OpenRouter rejects its requests. OpenRouter recommends a limit on every key.",
       "expiry": "Expiry date: give the key an expiration date when you create it. The expiration of an existing key cannot be changed, so set it then.",
       "docs": "OpenRouter docs: API keys and limits",
-      "docsUrl": "https://openrouter.ai/docs/api-reference/authentication"
+      "docsUrl": "https://openrouter.ai/docs/api-reference/authentication",
+      "docsExpiry": "OpenRouter docs: key expiration",
+      "docsExpiryUrl": "https://openrouter.ai/docs/guides/overview/auth/security-settings#act-on-keys"
     },
     "ack": "I have set a spending limit and an expiry date on this key, or I will delete the key when I no longer need it.",
     "required": "Confirm this before the key is used."
@@ -108,7 +111,8 @@
     "wiped": "Too many wrong PINs: the remembered key has been deleted. Paste the key again.",
     "missing": "No remembered key was found. Paste the key again.",
     "unavailable": "This browser cannot open the remembered key.",
-    "other": "Use another key"
+    "other": "Use another key",
+    "remove": "Remove remembered key"
   },
   "chat": {
     "noProject": "No project is open. You can still ask about First Move's method.",

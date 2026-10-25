@@ -65,7 +65,7 @@ All follow the owner's "keep it minimal, a quick solution" (O7) unless noted.
 ## Provider facts behind the notice (checked 2026-10-25)
 
 - **Vercel AI Gateway** ([API key budgets](https://vercel.com/docs/ai-gateway/observability-and-spend/budgets#api-key-budgets)): a budget (dollar limit with a daily, weekly, monthly or no refresh) is set in the Create key dialog; requests are rejected once it is exceeded; it is a soft cap. An expiry is only offered when the key is created with the Vercel CLI or API (`vercel ai-gateway api-keys create ... --expiration 30d`); a dashboard key does not expire, so the copy says to delete it when no longer needed.
-- **OpenRouter** ([authentication](https://openrouter.ai/docs/api-reference/authentication)): a credit limit with an optional daily, weekly or monthly reset, and an expiration date, both set when the key is created; the expiration cannot be changed later. `GET /api/v1/key` returns `limit`, `limit_remaining`, `limit_reset` and `expires_at`, which the key status shows.
+- **OpenRouter** ([authentication](https://openrouter.ai/docs/api-reference/authentication), [security settings](https://openrouter.ai/docs/guides/overview/auth/security-settings#act-on-keys)): a credit limit with an optional daily, weekly or monthly reset (authentication page), and an expiration date, both set when the key is created; "You can't change the expiration of an existing key" (security settings page, which the notice now links as a second source; the authentication page mentions expiry only for onboarding keys). `GET /api/v1/key` returns `limit`, `limit_remaining`, `limit_reset` and `expires_at`, which the key status shows.
 
 ## How it was verified
 
@@ -101,3 +101,20 @@ When A08 flips `AI_FEATURES_LIVE` it must update the legal texts (not edited her
 - **Security note / SECURITY.md**: the PIN guards against other people using the same browser, not against someone who copies the browser profile or runs code in the page; 5 wrong PINs delete the key; 30-minute idle lock; the provider's spending limit (and expiry) is the real safety net.
 - **Terms**: the user is responsible for the key, its limits and the provider's charges; AI answers can be wrong.
 - **Switch and tests**: set `AI_FEATURES_LIVE = true` and fill `AI_PROVIDERS` (Vercel AI Gateway and OpenRouter, with region and URL); the AI page then shows `status.live`, so the two `legal.spec.ts` tests that expect `status.score` must change with it. `e2e/assistant.spec.ts` then runs its live tests (the dark-state test skips itself).
+
+## Review fixes (2026-10-25)
+
+A review of the A05 branch found ten issues; all are fixed, each with a test.
+
+- **Links (D-51):** `sitePath` accepts only a parsed pathname that starts with `/en` or `/de`. `https://firstmove.energy//evil.example/x` and `/en/..//evil.example` normalise to the pathname `//evil.example`, which a `<Link>` would have followed to another host; they now stay plain text.
+- **Idle lock (D-50):** a key saved with "Remember on this device with a PIN" is under the 30-minute idle lock in the tab where it was saved, not only after an unlock.
+- **Remove key (D-50):** the unlock form (assistant and AI Plan Score) has "Remove remembered key", which deletes the record without the PIN. Before, a locked key could only be removed by entering five wrong PINs.
+- **Wrong-PIN count (D-50):** an attempt counts before the PIN is checked, in one IndexedDB transaction. Parallel attempts (several tabs, or the assistant and the AI Plan Score at once) each count, and an attempt whose tab closes mid-check still counts. Once five attempts have counted, the next one deletes the record. The right PIN still opens the key as the fifth attempt and resets the count.
+- **Focus (WCAG 2.4.11):** below `md` the panel is modal (`aria-modal="true"`, Tab and Shift+Tab wrap inside it, `wrap-tab.ts`, `use-phone.ts`). On every width the launcher leaves the tab order while the open panel covers it. From `md` up the panel stays non-modal; page content under the sheet can still take focus, as before (the plan's docked mode, which reserves the width, is not built).
+- **Chat markup (axe):** the message list sits inside a `role="log"` wrapper, which is there before the first message, so the first answer is announced. The review card's title is an `h3` (it was an `h4` right after the panel's `h2`, which axe reports as `heading-order`; the extended e2e axe check found it).
+- **Project switch (D-48):** a turn still running when the chat closes is aborted, and its tools read only the project it started on (none after a switch), so a request the user started about project A never carries project B.
+- **Notice confirmation (O7):** on the AI Plan Score page the spending-limit and expiry box is cleared after a key is in use and after "Forget key", so every new key needs it ticked again. A rejected key keeps the tick for the next try.
+- **Notice source:** the OpenRouter notice links the security settings page as a second source for the expiry rules (see the provider facts above).
+- **Loading:** the launcher loads the panel with `import()` on the first click and shows "Loading the assistant…" above itself meanwhile. If the chunk cannot load (offline), the note says so as an alert and the next click tries again. Before, a failed load reached the layout's error boundary. `next/dynamic` is no longer used here. New copy: `panel.loadFailed`, `unlock.remove` (assistant and AI Plan Score), `notice.openrouter.docsExpiry` and `docsExpiryUrl`, in EN and DE.
+
+Verified: `pnpm lint`, `pnpm typecheck` and the full `pnpm test` pass. With the switch flipped on locally only (not committed), `e2e/assistant.spec.ts` covers Tab and Shift+Tab at 390 × 844 and 1440 × 900, and runs axe after the mocked turn with a message and a review card on screen.

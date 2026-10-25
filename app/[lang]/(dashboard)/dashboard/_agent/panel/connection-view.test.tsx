@@ -1,4 +1,4 @@
-import { screen } from "@testing-library/react"
+import { screen, waitFor } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import { describe, expect, it, vi } from "vitest"
 
@@ -56,6 +56,14 @@ describe("ConnectionView", () => {
     expect(props.onOutcome).not.toHaveBeenCalled()
     expect(props.onVaultChange).toHaveBeenCalled()
     expect(screen.getAllByText(copy.unlock.wiped).length).toBeGreaterThan(0)
+  })
+
+  it("removes a locked remembered key without the PIN, and says nothing is missing", async () => {
+    const props = view()
+    await userEvent.click(screen.getByRole("button", { name: copy.unlock.remove }))
+    await waitFor(() => expect(props.onVaultChange).toHaveBeenCalled())
+    expect(props.onOutcome).not.toHaveBeenCalled()
+    expect(screen.queryByText(copy.unlock.missing)).not.toBeInTheDocument()
   })
 
   it("shows the key in use, the model and the way back to the chat", async () => {

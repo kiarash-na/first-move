@@ -24,9 +24,10 @@ async function setup() {
   await rememberKey("gateway", KEY, PIN)
   const [entry] = await listVault()
   const onDone = vi.fn()
+  const onRemoved = vi.fn()
   const onOther = vi.fn()
-  renderAgent(<UnlockForm copy={copy.unlock} provider="gateway" providerName={copy.providers.gateway} entry={entry} onDone={onDone} onOther={onOther} />)
-  return { onDone, onOther, pin: screen.getByLabelText(copy.unlock.pin), button: screen.getByRole("button", { name: copy.unlock.unlock }) }
+  renderAgent(<UnlockForm copy={copy.unlock} provider="gateway" providerName={copy.providers.gateway} entry={entry} onDone={onDone} onRemoved={onRemoved} onOther={onOther} />)
+  return { onDone, onRemoved, onOther, pin: screen.getByLabelText(copy.unlock.pin), button: screen.getByRole("button", { name: copy.unlock.unlock }) }
 }
 
 describe("UnlockForm", () => {
@@ -63,6 +64,15 @@ describe("UnlockForm", () => {
     expect(screen.getByRole("status")).toHaveTextContent(copy.unlock.wiped)
     expect(await listVault()).toEqual([])
   }, 60_000)
+
+  it("removes the remembered key without the PIN", async () => {
+    const { onDone, onRemoved } = await setup()
+    await userEvent.click(screen.getByRole("button", { name: copy.unlock.remove }))
+    await waitFor(() => expect(onRemoved).toHaveBeenCalledOnce())
+    expect(onDone).not.toHaveBeenCalled()
+    expect(await listVault()).toEqual([])
+    expect(KEYS.gateway.read()).toBeNull()
+  }, 20_000)
 
   it("offers to paste another key instead", async () => {
     const { onOther } = await setup()

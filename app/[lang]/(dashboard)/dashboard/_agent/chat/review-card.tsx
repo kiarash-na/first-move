@@ -42,10 +42,11 @@ export function ReviewCard({
 
   return (
     <section data-slot="review-card" data-state={state} aria-labelledby={titleId} className="flex flex-col gap-3 border border-primary/60 p-3">
-      <h4 id={titleId} className="flex items-center gap-2 text-sm font-[520]">
+      {/* h3: the panel's title is the h2, and the chat has no other heading level in between (axe heading-order). */}
+      <h3 id={titleId} className="flex items-center gap-2 text-sm font-[520]">
         <ClipboardCheckIcon className="size-4 text-primary" strokeWidth={1.6} aria-hidden="true" />
         {copy.title}
-      </h4>
+      </h3>
       <p className="text-xs leading-relaxed text-muted-foreground">{copy.lead}</p>
       {proposal.valid.length > 0 && (
         <ul className="flex flex-col divide-y divide-border border-y">
