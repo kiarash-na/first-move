@@ -12,6 +12,12 @@ describe('landing Closing', () => {
     expect(screen.getByRole('link', { name: en.closing.getStarted.secondary })).toHaveAttribute('href', '#business-use-cases')
   })
 
+  it('links the presentation from the footer, localized (PLAN-PRESENTATION-00)', () => {
+    render(<Closing t={en} lang="de" />)
+    const nav = screen.getByRole('navigation', { name: en.closing.footer.nav })
+    expect(within(nav).getByRole('link', { name: en.presentation.footer })).toHaveAttribute('href', '/de/presentation')
+  })
+
   it('links the six legal pages and the source code from the footer, localized', () => {
     render(<Closing t={en} lang="de" />)
     const nav = screen.getByRole('navigation', { name: en.closing.footer.legal.nav })

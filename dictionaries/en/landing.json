@@ -324,5 +324,8 @@
         "source": "Source code on GitHub"
       }
     }
+  },
+  "presentation": {
+    "footer": "Presentation"
   }
 }
