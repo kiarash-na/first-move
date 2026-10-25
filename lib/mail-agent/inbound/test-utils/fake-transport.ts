@@ -5,7 +5,7 @@ import { ALREADY_SENT, TransportError, type ForwardedEmail, type InboundEmail, t
  * sent and forwarded. Like Resend, a repeated idempotency key sends nothing new, and with another
  * body it answers as already sent.
  */
-export function fakeTransport(emails: Record<string, InboundEmail> = {}) {
+export function fakeTransport(emails: Record<string, InboundEmail> = {}, inboxes: Record<string, string> = { "inbox-agent": "agent@mail.firstmove.energy", "inbox-human": "human@mail.firstmove.energy" }) {
   const replies: ThreadReply[] = []
   const sent: NewEmail[] = []
   const forwarded: ForwardedEmail[] = []
@@ -49,6 +49,10 @@ export function fakeTransport(emails: Record<string, InboundEmail> = {}) {
     async forward(email) {
       failIfAsked("forward")
       return deliver(forwarded, email, "forward")
+    },
+    async inboxAddress(inboxId) {
+      failIfAsked("inboxAddress")
+      return inboxes[inboxId] ?? null
     },
   }
 

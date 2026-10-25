@@ -130,6 +130,14 @@ describe("resendTransport", () => {
     })
   })
 
+  it("looks up an inbox's address, and gives null for an unknown inbox", async () => {
+    const calls = fakeResend([200, { object: "inbox", id: "inbox-human", email_address: "Human@Mail.FirstMove.Energy" }])
+    expect(await resendTransport("re_test").inboxAddress("inbox-human")).toBe("human@mail.firstmove.energy")
+    expect(calls[0].url).toContain("/inboxes/inbox-human")
+    fakeResend([404, { name: "not_found", message: "Inbox not found", statusCode: 404 }])
+    expect(await resendTransport("re_test").inboxAddress("missing")).toBeNull()
+  })
+
   it("marks signature images as inline", () => {
     const email = toInboundEmail({ ...RECEIVED, attachments: [{ id: "i1", filename: "logo.png", size: 900, content_type: "image/png", content_id: "logo@x", content_disposition: "inline" }] })
     expect(email?.attachments[0].inline).toBe(true)

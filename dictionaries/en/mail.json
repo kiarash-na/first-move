@@ -258,7 +258,8 @@
     },
     "handoff": {
       "title": "A person takes over",
-      "body": "I passed your message on to a person at First Move. They will answer from {address}. For privacy and legal requests, you can also write there directly."
+      "body": "I passed your message on to a person at First Move, who will answer you by email. For privacy and legal requests, you can also write to {address} directly.",
+      "again": "A person at First Move already has your earlier message and will answer you by email. You can also write to {address} directly."
     },
     "stopped": {
       "title": "Conversation ended",
@@ -278,7 +279,7 @@
     "details": {
       "rate-global": "The daily limit of {limit} emails for all senders is reached. Further email today gets no answer.",
       "budget": "Today's model budget of {budget} USD is spent. The assistant answers no email until the next day (UTC).",
-      "text-failed": "The language model gave no answer today. Senders were asked to try again later."
+      "text-failed": "The language model did not answer. The sender was asked to try again later; further failures today send no alert."
     },
     "more": "More alerts today were not sent (at most {max} a day).",
     "moreKind": "more alerts today",
@@ -290,6 +291,17 @@
       "attachment-injection": "attachment skipped (injection)",
       "text-failed": "language model failed",
       "handoff": "a sender asked for a person"
+    },
+    "handoff": {
+      "subject": "Hand-off from the assistant: {subject}",
+      "body": "A sender asked the First Move assistant for a person.\nFrom: {address}\nWhen: {at}\nSubject: {subject}\n\nTheir email is attached (original.eml) unless it is larger than 15 MB; then open it in the agent@ inbox in Resend.\nReply to this email to answer them: the reply goes to {address}. They were told that a person answers by email."
+    },
+    "relay": {
+      "subject": "Mail to {inbox}: {subject}",
+      "body": "An email arrived at {inbox}.\nFrom: {address}\nWhen: {at}\nSubject: {subject}\n\nThe original is attached (original.eml) unless it is larger than 15 MB; then open it in the human@ inbox in Resend.",
+      "replyable": "Reply to this email to answer the sender.",
+      "unverified": "The sender's address could not be verified (DMARC did not pass), so replying does not reach them. Check the original before you answer.",
+      "more": "More emails to {inbox} today were not passed on (at most {max} a day). Open the human@ inbox in Resend."
     }
   }
 }

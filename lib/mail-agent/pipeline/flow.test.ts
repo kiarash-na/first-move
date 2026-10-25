@@ -58,10 +58,10 @@ describe("inbound flow: guard and policy (D-52, D-55)", () => {
   it("judges a consented sender's email once and goes on to the answer", async () => {
     const h = pipelineHarness()
     await h.consent()
-    expect(await h.receive()).toBe("allow")
+    expect(await h.receive()).toBe("menu")
     expect(h.jev.calls).toHaveLength(1)
-    expect(h.fake.replies).toEqual([])
-    expect(await h.store.get(keys.done("email-1"))).toBe("allow")
+    expect(h.fake.replies.map((reply) => reply.idempotencyKey)).toEqual(["reply/email-1/menu"])
+    expect(await h.store.get(keys.done("email-1"))).toBe("menu")
     expect(await spentToday(h.store, h.clock.now)).toBeGreaterThan(0)
     expect(await h.receive({ id: "email-1" } as never)).toBe("done")
   })
@@ -141,7 +141,7 @@ describe("inbound flow: gates", () => {
   it("alerts the admin once a day when all mail hits the global limit", async () => {
     const h = pipelineHarness({ config: { EMAIL_AGENT_GLOBAL_PER_DAY: "1" } })
     await h.consent()
-    expect(await h.receive()).toBe("allow")
+    expect(await h.receive()).toBe("menu")
     expect(await h.receive({ from: "max@example.com" })).toBe("rate-global")
     expect(await h.receive({ from: "eva@example.net" })).toBe("rate-global")
     expect(h.fake.sent.map((email) => email.idempotencyKey)).toEqual(["alert/rate-global/2026-10-24"])
@@ -160,7 +160,7 @@ describe("inbound flow: gates", () => {
     const h = pipelineHarness({ config: { EMAIL_AGENT_SENDER_PER_HOUR: "1" } })
     expect(await h.receive()).toBe("consent-asked")
     await h.consent()
-    expect(await h.receive({ id: "email-1" } as never, "consent")).toBe("allow")
+    expect(await h.receive({ id: "email-1" } as never, "consent")).toBe("menu")
   })
 })
 

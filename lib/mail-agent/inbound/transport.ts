@@ -75,6 +75,8 @@ export interface MailTransport {
   send(email: NewEmail): Promise<string>
   /** Sends a new email with the received one attached as `message/rfc822`, or without it when it is too large. */
   forward(email: ForwardedEmail): Promise<string>
+  /** The address of a Resend inbox, or null when there is none with this id. */
+  inboxAddress(inboxId: string): Promise<string | null>
 }
 
 const AUTH = z.enum(["pass", "fail", "gray", "processing_failed", "unknown"]).catch("unknown")
@@ -250,6 +252,14 @@ export function resendTransport(apiKey: string): MailTransport {
       const raw = url ? await download(url, MAX_FORWARD_BYTES) : null
       const attachments = raw ? [{ filename: "original.eml", content: Buffer.from(raw).toString("base64"), contentType: "message/rfc822" }] : []
       return send({ ...email, attachments })
+    },
+    async inboxAddress(inboxId) {
+      const { data, error } = await resend.inboxes.get(inboxId)
+      if (error) {
+        if (error.name === "not_found") return null
+        throw new TransportError(error.name)
+      }
+      return data ? data.email_address.toLowerCase() : null
     },
   }
 }

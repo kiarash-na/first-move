@@ -60,10 +60,10 @@ describe("handleConfirm", () => {
     expect(await pendingOf(h.store, h.deps.config.secrets.state, await sid(), h.clock.now)).toEqual([])
   })
 
-  it("lets a started run go past consent to the guard", async () => {
+  it("lets a started run go past consent and the guard to the answer", async () => {
     const token = await asked()
     await handleConfirm(post({ token }), deps)
-    expect(await inboundFlow(h.steps, started[0], h.clock.now)).toBe("allow")
+    expect(await inboundFlow(h.steps, started[0], h.clock.now)).toBe("menu")
   })
 
   it("works once: the same link again is used", async () => {

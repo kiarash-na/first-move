@@ -3,6 +3,7 @@ import type { Experimental_DecisionModel } from "ai"
 import type { MailAgentConfig } from "../env"
 import type { MailTransport } from "../inbound/transport"
 import type { MailStore } from "../store/store"
+import type { TextModel } from "../text/model"
 
 /**
  * What one workflow run carries (PLAN-AGENT-06 step 6): Resend ids and where the run came from,
@@ -16,12 +17,14 @@ export interface InboundInput {
   origin: "webhook" | "consent"
 }
 
-/** Everything a step needs from outside; tests pass the memory store, a fake Resend and a mock Jev. */
+/** Everything a step needs from outside; tests pass the memory store, a fake Resend, a mock Jev and a fake text model. */
 export interface MailDeps {
   config: MailAgentConfig
   store: MailStore
   transport: MailTransport
   decisionModel: Experimental_DecisionModel
+  /** Writes answers and reads values (D-64); only after Jev allowed the email. */
+  textModel: TextModel
 }
 
 /** Another email of the same sender holds the lock; the step tries again shortly. */

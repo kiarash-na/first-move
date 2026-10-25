@@ -258,7 +258,8 @@
     },
     "handoff": {
       "title": "Ein Mensch übernimmt",
-      "body": "Ich habe Ihre Nachricht an einen Menschen bei First Move weitergegeben. Die Antwort kommt von {address}. Für Datenschutz- und Rechtsanfragen können Sie auch direkt dorthin schreiben."
+      "body": "Ich habe Ihre Nachricht an einen Menschen bei First Move weitergegeben, der Ihnen per E-Mail antwortet. Für Datenschutz- und Rechtsanfragen können Sie auch direkt an {address} schreiben.",
+      "again": "Ein Mensch bei First Move hat Ihre frühere Nachricht bereits und antwortet Ihnen per E-Mail. Sie können auch direkt an {address} schreiben."
     },
     "stopped": {
       "title": "Gespräch beendet",
@@ -278,7 +279,7 @@
     "details": {
       "rate-global": "Das Tageslimit von {limit} E-Mails für alle Absender ist erreicht. Weitere E-Mails werden heute nicht beantwortet.",
       "budget": "Das heutige Modellbudget von {budget} USD ist aufgebraucht. Der Assistent beantwortet bis zum nächsten Tag (UTC) keine E-Mails.",
-      "text-failed": "Das Sprachmodell hat heute keine Antwort geliefert. Absender wurden gebeten, es später erneut zu versuchen."
+      "text-failed": "Das Sprachmodell hat nicht geantwortet. Der Absender wurde gebeten, es später erneut zu versuchen; weitere Fehler heute lösen keine Meldung aus."
     },
     "more": "Weitere Warnungen wurden heute nicht gesendet (höchstens {max} pro Tag).",
     "moreKind": "weitere Warnungen heute",
@@ -290,6 +291,17 @@
       "attachment-injection": "Anhang übersprungen (Injection)",
       "text-failed": "Sprachmodell fehlgeschlagen",
       "handoff": "ein Absender möchte einen Menschen"
+    },
+    "handoff": {
+      "subject": "Übergabe vom Assistenten: {subject}",
+      "body": "Ein Absender hat den Assistenten von First Move nach einem Menschen gefragt.\nVon: {address}\nWann: {at}\nBetreff: {subject}\n\nSeine E-Mail ist angehängt (original.eml), außer sie ist größer als 15 MB; dann öffnen Sie sie im Postfach agent@ bei Resend.\nAntworten Sie auf diese E-Mail, um ihm zu antworten: Die Antwort geht an {address}. Ihm wurde gesagt, dass ein Mensch per E-Mail antwortet."
+    },
+    "relay": {
+      "subject": "E-Mail an {inbox}: {subject}",
+      "body": "Eine E-Mail ist bei {inbox} eingegangen.\nVon: {address}\nWann: {at}\nBetreff: {subject}\n\nDas Original ist angehängt (original.eml), außer es ist größer als 15 MB; dann öffnen Sie es im Postfach human@ bei Resend.",
+      "replyable": "Antworten Sie auf diese E-Mail, um dem Absender zu antworten.",
+      "unverified": "Die Adresse des Absenders konnte nicht geprüft werden (DMARC nicht bestanden); eine Antwort erreicht ihn daher nicht. Prüfen Sie das Original, bevor Sie antworten.",
+      "more": "Weitere E-Mails an {inbox} wurden heute nicht weitergeleitet (höchstens {max} am Tag). Öffnen Sie das Postfach human@ bei Resend."
     }
   }
 }
