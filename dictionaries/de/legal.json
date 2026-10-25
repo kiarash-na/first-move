@@ -37,5 +37,6 @@
     "label": "KI-Anbieter, die Sie verbinden können",
     "none": "Noch ist kein KI-Anbieter für den Assistenten angebunden. Sobald der Assistent verfügbar ist, werden die Anbieter hier aufgeführt.",
     "region": "Verarbeitungsregion"
-  }
+  },
+  "presentation": "Präsentation"
 }

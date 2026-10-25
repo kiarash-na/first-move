@@ -1,0 +1,81 @@
+/* ------------------------------------------------------------------------- */
+/* 2. Stage and slides                                                       */
+/* ------------------------------------------------------------------------- */
+
+.deck-stage {
+  position: relative;
+  display: block;
+  min-height: 0;
+}
+
+.deck-slide {
+  position: relative;
+  display: flex;
+  padding: clamp(48px, 8vh, 96px) var(--deck-gutter);
+}
+
+.deck-slide:focus {
+  outline: none;
+}
+
+.deck-slide + .deck-slide {
+  border-top: 1px solid var(--line-subtle);
+}
+
+/* `clip`, not `hidden`: the neighbours wait 48 px to the side, and a clipped box cannot be scrolled sideways by focus or code. */
+html[data-deck="js"] .deck-stage {
+  overflow: clip;
+  touch-action: pan-y;
+}
+
+html[data-deck="js"] .deck-slide {
+  position: absolute;
+  inset: 0;
+  padding: clamp(8px, 2.4vh, 32px) max(var(--deck-gutter), env(safe-area-inset-right)) clamp(20px, 3.2vh, 40px)
+    max(var(--deck-gutter), env(safe-area-inset-left));
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border: 0;
+  scrollbar-width: thin;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(var(--deck-shift, 0));
+  transition:
+    opacity 380ms var(--deck-ease),
+    transform 700ms var(--deck-ease),
+    visibility 0s linear 700ms;
+}
+
+html[data-deck="js"] .deck-slide[data-state="before"] {
+  --deck-shift: -48px;
+}
+
+html[data-deck="js"] .deck-slide[data-state="after"] {
+  --deck-shift: 48px;
+}
+
+html[data-deck="js"] .deck-slide[data-state="active"] {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition:
+    opacity 600ms var(--deck-ease) 80ms,
+    transform 900ms var(--deck-ease),
+    visibility 0s;
+}
+
+/* Elements rise into place one after another (`--i`) when their slide becomes the current one. */
+html[data-deck="js"] .deck-slide [data-reveal] {
+  transition:
+    opacity 700ms var(--deck-ease),
+    transform 900ms var(--deck-ease);
+  transition-delay: calc(160ms + var(--i, 0) * 90ms);
+}
+
+html[data-deck="js"] .deck-slide:not([data-state="active"]) [data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition-delay: 0s;
+  transition-duration: 300ms;
+}

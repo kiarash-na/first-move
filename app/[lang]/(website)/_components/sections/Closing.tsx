@@ -66,7 +66,10 @@ export function Closing({ t, lang }: LandingCopyProps) {
           lang={lang}
           labels={footer.legal}
           navLabel={footer.legal.nav}
-          extra={{ label: footer.legal.source, href: REPOSITORY.url }}
+          extra={[
+            { label: t.presentation.footer, href: withLocale('/presentation', lang) },
+            { label: footer.legal.source, href: REPOSITORY.url },
+          ]}
         />
       </footer>
     </>

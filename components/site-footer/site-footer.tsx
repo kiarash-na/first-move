@@ -1,10 +1,11 @@
 import type { Dictionary } from "@/lib/i18n/dictionaries"
+import { withLocale } from "@/lib/i18n/locale-path"
 import type { Locale } from "@/lib/i18n/locales"
 import { interpolate } from "@/lib/legal/interpolate"
 import { REPOSITORY } from "@/lib/legal/operator"
 import { LegalLinks } from "./legal-links"
 
-/** Footer of the public pages: copyright and licence line, the legal links and the source code. */
+/** Footer of the public pages: copyright and licence line, the legal links, the presentation and the source code. */
 export function SiteFooter({ lang, copy }: { lang: Locale; copy: Dictionary<"legal"> }) {
   return (
     <footer className="border-t">
@@ -17,7 +18,10 @@ export function SiteFooter({ lang, copy }: { lang: Locale; copy: Dictionary<"leg
           labels={copy.docs}
           navLabel={copy.footer.nav}
           linkClassName="font-mono text-xs text-text-secondary"
-          extra={{ label: copy.footer.source, href: REPOSITORY.url }}
+          extra={[
+            { label: copy.presentation, href: withLocale("/presentation", lang) },
+            { label: copy.footer.source, href: REPOSITORY.url },
+          ]}
         />
       </div>
     </footer>

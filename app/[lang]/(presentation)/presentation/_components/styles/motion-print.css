@@ -1,0 +1,65 @@
+/* ------------------------------------------------------------------------- */
+/* 17. Reduced motion and print                                              */
+/* ------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .deck *,
+  .deck *::before,
+  .deck *::after {
+    animation-delay: 0s !important;
+    transition-delay: 0s !important;
+  }
+
+  html[data-deck="js"] .deck-slide,
+  html[data-deck="js"] .deck-slide:not([data-state="active"]) [data-reveal] {
+    transform: none;
+  }
+
+  /*
+   * The global reduced-motion rule turns every transition into 0.01 ms, visibility included, and a
+   * slide that is still `hidden` for that instant cannot take focus. Slides switch at once instead.
+   */
+  html[data-deck="js"] .deck-slide {
+    transition-property: opacity !important;
+  }
+
+  .first-move__flow,
+  .scan__box,
+  .scan__plane,
+  .mail-card__route::after,
+  .qr-panel__scan,
+  .first-move__start,
+  .system--fast[data-busy],
+  .healing__stage[data-current] .healing__index {
+    animation: none !important;
+  }
+}
+
+@media print {
+  html[data-deck="js"],
+  html[data-deck="js"] body,
+  html[data-deck="js"] .deck {
+    display: block;
+    height: auto;
+    overflow: visible;
+  }
+
+  .deck-bar,
+  .deck-progress {
+    display: none;
+  }
+
+  html[data-deck="js"] .deck-slide {
+    position: relative;
+    break-after: page;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  html[data-deck="js"] .deck-slide [data-reveal],
+  html[data-deck="js"] .deck-slide .slide-title__line > span {
+    opacity: 1;
+    transform: none;
+  }
+}

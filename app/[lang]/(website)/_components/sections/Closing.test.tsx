@@ -12,12 +12,20 @@ describe('landing Closing', () => {
     expect(screen.getByRole('link', { name: en.closing.getStarted.secondary })).toHaveAttribute('href', '#business-use-cases')
   })
 
-  it('links the six legal pages and the source code from the footer, localized', () => {
+  it('links the presentation from the legal row, which stays visible at every width (PLAN-PRESENTATION-00)', () => {
+    render(<Closing t={en} lang="de" />)
+    const legal = screen.getByRole('navigation', { name: en.closing.footer.legal.nav })
+    expect(within(legal).getByRole('link', { name: en.presentation.footer })).toHaveAttribute('href', '/de/presentation')
+    expect(screen.getAllByRole('link', { name: en.presentation.footer })).toHaveLength(1)
+  })
+
+  it('links the six legal pages, the presentation and the source code from the footer, localized', () => {
     render(<Closing t={en} lang="de" />)
     const nav = screen.getByRole('navigation', { name: en.closing.footer.legal.nav })
     const hrefs = within(nav).getAllByRole('link').map((link) => link.getAttribute('href'))
     expect(hrefs).toEqual([
       '/de/terms', '/de/privacy', '/de/cookies', '/de/imprint', '/de/ai', '/de/license',
+      '/de/presentation',
       'https://github.com/kiarash-na/first-move',
     ])
     expect(within(nav).getByRole('link', { name: en.closing.footer.legal.imprint })).toBeInTheDocument()
