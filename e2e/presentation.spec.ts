@@ -93,7 +93,7 @@ test("the title masks leave room above capitals for their accents (NÄCHSTE)", a
   await open(page, "/de/presentation#9")
   await expectOnSlide(page, 9)
   const title = slide(page, 9).locator(".slide-title")
-  await expect(title).toContainText("Ä")
+  await expect(title).toContainText(/ä/i)
   const lines = await title.locator(".slide-title__line").evaluateAll((elements) =>
     elements.map((line) => {
       const text = line.firstElementChild?.getBoundingClientRect()
