@@ -41,6 +41,7 @@ test.describe("seo", () => {
     await expect(page.locator('meta[property="og:image"]')).toHaveAttribute("content", `${BASE}/en/opengraph-image`)
     await expect(page.locator('meta[name="twitter:card"]')).toHaveAttribute("content", "summary_large_image")
     await expect(page.locator('meta[name="twitter:image"]')).toHaveAttribute("content", `${BASE}/en/opengraph-image`)
+    await expect(page.locator('link[rel="apple-touch-icon"]')).toHaveAttribute("href", /\/apple-icon\?.+/)
     const jsonLd = await page.locator('script[type="application/ld+json"]').textContent()
     expect(JSON.parse(jsonLd ?? "")).toMatchObject({ "@type": "WebApplication", name: "First Move", inLanguage: ["en", "de"] })
   })

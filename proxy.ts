@@ -22,6 +22,6 @@ export function proxy(request: NextRequest) {
 
 export const config = {
   // Skips `_next`, `api` (route handlers), any path with a dot (files, `.well-known/workflow`),
-  // and paths already starting with /en or /de.
-  matcher: ["/((?!_next|api(?:/|$)|(?:en|de)(?:/|$)|.*\\..*).*)"],
+  // paths already starting with /en or /de, and the generated apple-icon (its URL has no dot).
+  matcher: ["/((?!_next|api(?:/|$)|(?:en|de)(?:/|$)|apple-icon|.*\\..*).*)"],
 }
