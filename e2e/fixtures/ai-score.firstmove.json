@@ -293,7 +293,7 @@
       "ai": {}
     },
     "aiScore": {
-      "method": "1.0.0",
+      "method": "1.1.0",
       "at": "2026-10-24T12:00:00.000Z",
       "decisionModel": "jev-test",
       "score": 54.3,
