@@ -231,7 +231,7 @@ What a saved score holds (`aiScoreSchema`, schema v3, D-73): the method version,
 | `promising` | 40 ≤ score < 70, or score ≥ 70 while a must-have cap (level 2) is active in any dimension | Promising / Vielversprechend |
 | `solid` | score ≥ 70 (`SOLID_FROM`) and no must-have cap active | Solid / Solide |
 
-The thresholds are a design choice (research proposal § 4), not taken from a source: wide bands, because the band of a typical plan is several points and the probabilities are not calibrated. The rule "a must-have keeps it below Solid" makes sure a plan that misses something essential is never called solid, however well the rest is written. The label is computed on the unrounded score.
+The thresholds are a design choice (research proposal § 4), not taken from a source: wide bands, because the band of a typical plan is several points and the probabilities are not calibrated. The rule "a must-have keeps it below Solid" makes sure a plan that misses something essential is never called solid, however well the rest is written. The label is computed on the score as stored (one decimal), not on the display rounded to 5, so a saved score and its label always agree.
 
 ## Turn and token budget
 
@@ -301,7 +301,7 @@ The hints the suggestion run may adapt (`hints.ts`), three per dimension, each w
 - **Model-judge biases.** Judges can favour longer texts (SRC-ZHENG-2023) and text written by a language model (SRC-GEVAL-2023). The scale describes quality, not length, and the context says so, but a padding test (words without substance must not raise E) is still open.
 - **German plans** have not been evaluated separately.
 - **The band** treats judgements as independent and probably understates the uncertainty; caps are not part of it. No sensitivity check with equal weights (1/7 each) exists yet.
-- **Rounding and labels.** The label uses the unrounded score, while the display rounds to 5: a plan at 68 shows 70 and is labelled Promising; a plan at 38 shows 40 and is labelled Early.
+- **Rounding and labels.** The label uses the score as stored (one decimal), while the display rounds to 5: a plan at 68 shows 70 and is labelled Promising; a plan at 38 shows 40 and is labelled Early.
 - **Heat density.** The Quick Check measures MWh per metre of network (OQ-10); the provider's rule of thumb of about 1 MWh/m is per metre of trench (ALG-09), and 5GDHC cases exist below classic district heating thresholds (SRC-BUFFA-2019). Hence the conditional cap only.
 - **Vienna by name.** The Vienna zone question depends on "Wien" or "Vienna" in the site's name or location. A site in Vienna described otherwise is not asked (the gate is only a flag).
 - **One option per branch.** A plan with two main sources or anchors gets the follow-up of the one Jev picks.

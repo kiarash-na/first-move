@@ -1,7 +1,7 @@
 ---
 id: PLAN-AI-SCORE-00
 date: 2026-10-24
-status: in-progress
+status: done
 challenge: [business-models]
 covers: [D-71, D-72, D-73, D-74, D-75, D-76, D-77, D-78, D-27, D-30, D-32, D-33, D-34, D-48, D-60]
 blocked_by: []

@@ -47,7 +47,7 @@ A separate AI scoring of the Business Plan: [PLAN-AI-SCORE-00](2026-10-24_ai-sco
 
 | Phase | Plan | Blocked by | Status |
 |---|---|---|---|
-| S00 | [AI Plan Score](2026-10-24_ai-score-00_plan.md) | none | in-progress |
+| S00 | [AI Plan Score](2026-10-24_ai-score-00_plan.md) | none | done ([note](../notes/2026-10-25_ai-score.md); owner: live test with a real Gateway key) |
 
 ## Open tasks from the owner (2026-10-25, overnight run)
 
@@ -55,8 +55,8 @@ The owner gave these in chat on 2026-10-25 and asked for them to be finished, te
 
 | # | Task | Depends on | Status |
 |---|---|---|---|
-| O1 | AI Plan Score: route UI with key, run and live decision-flow graph; result views; "Pitch completeness" rename and the bolder AI Plan Score badge; legal texts; method file; docs page ([PLAN-AI-SCORE-00](2026-10-24_ai-score-00_plan.md)) | none | in-progress (workflow `ai-plan-score-build`) |
-| O2 | Reference cases: 3 real Vienna anergy projects and 3 fictional plans around real Vienna buildings (D-76, D-79), weak, middling, strong; start screen (last, collapsed) and docs page with verified links | none | in-progress (same workflow) |
+| O1 | AI Plan Score: route UI with key, run and live decision-flow graph; result views; "Pitch completeness" rename and the bolder AI Plan Score badge; legal texts; method file; docs page ([PLAN-AI-SCORE-00](2026-10-24_ai-score-00_plan.md)) | none | done ([note](../notes/2026-10-25_ai-score.md)); left for the owner: the live test with a real Gateway key and the open questions of the note |
+| O2 | Reference cases: 3 real Vienna anergy projects and 3 fictional plans around real Vienna buildings (D-76, D-79), weak, middling, strong; start screen (last, collapsed) and docs page with verified links | none | done ([note](../notes/2026-10-25_ai-score.md)); owner to confirm the real organisations named as anchors (note, question 13) |
 | O3 | `/presentation` route, at most 10 slides, very little text, premium animations and interactions, link in the site footer; slides: why "First Move", what the organizers look for, Quick Check, Business Plan, the AI engine with a real blind test on a case with a known outcome, the two emails (agent@, human@), System 1 models for security, self-healing apps (concept), future features (3D building scan plus four), cost (about 180 € to make, about 5 € a month for up to 1,000 active users, maintenance not included, open to projects and long-term collaborations), the owner's page https://kiarash.online/link with an on-brand QR code and "powered by /1Slash, a human and AI service" (https://1sla.sh/) | none | in-progress (workflow `presentation-and-landing`) |
 | O4 | Home page: visual and code audit and fix on brand (Fable), plus a scroll-animated section for the AI Plan Score | none | in-progress (same workflow) |
 | O5 | A SEPARATE phone and tablet version of the landing page; the desktop version stays untouched (pixel-identical) | O4 | in-progress (same workflow) |
