@@ -37,6 +37,11 @@ describe("LanguageSwitch", () => {
     expect(document.cookie).toContain("NEXT_LOCALE=de")
   })
 
+  it("keeps a hash on the links, e.g. the presentation's slide", () => {
+    render(<LanguageSwitch {...props} hash="#4" />)
+    expect(screen.getByRole("link", { name: "DE, Deutsch" })).toHaveAttribute("href", "/de/dashboard/quick-check/area#4")
+  })
+
   it("keeps the visible code in the accessible name (label in name)", () => {
     render(<LanguageSwitch {...props} />)
     expect(screen.getByRole("link", { name: "DE, Deutsch" })).toHaveTextContent("DE")

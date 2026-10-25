@@ -20,13 +20,13 @@ export type SlideId = (typeof SLIDE_IDS)[number]
 export const SLIDE_COUNT = SLIDE_IDS.length
 
 /** Clamps any number to a valid slide index (0-based). */
-export function clampSlide(index: number, count = SLIDE_COUNT): number {
+export function clampSlide(index: number, count: number = SLIDE_COUNT): number {
   if (!Number.isFinite(index)) return 0
   return Math.min(count - 1, Math.max(0, Math.trunc(index)))
 }
 
 /** `#3` → 2. Anything else (empty, `#0`, `#11`, `#abc`) → null. The hash is 1-based, like the counter. */
-export function slideFromHash(hash: string, count = SLIDE_COUNT): number | null {
+export function slideFromHash(hash: string, count: number = SLIDE_COUNT): number | null {
   const match = /^#?(\d{1,3})$/.exec(hash.trim())
   if (!match) return null
   const number = Number(match[1])
@@ -65,7 +65,7 @@ export function actionForKey(key: string, shiftKey = false): DeckAction | null {
 }
 
 /** The slide an action leads to. */
-export function applyAction(index: number, action: DeckAction, count = SLIDE_COUNT): number {
+export function applyAction(index: number, action: DeckAction, count: number = SLIDE_COUNT): number {
   switch (action) {
     case "next":
       return clampSlide(index + 1, count)
