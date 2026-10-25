@@ -18,8 +18,13 @@ const eslintConfig = defineConfig([
       "components/**",
       "app/**",
     ],
-    ignores: ["app/*/(dashboard)/dashboard/_agent/**", "app/*/(dashboard)/dashboard/connect/**", "app/*/(docs)/mail/**", "app/api/**"],
+    ignores: ["app/*/(dashboard)/dashboard/_agent/**", "app/*/(dashboard)/dashboard/connect/**", "app/*/(dashboard)/dashboard/ai-score/**", "app/*/(docs)/mail/**", "app/api/**"],
     rules: restrict([...AI_LAYER, ...AGENT_UI], "Core code never imports the AI layer (PLAN-AGENT-00 § Boundary)."),
+  },
+  {
+    // The one allowed touch point in the shell (PLAN-AGENT-00): the assistant's launcher; `boundary.test.ts` allows the same import.
+    files: ["app/*/(dashboard)/dashboard/_components/dashboard-shell.tsx"],
+    rules: restrict([...AI_LAYER, "**/_agent/*", "!**/_agent/agent-launcher"], "Core code never imports the AI layer (PLAN-AGENT-00 § Boundary); the shell may import only the assistant's launcher."),
   },
   {
     files: ["lib/assistant/**"],

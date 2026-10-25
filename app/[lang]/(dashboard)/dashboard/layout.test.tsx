@@ -1,8 +1,10 @@
 // @vitest-environment node
-import { describe, expect, it } from "vitest"
+import { describe, expect, it, vi } from "vitest"
 import calcDe from "@/dictionaries/de/calc.json"
 import shell from "@/dictionaries/de/shell.json"
 import DashboardLayout from "./layout"
+
+vi.mock("@/lib/legal/ai", async (original) => ({ ...(await original<typeof import("@/lib/legal/ai")>()), AI_FEATURES_LIVE: false }))
 
 const props = (lang: string) => ({ params: Promise.resolve({ lang }), children: "page" }) as unknown as LayoutProps<"/[lang]/dashboard">
 
@@ -15,6 +17,8 @@ describe("dashboard layout", () => {
     expect(tree.props.dictionaries.calc.ui.info).toBe(calcDe.ui.info)
     expect(tree.props.dictionaries.shell.nav.label).toBe(shell.nav.label)
     expect(tree.props.children.props.children).toBe("page")
+    // No `assistant` area while the AI assistant is dark (`layout.live.test.tsx` covers on).
+    expect(tree.props.dictionaries).not.toHaveProperty("assistant")
   })
 
   it("rejects an unknown language", async () => {

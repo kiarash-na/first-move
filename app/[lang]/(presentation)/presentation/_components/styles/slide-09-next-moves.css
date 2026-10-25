@@ -1,0 +1,200 @@
+/* ------------------------------------------------------------------------- */
+/* 13. Slide 9: next moves                                                   */
+/* ------------------------------------------------------------------------- */
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: start;
+  gap: clamp(12px, 1.6vw, 20px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.feature {
+  position: relative;
+  border: 1px solid var(--control-border);
+  background: var(--surface-raised);
+  transition: border-color 240ms ease;
+}
+
+.feature::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  left: -1px;
+  height: 2px;
+  background: var(--accent-cool);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 400ms var(--deck-ease);
+}
+
+.feature[data-open]::before {
+  transform: none;
+}
+
+.feature[data-lead] {
+  grid-row: span 2;
+}
+
+.feature__button {
+  display: grid;
+  grid-template-areas:
+    "number plus"
+    "icon   icon"
+    "title  title";
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 14px;
+  width: 100%;
+  padding: clamp(18px, 2vw, 26px);
+  border: 0;
+  background: none;
+  color: var(--text-primary);
+  text-align: left;
+  cursor: pointer;
+}
+
+.feature[data-lead] .feature__button {
+  grid-template-areas:
+    "number plus"
+    "scan   scan"
+    "icon   icon"
+    "title  title";
+}
+
+.feature__number {
+  grid-area: number;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.feature__plus {
+  grid-area: plus;
+  color: var(--text-muted);
+  transition:
+    transform 260ms var(--deck-ease),
+    color 180ms ease;
+}
+
+.feature[data-open] .feature__plus {
+  color: var(--accent-cool);
+  transform: rotate(45deg);
+}
+
+.feature__icon {
+  grid-area: icon;
+  color: var(--accent-cool);
+  transition: transform 240ms var(--deck-ease);
+}
+
+.feature__button:hover .feature__icon {
+  transform: translateY(-3px);
+}
+
+.feature__title {
+  grid-area: title;
+  font-size: clamp(20px, 1.8vw, 26px);
+  font-stretch: 82%;
+  font-weight: 560;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.feature[data-lead] .feature__title {
+  font-size: clamp(24px, 2.4vw, 34px);
+}
+
+.feature__reveal > p {
+  padding: 0 clamp(18px, 2vw, 26px);
+  transition: padding 380ms var(--deck-ease);
+}
+
+.feature[data-open] .feature__reveal > p {
+  padding-bottom: clamp(18px, 2vw, 26px);
+}
+
+/* The 3D scan: a wireframe building turning under a scan plane. */
+.scan {
+  --scan-w: 84px;
+  --scan-h: 116px;
+
+  position: relative;
+  grid-area: scan;
+  display: grid;
+  place-items: center;
+  height: clamp(130px, 19vh, 190px);
+  perspective: 640px;
+}
+
+.scan__box {
+  position: relative;
+  width: var(--scan-w);
+  height: var(--scan-h);
+  transform: rotateX(-16deg) rotateY(35deg);
+  transform-style: preserve-3d;
+  animation: scan-turn 16s linear infinite;
+}
+
+.scan__face {
+  position: absolute;
+  inset: 0;
+  border: 1px solid oklch(0.88 0.19 213 / 0.75);
+  background-color: oklch(0.88 0.19 213 / 0.05);
+  background-image: repeating-linear-gradient(to bottom, transparent 0 22px, oklch(0.88 0.19 213 / 0.28) 22px 23px);
+}
+
+.scan__face--front {
+  transform: translateZ(calc(var(--scan-w) / 2));
+}
+
+.scan__face--back {
+  transform: rotateY(180deg) translateZ(calc(var(--scan-w) / 2));
+}
+
+.scan__face--left {
+  transform: rotateY(-90deg) translateZ(calc(var(--scan-w) / 2));
+}
+
+.scan__face--right {
+  transform: rotateY(90deg) translateZ(calc(var(--scan-w) / 2));
+}
+
+.scan__face--top {
+  inset: auto 0;
+  top: calc((var(--scan-h) - var(--scan-w)) / 2);
+  height: var(--scan-w);
+  background-image: none;
+  transform: translateY(calc(var(--scan-h) / -2)) rotateX(90deg);
+}
+
+.scan__plane {
+  position: absolute;
+  top: 12%;
+  left: 50%;
+  width: min(80%, 200px);
+  height: 2px;
+  background: var(--accent-cool);
+  box-shadow: 0 0 16px 1px oklch(0.88 0.19 213 / 0.6);
+  translate: -50% 0;
+  animation: scan-sweep 2.8s ease-in-out infinite alternate;
+}
+
+.deck-slide:not([data-state="active"]) :is(.scan__box, .scan__plane) {
+  animation-play-state: paused;
+}
+
+@keyframes scan-turn {
+  to {
+    transform: rotateX(-16deg) rotateY(395deg);
+  }
+}
+
+@keyframes scan-sweep {
+  to {
+    top: 86%;
+  }
+}

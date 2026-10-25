@@ -24,7 +24,7 @@ const EDITS = [
 ] as const
 
 describe("Business Plan, all four steps (PLAN-DASH-10 verification)", () => {
-  it("Example 3, edited across all 4 steps, shows full readiness and survives a reload", async () => {
+  it("Example 3, edited across all 4 steps, shows full completeness and survives a reload", async () => {
     const browser = testBrowser()
     const tab = testTab(browser)
     tabs.push(tab)
@@ -54,7 +54,7 @@ describe("Business Plan, all four steps (PLAN-DASH-10 verification)", () => {
     // the step shows the same full score
     const view = renderDashboard(<BusinessPlanStep step="implementation" />, { store: tab.store })
     expect(screen.getAllByText("100%").length).toBeGreaterThan(0)
-    expect(screen.getAllByText("Pitch-ready").length).toBeGreaterThan(0)
+    expect(screen.getAllByText("Complete").length).toBeGreaterThan(0)
     view.unmount()
 
     // reload: a new store over the same browser storage, same tab
@@ -71,13 +71,13 @@ describe("Business Plan, all four steps (PLAN-DASH-10 verification)", () => {
     expect(screen.getByLabelText("Financing")).toHaveValue(EDITS[2].text)
   }, 30_000)
 
-  it("a project built from scratch across the four steps reaches full readiness", async () => {
+  it("a project built from scratch across the four steps reaches full completeness", async () => {
     const tab = testTab()
     tabs.push(tab)
     await tab.store.start()
     await tab.store.create({ modules: { businessPlan: true } })
     const filled = localizeExample(getExample("housing-cooperatives")!, "en").businessPlan
-    // only the fields that count for readiness are needed
+    // only the fields that count for completeness are needed
     expect(pitchReadiness(tab.store.getState().active!).level).toBe("not-started")
     tab.store.patch({
       "site.name": "Cooperative quarter",

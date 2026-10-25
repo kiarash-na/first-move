@@ -5,9 +5,20 @@ import en from "@/dictionaries/en/legal.json"
 
 describe("AiProviders", () => {
   it("says no provider is connected yet while the list is empty", async () => {
+    vi.resetModules()
+    vi.doMock("@/lib/legal/ai", () => ({ AI_PROVIDERS: [] }))
     const { AiProviders } = await import("./ai-providers")
     render(<AiProviders copy={en.aiProviders} />)
     expect(screen.getByText(en.aiProviders.none)).toBeInTheDocument()
+    vi.doUnmock("@/lib/legal/ai")
+  })
+
+  it("names the live providers with their region (D-82)", async () => {
+    vi.resetModules()
+    const { AiProviders } = await import("./ai-providers")
+    render(<AiProviders copy={en.aiProviders} />)
+    expect(screen.getByRole("link", { name: "Vercel AI Gateway" })).toBeInTheDocument()
+    expect(screen.getByRole("link", { name: "OpenRouter" })).toBeInTheDocument()
   })
 
   it("lists providers with their region once there are any", async () => {

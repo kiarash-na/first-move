@@ -302,7 +302,7 @@
       "lead": "Use rough but transparent assumptions. Name the top critical assumptions and risks, mark one potential deal-breaker, and say how each could be validated."
     },
     "implementation": {
-      "lead": "Refine the model, assess where it could be repeated, and outline the practical next steps. Then check how ready your pitch is."
+      "lead": "Refine the model, assess where it could be repeated, and outline the practical next steps. Then check how complete your pitch is."
     }
   },
   "stepNav": {
@@ -438,14 +438,38 @@
     "body": "A project holds one business model. To compare an alternative, duplicate the project and change the copy.",
     "action": "Duplicate project"
   },
+  "aiScore": {
+    "title": "AI Plan Score",
+    "aiGenerated": "AI-generated",
+    "outOf": "of 100",
+    "band": "Band of one standard deviation: plus or minus {band} points",
+    "levels": {
+      "early": "Early",
+      "promising": "Promising",
+      "solid": "Solid"
+    },
+    "state": {
+      "current": "Scored on {date}",
+      "outdated": "Outdated: {count} of {total} scored parts changed since the run"
+    },
+    "cta": "Get an AI Plan Score",
+    "lead": "An AI opinion on how solid your written plan is. Optional, with your own Vercel AI Gateway key.",
+    "caveat": "An AI opinion on the written plan, not a calculation and not a feasibility verdict.",
+    "completeness": "The pitch completeness below only counts filled fields.",
+    "how": {
+      "title": "How the AI Plan Score is made",
+      "body": "An AI decision model, Jev by TypeSafe AI, reads the plan step by step, from the first field to the last. It rates each filled part on five evidence levels, from missing to evidenced; empty parts count as 0 without any AI. Gates, yes-or-no questions across the plan, can cap a dimension when something a solid plan must settle is missing. Seven weighted dimensions add up to a score out of 100, shown rounded to 5 with a band of one standard deviation. Below 40 is Early, from 70 on Solid unless a must-have gate failed, and Promising in between. The score is saved in the project and marked outdated once a scored field changes. The Quick Check stays the only calculation.",
+      "docs": "The full method in the docs"
+    }
+  },
   "readiness": {
-    "title": "Pitch readiness",
-    "lead": "How much of the final pitch already has content, from what you filled in.",
+    "title": "Pitch completeness",
+    "lead": "How much of the final pitch already has content. It counts filled fields only and does not judge what you wrote.",
     "caveat": "It counts what is filled in, not how good the content is.",
     "level": {
       "not-started": "Not started",
       "in-progress": "In progress",
-      "ready": "Pitch-ready"
+      "ready": "Complete"
     },
     "summary": "{met} of {total} points covered",
     "open": "See details",
@@ -536,8 +560,8 @@
       "nextDecisions": "Key decisions and the decision gate"
     },
     "how": {
-      "title": "How readiness is counted",
-      "body": "Each pitch part has a short list of points. A text point counts when its field has text, a list point when it has an entry, and a risk or critical-assumption point when at least one row is complete and no row is half filled. The share of points covered is the part's score, and readiness is the average of the six parts. A part is pitch-ready when all its points are covered. There is no equation behind this, and no judgement of the content."
+      "title": "How completeness is counted",
+      "body": "Each pitch part has a short list of points. A text point counts when its field has text, a list point when it has an entry, and a risk or critical-assumption point when at least one row is complete and no row is half filled. The share of points covered is the part's score, and the completeness is the average of the six parts. A part is complete when all its points are covered. There is no equation behind this, and no judgement of the content: for an AI opinion on the content, see the AI Plan Score."
     }
   }
 }

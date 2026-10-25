@@ -51,7 +51,29 @@
     "forced": "Set by a rule",
     "facts": "{buildings} buildings · {area}",
     "opened": "“{name}” opened as a copy",
-    "extra": "Additional example"
+    "extra": "Additional example",
+    "show": "Show {count} examples",
+    "hide": "Hide the examples"
+  },
+  "referenceCases": {
+    "title": "Reference cases from Vienna",
+    "body": "Three real anergy networks and three fictional plans around real Vienna buildings, each written as a weak, middling or strong Business Plan. The facts come from checked sources. Opening one creates your own copy.",
+    "show": "Show {count} reference cases",
+    "hide": "Hide the reference cases",
+    "kinds": {
+      "real": "Real network",
+      "fictional": "Fictional plan"
+    },
+    "quality": "Plan quality as designed",
+    "tiers": {
+      "weak": "Weak",
+      "middling": "Middling",
+      "strong": "Strong"
+    },
+    "disclaimer": "Fictional business plan around a real building: neither the owner nor the operator has planned or endorsed it.",
+    "sources": "Sources and details",
+    "open": "Open a copy",
+    "opened": "“{name}” opened as a copy"
   },
   "import": {
     "title": "Import a project",

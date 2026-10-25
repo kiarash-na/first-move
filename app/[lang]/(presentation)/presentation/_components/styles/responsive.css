@@ -1,0 +1,118 @@
+/* ------------------------------------------------------------------------- */
+/* 16. Responsive                                                            */
+/* ------------------------------------------------------------------------- */
+
+@media (min-width: 768px) {
+  .deck-bar--bottom {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 1100px) {
+  .deck-hint {
+    visibility: hidden;
+  }
+}
+
+@media (max-width: 899px) {
+  .slide--split {
+    grid-template-areas:
+      "heading"
+      "body"
+      "visual";
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+    row-gap: clamp(20px, 3.6vh, 32px);
+    align-content: start;
+  }
+
+  .slide__body {
+    margin-top: 0;
+  }
+
+  .first-move__visual {
+    width: min(100%, 420px);
+  }
+
+  .slide-line {
+    max-width: 36ch;
+  }
+
+  .system {
+    max-width: none;
+  }
+
+  .features {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .contact__qr {
+    justify-items: start;
+  }
+
+  .contact__link {
+    justify-items: start;
+    text-align: left;
+  }
+}
+
+@media (max-width: 767px) {
+  .deck-hint,
+  .deck-dots {
+    display: none;
+  }
+
+  .deck-index {
+    flex: 1 1 auto;
+  }
+
+  .deck-select {
+    display: block;
+  }
+
+  .deck-index::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    width: 7px;
+    height: 7px;
+    border-right: 1px solid var(--text-secondary);
+    border-bottom: 1px solid var(--text-secondary);
+    pointer-events: none;
+    translate: 0 -70%;
+    rotate: 45deg;
+  }
+
+  .deck-arrows {
+    flex: none;
+  }
+
+  .deck-cta {
+    min-height: 56px;
+  }
+
+  .mail-cards,
+  .features {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .feature[data-lead] {
+    grid-row: auto;
+  }
+
+  .mail-card__domain {
+    display: block;
+  }
+
+  .healing__loop {
+    height: clamp(240px, 36vh, 320px);
+  }
+}
+
+@media (max-width: 479px) {
+  .deck-counter {
+    display: none;
+  }
+}

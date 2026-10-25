@@ -1,0 +1,69 @@
+---
+id: NOTE-2026-10-25-landing-polish-00
+date: 2026-10-25
+author: Claude (landing polish sub-agent, overnight run O-tasks O6 and O11 plus the owner's follow-ups)
+status: done
+relates_to: [PLAN-LANDING-POLISH-00, PLAN-LANDING-FIX-00, PLAN-LANDING-MOBILE-00, PLAN-PRESENTATION-00, DESIGN-TOKENS, D-22, D-27, D-33, D-66, D-71, D-73]
+---
+
+# Landing polish 00 · No italic, docs links, honest footer, a third part, the real blind test
+
+Executed [PLAN-LANDING-POLISH-00](../plans/2026-10-25_landing-polish-00_plan.md) on `dev` after the desktop fix, the mobile landing and the presentation were merged: six owner requests on the landing page (desktop and mobile), the shared header and footer of the docs and legal pages, EN and DE. Four commits, one per step.
+
+Owner's words: "There is the italic text in homepage. I wanted to get rid of that as well, actually, and just use the same style for both the texts. Like the main title on top of usually what's italic is looking good. Use the same styling for the current italic ones as well." · "add link to public docs in header and footer."
+
+## Built
+
+1. **No italic (a, D-LP-1).** `.title-line--accent` (the hero's third line), `.section-title em` and `.get-started-section h2 em` (the emphasised words of every chapter title), `.m-title em` and `.m-hero__accent` (the mobile versions) keep only `font-style: normal`; the words inherit the title around them (uppercase, condensed, weight 590 to 610). The copy's `*x*` markup and the `<em>` stay (`rich-text.tsx`), so a distinction can come back with one CSS rule. The website layout no longer imports the Archivo italic face. Checked in the browser on both landings at every width: no visible element with text is italic any more (before: the hero's third line and 13 emphasised phrases on the desktop, the same on mobile); the three hero title lines share one computed style.
+2. **Docs links (b, D-LP-2).** Desktop header: "Docs" as the sixth entry after "Methodology" (a page link, not a chapter anchor). Measured at 1024 px after the change: brand to 154 px, nav 196 to 756 px (EN, six entries, 560 px; DE 545 px), the actions from 756 px (EN) and 741 px (DE), with 14 px of air before the language switch added from 1199 px down; one line, nothing overlaps (the e2e asserts the nav ends before the actions begin at 1024, 1280 and 1440). Mobile header: a "Docs" row after the five chapters in the menu, with an outward arrow (it leaves the page). Landing footers: "Docs" closes the product row on both landings. Shared `SiteFooter` (docs and legal pages): "Docs" before "Presentation" in the legal row. Docs header (`AppHeader`): "Docs" before the language switch. Copy: `landing.header.nav.docs`, `landing.closing.footer.docs`, `legal.documentation`, `common.docs.link`; DE "Doku" (the docs' own meta title).
+3. **Footer row visible on the desktop (b, D-LP-6).** `story.css` hid the footer's product links at 1100 px and below; since PLAN-LANDING-MOBILE-00 the desktop tree shows from 1024 px only, where the four links fit on the row next to the brand (at 1024 px EN: brand 123 + open source 93 + links 79/108/79/29 + back to top 102 px, with the gaps 805 px of 958). The rule went; the row shows at every desktop width (e2e: the four links share one line at 1024, 1280 and 1440, EN and DE).
+4. **Presentation link in the mobile footer (c).** Already there at the base commit, from the merge of PLAN-LANDING-MOBILE-00 and PLAN-PRESENTATION-00 (`MobileFooter.tsx`, `t.presentation.footer` → `/{lang}/presentation`, tested in `MobileFooter.test.tsx` and in `e2e/landing-mobile.spec.ts`); visible in the 390 px screenshot before and after. Nothing to add.
+5. **Footer targets (d, D-LP-3).** "Quick Check" → `/{lang}/docs/quick-check`, "Business Models" → `/{lang}/docs/business-plan` (`docHref` of `lib/docs/pages`), on both landings; "Methodology" stays the chapter anchor; "Docs" → `/{lang}/docs`. A visitor at the end of the page wants to read what each module does and how it calculates; the docs pages explain it and link to the app, while a dashboard deep link without a project lands on the "no project" gate. "Get Started" remains the way into the dashboard (and the Home and MobileLanding tests still pin every Get Started to `/{lang}/dashboard`).
+6. **A third part (e, D-LP-4).** Hero gateway: "Screen. Plan. Score. / One workflow." (DE "Prüfen. Planen. Bewerten. / Ein Ablauf.") above the two entry buttons. Overview kicker: "Three parts. One system." (DE "Drei Teile. Ein System.") above the rows 01, 02, AI. No other "two tools" is left in the landing copy (the presentation's meta description names the AI separately and stays).
+7. **The recorded blind test (f, D-LP-5).** `lib/presentation/blind-test/recorded-run.ts` shapes `result.json` (the run slide 5 replays, `lib/assistant/plan-score/blind-test.live.test.ts` wrote it) for the landing: the 27 judgement levels in the four turns (sizes 8, 8, 5, 6), one real decision per turn, the score as the app shows it (`score.shown` 55, `band` 3, `level` promising, `capped` true) and the seven dimensions after their caps (four held at 0.5 by failed gates). The decisions shown: the `source-type` branch (→ "Borehole field"), the `boundary` gate (→ "Fail", the must-have that caps the plan below Solid), the `deal-breaker` gate (→ "Unclear"), the `decision-gate` gate (→ "Unclear"); their names come from the `ai-score` dictionary (`labels.gates`, `labels.branches`, `labels.outcomes`), which the landing page loads on the server (`recordedRun(aiScore.labels)`) and passes to both trees (`Home` and `MobileLanding` → `AiScoreStory` / `MobileAiScore` → the consoles). The console's head says "Recorded run · Real Vienna plan · 2017", a "Must-have failed · 4 dimensions capped" line sits under the level, the capped bars are hatched, the note says "Recorded 25 October 2026: a real Vienna business plan from 2017, name and outcome removed, scored blind. One case shows how the engine works; it does not validate it." and ends with "See the blind test" → `/{lang}/presentation#5`. The year and the dates are formatted from the recording (`formatDate`, UTC), the counts through `formatNumber`; nothing is typed in. `aiScoreExample.ts` (60 ± 6, "Groundwater", "Pass") and the `aiScore.console.decisions` copy are gone; no invented AI output is left on the page (the Quick Check previews stay labelled illustrative, as DESIGN-TOKENS §6 asks; they are not AI output).
+   - Boundary: the landing may not import `lib/ai`, so the turn sizes, the thresholds 40 / 70 and the turn of each shown decision are mirrored in `recorded-run.ts` and pinned by `lib/ai/plan-score/method.test.ts`, which also checks that `result.json` lists the judgements in the engine's order (so slicing it by turn size gives the turns).
+   - `recorded-run.test.ts`: every number equals the recording, the score equals `displayScore(value, sd)`, the decisions are the recorded ones with the dictionary's names (EN and DE), a recording that does not fit the method is refused.
+8. **Tests.** Unit: the two console tests rewritten around the recording (cells carry the recorded levels, the real decisions in their rows, the capped line, the link, the German names); story, header, footer, root and page tests follow (the page passes one run object to both trees); `site-footer.test.tsx` and `app-header.test.tsx` gain the docs link. E2E: `e2e/landing.spec.ts` (six nav entries on one line and clear of the actions at the three widths; the recorded score and level read from `result.json`; the console's title and link; the footer row's targets and one line at the three widths, EN and DE, and the docs link leads to `/docs`; no italic and one style for the three hero lines), `e2e/landing-mobile.spec.ts` (the menu's docs row, the footer row's targets, the recorded score, no italic), `e2e/docs.spec.ts` (the shared header and footer reach the docs index from a docs page and a legal page).
+
+## Screenshots (scratchpad `landing-polish/before`, `landing-polish/after`)
+
+`/en` and `/de`, cookie notice dismissed, reduced motion, at 1440 × 900, 1280 × 800, 1024 × 768 (desktop) and 390 × 844, 768 × 1024 (mobile): full page, the hero, the AI chapter, the footer and, on mobile, the open menu. Compared by eye: the only differences are the intended ones (the hero's third line and the titles' emphasised words in the title's style; "Screen. Plan. Score." and "Three parts."; "Docs" in the header, the menu and the footers; the footer's product row at 1024 px; the recorded run in the AI chapter). No horizontal overflow and no console errors at any of the ten viewports in either language.
+
+## Checks (2026-10-25, worktree at f237f47 + this work)
+
+- `pnpm lint`: clean.
+- `pnpm typecheck`: clean (`next typegen && tsc --noEmit`).
+- `pnpm test`: 806 files (802 passed, 3 skipped, 1 failed), 3631 tests (3616 passed, 14 skipped, 1 failed). The one failure is `app/[lang]/(dashboard)/dashboard/ai-score/_components/ai-score-view.test.tsx` "shows why the report of the latest run failed, not an older error", at 5.7 s against its 5 s timeout: the suite ran next to the production build and another session's vitest run on the same machine (load average 15). The file is untouched by this work and passes on its own (10 of 10, twice).
+- `pnpm build`: clean; `/[lang]` stays statically prerendered.
+- E2E against the production build (`pnpm build`, `pnpm start --port 3421`, `E2E_PORT=3421 pnpm test:e2e …`): `docs`, `legal`, `foundation`, `presentation` 69 passed (1.8 min); `landing`, `landing-mobile` 20 passed (1.6 min) after two spec fixes committed on the way (the mobile spec's desktop check still counted five header entries; its axe scan could run while the first block was still fading in, so it now waits for every `[data-m-reveal]` block to settle). The nav test, three loads of the 3D scene under software GL, took 40 s.
+
+## Decisions taken for the owner
+
+- **D-LP-1** No italic anywhere on the landing; the emphasised words and the hero's third line take the title's style. DESIGN-TOKENS §3's "Editorial accent" row (Archivo italic 300) is no longer used on the landing (the presentation deck still uses it); the owner may want to update the tokens doc.
+- **D-LP-2** "Docs" is the sixth header entry after the chapters and closes the footer's product row; on the docs and legal pages it joins the legal row before "Presentation" and the header before the language switch. DE "Doku", so the header stays on one line at 1024 px.
+- **D-LP-3** The footer's "Quick Check" and "Business Models" lead to the docs pages of the two modules.
+- **D-LP-4** The AI Plan Score is a "part", not a third "tool"; the gateway keeps two buttons.
+- **D-LP-5** The landing shows the recorded blind test (55 ± 3, Promising, a must-have failed) with the real decisions, the slide's caveat and a link to slide 5. The shown decision per turn is the branch or gate of that turn with the clearest story (source, boundary, deal-breaker, decision gate).
+- **D-LP-6** The footer's product row stays visible at 1024–1100 px on the desktop.
+
+## Assumptions
+
+- The owner's "the main title on top" is the hero's first two lines (uppercase, condensed): the request "no italic" and "the same style for both" are read as one style for every title line and emphasised word.
+- Slide 5 of the presentation keeps its number (`/presentation#5`); `BLIND_TEST_SLIDE` in `AiScoreConsole.tsx` holds it in one place.
+- `result.json` stays the recording of the released engine (`summary.test.ts` pins its method, model and counts; `recorded-run.test.ts` and `method.test.ts` pin what the landing reads from it). A new recording changes the landing's numbers without any copy change.
+
+## Follow-ups
+
+- O11's last part, the check that the docs route is complete, stays with O10 (final QA).
+- The hatched bars mark the capped dimensions visually; the count is said in words under the level. If the owner wants the cap explained on the landing, the `ai-score` docs page already does it, one link away ("How we score").
+
+## Integration on `dev` (2026-10-25)
+
+Merged into `dev` together with the [AI Plan Score follow-ups](2026-10-25_ai-score-followups.md) (`8fe4238`, `0b51059`). The follow-ups had changed `aiScoreExample.ts` to label its shown score (D-81); the merge keeps the file deleted, since the landing now reads the level from `result.json`, which is the same under both label rules (54 shows 55, Promising). The follow-ups also gave slide 5, which "See the blind test" opens, its "Every source, linked" link to the Sources section of the AI Plan Score page.
+
+Checks on the merged `dev`: `pnpm gen:knowledge` (no change), `pnpm lint`, `pnpm typecheck`, `pnpm build` clean; `pnpm test` 805 files passed and 3 skipped, 3633 tests passed and 14 skipped (the `ai-score-view.test.tsx` timeout seen above did not recur). The whole e2e suite against the production build (`E2E_PORT=3711`) first ended 180 passed, 1 failed, then 179 passed, 2 failed, on timing in two specs, fixed in the specs only:
+
+- `e2e/partners.spec.ts` (`dece977`): the card click measured the row's middle once, after a Pause click that Playwright retries while the strip still reveals, re-aligning the page; the point could sit below the window or in the 16 px gap between two cards. It now clicks the card nearest the row's middle. Its axe test waits until every revealed block has opacity 1, as the mobile spec does.
+- `e2e/support/session.ts` (`13e84a4`): `settle()` also waits for running CSS transitions; the Export button is disabled until the project has loaded and fades in over 170 ms, and axe read it mid-fade as low-contrast text (light theme, 1440 px).
+
+The third whole run passed: 181 of 181.

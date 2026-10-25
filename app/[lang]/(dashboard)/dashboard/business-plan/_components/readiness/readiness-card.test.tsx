@@ -29,13 +29,13 @@ describe("ReadinessCard", () => {
     expect(screen.getByText(/^Covered:/).closest("li")).toHaveTextContent("Economic conditions")
     expect(screen.getByText(/^Open:/).closest("li")).toHaveTextContent("Geographical conditions")
     expect(screen.getAllByRole("link")).toHaveLength(1)
-    expect(screen.queryByText("Pitch-ready")).toBeNull()
+    expect(screen.queryByText("Complete")).toBeNull()
   })
 
-  it("says pitch-ready when every check is covered", async () => {
+  it("says complete when every check is covered", async () => {
     const tab = await openProject()
     const done = { ...group, met: 2, score: 1, checks: group.checks.map((check) => ({ ...check, met: true })) }
     renderDashboard(<ReadinessCard label="Scalability" group={done} />, { store: tab.store })
-    expect(screen.getByText("Pitch-ready")).toBeInTheDocument()
+    expect(screen.getByText("Complete")).toBeInTheDocument()
   })
 })

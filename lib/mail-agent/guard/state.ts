@@ -21,6 +21,15 @@ const clean = (text: string, max: number) => truncateText(sanitizeText(text).tex
 const oneLine = (text: string, max: number) => clean(text.replace(/\s+/g, " "), max)
 
 /**
+ * The email as Jev judged it and as a later model reads it: the subject on one line and the new
+ * text (quoted history removed, sanitised, at most 12,000 characters). Nothing else of an email
+ * reaches a model.
+ */
+export function judgedText(email: Pick<InboundEmail, "subject" | "text">): { subject: string; body: string } {
+  return { subject: oneLine(email.subject, STATE_LIMITS.subject), body: clean(newEmailText(email.text).text, STATE_LIMITS.body) }
+}
+
+/**
  * The state Jev judges (PLAN-AGENT-06 step 9): the same new text a model would later see (quoted
  * history removed, sanitised, at most 12,000 characters), the subject, the attachments' names,
  * types and sizes, the conversation phase, and, when there is any, the text the email hid.
@@ -29,8 +38,7 @@ export function guardState(email: Pick<InboundEmail, "subject" | "text" | "attac
   const body = newEmailText(email.text).text
   const hidden = hiddenText(`${email.subject}\n${body}`)
   return {
-    subject: oneLine(email.subject, STATE_LIMITS.subject),
-    body: clean(body, STATE_LIMITS.body),
+    ...judgedText(email),
     attachments: email.attachments.slice(0, STATE_LIMITS.attachments).map((file) => ({
       name: oneLine(file.name ?? "file", STATE_LIMITS.name),
       type: oneLine(file.contentType ?? "unknown", STATE_LIMITS.type),

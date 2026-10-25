@@ -1,10 +1,25 @@
 /**
- * Switch for the AI transparency page (PLAN-DASH-12, D-42). The two AI functions (answering
- * questions about project data, filling fields from documents) are not built: while this is
- * `false` the page says so. Setting it to `true` is part of the go-live checklist in
- * `docs/90_work/notes/2026-10-24_phase-12_legal.md`, not a copy edit.
+ * Go-live switch of the AI features (PLAN-DASH-12, D-42; D-82). The in-app assistant (A05) and the
+ * email agent (A07) are built: while this is `true` the dashboard shows the assistant, the docs
+ * list the AI pages and the AI page says the features are available. Flipping it back hides them
+ * again without a copy change.
  */
-export const AI_FEATURES_LIVE = false
+export const AI_FEATURES_LIVE = true
+
+/**
+ * The AI Plan Score (PLAN-AI-SCORE-00) is available: an optional AI opinion on the Business Plan,
+ * run with the user's own Vercel AI Gateway key. The AI page, the Privacy Policy and the Cookie
+ * Policy describe it as available while this is `true`.
+ */
+export const AI_PLAN_SCORE_LIVE = true
+
+/** Which status line the AI page shows: nothing live, only the AI Plan Score, or all AI features. */
+export type AiStatus = "planned" | "score" | "live"
+
+export function aiStatus(features: boolean, score: boolean): AiStatus {
+  if (features) return "live"
+  return score ? "score" : "planned"
+}
 
 /** An AI provider the user can connect with their own API key (bring-your-own-key, D-42). */
 export interface AiProvider {
@@ -14,5 +29,12 @@ export interface AiProvider {
   url: string
 }
 
-/** Listed on the AI page once the features are live. Empty until then. */
-export const AI_PROVIDERS: readonly AiProvider[] = []
+/**
+ * Listed on the AI page while the features are live: the two services a user can hand their
+ * own key to. Both pass the request on to the provider of the chosen model; the AI Plan Score
+ * and the assistant use the Gateway, the assistant may use OpenRouter instead.
+ */
+export const AI_PROVIDERS: readonly AiProvider[] = [
+  { name: "Vercel AI Gateway", region: "Vercel Inc., USA; the request goes on to the provider of the chosen model", url: "https://vercel.com/legal/terms" },
+  { name: "OpenRouter", region: "OpenRouter Inc., USA; the request goes on to the provider of the chosen model", url: "https://openrouter.ai/terms" },
+]

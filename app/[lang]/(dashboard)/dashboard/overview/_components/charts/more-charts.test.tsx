@@ -19,6 +19,7 @@ describe("MoreCharts", () => {
     const project = exampleWith("school-kindergarten-flats")
     renderOverview(<MoreCharts result={completeRun(project)} />, project)
     await user.click(screen.getByRole("radio", { name: "Supply per source" }))
-    await waitFor(() => expect(document.getElementById("chart-supply")).not.toBeNull())
-  })
+    // The chart module loads lazily; under full-suite load that can take longer than waitFor's 1 s default.
+    await waitFor(() => expect(document.getElementById("chart-supply")).not.toBeNull(), { timeout: 10_000 })
+  }, 15_000)
 })

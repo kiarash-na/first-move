@@ -14,7 +14,7 @@ First Move saves every change automatically, and the save status in the top bar 
 
 ## Export and import
 
-- **Export** saves the open project as a `.firstmove.json` file, wherever you choose. The file holds your inputs. The results are not stored; they are calculated again when the file is imported.
+- **Export** saves the open project as a `.firstmove.json` file, wherever you choose. The file holds your inputs and, if you ran one, the last AI Plan Score. The calculated results are not stored; they are calculated again when the file is imported.
 - **Import** reads a `.firstmove.json` file and checks it in your browser; nothing is uploaded. If the project is already in this browser, you choose whether to keep both or to replace the stored version. A replaced version is kept, so you can restore it.
 - A file from an earlier version of First Move is updated to the current format when you import it.
 - **Report** shows the open project as a printable page. Your browser prints it or saves it as a PDF; nothing is uploaded.
@@ -36,16 +36,25 @@ In Chromium-based browsers, **Link to a file** in the project menu also saves th
 
 First Move sets one functional cookie, which remembers your language. Your theme and your other settings are kept in your browser's storage. The website has no tracking, no advertising and no third-party cookies, so there is nothing to accept. The [Cookie Policy](/cookies) lists every cookie and storage entry by name.
 
+## The AI Plan Score and your data
+
+The optional [AI Plan Score](/docs/ai-plan-score) runs only when you start it, with your own Vercel AI Gateway key. Your browser then sends the open project's Business Plan texts and, when available, the Quick Check result directly to the Vercel AI Gateway, under your own account. Nothing goes through our servers, and we receive neither the content nor the key.
+
+- **The key stays in memory.** It is kept only in the memory of the open tab, never in the browser's storage, the project or an export, and it is gone when you reload or close the tab.
+- **The score is saved in the project.** The last score, with its report and suggestions, is stored with the project in your browser and is part of an export, marked as AI-generated. A new run replaces it.
+
+The [Privacy Policy](/privacy#ai-plan-score) names the recipients and the [AI transparency](/ai#plan-score) page explains how the score is classified.
+
 <AiOnly>
 
 ## The AI features and your data
 
-First Move has two optional AI layers, separate from the app and from each other. The [AI transparency](/ai) page says whether they are available today.
+Besides the AI Plan Score, First Move has two optional AI layers, separate from the app and from each other. The [AI transparency](/ai) page says whether they are available today.
 
 - **The AI assistant in the dashboard** works with your own key for an AI provider you choose. When you use it, your browser sends your request directly to that provider: your question, the open project's inputs and results, and the documents you attach; nothing from your other projects. We receive neither the content nor the key. The key stays in your browser, for the session only or locked with a PIN on this device, and the chat history stays in your browser too.
 - **The email agent** at agent@mail.firstmove.energy processes what you send to it on the server, through the service providers named in the [Privacy Policy](/privacy#email), and only after you have confirmed once. The conversation is stored encrypted, for 30 days after your last message.
 
-The Quick Check and Business Plan results never come from AI, and the projects in your browser never go to our servers.
+The Quick Check results and the Pitch completeness never come from AI, and the projects in your browser never go to our servers.
 
 The [AI assistant](/docs/assistant) and [Email agent](/docs/email-agent) pages explain both in detail.
 

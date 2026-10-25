@@ -5,8 +5,8 @@
   },
   "title": "Cookie Policy",
   "intro": "This policy explains which cookie and which other browser storage First Move uses, what each one is for, and how you can delete or block them.",
-  "updated": "2026-10-24",
-  "version": "1.2",
+  "updated": "2026-10-25",
+  "version": "1.3",
   "sections": [
     {
       "id": "summary",
@@ -74,7 +74,7 @@
         "First Move contains no analytics, no advertising, no tracking pixels and no social media widgets.",
         "It loads no scripts, fonts, maps or embedded content from third parties. Our fonts are served from our own site.",
         "We do not use any of the entries to identify you, build a profile or follow you across websites.",
-        "The site sends the header `Referrer-Policy: no-referrer`, so your browser does not tell other sites which page of First Move you came from. Its Content Security Policy limits the app's connections to its own origin and, on dashboard pages, to the two AI providers of the assistant.",
+        "The site sends the header `Referrer-Policy: no-referrer`, so your browser does not tell other sites which page of First Move you came from. Its Content Security Policy limits the app's connections to its own origin and, on dashboard pages, to the two AI providers of the assistant and to the Vercel AI Gateway of the AI Plan Score.",
         "E-mails are a separate matter: the e-mails we send contain minimal tracking by our e-mail provider, described under [E-mail tracking](/privacy#email-tracking)."
       ]
     },
@@ -85,7 +85,7 @@
         "First Move sets no third-party cookies and gives no third party access to the storage listed here.",
         "Our hosting provider, {{hosting.name}}, delivers the pages and processes ordinary request data to do so. The [Privacy Policy](/privacy) describes what it processes and why.",
         "Links to other websites, such as GitHub in the footer, take you to services with their own cookie and privacy policies. Those apply once you follow the link.",
-        "When the optional AI features are available and you set them up, your browser sends the requests you trigger directly to the AI provider you chose, and that provider's terms and policies apply. The entries the assistant keeps in your browser, such as your encrypted API key, are listed in the [table](#what-we-use). See [AI transparency](/ai)."
+        "When the optional AI features are available and you set them up, your browser sends the requests you trigger directly to the AI provider you chose, and that provider's terms and policies apply. The entries the assistant keeps in your browser, such as your encrypted API key, are listed in the [table](#what-we-use). The optional AI Plan Score sets no cookie and no storage entry of its own: its key stays only in the memory of the open tab, and the score is saved inside the project. See [AI transparency](/ai)."
       ]
     },
     {

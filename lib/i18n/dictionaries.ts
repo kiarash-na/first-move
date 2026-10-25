@@ -26,6 +26,8 @@ export const AREAS = [
   "mail",
   "docs",
   "report",
+  "ai-score",
+  "presentation",
 ] as const
 
 export type Area = (typeof AREAS)[number]
@@ -53,6 +55,8 @@ const en = {
   mail: () => import("@/dictionaries/en/mail.json").then((m) => m.default),
   docs: () => import("@/dictionaries/en/docs.json").then((m) => m.default),
   report: () => import("@/dictionaries/en/report.json").then((m) => m.default),
+  "ai-score": () => import("@/dictionaries/en/ai-score.json").then((m) => m.default),
+  presentation: () => import("@/dictionaries/en/presentation.json").then((m) => m.default),
 }
 
 const de: Record<Area, Loader> = {
@@ -76,6 +80,8 @@ const de: Record<Area, Loader> = {
   mail: () => import("@/dictionaries/de/mail.json").then((m) => m.default),
   docs: () => import("@/dictionaries/de/docs.json").then((m) => m.default),
   report: () => import("@/dictionaries/de/report.json").then((m) => m.default),
+  "ai-score": () => import("@/dictionaries/de/ai-score.json").then((m) => m.default),
+  presentation: () => import("@/dictionaries/de/presentation.json").then((m) => m.default),
 }
 
 /** The typed shape of one area, taken from the EN file. */

@@ -7,6 +7,7 @@ import { ProjectStoreProvider } from "./store-provider"
 import { testDictionaries } from "./test-utils/dictionaries"
 
 vi.mock("next/navigation", () => ({ useRouter: () => ({ push: vi.fn() }), usePathname: () => "/en/dashboard" }))
+vi.mock("@/lib/legal/ai", async (original) => ({ ...(await original<typeof import("@/lib/legal/ai")>()), AI_FEATURES_LIVE: false }))
 
 const tabs: TestTab[] = []
 afterEach(() => {
@@ -33,5 +34,7 @@ describe("DashboardShell", () => {
     await waitFor(() => expect(tab.store.getState().phase).toBe("ready"))
     expect(start).toHaveBeenCalledTimes(1)
     expect(await screen.findByRole("status")).toHaveTextContent(shell.saveStatus.noProject)
+    // The AI assistant stays dark while `AI_FEATURES_LIVE` is off (`dashboard-shell.live.test.tsx` covers on).
+    expect(document.querySelector("[data-slot='agent-launcher']")).toBeNull()
   })
 })

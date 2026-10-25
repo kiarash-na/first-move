@@ -18,7 +18,15 @@
     },
     "business-plan": {
       "title": "Business Plan",
-      "description": "Die vier Schritte des Business Plan, die Beispielszenarien, die inoffizielle Checkliste zur Pitch-Reife und die Zahlen des Quick Check, die er zeigt."
+      "description": "Die vier Schritte des Business Plan, die Beispielszenarien, die inoffizielle Checkliste zur Pitch-Vollständigkeit und die Zahlen des Quick Check, die er zeigt."
+    },
+    "ai-plan-score": {
+      "title": "KI-Plan-Score",
+      "description": "Die separate KI-Bewertung des Businessplans: was sie liest, wie das Entscheidungsmodell in Runden bewertet, die Schwellen, die Dimensionen, der Bericht und die Quellen dahinter."
+    },
+    "reference-cases": {
+      "title": "Referenzfälle",
+      "description": "Sechs Referenzfälle für den Businessplan aus Wien, drei reale Anergienetze und drei fiktive Pläne rund um reale Gebäude, jeweils mit Quellen."
     },
     "assistant": {
       "title": "KI-Assistent",

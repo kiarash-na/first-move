@@ -153,7 +153,7 @@
       "overall": "Gesamt"
     },
     "readiness": {
-      "title": "Pitch-Reife",
+      "title": "Pitch-Vollständigkeit",
       "caveat": "Zählt, was ausgefüllt ist, nicht, wie gut es ist."
     },
     "risks": {

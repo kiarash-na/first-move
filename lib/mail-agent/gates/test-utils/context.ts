@@ -6,11 +6,12 @@ import type { GateContext } from "../types"
 
 const key = (fill: number) => Buffer.alloc(32, fill).toString("base64")
 
-/** A complete, switched-on configuration for tests (no real keys). */
+/** A complete, switched-on configuration for tests, the human@ relay on too (no real keys). */
 export function testConfig(overrides: Record<string, string> = {}): MailAgentConfig {
   const env = readMailAgentEnv({
     SITE_URL: "https://firstmove.energy",
     EMAIL_AGENT_ENABLED: "true",
+    EMAIL_HUMAN_RELAY_ENABLED: "true",
     EMAIL_AGENT_ADDRESS: "agent@mail.firstmove.energy",
     EMAIL_AGENT_ADMIN_ADDRESS: "owner@example.org",
     RESEND_API_KEY: "re_test_only",
@@ -33,6 +34,7 @@ export function testEmail(overrides: Partial<InboundEmail> = {}): InboundEmail &
   return {
     id: "email-1",
     from: "jane@example.org",
+    to: ["agent@mail.firstmove.energy"],
     replyTo: [],
     subject: "Quick Check for our village",
     text: "Hello, we have 120 buildings on 12 ha. Can you run a Quick Check?",

@@ -7,13 +7,15 @@ import { BUSINESS_PLAN_PAGES } from "@/lib/dashboard/routes"
 import { useDictionary } from "../../_components/i18n-provider"
 import { IllustrativeBadge } from "../../_components/illustrative-badge"
 import { PageHeader } from "../../_components/page-header"
+import { AiScoreBadge } from "./ai-score-badge"
 import { GuidingPrompts } from "./guiding-prompts"
 import { ReadinessMeter } from "./readiness-meter"
 import { StepNav } from "./step-nav"
 
 /**
- * The frame of every Business Plan step: header with the pitch readiness, the four steps with
- * progress, the guiding prompts, then the step's panels (orange emphasis, DESIGN-TOKENS §6).
+ * The frame of every Business Plan step: header with the AI Plan Score (bolder, first, D-74) and
+ * the pitch completeness, the four steps with progress, the guiding prompts, then the step's
+ * panels (orange emphasis, DESIGN-TOKENS §6).
  */
 export function StepFrame({ step, children }: { step: BusinessPlanStep; children: ReactNode }) {
   const shell = useDictionary("shell")
@@ -30,6 +32,7 @@ export function StepFrame({ step, children }: { step: BusinessPlanStep; children
         actions={
           <>
             <IllustrativeBadge />
+            <AiScoreBadge />
             <ReadinessMeter />
           </>
         }

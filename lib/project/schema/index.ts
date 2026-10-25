@@ -1,4 +1,5 @@
 /** The project schema, one file per section (PLAN-DASH-03 step 1). */
+export * from "./ai-score"
 export * from "./buildings"
 export * from "./business-plan"
 export * from "./meta"

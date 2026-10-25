@@ -19,7 +19,7 @@ describe("import: round trip", () => {
     expect(result).toEqual({
       ok: true,
       project,
-      fromVersion: 2,
+      fromVersion: 3,
       migrated: false,
       methodology: { file: project.meta.methodologyVersion, current: project.meta.methodologyVersion, changed: false },
     })
@@ -72,7 +72,7 @@ describe("import: rejected files", () => {
     ["a JSON array", "[]", "not-first-move"],
     ["another JSON file", JSON.stringify({ name: "x" }), "not-first-move"],
     ["a newer export format", JSON.stringify({ format: EXPORT_FORMAT, formatVersion: 2, project: {} }), "newer-version"],
-    ["a project from a newer app", envelope({ meta: { schemaVersion: 3 } }), "newer-version"],
+    ["a project from a newer app", envelope({ meta: { schemaVersion: 4 } }), "newer-version"],
     ["a project older than any supported version", envelope({ meta: { schemaVersion: 0 } }), "unsupported-version"],
     ["an envelope without a project version", envelope({ meta: {} }), "invalid"],
   ])("rejects %s", (_, text, code) => {
@@ -89,7 +89,7 @@ describe("import: rejected files", () => {
     const project = testProject(1)
     const bad = { ...project, buildings: { ...project.buildings, total: -3 }, site: { ...project.site, extra: 1 } }
     const result = parseImportText(envelope(bad))
-    expect(result).toMatchObject({ ok: false, code: "invalid", params: { version: 2 }, moreErrors: 0 })
+    expect(result).toMatchObject({ ok: false, code: "invalid", params: { version: 3 }, moreErrors: 0 })
     if (result.ok) return
     expect(result.errors).toEqual(
       expect.arrayContaining([
@@ -156,23 +156,23 @@ describe("import: rejected files", () => {
 })
 
 describe("import: migrations (old files, D-13)", () => {
-  // A pretend version 3 that renames the project name to `title`, so v2 files must be migrated.
-  const v3Schema = projectSchema.extend({
-    meta: projectSchema.shape.meta.omit({ name: true, schemaVersion: true }).extend({ title: z.string(), schemaVersion: z.literal(3) }),
+  // A pretend version 4 that renames the project name to `title`, so v3 files must be migrated.
+  const v4Schema = projectSchema.extend({
+    meta: projectSchema.shape.meta.omit({ name: true, schemaVersion: true }).extend({ title: z.string(), schemaVersion: z.literal(4) }),
   })
-  const v3: Migration = {
-    version: 3,
+  const v4: Migration = {
+    version: 4,
     description: "Rename meta.name to meta.title.",
     up: (project) => {
       const { name, ...meta } = project.meta as Record<string, unknown>
       return { ...project, meta: { ...meta, title: name } }
     },
   }
-  const migration = { migrations: [...MIGRATIONS, v3], schema: v3Schema as unknown as z.ZodType<Project>, target: 3 }
+  const migration = { migrations: [...MIGRATIONS, v4], schema: v4Schema as unknown as z.ZodType<Project>, target: 4 }
 
   it("runs every step from the file's version", () => {
     const result = parseImportText(envelope(testProject(1, { "meta.name": "Old" })), { migration })
-    expect(result).toMatchObject({ ok: true, fromVersion: 2, migrated: true })
+    expect(result).toMatchObject({ ok: true, fromVersion: 3, migrated: true })
     expect(result.ok && (result.project.meta as unknown as { title: string }).title).toBe("Old")
   })
 

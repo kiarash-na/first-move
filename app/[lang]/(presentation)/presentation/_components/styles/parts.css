@@ -1,0 +1,227 @@
+/* ------------------------------------------------------------------------- */
+/* 4. Shared parts: labels, chips, buttons, links, panels                    */
+/* ------------------------------------------------------------------------- */
+
+.deck-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.deck-label--hot {
+  color: var(--accent-hot);
+}
+
+.deck-label--cool {
+  color: var(--accent-cool);
+}
+
+.deck-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 28px;
+  margin: 0;
+  padding: 3px 10px;
+  border: 1px solid var(--control-border);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.deck-chip--hot {
+  border-color: oklch(0.75 0.22 45 / 0.55);
+  color: var(--accent-hot);
+}
+
+.deck-chip--concept {
+  justify-self: start;
+}
+
+.deck-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  min-height: 60px;
+  padding: 0 24px;
+  border: 0;
+  background: var(--button-primary-bg);
+  color: var(--button-primary-text);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-align: left;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    transform 180ms var(--deck-ease),
+    box-shadow 240ms ease,
+    opacity 180ms ease;
+}
+
+.deck-cta:hover {
+  box-shadow: 0 14px 40px oklch(0.88 0.19 213 / 0.25);
+  transform: translateY(-2px);
+}
+
+.deck-cta:active {
+  transform: scale(0.98);
+}
+
+.deck-cta[aria-disabled="true"] {
+  box-shadow: none;
+  cursor: progress;
+  opacity: 0.55;
+  transform: none;
+}
+
+.deck-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 0 15px;
+  border: 1px solid var(--control-border);
+  background: var(--control-bg);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  text-align: left;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    transform 180ms var(--deck-ease),
+    border-color 180ms ease,
+    opacity 180ms ease;
+}
+
+.deck-button svg {
+  flex: none;
+  color: var(--accent-cool);
+}
+
+.deck-button:hover {
+  border-color: var(--accent-cool);
+  transform: translateY(-2px);
+}
+
+.deck-button:active {
+  transform: scale(0.98);
+}
+
+.deck-button--hot svg {
+  color: var(--accent-hot);
+}
+
+.deck-button--hot:hover {
+  border-color: var(--accent-hot);
+}
+
+.deck-button[aria-disabled="true"] {
+  cursor: progress;
+  opacity: 0.55;
+  transform: none;
+}
+
+.deck-link-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid var(--line-subtle);
+  background: none;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-align: left;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 180ms ease;
+}
+
+.deck-link-button svg {
+  flex: none;
+  color: var(--accent-cool);
+  transition: transform 180ms ease-out;
+}
+
+.deck-link-button:hover {
+  border-color: var(--accent-cool);
+}
+
+.deck-link-button:hover svg {
+  transform: translateX(3px);
+}
+
+.deck-inline-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  color: var(--text-primary);
+  text-decoration: underline;
+  text-decoration-color: oklch(0.88 0.19 213 / 0.7);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  transition: color 180ms ease;
+}
+
+.deck-inline-link svg {
+  flex: none;
+  color: var(--accent-cool);
+}
+
+.deck-inline-link:hover {
+  color: var(--accent-cool);
+}
+
+.console {
+  position: relative;
+  display: grid;
+  gap: clamp(16px, 2.4vh, 24px);
+  padding: clamp(20px, 2.6vw, 34px);
+  border: 1px solid var(--control-border);
+  background: var(--panel-bg);
+  box-shadow: var(--panel-shadow);
+}
+
+.console--cool {
+  border-top: 2px solid var(--accent-cool);
+}
+
+.console__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 16px;
+  margin: 0;
+}
+
+.console__name {
+  color: var(--text-secondary);
+  font-size: 15px;
+}
+
+@keyframes deck-rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}

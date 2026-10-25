@@ -49,9 +49,12 @@ for (const lang of LANGS) {
       await expect(main).toContainText(lang === "de" ? "Deutschland" : "Germany")
     })
 
-    test("the AI page says the features are not available yet", async ({ page }) => {
+    test("the AI page says the AI Plan Score is available and the other AI features are not yet", async ({ page }) => {
       await page.goto(`/${lang}/ai`)
-      await expect(page.getByRole("note").first()).toContainText(text(lang, "ai", "status.planned"))
+      await expect(page.getByRole("note").first()).toContainText(text(lang, "ai", "status.score"))
+      await expect(page.locator("#plan-score")).toBeAttached()
+      await page.goto(`/${lang}/privacy`)
+      await expect(page.locator("#ai-plan-score")).toBeAttached()
     })
 
     test("the Licence page lists the packages, and the Cookie Policy lists every storage name", async ({ page }) => {

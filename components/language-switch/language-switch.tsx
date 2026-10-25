@@ -17,10 +17,12 @@ export interface LanguageSwitchProps {
   /** Visible short codes, e.g. "EN". */
   short: Record<Locale, string>
   className?: string
+  /** Kept on the link, e.g. `#3` so the presentation stays on its slide. */
+  hash?: string
 }
 
 /** Same page in the other language; remembers the choice in `NEXT_LOCALE` (path `/`, 1 year). */
-export function LanguageSwitch({ lang, label, names, short, className }: LanguageSwitchProps) {
+export function LanguageSwitch({ lang, label, names, short, className, hash = "" }: LanguageSwitchProps) {
   const pathname = usePathname()
 
   return (
@@ -30,7 +32,7 @@ export function LanguageSwitch({ lang, label, names, short, className }: Languag
         return (
           <Link
             key={locale}
-            href={switchLocalePath(pathname, locale)}
+            href={`${switchLocalePath(pathname, locale)}${hash}`}
             hrefLang={locale}
             lang={locale}
             aria-label={`${short[locale]}, ${names[locale]}`}

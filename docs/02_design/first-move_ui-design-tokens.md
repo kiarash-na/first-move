@@ -52,7 +52,7 @@ Canonical values are **OKLCH**. Alpha is written after `/`.
 | Role | Exact specification |
 |---|---|
 | Display/UI sans | `Archivo Variable`, sans-serif; use its width axis through `font-stretch` |
-| Editorial accent | `Archivo Variable`, italic, weight `300`; stretch `88%`; letter-spacing `-0.045em`; no uppercase (D-66) |
+| Editorial accent | Retired (D-LP-1, 2026-10-25): the landing sets its former italic words in the main title's style; no italic text anywhere. Was `Archivo Variable`, italic, weight `300`; stretch `88%`; letter-spacing `-0.045em`; no uppercase (D-66) |
 | Technical labels | `IBM Plex Mono`, monospace; weight `400`; `12px`; uppercase; letter-spacing `0.04–0.075em`; line-height `1.5` |
 | Brand name | Archivo `20px`; weight `750–760`; stretch `82%`; letter-spacing `-0.045em`; line-height `1` |
 | Page/panel title | Archivo `25–35px`; weight `510–590`; stretch `82–88%`; letter-spacing `-0.035–-0.045em`; line-height `1.1–1.15` |

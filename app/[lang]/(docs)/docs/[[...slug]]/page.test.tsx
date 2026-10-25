@@ -1,11 +1,14 @@
 // @vitest-environment node
 import type { ReactElement } from "react"
-import { describe, expect, it } from "vitest"
+import { describe, expect, it, vi } from "vitest"
 import en from "@/dictionaries/en/docs.json"
 import de from "@/dictionaries/de/docs.json"
 import { DocsArticle } from "./_components/docs-article"
 import { DocsNav } from "./_components/docs-nav"
 import DocsPage, { ensureStatic, generateMetadata, generateStaticParams, instant } from "./page"
+
+/** The off path; `e2e/docs.spec.ts` covers the live one, and `lib/docs/pages.test.ts` both. */
+vi.mock("@/lib/legal/ai", async (original) => ({ ...(await original<typeof import("@/lib/legal/ai")>()), AI_FEATURES_LIVE: false }))
 
 /** What `notFound()` throws; any other error would fail these tests. */
 const NOT_FOUND = { digest: "NEXT_HTTP_ERROR_FALLBACK;404" }
@@ -22,6 +25,8 @@ describe("docs page (PLAN-AGENT-04)", () => {
       { slug: ["what-is-5gdhc"] },
       { slug: ["quick-check"] },
       { slug: ["business-plan"] },
+      { slug: ["ai-plan-score"] },
+      { slug: ["reference-cases"] },
       { slug: ["data-and-privacy"] },
     ])
   })

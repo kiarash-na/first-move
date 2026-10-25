@@ -14,8 +14,18 @@ import {
 } from "./pages"
 
 describe("docs pages (PLAN-AGENT-04)", () => {
-  it("lists the seven pages in reading order, each with an English and a German MDX file", () => {
-    expect(DOC_SLUGS).toEqual(["index", "what-is-5gdhc", "quick-check", "business-plan", "assistant", "email-agent", "data-and-privacy"])
+  it("lists the nine pages in reading order, each with an English and a German MDX file", () => {
+    expect(DOC_SLUGS).toEqual([
+      "index",
+      "what-is-5gdhc",
+      "quick-check",
+      "business-plan",
+      "ai-plan-score",
+      "reference-cases",
+      "assistant",
+      "email-agent",
+      "data-and-privacy",
+    ])
     for (const lang of ["en", "de"]) {
       for (const slug of DOC_SLUGS) {
         expect(existsSync(path.resolve(__dirname, `../../content/docs/${lang}/${slug}.mdx`)), `${lang}/${slug}`).toBe(true)
@@ -28,7 +38,7 @@ describe("docs pages (PLAN-AGENT-04)", () => {
   })
 
   it("shows the AI pages only while the AI features are live", () => {
-    expect(visibleDocs(false)).toEqual(["index", "what-is-5gdhc", "quick-check", "business-plan", "data-and-privacy"])
+    expect(visibleDocs(false)).toEqual(["index", "what-is-5gdhc", "quick-check", "business-plan", "ai-plan-score", "reference-cases", "data-and-privacy"])
     expect(visibleDocs(true)).toEqual(DOC_SLUGS)
     expect(visibleDocs()).toEqual(visibleDocs(AI_FEATURES_LIVE))
   })
@@ -60,8 +70,9 @@ describe("docs pages (PLAN-AGENT-04)", () => {
 
   it("finds the previous and next visible page", () => {
     expect(docNeighbours("index", false)).toEqual({ previous: null, next: "what-is-5gdhc" })
-    expect(docNeighbours("business-plan", false)).toEqual({ previous: "quick-check", next: "data-and-privacy" })
-    expect(docNeighbours("business-plan", true)).toEqual({ previous: "quick-check", next: "assistant" })
+    expect(docNeighbours("business-plan", false)).toEqual({ previous: "quick-check", next: "ai-plan-score" })
+    expect(docNeighbours("reference-cases", false)).toEqual({ previous: "ai-plan-score", next: "data-and-privacy" })
+    expect(docNeighbours("reference-cases", true)).toEqual({ previous: "ai-plan-score", next: "assistant" })
     expect(docNeighbours("data-and-privacy", true)).toEqual({ previous: "email-agent", next: null })
     expect(docNeighbours("assistant", false)).toEqual({ previous: null, next: null })
   })

@@ -42,8 +42,20 @@ test("a click on a card opens the partner dialog with the contact link, in a new
   const strip = region(page, "en")
   await strip.scrollIntoViewIfNeeded()
   await strip.getByRole("button", { name: p("en", "pause") }).click()
-  const box = (await strip.locator(".partners__viewport").boundingBox())!
-  await page.mouse.click(box.x + box.width / 2, box.y + box.height / 2)
+  // Click the card nearest the row's middle, not a point measured once: Pause can be retried while
+  // the strip still reveals, which re-aligns the page, and the middle can fall in the 16 px gap
+  // between two cards.
+  const all = strip.locator(".partner-card")
+  const nearest = await all.evaluateAll((list) => {
+    const row = list[0].closest(".partners__viewport")!.getBoundingClientRect()
+    const middle = row.left + row.width / 2
+    const distance = (card: Element) => {
+      const box = card.getBoundingClientRect()
+      return Math.abs(box.left + box.width / 2 - middle)
+    }
+    return list.reduce((best, card, index) => (distance(card) < distance(list[best]) ? index : best), 0)
+  })
+  await all.nth(nearest).click()
 
   const dialog = page.getByRole("dialog", { name: p("en", "dialog.title") })
   await expect(dialog).toBeVisible()
@@ -92,5 +104,9 @@ test("axe finds nothing on the landing page, the strip included", async ({ page 
   await page.goto("/en")
   await region(page, "en").scrollIntoViewIfNeeded()
   await region(page, "en").getByRole("button", { name: p("en", "pause") }).click()
+  // A revealed block fades in over 700 ms; axe reads a block mid-fade as low-contrast text, so wait until every one has settled.
+  await expect
+    .poll(() => page.evaluate(() => [...document.querySelectorAll<HTMLElement>("[data-reveal].is-visible")].every((element) => getComputedStyle(element).opacity === "1")))
+    .toBe(true)
   expect(await axeViolations(page)).toEqual([])
 })

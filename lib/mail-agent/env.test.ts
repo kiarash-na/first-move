@@ -65,6 +65,13 @@ describe("readMailAgentEnv", () => {
     expect(JSON.stringify(env)).not.toContain(Object.values(change)[0])
   })
 
+  it("keeps the human@ relay off unless its own switch is on", () => {
+    const off = readMailAgentEnv(COMPLETE)
+    expect(off.status === "ready" && off.config.humanRelay).toBe(false)
+    const on = readMailAgentEnv({ ...COMPLETE, EMAIL_AGENT_ENABLED: "false", EMAIL_HUMAN_RELAY_ENABLED: "true" })
+    expect(on).toMatchObject({ status: "disabled", config: { humanRelay: true } })
+  })
+
   it("is disabled unless switched on, with the config so signatures can still be checked", () => {
     const env = readMailAgentEnv({ ...COMPLETE, EMAIL_AGENT_ENABLED: "false" })
     expect(env.status).toBe("disabled")

@@ -28,7 +28,7 @@ describe("DocsPager", () => {
   })
 
   it("leads to the AI pages once they are live", () => {
-    render(<DocsPager lang="en" slug="business-plan" copy={en} live={true} />)
+    render(<DocsPager lang="en" slug="reference-cases" copy={en} live={true} />)
     expect(screen.getByRole("link", { name: `${en.pager.next} ${en.pages.assistant.title}` })).toHaveAttribute("href", "/en/docs/assistant")
   })
 })

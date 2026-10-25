@@ -20,8 +20,8 @@ const SECTIONS = ["site", "buildings", "sources", "quickCheck", "businessPlan"] 
 
 /**
  * An empty, valid project for the chosen modules (D-01). Every section exists, whichever
- * modules are on: inputs are null, text is empty, the share grid starts empty (D-31), and no
- * value is marked as AI-proposed.
+ * modules are on: inputs are null, text is empty, the share grid starts empty (D-31), no
+ * value is marked as AI-proposed and there is no AI Plan Score.
  */
 export function createProject({ modules, name = "", exampleId = null, id, now = new Date() }: CreateProjectOptions): Project {
   const selection = { quickCheck: modules.quickCheck ?? false, businessPlan: modules.businessPlan ?? false }
@@ -43,5 +43,6 @@ export function createProject({ modules, name = "", exampleId = null, id, now = 
     },
     ...sections,
     provenance: { ai: {} },
+    aiScore: null,
   })
 }

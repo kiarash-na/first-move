@@ -1,5 +1,5 @@
 import { screen, within } from "@testing-library/react"
-import { afterEach, describe, expect, it } from "vitest"
+import { afterEach, describe, expect, it, vi } from "vitest"
 import { UNKNOWN_HEALTH } from "@/lib/storage/persist"
 import { testTab, type TestTab } from "@/lib/store/test-utils/harness"
 import { createProject } from "@/lib/project"
@@ -11,6 +11,7 @@ import { SaveStatus } from "./save-status"
 const tabs: TestTab[] = []
 afterEach(() => {
   while (tabs.length) tabs.pop()!.store.stop()
+  vi.useRealTimers()
 })
 
 const project = createProject({ modules: { quickCheck: true }, id: "00000000-0000-4000-8000-000000000001", now: new Date() })
@@ -30,6 +31,8 @@ describe("SaveStatus (D-08)", () => {
   })
 
   it("shows the save time of the open project", async () => {
+    // The harness clock saves on 2026-10-24; "today" must be that day, or the date is shown too.
+    vi.useFakeTimers({ toFake: ["Date"], now: Date.parse("2026-10-24T09:00:00.000Z") })
     const tab = testTab()
     tabs.push(tab)
     await tab.store.start()

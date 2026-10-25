@@ -1,0 +1,169 @@
+# AI Plan Score
+
+The AI Plan Score is a separate AI scoring of your Business Plan. An AI decision model reads what you wrote, step by step, and gives an opinion on how solid the written plan is: how specific, quantified and backed by evidence it is, and whether it settles what a solid 5GDHC business plan has to settle. It is optional and runs only when you start it, on the AI Plan Score page of the [dashboard](/dashboard/ai-score).
+
+## What it is and what it is not
+
+- **An AI opinion on the written plan.** It rates the text of your Business Plan, not the project itself, and it is marked as AI-generated wherever it appears.
+- **Not a calculation.** The [Quick Check](/docs/quick-check) stays the only calculation in First Move, with its published equations and default values. The AI Plan Score reads the Quick Check result as context and never changes any of its numbers.
+- **Not the Pitch completeness.** The [Pitch completeness](/docs/business-plan#pitch-completeness-unofficial) counts which fields are filled and does not judge what they say. The AI Plan Score judges the content and leaves the count alone.
+- **Not a verdict.** It is no feasibility study, no jury score and no prediction of funding. Research on venture capital found that business plan documents are only weakly associated with funding decisions ([Kirsch, Goldfarb and Gera, 2009](https://doi.org/10.1002/smj.751)). Use the score to find the gaps in your plan.
+
+## What you need
+
+- **A Vercel AI Gateway key** from your own Vercel account. You bring your own key: the requests run under your account and are billed to it under Vercel's terms.
+- **Memory only.** The key is kept only in the memory of the open tab. It is never written to the browser's storage, to the project or to an export, and it is gone when you reload or close the tab. You can also remove it at any time.
+- **A Business Plan with content.** Empty fields are scored 0 without any AI, so the more you have written, the more the score can say.
+- **A text model of your choice** for the short report and the suggestions: any language model the Gateway offers, picked from a short list or entered by its name.
+
+## What is sent and to whom
+
+Nothing from your project is sent until you start a run; checking your key sends only the key to Vercel. A run then sends the following from your browser directly to the Vercel AI Gateway, under your own account:
+
+- the texts of the open project's Business Plan, including the shared site description, the stakeholders and the partners: only filled fields, with very long texts shortened;
+- the use case you picked, if any;
+- when the Quick Check is on and complete, its result: the verdict, the number of buildings, the heat density, the heating and cooling demand, the coverage and the economic ratio.
+
+The Gateway passes the decision questions to TypeSafe AI, which runs the decision model Jev, and the report and the suggestions to the provider of the text model you picked. For the decision model and the listed text models, the app asks the Gateway to use only providers with zero data retention and no training on prompts; for a model you enter by name, it asks for no training on prompts. Vercel offers zero data retention only on its Pro and Enterprise plans, and no training on prompts on every plan. Requests sent with a provider key you added to Vercel yourself (BYOK) fall under your own agreement with that provider. Nothing passes through First Move's servers, and we receive neither your key nor your plan.
+
+Do not put personal data of other people into the plan, such as the names of residents, unless you are allowed to send it. The [Privacy Policy](/privacy#ai-plan-score) and the [AI transparency](/ai#plan-score) page are the legal reference.
+
+## How it scores
+
+1. **Turn 0, without AI.** First Move checks which parts of the plan are filled. Empty parts score 0 with certainty and are never sent. When the Quick Check is on and complete, its result enters as context.
+2. **One decision call per Business Plan step**, from the first field to the last: opportunity, business logic, reality check and implementation. In each call the decision model reads the whole plan, so it can check across steps, together with the decisions taken in the earlier steps.
+3. **Three kinds of questions in each call.** A score question for each filled part of that step, on the five evidence levels; gates, which ask yes or no, or pick an option, about the whole plan; and branches, choice questions whose answer selects a follow-up gate for the next step.
+4. **Aggregation, without AI.** The answers become the score, as described under [From answers to the score](#from-answers-to-the-score).
+
+The plan has 27 parts in the four steps: 8, 8, 5 and 6. A part is one field, or several fields merged so that the same content is not scored twice, for example the customer segments of the opportunity and of the canvas. The questions are fixed and written in English; your plan may be in English or German. The decision model is pinned to one release, and the method has its own version, so a new model release cannot change a score silently.
+
+If the model declines a question, the call is repeated once without it. A declined part is left out of the score, and a declined gate has no effect.
+
+## The five evidence levels
+
+Every part is rated on the same scale. The levels describe quality, never length: a longer text does not score higher by itself ([Brookhart, 2018](https://doi.org/10.3389/feduc.2018.00022); [Zheng et al., 2023](https://arxiv.org/abs/2306.05685)).
+
+- **Missing (0)**: empty, a placeholder, or not about this part or this site.
+- **Vague (1)**: a general claim that could fit any project, such as "customers save money", with no named actor, place or number.
+- **Specific (2)**: names the actors, buildings, sources or mechanisms of this site, but gives no numbers or no basis for them.
+- **Quantified (3)**: the key quantities with units and a stated basis or assumption. A figure quoted from the Quick Check counts as a basis here, not as evidence.
+- **Evidenced (4)**: the numbers are backed by named data or commitments, such as metered consumption, a letter of intent, an early check with an authority, a quote or a survey, or they are tested, for example with a break-even value, and the text says what happens if a number is wrong. Claiming that something is validated is not enough.
+
+Each part also has its own description of a strong answer. For the connection rate, for example: a rate with its basis and timeline, the lowest rate at which the plan still works, and what happens below it.
+
+## Gates and caps
+
+Gates are questions about the whole plan, and they never add points. A gate passes when the model gives it a probability of 80 % or more, and fails when the probability is 20 % or less; in between it stays unclear and is only flagged. For a gate with options, a partial answer counts half. A failed must-have gate caps its dimension at level 2, a failed should-have gate at level 3, and some gates only flag. A few gates are decided by a rule before any AI: no risk marked as the deal-breaker, an empty connection rate or an empty decision gate fails its gate, and the Vienna heating plan is asked about only when the site is in Vienna.
+
+- **Anchor customer** (Participation and commitment, must-have): does the plan name a specific anchor customer and its role?
+- **Extra value** (Customer value and demand, flag only): does the plan use cooling or another extra value, such as stable prices, as a reason to connect, where it applies?
+- **Network length as a cost driver** (Technical and site fit, must-have when the Quick Check heat density is below 0.5 MWh/m, otherwise flag only): does the plan address the trench length or the heat line density, for example by connecting close buildings first?
+- **Zone in the Vienna Heating Plan 2040** (Technical and site fit, flag only, in Vienna only): does the plan state the site's zone and why a 5GDHC network fits it?
+- **System boundary** (Ownership, operation and governance, must-have): does the plan say who owns the heat source, the network and the heat pumps in the buildings?
+- **Operator and duties** (Ownership, operation and governance, should-have): does the plan name an operator and its duties, such as maintenance, billing and faults?
+- **Cost key** (Ownership, operation and governance, should-have): does the plan state a rule for splitting the costs of the source, the pipes and the connections?
+- **Price against the alternative** (Customer value and demand, must-have): is the customer's price compared with the realistic alternative, such as gas or an individual heat pump?
+- **Minimum connection rate** (Participation and commitment, must-have): does the plan say what happens to the costs or the viability if fewer buildings connect?
+- **Revenues cover the lifetime costs** (Costs, revenues and financing, must-have): are the yearly revenues compared with the yearly cost of the investment and the running costs over 20 to 30 years?
+- **Subsidy fallback** (Costs, revenues and financing, must-have): if the plan counts on a subsidy, does it say what happens with less or none?
+- **Deal-breaker with a validation** (Risks, assumptions and evidence, must-have): is one risk marked as the potential deal-breaker, could it really stop the project, and how will it be validated?
+- **Start small** (Implementation path and scalability, should-have): is a first phase defined, such as an anchor cluster, with steps to grow?
+- **Decision gate** (Implementation path and scalability, must-have): do the next steps contain a go or no-go decision with checkable criteria?
+
+## Branches and follow-up gates
+
+Branches steer the questions. The model picks the option the plan describes, and the next step asks the follow-up gate of that option only, so a plan built around a school gets other questions than a plan built around a hotel. Most follow-up gates only flag.
+
+- **Anchor type** (asked in step 1, follow-up in step 2): a public building, a commercial customer, a large residential owner, a waste heat or cooling user, or no anchor. The follow-ups ask about the public decision path, the contract term of a commercial anchor, how owners and tenants decide, or how secure the waste heat or the cooling demand is.
+- **Main heat source** (asked in step 1, follow-up in step 2): groundwater, a borehole field, surface water, wastewater, waste heat, ambient air, or unclear. For groundwater, a borehole field or surface water, the follow-up asks for the permit route or an early check with the water authority. It is a must-have gate for technical and site fit, because the permit is a typical deal-breaker ([Wasserrechtsgesetz 1959, § 10](https://ogd.ris.bka.gv.at/Dokumente/Bundesnormen/NOR12141151/NOR12141151.html)). The other sources ask about the sewer operator, the supply agreement for the waste heat, or air in cold weather.
+- **Ownership model** (asked in step 2, follow-up in step 3): a utility, the municipality, the users together, a contractor, a developer, or unclear. The follow-ups ask about the utility's commitment, the municipal decision path, the rules of the community, the contract term and prices, or the operation after handover.
+
+## The seven dimensions
+
+The dimensions describe what makes a 5GDHC business plan solid. They start from the aspects for successful implementation named in the study of the research project Anergie Leicht Gemacht: technology, costs, implementation models (ownership and operation, organisation and governance, financing) and participation. The reality check and the path to implementation come from the challenge brief. They were cross-checked against desirability, feasibility and viability ([Brown, 2008](https://hbr.org/2008/06/design-thinking)), the Business Model Canvas ([Osterwalder and Pigneur, 2010](https://www.wiley.com/en-us/Business+Model+Generation%3A+A+Handbook+for+Visionaries%2C+Game+Changers%2C+and+Challengers-p-9780470876411)), the Commercial Readiness Index ([ARENA, 2014](https://arena.gov.au/assets/2014/02/Commercial-Readiness-Index.pdf)) and the five-case model of the UK government ([HM Treasury, 2026](https://assets.publishing.service.gov.uk/media/6a4390675b6406df58c14006/Guidance_on_Developing_Business_Cases.pdf)).
+
+- **Customer value and demand**: 15 %. Who connects, what they need and why the network beats their alternative.
+- **Technical and site fit**: 10 %. The site, its heat sources and resources, and whether the network fits the place.
+- **Costs, revenues and financing**: 20 %. Costs, tariffs, financing and subsidies, and whether revenues cover the costs over the lifetime.
+- **Ownership, operation and governance**: 20 %. Who owns, operates and pays for what, and how costs, risks and benefits are split.
+- **Participation and commitment**: 15 %. Owners, stakeholders, the anchor customer and the connection rate the plan relies on.
+- **Risks, assumptions and evidence**: 10 %. Critical assumptions and risks, the deal-breaker and how each is validated.
+- **Implementation path and scalability**: 10 %. The first phase, the next steps, the decision gate and how the model grows.
+
+No source prescribes numeric weights, so these are reasoned defaults. Costs and governance weigh most: the research project calls the implementation models the focus of its work and finds most challenges organisational rather than technical, and costs come first, with the investment upfront and the revenues over 25 to 30 years. Technical fit weighs less, because the Quick Check already screens the site. Evidence weighs less as a dimension, because every part already rewards evidence on its own scale.
+
+## From answers to the score
+
+- **A part's level** is the probability-weighted mean of the five levels, the expected level, as in G-Eval ([Liu et al., 2023](https://doi.org/10.18653/v1/2023.emnlp-main.153)). Its spread is the standard deviation of the model's probabilities. An empty part counts 0 with no spread.
+- **A dimension** is the mean of its parts, cut by the lowest cap of its failed gates, times 25, so it runs from 0 to 100.
+- **The AI Plan Score** is the weighted sum of the seven dimensions, from 0 to 100. Its band is one standard deviation, computed from the spreads with the parts taken as independent, which probably makes it too narrow.
+- **The display** rounds the score to 5 points and the band to whole points, at least 1, to avoid false precision.
+
+The score as shown then gets one of three labels:
+
+- **Early**: below 40.
+- **Promising**: from 40 to below 70, and also 70 or more when a must-have gate failed.
+- **Solid**: 70 or more, with no failed must-have gate.
+
+The label follows the rounded score, so the number you see and its label never contradict each other: a plan at 68 shows 70 and is Solid, unless a must-have gate failed.
+
+## Report and suggestions
+
+- **The short report** is written by the text model you picked, right after the score: a headline, a summary, up to three strengths and up to three gaps, each pointing to the parts it rests on, and up to three next actions. The model sees the final numbers and short excerpts of the plan.
+- **Suggestions run on demand**, only when you ask: for each part below level 2 and each failed or unclear gate, one to three general and feasible improvements. They are adapted from the description of a strong answer and from sourced hints, such as naming one anchor customer and aiming for a letter of intent.
+- **The text model never changes a number.** The scores are final before it starts. It is told not to recompute or contradict them and not to invent figures, programmes, laws, organisations or sources. Its output is checked and cut to fixed lengths, and pointers to parts that do not exist are dropped.
+- **Both are marked as AI-generated**, like the score.
+
+## Saved in your project
+
+- The last score, with its report and suggestions, is saved in the project in your browser. It is exported and imported with the project file, like your inputs. Your key is never saved.
+- Each part keeps a short fingerprint of the text it scored. Once a scored field changes, the score is marked as outdated and says how many parts changed; run it again for a current score. A new run replaces the saved one.
+- The score appears on the AI Plan Score page, in the header of every Business Plan step, at the top of the Pitch completeness, on the overview and in the report, always marked as AI-generated.
+
+## Limits and caveats
+
+- **AI can be wrong.** A model can misread a text or rate it too high or too low. Read the reasons on the AI Plan Score page and check them against your plan.
+- **The probabilities are not a forecast.** They say how sure the model is about which level fits the text, not how likely the project is to succeed, and they are not calibrated.
+- **Known biases.** Models used as judges can prefer longer texts and texts written by AI ([Zheng et al., 2023](https://arxiv.org/abs/2306.05685); [Liu et al., 2023](https://doi.org/10.18653/v1/2023.emnlp-main.153)). The levels are written against this, but it cannot be ruled out.
+- **Structural analogues only.** Some sources are UK guidance, such as the HM Treasury business case guidance and the Green Heat Network Fund. They shaped the structure of the gates and are not Austrian or German requirements.
+- **No advice.** The score is not legal, engineering or financial advice, and it never states subsidy rates, eligibility or the outcome of a permit.
+- **Long plans.** Very long texts are shortened before they are sent, so details at the end of a very long text may not be read.
+
+## Sources
+
+The method follows the challenge brief Business Models for 5GDHC and the talk of the research project Anergie Leicht Gemacht at the hackathon, which have no public link, and the published sources below. Every link was opened and checked on 24 October 2026.
+
+- Buffa, S., Cozzini, M., D'Antoni, M., Baratieri, M., Fedrizzi, R. (2019). [5th generation district heating and cooling systems: A review of existing cases in Europe](https://doi.org/10.1016/j.rser.2018.12.059). Renewable and Sustainable Energy Reviews 104, 504–522.
+- Gjoka, K., Rismanchi, B., Crawford, R.H. (2023). [Fifth-generation district heating and cooling systems: A review of recent advancements and implementation barriers](https://doi.org/10.1016/j.rser.2022.112997). Renewable and Sustainable Energy Reviews 171, 112997.
+- Lygnerud, K., Wheatcroft, E., Wynn, H. (2019). [Contracts, business models and barriers to investing in low temperature district heating projects](https://doi.org/10.3390/app9153142). Applied Sciences 9(15), 3142.
+- Lygnerud, K., Popovic, T., Schultze, S., Støchkel, H.K. (2023). [District heating in the future – thoughts on the business model](https://doi.org/10.1016/j.energy.2023.127714). Energy 278, 127714.
+- Lygnerud, K., Werner, S. (2018). [Risk assessment of industrial excess heat recovery in district heating systems](https://doi.org/10.1016/j.energy.2018.03.047). Energy 151, 430–441.
+- Boesten, S., Ivens, W., Dekker, S.C., Eijdems, H. (2019). [5th generation district heating and cooling systems as a solution for renewable urban thermal energy supply](https://doi.org/10.5194/adgeo-49-129-2019). Advances in Geosciences 49, 129–136.
+- Persson, U., Werner, S. (2011). [Heat distribution and the future competitiveness of district heating](https://doi.org/10.1016/j.apenergy.2010.09.020). Applied Energy 88(3), 568–576.
+- Nussbaumer, T., Thalmann, S. (2016). [Influence of system design on heat distribution costs in district heating](https://doi.org/10.1016/j.energy.2016.02.062). Energy 101, 496–505.
+- Reidhav, C., Werner, S. (2008). [Profitability of sparse district heating](https://doi.org/10.1016/j.apenergy.2008.01.006). Applied Energy 85(9), 867–877.
+- Wirtz, M., Kivilip, L., Remmen, P., Müller, D. (2020). [Quantifying demand balancing in bidirectional low temperature networks](https://doi.org/10.1016/j.enbuild.2020.110245). Energy and Buildings 224, 110245.
+- Hawkey, D., Webb, J., Winskel, M. (2013). [Organisation and governance of urban energy systems: district heating and cooling in the UK](https://doi.org/10.1016/j.jclepro.2012.11.018). Journal of Cleaner Production 50, 22–31.
+- Bush, R.E., Bale, C.S.E., Taylor, P.G. (2016). [Realising local government visions for developing district heating: Experiences from a learning country](https://doi.org/10.1016/j.enpol.2016.08.013). Energy Policy 98, 84–96.
+- Wüstenhagen, R., Wolsink, M., Bürer, M.J. (2007). [Social acceptance of renewable energy innovation: An introduction to the concept](https://doi.org/10.1016/j.enpol.2006.12.001). Energy Policy 35(5), 2683–2691.
+- Steffen, B. (2018). [The importance of project finance for renewable energy projects](https://doi.org/10.1016/j.eneco.2017.11.006). Energy Economics 69, 280–294.
+- Kirsch, D., Goldfarb, B., Gera, A. (2009). [Form or substance: the role of business plans in venture capital decision making](https://doi.org/10.1002/smj.751). Strategic Management Journal 30(5), 487–515.
+- Brinckmann, J., Grichnik, D., Kapsa, D. (2010). [Should entrepreneurs plan or just storm the castle? A meta-analysis on contextual factors impacting the business planning–performance relationship in small firms](https://doi.org/10.1016/j.jbusvent.2008.10.007). Journal of Business Venturing 25(1), 24–40.
+- Brookhart, S.M. (2018). [Appropriate criteria: Key to effective rubrics](https://doi.org/10.3389/feduc.2018.00022). Frontiers in Education 3, 22.
+- Liu, Y., Iter, D., Xu, Y., Wang, S., Xu, R., Zhu, C. (2023). [G-Eval: NLG evaluation using GPT-4 with better human alignment](https://doi.org/10.18653/v1/2023.emnlp-main.153). Proceedings of EMNLP 2023, 2511–2522.
+- Zheng, L., Chiang, W.-L., Sheng, Y., et al. (2023). [Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena](https://arxiv.org/abs/2306.05685). NeurIPS 2023 Datasets and Benchmarks Track (arXiv:2306.05685).
+- Osterwalder, A., Pigneur, Y. (2010). [Business Model Generation: A Handbook for Visionaries, Game Changers, and Challengers](https://www.wiley.com/en-us/Business+Model+Generation%3A+A+Handbook+for+Visionaries%2C+Game+Changers%2C+and+Challengers-p-9780470876411). Wiley, ISBN 978-0-470-87641-1.
+- Bland, D.J. (2020). [How assumptions mapping can focus your teams on running experiments that matter](https://strategyzer.com/library/how-assumptions-mapping-can-focus-your-teams-on-running-experiments-that-matter). Strategyzer.
+- Brown, T. (2008). [Design thinking](https://hbr.org/2008/06/design-thinking). Harvard Business Review 86(6).
+- Australian Renewable Energy Agency (2014). [Commercial Readiness Index for Renewable Energy Sectors](https://arena.gov.au/assets/2014/02/Commercial-Readiness-Index.pdf). ARENA, Canberra.
+- European Commission, DG Regional and Urban Policy (2014). [Guide to Cost-Benefit Analysis of Investment Projects: Economic appraisal tool for Cohesion Policy 2014–2020](https://jaspers.eib.org/LibraryNP/EC%20Reports/DG%20REGIO%20CBA%20Guide%20for%202014-2020.pdf). European Commission.
+- HM Treasury (2026). [Guidance on developing business cases for projects and programmes](https://assets.publishing.service.gov.uk/media/6a4390675b6406df58c14006/Guidance_on_Developing_Business_Cases.pdf). HM Treasury, London.
+- Department for Energy Security and Net Zero (2026). [Green Heat Network Fund: Guidance for Applicants, version 12.0](https://assets.publishing.service.gov.uk/media/698c8f63547c54ae7c023662/GHNF-guidance-for-applicants-R11.pdf). UK Government.
+- Ivens, W., Boesten, S. (2020). [D2Grids WP LT Deliverable DEL.1.1: Roll-out strategy, preliminary version](https://vb.nweurope.eu/media/11178/wplt-d11-roll-out-strategy-preliminary-version-final.pdf). Interreg North-West Europe.
+- Stadt Wien, MA 20 Energieplanung (2024). [Wiener Wärmeplan 2040 (Vienna Heating Plan 2040)](https://www.wien.gv.at/umwelt/waermeplan-2040). City of Vienna.
+- Stadt Wien, MA 20 Energieplanung (2025). [Beschreibung der Methodik und der Vorgehensweise zur Entwicklung des Konzeptes „Raus aus Gas – Wiener Wärme und Kälte 2040“ und „Wiener Wärmeplan 2040“](https://www.wien.gv.at/pdf/ma20/methoden-beschreibung-waermeplan.pdf). City of Vienna.
+- Republik Österreich (1959). [Wasserrechtsgesetz 1959 (WRG 1959), § 10](https://ogd.ris.bka.gv.at/Dokumente/Bundesnormen/NOR12141151/NOR12141151.html). Rechtsinformationssystem des Bundes (RIS).
+- Land Oberösterreich, Bezirkshauptmannschaft Steyr-Land (2026). [Grundwasserwärmepumpen](https://www.land-oberoesterreich.gv.at/29454.htm). Land Oberösterreich.
+- Republik Österreich (2024). [Erneuerbare-Wärme-Gesetz (EWG), BGBl. I Nr. 8/2024](https://ogd.ris.bka.gv.at/Dokumente/Bundesnormen/NOR40260603/NOR40260603.html). Rechtsinformationssystem des Bundes (RIS).
+- Kommunalkredit Public Consulting (Umweltförderung im Inland) (2024). [Gewerbliche Wärme- und Kälteversorgung](https://www.umweltfoerderung.at/betriebe/wkv/unterkategorie-waermekaelte). umweltfoerderung.at.
+- Bundesministerien, Kommunalkredit Public Consulting (2026). [Sanierungsoffensive](https://www.sanierungsoffensive.gv.at/). sanierungsoffensive.gv.at.

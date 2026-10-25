@@ -4,13 +4,16 @@ import { AI_FEATURES_LIVE } from "@/lib/legal/ai"
 /**
  * The public docs pages (PLAN-AGENT-04, D-22, D-57), in reading order. The slug is the URL
  * segment (`/en/docs/quick-check`) and the file name in `content/docs/<lang>/`; the index lives
- * at `/docs`. The two AI pages exist only while the AI features are live (`lib/legal/ai.ts`).
+ * at `/docs`. The two AI pages exist only while the AI features are live (`lib/legal/ai.ts`); the
+ * AI Plan Score is live on its own (D-72), so its page is always visible.
  */
 export const DOC_PAGES = [
   { slug: "index", ai: false },
   { slug: "what-is-5gdhc", ai: false },
   { slug: "quick-check", ai: false },
   { slug: "business-plan", ai: false },
+  { slug: "ai-plan-score", ai: false },
+  { slug: "reference-cases", ai: false },
   { slug: "assistant", ai: true },
   { slug: "email-agent", ai: true },
   { slug: "data-and-privacy", ai: false },

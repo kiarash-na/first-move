@@ -18,6 +18,7 @@ export type DashboardRoute =
   | { page: "overview" }
   | { page: "quick-check"; step: QuickCheckPage }
   | { page: "business-plan"; step: BusinessPlanPage }
+  | { page: "ai-score" }
   | { page: "assumptions" }
   | { page: "report" }
 
@@ -49,6 +50,7 @@ export const DASHBOARD_ROUTES: readonly DashboardRoute[] = [
   { page: "overview" },
   ...QUICK_CHECK_PAGES.map((step) => ({ page: "quick-check" as const, step })),
   ...BUSINESS_PLAN_PAGES.map((step) => ({ page: "business-plan" as const, step })),
+  { page: "ai-score" },
   { page: "assumptions" },
   { page: "report" },
 ]

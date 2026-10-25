@@ -16,7 +16,9 @@
       "system": "Das System",
       "quickCheck": "Quick Check",
       "businessModels": "Geschäftsmodelle",
-      "methodology": "Methodik"
+      "aiScore": "KI-Plan-Score",
+      "methodology": "Methodik",
+      "docs": "Doku"
     }
   },
   "hero": {
@@ -37,7 +39,7 @@
     "hint": "Bewegen, um die Perspektive zu ändern",
     "reverseFlow": "Fluss umkehren",
     "restoreFlow": "Fluss zurücksetzen",
-    "gatewayLabel": "Zwei Werkzeuge.\nEin Ablauf.",
+    "gatewayLabel": "Prüfen. Planen. Bewerten.\nEin Ablauf.",
     "tools": {
       "quickCheck": {
         "title": "Quick Check",
@@ -64,7 +66,7 @@
       { "title": "Projektinitiatoren", "text": "Testen Sie die erste Idee, bevor Sie sich auf eine vollständige Machbarkeitsstudie festlegen." }
     ],
     "tools": {
-      "kicker": "Zwei Werkzeuge. Ein System.",
+      "kicker": "Drei Teile. Ein System.",
       "title": "Erst wissen, ob.\n*Dann wissen, wie.*",
       "quickCheck": {
         "title": "Quick Check",
@@ -75,6 +77,11 @@
         "title": "Geschäftsmodelle",
         "subtitle": "Strukturieren Sie Wert, Eigentum, Risiko und Betrieb.",
         "meta": "Canvas · Realitätscheck · Übertragung · nächste Schritte"
+      },
+      "aiScore": {
+        "title": "KI-Plan-Score",
+        "subtitle": "Eine separate KI-Einschätzung des geschriebenen Businessplans.",
+        "meta": "Vier Runden · sieben Dimensionen · Einschätzung, keine Berechnung"
       }
     }
   },
@@ -171,6 +178,7 @@
       "title": "Ein System.\n*Unterschiedliche Realitäten.*",
       "groupLabel": "Anwendungsfall des Geschäftsmodells",
       "inputsLabel": "Eingabekategorien des Geschäftsmodells",
+      "inputsShort": "Eingaben",
       "diagramSuffix": "(Netzdiagramm)",
       "diagramTitle": "BEISPIELHAFTE NETZTYPOLOGIE",
       "diagramFooter": "5GDHC / ANWENDUNGSFALL",
@@ -224,8 +232,8 @@
       "body": "Kritische Annahmen, die größten Risiken und das mögliche K.-o.-Kriterium kommen offen auf den Tisch. Das Ziel ist keine schönere Präsentation, sondern ein Modell, das schwierige Fragen übersteht.",
       "consoleTitle": "Prüfung der Annahmen",
       "consoleTag": "03 PRÜFUNGEN",
-      "dealBreakerLabel": "Mögliches K.-o.-Kriterium",
-      "dealBreaker": "Die Bedingung, die das Modell zu Fall bringt, wird offen benannt und nicht in einer Fußnote versteckt.",
+      "ruleLabel": "Warum das zählt",
+      "rule": "Die Bedingung, die das Modell zu Fall bringt, wird offen benannt und nicht in einer Fußnote versteckt.",
       "risks": {
         "connection": {
           "title": "Abhängigkeit von der Anschlussquote",
@@ -258,13 +266,45 @@
       "kicker": "Skizze der nächsten Umsetzungsschritte",
       "title": "Am Ende steht\n*der nächste Zug.*",
       "body": "Das Ergebnis endet nicht beim Canvas. Es macht aus dem gewählten Modell eine praktische Skizze für die Arbeit, die Abstimmung und die Entscheidungen, die als Nächstes anstehen.",
-      "link": "Methodik prüfen",
+      "link": "Weiter zum KI-Plan-Score",
       "steps": [
         { "title": "Bestätigen", "text": "Prüfen Sie die entscheidenden Annahmen des Screenings und die Bedingungen der lokalen Quelle." },
         { "title": "Vertiefen", "text": "Überführen Sie das vielversprechende Konzept in die nötigen technischen und wirtschaftlichen Machbarkeitsuntersuchungen." },
         { "title": "Abstimmen", "text": "Vereinbaren Sie mit den Partnern Eigentum, Betreiberverantwortung, Finanzierung und Risikoverteilung." },
         { "title": "Umsetzen", "text": "Machen Sie aus dem gewählten Modell eine geordnete Umsetzungsskizze mit klaren nächsten Schritten." }
       ]
+    }
+  },
+  "aiScore": {
+    "kicker": "KI-Plan-Score · Businessplan",
+    "title": "Den Plan bewerten.\n*Jede Entscheidung sehen.*",
+    "body": "Eine separate KI-Lesung des geschriebenen Businessplans. Jev, ein Entscheidungsmodell, trifft jede Entscheidung in vier Runden, vom ersten Feld bis zum letzten. Ein Textmodell Ihrer Wahl schreibt den kurzen Bericht und auf Wunsch Vorschläge.",
+    "facts": [
+      { "label": "01 / Vier Runden", "title": "Jede Entscheidung sichtbar", "text": "Fünf Belegstufen je Punkt, Schwellen über Felder hinweg, Verzweigungen, die die nächsten Fragen wählen, sieben Dimensionen." },
+      { "label": "02 / Ihr Schlüssel", "title": "Nichts läuft über uns", "text": "Bringen Sie Ihren eigenen Vercel-AI-Gateway-Schlüssel mit. Er bleibt im Speicher des offenen Tabs; der Plan geht direkt aus Ihrem Browser an Jev und das Textmodell Ihrer Wahl." },
+      { "label": "03 / Eine Einschätzung", "title": "Keine Berechnung", "text": "Der Score beurteilt, wie solide der geschriebene Plan ist. Der Quick Check bleibt die einzige Berechnung." }
+    ],
+    "primary": "KI-Plan-Score ausprobieren",
+    "secondary": "So bewerten wir",
+    "link": "Methodik prüfen",
+    "console": {
+      "title": "Aufgezeichneter Lauf",
+      "tag": "Echter Wiener Plan · {year}",
+      "replay": "Erneut abspielen",
+      "summary": "Ein aufgezeichneter Lauf auf einem echten Wiener Plan von {year}: {fields} Punkte in vier Runden bewertet, ein Score von {score} ± {band}, {level}.",
+      "turns": { "1": "Chance", "2": "Geschäftslogik", "3": "Realitätscheck", "4": "Umsetzung" },
+      "fields": "{count} Punkte",
+      "branch": "Verzweigung",
+      "gate": "Schwelle",
+      "evidenceLabel": "Belegstufe",
+      "evidence": ["Fehlt", "Vage", "Konkret", "Beziffert", "Belegt"],
+      "scoreLabel": "KI-Plan-Score",
+      "levels": { "early": "Früh", "promising": "Vielversprechend", "solid": "Solide" },
+      "capped": "Pflichtschwelle verfehlt · {count} Dimensionen gedeckelt",
+      "dimensionsLabel": "Sieben Dimensionen",
+      "dimensions": { "value": "Nutzen", "technology": "Technik", "economics": "Wirtschaft", "governance": "Steuerung", "participation": "Beteiligung", "evidence": "Belege", "path": "Umsetzung" },
+      "note": "Aufgezeichnet am {date}: ein echter Wiener Businessplan von {year}, Name und Ausgang entfernt, blind bewertet. Ein Fall zeigt, wie die Engine arbeitet. Er bestätigt sie nicht.",
+      "link": "Zum Blindtest"
     }
   },
   "closing": {
@@ -276,7 +316,8 @@
         { "title": "Vordefinierte Berechnungsmethodik", "text": "Eine festgelegte Screening-Methode macht aus Projektparametern einen einheitlichen, dreistufigen Bewertungsindikator." },
         { "title": "Forschungsgrundlage", "text": "Aufgebaut auf dem Forschungsprojekt „Anergie Leicht Gemacht“ und seinem Ansatz, lokales Energiepotenzial nutzbar zu machen." },
         { "title": "Vordefinierte Projektszenarien", "text": "Tests mit Szenarien unterstützen die Prüfung der Methodik, die Benutzerfreundlichkeit und die praktische Anwendbarkeit im Screening." },
-        { "title": "Flexible Ausgabe", "text": "Ergebnisse lassen sich als PDF, Online-Ansicht oder anderes Ergebnisdokument vermitteln, ohne dass die Begründung verloren geht." }
+        { "title": "Flexible Ausgabe", "text": "Ergebnisse lassen sich als PDF, Online-Ansicht oder anderes Ergebnisdokument vermitteln, ohne dass die Begründung verloren geht." },
+        { "title": "Separate KI-Einschätzung", "text": "Der KI-Plan-Score liest den geschriebenen Businessplan und zeigt jede Entscheidung, die er trifft; der Quick Check bleibt die einzige Berechnung." }
       ],
       "boundaryLabel": "Klare Abgrenzung",
       "boundaryLead": "Schnelles erstes Screening,",
@@ -301,7 +342,7 @@
       "title": "Damit der erste\n*Zug zählt.*",
       "body": "Beginnen Sie mit einem Quick Check. Machen Sie aus einer vielversprechenden Richtung ein tragfähiges Geschäftsmodell.",
       "primary": "Jetzt starten",
-      "secondary": "Geschäftsmodelle erkunden"
+      "secondary": "Dokumentation lesen"
     },
     "footer": {
       "brandBack": "zurück nach oben",
@@ -312,6 +353,7 @@
       "quickCheck": "Quick Check",
       "businessModels": "Geschäftsmodelle",
       "methodology": "Methodik",
+      "docs": "Doku",
       "backToTop": "Nach oben",
       "legal": {
         "nav": "Rechtliches",
@@ -323,6 +365,15 @@
         "license": "Open-Source-Lizenz",
         "source": "Quellcode auf GitHub"
       }
+    }
+  },
+  "presentation": {
+    "footer": "Präsentation"
+  },
+  "mobile": {
+    "hero": {
+      "visualLabel": "Niedertemperatur-Quartiersnetz",
+      "visualAlt": "Eine Illustration eines Quartiers: Gebäude an einem bidirektionalen Niedertemperaturring, mit einer lokalen Wärmequelle an seinem Rand."
     }
   }
 }

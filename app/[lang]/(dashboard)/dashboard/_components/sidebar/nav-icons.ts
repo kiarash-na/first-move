@@ -10,6 +10,7 @@ import {
   RocketIcon,
   Settings2Icon,
   SlidersHorizontalIcon,
+  SparklesIcon,
   WorkflowIcon,
   type LucideIcon,
 } from "lucide-react"
@@ -33,4 +34,5 @@ export const NAV_ICONS: Record<string, LucideIcon> = {
   "businessPlan.business-logic": WorkflowIcon,
   "businessPlan.reality-check": ClipboardCheckIcon,
   "businessPlan.implementation": RocketIcon,
+  "businessPlan.aiScore": SparklesIcon,
 }

@@ -1,6 +1,6 @@
 {
   "name": "5gdhc",
-  "version": "0.2.0",
+  "version": "0.8.0",
   "private": true,
   "description": "First Move: initial screening of 5th-generation district heating and cooling (5GDHC) projects, in the browser.",
   "license": "Apache-2.0",
@@ -25,9 +25,12 @@
     "test:e2e": "playwright test",
     "gen:reference": "node scripts/gen-reference.mjs",
     "gen:knowledge": "node scripts/gen-knowledge.mjs",
-    "gen:de-review": "node scripts/de-copy-review.mjs"
+    "gen:de-review": "node scripts/de-copy-review.mjs",
+    "check:references": "node scripts/check-references.mjs"
   },
   "dependencies": {
+    "@ai-sdk/openai-compatible": "3.0.77",
+    "@anthropic-ai/sdk": "1.3.0",
     "@fontsource-variable/archivo": "^5.3.0",
     "@fontsource/ibm-plex-mono": "^5.3.0",
     "@mdx-js/loader": "^3.1.1",
@@ -41,6 +44,7 @@
     "lucide-react": "^0.562.0",
     "mammoth": "1.13.0",
     "next": "16.4.2",
+    "qrcode-generator": "2.0.4",
     "radix-ui": "^1.8.1",
     "react": "19.3.0",
     "react-dom": "19.3.0",
@@ -76,6 +80,7 @@
     "eslint-config-next": "16.4.2",
     "fake-indexeddb": "^6.2.6",
     "jsdom": "^30.1.3",
+    "jsqr": "1.4.0",
     "katex": "^0.19.0",
     "svix": "2.9.0",
     "tailwindcss": "^4",

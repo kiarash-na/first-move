@@ -2,6 +2,7 @@
  * The Business Plan module's logic (PLAN-DASH-10): scenario presets, guiding prompts, progress,
  * pitch readiness and the Quick Check prefill. Pure TypeScript, no React, no storage.
  */
+export { aiScoreStatus, displayScore, fieldValueHash, shortHash, type AiScoreState, type AiScoreStatus } from "./ai-score-status"
 export { isFieldFilled, isTextFilled, ROW_REQUIRED, rowsStatus, type RowListId, type RowsStatus } from "./filled"
 export {
   isPresetScenario,

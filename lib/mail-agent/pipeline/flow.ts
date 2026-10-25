@@ -1,5 +1,6 @@
 // No `server-only` and type imports only: the workflow sandbox runs this file (workflows/inbound-email).
 import type { GuardResult } from "../guard/decide"
+import type { Intent } from "../guard/questions"
 import type { ActResult } from "./act"
 import type { TriageResult } from "./triage"
 import type { InboundInput } from "./types"
@@ -10,7 +11,7 @@ export interface InboundSteps {
   askConsent(input: InboundInput, now: number): Promise<string>
   judge(input: InboundInput, now: number): Promise<GuardResult>
   act(input: InboundInput, result: GuardResult, now: number): Promise<ActResult>
-  respond(input: InboundInput, action: "allow" | "small_talk", now: number): Promise<string>
+  respond(input: InboundInput, action: "allow" | "small_talk", intent: Intent | null, now: number): Promise<string>
 }
 
 /**
@@ -25,5 +26,5 @@ export async function inboundFlow(steps: InboundSteps, input: InboundInput, now:
   const judged = await steps.judge(input, now)
   const acted = await steps.act(input, judged, now)
   if (acted.next === "stop") return acted.code
-  return steps.respond(input, acted.action, now)
+  return steps.respond(input, acted.action, acted.intent, now)
 }

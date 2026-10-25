@@ -1,5 +1,6 @@
 import { FatalError, RetryableError } from "workflow"
 import type { GuardResult } from "@/lib/mail-agent/guard/decide"
+import type { Intent } from "@/lib/mail-agent/guard/questions"
 import type { InboundInput, MailDeps } from "@/lib/mail-agent/pipeline/types"
 
 /**
@@ -50,8 +51,9 @@ export async function actStep(input: InboundInput, result: GuardResult, now: num
 }
 actStep.maxRetries = 6
 
-export async function respondStep(input: InboundInput, action: "allow" | "small_talk") {
+export async function respondStep(input: InboundInput, action: "allow" | "small_talk", intent: Intent | null, now: number) {
   "use step"
   const { respond } = await import("@/lib/mail-agent/pipeline/respond")
-  return withDeps((deps) => respond(deps, input, action))
+  return withDeps((deps) => respond(deps, input, action, intent, now))
 }
+respondStep.maxRetries = 6

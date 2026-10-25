@@ -17,6 +17,7 @@ export const PROJECT_PAGES = [
   "business-plan/business-logic",
   "business-plan/reality-check",
   "business-plan/implementation",
+  "ai-score",
   "report",
 ] as const
 
@@ -31,12 +32,26 @@ export async function openExample(page: Page, lang: Lang, theme: "dark" | "light
     await page.reload()
   }
   await expect(page.locator("html")).toHaveAttribute("data-theme", theme)
+  await showExamples(page)
   await page.locator(`[data-example="${EXAMPLE_ID}"]`).getByRole("button").first().click()
   await expect(page).toHaveURL(new RegExp(`/${lang}/dashboard/overview$`))
 }
 
-/** Waits until the page's data is drawn (the gate's skeleton is gone) and the web fonts are in. */
+/** Opens the collapsed examples at the bottom of the start screen (owner, 2026-10-24). */
+export async function showExamples(page: Page) {
+  const toggle = page.locator("[data-slot='examples-gallery']").getByRole("button", { expanded: false })
+  if (await toggle.count()) await toggle.click()
+}
+
+/**
+ * Waits until the page's data is drawn (the gate's skeleton is gone), the web fonts are in and the
+ * running CSS transitions have ended: a button enabled by the loaded project (Export) fades in
+ * from 50 % opacity over 170 ms, and axe reads it mid-fade as low-contrast text.
+ */
 export async function settle(page: Page) {
   await expect(page.locator("main [aria-busy='true']")).toHaveCount(0)
   await page.evaluate(() => document.fonts.ready)
+  await page.evaluate(() =>
+    Promise.allSettled(document.getAnimations().filter((animation) => animation instanceof CSSTransition).map((animation) => animation.finished)),
+  )
 }

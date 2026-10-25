@@ -1,6 +1,6 @@
 // @vitest-environment node
 import { describe, expect, it } from "vitest"
-import { loopGate } from "./loops"
+import { isAutomated, loopGate } from "./loops"
 import { testContext, testEmail } from "./test-utils/context"
 
 describe("loopGate", () => {
@@ -28,5 +28,13 @@ describe("loopGate", () => {
 
   it("let the admin address write to the agent", () => {
     expect(loopGate(testContext({ email: testEmail({ from: "owner@example.org" }) }))).toEqual({ ok: true })
+  })
+})
+
+describe("isAutomated", () => {
+  it("tells machine mail from a person's", () => {
+    expect(isAutomated({ from: "jane@example.org", headers: {} })).toBe(false)
+    expect(isAutomated({ from: "jane@example.org", headers: { "auto-submitted": "auto-generated" } })).toBe(true)
+    expect(isAutomated({ from: "mailer-daemon@example.org", headers: {} })).toBe(true)
   })
 })

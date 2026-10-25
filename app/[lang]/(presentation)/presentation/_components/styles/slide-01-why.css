@@ -1,0 +1,211 @@
+/* ------------------------------------------------------------------------- */
+/* 5. Slide 1: the first move                                                */
+/* ------------------------------------------------------------------------- */
+
+.first-move__visual {
+  justify-self: center;
+  width: min(100%, 64vh, 560px);
+}
+
+.first-move {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.first-move__grid line {
+  stroke: var(--line-subtle);
+  stroke-width: 1;
+}
+
+.first-move__pipe {
+  fill: none;
+  stroke: var(--accent-cool);
+  stroke-width: 8;
+  stroke-linecap: square;
+  stroke-dasharray: 100 100;
+  stroke-dashoffset: 100;
+}
+
+.first-move__pipe--ring,
+.first-move__pipe--stub {
+  stroke: oklch(0.88 0.19 213 / 0.55);
+}
+
+/* Two flows run in the loop both ways: one network for heating and cooling. */
+.first-move__flow {
+  fill: none;
+  stroke-width: 3;
+  stroke-dasharray: 6 44;
+  opacity: 0;
+}
+
+.first-move__flow--cool {
+  stroke: var(--text-primary);
+}
+
+.first-move__flow--hot {
+  stroke: var(--accent-hot);
+  stroke-dashoffset: 25;
+}
+
+.first-move__dot {
+  fill: var(--text-muted);
+  opacity: 0.6;
+}
+
+.first-move__building,
+.first-move__roof {
+  opacity: 0;
+  transform: scale(0.2);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.first-move__building {
+  fill: oklch(0.88 0.19 213 / 0.1);
+  stroke: var(--accent-cool);
+  stroke-width: 2;
+}
+
+.first-move__roof {
+  fill: var(--accent-cool);
+}
+
+.first-move__plot[data-tone="hot"] .first-move__building {
+  fill: oklch(0.75 0.22 45 / 0.1);
+  stroke: var(--accent-hot);
+}
+
+.first-move__plot[data-tone="hot"] .first-move__roof {
+  fill: var(--accent-hot);
+}
+
+.first-move__start {
+  fill: none;
+  stroke: var(--accent-cool);
+  stroke-width: 6;
+}
+
+.first-move__end,
+.first-move__glow {
+  fill: var(--accent-hot);
+}
+
+.first-move__end {
+  opacity: 0.22;
+}
+
+.first-move__glow {
+  opacity: 0;
+}
+
+.first-move__after {
+  min-height: 1.3em;
+  margin: 0;
+  color: var(--text-primary);
+  font-size: clamp(22px, 2vw, 28px);
+  font-stretch: 88%;
+  font-style: italic;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+/* Idle: the start node breathes, asking for the first move. */
+.first-move[data-phase="idle"] .first-move__start {
+  animation: first-move-ready 1.8s ease-in-out infinite alternate;
+}
+
+/* Played: the move, the end node lights, the network, the buildings, then the flows. */
+.first-move[data-phase="played"] .first-move__pipe {
+  stroke-dashoffset: 0;
+}
+
+.first-move[data-phase="played"] .first-move__pipe--move {
+  transition: stroke-dashoffset 700ms cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.first-move[data-phase="played"] .first-move__pipe--ring {
+  transition: stroke-dashoffset 1000ms cubic-bezier(0.65, 0, 0.35, 1) 850ms;
+}
+
+.first-move[data-phase="played"] .first-move__pipe--stub {
+  transition: stroke-dashoffset 400ms cubic-bezier(0.65, 0, 0.35, 1) 1750ms;
+}
+
+.first-move[data-phase="played"] .first-move__end {
+  opacity: 1;
+  transition: opacity 300ms ease 650ms;
+}
+
+.first-move[data-phase="played"] .first-move__glow {
+  opacity: 0.7;
+  transition: opacity 600ms ease 650ms;
+}
+
+.first-move[data-phase="played"] .first-move__dot {
+  opacity: 0;
+  transition: opacity 200ms ease var(--delay);
+}
+
+.first-move[data-phase="played"] .first-move__building,
+.first-move[data-phase="played"] .first-move__roof {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 300ms ease var(--delay),
+    transform 700ms var(--deck-ease) var(--delay);
+}
+
+.first-move[data-phase="played"] .first-move__roof {
+  transition-delay: calc(var(--delay) + 160ms);
+}
+
+.first-move[data-phase="played"] .first-move__flow {
+  opacity: 0.9;
+  transition: opacity 800ms ease 2500ms;
+  animation: first-move-flow 3.2s linear infinite;
+}
+
+.first-move[data-phase="played"] .first-move__flow--hot {
+  animation-name: first-move-flow-back;
+}
+
+.first-move__after[data-phase="played"] {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 600ms ease 2300ms,
+    transform 800ms var(--deck-ease) 2300ms;
+}
+
+.deck-slide:not([data-state="active"]) .first-move__flow,
+.deck-slide:not([data-state="active"]) .first-move__start {
+  animation-play-state: paused;
+}
+
+@keyframes first-move-ready {
+  from {
+    opacity: 0.45;
+  }
+}
+
+@keyframes first-move-flow {
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
+@keyframes first-move-flow-back {
+  from {
+    stroke-dashoffset: 25;
+  }
+
+  to {
+    stroke-dashoffset: 125;
+  }
+}

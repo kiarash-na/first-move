@@ -5,10 +5,11 @@ import { withWorkflow } from "workflow/next"
 const isDev = process.env.NODE_ENV === "development"
 
 /**
- * Hosts the in-app assistant calls with the visitor's own key (D-42, D-48).
- * Allowed on dashboard pages only; every other page keeps `connect-src 'self'`.
+ * Hosts the in-app AI calls with the visitor's own key (D-42, D-48): OpenRouter for the assistant,
+ * and the Vercel AI Gateway for the assistant and the AI Plan Score (D-72, A05). Allowed on
+ * dashboard pages only; every other page keeps `connect-src 'self'`.
  */
-export const AI_PROVIDER_ORIGINS = ["https://api.anthropic.com", "https://openrouter.ai"] as const
+export const AI_PROVIDER_ORIGINS = ["https://openrouter.ai", "https://ai-gateway.vercel.sh"] as const
 
 /** Dashboard pages, and every other path. The two sources never match the same path. */
 export const DASHBOARD_SOURCE = "/:lang(en|de)/dashboard/:path*"

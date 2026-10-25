@@ -1,0 +1,315 @@
+/* ------------------------------------------------------------------------- */
+/* 9. Slide 5: AI Plan Score and the blind test                              */
+/* ------------------------------------------------------------------------- */
+
+.blind {
+  display: grid;
+  gap: clamp(14px, 2.2vh, 22px);
+  padding: clamp(18px, 2.4vw, 32px);
+  border: 1px solid var(--control-border);
+  background: var(--panel-bg);
+  box-shadow: var(--panel-shadow);
+}
+
+.blind__head {
+  display: grid;
+  gap: 4px;
+}
+
+.blind__input {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.blind__board {
+  display: grid;
+  grid-template-columns: minmax(170px, 230px) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(16px, 2.6vw, 36px);
+}
+
+.expert-table {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  aspect-ratio: 1;
+}
+
+.expert-table svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.expert-table__rim {
+  fill: oklch(0.18 0.018 220 / 0.6);
+  stroke: var(--control-border);
+  stroke-width: 1;
+}
+
+.expert-table__orbit {
+  fill: none;
+  stroke: var(--line-subtle);
+  stroke-dasharray: 2 4;
+}
+
+.expert-table__spoke {
+  stroke: var(--line-subtle);
+  stroke-width: 1;
+  transition: stroke 300ms ease;
+}
+
+.expert-table__seat rect {
+  fill: var(--surface-sunken);
+  stroke: var(--control-border);
+  transition:
+    fill 300ms ease,
+    stroke 300ms ease;
+}
+
+.expert-table__seat[data-lit] rect {
+  fill: var(--accent-cool);
+  stroke: var(--accent-cool);
+}
+
+.expert-table__seat[data-lit] .expert-table__spoke {
+  stroke: oklch(0.88 0.19 213 / 0.4);
+}
+
+.expert-table__seat[data-lit][data-capped] rect {
+  fill: var(--accent-hot);
+  stroke: var(--accent-hot);
+}
+
+.expert-table__seat[data-lit][data-capped] .expert-table__spoke {
+  stroke: oklch(0.75 0.22 45 / 0.4);
+}
+
+.expert-table__sweep {
+  stroke: var(--accent-cool);
+  stroke-width: 1.5;
+  opacity: 0;
+  transform-box: view-box;
+  transform-origin: 120px 120px;
+}
+
+.blind[data-phase="running"] .expert-table__sweep {
+  opacity: 0.8;
+  animation: expert-sweep 1.4s linear infinite;
+}
+
+.expert-table__centre {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+
+.expert-table__score {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  margin: 0;
+  text-align: center;
+}
+
+.expert-table__number {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  font-size: clamp(38px, 4vw, 52px);
+  font-stretch: 74%;
+  font-variant-numeric: tabular-nums;
+  font-weight: 610;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.expert-table__band {
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0;
+}
+
+/* One line: "Vielversprechend" (16 characters) fits inside the table's rim at 11 px. */
+.expert-table__level {
+  color: var(--accent-cool);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.expert-table__score--idle .expert-table__number {
+  color: var(--text-muted);
+  font-size: clamp(24px, 2.4vw, 32px);
+}
+
+.blind__dimensions {
+  display: grid;
+  gap: 9px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.blind__dimensions li {
+  display: grid;
+  gap: 4px;
+}
+
+.blind__dimension {
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1.35;
+  transition: color 300ms ease;
+}
+
+.blind__dimensions li[data-lit] .blind__dimension {
+  color: var(--text-primary);
+}
+
+.blind__bar {
+  display: block;
+  height: 3px;
+  overflow: hidden;
+  background: var(--line-subtle);
+}
+
+.blind__bar span {
+  display: block;
+  height: 100%;
+  background: var(--accent-cool);
+  transform: scaleX(var(--score, 0));
+  transform-origin: left;
+  transition: transform 800ms var(--deck-ease) calc(var(--i, 0) * 70ms);
+}
+
+.blind__dimensions li[data-capped] .blind__bar span {
+  background: var(--accent-hot);
+}
+
+.blind__stage {
+  display: grid;
+  padding-top: clamp(14px, 2.2vh, 20px);
+  border-top: 1px solid var(--line-subtle);
+}
+
+.blind__step {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 20px;
+  animation: deck-rise 600ms var(--deck-ease) both;
+}
+
+.blind__step--scored,
+.blind__step--revealed {
+  display: grid;
+  justify-items: start;
+  gap: 14px;
+}
+
+.blind__hint,
+.blind__stats,
+.blind__recorded {
+  margin: 0;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.blind__stats {
+  color: var(--text-secondary);
+}
+
+.blind__musthave {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 8px;
+  margin: 0;
+}
+
+.blind__suggestion {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 2px 0 2px 16px;
+  border-left: 2px solid var(--accent-cool);
+}
+
+.blind__suggestion p {
+  max-width: 62ch;
+  margin: 0;
+  color: var(--text-primary);
+  font-size: clamp(15px, 1.2vw, 17px);
+  line-height: 1.5;
+}
+
+.blind__outcome {
+  display: grid;
+  gap: 8px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.blind__outcome li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 16px;
+  padding: 8px 0 8px 16px;
+  border-left: 2px solid var(--accent-cool);
+  color: var(--text-primary);
+  font-size: clamp(16px, 1.3vw, 19px);
+  line-height: 1.4;
+  animation: deck-rise 600ms var(--deck-ease) both;
+  animation-delay: calc(120ms + var(--i, 0) * 160ms);
+}
+
+.blind__caveat {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.blind__try {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 20px;
+  margin: 0;
+}
+
+.blind__step--revealed .deck-label:focus {
+  outline: none;
+}
+
+@keyframes expert-sweep {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@container (max-width: 520px) {
+  .blind__board {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .expert-table {
+    justify-self: center;
+    width: min(100%, 220px);
+  }
+}

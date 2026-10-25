@@ -12,6 +12,7 @@ test.describe("start screen (PLAN-DASH-07 verification)", () => {
     await expect(page).toHaveURL(/\/en\/dashboard$/)
     await expect(page.getByRole("heading", { name: "Welcome to First Move" })).toBeVisible()
 
+    await page.getByRole("button", { name: /Show 6 examples/ }).click()
     await page.locator('[data-example="housing-cooperatives"]').getByRole("button", { name: /Open a copy/ }).click()
     await expect(page).toHaveURL(/\/en\/dashboard\/overview$/)
     await expect(page.getByRole("status").filter({ hasText: /Saved/ })).toBeVisible()

@@ -1,0 +1,166 @@
+/* ------------------------------------------------------------------------- */
+/* 7. Slide 3: Quick Check console                                           */
+/* ------------------------------------------------------------------------- */
+
+.console__figures {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin: 0;
+  border: 1px solid var(--line-subtle);
+  background: var(--line-subtle);
+}
+
+.console__figure {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  gap: 6px;
+  padding: 16px;
+  background: var(--surface-page);
+}
+
+.console__figure dt {
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.console__figure dd {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: clamp(22px, 2.3vw, 32px);
+  font-stretch: 82%;
+  font-variant-numeric: tabular-nums;
+  font-weight: 560;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.console__figures[data-run="again"] dd {
+  animation: console-tick 700ms var(--deck-ease) both;
+}
+
+.levels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.levels__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  margin: 0;
+  padding: 0 12px;
+  border: 1px solid var(--line-subtle);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.levels__item[data-current] {
+  border-color: currentColor;
+}
+
+.levels__item[data-current][data-level="promising"] {
+  background: oklch(0.88 0.19 213 / 0.1);
+  color: var(--accent-cool);
+}
+
+.levels__item[data-current][data-level="further_analysis"] {
+  color: var(--text-primary);
+}
+
+.levels__item[data-current][data-level="not_promising"] {
+  background: oklch(0.75 0.22 45 / 0.1);
+  color: var(--accent-hot);
+}
+
+.console__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line-subtle);
+}
+
+.console__fingerprint {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+}
+
+.console__fingerprint code {
+  justify-self: start;
+  padding: 2px 4px;
+  margin-left: -4px;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 18px;
+  letter-spacing: 0.14em;
+}
+
+.console__fingerprint code[data-run="again"] {
+  animation: console-flash 900ms ease-out both;
+}
+
+.console__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px;
+}
+
+.console__runs {
+  margin: 0;
+  color: var(--accent-cool);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.console__runs[data-same="false"] {
+  color: var(--accent-hot);
+}
+
+@keyframes console-tick {
+  from {
+    opacity: 0.15;
+    transform: translateY(8px);
+  }
+}
+
+@keyframes console-flash {
+  from {
+    background: oklch(0.88 0.19 213 / 0.35);
+  }
+}
+
+@container (max-width: 560px) {
+  .console__figures {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .console__figure {
+    flex-direction: row-reverse;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 14px;
+  }
+
+  .console__figure dd {
+    font-size: 22px;
+  }
+}

@@ -1,5 +1,6 @@
 // @vitest-environment node
 import { describe, expect, it } from "vitest"
+import { visibleDocs } from "@/lib/docs/pages"
 import { dictionaryLoaders } from "@/lib/i18n/dictionaries"
 import { getDictionary } from "@/lib/i18n/get-dictionary"
 import { LOCALES, type Locale } from "@/lib/i18n/locales"
@@ -9,8 +10,16 @@ import { tokenizeInline } from "./inline"
 import { blockShape, parseBlocks } from "./parse-blocks"
 import type { LegalDocCopy } from "./types"
 
-/** Routes a legal text may link to (the six documents plus the public app and docs). */
-const ROUTES = new Set<string>(["/", "/dashboard", "/docs", ...LEGAL_DOCS.map((slug) => `/${slug}`)])
+/** Routes a legal text may link to (the six documents plus the public app and the visible docs pages). */
+const ROUTES = new Set<string>([
+  "/",
+  "/dashboard",
+  "/docs",
+  ...LEGAL_DOCS.map((slug) => `/${slug}`),
+  ...visibleDocs(false)
+    .filter((slug) => slug !== "index")
+    .map((slug) => `/docs/${slug}`),
+])
 
 function strings(value: unknown): string[] {
   if (typeof value === "string") return [value]

@@ -30,12 +30,34 @@ describe("StartScreen (D-03)", () => {
     expect(screen.getByRole("heading", { level: 1, name: start.header.title })).toBeInTheDocument()
     // Static parts render before the store is ready; data parts show skeletons.
     expect(screen.getByRole("heading", { name: start.paths.title })).toBeInTheDocument()
-    expect(screen.getAllByRole("article")).toHaveLength(6)
+    // The examples and then the reference cases come last and start collapsed (owner, 2026-10-24 and 2026-10-25).
+    expect(screen.queryAllByRole("article")).toHaveLength(0)
+    expect(screen.getByRole("heading", { name: start.examples.title })).toBeInTheDocument()
+    expect(screen.getByRole("heading", { name: start.referenceCases.title })).toBeInTheDocument()
     expect(screen.getByRole("region", { name: start.import.title })).toBeInTheDocument()
     expect(screen.getAllByLabelText(testDictionaries(lang).shell.loading).length).toBeGreaterThan(0)
     await tab.store.start()
     expect(await screen.findByRole("heading", { name: start.continue.welcomeTitle })).toBeInTheDocument()
     expect(screen.getByText(start.projects.empty)).toBeInTheDocument()
+  })
+
+  it("puts the user's projects first, then the collapsed examples, then the collapsed reference cases at the very bottom", () => {
+    const { store } = fakeStore()
+    const { container } = renderDashboard(
+      <ImportProvider>
+        <StartScreen examples={exampleCards("en")} />
+      </ImportProvider>,
+      { store },
+    )
+    const { start } = testDictionaries()
+    const projects = screen.getByRole("heading", { name: start.projects.title })
+    const examples = screen.getByRole("heading", { name: start.examples.title })
+    const references = screen.getByRole("heading", { name: start.referenceCases.title })
+    expect(projects.compareDocumentPosition(examples) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+    expect(examples.compareDocumentPosition(references) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+    const sections = container.firstElementChild!.children
+    expect(sections[sections.length - 1]).toHaveAttribute("data-slot", "reference-cases-gallery")
+    expect(screen.getByRole("button", { name: "Show 6 reference cases" })).toHaveAttribute("aria-expanded", "false")
   })
 
   it("places the storage warning after the Continue/Import row, so its late arrival does not push the first screen down", () => {

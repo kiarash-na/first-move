@@ -1,8 +1,9 @@
 import { createStore, type StoreApi } from "zustand/vanilla"
-import type { PatchProvenance, PatchResult, Project, ProjectPatch } from "@/lib/project"
+import type { AiScore, PatchProvenance, PatchResult, Project, ProjectPatch } from "@/lib/project"
 import type { ExportFile } from "@/lib/storage/export"
 import type { ImportSuccess } from "@/lib/storage/import"
 import type { SnapshotInfo } from "@/lib/storage/types"
+import { setAiScore } from "./actions/ai-score"
 import { refreshHealth } from "./actions/health"
 import { applyProposal, closeProject, flushAll, openProject, patchActive, patchProject } from "./actions/editing"
 import { linkFile, resumeFileLink, unlinkFile } from "./actions/file-link"
@@ -41,6 +42,8 @@ export interface ProjectStore {
   patch(patch: ProjectPatch): PatchResult | null
   /** Applies AI-proposed values the user confirmed, marked as AI-proposed (schema v2). */
   applyProposal(patch: ProjectPatch, provenance: PatchProvenance): PatchResult | null
+  /** Saves the AI Plan Score of the open project (system-managed, D-73); false when it is not open. */
+  setAiScore(projectId: string, score: AiScore | null): boolean
   /** Edits any project, e.g. a rename or module switch from the project list. */
   patchProject(id: string, patch: ProjectPatch): Promise<PatchResult | null>
   rename(id: string, name: string): Promise<PatchResult | null>
@@ -103,6 +106,7 @@ export function createProjectStore(deps: StoreDeps): ProjectStore {
     close: () => closeProject(ctx),
     patch: (patch) => patchActive(ctx, patch),
     applyProposal: (patch, provenance) => applyProposal(ctx, patch, provenance),
+    setAiScore: (projectId, score) => setAiScore(ctx, projectId, score),
     patchProject: (id, patch) => patchProject(ctx, id, patch),
     rename: (id, name) => patchProject(ctx, id, { "meta.name": name }),
     remove: (id) => removeProject(ctx, id),

@@ -1,0 +1,191 @@
+/* ------------------------------------------------------------------------- */
+/* 8. Slide 4: Business Plan steps and Pitch completeness (orange)           */
+/* ------------------------------------------------------------------------- */
+
+.steps {
+  display: grid;
+  gap: 14px;
+  padding: clamp(20px, 2.6vw, 34px);
+  border: 1px solid var(--control-border);
+  border-top: 2px solid var(--accent-hot);
+  background: var(--panel-bg);
+  box-shadow: var(--panel-shadow);
+}
+
+.steps__track {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line-subtle);
+  list-style: none;
+}
+
+.steps__step {
+  position: relative;
+  border-bottom: 1px solid var(--line-subtle);
+}
+
+.steps__step::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  bottom: -1px;
+  left: 0;
+  width: 2px;
+  background: var(--accent-hot);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 320ms var(--deck-ease);
+}
+
+.steps__step[data-open]::before {
+  transform: none;
+}
+
+.steps__button {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  min-height: 58px;
+  padding: 8px 4px 8px 16px;
+  border: 0;
+  background: none;
+  color: var(--text-primary);
+  text-align: left;
+  cursor: pointer;
+}
+
+.steps__number {
+  flex: none;
+  color: var(--accent-hot);
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.steps__label {
+  flex: 1;
+  font-size: clamp(18px, 1.6vw, 22px);
+  font-stretch: 88%;
+  font-weight: 520;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.steps__icon {
+  flex: none;
+  color: var(--text-muted);
+  transition:
+    transform 260ms var(--deck-ease),
+    color 180ms ease;
+}
+
+.steps__button:hover .steps__icon {
+  color: var(--text-primary);
+}
+
+.steps__step[data-open] .steps__icon {
+  color: var(--accent-hot);
+  transform: rotate(45deg);
+}
+
+/* Collapsed text is hidden from everyone (visibility), not only clipped. */
+.steps__reveal,
+.feature__reveal {
+  display: grid;
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  transition:
+    grid-template-rows 380ms var(--deck-ease),
+    visibility 0s linear 380ms;
+}
+
+.steps__reveal > p,
+.feature__reveal > p {
+  min-height: 0;
+  margin: 0;
+  overflow: hidden;
+  color: var(--text-secondary);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.steps__reveal > p {
+  padding: 0 12px 0 46px;
+  transition: padding 380ms var(--deck-ease);
+}
+
+.steps__step[data-open] .steps__reveal,
+.feature[data-open] .feature__reveal {
+  grid-template-rows: 1fr;
+  visibility: visible;
+  transition:
+    grid-template-rows 380ms var(--deck-ease),
+    visibility 0s;
+}
+
+.steps__step[data-open] .steps__reveal > p {
+  padding-bottom: 16px;
+}
+
+.meter {
+  display: grid;
+  justify-items: start;
+  gap: 10px;
+  padding-top: 8px;
+}
+
+.meter__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 12px;
+  width: 100%;
+  margin: 0;
+}
+
+.meter__name {
+  font-size: 16px;
+  font-weight: 520;
+}
+
+.meter__tag {
+  padding: 0 6px;
+  border: 1px solid var(--line-subtle);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.meter__value {
+  margin-left: auto;
+  color: var(--accent-hot);
+  font-size: clamp(26px, 2.6vw, 36px);
+  font-stretch: 82%;
+  font-variant-numeric: tabular-nums;
+  font-weight: 560;
+  line-height: 1;
+}
+
+.meter__bar {
+  width: 100%;
+  height: 3px;
+  overflow: hidden;
+  background: var(--line-subtle);
+}
+
+.meter__bar span {
+  display: block;
+  height: 100%;
+  background: var(--accent-hot);
+  transform: scaleX(var(--share, 0));
+  transform-origin: left;
+  transition: transform 700ms var(--deck-ease);
+}
+
+.meter__note {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 14px;
+}

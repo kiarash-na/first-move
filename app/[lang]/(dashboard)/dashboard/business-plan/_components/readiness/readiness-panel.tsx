@@ -7,13 +7,16 @@ import { formatNumber, formatPercent } from "@/lib/i18n/format"
 import { interpolate } from "@/lib/i18n/interpolate"
 import { useDictionary, useLocale } from "../../../_components/i18n-provider"
 import { useStoreState } from "../../../_components/store-provider"
+import { AiScoreBadge } from "../ai-score-badge"
+import { AiScoreHow } from "../ai-score-how"
 import { SectionPanel } from "../section-panel"
 import { ReadinessCard } from "./readiness-card"
 import { ReadinessHow } from "./readiness-how"
 
 /**
- * Pitch readiness in full (D-30, PLAN-DASH-10 step 5): the six parts of the final pitch
- * (BM-SCOPE-07) and, labelled unofficial, the V01 jury criteria (BM-SCOPE-08). Computed only
+ * Pitch completeness in full (D-30, D-74; ids keep "readiness"): first the AI Plan Score, bolder,
+ * with its caveat and how it is made; then the six parts of the final pitch (BM-SCOPE-07) and,
+ * labelled unofficial, the V01 jury criteria (BM-SCOPE-08). The completeness is computed only
  * from filled fields; it never judges what was written.
  */
 export function ReadinessPanel({ index }: { index?: number }) {
@@ -27,6 +30,12 @@ export function ReadinessPanel({ index }: { index?: number }) {
 
   return (
     <SectionPanel id="readiness" index={index} title={bp.readiness.title} help={bp.readiness.lead}>
+      <div data-slot="readiness-ai-score" className="flex flex-col gap-3">
+        <AiScoreBadge layout="wide" />
+        <p className="max-w-[68ch] text-sm leading-relaxed text-text-secondary">{bp.aiScore.caveat} {bp.aiScore.completeness}</p>
+        <AiScoreHow />
+      </div>
+
       <div className="flex flex-col gap-4 border-y py-5 sm:flex-row sm:items-center sm:gap-8">
         <p className="flex items-baseline gap-4">
           <span className="font-mono text-5xl leading-none tabular-nums">{formatPercent(readiness.score, lang)}</span>

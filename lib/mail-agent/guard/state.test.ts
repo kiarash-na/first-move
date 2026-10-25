@@ -8,7 +8,7 @@ describe("guard state", () => {
     const email = testEmail({
       subject: "Re: Quick Check\n for our village",
       text: "Here are the numbers: 120 buildings.\n\nOn Mon, 1 Jun 2026, First Move wrote:\n> Which module?",
-      attachments: [{ id: "a1", name: "site.pdf", size: 2_000, contentType: "application/pdf" }],
+      attachments: [{ id: "a1", name: "site.pdf", size: 2_000, contentType: "application/pdf", inline: false }],
     })
     expect(guardState(email, "menu")).toEqual({
       subject: "Re: Quick Check for our village",
@@ -22,7 +22,7 @@ describe("guard state", () => {
     const email = testEmail({
       subject: `Hi${"\u{200B}".repeat(3)} ${"s".repeat(500)}`,
       text: "word ".repeat(5_000),
-      attachments: Array.from({ length: 12 }, (_, index) => ({ id: `a${index}`, name: null, size: 1, contentType: null })),
+      attachments: Array.from({ length: 12 }, (_, index) => ({ id: `a${index}`, name: null, size: 1, contentType: null, inline: false })),
     })
     const state = guardState(email, "new")
     expect(String(state.subject).startsWith("Hi s")).toBe(true)

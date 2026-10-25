@@ -1,0 +1,869 @@
+{
+  "meta": {
+    "title": "KI-Plan-Score",
+    "description": "Eine separate KI-Bewertung des Businessplans: Ein KI-Entscheidungsmodell liest jedes Feld, trifft jede Entscheidung in Runden und zeigt, wie es den Plan bewertet hat."
+  },
+  "title": "KI-Plan-Score",
+  "lead": "Eine separate KI-Bewertung Ihres Businessplans, getrennt von den Berechnungen der App.",
+  "intro": {
+    "badge": "KI-Bewertung",
+    "title": "Eine separate KI-Bewertung Ihres geschriebenen Plans",
+    "body": "Der KI-Plan-Score ist eine KI-Einschätzung dazu, wie konkret, beziffert und belegt die Texte Ihres Businessplans sind.",
+    "points": {
+      "calculation": "Er ist keine Berechnung der App. Der Quick Check bleibt die einzige Berechnung, und die Pitch-Vollständigkeit zählt weiterhin nur, welche Felder ausgefüllt sind.",
+      "verdict": "Er ist keine Machbarkeitsstudie und kein Urteil über Förderung oder Investition. Nutzen Sie ihn, um zu sehen, wo der Plan noch dünn ist.",
+      "models": "Jev, ein KI-Entscheidungsmodell, trifft jede Entscheidung. Das Textmodell Ihrer Wahl schreibt nur den Bericht aus Jevs Zahlen und ändert sie nie."
+    },
+    "docs": "So funktioniert der KI-Plan-Score"
+  },
+  "setup": {
+    "title": "Schlüssel verbinden",
+    "lead": "Der KI-Plan-Score läuft mit Ihrem eigenen Schlüssel für das Vercel AI Gateway (Bring your own key). Das Gateway rechnet die Nutzung eines Durchlaufs über Ihr Konto ab.",
+    "key": {
+      "label": "Schlüssel für das Vercel AI Gateway",
+      "placeholder": "API-Schlüssel einfügen",
+      "use": "Schlüssel verwenden",
+      "forget": "Schlüssel vergessen",
+      "invalid": "Das sieht nicht nach einem Gateway-Schlüssel aus. Fügen Sie den ganzen Schlüssel ohne Leerzeichen ein.",
+      "active": "Verwendeter Schlüssel: {masked}",
+      "none": "Kein Schlüssel in Verwendung.",
+      "memory": "Der Schlüssel bleibt nur im Arbeitsspeicher dieses Tabs und ist weg, sobald Sie neu laden oder den Tab schließen. Er wird nie gespeichert, exportiert oder in einen Link geschrieben und an niemanden außer das Vercel AI Gateway gesendet.",
+      "where": "So erhalten Sie einen Schlüssel: Melden Sie sich bei Vercel an, öffnen Sie im Dashboard AI Gateway und erstellen Sie dort einen API-Schlüssel. Bevor das Gateway ein Modell ausführt, braucht Ihr Konto Guthaben."
+    },
+    "credits": {
+      "checking": "Schlüssel und Guthaben werden geprüft…",
+      "balance": "Schlüssel akzeptiert. Guthaben: {amount}",
+      "failed": "Der Schlüssel bleibt erhalten, aber das Guthaben konnte nicht geprüft werden. {reason}",
+      "rejected": "Der Schlüssel wurde nicht akzeptiert und ist wieder vergessen. {reason}"
+    },
+    "decision": {
+      "label": "Entscheidungsmodell",
+      "name": "Jev von TypeSafe AI",
+      "version": "Version {version}, fest",
+      "note": "Jev trifft jede Entscheidung: die Stufe jedes Planteils, die Prüfungen und die Verzweigungen. Es ist fest eingestellt, damit Scores zwischen Durchläufen vergleichbar bleiben.",
+      "zdr": "Keine Datenspeicherung und kein Training angefordert"
+    },
+    "text": {
+      "label": "Textmodell für Bericht und Vorschläge",
+      "help": "Schreibt den kurzen Bericht und auf Wunsch Vorschläge aus Jevs Zahlen. Es ändert nie eine Zahl. Jedes Sprachmodell des Gateways ist möglich.",
+      "price": "{input} Eingabe · {output} Ausgabe je Million Tokens",
+      "zdr": "Keine Datenspeicherung angefordert",
+      "custom": "Anderes Modell",
+      "customLabel": "Modell-ID im Gateway",
+      "customPlaceholder": "anbieter/modell",
+      "customInvalid": "Verwenden Sie die Gateway-Form anbieter/modell, zum Beispiel {example}.",
+      "customPrice": "Der Preis ist hier nicht bekannt: siehe die Modellliste des Gateways. Kein Training mit Ihren Texten wird angefordert."
+    },
+    "data": {
+      "title": "Was gesendet wird und an wen",
+      "points": {
+        "what": "Was: die Texte der ausgefüllten Felder des Businessplans und, falls vorhanden, das Ergebnis des Quick Checks. Leere Felder werden nie gesendet.",
+        "how": "Wie: direkt aus Ihrem Browser an das Vercel AI Gateway, mit Ihrem Schlüssel. Nichts läuft über die Server von First Move.",
+        "who": "An wen: Das Gateway gibt den Plan an TypeSafe AI für Jevs Entscheidungen weiter und die entschiedenen Zahlen mit kurzen Auszügen aus dem Plan an den Anbieter des gewählten Textmodells.",
+        "terms": "Keine Datenspeicherung und kein Training mit Ihren Texten werden angefordert. Es gelten die Bedingungen von Vercel und der Anbieter.",
+        "when": "Wann: nur, wenn Sie einen Durchlauf starten, den Bericht neu schreiben lassen oder Vorschläge anfordern."
+      },
+      "ack": "Ich habe verstanden, was gesendet wird und an wen, und möchte meinen Schlüssel dafür verwenden.",
+      "ackNote": "Diese Bestätigung gilt nur für diesen Tab."
+    },
+    "notice": {
+      "title": "Legen Sie für den Schlüssel ein Ausgabenlimit und ein Ablaufdatum fest",
+      "lead": "First Move hält den Schlüssel nur im Arbeitsspeicher dieses Tabs, doch die Grenze, die Sie wirklich schützt, ist die bei Vercel. Legen Sie beides beim Erstellen des Schlüssels fest:",
+      "limit": "Ausgabenlimit: Schalten Sie im Dialog „Create key“ auf der Seite „API Keys“ des AI Gateway die Budget-Option ein, geben Sie ein Ausgabenlimit in Dollar ein und wählen Sie einen Zeitraum, nach dem es zurückgesetzt wird (täglich, wöchentlich, monatlich oder nie). Ist das Limit überschritten, lehnt das AI Gateway weitere Anfragen ab. Ein Budget ist eine weiche Grenze: Die Anfrage, die es überschreitet, wird noch ausgeführt.",
+      "expiry": "Ablaufdatum: Laut der Vercel-Dokumentation lässt sich ein Ablaufdatum nur festlegen, wenn Sie den Schlüssel mit der Vercel CLI oder der API erstellen, zum Beispiel vercel ai-gateway api-keys create --name first-move --limit 10 --expiration 30d (7d, 30d, 60d, 90d oder 1y). Ein im Dashboard erstellter Schlüssel läuft nie ab, bis Sie ihn löschen. Löschen Sie ihn also, wenn Sie ihn nicht mehr brauchen, und erstellen Sie einen neuen.",
+      "docs": "Vercel-Dokumentation: Budgets für API-Schlüssel",
+      "docsUrl": "https://vercel.com/docs/ai-gateway/observability-and-spend/budgets#api-key-budgets",
+      "ack": "Ich habe für diesen Schlüssel ein Ausgabenlimit und ein Ablaufdatum festgelegt, oder ich lösche den Schlüssel, sobald ich ihn nicht mehr brauche.",
+      "required": "Bestätigen Sie das, bevor der Schlüssel verwendet wird."
+    },
+    "unlock": {
+      "title": "Gemerkten Schlüssel entsperren",
+      "lead": "Ihr Schlüssel für {provider} mit der Endung {last4} ist auf diesem Gerät unter Ihrer PIN gemerkt (das haben Sie im KI-Assistenten gewählt). Entsperren Sie ihn oder fügen Sie einen Schlüssel ein: Ein hier eingefügter Schlüssel bleibt nur im Arbeitsspeicher dieses Tabs.",
+      "pin": "PIN",
+      "unlock": "Entsperren",
+      "unlocking": "Wird entsperrt …",
+      "wrong": "Falsche PIN. Noch {remaining} Versuche, dann wird der Schlüssel gelöscht.",
+      "wiped": "Zu viele falsche PINs: Der gemerkte Schlüssel wurde gelöscht. Fügen Sie den Schlüssel erneut ein.",
+      "missing": "Es wurde kein gemerkter Schlüssel gefunden. Fügen Sie den Schlüssel erneut ein.",
+      "unavailable": "Dieser Browser kann den gemerkten Schlüssel nicht öffnen.",
+      "other": "Stattdessen einen Schlüssel einfügen",
+      "remove": "Gemerkten Schlüssel entfernen",
+      "provider": "Vercel AI Gateway"
+    }
+  },
+  "usage": {
+    "title": "Grobe Kosten eines Durchlaufs",
+    "value": "Etwa {amount}",
+    "below": "Weniger als {amount}",
+    "decisionOnly": "{amount} für die Entscheidungen. Der Preis dieses Textmodells ist hier nicht bekannt.",
+    "note": "Nur eine Größenordnung. Das Gateway rechnet die tatsächlich verbrauchten Tokens ab.",
+    "tokens": "{count} Tokens",
+    "how": {
+      "title": "So schätzen wir",
+      "decision": "Entscheidungen: etwa {tokens} Tokens aus Plan und Fragen über die vier Runden, zu Jevs Eingabepreis von {price} je Million Tokens: {amount}.",
+      "text": "Bericht: etwa {input} Eingabe-Tokens und bis zu {output} Ausgabe-Tokens zu den Preisen von {model}: {amount}.",
+      "textUnknown": "Bericht: etwa {input} Eingabe-Tokens und bis zu {output} Ausgabe-Tokens. Die Preise dieses Modells sind hier nicht bekannt.",
+      "tokens": "Ein Token entspricht etwa drei Zeichen, wie auch sonst in der App. Vorschläge kosten zusätzlich, und nur, wenn Sie sie anfordern."
+    }
+  },
+  "run": {
+    "title": "Plan bewerten",
+    "lead": "Jev liest den Plan in fünf Runden vom ersten bis zum letzten Feld: eine Runde ohne KI, dann eine je Schritt des Businessplans. Sie können jederzeit abbrechen.",
+    "start": "Meinen Plan bewerten",
+    "again": "Erneut bewerten",
+    "againNote": "Ein neuer Durchlauf ersetzt den gespeicherten Score.",
+    "cancel": "Abbrechen",
+    "running": "Wird bewertet…",
+    "filled": "{filled} von {total} Planteilen haben Text.",
+    "openPlan": "Businessplan öffnen",
+    "needs": {
+      "key": "Verwenden Sie zuerst einen Gateway-Schlüssel.",
+      "ack": "Bestätigen Sie zuerst, was gesendet wird.",
+      "model": "Wählen Sie zuerst ein gültiges Textmodell.",
+      "filled": "Noch nichts zu bewerten: Kein Feld des Businessplans hat Text."
+    },
+    "progress": {
+      "label": "Fortschritt des Durchlaufs",
+      "turn": "Runde {turn}",
+      "report": "Bericht",
+      "noAi": "Ohne KI",
+      "questions": "{count} Fragen",
+      "states": {
+        "pending": "Wartet",
+        "running": "Läuft",
+        "done": "Fertig",
+        "failed": "Gestoppt",
+        "skipped": "Nicht gelaufen"
+      }
+    },
+    "done": "Bewertet. Der Score ist in diesem Projekt gespeichert.",
+    "notSaved": "Der Durchlauf ist fertig, aber dieses Projekt ist nicht mehr geöffnet, daher wurde der Score nicht gespeichert.",
+    "reportError": "Der Score ist gespeichert, aber der Bericht konnte nicht geschrieben werden. {reason}",
+    "writeAgain": "Bericht neu schreiben",
+    "failed": "Der Durchlauf wurde gestoppt, und nichts wurde gespeichert. {reason}"
+  },
+  "errors": {
+    "key": "Das Gateway hat den Schlüssel nicht akzeptiert. Prüfen Sie, ob Sie den ganzen Schlüssel eingefügt haben und ob er noch aktiv ist.",
+    "credits": "Ihr Gateway-Konto hat kein Guthaben mehr. Laden Sie in Ihrem Vercel-Konto Guthaben auf und versuchen Sie es dann erneut.",
+    "forbidden": "Der Schlüssel darf dieses Modell oder diese Funktion nicht nutzen. Prüfen Sie die Einstellungen Ihres Gateways oder wählen Sie ein anderes Textmodell.",
+    "model": "Das Gateway kennt dieses Modell nicht. Wählen Sie ein anderes Textmodell.",
+    "rate": "Gerade zu viele Anfragen. Warten Sie eine Minute und versuchen Sie es dann erneut.",
+    "provider": "Beim Modellanbieter gab es ein Problem. Versuchen Sie es gleich noch einmal.",
+    "network": "Das Gateway war nicht erreichbar oder hat zu lange gebraucht. Prüfen Sie Ihre Verbindung und versuchen Sie es dann erneut.",
+    "aborted": "Abgebrochen.",
+    "unknown": "Etwas ist schiefgegangen. Versuchen Sie es erneut."
+  },
+  "flow": {
+    "title": "Entscheidungsfluss",
+    "lead": "Jede Entscheidung von Jev, Runde für Runde, vom ersten bis zum letzten Feld. Wählen Sie einen Knoten, um seine Details zu sehen.",
+    "placeholder": "Der Fluss erscheint hier, sobald Sie den Plan bewerten.",
+    "view": {
+      "label": "Ansicht",
+      "graph": "Grafik",
+      "table": "Tabelle"
+    },
+    "columns": {
+      "turn": "Runde {turn}",
+      "read": "Plan lesen",
+      "aggregate": "Zusammenführen",
+      "aggregateTitle": "Dimensionen und Score",
+      "report": "Bericht",
+      "reportTitle": "Kurzer Bericht",
+      "noAi": "Ohne KI",
+      "jev": "Jev",
+      "textModel": "Textmodell"
+    },
+    "groups": {
+      "empty": "Leere Felder",
+      "judgements": "Planteile",
+      "gates": "Prüfungen",
+      "branches": "Verzweigungen",
+      "dimensions": "Dimensionen"
+    },
+    "state": {
+      "pending": "Wartet",
+      "running": "Entscheidet…",
+      "none": "Hier gibt es nichts zu entscheiden"
+    },
+    "node": {
+      "level": "{level} · {name}",
+      "empty": "Leer · 0",
+      "refused": "Keine Antwort",
+      "probability": "{outcome} · {value}",
+      "capApplied": "{outcome} · begrenzt auf {level}",
+      "chosen": "{value} sicher",
+      "changed": "Seit dem Durchlauf geändert",
+      "signalNone": "Kein vollständiger Quick Check: Jev liest den Plan allein.",
+      "heatDensity": "Wärmedichte {value}",
+      "economicRatio": "Wirtschaftlichkeitsverhältnis {value}",
+      "filled": "{filled} von {total} Planteilen ausgefüllt",
+      "points": "{value} von 100",
+      "cappedAt": "Begrenzt auf Stufe {level}",
+      "final": "KI-Plan-Score",
+      "score": "{score} ± {band}",
+      "capped": "Eine Pflichtprüfung ist gescheitert, daher bleibt der Score unter Solide.",
+      "reportNone": "Noch nicht geschrieben",
+      "reportWriting": "Wird geschrieben…",
+      "reportFailed": "Konnte nicht geschrieben werden",
+      "reportBy": "Geschrieben von {model}",
+      "step": "Schritt {step}"
+    },
+    "detail": {
+      "kinds": {
+        "judgement": "Planteil",
+        "gate": "Prüfung",
+        "followUp": "Folgeprüfung",
+        "branch": "Verzweigung",
+        "signal": "Signal aus dem Quick Check",
+        "dimension": "Dimension",
+        "score": "KI-Plan-Score",
+        "report": "Bericht"
+      },
+      "expected": "Erwartete Stufe",
+      "expectedValue": "{level} von 4 · {name}",
+      "histogram": "Wahrscheinlichkeit je Stufe",
+      "confidence": "Sicherheit",
+      "confidenceHelp": "Wie gebündelt Jevs Antwort ist: 100 %, wenn eine Stufe alles trägt, 0 %, wenn alle Stufen gleich wahrscheinlich sind.",
+      "spread": "Streuung",
+      "spreadValue": "± {value} Stufen",
+      "dimension": "Dimension",
+      "step": "Schritt im Businessplan",
+      "source": "Entschieden",
+      "question": "Frage",
+      "outcome": "Ergebnis",
+      "probability": "Wahrscheinlichkeit, dass sie erfüllt ist",
+      "effect": "Wirkung",
+      "cap": "Begrenzt „{dimension}“ auf Stufe {level}, wenn sie nicht erfüllt ist.",
+      "capConditional": "Begrenzt „{dimension}“ auf Stufe {level}, wenn sie nicht erfüllt ist und die Wärmedichte im Quick Check niedrig ist.",
+      "flag": "Nur ein Hinweis: Sie senkt den Score nie.",
+      "applied": "Angewendet: „{dimension}“ ist auf Stufe {level} begrenzt.",
+      "openedBy": "Gefragt, weil die Verzweigung „{branch}“ „{option}“ gewählt hat.",
+      "options": "Optionen",
+      "chosen": "Gewählt",
+      "followUp": "Folgeprüfung in der nächsten Runde",
+      "none": "Keine",
+      "weight": "Gewicht",
+      "beforeCap": "Vor Begrenzungen",
+      "afterCap": "Nach Begrenzungen",
+      "band": "Band (eine Standardabweichung)",
+      "emptyNote": "Kein Text: ohne KI mit 0 bewertet und nie gesendet.",
+      "refusedNote": "Jev hat die Antwort abgelehnt, daher zählt dieser Teil nicht.",
+      "ruleNote": "Vor jeder KI per Regel entschieden.",
+      "skippedNote": "Nicht gefragt: Sie trifft auf diesen Plan nicht zu.",
+      "changedNote": "Der Text hat sich nach dem Durchlauf geändert, daher ist diese Stufe womöglich veraltet.",
+      "signalNote": "Das Ergebnis des Quick Checks geht als festes Signal ein. Die KI berechnet es nie.",
+      "heatDensity": "Wärmedichte",
+      "economicRatio": "Wirtschaftlichkeitsverhältnis",
+      "roundedNote": "Auf 5 Punkte gerundet angezeigt, um keine falsche Genauigkeit vorzutäuschen.",
+      "headline": "Überschrift",
+      "model": "Modell"
+    },
+    "legend": {
+      "label": "Legende",
+      "levels": "Erwartete Stufe",
+      "empty": "Leeres Feld",
+      "refused": "Keine Antwort",
+      "branch": "Verzweigung",
+      "edge": "Öffnet eine Folgeprüfung"
+    },
+    "table": {
+      "caption": "Entscheidungsfluss als Tabelle",
+      "heading": "Element",
+      "turn": "Runde",
+      "kind": "Art",
+      "result": "Ergebnis",
+      "certainty": "Wahrscheinlichkeit oder Sicherheit"
+    },
+    "how": {
+      "title": "So entscheidet der Fluss",
+      "read": "Runde 0, ohne KI: Die App prüft, welche Planteile Text haben. Leere erhalten sicher 0 und werden nie gesendet. Ein vollständiges Ergebnis des Quick Checks geht als festes Signal ein.",
+      "turns": "Runden 1 bis 4, ein Aufruf von Jev je Schritt des Businessplans: Jev bewertet jeden ausgefüllten Planteil auf fünf Stufen (fehlt, vage, konkret, beziffert, belegt) und gibt für jede Stufe eine Wahrscheinlichkeit an. Die erwartete Stufe ist E = Σ k · p(k), für k von 0 bis 4.",
+      "gates": "Prüfungen sind Ja-Nein-Fragen über den ganzen Plan. Sie bringen nie Punkte. Eine Prüfung, die mit Sicherheit nicht erfüllt ist, begrenzt ihre Dimension auf Stufe 2 oder 3; eine unklare Antwort ist nur ein Hinweis. Manche Prüfungen entscheidet eine Regel vor jeder KI.",
+      "branches": "Verzweigungen sind Auswahlfragen, etwa nach der wichtigsten Wärmequelle. Die Option, die Jev wählt, bestimmt, welche Folgeprüfung die nächste Runde stellt.",
+      "aggregate": "Zusammenführen, ohne KI: Eine Dimension ist der Mittelwert ihrer Planteile, gekappt durch die niedrigste Begrenzung ihrer nicht erfüllten Prüfungen. Der KI-Plan-Score ist die gewichtete Summe der sieben Dimensionen, von 0 bis 100, mit einem Band von einer Standardabweichung. Früh unter 40, Vielversprechend ab 40, Solide ab 70; eine gescheiterte Pflichtprüfung hält ihn unter Solide.",
+      "report": "Bericht: Das gewählte Textmodell schreibt aus diesen Zahlen einen kurzen Bericht. Es kann sie nicht ändern."
+    }
+  },
+  "labels": {
+    "scoreLevels": {
+      "early": {
+        "name": "Früh",
+        "description": "Der Plan nennt die Idee, lässt aber das meiste offen, was einen Plan solide macht."
+      },
+      "promising": {
+        "name": "Vielversprechend",
+        "description": "Der Plan ist vielerorts konkret; manchen Teilen fehlen noch Zahlen, Belege oder klare Rollen."
+      },
+      "solid": {
+        "name": "Solide",
+        "description": "Der Plan ist meist konkret, beziffert und belegt, und keine Pflichtprüfung ist gescheitert."
+      }
+    },
+    "levels": {
+      "missing": {
+        "name": "Fehlt",
+        "description": "Leer, ein Platzhalter oder nicht zu diesem Punkt oder Standort."
+      },
+      "vague": {
+        "name": "Vage",
+        "description": "Eine allgemeine Aussage, die zu jedem Projekt passt: kein Akteur, kein Ort, keine Zahl."
+      },
+      "specific": {
+        "name": "Konkret",
+        "description": "Nennt Akteure, Gebäude, Quellen oder Mechanismen dieses Standorts, aber ohne Zahlen oder deren Grundlage."
+      },
+      "quantified": {
+        "name": "Beziffert",
+        "description": "Nennt die wichtigsten Mengen mit Einheiten und einer genannten Grundlage oder Annahme."
+      },
+      "evidenced": {
+        "name": "Belegt",
+        "description": "Die Zahlen stützen sich auf benannte Daten oder Zusagen oder sind geprüft, und der Text sagt, was passiert, wenn eine falsch ist."
+      }
+    },
+    "dimensions": {
+      "value": {
+        "name": "Kundennutzen und Bedarf",
+        "description": "Wer anschließt, was gebraucht wird und warum das Netz die Alternative schlägt."
+      },
+      "technology": {
+        "name": "Technik und Standort",
+        "description": "Der Standort, seine Wärmequellen und Ressourcen und ob das Netz zum Ort passt."
+      },
+      "economics": {
+        "name": "Kosten, Erlöse und Finanzierung",
+        "description": "Kosten, Tarife, Finanzierung und Förderungen und ob die Erlöse die Kosten über die Lebensdauer decken."
+      },
+      "governance": {
+        "name": "Eigentum, Betrieb und Steuerung",
+        "description": "Wer was besitzt, betreibt und bezahlt und wie Kosten, Risiken und Nutzen verteilt sind."
+      },
+      "participation": {
+        "name": "Beteiligung und Zusagen",
+        "description": "Eigentümer, Beteiligte, der Ankerkunde und die Anschlussquote, auf die der Plan baut."
+      },
+      "evidence": {
+        "name": "Risiken, Annahmen und Belege",
+        "description": "Kritische Annahmen und Risiken, das K.-o.-Kriterium und wie jedes geprüft wird."
+      },
+      "path": {
+        "name": "Umsetzungspfad und Skalierbarkeit",
+        "description": "Die erste Phase, die nächsten Schritte, das Entscheidungstor und wie das Modell wächst."
+      }
+    },
+    "judgements": {
+      "site": "Standortbeschreibung",
+      "ownership": "Eigentums- und Nutzungsarten",
+      "stakeholders": "Beteiligte und Partner",
+      "segments": "Kundensegmente",
+      "needs": "Wärme- und Kältebedarf",
+      "pain-point": "Zentrales Problem",
+      "advantage": "Vorteil gegenüber den Alternativen",
+      "heat-sources": "Wärmequellen",
+      "value-proposition": "Wertversprechen",
+      "resources": "Schlüsselressourcen",
+      "partners": "Schlüsselpartner",
+      "engagement": "Kundenbeziehungen und Kanäle",
+      "cost-basis": "Kosten und Investitionen",
+      "revenue": "Erlösmodell und Tarife",
+      "operations": "Aktivitäten und Betreiberpflichten",
+      "allocation": "Verteilung von Investition, Risiko und Nutzen",
+      "connection-rate": "Anschlussquote",
+      "financing": "Finanzierung",
+      "subsidies": "Abhängigkeit von Förderungen",
+      "assumptions": "Kritische Annahmen",
+      "risks": "Risiken und das K.-o.-Kriterium",
+      "learning": "Rückmeldungen und Änderungen",
+      "scalability": "Skalierbarkeit und Übertragbarkeit",
+      "data": "Zu sammelnde Daten",
+      "next-partners": "Zu gewinnende Beteiligte und Partnerschaften",
+      "pilot": "Pilot",
+      "decisions": "Schlüsselentscheidungen und Entscheidungstor"
+    },
+    "gates": {
+      "anchor": {
+        "name": "Ankerkunde",
+        "question": "Nennt der Plan mindestens einen konkreten Ankerkunden, einen großen oder frühen Anschluss, und seine Rolle?"
+      },
+      "extra-value": {
+        "name": "Zusatznutzen",
+        "question": "Nutzt der Plan Kühlung oder einen anderen Zusatznutzen, etwa stabile Preise oder die Entlastung des Stromnetzes, als Grund zum Anschluss, wo das passt?"
+      },
+      "heat-density": {
+        "name": "Netzlänge als Kostentreiber",
+        "question": "Behandelt der Plan die Netzlänge oder die Wärmebelegungsdichte als Kostentreiber, etwa Trassenlänge, nahe Gebäude bündeln oder Mikronetze?"
+      },
+      "vienna-zone": {
+        "name": "Zone im Wiener Wärmeplan 2040",
+        "question": "Nennt der Plan die Zone des Standorts im Wiener Wärmeplan 2040 und erklärt, warum ein 5GDHC-Netz dazu passt?"
+      },
+      "boundary": {
+        "name": "Systemgrenze",
+        "question": "Wem gehören laut Plan die Wärmequelle, das Netz und die Wärmepumpen in den Gebäuden?"
+      },
+      "operator": {
+        "name": "Betreiber und Pflichten",
+        "question": "Nennt der Plan einen Betreiber und seine Betriebspflichten, etwa Wartung, Abrechnung, Störungen und Versorgungssicherheit?"
+      },
+      "cost-key": {
+        "name": "Kostenschlüssel",
+        "question": "Nennt der Plan eine Regel, wie die Kosten von Quelle, Leitungen und Anschlüssen auf die Nutzer aufgeteilt werden?"
+      },
+      "price-vs-alternative": {
+        "name": "Preis gegenüber der Alternative",
+        "question": "Wird der Preis für die Kunden mit ihrer realistischen Alternative verglichen, etwa Gas oder einer eigenen Wärmepumpe, einschließlich der Preisstabilität?"
+      },
+      "connection-threshold": {
+        "name": "Mindestanschlussquote",
+        "question": "Nennt der Plan eine Anschlussquote und was mit den Kosten oder der Tragfähigkeit passiert, wenn weniger Gebäude anschließen?"
+      },
+      "lifetime-cover": {
+        "name": "Erlöse decken die Lebensdauerkosten",
+        "question": "Vergleicht der Plan die jährlichen Erlöse mit den jährlichen Kosten der Investition plus den Betriebskosten, einschließlich Wärmepumpenstrom, über 20 bis 30 Jahre?"
+      },
+      "subsidy-dependence": {
+        "name": "Plan ohne Förderung",
+        "question": "Wie hängt der Plan von Förderungen ab?"
+      },
+      "deal-breaker": {
+        "name": "K.-o.-Kriterium mit Prüfung",
+        "question": "Ist ein Risiko als mögliches K.-o.-Kriterium markiert, könnte es das Projekt wirklich stoppen, und hat es einen konkreten Prüfschritt (was, wer, wann)?"
+      },
+      "start-small": {
+        "name": "Klein anfangen",
+        "question": "Ist eine erste Phase festgelegt, etwa ein Ankercluster oder ein Mikronetz, mit späteren Schritten zum Wachsen?"
+      },
+      "decision-gate": {
+        "name": "Entscheidungstor",
+        "question": "Enthalten die nächsten Schritte eine Go- oder No-go-Entscheidung mit ausdrücklichen, prüfbaren Kriterien?"
+      },
+      "anchor-public": {
+        "name": "Öffentlicher Entscheidungsweg",
+        "question": "Behandelt der Plan den Entscheidungsweg des öffentlichen Eigentümers: einen Gemeinderats- oder Vorstandsbeschluss, das Budget oder die öffentliche Vergabe?"
+      },
+      "anchor-commercial": {
+        "name": "Vertragslaufzeit des Ankers",
+        "question": "Behandelt der Plan, wie lange sich der gewerbliche Ankerkunde bindet (Vertragslaufzeit), verglichen mit der Amortisationszeit des Netzes?"
+      },
+      "anchor-residential": {
+        "name": "Wie Eigentümer und Mieter entscheiden",
+        "question": "Behandelt der Plan, wie die einzelnen Eigentümer oder Mieter entscheiden, etwa Eigentümerbeschlüsse, Mietrecht oder Zustimmung der Mieter?"
+      },
+      "anchor-industry": {
+        "name": "Sichere Abwärme oder Kältenachfrage",
+        "question": "Behandelt der Plan, wie sicher die Abwärme oder der Kältebedarf über die Zeit ist: ein Vertrag und eine Reserve, falls das Unternehmen geht?"
+      },
+      "water-permit": {
+        "name": "Genehmigungsweg für Wasser oder Untergrund",
+        "question": "Nennt der Plan den Genehmigungsweg für die Nutzung von Grundwasser, Untergrund oder Oberflächenwasser oder eine frühe Abklärung mit der Wasserrechtsbehörde?"
+      },
+      "source-wastewater": {
+        "name": "Kanalbetreiber und Abwasserdaten",
+        "question": "Behandelt der Plan eine Vereinbarung mit dem Kanalbetreiber und die gemessene Menge und Temperatur des Abwassers?"
+      },
+      "source-waste-heat": {
+        "name": "Liefervertrag für Abwärme",
+        "question": "Behandelt der Plan einen Liefervertrag mit dem Eigentümer der Abwärme und was passiert, wenn diese Lieferung endet?"
+      },
+      "source-air": {
+        "name": "Luft als Quelle bei Kälte",
+        "question": "Behandelt der Plan die geringere Effizienz von Luft als Quelle bei kaltem Wetter und den Lärm der Außengeräte?"
+      },
+      "owner-utility": {
+        "name": "Zusage des Versorgers",
+        "question": "Nennt der Plan die Zusage des Versorgers: einen Beschluss, eine Absichtserklärung oder seine festgelegte Rolle im Projekt?"
+      },
+      "owner-municipal": {
+        "name": "Kommunaler Entscheidungsweg",
+        "question": "Behandelt der Plan den kommunalen Entscheidungsweg: einen Gemeinderatsbeschluss, das Budget oder ein kommunales Unternehmen?"
+      },
+      "owner-community": {
+        "name": "Regeln der Gemeinschaft",
+        "question": "Behandelt der Plan die Regeln der Gemeinschaft: Abstimmungen, Ein- und Austritt, Haftung und wie die Mitglieder ihren Anteil finanzieren?"
+      },
+      "owner-contracting": {
+        "name": "Vertragslaufzeit und Preise",
+        "question": "Behandelt der Plan die Vertragslaufzeit, wie sich Preise über die Zeit ändern dürfen und was am Vertragsende passiert?"
+      },
+      "owner-developer": {
+        "name": "Betrieb nach der Übergabe",
+        "question": "Behandelt der Plan, wer das Netz betreibt und wartet, nachdem die Gebäude übergeben oder verkauft wurden?"
+      }
+    },
+    "gateOptions": {
+      "boundary": {
+        "all": "Eigentümer aller drei genannt",
+        "partial": "Eigentümer von einem oder zwei genannt",
+        "none": "Kein Eigentümer genannt"
+      },
+      "lifetime-cover": {
+        "yes": "Ja, langfristig",
+        "partly": "Teilweise",
+        "no": "Kein Vergleich"
+      },
+      "subsidy-dependence": {
+        "none": "Keine Förderung angenommen",
+        "fallback": "Förderung mit Ausweichplan",
+        "no-fallback": "Förderung ohne Ausweichplan",
+        "unclear": "Unklar"
+      }
+    },
+    "branches": {
+      "anchor-type": {
+        "name": "Art des Ankers",
+        "question": "Auf welche Art von Ankerkunde baut der Plan vor allem?",
+        "options": {
+          "public": "Öffentliches Gebäude",
+          "commercial": "Gewerbekunde",
+          "residential": "Großer Wohnungseigentümer",
+          "industry": "Abwärme- oder Kältenutzer",
+          "none": "Kein Anker"
+        }
+      },
+      "source-type": {
+        "name": "Hauptwärmequelle",
+        "question": "Auf welche Wärmequelle baut der Plan vor allem?",
+        "options": {
+          "groundwater": "Grundwasser",
+          "borehole": "Erdsondenfeld",
+          "surface-water": "Oberflächenwasser",
+          "wastewater": "Abwasser",
+          "waste-heat": "Abwärme",
+          "air": "Außenluft",
+          "unclear": "Unklar"
+        }
+      },
+      "ownership": {
+        "name": "Eigentumsmodell",
+        "question": "Welches Eigentums- und Betriebsmodell beschreibt der Plan für das Netz?",
+        "options": {
+          "utility": "Versorger",
+          "municipal": "Gemeinde",
+          "community": "Nutzer gemeinsam",
+          "contracting": "Contractor",
+          "developer": "Bauträger",
+          "unclear": "Unklar"
+        }
+      }
+    },
+    "outcomes": {
+      "pass": "Erfüllt",
+      "unclear": "Unklar",
+      "fail": "Nicht erfüllt",
+      "skipped": "Nicht gefragt"
+    },
+    "fieldSources": {
+      "empty": "Leeres Feld",
+      "model": "Von Jev bewertet",
+      "refused": "Keine Antwort"
+    },
+    "gateSources": {
+      "rule": "Per Regel entschieden",
+      "model": "Von Jev entschieden",
+      "refused": "Keine Antwort"
+    },
+    "turns": {
+      "0": "Plan lesen",
+      "1": "Chance",
+      "2": "Geschäftslogik",
+      "3": "Realitätscheck",
+      "4": "Umsetzung"
+    }
+  },
+  "results": {
+    "title": "Ihr KI-Plan-Score",
+    "lead": "Das gespeicherte Ergebnis des letzten Durchlaufs: jede Entscheidung von Jev und die Zahlen daraus. Eine KI-Einschätzung des geschriebenen Plans, kein Urteil über die Machbarkeit.",
+    "aiGenerated": "KI-generiert",
+    "summary": {
+      "title": "KI-Plan-Score",
+      "outOf": "von 100",
+      "band": "± {band}",
+      "scoreLabel": "KI-Plan-Score {score} von 100, plus oder minus {band}",
+      "range": "Band von einer Standardabweichung um den ungerundeten Score: {from} bis {to}",
+      "rounded": "Von {raw} auf {step} Punkte gerundet angezeigt.",
+      "capped": "Eine Pflichtprüfung ist nicht erfüllt, daher bleibt die Einstufung unter „{solid}“, egal wie viele Punkte der Plan hat.",
+      "seeChecks": "Zu den Prüfungen",
+      "scale": {
+        "label": "Der Score auf der Skala von 0 bis 100, mit seinem Band und den Bereichen der Einstufungen"
+      }
+    },
+    "signal": {
+      "title": "Signal aus dem Quick Check",
+      "note": "Geht als festes Signal aus dem Quick Check ein. Die KI berechnet es nie.",
+      "verdict": "Ergebnis",
+      "heatDensity": "Wärmedichte",
+      "heatDensityValue": "{value} MWh/m",
+      "economicRatio": "Wirtschaftlichkeitskennzahl",
+      "economicRatioValue": "E = {value}",
+      "none": "Kein vollständiger Quick Check: Jev hat den Plan für sich allein gelesen."
+    },
+    "meta": {
+      "label": "Zu diesem Durchlauf",
+      "date": "Bewertet am {date}",
+      "method": "Methode {version}",
+      "decisionModel": "Entscheidungen von {model}",
+      "textModel": "Bericht von {model}",
+      "noReport": "Noch kein Bericht",
+      "tokens": "{count} Tokens",
+      "tokensDetail": "{decision} für Entscheidungen, {text} für Text"
+    },
+    "outdated": {
+      "title": "Ihr Plan hat sich seit dieser Bewertung geändert",
+      "body": "Diese Planteile haben sich seit dem Durchlauf geändert, daher sind ihre Stufen und der Score womöglich veraltet. Bewerten Sie oben erneut, um die Änderungen einzubeziehen.",
+      "edit": "Bearbeiten in {step}"
+    },
+    "dimensions": {
+      "title": "{count} Dimensionen",
+      "lead": "Was einen Businessplan für ein 5GDHC-Netz solide macht. Eine Dimension ist die mittlere Stufe ihrer Planteile auf der Skala von 0 bis 100; eine nicht erfüllte Prüfung kann sie begrenzen.",
+      "view": {
+        "label": "Ansicht",
+        "chart": "Diagramm",
+        "table": "Tabelle"
+      },
+      "legend": {
+        "score": "Score",
+        "raw": "Vor der Begrenzung",
+        "cap": "Begrenzung durch eine Prüfung",
+        "band": "± eine Standardabweichung"
+      },
+      "weight": "Gewicht {value}",
+      "value": "{score} ± {sd}",
+      "capped": "Begrenzt auf Stufe {level}",
+      "before": "{value} vor der Begrenzung",
+      "table": {
+        "caption": "Tabellenansicht der Dimensionen",
+        "heading": "Dimension",
+        "score": "Score",
+        "raw": "Vor Begrenzung",
+        "cap": "Begrenzung",
+        "sd": "± SD",
+        "weight": "Gewicht",
+        "points": "Gewichtete Punkte",
+        "total": "KI-Plan-Score",
+        "capValue": "Stufe {level} ({points})"
+      }
+    },
+    "parts": {
+      "title": "Jeder Planteil",
+      "lead": "Jevs Einschätzung jedes Teils auf den {count} Stufen, in der Reihenfolge des Businessplans. Die Balken zeigen, wie wahrscheinlich Jev jede Stufe fand; die Linie markiert die erwartete Stufe.",
+      "turn": "Runde {turn} · {name}",
+      "level": "{name} · {value}",
+      "levelLabel": "Erwartete Stufe {value} von {max}, {name}",
+      "histogram": "Wahrscheinlichkeit je Stufe",
+      "confidence": "Sicherheit",
+      "confidenceValue": "{value} sicher",
+      "confidenceHelp": "Wie gebündelt Jevs Antwort ist: 100 %, wenn eine Stufe alles trägt, 0 %, wenn alle Stufen gleich wahrscheinlich sind.",
+      "spread": "Streuung ± {value} Stufen",
+      "changed": "Geändert",
+      "changedNote": "Der Text hat sich nach dem Durchlauf geändert, daher ist diese Stufe womöglich veraltet.",
+      "edit": "Bearbeiten in {step}",
+      "details": "Details",
+      "detailsOf": "Details zu {name}",
+      "levels": "Was jede Stufe bedeutet",
+      "levelNumber": "Stufe {number}",
+      "empty": "Kein Text: ohne KI mit 0 bewertet und nie gesendet.",
+      "refused": "Jev hat nicht geantwortet, daher zählt dieser Teil nicht.",
+      "noDistribution": "Jev hat eine Stufe ohne Wahrscheinlichkeiten genannt.",
+      "weak": "Schwach: unter Stufe {level}",
+      "suggestions": "Vorschläge",
+      "suggest": "Verbesserungen vorschlagen",
+      "suggestFor": "Verbesserungen für {name} vorschlagen"
+    },
+    "checks": {
+      "title": "Prüfungen und Entscheidungen",
+      "lead": "Prüfungen sind Ja-Nein- oder Auswahlfragen über den ganzen Plan. Sie geben nie Punkte: Eine Prüfung, die sicher nicht erfüllt ist, begrenzt ihre Dimension, eine unklare ist nur ein Hinweis. Die Verzweigungen entscheiden, welche Folgeprüfung die nächste Runde stellt.",
+      "gates": "Prüfungen",
+      "branches": "Entscheidungen",
+      "passProbability": "Wahrscheinlichkeit der Erfüllung: {value}",
+      "noProbability": "Keine Wahrscheinlichkeit: {source}",
+      "meterLabel": "Wahrscheinlichkeit, dass sie erfüllt ist: {value}. Erfüllt ab {pass}, nicht erfüllt bis {fail}.",
+      "capApplied": "Begrenzt „{dimension}“ auf Stufe {level}",
+      "capPossible": "Würde „{dimension}“ auf Stufe {level} begrenzen, wenn sie nicht erfüllt wäre",
+      "capConditional": "Würde „{dimension}“ auf Stufe {level} begrenzen, wenn sie nicht erfüllt wäre und die Wärmedichte im Quick Check niedrig ist",
+      "flag": "Nur ein Hinweis: Sie senkt den Score nie",
+      "mustHave": "Pflicht",
+      "followUp": "Folgeprüfung",
+      "openedBy": "Gestellt, weil bei „{branch}“ „{option}“ gewählt wurde",
+      "turn": "Runde {turn}",
+      "chosen": "Gewählt: {option}",
+      "chosenProbability": "{value} sicher",
+      "refusedBranch": "Jev hat nicht geantwortet, daher wurde keine Folgeprüfung gestellt.",
+      "opens": "Hat die Folgeprüfung „{check}“ ausgelöst",
+      "opensNone": "Löst keine Folgeprüfung aus",
+      "options": "Wahrscheinlichkeit je Option",
+      "suggestions": "Vorschläge",
+      "suggest": "Verbesserungen vorschlagen",
+      "suggestFor": "Verbesserungen für {name} vorschlagen"
+    },
+    "report": {
+      "title": "Kurzbericht",
+      "lead": "Vom Textmodell aus Jevs endgültigen Zahlen geschrieben. Es ändert nie eine Zahl.",
+      "by": "Geschrieben von {model}",
+      "strengths": "Stärken",
+      "gaps": "Lücken",
+      "actions": "Nächste Schritte",
+      "pointsTo": "Bezieht sich auf",
+      "none": "Noch kein Bericht.",
+      "otherLanguage": "Dieser Bericht ist auf {language}.",
+      "write": "Bericht schreiben",
+      "writeIn": "Auf {language} schreiben",
+      "rewrite": "Bericht neu schreiben",
+      "writing": "Bericht wird geschrieben…"
+    },
+    "suggestions": {
+      "title": "Vorschläge",
+      "lead": "Auf Wunsch schlägt das Textmodell allgemeine, machbare Verbesserungen für schwache Planteile (unter Stufe {level}) und für nicht erfüllte oder unklare Prüfungen vor. Nichts wird gesendet, bevor Sie fragen.",
+      "ask": "Verbesserungen für die schwachen Teile vorschlagen",
+      "askAgain": "Erneut für die schwachen Teile vorschlagen",
+      "writing": "Vorschläge werden geschrieben…",
+      "targets": "{count} schwache Teile oder Prüfungen",
+      "nothing": "Keine schwachen Planteile und keine nicht erfüllten oder unklaren Prüfungen: nichts vorzuschlagen.",
+      "none": "Noch keine Vorschläge.",
+      "parts": "Planteile",
+      "checks": "Prüfungen",
+      "by": "Vorgeschlagen von {model} am {date}",
+      "otherLanguage": "Diese Vorschläge sind auf {language}. Fragen Sie erneut, um sie auf {current} zu erhalten."
+    },
+    "needsAi": "Um mit KI zu schreiben, verwenden Sie oben einen Gateway-Schlüssel und wählen ein Textmodell.",
+    "runInProgress": "Eine Bewertung läuft. Sobald sie abgeschlossen ist, können Sie wieder mit KI schreiben.",
+    "errors": {
+      "key": "Das Gateway hat den Schlüssel nicht akzeptiert. Prüfen Sie, ob Sie den ganzen Schlüssel eingefügt haben und ob er noch aktiv ist.",
+      "credits": "Ihr Gateway-Konto hat kein Guthaben mehr. Laden Sie in Ihrem Vercel-Konto Guthaben auf und versuchen Sie es dann erneut.",
+      "forbidden": "Der Schlüssel darf dieses Modell oder diese Funktion nicht nutzen. Prüfen Sie die Einstellungen Ihres Gateways oder wählen Sie ein anderes Textmodell.",
+      "model": "Das Gateway kennt dieses Modell nicht. Wählen Sie ein anderes Textmodell.",
+      "rate": "Gerade zu viele Anfragen. Warten Sie eine Minute und versuchen Sie es dann erneut.",
+      "provider": "Beim Modellanbieter gab es ein Problem. Versuchen Sie es gleich noch einmal.",
+      "network": "Das Gateway war nicht erreichbar oder hat zu lange gebraucht. Prüfen Sie Ihre Verbindung und versuchen Sie es dann erneut.",
+      "aborted": "Abgebrochen. Nichts wurde geändert.",
+      "unknown": "Etwas ist schiefgegangen. Versuchen Sie es erneut."
+    },
+    "languages": {
+      "en": "Englisch",
+      "de": "Deutsch"
+    },
+    "how": {
+      "title": "So bewerten wir",
+      "lead": "Der KI-Plan-Score macht aus Jevs Entscheidungen Zahlen, ohne weitere KI. Jede Zahl hier stammt aus der Methode selbst.",
+      "levels": {
+        "title": "{count} Stufen",
+        "lead": "Jeder Planteil wird auf derselben Skala bewertet. Die Stufen beschreiben Qualität, nie Länge."
+      },
+      "turns": {
+        "title": "Runden",
+        "lead": "Runde 0 liest den Plan ohne KI: Leere Teile erhalten 0 und werden nie gesendet, und der Quick Check geht als festes Signal ein. Dann folgt je Schritt des Businessplans eine Runde mit Jev, vom ersten Feld bis zum letzten; dabei kennt Jev die Optionen, die es in den Auswahlfragen früherer Runden gewählt hat."
+      },
+      "checks": {
+        "title": "Prüfungen und Begrenzungen",
+        "body": "Eine Prüfung ist erfüllt, wenn Jev ihre Wahrscheinlichkeit bei {pass} oder darüber sieht, und nicht erfüllt bei {fail} oder darunter; dazwischen bleibt sie unklar und ist nur ein Hinweis. Eine nicht erfüllte Prüfung begrenzt ihre Dimension auf Stufe {caps}. Eine nicht erfüllte Pflichtprüfung begrenzt auf Stufe {mustHave} und hält die Einstufung unter „{solid}“. Ein Hinweis begrenzt nie.",
+        "or": "oder"
+      },
+      "branches": {
+        "title": "Verzweigungen und Folgeprüfungen",
+        "body": "Die Auswahlfragen {names} wählen die Folgeprüfung, die die nächste Runde stellt. So bekommt jeder Plan die Fragen, die zu ihm passen.",
+        "name": "„{name}“"
+      },
+      "formulas": {
+        "title": "Formeln",
+        "expected": {
+          "name": "Erwartete Stufe eines Planteils",
+          "formula": "E = Σ k · p(k), k = 0 … {max}"
+        },
+        "partSpread": {
+          "name": "Streuung eines Planteils",
+          "formula": "σ = √(Σ p(k) · (k − E)²)"
+        },
+        "dimensionLevel": {
+          "name": "Stufe einer Dimension",
+          "formula": "L = min(mittleres E ihrer Teile, niedrigste Begrenzung ihrer nicht erfüllten Prüfungen)"
+        },
+        "dimensionScore": {
+          "name": "Score einer Dimension",
+          "formula": "S = {perLevel} · L"
+        },
+        "dimensionSpread": {
+          "name": "Streuung einer Dimension",
+          "formula": "SD = {perLevel} · √(Σ σ²) / n, in Punkten"
+        },
+        "score": {
+          "name": "KI-Plan-Score",
+          "formula": "Score = Σ w · S"
+        },
+        "band": {
+          "name": "Band",
+          "formula": "Band = √(Σ (w · SD)²)"
+        },
+        "choicePass": {
+          "name": "Wahrscheinlichkeit der Erfüllung bei Auswahlfragen",
+          "formula": "P = Σ v(o) · p(o) / Σ p(o); v = {pass} bei einer erfüllenden Option, {partial} bei einer teilweise erfüllenden, {fail} bei einer nicht erfüllenden; Optionen, die nicht zutreffen, entfallen"
+        },
+        "note": "Ein leerer Teil zählt als 0 ohne Streuung; ein Teil ohne Antwort zählt nicht. Die Streuung einer Dimension nimmt ihre Teile als unabhängig an und unterschätzt sie daher wahrscheinlich."
+      },
+      "weights": {
+        "title": "Gewichte",
+        "lead": "Begründete Voreinstellungen, die sich auf {total} summieren; keine Quelle schreibt Zahlen vor."
+      },
+      "labels": {
+        "title": "Einstufungen",
+        "early": "unter {promising}",
+        "promising": "{promising} bis unter {solid}",
+        "solid": "ab {solid}, außer eine Pflichtprüfung ist nicht erfüllt",
+        "rounding": "Auf {step} Punkte gerundet angezeigt, das Band in ganzen Punkten und mindestens {minBand}, um keine falsche Genauigkeit vorzutäuschen. Die Einstufung folgt dem angezeigten Score, sodass Zahl und Einstufung einander nie widersprechen."
+      },
+      "caveats": {
+        "title": "Mit Vorsicht lesen",
+        "calibration": "Jevs Wahrscheinlichkeiten sind nicht kalibriert: 80 % heißt nicht, dass es in vier von fünf Fällen richtig liegt.",
+        "opinion": "Der Score ist eine KI-Einschätzung des geschriebenen Plans, keine Vorhersage über Machbarkeit oder Förderung.",
+        "length": "Länge ist keine Qualität: Ein längerer Text erhält nur dann mehr, wenn er konkreter, bezifferter oder besser belegt ist."
+      }
+    },
+    "sources": {
+      "title": "Quellen",
+      "lead": "Die Bewertung wurde auf dem Material der Challenge, der Studie des Forschungsprojekts und veröffentlichten Quellen aufgebaut. Die Planteile und Prüfungen zitieren sie.",
+      "method": "Quellen der Methode",
+      "methodLead": "Veröffentlichte Forschung, amtliche Leitfäden und Standards, jeder Link geöffnet und geprüft.",
+      "showMethod": "Alle {count} Quellen zeigen",
+      "provider": "Quellen der Challenge",
+      "providerLead": "Mit ihrer Kennung aus dem Material der Challenge zitiert, ohne öffentlichen Link.",
+      "brief": "Challenge-Briefing: Geschäftsmodelle",
+      "talk": "Vortrag des Forschungsprojekts Anergie Leicht Gemacht",
+      "items": {
+        "BM-SCN-03": "Szenario 3: Stadtrand mit gemischtem Eigentum",
+        "BM-SCOPE-02": "Beschreibung der Challenge und Problemstellung",
+        "BM-SCOPE-03": "Leitfragen",
+        "BM-STEP-01": "Schritt 1: Die Chance beschreiben",
+        "BM-STEP-02": "Schritt 2: Die Geschäftslogik aufbauen",
+        "BM-STEP-03": "Schritt 3: Den Realitätscheck machen",
+        "BM-STEP-04": "Schritt 4: Verbessern und die Umsetzung vorbereiten",
+        "ALG-04": "Projektfokus: Aspekte für eine erfolgreiche Umsetzung",
+        "ALG-05": "Organisatorische Erkenntnisse",
+        "ALG-06": "Was ist ein Anergie- oder 5GDHC-Netz?",
+        "ALG-07": "Wärmebedarf im Wiener Wärmeplan 2040",
+        "ALG-08": "Beispiele aus der Praxis",
+        "ALG-09": "Erkenntnisse aus den Anwendungsfällen",
+        "ALG-10": "Tipps für die Challenge"
+      },
+      "kinds": {
+        "peer-reviewed": "Begutachtet",
+        "official": "Amtlich",
+        "standard": "Standard",
+        "book": "Buch",
+        "company": "Praxis"
+      },
+      "citedBy": "Zitiert in: {dimensions}",
+      "roles": {
+        "scale": "Grundlage der Stufen",
+        "aggregation": "Grundlage der erwarteten Stufe"
+      },
+      "link": "{title} (öffnet in einem neuen Tab)",
+      "checked": "Link geprüft am {date}",
+      "docs": "So funktioniert der KI-Plan-Score"
+    },
+    "remove": {
+      "action": "Score löschen",
+      "title": "KI-Plan-Score löschen?",
+      "body": "Der gespeicherte Score, sein Bericht und seine Vorschläge werden aus diesem Projekt entfernt. Ihr Businessplan bleibt, wie er ist, und Sie können jederzeit erneut bewerten.",
+      "cancel": "Behalten",
+      "confirm": "Score löschen"
+    }
+  }
+}

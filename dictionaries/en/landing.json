@@ -16,7 +16,9 @@
       "system": "The System",
       "quickCheck": "Quick Check",
       "businessModels": "Business Models",
-      "methodology": "Methodology"
+      "aiScore": "AI Plan Score",
+      "methodology": "Methodology",
+      "docs": "Docs"
     }
   },
   "hero": {
@@ -37,7 +39,7 @@
     "hint": "Move to shift perspective",
     "reverseFlow": "Reverse flow",
     "restoreFlow": "Restore flow",
-    "gatewayLabel": "Two tools.\nOne workflow.",
+    "gatewayLabel": "Screen. Plan. Score.\nOne workflow.",
     "tools": {
       "quickCheck": {
         "title": "Quick Check",
@@ -64,7 +66,7 @@
       { "title": "Project initiators", "text": "Test the first idea before committing to full feasibility." }
     ],
     "tools": {
-      "kicker": "Two tools. One system.",
+      "kicker": "Three parts. One system.",
       "title": "First know if.\n*Then know how.*",
       "quickCheck": {
         "title": "Quick Check",
@@ -75,6 +77,11 @@
         "title": "Business Models",
         "subtitle": "Structure value, ownership, risk and operation.",
         "meta": "Canvas · Reality Check · replication · next steps"
+      },
+      "aiScore": {
+        "title": "AI Plan Score",
+        "subtitle": "A separate AI opinion on the written Business Plan.",
+        "meta": "Four turns · seven dimensions · an opinion, not a calculation"
       }
     }
   },
@@ -171,6 +178,7 @@
       "title": "One system.\n*Different realities.*",
       "groupLabel": "Business model use case",
       "inputsLabel": "Business model input categories",
+      "inputsShort": "Inputs",
       "diagramSuffix": "network diagram",
       "diagramTitle": "ILLUSTRATIVE NETWORK TYPOLOGY",
       "diagramFooter": "5GDHC / USE CASE",
@@ -224,8 +232,8 @@
       "body": "Critical assumptions, top risks and the potential deal-breaker are brought into the open. The goal is not a nicer presentation, it is a model that survives difficult questions.",
       "consoleTitle": "Assumption scan",
       "consoleTag": "03 CHECKS",
-      "dealBreakerLabel": "Potential deal-breaker",
-      "dealBreaker": "The condition that invalidates the model is made explicit, not buried in a footnote.",
+      "ruleLabel": "Why it matters",
+      "rule": "The condition that invalidates the model is made explicit, not buried in a footnote.",
       "risks": {
         "connection": {
           "title": "Connection-rate sensitivity",
@@ -258,13 +266,45 @@
       "kicker": "Next-step implementation outline",
       "title": "End with\n*a next move.*",
       "body": "The output does not stop at a canvas. It turns the selected model into a practical outline for the work, alignment and decisions that come next.",
-      "link": "Check the methodology",
+      "link": "Continue to the AI Plan Score",
       "steps": [
         { "title": "Confirm", "text": "Validate the decisive screening assumptions and local source conditions." },
         { "title": "Detail", "text": "Move the promising setup into the required technical and economic feasibility work." },
         { "title": "Align", "text": "Agree ownership, operator responsibilities, financing and risk allocation with partners." },
         { "title": "Implement", "text": "Turn the selected model into a sequenced implementation outline with clear next actions." }
       ]
+    }
+  },
+  "aiScore": {
+    "kicker": "AI Plan Score · Business Plan",
+    "title": "Score the plan.\n*See every decision.*",
+    "body": "A separate AI reading of the written Business Plan. Jev, a decision model, takes every decision in four turns, from the first field to the last. A text model of your choice writes the short report and, on demand, suggestions.",
+    "facts": [
+      { "label": "01 / Four turns", "title": "Every decision shown", "text": "Five evidence levels per item, gates across fields, branches that pick the next questions, seven dimensions." },
+      { "label": "02 / Your key", "title": "Nothing passes through us", "text": "Bring your own Vercel AI Gateway key. It stays in memory for the open tab; the plan goes straight from your browser to Jev and the text model you chose." },
+      { "label": "03 / An opinion", "title": "Not a calculation", "text": "The score judges how solid the written plan is. The Quick Check stays the only calculation." }
+    ],
+    "primary": "Try the AI Plan Score",
+    "secondary": "How we score",
+    "link": "Check the methodology",
+    "console": {
+      "title": "Recorded run",
+      "tag": "Real Vienna plan · {year}",
+      "replay": "Replay",
+      "summary": "A recorded run on a real Vienna plan from {year}: {fields} items scored in four turns, a score of {score} ± {band}, {level}.",
+      "turns": { "1": "Opportunity", "2": "Business logic", "3": "Reality check", "4": "Implementation" },
+      "fields": "{count} items",
+      "branch": "Branch",
+      "gate": "Gate",
+      "evidenceLabel": "Evidence level",
+      "evidence": ["Missing", "Vague", "Specific", "Quantified", "Evidenced"],
+      "scoreLabel": "AI Plan Score",
+      "levels": { "early": "Early", "promising": "Promising", "solid": "Solid" },
+      "capped": "Must-have failed · {count} dimensions capped",
+      "dimensionsLabel": "Seven dimensions",
+      "dimensions": { "value": "Value", "technology": "Technology", "economics": "Economics", "governance": "Governance", "participation": "Participation", "evidence": "Evidence", "path": "Path" },
+      "note": "Recorded {date}: a real Vienna business plan from {year}, name and outcome removed, scored blind. One case shows how the engine works; it does not validate it.",
+      "link": "See the blind test"
     }
   },
   "closing": {
@@ -276,10 +316,11 @@
         { "title": "Predefined calculation methodology", "text": "A defined screening method turns project parameters into a consistent three-stage assessment indicator." },
         { "title": "Research foundation", "text": "Built on the “Anergie Leicht Gemacht” research project and its approach to making local energy potential actionable." },
         { "title": "Predefined project scenarios", "text": "Scenario-based testing supports methodology checks, usability and practical screening applicability." },
-        { "title": "Flexible output", "text": "Results can be communicated through a PDF, online view or another output document without losing the reasoning." }
+        { "title": "Flexible output", "text": "Results can be communicated through a PDF, online view or another output document without losing the reasoning." },
+        { "title": "Separate AI opinion", "text": "The AI Plan Score reads the written Business Plan and shows every decision it takes; the Quick Check stays the only calculation." }
       ],
       "boundaryLabel": "Explicit boundary",
-      "boundaryLead": "Fast initial screening",
+      "boundaryLead": "Fast initial screening,",
       "boundaryStrong": "not a full feasibility study."
     },
     "partners": {
@@ -301,7 +342,7 @@
       "title": "Make the first\n*move count.*",
       "body": "Start with a Quick Check. Turn a promising direction into a viable business model.",
       "primary": "Get Started",
-      "secondary": "Explore Business Models"
+      "secondary": "Read the documentation"
     },
     "footer": {
       "brandBack": "back to top",
@@ -312,6 +353,7 @@
       "quickCheck": "Quick Check",
       "businessModels": "Business Models",
       "methodology": "Methodology",
+      "docs": "Docs",
       "backToTop": "Back to top",
       "legal": {
         "nav": "Legal",
@@ -323,6 +365,15 @@
         "license": "Open-source licence",
         "source": "Source code on GitHub"
       }
+    }
+  },
+  "presentation": {
+    "footer": "Presentation"
+  },
+  "mobile": {
+    "hero": {
+      "visualLabel": "Low-temperature district network",
+      "visualAlt": "An illustration of a district: buildings on a bidirectional low-temperature loop, with a local heat source at its edge."
     }
   }
 }

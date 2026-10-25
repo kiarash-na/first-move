@@ -72,6 +72,15 @@ export function ProductStory({ t, onToolSelect }: ProductStoryProps) {
               <span className="tool-chapter__meta">{tools.businessModels.meta}</span>
               <ArrowUpRight size={32} strokeWidth={1.3} aria-hidden="true" />
             </a>
+            <a className="tool-chapter tool-chapter--ai" href="#ai-score">
+              <span className="tool-chapter__index">AI</span>
+              <span className="tool-chapter__main">
+                <span className="tool-chapter__title">{tools.aiScore.title}</span>
+                <span className="tool-chapter__subtitle">{tools.aiScore.subtitle}</span>
+              </span>
+              <span className="tool-chapter__meta">{tools.aiScore.meta}</span>
+              <ArrowUpRight size={32} strokeWidth={1.3} aria-hidden="true" />
+            </a>
           </div>
         </div>
       </section>

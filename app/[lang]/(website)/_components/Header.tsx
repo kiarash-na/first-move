@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { ArrowDownRight, Menu, X } from 'lucide-react'
+import { ArrowDownRight, ArrowUpRight, Menu, X } from 'lucide-react'
 import { BrandMark } from '@/components/brand/brand-mark'
 import { LanguageSwitch, type LanguageSwitchProps } from '@/components/language-switch/language-switch'
 import { withLocale } from '@/lib/i18n/locale-path'
@@ -22,8 +22,11 @@ export function Header({ t, lang, language, onToolSelect }: HeaderProps) {
     { label: copy.nav.system, href: '#promise' },
     { label: copy.nav.quickCheck, href: '#quick-inputs', tool: 'quick-check' as const },
     { label: copy.nav.businessModels, href: '#business-use-cases', tool: 'business-models' as const },
+    { label: copy.nav.aiScore, href: '#ai-score' },
     { label: copy.nav.methodology, href: '#methodology' },
   ]
+  // The public docs: a page of its own after the chapters (PLAN-LANDING-POLISH-00 step b).
+  const docs = { label: copy.nav.docs, href: withLocale('/docs', lang) }
   const [menuOpen, setMenuOpen] = useState(false)
   const menuButtonRef = useRef<HTMLButtonElement>(null)
   const headerRef = useRef<HTMLElement>(null)
@@ -60,6 +63,7 @@ export function Header({ t, lang, language, onToolSelect }: HeaderProps) {
         {navigation.map((item) => (
           <a key={item.href} href={item.href} onClick={() => item.tool && onToolSelect(item.tool)}>{item.label}</a>
         ))}
+        <Link href={docs.href} prefetch={false}>{docs.label}</Link>
       </nav>
 
       <div className="header-actions">
@@ -87,6 +91,7 @@ export function Header({ t, lang, language, onToolSelect }: HeaderProps) {
             setMenuOpen(false)
           }}>{item.label}<ArrowDownRight size={17} strokeWidth={1.5} aria-hidden="true" /></a>
         ))}
+        <Link href={docs.href} prefetch={false} onClick={() => setMenuOpen(false)}>{docs.label}<ArrowUpRight size={17} strokeWidth={1.5} aria-hidden="true" /></Link>
         <LanguageSwitch lang={lang} className="mobile-nav__language" {...language} />
       </nav>
     </header>

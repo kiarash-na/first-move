@@ -153,7 +153,7 @@
       "overall": "Overall"
     },
     "readiness": {
-      "title": "Pitch readiness",
+      "title": "Pitch completeness",
       "caveat": "Counts what is filled in, not how good it is."
     },
     "risks": {
