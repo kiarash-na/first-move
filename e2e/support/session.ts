@@ -43,8 +43,15 @@ export async function showExamples(page: Page) {
   if (await toggle.count()) await toggle.click()
 }
 
-/** Waits until the page's data is drawn (the gate's skeleton is gone) and the web fonts are in. */
+/**
+ * Waits until the page's data is drawn (the gate's skeleton is gone), the web fonts are in and the
+ * running CSS transitions have ended: a button enabled by the loaded project (Export) fades in
+ * from 50 % opacity over 170 ms, and axe reads it mid-fade as low-contrast text.
+ */
 export async function settle(page: Page) {
   await expect(page.locator("main [aria-busy='true']")).toHaveCount(0)
   await page.evaluate(() => document.fonts.ready)
+  await page.evaluate(() =>
+    Promise.allSettled(document.getAnimations().filter((animation) => animation instanceof CSSTransition).map((animation) => animation.finished)),
+  )
 }
