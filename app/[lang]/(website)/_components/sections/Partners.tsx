@@ -12,7 +12,7 @@ const SLOTS = Array.from({ length: PARTNER_PLACEHOLDERS }, (_, slot) => slot)
 const COPIES = Array.from({ length: PARTNER_REPEATS * 2 }, (_, copy) => copy)
 
 /**
- * "Brought to you by" (D-69): a slowly sliding row of partner placeholders below the methodology's
+ * "Supported by" (D-69): a slowly sliding row of partner placeholders below the methodology's
  * screening boundary. It pauses on hover, on focus and with its Pause button, goes back to its
  * start while a card has keyboard focus, and stands still with reduced motion (`story.css`).
  * A card opens the partner dialog.

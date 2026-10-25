@@ -8,7 +8,7 @@ import type { Landing } from '../types'
 const SLOTS = Array.from({ length: PARTNER_PLACEHOLDERS }, (_, slot) => slot)
 
 /**
- * "Brought to you by" on phones and tablets (D-69, D-LM-4): the placeholders as a still row,
+ * "Supported by" on phones and tablets (D-69, D-LM-4): the placeholders as a still row,
  * each a button that opens the partner dialog; focus returns to the card that opened it.
  */
 export function MobilePartners({ copy }: { copy: Landing['closing']['partners'] }) {

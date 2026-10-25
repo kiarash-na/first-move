@@ -1354,7 +1354,7 @@
   font-weight: 520;
 }
 
-/* "Brought to you by" (D-69): a sliding row of partner placeholders under the screening boundary */
+/* "Supported by" (D-69): a sliding row of partner placeholders under the screening boundary */
 .partners {
   grid-column: 1 / 3;
   min-width: 0;

@@ -36,7 +36,7 @@ describe('landing Closing', () => {
     expect(within(nav).getByRole('link', { name: en.closing.footer.legal.imprint })).toBeInTheDocument()
   })
 
-  it('places "Brought to you by" right under the screening boundary, inside the methodology section (D-69)', () => {
+  it('places "Supported by" right under the screening boundary, inside the methodology section (D-69)', () => {
     const { container } = render(<Closing t={en} lang="en" />)
     const region = screen.getByRole('region', { name: en.closing.partners.label })
     expect(container.querySelector('.screening-boundary')?.nextElementSibling).toBe(region)
