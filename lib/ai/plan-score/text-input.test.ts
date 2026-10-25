@@ -4,10 +4,23 @@ import { reportPrompt } from "./report"
 import { scorePlan } from "./run"
 import { suggestPrompt } from "./suggest"
 import { mockJev } from "./test-utils/mock-jev"
-import { LANGUAGE_NAME, LANGUAGE_RULE } from "./text-input"
+import { fit, LANGUAGE_NAME, LANGUAGE_RULE } from "./text-input"
 
 const project = localizeExample(getExample("housing-cooperatives")!, "de")
 const now = () => new Date("2026-10-24T12:00:00.000Z")
+
+describe("fit", () => {
+  it("keeps a short text and collapses its whitespace", () => {
+    expect(fit("  a   short\ntext ", 40)).toBe("a short text")
+  })
+
+  it("cuts at a word boundary without a space before the ellipsis", () => {
+    const cut = fit("alpha beta gamma delta epsilon", 12)
+    expect(cut.length).toBeLessThanOrEqual(12)
+    expect(cut).toBe("alpha beta…")
+    expect(fit("abcdefghijklmnopqrstuvwxyz abc", 12)).toBe("abcdef…")
+  })
+})
 
 describe("the language instruction of the text model", () => {
   it("names the language of each text", () => {

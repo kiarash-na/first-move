@@ -92,5 +92,5 @@ export function fit(text: string, max: number): string {
   const clean = text.replace(/\s+/g, " ").trim()
   if (clean.length <= max) return clean
   const cut = clean.slice(0, max - 1)
-  return `${cut.slice(0, Math.max(cut.lastIndexOf(" "), max / 2))}…`
+  return `${cut.slice(0, Math.max(cut.lastIndexOf(" "), max / 2)).trimEnd()}…`
 }

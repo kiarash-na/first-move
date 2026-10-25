@@ -1,6 +1,6 @@
 "use client"
 
-import { PROMISING_FROM, SOLID_FROM } from "@/lib/ai/plan-score/aggregate"
+import { displayScore, PROMISING_FROM, SOLID_FROM } from "@/lib/ai/plan-score/aggregate"
 import { formatNumber } from "@/lib/i18n/format"
 import type { AiScoreLevel } from "@/lib/project"
 import { cn } from "@/lib/utils"
@@ -20,14 +20,16 @@ const pct = (points: number) => `${clampPoints(points)}%`
 /**
  * The AI Plan Score on its 0..100 scale (PLAN-AI-SCORE-01 § Aggregation): the label zones
  * (Early < 40 ≤ Promising < 70 ≤ Solid, from the engine), the band of one standard deviation
- * shaded around the unrounded score, and the score as a mark. The picture is decorative; the
- * numbers and zones are text beside and below it.
+ * shaded around the score, and the score as a mark. The mark and the band sit at the numbers as
+ * shown (`displayScore`, rounded to 5), so the mark is always in the zone its label names
+ * (D-81). The picture is decorative; the numbers and zones are text beside and below it.
  */
 export function ScoreScale({ score, sd, level }: { score: number; sd: number; level: AiScoreLevel }) {
   const lang = useLocale()
   const copy = useDictionary("ai-score")
-  const from = clampPoints(score - sd)
-  const to = clampPoints(score + sd)
+  const shown = displayScore(score, sd)
+  const from = clampPoints(shown.score - shown.band)
+  const to = clampPoints(shown.score + shown.band)
 
   return (
     <figure data-slot="score-scale" className="flex flex-col gap-2">
@@ -49,7 +51,7 @@ export function ScoreScale({ score, sd, level }: { score: number; sd: number; le
         <span
           data-marker
           className="absolute -inset-y-1.5 w-[3px] -translate-x-1/2 bg-hot transition-[left] duration-[240ms] ease-signature"
-          style={{ left: pct(score) }}
+          style={{ left: pct(shown.score) }}
         />
       </div>
       <div aria-hidden="true" className="relative h-4 font-mono text-xs text-muted-foreground tabular-nums">

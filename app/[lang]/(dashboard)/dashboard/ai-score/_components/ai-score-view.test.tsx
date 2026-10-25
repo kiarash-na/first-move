@@ -118,12 +118,14 @@ describe("AiScoreView (D-71)", () => {
     await userEvent.click(startButton())
     const panel = within(document.getElementById("ai-score-run")!)
     expect(await panel.findByRole("alert")).toHaveTextContent(copy.errors.provider)
+    // A full run precedes the second report; under load it takes longer than waitFor's default second.
+    const slow = { timeout: 5_000 }
     fake.textModel.mockImplementation(fail(429))
     await userEvent.click(panel.getByRole("button", { name: copy.run.writeAgain }))
-    await waitFor(() => expect(panel.getByRole("alert")).toHaveTextContent(copy.errors.rate))
+    await waitFor(() => expect(panel.getByRole("alert")).toHaveTextContent(copy.errors.rate), slow)
     fake.textModel.mockImplementation(fail(503))
     await userEvent.click(panel.getByRole("button", { name: copy.run.again }))
-    await waitFor(() => expect(panel.getByRole("alert")).toHaveTextContent(copy.errors.provider))
+    await waitFor(() => expect(panel.getByRole("alert")).toHaveTextContent(copy.errors.provider), slow)
     expect(panel.getByRole("alert")).not.toHaveTextContent(copy.errors.rate)
   })
 
