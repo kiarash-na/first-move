@@ -529,6 +529,8 @@
       "title": "Quellen",
       "lead": "Die Bewertung wurde auf dem Material der Challenge, der Studie des Forschungsprojekts und veröffentlichten Quellen aufgebaut. Die Planteile und Prüfungen zitieren sie.",
       "method": "Quellen der Methode",
+      "methodLead": "Veröffentlichte Forschung, amtliche Leitfäden und Standards, jeder Link geöffnet und geprüft.",
+      "showMethod": "Alle {count} Quellen zeigen",
       "provider": "Quellen der Challenge",
       "providerLead": "Mit ihrer Kennung aus dem Material der Challenge zitiert, ohne öffentlichen Link.",
       "brief": "Challenge-Briefing: Geschäftsmodelle",

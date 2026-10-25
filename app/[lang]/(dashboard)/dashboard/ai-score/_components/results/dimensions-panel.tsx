@@ -16,7 +16,7 @@ export function DimensionsPanel({ score }: { score: AiScore }) {
   const [view, setView] = useState<ResultView>("chart")
 
   return (
-    <ResultsSection title={copy.title} lead={copy.lead} actions={<ViewSwitch value={view} onChange={setView} />} data-slot="dimensions-panel" data-view={view}>
+    <ResultsSection title={copy.title} lead={copy.lead} actions={<ViewSwitch value={view} onChange={setView} />} data-slot="dimensions-panel" data-view={view} data-ai-generated="true">
       {view === "chart" ? (
         <div className="flex flex-col gap-3">
           <DimensionLegend />

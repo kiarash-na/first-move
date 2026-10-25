@@ -529,6 +529,8 @@
       "title": "Sources",
       "lead": "The scoring was built on the challenge material, the study of the research project and published references. The plan parts and checks cite them.",
       "method": "Method references",
+      "methodLead": "Published research, official guidance and standards, each link opened and checked.",
+      "showMethod": "Show all {count} references",
       "provider": "Provider sources",
       "providerLead": "Cited by their id in the challenge material, without a public link.",
       "brief": "Challenge brief: Business models",

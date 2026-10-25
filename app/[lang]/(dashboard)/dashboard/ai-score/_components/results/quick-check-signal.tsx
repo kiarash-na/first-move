@@ -24,16 +24,16 @@ export function QuickCheckSignal({ signal }: { signal: AiScore["quickCheck"] }) 
       </p>
       {signal ? (
         <>
-          <dl className="grid grid-cols-[auto_minmax(0,1fr)] items-center gap-x-4 gap-y-2 text-sm">
-            <dt className="text-muted-foreground">{copy.verdict}</dt>
+          <dl className="grid grid-cols-1 items-center gap-x-4 gap-y-1 text-sm sm:grid-cols-[auto_minmax(0,1fr)] sm:gap-y-2">
+            <dt className="mt-1.5 text-muted-foreground first:mt-0 sm:mt-0">{copy.verdict}</dt>
             <dd>
               <VerdictBadge level={signal.level} className="whitespace-normal" />
             </dd>
-            <dt className="text-muted-foreground">{copy.heatDensity}</dt>
+            <dt className="mt-1.5 text-muted-foreground first:mt-0 sm:mt-0">{copy.heatDensity}</dt>
             <dd className="font-mono tabular-nums">{interpolate(copy.heatDensityValue, { value: formatNumber(signal.heatDensityMwhPerM, lang, { maximumFractionDigits: 2 }) })}</dd>
             {signal.economicRatio !== null && (
               <>
-                <dt className="text-muted-foreground">{copy.economicRatio}</dt>
+                <dt className="mt-1.5 text-muted-foreground first:mt-0 sm:mt-0">{copy.economicRatio}</dt>
                 <dd className="font-mono tabular-nums">{interpolate(copy.economicRatioValue, { value: formatNumber(signal.economicRatio, lang, { maximumFractionDigits: 2 }) })}</dd>
               </>
             )}

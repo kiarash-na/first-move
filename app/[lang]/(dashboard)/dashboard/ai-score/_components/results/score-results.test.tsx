@@ -28,7 +28,10 @@ describe("ScoreResults", () => {
   it("shows every part of the saved result, marked as AI output", () => {
     const { container } = renderScore(varied)
     const results = container.querySelector("[data-slot=ai-score-results]")!
-    expect(results).toHaveAttribute("data-ai-generated", "true")
+    // AI output is marked part by part; the method and the sources are the app's own copy.
+    for (const slot of ["dimensions-panel", "judgements-panel", "checks-panel"]) expect(container.querySelector(`[data-slot=${slot}]`)).toHaveAttribute("data-ai-generated", "true")
+    expect(container.querySelector("[data-slot=score-summary] [data-ai-generated]")).not.toBeNull()
+    expect(container.querySelector("[data-slot=sources-panel]")).not.toHaveAttribute("data-ai-generated")
     expect(results).toHaveAttribute("data-score", String(varied.score.score))
     expect(screen.getByRole("heading", { level: 2, name: copy.results.title })).toBeInTheDocument()
     for (const slot of ["score-summary", "report-panel", "dimensions-panel", "judgements-panel", "checks-panel", "suggestions-panel", "how-we-score", "sources-panel"]) {

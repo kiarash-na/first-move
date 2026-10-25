@@ -38,7 +38,7 @@ export function ReferenceItem({ reference }: { reference: Reference }) {
         <ExternalLinkIcon className="mt-0.5 size-3.5 shrink-0" strokeWidth={1.6} aria-hidden="true" />
       </a>
       <p className="text-text-secondary">{reference.source}</p>
-      <p className="flex flex-wrap gap-x-3 font-mono text-xs text-muted-foreground">
+      <p className="flex flex-wrap gap-x-3 text-xs text-muted-foreground">
         {role && <span>{text.roles[role]}</span>}
         {dimensions.length > 0 && <span>{interpolate(text.citedBy, { dimensions: dimensions.join(" · ") })}</span>}
         <span>{interpolate(text.checked, { date: formatDate(reference.checked, lang) })}</span>

@@ -107,14 +107,14 @@ export function JudgementRow({
               <p className="font-mono text-xs tracking-[0.06em] text-muted-foreground uppercase">{text.levels}</p>
               <ol className="flex flex-col divide-y divide-border border-y">
                 {LEVEL_IDS.map((id, index) => (
-                  <li key={id} data-level-row={index} data-nearest={index === nearest || undefined} className="grid grid-cols-[4.5rem_minmax(0,1fr)_auto] items-baseline gap-x-3 py-2 text-sm">
-                    <span className="font-mono text-xs text-muted-foreground">{interpolate(text.levelNumber, { number: formatNumber(index, lang) })}</span>
-                    <span className={cn("leading-snug", index === nearest ? "text-foreground" : "text-text-secondary")}>
+                  <li key={id} data-level-row={index} data-nearest={index === nearest || undefined} className="grid grid-cols-[minmax(0,1fr)_auto] items-baseline gap-x-3 gap-y-1 py-2 text-sm [grid-template-areas:'num_prob'_'text_text'] sm:grid-cols-[4.5rem_minmax(0,1fr)_auto] sm:[grid-template-areas:'num_text_prob']">
+                    <span className="font-mono text-xs text-muted-foreground [grid-area:num]">{interpolate(text.levelNumber, { number: formatNumber(index, lang) })}</span>
+                    <span className={cn("leading-snug [grid-area:text]", index === nearest ? "text-foreground" : "text-text-secondary")}>
                       <span className={cn(index === nearest && "font-semibold")}>{copy.labels.levels[id].name}</span>
                       {" · "}
                       {copy.labels.levels[id].description}
                     </span>
-                    <span className="font-mono text-xs tabular-nums">{probabilities ? formatPercent(probabilities[index], lang) : ""}</span>
+                    <span className="text-right font-mono text-xs tabular-nums [grid-area:prob]">{probabilities ? formatPercent(probabilities[index], lang) : ""}</span>
                   </li>
                 ))}
               </ol>

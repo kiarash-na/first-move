@@ -28,8 +28,9 @@ export interface ScoreResultsProps {
 /**
  * The saved AI Plan Score in full (PLAN-AI-SCORE-00 step 6): the outdated notice, the score with
  * its band and label, the short report, the seven dimensions, every plan part, the checks and
- * decisions, suggestions on demand (D-77), "How we score" (D-33) and the sources. AI output is
- * marked (D-73). The page owns the requests; these views only call `actions`.
+ * decisions, suggestions on demand (D-77), "How we score" (D-33) and the sources. Each part that is
+ * AI output carries `data-ai-generated` (D-73); the method and the sources are the app's own copy.
+ * The page owns the requests; these views only call `actions`.
  */
 export function ScoreResults({ score, changed, actions }: ScoreResultsProps) {
   const copy = useDictionary("ai-score").results
@@ -37,7 +38,7 @@ export function ScoreResults({ score, changed, actions }: ScoreResultsProps) {
   const last = useLastRequest(actions.busy)
 
   return (
-    <section aria-labelledby={titleId} data-slot="ai-score-results" data-score={score.score} data-ai-generated="true" className="flex flex-col gap-6">
+    <section aria-labelledby={titleId} data-slot="ai-score-results" data-score={score.score} className="flex flex-col gap-6">
       <header className="flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
         <div className="flex max-w-[72ch] min-w-0 flex-col gap-1.5">
           <h2 id={titleId} className="text-2xl leading-tight font-[560] tracking-[-0.04em] [font-stretch:84%]">

@@ -36,6 +36,7 @@ export function SuggestButton({
         type="button"
         variant={variant}
         size="sm"
+        className="h-auto min-h-11 py-2 text-left leading-tight whitespace-normal"
         aria-label={name}
         aria-busy={busy || undefined}
         disabled={!actions.canUseAi || actions.busy !== null}

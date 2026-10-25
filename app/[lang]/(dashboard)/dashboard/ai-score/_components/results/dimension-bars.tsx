@@ -36,7 +36,7 @@ export function DimensionBars({ dimensions }: { dimensions: readonly AiDimension
             <li
               key={dimension.id}
               data-dimension={dimension.id}
-              className="grid items-center gap-x-5 gap-y-2 py-3 sm:grid-cols-[minmax(0,15rem)_minmax(0,1fr)_6.5rem]"
+              className="grid items-center gap-x-5 gap-y-2 py-3 sm:grid-cols-[minmax(0,15rem)_minmax(0,1fr)_8rem]"
             >
               <div className="flex min-w-0 flex-col gap-0.5">
                 <span className="text-sm leading-snug">{name}</span>
@@ -75,7 +75,7 @@ export function DimensionBars({ dimensions }: { dimensions: readonly AiDimension
           )
         })}
       </ul>
-      <div aria-hidden="true" className="hidden gap-x-5 sm:grid sm:grid-cols-[minmax(0,15rem)_minmax(0,1fr)_6.5rem]">
+      <div aria-hidden="true" className="hidden gap-x-5 sm:grid sm:grid-cols-[minmax(0,15rem)_minmax(0,1fr)_8rem]">
         <span />
         <div className="relative h-4 font-mono text-xs text-muted-foreground tabular-nums">
           {LEVEL_LINES.map((at, index) => (

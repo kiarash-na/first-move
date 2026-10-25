@@ -19,7 +19,7 @@ export function ProviderSources() {
   const titles = text.items as Record<string, string | undefined>
 
   return (
-    <div data-slot="provider-sources" className="flex flex-col gap-4">
+    <div data-slot="provider-sources" className="grid gap-x-8 gap-y-4 md:grid-cols-2">
       {GROUPS.map((group) => {
         const ids = PROVIDER_IDS.filter((id) => id.startsWith(group.prefix) && titles[id])
         if (ids.length === 0) return null
@@ -35,7 +35,7 @@ export function ProviderSources() {
                     <span className="flex flex-col gap-0.5">
                       <span>{titles[id]}</span>
                       {dimensions.length > 0 && (
-                        <span className="font-mono text-xs text-muted-foreground">{interpolate(text.citedBy, { dimensions: dimensions.join(" · ") })}</span>
+                        <span className="text-xs text-muted-foreground">{interpolate(text.citedBy, { dimensions: dimensions.join(" · ") })}</span>
                       )}
                     </span>
                   </li>

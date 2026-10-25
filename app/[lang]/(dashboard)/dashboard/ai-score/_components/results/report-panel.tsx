@@ -33,6 +33,7 @@ export function ReportPanel({ report, actions, error }: { report: AiReport | nul
       type="button"
       variant={report === null || otherLanguage ? "hot" : "secondary"}
       size="sm"
+      className="h-auto min-h-11 py-2 text-left leading-tight whitespace-normal"
       aria-busy={busy || undefined}
       disabled={!actions.canUseAi || actions.busy !== null}
       onClick={actions.rewriteReport}

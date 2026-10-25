@@ -37,11 +37,10 @@ export function ScoreSummary({ score }: { score: AiScore }) {
     <section
       aria-labelledby={titleId}
       data-slot="score-summary"
-      data-ai-generated="true"
       data-level={score.level}
       className="relative grid gap-x-10 gap-y-6 border bg-card p-[clamp(20px,3vw,36px)] before:absolute before:inset-x-0 before:-top-px before:h-[3px] before:bg-hot lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)]"
     >
-      <div className="flex min-w-0 flex-col gap-5">
+      <div data-ai-generated="true" className="flex min-w-0 flex-col gap-5">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <h3 id={titleId} className="font-mono text-xs tracking-[0.075em] text-hot uppercase">
             {summary.title}
