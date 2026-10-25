@@ -77,11 +77,11 @@ The slides: 1 why "First Move", 2 the challenge and the jury's questions, 3 Quic
 
 ## Open questions for the owner
 
-1. **AI Plan Score engine bug, German output:** `lib/ai/plan-score/report.ts` caps the report at 1,500 output tokens and the suggestions at 2,500; with reasoning tokens the German texts hit the cap (`finishReason: "length"`, `AI_NoObjectGeneratedError`). Raise the limits or the reasoning budget in the engine.
+1. **AI Plan Score engine bug, German output:** `lib/ai/plan-score/report.ts` caps the report at 1,500 output tokens and the suggestions at 2,500; with reasoning tokens the German texts hit the cap (`finishReason: "length"`, `AI_NoObjectGeneratedError`). Raise the limits or the reasoning budget in the engine. *Fixed on 2026-10-25: 6,000 and 8,000 in the engine, and German texts now say "Sie" ([AI Plan Score follow-ups](2026-10-25_ai-score-followups.md), items 1 and 2). The recorded run stays as it is until it is recorded again.*
 2. The cost figures (about €180 to build, about €5 a month up to 1,000 active users) come from the owner alone; confirm what they include before the slide is shown publicly.
 3. The landing footer edit (the presentation link in the `LegalLinks` of `Closing.tsx`) may overlap with the landing rework running in parallel.
 4. Review the German copy (D-32).
-5. **Slide 5's link label.** The full AI Plan Score page with its linked sources is on the AI Plan Score branch (commit 292db70), not on this one. Once both are merged, the label can say "Every source, linked" again (`slides.aiEngine.sources`), with a test that the page links its sources.
+5. **Slide 5's link label.** The full AI Plan Score page with its linked sources is on the AI Plan Score branch (commit 292db70), not on this one. Once both are merged, the label can say "Every source, linked" again (`slides.aiEngine.sources`), with a test that the page links its sources. *Done on 2026-10-25: the label says "Every source, linked" and the link opens the page's Sources section (`#sources`, DE `#quellen`), tested in unit and e2e ([AI Plan Score follow-ups](2026-10-25_ai-score-followups.md), item 5).*
 
 ## Verification
 

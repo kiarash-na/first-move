@@ -43,11 +43,11 @@ Status values: `todo` → `in-progress` → `done`. Update both this table and t
 
 ## AI Plan Score (BYOK, Jev)
 
-A separate AI scoring of the Business Plan: [PLAN-AI-SCORE-00](2026-10-24_ai-score-00_plan.md) (architecture, steps) and [PLAN-AI-SCORE-01](2026-10-24_ai-score-01_method.md) (rubric, gates, dimensions, sources). Decisions D-71 to D-78: [owner decisions](../notes/2026-10-24_owner-decisions.md#decisions-for-the-ai-plan-score-2026-10-24).
+A separate AI scoring of the Business Plan: [PLAN-AI-SCORE-00](2026-10-24_ai-score-00_plan.md) (architecture, steps) and [PLAN-AI-SCORE-01](2026-10-24_ai-score-01_method.md) (rubric, gates, dimensions, sources; method 1.1.0). Decisions D-71 to D-81: [owner decisions](../notes/2026-10-24_owner-decisions.md#decisions-for-the-ai-plan-score-2026-10-24).
 
 | Phase | Plan | Blocked by | Status |
 |---|---|---|---|
-| S00 | [AI Plan Score](2026-10-24_ai-score-00_plan.md) | none | done ([note](../notes/2026-10-25_ai-score.md); owner: live test with a real Gateway key) |
+| S00 | [AI Plan Score](2026-10-24_ai-score-00_plan.md) | none | done ([note](../notes/2026-10-25_ai-score.md); follow-ups done: output caps, formal German, label on the shown score (D-81, method 1.1.0), run hint, slide 5 sources ([note](../notes/2026-10-25_ai-score-followups.md)); owner: live test with a real Gateway key, confirm D-81) |
 
 ## Open tasks from the owner (2026-10-25, overnight run)
 
