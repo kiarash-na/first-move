@@ -211,6 +211,17 @@ describe("public docs content (PLAN-AGENT-04)", () => {
   it.each(PAGES)("$lang/$slug has no invisible or control characters", ({ text }) => {
     expect(text).not.toMatch(/[\p{Cf}\p{Co}\p{Zl}\p{Zp}]|(?![\n\t])\p{Cc}|(?! )\p{Zs}/u)
   })
+
+  /** The checklist was renamed to Pitch completeness; the old name must not come back. */
+  const RETIRED_NAME = /pitch[- ]readiness|Pitch-Reife/i
+
+  it.each(PAGES)("$lang/$slug calls the checklist Pitch completeness, not pitch readiness", ({ text }) => {
+    expect(text).not.toMatch(RETIRED_NAME)
+  })
+
+  it.each(LANGS)("the %s titles and descriptions of the docs pages do not say pitch readiness", (lang) => {
+    expect(JSON.stringify(COPY[lang])).not.toMatch(RETIRED_NAME)
+  })
 })
 
 describe("Quick Check numbers in the docs match the engine", () => {
@@ -473,6 +484,8 @@ describe("AI Plan Score numbers in the docs match the engine", () => {
     const { scoreLevels: de } = aiScoreDe.labels
     expect(bpEn.aiScore.how.body).toContain(`Below ${PROMISING_FROM} is ${en.early.name}, from ${SOLID_FROM} on ${en.solid.name}`)
     expect(bpDe.aiScore.how.body).toContain(`Unter ${PROMISING_FROM} heißt ${de.early.name}, ab ${SOLID_FROM} ${de.solid.name}`)
+    expect(bpEn.aiScore.how.body).toContain("a score out of 100")
+    expect(bpDe.aiScore.how.body).toContain("einen Score von 0 bis 100")
     expect(bpEn.aiScore.levels).toEqual({ early: en.early.name, promising: en.promising.name, solid: en.solid.name })
     expect(bpDe.aiScore.levels).toEqual({ early: de.early.name, promising: de.promising.name, solid: de.solid.name })
   })
