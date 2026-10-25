@@ -1,8 +1,10 @@
 import { vi } from "vitest"
 
+import { DECISION_PROVIDER_OPTIONS } from "@/lib/ai/plan-score/decide-turn"
 import { mockJev, type MockJevAnswers } from "@/lib/ai/plan-score/test-utils/mock-jev"
 import { mockText } from "@/lib/ai/plan-score/test-utils/mock-text"
-import type { GatewayClient } from "@/lib/assistant/gateway/client"
+import type { ScoreClient } from "@/lib/assistant/plan-score/client"
+import type { Provider } from "@/lib/assistant/providers/types"
 
 /** Tests only: what the mock text model answers for a report. */
 export const REPORT = {
@@ -18,9 +20,6 @@ export interface FakeClientOptions {
   /** A text answer, or a status code the text model fails with. */
   text?: unknown
   textStatus?: number
-  /** The balance, or a status code the credits check fails with. */
-  balance?: string
-  creditsStatus?: number
   /** Holds every Jev call until `release()`, to see a run in flight. */
   hold?: boolean
   /** Holds every text call until `releaseText()`, to see a report or a suggestion in flight. */
@@ -39,8 +38,8 @@ function held(gate: Promise<void>, signal: AbortSignal | undefined) {
 }
 
 /**
- * Tests only: a Gateway client whose models are the engine's mocks (no network). `create` is what
- * the page calls with the key; it records the keys it was given.
+ * Tests only: a score client whose models are the engine's mocks (no network). `create` is what
+ * the page calls with provider and key; it records the pairs it was given.
  */
 export function fakeClient(options: FakeClientOptions = {}) {
   const jev = mockJev({ branches: { "anchor-type": "residential", "source-type": "groundwater", ownership: "community" }, ...options.jev })
@@ -55,10 +54,6 @@ export function fakeClient(options: FakeClientOptions = {}) {
   let openText: () => void = () => {}
   let textGate: Promise<void> = Promise.resolve()
   if (options.holdText) textGate = new Promise<void>((resolve) => (openText = resolve))
-  const credits = vi.fn(async () => {
-    if (options.creditsStatus) throw failure(options.creditsStatus)
-    return { balance: options.balance ?? "4.2", totalUsed: "0.8" }
-  })
   const textModel = vi.fn((id: string) => {
     void id
     if (options.textStatus) throw failure(options.textStatus)
@@ -70,10 +65,11 @@ export function fakeClient(options: FakeClientOptions = {}) {
     }
     return model
   })
-  const client = { decisionModel: () => jev.model, textModel, credits } as unknown as GatewayClient
-  const create = vi.fn((key: string) => {
+  const client: ScoreClient = { decisionModel: () => jev.model, decisionProviderOptions: DECISION_PROVIDER_OPTIONS, textModel, textProviderOptions: () => ({}) }
+  const create = vi.fn((provider: Provider, key: string) => {
+    void provider
     void key
     return client
   })
-  return { client, create, jev, credits, textModel, release: () => open(), releaseText: () => openText() }
+  return { client, create, jev, textModel, release: () => open(), releaseText: () => openText() }
 }

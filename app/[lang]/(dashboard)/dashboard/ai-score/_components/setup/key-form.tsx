@@ -1,47 +1,65 @@
 "use client"
 
-import { KeyRoundIcon, LoaderCircleIcon, Trash2Icon } from "lucide-react"
+import { KeyRoundIcon, LoaderCircleIcon, Trash2Icon, TriangleAlertIcon } from "lucide-react"
 import { useId, useRef, useState, type KeyboardEvent } from "react"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import type { GatewayClient } from "@/lib/assistant/gateway/client"
-import { gatewayErrorCode, type GatewayErrorCode } from "@/lib/assistant/gateway/errors"
-import { clearGatewayKey, isPlausibleGatewayKey, setGatewayKey } from "@/lib/assistant/gateway/key"
+import { isPlausibleKey, KEYS } from "@/lib/assistant/keys/registry"
 import type { UnlockOutcome } from "@/lib/assistant/keys/unlock"
-import { EMPTY_VALUE } from "@/lib/i18n/format"
+import { checkKey, type KeyCheck } from "@/lib/assistant/providers/check-key"
+import { assistantErrorCode, type AssistantErrorCode } from "@/lib/assistant/providers/errors"
+import type { Provider } from "@/lib/assistant/providers/types"
+import { EMPTY_VALUE, formatDate } from "@/lib/i18n/format"
 import { interpolate } from "@/lib/i18n/interpolate"
+import type { Locale } from "@/lib/i18n/locales"
 import { useDictionary, useLocale } from "../../../_components/i18n-provider"
 import { KeyNotice } from "../../../_agent/key/key-notice"
 import { UnlockForm } from "../../../_agent/key/unlock-form"
+import { useMaskedKey } from "../../../_agent/key/use-masked-key"
 import { useVaultEntries } from "../../../_agent/key/use-vault-entries"
 import { formatUsd } from "./usd"
-import { useMaskedGatewayKey } from "./use-gateway-key"
 
-type Check = { state: "idle" } | { state: "invalid" } | { state: "checking" } | { state: "ok"; balance: number } | { state: "failed" | "rejected"; code: GatewayErrorCode }
+type Check = { state: "idle" } | { state: "invalid" } | { state: "checking" } | { state: "ok"; result: KeyCheck } | { state: "failed" | "rejected"; code: AssistantErrorCode }
+
+type CreditsCopy = ReturnType<typeof useDictionary<"ai-score">>["setup"]["credits"]
+
+/** What a checked key told us: the Gateway's balance, or the OpenRouter key's limit and expiry. */
+function checkLines(result: KeyCheck, copy: CreditsCopy, lang: Locale): { text: string; warn: boolean }[] {
+  const usd = (value: number | null) => (value === null || !Number.isFinite(value) ? EMPTY_VALUE : formatUsd(value, lang, { min: 2, max: 2 }))
+  if (result.provider === "gateway") return [{ text: interpolate(copy.balance, { amount: usd(result.balance) }), warn: false }]
+  const { limit, limitRemaining, limitReset, expiresAt } = result.info
+  const reset = limitReset && limitReset in copy.resets ? ` ${interpolate(copy.limitReset, { reset: copy.resets[limitReset as keyof typeof copy.resets] })}` : ""
+  return [
+    { text: copy.accepted, warn: false },
+    limit === null ? { text: copy.noLimit, warn: true } : { text: interpolate(copy.limit, { amount: usd(limit), remaining: usd(limitRemaining) }) + reset, warn: false },
+    expiresAt ? { text: interpolate(copy.expires, { date: formatDate(expiresAt, lang) }), warn: false } : { text: copy.noExpiry, warn: true },
+  ]
+}
 
 /**
- * The bring-your-own-key field (D-71): the key goes into module memory (`setGatewayKey`) and the
- * field is emptied at once. The field has no name and sits in no form, so nothing submits it and
- * password managers get no login form to offer saving; their opt-out attributes say the same.
- * "Use key" (or Enter) checks it against the Gateway's credits endpoint and shows the balance; a
- * key the Gateway rejects is forgotten again. The page only ever shows the masked key.
- * The spending-limit and expiry notice must be confirmed first, for every key (O7). A Gateway key
- * the user remembered in the AI assistant's PIN vault (D-50) can be unlocked here; memory stays
- * the default.
+ * The bring-your-own-key field of the chosen provider (D-71; OpenRouter by default since
+ * 2026-10-25): the key goes into module memory (`KEYS[provider].set`, shared with the assistant)
+ * and the field is emptied at once. The field has no name and sits in no form, so nothing submits
+ * it and password managers get no login form to offer saving; their opt-out attributes say the
+ * same. "Use key" (or Enter) checks it with the provider and shows what it said; a rejected key
+ * is forgotten again. The page only ever shows the masked key. The spending-limit and expiry
+ * notice must be confirmed first, for every key (O7). A key remembered in the AI assistant's PIN
+ * vault (D-50) can be unlocked here; memory stays the default.
  */
-export function KeyForm({ createClient }: { createClient: (key: string) => GatewayClient }) {
+export function KeyForm({ provider }: { provider: Provider }) {
   const lang = useLocale()
   const copy = useDictionary("ai-score")
   const text = copy.setup.key
-  const masked = useMaskedGatewayKey()
+  const credits = copy.setup.credits
+  const masked = useMaskedKey(provider)
   const input = useRef<HTMLInputElement>(null)
   const [check, setCheck] = useState<Check>({ state: "idle" })
   const [ack, setAck] = useState(false)
   const [paste, setPaste] = useState(false)
   const [unlockNote, setUnlockNote] = useState<string | null>(null)
   const { entries, refresh } = useVaultEntries()
-  const remembered = entries.find((entry) => entry.provider === "gateway")
+  const remembered = entries.find((entry) => entry.provider === provider)
   const inputId = useId()
   const statusId = useId()
 
@@ -49,19 +67,19 @@ export function KeyForm({ createClient }: { createClient: (key: string) => Gatew
     const field = input.current
     if (!field || !ack || check.state === "checking") return
     const value = field.value
-    if (!isPlausibleGatewayKey(value)) {
+    if (!isPlausibleKey[provider](value)) {
       setCheck({ state: "invalid" })
       return
     }
-    setGatewayKey(value)
+    KEYS[provider].set(value)
     field.value = ""
     setCheck({ state: "checking" })
     try {
-      const credits = await createClient(value.trim()).credits()
-      setCheck({ state: "ok", balance: Number(credits.balance) })
+      const result = await checkKey(provider, value.trim())
+      setCheck({ state: "ok", result })
     } catch (error) {
-      const code = gatewayErrorCode(error)
-      if (code === "key") clearGatewayKey()
+      const code = assistantErrorCode(error)
+      if (code === "key") KEYS[provider].clear()
       setCheck({ state: code === "key" ? "rejected" : "failed", code })
       if (code === "key") return
     }
@@ -76,20 +94,20 @@ export function KeyForm({ createClient }: { createClient: (key: string) => Gatew
   }
 
   function forget() {
-    clearGatewayKey()
+    KEYS[provider].clear()
     setCheck({ state: "idle" })
     setAck(false)
   }
 
   const status =
     check.state === "invalid"
-      ? text.invalid
+      ? [{ text: text.invalid[provider], warn: false }]
       : check.state === "checking"
-        ? copy.setup.credits.checking
+        ? [{ text: credits.checking, warn: false }]
         : check.state === "ok"
-          ? interpolate(copy.setup.credits.balance, { amount: Number.isFinite(check.balance) ? formatUsd(check.balance, lang, { min: 2, max: 2 }) : EMPTY_VALUE })
+          ? checkLines(check.result, credits, lang)
           : check.state === "failed" || check.state === "rejected"
-            ? interpolate(copy.setup.credits[check.state], { reason: copy.errors[check.code] })
+            ? [{ text: interpolate(credits[check.state], { reason: copy.errors[check.code] }), warn: false }]
             : null
 
   function unlocked(outcome: UnlockOutcome) {
@@ -103,8 +121,8 @@ export function KeyForm({ createClient }: { createClient: (key: string) => Gatew
       {remembered && !masked && !paste && (
         <UnlockForm
           copy={copy.setup.unlock}
-          provider="gateway"
-          providerName={copy.setup.unlock.provider}
+          provider={provider}
+          providerName={copy.setup.providers[provider]}
           entry={remembered}
           onDone={unlocked}
           onRemoved={() => {
@@ -119,10 +137,10 @@ export function KeyForm({ createClient }: { createClient: (key: string) => Gatew
           {unlockNote}
         </p>
       )}
-      <KeyNotice copy={copy.setup.notice} checked={ack} onChange={setAck} />
+      <KeyNotice copy={{ ...copy.setup.notice, ...copy.setup.notice[provider] }} checked={ack} onChange={setAck} />
       <div className="flex flex-col gap-2">
         <label htmlFor={inputId} className="text-[17px] leading-snug font-[480]">
-          {text.label}
+          {text.label[provider]}
         </label>
         <div className="flex flex-col gap-2 sm:flex-row">
           <Input
@@ -149,10 +167,15 @@ export function KeyForm({ createClient }: { createClient: (key: string) => Gatew
             {text.use}
           </Button>
         </div>
-        <p id={statusId} role="status" className="min-h-6 text-sm leading-relaxed text-text-secondary" data-check={check.state}>
+        <div id={statusId} role="status" className="min-h-6 text-sm leading-relaxed text-text-secondary" data-check={check.state}>
           {check.state === "checking" && <LoaderCircleIcon className="mr-2 inline size-4 motion-safe:animate-spin" strokeWidth={1.6} aria-hidden="true" />}
-          {status}
-        </p>
+          {status?.map((line) => (
+            <p key={line.text} className="flex items-start gap-2">
+              {line.warn && <TriangleAlertIcon className="mt-0.5 size-4 shrink-0 text-hot" strokeWidth={1.6} aria-hidden="true" />}
+              {line.text}
+            </p>
+          ))}
+        </div>
       </div>
       <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
         <p className="font-mono text-xs tracking-[0.06em] uppercase" data-key-state={masked ? "set" : "none"}>
@@ -165,8 +188,8 @@ export function KeyForm({ createClient }: { createClient: (key: string) => Gatew
           </Button>
         )}
       </div>
-      <p className="max-w-[72ch] text-sm leading-relaxed text-text-secondary">{text.memory}</p>
-      <p className="max-w-[72ch] text-sm leading-relaxed text-text-secondary">{text.where}</p>
+      <p className="max-w-[72ch] text-sm leading-relaxed text-text-secondary">{text.memory[provider]}</p>
+      <p className="max-w-[72ch] text-sm leading-relaxed text-text-secondary">{text.where[provider]}</p>
     </div>
   )
 }

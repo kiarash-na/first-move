@@ -3,6 +3,7 @@
 import { EyeIcon } from "lucide-react"
 import { useId } from "react"
 
+import type { Provider } from "@/lib/assistant/providers/types"
 import { useDictionary } from "../../../_components/i18n-provider"
 import { Disclosure } from "../disclosure"
 import { setAcknowledged, useAcknowledged } from "./acknowledgement"
@@ -11,20 +12,25 @@ const POINTS = ["what", "how", "who", "terms", "when"] as const
 
 /**
  * "What is sent and to whom" (D-72, extends D-48(a)) and the confirmation every run, rewrite and
- * suggestion needs. Open until confirmed; the confirmation lives in this tab's memory only.
+ * suggestion needs. The points that name the provider follow the chosen one. Open until
+ * confirmed; the confirmation lives in this tab's memory only.
  */
-export function DataDisclosure() {
+export function DataDisclosure({ provider }: { provider: Provider }) {
   const copy = useDictionary("ai-score").setup.data
   const acknowledged = useAcknowledged()
   const checkboxId = useId()
   const noteId = useId()
+  const text = (point: (typeof POINTS)[number]) => {
+    const value = copy.points[point]
+    return typeof value === "string" ? value : value[provider]
+  }
 
   return (
     <div data-slot="data-disclosure" className="flex flex-col gap-3">
       <Disclosure icon={EyeIcon} title={copy.title} defaultOpen={!acknowledged}>
         <ul className="flex list-disc flex-col gap-2 pl-5 text-base marker:text-hot">
           {POINTS.map((point) => (
-            <li key={point}>{copy.points[point]}</li>
+            <li key={point}>{text(point)}</li>
           ))}
         </ul>
       </Disclosure>

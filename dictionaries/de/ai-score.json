@@ -18,49 +18,112 @@
   },
   "setup": {
     "title": "Schlüssel verbinden",
-    "lead": "Der KI-Plan-Score läuft mit Ihrem eigenen Schlüssel für das Vercel AI Gateway (Bring your own key). Das Gateway rechnet die Nutzung eines Durchlaufs über Ihr Konto ab.",
+    "lead": "Der KI-Plan-Score läuft mit Ihrem eigenen Schlüssel (Bring your own key): standardmäßig OpenRouter, oder das Vercel AI Gateway. Der Anbieter rechnet die Nutzung eines Durchlaufs über Ihr Konto ab.",
+    "providers": {
+      "openrouter": "OpenRouter",
+      "gateway": "Vercel AI Gateway"
+    },
+    "provider": {
+      "label": "Anbieter",
+      "openrouterHint": "Der Standard. Ein Schlüssel für viele Modelle; der Jev Router trifft die Entscheidungen.",
+      "gatewayHint": "Das feste Jev 1.14.0 trifft die Entscheidungen; Scores bleiben mit früheren Durchläufen vergleichbar."
+    },
     "key": {
-      "label": "Schlüssel für das Vercel AI Gateway",
+      "label": {
+        "openrouter": "OpenRouter-Schlüssel",
+        "gateway": "Schlüssel für das Vercel AI Gateway"
+      },
       "placeholder": "API-Schlüssel einfügen",
       "use": "Schlüssel verwenden",
       "forget": "Schlüssel vergessen",
-      "invalid": "Das sieht nicht nach einem Gateway-Schlüssel aus. Fügen Sie den ganzen Schlüssel ohne Leerzeichen ein.",
+      "invalid": {
+        "openrouter": "Das sieht nicht nach einem OpenRouter-Schlüssel aus. Fügen Sie den ganzen Schlüssel ohne Leerzeichen ein.",
+        "gateway": "Das sieht nicht nach einem Gateway-Schlüssel aus. Fügen Sie den ganzen Schlüssel ohne Leerzeichen ein."
+      },
       "active": "Verwendeter Schlüssel: {masked}",
       "none": "Kein Schlüssel in Verwendung.",
-      "memory": "Der Schlüssel bleibt nur im Arbeitsspeicher dieses Tabs und ist weg, sobald Sie neu laden oder den Tab schließen. Er wird nie gespeichert, exportiert oder in einen Link geschrieben und an niemanden außer das Vercel AI Gateway gesendet.",
-      "where": "So erhalten Sie einen Schlüssel: Melden Sie sich bei Vercel an, öffnen Sie im Dashboard AI Gateway und erstellen Sie dort einen API-Schlüssel. Bevor das Gateway ein Modell ausführt, braucht Ihr Konto Guthaben."
+      "memory": {
+        "openrouter": "Der Schlüssel bleibt nur im Arbeitsspeicher dieses Tabs und ist weg, sobald Sie neu laden oder den Tab schließen. Er wird nie gespeichert, exportiert oder in einen Link geschrieben und an niemanden außer OpenRouter gesendet.",
+        "gateway": "Der Schlüssel bleibt nur im Arbeitsspeicher dieses Tabs und ist weg, sobald Sie neu laden oder den Tab schließen. Er wird nie gespeichert, exportiert oder in einen Link geschrieben und an niemanden außer das Vercel AI Gateway gesendet."
+      },
+      "where": {
+        "openrouter": "So erhalten Sie einen Schlüssel: Melden Sie sich bei openrouter.ai an, öffnen Sie Keys und erstellen Sie dort einen Schlüssel. Für kostenpflichtige Modelle braucht Ihr Konto bei OpenRouter Guthaben.",
+        "gateway": "So erhalten Sie einen Schlüssel: Melden Sie sich bei Vercel an, öffnen Sie im Dashboard AI Gateway und erstellen Sie dort einen API-Schlüssel. Bevor das Gateway ein Modell ausführt, braucht Ihr Konto Guthaben."
+      }
     },
     "credits": {
-      "checking": "Schlüssel und Guthaben werden geprüft…",
+      "checking": "Der Schlüssel wird beim Anbieter geprüft…",
       "balance": "Schlüssel akzeptiert. Guthaben: {amount}",
-      "failed": "Der Schlüssel bleibt erhalten, aber das Guthaben konnte nicht geprüft werden. {reason}",
+      "accepted": "Schlüssel akzeptiert.",
+      "limit": "Kreditlimit dieses Schlüssels: {amount}, {remaining} übrig.",
+      "limitReset": "Es wird {reset} zurückgesetzt.",
+      "resets": {
+        "daily": "jeden Tag",
+        "weekly": "jede Woche",
+        "monthly": "jeden Monat"
+      },
+      "noLimit": "Dieser Schlüssel hat kein Kreditlimit. Legen Sie unter openrouter.ai/keys eines fest oder erstellen Sie einen neuen Schlüssel mit Limit.",
+      "expires": "Der Schlüssel läuft am {date} ab.",
+      "noExpiry": "OpenRouter meldet kein Ablaufdatum für diesen Schlüssel. Erstellen Sie einen Schlüssel mit Ablaufdatum oder löschen Sie diesen, wenn Sie ihn nicht mehr brauchen.",
+      "failed": "Der Schlüssel bleibt erhalten, konnte aber nicht geprüft werden. {reason}",
       "rejected": "Der Schlüssel wurde nicht akzeptiert und ist wieder vergessen. {reason}"
     },
     "decision": {
       "label": "Entscheidungsmodell",
-      "name": "Jev von TypeSafe AI",
-      "version": "Version {version}, fest",
-      "note": "Jev trifft jede Entscheidung: die Stufe jedes Planteils, die Prüfungen und die Verzweigungen. Es ist fest eingestellt, damit Scores zwischen Durchläufen vergleichbar bleiben.",
-      "zdr": "Keine Datenspeicherung und kein Training angefordert"
+      "gateway": {
+        "name": "Jev von TypeSafe AI",
+        "version": "Version {version}, fest",
+        "note": "Jev trifft jede Entscheidung: die Stufe jedes Planteils, die Prüfungen und die Verzweigungen. Es ist fest eingestellt, damit Scores zwischen Durchläufen vergleichbar bleiben.",
+        "zdr": "Keine Datenspeicherung und kein Training angefordert"
+      },
+      "openrouter": {
+        "name": "Jev Router von TypeSafe AI",
+        "version": "Leitet jede Anfrage weiter, nicht fest",
+        "note": "Bei OpenRouter trifft der Jev Router jede Entscheidung: Er läuft auf Jev, wählt aber Modell und Aufwand selbst. Diese Scores sind nicht mit Scores vom Gateway vergleichbar.",
+        "zdr": "Es werden nur Anbieter verwendet, die Ihre Daten nicht sammeln"
+      }
     },
     "text": {
       "label": "Textmodell für Bericht und Vorschläge",
-      "help": "Schreibt den kurzen Bericht und auf Wunsch Vorschläge aus Jevs Zahlen. Es ändert nie eine Zahl. Jedes Sprachmodell des Gateways ist möglich.",
+      "help": {
+        "openrouter": "Schreibt den kurzen Bericht und auf Wunsch Vorschläge aus den Zahlen des Entscheidungsmodells. Es ändert nie eine Zahl. Jedes Chat-Modell von OpenRouter ist möglich.",
+        "gateway": "Schreibt den kurzen Bericht und auf Wunsch Vorschläge aus Jevs Zahlen. Es ändert nie eine Zahl. Jedes Sprachmodell des Gateways ist möglich."
+      },
       "price": "{input} Eingabe · {output} Ausgabe je Million Tokens",
+      "priceUnknown": "Abgerechnet wie das Modell, das der Router wählt",
       "zdr": "Keine Datenspeicherung angefordert",
+      "deny": "Nur Anbieter, die Ihre Daten nicht sammeln",
       "custom": "Anderes Modell",
-      "customLabel": "Modell-ID im Gateway",
+      "customLabel": {
+        "openrouter": "Modell-ID bei OpenRouter",
+        "gateway": "Modell-ID im Gateway"
+      },
       "customPlaceholder": "anbieter/modell",
-      "customInvalid": "Verwenden Sie die Gateway-Form anbieter/modell, zum Beispiel {example}.",
-      "customPrice": "Der Preis ist hier nicht bekannt: siehe die Modellliste des Gateways. Kein Training mit Ihren Texten wird angefordert."
+      "customInvalid": {
+        "openrouter": "Verwenden Sie die OpenRouter-Form anbieter/modell, zum Beispiel {example}.",
+        "gateway": "Verwenden Sie die Gateway-Form anbieter/modell, zum Beispiel {example}."
+      },
+      "customPrice": {
+        "openrouter": "Der Preis ist hier nicht bekannt: siehe die Modellliste von OpenRouter. Es werden nur Anbieter verwendet, die Ihre Daten nicht sammeln.",
+        "gateway": "Der Preis ist hier nicht bekannt: siehe die Modellliste des Gateways. Kein Training mit Ihren Texten wird angefordert."
+      }
     },
     "data": {
       "title": "Was gesendet wird und an wen",
       "points": {
         "what": "Was: die Texte der ausgefüllten Felder des Businessplans und, falls vorhanden, das Ergebnis des Quick Checks. Leere Felder werden nie gesendet.",
-        "how": "Wie: direkt aus Ihrem Browser an das Vercel AI Gateway, mit Ihrem Schlüssel. Nichts läuft über die Server von First Move.",
-        "who": "An wen: Das Gateway gibt den Plan an TypeSafe AI für Jevs Entscheidungen weiter und die entschiedenen Zahlen mit kurzen Auszügen aus dem Plan an den Anbieter des gewählten Textmodells.",
-        "terms": "Keine Datenspeicherung und kein Training mit Ihren Texten werden angefordert. Es gelten die Bedingungen von Vercel und der Anbieter.",
+        "how": {
+          "openrouter": "Wie: direkt aus Ihrem Browser an OpenRouter, mit Ihrem Schlüssel. Nichts läuft über die Server von First Move.",
+          "gateway": "Wie: direkt aus Ihrem Browser an das Vercel AI Gateway, mit Ihrem Schlüssel. Nichts läuft über die Server von First Move."
+        },
+        "who": {
+          "openrouter": "An wen: OpenRouter gibt den Plan an TypeSafe AI für die Entscheidungen des Jev Router weiter und die entschiedenen Zahlen mit kurzen Auszügen aus dem Plan an den Anbieter des gewählten Textmodells.",
+          "gateway": "An wen: Das Gateway gibt den Plan an TypeSafe AI für Jevs Entscheidungen weiter und die entschiedenen Zahlen mit kurzen Auszügen aus dem Plan an den Anbieter des gewählten Textmodells."
+        },
+        "terms": {
+          "openrouter": "Es werden nur Anbieter verwendet, die Ihre Daten nicht sammeln. Es gelten die Bedingungen von OpenRouter und der Anbieter.",
+          "gateway": "Keine Datenspeicherung und kein Training mit Ihren Texten werden angefordert. Es gelten die Bedingungen von Vercel und der Anbieter."
+        },
         "when": "Wann: nur, wenn Sie einen Durchlauf starten, den Bericht neu schreiben lassen oder Vorschläge anfordern."
       },
       "ack": "Ich habe verstanden, was gesendet wird und an wen, und möchte meinen Schlüssel dafür verwenden.",
@@ -68,11 +131,21 @@
     },
     "notice": {
       "title": "Legen Sie für den Schlüssel ein Ausgabenlimit und ein Ablaufdatum fest",
-      "lead": "First Move hält den Schlüssel nur im Arbeitsspeicher dieses Tabs, doch die Grenze, die Sie wirklich schützt, ist die bei Vercel. Legen Sie beides beim Erstellen des Schlüssels fest:",
-      "limit": "Ausgabenlimit: Schalten Sie im Dialog „Create key“ auf der Seite „API Keys“ des AI Gateway die Budget-Option ein, geben Sie ein Ausgabenlimit in Dollar ein und wählen Sie einen Zeitraum, nach dem es zurückgesetzt wird (täglich, wöchentlich, monatlich oder nie). Ist das Limit überschritten, lehnt das AI Gateway weitere Anfragen ab. Ein Budget ist eine weiche Grenze: Die Anfrage, die es überschreitet, wird noch ausgeführt.",
-      "expiry": "Ablaufdatum: Laut der Vercel-Dokumentation lässt sich ein Ablaufdatum nur festlegen, wenn Sie den Schlüssel mit der Vercel CLI oder der API erstellen, zum Beispiel vercel ai-gateway api-keys create --name first-move --limit 10 --expiration 30d (7d, 30d, 60d, 90d oder 1y). Ein im Dashboard erstellter Schlüssel läuft nie ab, bis Sie ihn löschen. Löschen Sie ihn also, wenn Sie ihn nicht mehr brauchen, und erstellen Sie einen neuen.",
-      "docs": "Vercel-Dokumentation: Budgets für API-Schlüssel",
-      "docsUrl": "https://vercel.com/docs/ai-gateway/observability-and-spend/budgets#api-key-budgets",
+      "lead": "First Move hält den Schlüssel nur im Arbeitsspeicher dieses Tabs, doch die Grenze, die Sie wirklich schützt, ist die bei Ihrem Anbieter. Legen Sie beides beim Erstellen des Schlüssels fest:",
+      "gateway": {
+        "limit": "Ausgabenlimit: Schalten Sie im Dialog „Create key“ auf der Seite „API Keys“ des AI Gateway die Budget-Option ein, geben Sie ein Ausgabenlimit in Dollar ein und wählen Sie einen Zeitraum, nach dem es zurückgesetzt wird (täglich, wöchentlich, monatlich oder nie). Ist das Limit überschritten, lehnt das AI Gateway weitere Anfragen ab. Ein Budget ist eine weiche Grenze: Die Anfrage, die es überschreitet, wird noch ausgeführt.",
+        "expiry": "Ablaufdatum: Laut der Vercel-Dokumentation lässt sich ein Ablaufdatum nur festlegen, wenn Sie den Schlüssel mit der Vercel CLI oder der API erstellen, zum Beispiel vercel ai-gateway api-keys create --name first-move --limit 10 --expiration 30d (7d, 30d, 60d, 90d oder 1y). Ein im Dashboard erstellter Schlüssel läuft nie ab, bis Sie ihn löschen. Löschen Sie ihn also, wenn Sie ihn nicht mehr brauchen, und erstellen Sie einen neuen.",
+        "docs": "Vercel-Dokumentation: Budgets für API-Schlüssel",
+        "docsUrl": "https://vercel.com/docs/ai-gateway/observability-and-spend/budgets#api-key-budgets"
+      },
+      "openrouter": {
+        "limit": "Kreditlimit: Wählen Sie beim Erstellen des Schlüssels unter openrouter.ai/keys ein Kreditlimit und, wenn Sie möchten, eine tägliche, wöchentliche oder monatliche Zurücksetzung. Hat der Schlüssel sein Limit verbraucht, lehnt OpenRouter seine Anfragen ab. OpenRouter empfiehlt ein Limit für jeden Schlüssel.",
+        "expiry": "Ablaufdatum: Geben Sie dem Schlüssel beim Erstellen ein Ablaufdatum. Das Ablaufdatum eines bestehenden Schlüssels lässt sich nicht mehr ändern, also legen Sie es dann fest.",
+        "docs": "OpenRouter-Dokumentation: API-Schlüssel und Limits",
+        "docsUrl": "https://openrouter.ai/docs/api-reference/authentication",
+        "docsExpiry": "OpenRouter-Dokumentation: Ablauf von Schlüsseln",
+        "docsExpiryUrl": "https://openrouter.ai/docs/guides/overview/auth/security-settings#act-on-keys"
+      },
       "ack": "Ich habe für diesen Schlüssel ein Ausgabenlimit und ein Ablaufdatum festgelegt, oder ich lösche den Schlüssel, sobald ich ihn nicht mehr brauche.",
       "required": "Bestätigen Sie das, bevor der Schlüssel verwendet wird."
     },
@@ -87,8 +160,7 @@
       "missing": "Es wurde kein gemerkter Schlüssel gefunden. Fügen Sie den Schlüssel erneut ein.",
       "unavailable": "Dieser Browser kann den gemerkten Schlüssel nicht öffnen.",
       "other": "Stattdessen einen Schlüssel einfügen",
-      "remove": "Gemerkten Schlüssel entfernen",
-      "provider": "Vercel AI Gateway"
+      "remove": "Gemerkten Schlüssel entfernen"
     }
   },
   "usage": {
@@ -96,11 +168,17 @@
     "value": "Etwa {amount}",
     "below": "Weniger als {amount}",
     "decisionOnly": "{amount} für die Entscheidungen. Der Preis dieses Textmodells ist hier nicht bekannt.",
-    "note": "Nur eine Größenordnung. Das Gateway rechnet die tatsächlich verbrauchten Tokens ab.",
+    "textOnly": "{amount} für den Bericht. Die Entscheidungen werden zu dem Modell abgerechnet, das der Jev Router wählt.",
+    "unknown": "Die Preise sind hier nicht bekannt: Der Anbieter rechnet die tatsächlich verbrauchten Tokens ab.",
+    "note": {
+      "openrouter": "Nur eine Größenordnung. OpenRouter rechnet die tatsächlich verbrauchten Tokens ab.",
+      "gateway": "Nur eine Größenordnung. Das Gateway rechnet die tatsächlich verbrauchten Tokens ab."
+    },
     "tokens": "{count} Tokens",
     "how": {
       "title": "So schätzen wir",
       "decision": "Entscheidungen: etwa {tokens} Tokens aus Plan und Fragen über die vier Runden, zu Jevs Eingabepreis von {price} je Million Tokens: {amount}.",
+      "decisionRouter": "Entscheidungen: etwa {tokens} Tokens aus Plan und Fragen über die vier Runden, abgerechnet wie das Modell, das der Jev Router wählt.",
       "text": "Bericht: etwa {input} Eingabe-Tokens und bis zu {output} Ausgabe-Tokens zu den Preisen von {model}: {amount}.",
       "textUnknown": "Bericht: etwa {input} Eingabe-Tokens und bis zu {output} Ausgabe-Tokens. Die Preise dieses Modells sind hier nicht bekannt.",
       "tokens": "Ein Token entspricht etwa drei Zeichen, wie auch sonst in der App. Vorschläge kosten zusätzlich, und nur, wenn Sie sie anfordern."
@@ -143,13 +221,13 @@
     "failed": "Der Durchlauf wurde gestoppt, und nichts wurde gespeichert. {reason}"
   },
   "errors": {
-    "key": "Das Gateway hat den Schlüssel nicht akzeptiert. Prüfen Sie, ob Sie den ganzen Schlüssel eingefügt haben und ob er noch aktiv ist.",
-    "credits": "Ihr Gateway-Konto hat kein Guthaben mehr. Laden Sie in Ihrem Vercel-Konto Guthaben auf und versuchen Sie es dann erneut.",
-    "forbidden": "Der Schlüssel darf dieses Modell oder diese Funktion nicht nutzen. Prüfen Sie die Einstellungen Ihres Gateways oder wählen Sie ein anderes Textmodell.",
-    "model": "Das Gateway kennt dieses Modell nicht. Wählen Sie ein anderes Textmodell.",
+    "key": "Der Anbieter hat den Schlüssel nicht akzeptiert. Prüfen Sie, ob Sie den ganzen Schlüssel eingefügt haben und ob er noch aktiv ist.",
+    "credits": "Ihr Konto beim Anbieter hat kein Guthaben mehr. Laden Sie dort Guthaben auf und versuchen Sie es dann erneut.",
+    "forbidden": "Der Schlüssel darf dieses Modell oder diese Funktion nicht nutzen. Prüfen Sie die Einstellungen des Schlüssels bei Ihrem Anbieter oder wählen Sie ein anderes Textmodell.",
+    "model": "Der Anbieter kennt dieses Modell nicht. Wählen Sie ein anderes Textmodell.",
     "rate": "Gerade zu viele Anfragen. Warten Sie eine Minute und versuchen Sie es dann erneut.",
     "provider": "Beim Modellanbieter gab es ein Problem. Versuchen Sie es gleich noch einmal.",
-    "network": "Das Gateway war nicht erreichbar oder hat zu lange gebraucht. Prüfen Sie Ihre Verbindung und versuchen Sie es dann erneut.",
+    "network": "Der Anbieter war nicht erreichbar oder hat zu lange gebraucht. Prüfen Sie Ihre Verbindung und versuchen Sie es dann erneut.",
     "aborted": "Abgebrochen.",
     "unknown": "Etwas ist schiefgegangen. Versuchen Sie es erneut."
   },

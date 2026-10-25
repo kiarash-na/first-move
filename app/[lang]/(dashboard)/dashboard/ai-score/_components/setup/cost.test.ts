@@ -13,7 +13,14 @@ describe("cost estimate", () => {
     expect(estimate.decisionUsd).toBeCloseTo((estimate.decisionTokens * JEV_INPUT_PRICE) / 1e6, 12)
     expect(estimate.textOutputTokens).toBe(REPORT_OUTPUT_TOKENS)
     expect(estimate.textUsd).toBeCloseTo((estimate.textInputTokens * model.price.input + REPORT_OUTPUT_TOKENS * model.price.output) / 1e6, 12)
-    expect(estimate.totalUsd).toBeCloseTo(estimate.decisionUsd + estimate.textUsd!, 12)
+    expect(estimate.totalUsd).toBeCloseTo(estimate.decisionUsd! + estimate.textUsd!, 12)
+  })
+
+  it("leaves the decision price open when the router picks the model (OpenRouter)", () => {
+    const estimate = estimateCost(example(), TEXT_MODELS[0], null)
+    expect(estimate.decisionUsd).toBeNull()
+    expect(estimate.textUsd).not.toBeNull()
+    expect(estimate.totalUsd).toBeNull()
   })
 
   it("lands in the order of magnitude a mocked run reports", async () => {
@@ -31,6 +38,7 @@ describe("cost estimate", () => {
     const estimate = estimateCost(empty, null)
     expect(estimate.textUsd).toBeNull()
     expect(estimate.totalUsd).toBeNull()
+    expect(estimate.decisionUsd).not.toBeNull()
     expect(estimate.decisionTokens).toBeLessThan(estimateCost(example(), null).decisionTokens)
   })
 

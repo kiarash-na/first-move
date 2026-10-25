@@ -1,8 +1,9 @@
 import { act, renderHook, waitFor } from "@testing-library/react"
 import { afterEach, describe, expect, it } from "vitest"
 
-import { aiScoreSchema } from "@/lib/project"
 import { clearGatewayKey, setGatewayKey } from "@/lib/assistant/gateway/key"
+import { openRouterKey } from "@/lib/assistant/openrouter/key"
+import { aiScoreSchema } from "@/lib/project"
 import { fakeClient } from "../test-utils/fake-client"
 import { aiScoreStore } from "../test-utils/render"
 import { example } from "../test-utils/scored"
@@ -10,13 +11,16 @@ import { useAnalysis } from "./use-analysis"
 
 const KEY = "vck_test_0123456789abcdefWXYZ"
 
-afterEach(() => clearGatewayKey())
+afterEach(() => {
+  clearGatewayKey()
+  openRouterKey.clear()
+})
 
 function setup(options: Parameters<typeof fakeClient>[0] = {}) {
   const project = example()
   const store = aiScoreStore(project)
   const fake = fakeClient(options)
-  const hook = renderHook(() => useAnalysis(store.store, fake.create))
+  const hook = renderHook(() => useAnalysis(store.store, fake.create, "gateway"))
   return { project, store, fake, hook }
 }
 
@@ -32,7 +36,7 @@ describe("useAnalysis", () => {
     setGatewayKey(KEY)
     const { project, store, fake, hook } = setup()
     await act(() => hook.result.current.start(project, "example/text-model", "de"))
-    expect(fake.create).toHaveBeenCalledWith(KEY)
+    expect(fake.create).toHaveBeenCalledWith("gateway", KEY)
     expect(fake.textModel).toHaveBeenCalledWith("example/text-model")
     const { run } = hook.result.current
     expect(run).toMatchObject({ phase: "done", error: null, reportError: null, saved: true })
@@ -61,6 +65,19 @@ describe("useAnalysis", () => {
     await act(() => hook.result.current.start(project, "x/y", "en"))
     expect(hook.result.current.run).toMatchObject({ phase: "failed", error: "key" })
     expect(store.setAiScore).not.toHaveBeenCalled()
+  })
+
+  it("reads the OpenRouter key when that provider is chosen", async () => {
+    const key = `sk-or-v1-${"ab".repeat(32)}`
+    openRouterKey.set(key)
+    const project = example()
+    const store = aiScoreStore(project)
+    const fake = fakeClient()
+    const hook = renderHook(() => useAnalysis(store.store, fake.create, "openrouter"))
+    await act(() => hook.result.current.start(project, "example/text-model", "en"))
+    expect(fake.create).toHaveBeenCalledWith("openrouter", key)
+    expect(hook.result.current.run.phase).toBe("done")
+    expect(store.setAiScore).toHaveBeenCalled()
   })
 
   it("cancels a run in flight", async () => {

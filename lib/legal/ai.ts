@@ -31,8 +31,9 @@ export interface AiProvider {
 
 /**
  * Listed on the AI page while the features are live: the two services a user can hand their
- * own key to. Both pass the request on to the provider of the chosen model; the AI Plan Score
- * and the assistant use the Gateway, the assistant may use OpenRouter instead.
+ * own key to. Both pass the request on to the provider of the chosen model. The AI Plan Score
+ * and the assistant take either key: OpenRouter by default, the Gateway second (owner,
+ * 2026-10-25); on OpenRouter the score's decisions go through the Jev Router adapter.
  */
 export const AI_PROVIDERS: readonly AiProvider[] = [
   { name: "Vercel AI Gateway", region: "Vercel Inc., USA; the request goes on to the provider of the chosen model", url: "https://vercel.com/legal/terms" },

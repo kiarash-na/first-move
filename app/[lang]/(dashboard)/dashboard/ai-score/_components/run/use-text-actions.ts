@@ -3,17 +3,20 @@
 import { useCallback, useEffect, useRef, useState } from "react"
 
 import type { TextLang } from "@/lib/ai/plan-score/text-input"
-import type { GatewayClient } from "@/lib/assistant/gateway/client"
-import { gatewayErrorCode, type GatewayErrorCode } from "@/lib/assistant/gateway/errors"
-import { readGatewayKey } from "@/lib/assistant/gateway/key"
+import { KEYS } from "@/lib/assistant/keys/registry"
 import { rewriteReport, suggest } from "@/lib/assistant/plan-score/run-analysis"
+import { assistantErrorCode, type AssistantErrorCode } from "@/lib/assistant/providers/errors"
+import type { Provider } from "@/lib/assistant/providers/types"
 import type { AiScore, Project } from "@/lib/project"
 import type { ProjectStore } from "@/lib/store"
 import type { ResultActions } from "../types"
+import type { ScoreClientFactory } from "./use-analysis"
 
 export interface TextActionsInput {
   store: ProjectStore
-  createClient: (key: string) => GatewayClient
+  createClient: ScoreClientFactory
+  /** The provider whose key and models the text requests use. */
+  provider: Provider
   /** The open project; null while none is open (nothing runs then). */
   project: Project | null
   score: AiScore | null
@@ -40,33 +43,33 @@ export interface TextActions extends ResultActions {
  * saved only onto the score it was asked for: when a newer run replaced that score meanwhile,
  * it is dropped.
  */
-export function useTextActions({ store, createClient, project, score, textModelId, lang, ready, running = false, onRemove }: TextActionsInput): TextActions {
+export function useTextActions({ store, createClient, provider, project, score, textModelId, lang, ready, running = false, onRemove }: TextActionsInput): TextActions {
   const [busy, setBusy] = useState<ResultActions["busy"]>(null)
-  const [error, setError] = useState<GatewayErrorCode | null>(null)
+  const [error, setError] = useState<AssistantErrorCode | null>(null)
   const controller = useRef<AbortController | null>(null)
   const projectId = project?.meta.id ?? null
 
   useEffect(() => () => controller.current?.abort(), [])
 
   const request = useCallback(
-    async (kind: "report" | "suggestions", at: string, write: (client: GatewayClient, signal: AbortSignal) => Promise<AiScore>) => {
-      const key = readGatewayKey()
+    async (kind: "report" | "suggestions", at: string, write: (client: ReturnType<ScoreClientFactory>, signal: AbortSignal) => Promise<AiScore>) => {
+      const key = KEYS[provider].read()
       if (!key || !ready || running || !projectId || controller.current) return
       const abort = new AbortController()
       controller.current = abort
       setBusy(kind)
       setError(null)
       try {
-        const next = await write(createClient(key), abort.signal)
+        const next = await write(createClient(provider, key), abort.signal)
         if (store.getState().active?.aiScore?.at === at) store.setAiScore(projectId, next)
       } catch (caught) {
-        setError(abort.signal.aborted ? "aborted" : gatewayErrorCode(caught))
+        setError(abort.signal.aborted ? "aborted" : assistantErrorCode(caught))
       } finally {
         controller.current = null
         setBusy(null)
       }
     },
-    [store, createClient, projectId, ready, running],
+    [store, createClient, provider, projectId, ready, running],
   )
 
   const rewrite = useCallback(() => {

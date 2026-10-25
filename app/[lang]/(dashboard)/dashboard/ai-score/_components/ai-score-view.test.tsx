@@ -5,6 +5,7 @@ import { afterEach, describe, expect, it, vi } from "vitest"
 import { mockText } from "@/lib/ai/plan-score/test-utils/mock-text"
 import { clearGatewayKey, readGatewayKey } from "@/lib/assistant/gateway/key"
 import { DEFAULT_TEXT_MODEL } from "@/lib/assistant/gateway/models"
+import { openRouterKey } from "@/lib/assistant/openrouter/key"
 import { aiScoreSchema } from "@/lib/project"
 import { AiScoreView } from "./ai-score-view"
 import { setAcknowledged } from "./setup/acknowledgement"
@@ -17,20 +18,41 @@ const copy = aiScoreCopy()
 
 afterEach(() => {
   clearGatewayKey()
+  openRouterKey.clear()
   setAcknowledged(false)
+  vi.unstubAllGlobals()
   vi.restoreAllMocks()
 })
 
-function show(options: FakeClientOptions = {}, project = example()) {
+/** Stubs the key-check endpoints; `creditsStatus` fails the Gateway's balance check. */
+function stubChecks(creditsStatus?: number) {
+  vi.stubGlobal(
+    "fetch",
+    vi.fn(async (input: RequestInfo | URL) => {
+      const url = String(input)
+      if (url.includes("ai-gateway.vercel.sh/v1/credits")) {
+        if (creditsStatus) return new Response("nope", { status: creditsStatus })
+        return Response.json({ balance: "4.2", total_used: "0.8" })
+      }
+      if (url.includes("openrouter.ai/api/v1/key")) return Response.json({ data: { limit: 5, limit_remaining: 3.2, limit_reset: null, usage: 1.8, expires_at: "2027-01-04T00:00:00.000Z" } })
+      return new Response("not found", { status: 404 })
+    }),
+  )
+}
+
+function show(options: FakeClientOptions = {}, project = example(), creditsStatus?: number) {
+  stubChecks(creditsStatus)
   const store = aiScoreStore(project)
   const fake = fakeClient(options)
   renderAiScore(<AiScoreView createClient={fake.create} />, { store: store.store })
   return { store, fake }
 }
 
+/** Connects a Gateway key: the page starts on OpenRouter, so the provider is switched first. */
 async function connect() {
+  await userEvent.click(screen.getByRole("radio", { name: new RegExp(copy.setup.providers.gateway) }))
   await userEvent.click(screen.getByRole("checkbox", { name: copy.setup.notice.ack }))
-  await userEvent.type(screen.getByLabelText(copy.setup.key.label), KEY)
+  await userEvent.type(screen.getByLabelText(copy.setup.key.label.gateway), KEY)
   await userEvent.click(screen.getByRole("button", { name: copy.setup.key.use }))
   await userEvent.click(screen.getByRole("checkbox", { name: copy.setup.data.ack }))
 }
@@ -38,12 +60,13 @@ async function connect() {
 const startButton = () => screen.getByRole("button", { name: copy.run.start })
 
 describe("AiScoreView (D-71)", () => {
-  it("introduces a separate AI scoring and waits for a key", () => {
+  it("introduces a separate AI scoring and waits for a key, OpenRouter by default", () => {
     show()
     expect(screen.getByRole("heading", { level: 1, name: copy.title })).toBeInTheDocument()
     expect(screen.getByText(copy.intro.badge)).toBeInTheDocument()
     expect(screen.getByRole("complementary", { name: copy.intro.title })).toHaveTextContent(copy.intro.points.calculation)
-    expect(screen.getByLabelText(copy.setup.key.label)).toHaveAttribute("type", "password")
+    expect(screen.getByRole("radio", { name: new RegExp(copy.setup.providers.openrouter) })).toBeChecked()
+    expect(screen.getByLabelText(copy.setup.key.label.openrouter)).toHaveAttribute("type", "password")
     expect(startButton()).toBeDisabled()
     expect(screen.getByText(copy.run.needs.key)).toBeInTheDocument()
     expect(document.querySelector("[data-slot='decision-flow']")).toHaveAttribute("data-mode", "idle")
@@ -57,13 +80,29 @@ describe("AiScoreView (D-71)", () => {
     expect(startButton()).toBeEnabled()
     await userEvent.click(startButton())
     expect(await screen.findByText(copy.run.done)).toBeInTheDocument()
-    expect(fake.create).toHaveBeenCalledWith(KEY)
+    expect(fake.create).toHaveBeenCalledWith("gateway", KEY)
     expect(fake.textModel).toHaveBeenCalledWith(DEFAULT_TEXT_MODEL)
     const saved = aiScoreSchema.parse(store.current().aiScore)
     expect(saved.report?.headline).toBe(REPORT.headline)
     expect(document.querySelector("[data-slot='decision-flow']")).toHaveAttribute("data-mode", "saved")
     expect(document.querySelector("[data-slot='ai-score-results']")).toHaveAttribute("data-score", String(saved.score))
     expect(screen.getByRole("button", { name: copy.run.again })).toBeEnabled()
+  })
+
+  it("runs on an OpenRouter key as well, with the Auto Router as the default text model", async () => {
+    const orKey = `sk-or-v1-${"ab".repeat(32)}`
+    const { store, fake } = show()
+    await userEvent.click(screen.getByRole("checkbox", { name: copy.setup.notice.ack }))
+    await userEvent.type(screen.getByLabelText(copy.setup.key.label.openrouter), orKey)
+    await userEvent.click(screen.getByRole("button", { name: copy.setup.key.use }))
+    expect(await screen.findByText(copy.setup.credits.accepted)).toBeInTheDocument()
+    await userEvent.click(screen.getByRole("checkbox", { name: copy.setup.data.ack }))
+    expect(startButton()).toBeEnabled()
+    await userEvent.click(startButton())
+    expect(await screen.findByText(copy.run.done)).toBeInTheDocument()
+    expect(fake.create).toHaveBeenCalledWith("openrouter", orKey)
+    expect(fake.textModel).toHaveBeenCalledWith("openrouter/auto")
+    expect(aiScoreSchema.parse(store.current().aiScore).report?.headline).toBe(REPORT.headline)
   })
 
   it("shows the progress per turn while running, and cancels", async () => {
@@ -79,7 +118,7 @@ describe("AiScoreView (D-71)", () => {
     expect(store.setAiScore).not.toHaveBeenCalled()
   })
 
-  it("explains a Gateway error in plain words", async () => {
+  it("explains a provider error in plain words", async () => {
     const { fake } = show()
     fake.jev.model.doDecide = async () => {
       throw Object.assign(new Error("402"), { statusCode: 402 })
@@ -90,9 +129,9 @@ describe("AiScoreView (D-71)", () => {
   })
 
   it("shows a balance check error without losing the key", async () => {
-    show({ creditsStatus: 429 })
+    show({}, example(), 429)
     await connect()
-    expect(await screen.findByText(/The key is kept, but the balance could not be checked/)).toHaveTextContent(copy.errors.rate)
+    expect(await screen.findByText(/The key is kept, but it could not be checked/)).toHaveTextContent(copy.errors.rate)
     expect(readGatewayKey()).toBe(KEY)
     expect(startButton()).toBeEnabled()
   })

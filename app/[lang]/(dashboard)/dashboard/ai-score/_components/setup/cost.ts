@@ -5,7 +5,6 @@ import { quickCheckSignal } from "@/lib/ai/plan-score/quick-check-signal"
 import { REPORT_MAX_OUTPUT_TOKENS } from "@/lib/ai/plan-score/report"
 import { buildState, estimateTokens, isJudgementFilled } from "@/lib/ai/plan-score/state"
 import { planExcerpts, TEXT_RULES } from "@/lib/ai/plan-score/text-input"
-import type { TextModel } from "@/lib/assistant/gateway/models"
 import type { Project } from "@/lib/project"
 
 /**
@@ -25,29 +24,31 @@ export const REPORT_OUTPUT_TOKENS = REPORT_MAX_OUTPUT_TOKENS
 export interface CostEstimate {
   /** Plan state plus questions, summed over the four turns. */
   decisionTokens: number
-  decisionUsd: number
+  /** Null when the decision model's price is not known (the Jev Router on OpenRouter routes per request). */
+  decisionUsd: number | null
   textInputTokens: number
   textOutputTokens: number
-  /** Null when the model's prices are not known (a custom id). */
+  /** Null when the model's prices are not known (a custom id, or the Auto Router). */
   textUsd: number | null
+  /** Null as soon as one side's price is not known. */
   totalUsd: number | null
 }
 
-export function estimateCost(project: Project, model: Pick<TextModel, "price"> | null): CostEstimate {
+export function estimateCost(project: Project, model: { price: { input: number; output: number } | null } | null, decisionPrice: number | null = JEV_INPUT_PRICE): CostEstimate {
   const signal = quickCheckSignal(project)
   const filled = new Set(JUDGEMENTS.filter((judgement) => isJudgementFilled(project, judgement)).map((judgement) => judgement.id))
   const state = estimateTokens(buildState(project, signal, {}))
   const decisionTokens = TURNS.reduce((sum, turn) => sum + state + estimateTokens(turnQuestions(turn, filled, {}, { project, signal }).questions), 0)
-  const decisionUsd = (decisionTokens * JEV_INPUT_PRICE) / 1e6
+  const decisionUsd = decisionPrice === null ? null : (decisionTokens * decisionPrice) / 1e6
   const textInputTokens = estimateTokens(TEXT_RULES) + SCORE_FACTS_TOKENS + estimateTokens(planExcerpts(project, [...filled]))
-  const textUsd = model ? (textInputTokens * model.price.input + REPORT_OUTPUT_TOKENS * model.price.output) / 1e6 : null
+  const textUsd = model?.price ? (textInputTokens * model.price.input + REPORT_OUTPUT_TOKENS * model.price.output) / 1e6 : null
   return {
     decisionTokens,
     decisionUsd,
     textInputTokens,
     textOutputTokens: REPORT_OUTPUT_TOKENS,
     textUsd,
-    totalUsd: textUsd === null ? null : decisionUsd + textUsd,
+    totalUsd: decisionUsd !== null && textUsd !== null ? decisionUsd + textUsd : null,
   }
 }
 

@@ -9,7 +9,8 @@ import { current, entry, nav, sidebar } from "./support/sidebar"
 
 /**
  * PLAN-AI-SCORE-00 step 6 (D-71): the AI Plan Score page. It opens from the last Business Plan
- * entry, says first that it is a separate AI opinion, asks for a Gateway key that stays in memory,
+ * entry, says first that it is a separate AI opinion, asks for a key of the chosen provider
+ * (OpenRouter by default) that stays in memory, and shows a saved score from an imported project.
  * and shows a saved score from an imported project. No request leaves the browser here: the
  * fixture was scored by the engine with the mock Jev and the mock text model
  * (`e2e/fixtures/ai-score.firstmove.json`, checked by `test-utils/e2e-fixture.test.ts`).
@@ -44,7 +45,7 @@ test.describe("AI Plan Score (D-71)", () => {
     await expect(notice).toContainText(ai("intro.points.verdict"))
     await expect(notice.getByRole("link", { name: ai("intro.docs") })).toHaveAttribute("href", "/en/docs/ai-plan-score")
 
-    const key = page.getByLabel(ai("setup.key.label"))
+    const key = page.getByLabel(ai("setup.key.label.openrouter"))
     await expect(key).toHaveAttribute("type", "password")
     await expect(key).toHaveAttribute("autocomplete", "off")
     await expect(page.getByRole("button", { name: ai("run.start") })).toBeDisabled()
