@@ -4,31 +4,207 @@
     "lang": "en",
     "title": "AI Plan Score",
     "url": "/en/docs/ai-plan-score",
-    "text": "The AI Plan Score is a separate AI scoring of your Business Plan. It is an opinion on how solid the written plan is, not a calculation and not a feasibility verdict.",
+    "text": "The AI Plan Score is a separate AI scoring of your Business Plan. An AI decision model reads what you wrote, step by step, and gives an opinion on how solid the written plan is: how specific, quantified and backed by evidence it is, and whether it settles what a solid 5GDHC business plan has to settle. It is optional and runs only when you start it, on the AI Plan Score page of the dashboard.",
     "source": "content/docs/en/ai-plan-score.mdx"
   },
   {
-    "id": "docs:ai-plan-score#what-it-reads",
+    "id": "docs:ai-plan-score#what-it-is-and-what-it-is-not",
     "lang": "en",
-    "title": "AI Plan Score · What it reads",
-    "url": "/en/docs/ai-plan-score#what-it-reads",
-    "text": "It reads the fields of the four Business Plan steps and, when the Quick Check is on and complete, its overall result.",
-    "source": "content/docs/en/ai-plan-score.mdx#what-it-reads"
+    "title": "AI Plan Score · What it is and what it is not",
+    "url": "/en/docs/ai-plan-score#what-it-is-and-what-it-is-not",
+    "text": "- An AI opinion on the written plan. It rates the text of your Business Plan, not the project itself, and it is marked as AI-generated wherever it appears.\n- Not a calculation. The Quick Check stays the only calculation in First Move, with its published equations and default values. The AI Plan Score reads the Quick Check result as context and never changes any of its numbers.\n- Not the Pitch completeness. The Pitch completeness counts which fields are filled and does not judge what they say. The AI Plan Score judges the content and leaves the count alone.\n- Not a verdict. It is no feasibility study, no jury score and no prediction of funding. Research on venture capital found that business plan documents are only weakly associated with funding decisions (Kirsch, Goldfarb and Gera, 2009). Use the score to find the gaps in your plan.",
+    "source": "content/docs/en/ai-plan-score.mdx#what-it-is-and-what-it-is-not"
   },
   {
-    "id": "docs:ai-plan-score#how-it-scores",
+    "id": "docs:ai-plan-score#what-you-need",
+    "lang": "en",
+    "title": "AI Plan Score · What you need",
+    "url": "/en/docs/ai-plan-score#what-you-need",
+    "text": "- A Vercel AI Gateway key from your own Vercel account. You bring your own key: the requests run under your account and are billed to it under Vercel's terms.\n- Memory only. The key is kept only in the memory of the open tab. It is never written to the browser's storage, to the project or to an export, and it is gone when you reload or close the tab. You can also remove it at any time.\n- A Business Plan with content. Empty fields are scored 0 without any AI, so the more you have written, the more the score can say.\n- A text model of your choice for the short report and the suggestions: any language model the Gateway offers, picked from a short list or entered by its name.",
+    "source": "content/docs/en/ai-plan-score.mdx#what-you-need"
+  },
+  {
+    "id": "docs:ai-plan-score#what-is-sent-and-to-whom-1",
+    "lang": "en",
+    "title": "AI Plan Score · What is sent and to whom",
+    "url": "/en/docs/ai-plan-score#what-is-sent-and-to-whom",
+    "text": "Nothing is sent until you start a run. Then your browser sends the following directly to the Vercel AI Gateway, under your own account:\n- the texts of the open project's Business Plan, including the shared site description, the stakeholders and the partners: only filled fields, with very long texts shortened;\n- the use case you picked, if any;\n- when the Quick Check is on and complete, its result: the verdict, the number of buildings, the heat density, the heating and cooling demand, the coverage and the economic ratio.\nThe Gateway passes the decision questions to TypeSafe AI, which runs the decision model Jev, and the report and the suggestions to the provider of the text model you picked. For the decision model and the listed text models, the app asks the Gateway to use only providers with zero data retention and no training on prompts; for a model you enter by name, it asks for no training on prompts. Whether a request is served that way depends on the terms of the Gateway and the provider and on your Vercel plan. Nothing passes through First Move's servers, and we receive neither your key nor your plan.",
+    "source": "content/docs/en/ai-plan-score.mdx#what-is-sent-and-to-whom"
+  },
+  {
+    "id": "docs:ai-plan-score#what-is-sent-and-to-whom-2",
+    "lang": "en",
+    "title": "AI Plan Score · What is sent and to whom",
+    "url": "/en/docs/ai-plan-score#what-is-sent-and-to-whom",
+    "text": "Do not put personal data of other people into the plan, such as the names of residents, unless you are allowed to send it. The Privacy Policy and the AI transparency page are the legal reference.",
+    "source": "content/docs/en/ai-plan-score.mdx#what-is-sent-and-to-whom"
+  },
+  {
+    "id": "docs:ai-plan-score#how-it-scores-1",
     "lang": "en",
     "title": "AI Plan Score · How it scores",
     "url": "/en/docs/ai-plan-score#how-it-scores",
-    "text": "An AI decision model scores each filled field in turns, from the first step to the last.",
+    "text": "1. Turn 0, without AI. First Move checks which parts of the plan are filled. Empty parts score 0 with certainty and are never sent. When the Quick Check is on and complete, its result enters as context.\n2. One decision call per Business Plan step, from the first field to the last: opportunity, business logic, reality check and implementation. In each call the decision model reads the whole plan, so it can check across steps, together with the decisions taken in the earlier steps.\n3. Three kinds of questions in each call. A score question for each filled part of that step, on the five evidence levels; gates, which ask yes or no, or pick an option, about the whole plan; and branches, choice questions whose answer selects a follow-up gate for the next step.\n4. Aggregation, without AI. The answers become the score, as described under From answers to the score.",
     "source": "content/docs/en/ai-plan-score.mdx#how-it-scores"
   },
   {
-    "id": "docs:ai-plan-score#sources",
+    "id": "docs:ai-plan-score#how-it-scores-2",
+    "lang": "en",
+    "title": "AI Plan Score · How it scores",
+    "url": "/en/docs/ai-plan-score#how-it-scores",
+    "text": "The plan has 27 parts in the four steps: 8, 8, 5 and 6. A part is one field, or several fields merged so that the same content is not scored twice, for example the customer segments of the opportunity and of the canvas. The questions are fixed and written in English; your plan may be in English or German. The decision model is pinned to one release, and the method has its own version, so a new model release cannot change a score silently.\nIf the model declines a question, the call is repeated once without it. A declined part is left out of the score, and a declined gate has no effect.",
+    "source": "content/docs/en/ai-plan-score.mdx#how-it-scores"
+  },
+  {
+    "id": "docs:ai-plan-score#the-five-evidence-levels",
+    "lang": "en",
+    "title": "AI Plan Score · The five evidence levels",
+    "url": "/en/docs/ai-plan-score#the-five-evidence-levels",
+    "text": "Every part is rated on the same scale. The levels describe quality, never length: a longer text does not score higher by itself (Brookhart, 2018; Zheng et al., 2023).\n- Missing (0): empty, a placeholder, or not about this part or this site.\n- Vague (1): a general claim that could fit any project, such as \"customers save money\", with no named actor, place or number.\n- Specific (2): names the actors, buildings, sources or mechanisms of this site, but gives no numbers or no basis for them.\n- Quantified (3): the key quantities with units and a stated basis or assumption. A figure quoted from the Quick Check counts as a basis here, not as evidence.\n- Evidenced (4): the numbers are backed by named data or commitments, such as metered consumption, a letter of intent, an early check with an authority, a quote or a survey, or they are tested, for example with a break-even value, and the text says what happens if a number is wrong. Claiming that something is validated is not enough.\nEach part also has its own description of a strong answer. For the connection rate, for example: a rate with its basis and timeline, the lowest rate at which the plan still works, and what happens below it.",
+    "source": "content/docs/en/ai-plan-score.mdx#the-five-evidence-levels"
+  },
+  {
+    "id": "docs:ai-plan-score#gates-and-caps-1",
+    "lang": "en",
+    "title": "AI Plan Score · Gates and caps",
+    "url": "/en/docs/ai-plan-score#gates-and-caps",
+    "text": "Gates are questions about the whole plan, and they never add points. A gate passes when the model gives it a probability of 80 % or more, and fails when the probability is 20 % or less; in between it stays unclear and is only flagged. For a gate with options, a partial answer counts half. A failed must-have gate caps its dimension at level 2, a failed should-have gate at level 3, and some gates only flag. A few gates are decided by a rule before any AI: no risk marked as the deal-breaker, an empty connection rate or an empty decision gate fails its gate, and the Vienna heating plan is asked about only when the site is in Vienna.",
+    "source": "content/docs/en/ai-plan-score.mdx#gates-and-caps"
+  },
+  {
+    "id": "docs:ai-plan-score#gates-and-caps-2",
+    "lang": "en",
+    "title": "AI Plan Score · Gates and caps",
+    "url": "/en/docs/ai-plan-score#gates-and-caps",
+    "text": "- Anchor customer (Participation and commitment, must-have): does the plan name a specific anchor customer and its role?\n- Extra value (Customer value and demand, flag only): does the plan use cooling or another extra value, such as stable prices, as a reason to connect, where it applies?\n- Network length as a cost driver (Technical and site fit, must-have when the Quick Check heat density is below 0.5 MWh/m, otherwise flag only): does the plan address the trench length or the heat line density, for example by connecting close buildings first?\n- Zone in the Vienna Heating Plan 2040 (Technical and site fit, flag only, in Vienna only): does the plan state the site's zone and why a 5GDHC network fits it?\n- System boundary (Ownership, operation and governance, must-have): does the plan say who owns the heat source, the network and the heat pumps in the buildings?\n- Operator and duties (Ownership, operation and governance, should-have): does the plan name an operator and its duties, such as maintenance, billing and faults?\n- Cost key (Ownership, operation and governance, should-have): does the plan state a rule for splitting the costs of the source, the pipes and the connections?\n-",
+    "source": "content/docs/en/ai-plan-score.mdx#gates-and-caps"
+  },
+  {
+    "id": "docs:ai-plan-score#gates-and-caps-3",
+    "lang": "en",
+    "title": "AI Plan Score · Gates and caps",
+    "url": "/en/docs/ai-plan-score#gates-and-caps",
+    "text": "Price against the alternative (Customer value and demand, must-have): is the customer's price compared with the realistic alternative, such as gas or an individual heat pump?\n- Minimum connection rate (Participation and commitment, must-have): does the plan say what happens to the costs or the viability if fewer buildings connect?\n- Revenues cover the lifetime costs (Costs, revenues and financing, must-have): are the yearly revenues compared with the yearly cost of the investment and the running costs over 20 to 30 years?\n- Subsidy fallback (Costs, revenues and financing, must-have): if the plan counts on a subsidy, does it say what happens with less or none?\n- Deal-breaker with a validation (Risks, assumptions and evidence, must-have): is one risk marked as the potential deal-breaker, could it really stop the project, and how will it be validated?\n- Start small (Implementation path and scalability, should-have): is a first phase defined, such as an anchor cluster, with steps to grow?\n- Decision gate (Implementation path and scalability, must-have): do the next steps contain a go or no-go decision with checkable criteria?",
+    "source": "content/docs/en/ai-plan-score.mdx#gates-and-caps"
+  },
+  {
+    "id": "docs:ai-plan-score#branches-and-follow-up-gates-1",
+    "lang": "en",
+    "title": "AI Plan Score · Branches and follow-up gates",
+    "url": "/en/docs/ai-plan-score#branches-and-follow-up-gates",
+    "text": "Branches steer the questions. The model picks the option the plan describes, and the next step asks the follow-up gate of that option only, so a plan built around a school gets other questions than a plan built around a hotel. Most follow-up gates only flag.",
+    "source": "content/docs/en/ai-plan-score.mdx#branches-and-follow-up-gates"
+  },
+  {
+    "id": "docs:ai-plan-score#branches-and-follow-up-gates-2",
+    "lang": "en",
+    "title": "AI Plan Score · Branches and follow-up gates",
+    "url": "/en/docs/ai-plan-score#branches-and-follow-up-gates",
+    "text": "- Anchor type (asked in step 1, follow-up in step 2): a public building, a commercial customer, a large residential owner, a waste heat or cooling user, or no anchor. The follow-ups ask about the public decision path, the contract term of a commercial anchor, how owners and tenants decide, or how secure the waste heat or the cooling demand is.\n- Main heat source (asked in step 1, follow-up in step 2): groundwater, a borehole field, surface water, wastewater, waste heat, ambient air, or unclear. For groundwater, a borehole field or surface water, the follow-up asks for the permit route or an early check with the water authority. It is a must-have gate for technical and site fit, because the permit is a typical deal-breaker (Wasserrechtsgesetz 1959, § 10). The other sources ask about the sewer operator, the supply agreement for the waste heat, or air in cold weather.\n- Ownership model (asked in step 2, follow-up in step 3): a utility, the municipality, the users together, a contractor, a developer, or unclear. The follow-ups ask about the utility's commitment, the municipal decision path, the rules of the community, the contract term and prices, or the operation after handover.",
+    "source": "content/docs/en/ai-plan-score.mdx#branches-and-follow-up-gates"
+  },
+  {
+    "id": "docs:ai-plan-score#the-seven-dimensions-1",
+    "lang": "en",
+    "title": "AI Plan Score · The seven dimensions",
+    "url": "/en/docs/ai-plan-score#the-seven-dimensions",
+    "text": "The dimensions describe what makes a 5GDHC business plan solid. They start from the aspects for successful implementation named in the study of the research project Anergie Leicht Gemacht: technology, costs, implementation models (ownership and operation, organisation and governance, financing) and participation. The reality check and the path to implementation come from the challenge brief. They were cross-checked against desirability, feasibility and viability (Brown, 2008), the Business Model Canvas (Osterwalder and Pigneur, 2010), the Commercial Readiness Index (ARENA, 2014) and the five-case model of the UK government (HM Treasury, 2026).",
+    "source": "content/docs/en/ai-plan-score.mdx#the-seven-dimensions"
+  },
+  {
+    "id": "docs:ai-plan-score#the-seven-dimensions-2",
+    "lang": "en",
+    "title": "AI Plan Score · The seven dimensions",
+    "url": "/en/docs/ai-plan-score#the-seven-dimensions",
+    "text": "- Customer value and demand: 15 %. Who connects, what they need and why the network beats their alternative.\n- Technical and site fit: 10 %. The site, its heat sources and resources, and whether the network fits the place.\n- Costs, revenues and financing: 20 %. Costs, tariffs, financing and subsidies, and whether revenues cover the costs over the lifetime.\n- Ownership, operation and governance: 20 %. Who owns, operates and pays for what, and how costs, risks and benefits are split.\n- Participation and commitment: 15 %. Owners, stakeholders, the anchor customer and the connection rate the plan relies on.\n- Risks, assumptions and evidence: 10 %. Critical assumptions and risks, the deal-breaker and how each is validated.\n- Implementation path and scalability: 10 %. The first phase, the next steps, the decision gate and how the model grows.",
+    "source": "content/docs/en/ai-plan-score.mdx#the-seven-dimensions"
+  },
+  {
+    "id": "docs:ai-plan-score#the-seven-dimensions-3",
+    "lang": "en",
+    "title": "AI Plan Score · The seven dimensions",
+    "url": "/en/docs/ai-plan-score#the-seven-dimensions",
+    "text": "No source prescribes numeric weights, so these are reasoned defaults. Costs and governance weigh most: the research project calls the implementation models the focus of its work and finds most challenges organisational rather than technical, and costs come first, with the investment upfront and the revenues over 25 to 30 years. Technical fit weighs less, because the Quick Check already screens the site. Evidence weighs less as a dimension, because every part already rewards evidence on its own scale.",
+    "source": "content/docs/en/ai-plan-score.mdx#the-seven-dimensions"
+  },
+  {
+    "id": "docs:ai-plan-score#from-answers-to-the-score",
+    "lang": "en",
+    "title": "AI Plan Score · From answers to the score",
+    "url": "/en/docs/ai-plan-score#from-answers-to-the-score",
+    "text": "- A part's level is the probability-weighted mean of the five levels, the expected level, as in G-Eval (Liu et al., 2023). Its spread is the standard deviation of the model's probabilities. An empty part counts 0 with no spread.\n- A dimension is the mean of its parts, cut by the lowest cap of its failed gates, times 25, so it runs from 0 to 100.\n- The AI Plan Score is the weighted sum of the seven dimensions, from 0 to 100. Its band is one standard deviation, computed from the spreads with the parts taken as independent, which probably makes it too narrow.\n- The display rounds the score to 5 points and the band to whole points, at least 1, to avoid false precision.\nThe score then gets one of three labels:\n- Early: below 40.\n- Promising: from 40 to below 70, and also 70 or more when a must-have gate failed.\n- Solid: 70 or more, with no failed must-have gate.",
+    "source": "content/docs/en/ai-plan-score.mdx#from-answers-to-the-score"
+  },
+  {
+    "id": "docs:ai-plan-score#report-and-suggestions",
+    "lang": "en",
+    "title": "AI Plan Score · Report and suggestions",
+    "url": "/en/docs/ai-plan-score#report-and-suggestions",
+    "text": "- The short report is written by the text model you picked, right after the score: a headline, a summary, up to three strengths and up to three gaps, each pointing to the parts it rests on, and up to three next actions. The model sees the final numbers and short excerpts of the plan.\n- Suggestions run on demand, only when you ask: for each part below level 2 and each failed or unclear gate, one to three general and feasible improvements. They are adapted from the description of a strong answer and from sourced hints, such as naming one anchor customer and aiming for a letter of intent.\n- The text model never changes a number. The scores are final before it starts. It is told not to recompute or contradict them and not to invent figures, programmes, laws, organisations or sources. Its output is checked and cut to fixed lengths, and pointers to parts that do not exist are dropped.\n- Both are marked as AI-generated, like the score.",
+    "source": "content/docs/en/ai-plan-score.mdx#report-and-suggestions"
+  },
+  {
+    "id": "docs:ai-plan-score#saved-in-your-project",
+    "lang": "en",
+    "title": "AI Plan Score · Saved in your project",
+    "url": "/en/docs/ai-plan-score#saved-in-your-project",
+    "text": "- The last score, with its report and suggestions, is saved in the project in your browser. It is exported and imported with the project file, like your inputs. Your key is never saved.\n- Each part keeps a short fingerprint of the text it scored. Once a scored field changes, the score is marked as outdated and says how many parts changed; run it again for a current score. A new run replaces the saved one.\n- The score appears on the AI Plan Score page, in the header of every Business Plan step, at the top of the Pitch completeness, on the overview and in the report, always marked as AI-generated.",
+    "source": "content/docs/en/ai-plan-score.mdx#saved-in-your-project"
+  },
+  {
+    "id": "docs:ai-plan-score#limits-and-caveats",
+    "lang": "en",
+    "title": "AI Plan Score · Limits and caveats",
+    "url": "/en/docs/ai-plan-score#limits-and-caveats",
+    "text": "- AI can be wrong. A model can misread a text or rate it too high or too low. Read the reasons on the AI Plan Score page and check them against your plan.\n- The probabilities are not a forecast. They say how sure the model is about which level fits the text, not how likely the project is to succeed, and they are not calibrated.\n- Known biases. Models used as judges can prefer longer texts and texts written by AI (Zheng et al., 2023; Liu et al., 2023). The levels are written against this, but it cannot be ruled out.\n- Structural analogues only. Some sources are UK guidance, such as the HM Treasury business case guidance and the Green Heat Network Fund. They shaped the structure of the gates and are not Austrian or German requirements.\n- No advice. The score is not legal, engineering or financial advice, and it never states subsidy rates, eligibility or the outcome of a permit.\n- Long plans. Very long texts are shortened before they are sent, so details at the end of a very long text may not be read.",
+    "source": "content/docs/en/ai-plan-score.mdx#limits-and-caveats"
+  },
+  {
+    "id": "docs:ai-plan-score#sources-1",
     "lang": "en",
     "title": "AI Plan Score · Sources",
     "url": "/en/docs/ai-plan-score#sources",
-    "text": "The method follows the challenge material and published research.",
+    "text": "The method follows the challenge brief Business Models for 5GDHC and the talk of the research project Anergie Leicht Gemacht at the hackathon, which have no public link, and the published sources below. Every link was opened and checked on 24 October 2026.",
+    "source": "content/docs/en/ai-plan-score.mdx#sources"
+  },
+  {
+    "id": "docs:ai-plan-score#sources-2",
+    "lang": "en",
+    "title": "AI Plan Score · Sources",
+    "url": "/en/docs/ai-plan-score#sources",
+    "text": "- Buffa, S., Cozzini, M., D'Antoni, M., Baratieri, M., Fedrizzi, R. (2019). 5th generation district heating and cooling systems: A review of existing cases in Europe. Renewable and Sustainable Energy Reviews 104, 504–522.\n- Gjoka, K., Rismanchi, B., Crawford, R.H. (2023). Fifth-generation district heating and cooling systems: A review of recent advancements and implementation barriers. Renewable and Sustainable Energy Reviews 171, 112997.\n- Lygnerud, K., Wheatcroft, E., Wynn, H. (2019). Contracts, business models and barriers to investing in low temperature district heating projects. Applied Sciences 9(15), 3142.\n- Lygnerud, K., Popovic, T., Schultze, S., Støchkel, H.K. (2023). District heating in the future – thoughts on the business model. Energy 278, 127714.\n- Lygnerud, K., Werner, S. (2018). Risk assessment of industrial excess heat recovery in district heating systems. Energy 151, 430–441.\n- Boesten, S., Ivens, W., Dekker, S.C., Eijdems, H. (2019). 5th generation district heating and cooling systems as a solution for renewable urban thermal energy supply. Advances in Geosciences 49, 129–136.\n- Persson, U., Werner, S. (2011). Heat distribution and the future competitiveness of",
+    "source": "content/docs/en/ai-plan-score.mdx#sources"
+  },
+  {
+    "id": "docs:ai-plan-score#sources-3",
+    "lang": "en",
+    "title": "AI Plan Score · Sources",
+    "url": "/en/docs/ai-plan-score#sources",
+    "text": "district heating. Applied Energy 88(3), 568–576.\n- Nussbaumer, T., Thalmann, S. (2016). Influence of system design on heat distribution costs in district heating. Energy 101, 496–505.\n- Reidhav, C., Werner, S. (2008). Profitability of sparse district heating. Applied Energy 85(9), 867–877.\n- Wirtz, M., Kivilip, L., Remmen, P., Müller, D. (2020). Quantifying demand balancing in bidirectional low temperature networks. Energy and Buildings 224, 110245.\n- Hawkey, D., Webb, J., Winskel, M. (2013). Organisation and governance of urban energy systems: district heating and cooling in the UK. Journal of Cleaner Production 50, 22–31.\n- Bush, R.E., Bale, C.S.E., Taylor, P.G. (2016). Realising local government visions for developing district heating: Experiences from a learning country. Energy Policy 98, 84–96.\n- Wüstenhagen, R., Wolsink, M., Bürer, M.J. (2007). Social acceptance of renewable energy innovation: An introduction to the concept. Energy Policy 35(5), 2683–2691.\n- Steffen, B. (2018). The importance of project finance for renewable energy projects. Energy Economics 69, 280–294.\n- Kirsch, D., Goldfarb, B., Gera, A. (2009). Form or substance: the role of business plans in venture",
+    "source": "content/docs/en/ai-plan-score.mdx#sources"
+  },
+  {
+    "id": "docs:ai-plan-score#sources-4",
+    "lang": "en",
+    "title": "AI Plan Score · Sources",
+    "url": "/en/docs/ai-plan-score#sources",
+    "text": "capital decision making. Strategic Management Journal 30(5), 487–515.\n- Brinckmann, J., Grichnik, D., Kapsa, D. (2010). Should entrepreneurs plan or just storm the castle? A meta-analysis on contextual factors impacting the business planning–performance relationship in small firms. Journal of Business Venturing 25(1), 24–40.\n- Brookhart, S.M. (2018). Appropriate criteria: Key to effective rubrics. Frontiers in Education 3, 22.\n- Liu, Y., Iter, D., Xu, Y., Wang, S., Xu, R., Zhu, C. (2023). G-Eval: NLG evaluation using GPT-4 with better human alignment. Proceedings of EMNLP 2023, 2511–2522.\n- Zheng, L., Chiang, W.-L., Sheng, Y., et al. (2023). Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena. NeurIPS 2023 Datasets and Benchmarks Track (arXiv:2306.05685).\n- Osterwalder, A., Pigneur, Y. (2010). Business Model Generation: A Handbook for Visionaries, Game Changers, and Challengers. Wiley, ISBN 978-0-470-87641-1.\n- Bland, D.J. (2020). How assumptions mapping can focus your teams on running experiments that matter. Strategyzer.\n- Brown, T. (2008). Design thinking. Harvard Business Review 86(6).\n- Australian Renewable Energy Agency (2014). Commercial Readiness Index for Renewable",
+    "source": "content/docs/en/ai-plan-score.mdx#sources"
+  },
+  {
+    "id": "docs:ai-plan-score#sources-5",
+    "lang": "en",
+    "title": "AI Plan Score · Sources",
+    "url": "/en/docs/ai-plan-score#sources",
+    "text": "Energy Sectors. ARENA, Canberra.\n- European Commission, DG Regional and Urban Policy (2014). Guide to Cost-Benefit Analysis of Investment Projects: Economic appraisal tool for Cohesion Policy 2014–2020. European Commission.\n- HM Treasury (2026). Guidance on developing business cases for projects and programmes. HM Treasury, London.\n- Department for Energy Security and Net Zero (2026). Green Heat Network Fund: Guidance for Applicants, version 12.0. UK Government.\n- Ivens, W., Boesten, S. (2020). D2Grids WP LT Deliverable DEL.1.1: Roll-out strategy, preliminary version. Interreg North-West Europe.\n- Stadt Wien, MA 20 Energieplanung (2024). Wiener Wärmeplan 2040 (Vienna Heating Plan 2040). City of Vienna.\n- Stadt Wien, MA 20 Energieplanung (2025). Beschreibung der Methodik und der Vorgehensweise zur Entwicklung des Konzeptes „Raus aus Gas – Wiener Wärme und Kälte 2040“ und „Wiener Wärmeplan 2040“. City of Vienna.\n- Republik Österreich (1959). Wasserrechtsgesetz 1959 (WRG 1959), § 10. Rechtsinformationssystem des Bundes (RIS).\n- Land Oberösterreich, Bezirkshauptmannschaft Steyr-Land (2026). Grundwasserwärmepumpen. Land Oberösterreich.\n- Republik Österreich (2024).",
+    "source": "content/docs/en/ai-plan-score.mdx#sources"
+  },
+  {
+    "id": "docs:ai-plan-score#sources-6",
+    "lang": "en",
+    "title": "AI Plan Score · Sources",
+    "url": "/en/docs/ai-plan-score#sources",
+    "text": "Erneuerbare-Wärme-Gesetz (EWG), BGBl. I Nr. 8/2024. Rechtsinformationssystem des Bundes (RIS).\n- Kommunalkredit Public Consulting (Umweltförderung im Inland) (2024). Gewerbliche Wärme- und Kälteversorgung. umweltfoerderung.at.\n- Bundesministerien, Kommunalkredit Public Consulting (2026). Sanierungsoffensive. sanierungsoffensive.gv.at.",
     "source": "content/docs/en/ai-plan-score.mdx#sources"
   },
   {
@@ -224,12 +400,20 @@
     "source": "content/docs/en/business-plan.mdx#example-scenarios"
   },
   {
-    "id": "docs:business-plan#pitch-readiness-unofficial",
+    "id": "docs:business-plan#pitch-completeness-unofficial",
     "lang": "en",
-    "title": "Business Plan · Pitch readiness (unofficial)",
-    "url": "/en/docs/business-plan#pitch-readiness-unofficial",
-    "text": "The last step shows how ready your pitch is: how much of the final pitch already has content, from what you filled in. It counts what is filled in, not how good the content is, and it is labelled unofficial.\nIt checks the six parts of the final pitch (BM-SCOPE-07): the use case and value proposition, the business model, the economic and practical feasibility, the reality check, the scalability and replicability, and the next steps. Next to them it shows the jury criteria proposed in the first version of the challenge brief (BM-SCOPE-08). They are not an official scoring rule.\nEach part has a short list of points. A text point counts when its field has text, a list point when it has an entry, and a risk or critical-assumption point when at least one row is complete and no row is half filled. The share of points covered is the score of the part, and the readiness is the average of the six parts. A part is pitch-ready when all its points are covered. There is no equation behind this, and no judgement of the content.",
-    "source": "content/docs/en/business-plan.mdx#pitch-readiness-unofficial"
+    "title": "Business Plan · Pitch completeness (unofficial)",
+    "url": "/en/docs/business-plan#pitch-completeness-unofficial",
+    "text": "The last step shows how complete your pitch is: how much of the final pitch already has content, from what you filled in. It counts filled fields only and does not judge the content, and it is labelled unofficial.\nIt checks the six parts of the final pitch (BM-SCOPE-07): the use case and value proposition, the business model, the economic and practical feasibility, the reality check, the scalability and replicability, and the next steps. Next to them it shows the jury criteria proposed in the first version of the challenge brief (BM-SCOPE-08). They are not an official scoring rule.\nEach part has a short list of points. A text point counts when its field has text, a list point when it has an entry, and a risk or critical-assumption point when at least one row is complete and no row is half filled. The share of points covered is the score of the part, and the completeness is the average of the six parts. A part is complete when all its points are covered. There is no equation behind this, and no judgement of the content.",
+    "source": "content/docs/en/business-plan.mdx#pitch-completeness-unofficial"
+  },
+  {
+    "id": "docs:business-plan#ai-plan-score",
+    "lang": "en",
+    "title": "Business Plan · AI Plan Score",
+    "url": "/en/docs/business-plan#ai-plan-score",
+    "text": "For a judgement of the content, the optional AI Plan Score gives an AI opinion on how solid the written plan is. It is shown before the Pitch completeness, bolder, in the header of every step and at the top of the completeness panel, and it is marked as AI-generated. It runs only when you start it, with your own Vercel AI Gateway key, and it never changes the Quick Check or the Pitch completeness. The AI Plan Score page explains how it scores, what is sent and the sources behind it.",
+    "source": "content/docs/en/business-plan.mdx#ai-plan-score"
   },
   {
     "id": "docs:business-plan#quick-check-figures-in-the-business-plan",
@@ -276,7 +460,7 @@
     "lang": "en",
     "title": "Data and privacy · Export and import",
     "url": "/en/docs/data-and-privacy#export-and-import",
-    "text": "- Export saves the open project as a .firstmove.json file, wherever you choose. The file holds your inputs. The results are not stored; they are calculated again when the file is imported.\n- Import reads a .firstmove.json file and checks it in your browser; nothing is uploaded. If the project is already in this browser, you choose whether to keep both or to replace the stored version. A replaced version is kept, so you can restore it.\n- A file from an earlier version of First Move is updated to the current format when you import it.\n- Report shows the open project as a printable page. Your browser prints it or saves it as a PDF; nothing is uploaded.\nExport your projects regularly, because an export is your copy outside this browser. First Move reminds you to export from time to time.",
+    "text": "- Export saves the open project as a .firstmove.json file, wherever you choose. The file holds your inputs and, if you ran one, the last AI Plan Score. The calculated results are not stored; they are calculated again when the file is imported.\n- Import reads a .firstmove.json file and checks it in your browser; nothing is uploaded. If the project is already in this browser, you choose whether to keep both or to replace the stored version. A replaced version is kept, so you can restore it.\n- A file from an earlier version of First Move is updated to the current format when you import it.\n- Report shows the open project as a printable page. Your browser prints it or saves it as a PDF; nothing is uploaded.\nExport your projects regularly, because an export is your copy outside this browser. First Move reminds you to export from time to time.",
     "source": "content/docs/en/data-and-privacy.mdx#export-and-import"
   },
   {
@@ -304,11 +488,19 @@
     "source": "content/docs/en/data-and-privacy.mdx#cookies-and-settings"
   },
   {
+    "id": "docs:data-and-privacy#the-ai-plan-score-and-your-data",
+    "lang": "en",
+    "title": "Data and privacy · The AI Plan Score and your data",
+    "url": "/en/docs/data-and-privacy#the-ai-plan-score-and-your-data",
+    "text": "The optional AI Plan Score runs only when you start it, with your own Vercel AI Gateway key. Your browser then sends the open project's Business Plan texts and, when available, the Quick Check result directly to the Vercel AI Gateway, under your own account. Nothing goes through our servers, and we receive neither the content nor the key.\n- The key stays in memory. It is kept only in the memory of the open tab, never in the browser's storage, the project or an export, and it is gone when you reload or close the tab.\n- The score is saved in the project. The last score, with its report and suggestions, is stored with the project in your browser and is part of an export, marked as AI-generated. A new run replaces it.\nThe Privacy Policy names the recipients and the AI transparency page explains how the score is classified.",
+    "source": "content/docs/en/data-and-privacy.mdx#the-ai-plan-score-and-your-data"
+  },
+  {
     "id": "docs:data-and-privacy#the-ai-features-and-your-data",
     "lang": "en",
     "title": "Data and privacy · The AI features and your data",
     "url": "/en/docs/data-and-privacy#the-ai-features-and-your-data",
-    "text": "First Move has two optional AI layers, separate from the app and from each other. The AI transparency page says whether they are available today.\n- The AI assistant in the dashboard works with your own key for an AI provider you choose. When you use it, your browser sends your request directly to that provider: your question, the open project's inputs and results, and the documents you attach; nothing from your other projects. We receive neither the content nor the key. The key stays in your browser, for the session only or locked with a PIN on this device, and the chat history stays in your browser too.\n- The email agent at agent@mail.firstmove.energy processes what you send to it on the server, through the service providers named in the Privacy Policy, and only after you have confirmed once. The conversation is stored encrypted, for 30 days after your last message.\nThe Quick Check and Business Plan results never come from AI, and the projects in your browser never go to our servers.\nThe AI assistant and Email agent pages explain both in detail.",
+    "text": "Besides the AI Plan Score, First Move has two optional AI layers, separate from the app and from each other. The AI transparency page says whether they are available today.\n- The AI assistant in the dashboard works with your own key for an AI provider you choose. When you use it, your browser sends your request directly to that provider: your question, the open project's inputs and results, and the documents you attach; nothing from your other projects. We receive neither the content nor the key. The key stays in your browser, for the session only or locked with a PIN on this device, and the chat history stays in your browser too.\n- The email agent at agent@mail.firstmove.energy processes what you send to it on the server, through the service providers named in the Privacy Policy, and only after you have confirmed once. The conversation is stored encrypted, for 30 days after your last message.\nThe Quick Check results and the Pitch completeness never come from AI, and the projects in your browser never go to our servers.\nThe AI assistant and Email agent pages explain both in detail.",
     "source": "content/docs/en/data-and-privacy.mdx#the-ai-features-and-your-data"
   },
   {
@@ -452,7 +644,7 @@
     "lang": "en",
     "title": "Introduction · Read next",
     "url": "/en/docs#read-next",
-    "text": "- What is 5GDHC?: the idea behind the networks, where they fit and where they do not.\n- Quick Check: every input, how the result is calculated and what it means.\n- Business Plan: the four steps, the example scenarios and the pitch-readiness checklist.\n- Data and privacy: where your projects live, export, import and deleting data.\n- AI assistant: the optional assistant in the dashboard, with your own key.\n- Email agent: a Quick Check or a Business Plan by email.",
+    "text": "- What is 5GDHC?: the idea behind the networks, where they fit and where they do not.\n- Quick Check: every input, how the result is calculated and what it means.\n- Business Plan: the four steps, the example scenarios and the Pitch completeness checklist.\n- AI Plan Score: the optional AI opinion on how solid your written Business Plan is, with your own key.\n- Data and privacy: where your projects live, export, import and deleting data.\n- AI assistant: the optional assistant in the dashboard, with your own key.\n- Email agent: a Quick Check or a Business Plan by email.",
     "source": "content/docs/en/index.mdx#read-next"
   },
   {
@@ -676,32 +868,184 @@
     "lang": "en",
     "title": "Reference cases",
     "url": "/en/docs/reference-cases",
-    "text": "Six reference cases from Vienna show what a weak, a middling and a strong Business Plan look like.",
+    "text": "Six cases from Vienna show what a weak, a middling and a strong Business Plan look like. Three describe real anergy networks, three are fictional plans around real buildings.\nYou find them at the very bottom of the dashboard start screen, under Reference cases from Vienna, collapsed until you open the section. Opening a case creates your own copy with both modules filled in, marked as an example. Each card links to its section on this page.",
     "source": "content/docs/en/reference-cases.mdx"
   },
   {
-    "id": "docs:reference-cases#three-real-anergy-networks",
+    "id": "docs:reference-cases#how-to-read-the-cases-1",
     "lang": "en",
-    "title": "Reference cases · Three real anergy networks",
-    "url": "/en/docs/reference-cases#three-real-anergy-networks",
-    "text": "Three cases describe anergy networks that exist in Vienna.",
-    "source": "content/docs/en/reference-cases.mdx#three-real-anergy-networks"
+    "title": "Reference cases · How to read the cases",
+    "url": "/en/docs/reference-cases#how-to-read-the-cases",
+    "text": "- Facts: what a case says about a real building or project comes from the sources listed under it. Each link was opened and its content checked on 25 October 2026. The cases use official pages and documents, peer-reviewed papers and the developers' or operators' own pages about their own project, but no news articles or blogs.\n- Real cases: the plan restates published facts. Where it adds something that is not published, the text says (proposed), or says that the information is not public.\n- Fictional cases: a real building is the anchor and the plan around it is invented. Invented details are marked (illustrative). Every fictional case says so on its card, in the project it opens and below.\n- Plan quality: each group has one strong, one middling and one weak plan. A strong plan is specific, quantified and backed by sources, names one deal-breaker with a test, checks its costs over the lifetime and ends with a decision gate. A middling plan is specific but leaves the lifetime check, some tests or the decision date open. A weak plan stays short and vague, leaves fields empty and marks the wrong risk as the deal-breaker. Weak plans are weak by what they leave out, never by false",
+    "source": "content/docs/en/reference-cases.mdx#how-to-read-the-cases"
   },
   {
-    "id": "docs:reference-cases#three-fictional-plans-around-real-buildings",
+    "id": "docs:reference-cases#how-to-read-the-cases-2",
     "lang": "en",
-    "title": "Reference cases · Three fictional plans around real buildings",
-    "url": "/en/docs/reference-cases#three-fictional-plans-around-real-buildings",
-    "text": "Three cases are fictional plans built around real buildings in Vienna.",
-    "source": "content/docs/en/reference-cases.mdx#three-fictional-plans-around-real-buildings"
+    "title": "Reference cases · How to read the cases",
+    "url": "/en/docs/reference-cases#how-to-read-the-cases",
+    "text": "statements about a real building.\n- Quick Check: the Quick Check is a first screen. It counts buildings at default floor areas and takes each source at its default capacity, so large projects show a low heating coverage, and all six cases end at Further analysis required. Where a case states its annual demand, it is entered as a known demand. Inputs that are not published are estimates and are named under each case.",
+    "source": "content/docs/en/reference-cases.mdx#how-to-read-the-cases"
   },
   {
-    "id": "docs:reference-cases#how-to-use-them",
+    "id": "docs:reference-cases#smart-block-geblergasse-1",
     "lang": "en",
-    "title": "Reference cases · How to use them",
-    "url": "/en/docs/reference-cases#how-to-use-them",
-    "text": "Open a case from the start screen of the dashboard.",
-    "source": "content/docs/en/reference-cases.mdx#how-to-use-them"
+    "title": "Reference cases · Smart Block Geblergasse",
+    "url": "/en/docs/reference-cases#smart-block-geblergasse",
+    "text": "Real anergy network, strong plan.\nGeblergasse 11 and 13 in Hernals, 1170 Vienna: two Gründerzeit houses with 25 flats share geothermal probes under the courtyard, two hybrid solar roofs of 54 m² each and one heat pump, built from August 2018. It is the first anergy network in a Vienna Gründerzeit block and is laid out so that the other 16 houses of the block can join through prepared pipe stubs.\nThe plan is strong because it works with published numbers: design values of 90 + 67 MWh/a of space heat and 30 + 20 MWh/a of hot water, a tender cost of about €320,000 and a 30 % city grant of about €95,000. It sets a price rule, tenant cost at or below district heating, checks the costs over 20 years with the Quick Check defaults, names No drilling space for phase 2 as the deal-breaker and ends with a go or no-go for phase 2 within 12 months under four conditions. The heat-delivery contracting and phase 2 are proposals.",
+    "source": "content/docs/en/reference-cases.mdx#smart-block-geblergasse"
+  },
+  {
+    "id": "docs:reference-cases#smart-block-geblergasse-2",
+    "lang": "en",
+    "title": "Reference cases · Smart Block Geblergasse",
+    "url": "/en/docs/reference-cases#smart-block-geblergasse",
+    "text": "Quick Check inputs: 2 residential buildings from before 1919 on 1,000 m², geothermal and solar thermal medium, ambient air low, PV, and the published heating demand of 207,000 kWh/a. Result: Further analysis required, because the default capacities of the sources cover less than half of that demand.\nSources:",
+    "source": "content/docs/en/reference-cases.mdx#smart-block-geblergasse"
+  },
+  {
+    "id": "docs:reference-cases#smart-block-geblergasse-3",
+    "lang": "en",
+    "title": "Reference cases · Smart Block Geblergasse",
+    "url": "/en/docs/reference-cases#smart-block-geblergasse",
+    "text": "- Burtscher-Durig ZT GmbH, ÖGUT, Komobile w7, Gruber, M., Zeininger, J. (2018). SMART BLOCK II Energy: Energie, Mobilität, Finanzierung, Kommunikation. Publizierbarer Endbericht. Klima- und Energiefonds, Blue Globe Report Smart Cities 6/2018.\n- Stadt Wien, MA 20 Energieplanung, with the Federal Ministry BMK and the Österreichischer Städtebund (2020). Projektbericht AnergieUrban, Stufe 1: Die Stadt als Energiespeicher. City of Vienna, via Wienbibliothek digital.\n- Stadt Wien, Wiener Wohnen Kundenservice GmbH (2026). SMART BLOCK Geblergasse. socialhousing.wien, the City of Vienna's housing portal.\n- Stadt Wien, MA 20 Energieplanung (2024). Förderrichtlinie für Wärmenetze (Anergienetze) in Verbindung mit Wärmepumpen im Rahmen einer Heizungsumstellung ab zwei Objekten 2024/2025. City of Vienna.\n- Kommunalkredit Public Consulting (2026). Informationsblatt Erneuerbare Mikronetze für Betriebe und Gemeinden (Version 05/2026). Umweltförderung im Inland.\n- Stadt Wien (2025). WieNeu+ im Grätzl 20+2: Anergienetz Startzellen (ÖGUT). City of Vienna, via Wienbibliothek digital.\n- Stadt Wien, MA 20 Energieplanung (2026). Der Wiener Wärmeplan 2040 (map and area categories). City of Vienna.\n-",
+    "source": "content/docs/en/reference-cases.mdx#smart-block-geblergasse"
+  },
+  {
+    "id": "docs:reference-cases#smart-block-geblergasse-4",
+    "lang": "en",
+    "title": "Reference cases · Smart Block Geblergasse",
+    "url": "/en/docs/reference-cases#smart-block-geblergasse",
+    "text": "Kranzl, L., Frank-Stocker, A., Hummel, M., Müller, A., Patel, N., Wiechers, E., Worm, J., Ziegler, M. (2026). Anergienetze: Gamechanger oder Nischenlösung für die urbane Wärme- und Kälteversorgung?. 19. Symposium Energieinnovation, TU Graz; based on a study for the City of Vienna, MA 20.",
+    "source": "content/docs/en/reference-cases.mdx#smart-block-geblergasse"
+  },
+  {
+    "id": "docs:reference-cases#kraftwerk-seebogen-seestadt-aspern-1",
+    "lang": "en",
+    "title": "Reference cases · Kraftwerk Seebogen, Seestadt Aspern",
+    "url": "/en/docs/reference-cases#kraftwerk-seebogen-seestadt-aspern",
+    "text": "Real anergy network, middling plan.\nOn plot H6 in Seestadt Aspern, 1220 Vienna, five developers share an anergy network for about 270 flats and about 250 workplaces on nearly 20,000 m² of new floor area. Two probe fields with 92 boreholes of 150 m serve as a seasonal store; outdoor air, waste heat from a supermarket and other spaces and four rooftop PV systems complete it. The loop runs at 4 °C in spring to 16 °C in autumn, covers about 1,600 MWh/a of space heating plus hot water and summer cooling, and saves about 440 t of CO2 a year. beyond carbon energy built the plant; the commercial yard of the Vienna Business Agency on the same plot uses district heating.\nThe plan is middling because the public sources leave gaps that it does not close: who owns and runs which part, the prices, the financing, the cost split between the five developers and a decision date. It is specific where facts exist, gives a rough drilling cost from 2020 prices and names a deal-breaker, Five developers disagree, but its tests stay open.",
+    "source": "content/docs/en/reference-cases.mdx#kraftwerk-seebogen-seestadt-aspern"
+  },
+  {
+    "id": "docs:reference-cases#kraftwerk-seebogen-seestadt-aspern-2",
+    "lang": "en",
+    "title": "Reference cases · Kraftwerk Seebogen, Seestadt Aspern",
+    "url": "/en/docs/reference-cases#kraftwerk-seebogen-seestadt-aspern",
+    "text": "Quick Check inputs: 5 buildings built since 2011 on 1 ha, 80 % residential and 20 % Category A, all three estimates; geothermal high, waste heat and ambient air medium, PV, and the published 1,600,000 kWh/a of space heating. Result: Further analysis required, because the building density is low and the default capacities cover only part of the demand.\nSources:",
+    "source": "content/docs/en/reference-cases.mdx#kraftwerk-seebogen-seestadt-aspern"
+  },
+  {
+    "id": "docs:reference-cases#kraftwerk-seebogen-seestadt-aspern-3",
+    "lang": "en",
+    "title": "Reference cases · Kraftwerk Seebogen, Seestadt Aspern",
+    "url": "/en/docs/reference-cases#kraftwerk-seebogen-seestadt-aspern",
+    "text": "- Stadt Wien, MA 20 Energieplanung (2026). Energie-Vorzeigeprojekt: Kraftwerk Seebogen. City of Vienna.\n- Berg, E. (Wien 3420 aspern Development AG) (2022). Bubbling with New Energy. aspern Seestadt, the developer's own publication.\n- Stadt Wien, MA 20 Energieplanung, with the Federal Ministry BMK and the Österreichischer Städtebund (2020). Projektbericht AnergieUrban, Stufe 1: Die Stadt als Energiespeicher. City of Vienna, via Wienbibliothek digital.\n- Stadt Wien, MA 20 Energieplanung (2024). Förderrichtlinie für Wärmenetze (Anergienetze) in Verbindung mit Wärmepumpen im Rahmen einer Heizungsumstellung ab zwei Objekten 2024/2025. City of Vienna.\n- Kranzl, L., Frank-Stocker, A., Hummel, M., Müller, A., Patel, N., Wiechers, E., Worm, J., Ziegler, M. (2026). Anergienetze: Gamechanger oder Nischenlösung für die urbane Wärme- und Kälteversorgung?. 19. Symposium Energieinnovation, TU Graz; based on a study for the City of Vienna, MA 20.",
+    "source": "content/docs/en/reference-cases.mdx#kraftwerk-seebogen-seestadt-aspern"
+  },
+  {
+    "id": "docs:reference-cases#village-im-dritten-1",
+    "lang": "en",
+    "title": "Reference cases · Village im Dritten",
+    "url": "/en/docs/reference-cases#village-im-dritten",
+    "text": "Real anergy network, weak plan.\nVillage im Dritten is a new quarter in Landstraße, 1030 Vienna, developed by ARE Austrian Real Estate with other developers: about 11.5 ha with 22 building plots, about 250,000 m² of gross floor area and about 1,900 to 2,000 flats. Its energy system uses what the developer calls the largest geothermal probe field in Austria: 500 probes, 150 m deep, feed an anergy network to heat pumps in each building, which heat the flats through floor heating at up to about 37 °C. District heating covers peaks and hot water, the ground cools the flats moderately and the commercial spaces in summer, and PV of about 1 MW makes power. Wien Energie presented the concept in 2023.\nThe plan is weak although these facts are public: it states needs, costs and the operator only vaguely, leaves the customer relationship, the financing, the feedback, the economic scalability and the pilot empty, tests its one critical assumption later and marks Construction delays as the deal-breaker. Everything it says is true; a stronger plan would use the facts above and test the ground balance of 500 probes.",
+    "source": "content/docs/en/reference-cases.mdx#village-im-dritten"
+  },
+  {
+    "id": "docs:reference-cases#village-im-dritten-2",
+    "lang": "en",
+    "title": "Reference cases · Village im Dritten",
+    "url": "/en/docs/reference-cases#village-im-dritten",
+    "text": "Quick Check inputs: 22 buildings built since 2011 on 11.5 ha, geothermal high, PV. One building per plot is an estimate, and the housing share of the floor area, 76 %, is used as the share of residential buildings, the rest as Category A. Result: Further analysis required, because the heating coverage and the building density are low.\nSources:\n- ARE Austrian Real Estate (2026). Village im Dritten: Projekt. ARE Austrian Real Estate.\n- ARE Austrian Real Estate (2026). Village im Dritten: Energiesystem. ARE Austrian Real Estate.\n- ARE Austrian Real Estate (2021). Village im Dritten: Projektfolder. ARE Austrian Real Estate.\n- Köfinger, M. (Wien Energie) (2023). Volle Energie fürs Klima! Mit innovativen Konzepten in eine klimaneutrale Zukunft. Zero Emission City 2023, Wirtschaftskammer Wien.",
+    "source": "content/docs/en/reference-cases.mdx#village-im-dritten"
+  },
+  {
+    "id": "docs:reference-cases#klinik-donaustadt-fictional-groundwater-loop-1",
+    "lang": "en",
+    "title": "Reference cases · Klinik Donaustadt: fictional groundwater loop",
+    "url": "/en/docs/reference-cases#klinik-donaustadt-fictional-groundwater-loop",
+    "text": "Fictional plan around a real building, strong plan.\nFictional business plan around a real building: neither the owner nor the operator has planned or endorsed it.\nThe real anchor is Klinik Donaustadt, Langobardenstraße 122, 1220 Vienna: a municipal hospital of the City of Vienna, run by the Wiener Gesundheitsverbund, with 963 systemised beds (hospital statute, 2022), built low with at most five floors on a total of 170,000 m². No energy project of the hospital is published, and its heat supply is not public. Donaustadt has about 12,010 buildings on gas and about 1,500 on district heating, and a TU Wien study for the city names Donaustadt as an area where groundwater use is realistic.",
+    "source": "content/docs/en/reference-cases.mdx#klinik-donaustadt-fictional-groundwater-loop"
+  },
+  {
+    "id": "docs:reference-cases#klinik-donaustadt-fictional-groundwater-loop-2",
+    "lang": "en",
+    "title": "Reference cases · Klinik Donaustadt: fictional groundwater loop",
+    "url": "/en/docs/reference-cases#klinik-donaustadt-fictional-groundwater-loop",
+    "text": "The illustrative plan is a 2.5 km groundwater anergy loop for the hospital, six housing blocks with 600 flats and a school. It estimates the hospital's heat at 27.9 GWh/a from the German average of 29 MWh per bed and year, takes 25 % of it plus the hospital's cooling and reaches about 12.2 GWh/a, or 4.9 MWh per metre of trench. An investment of €12.9 m, a lifetime check with a margin of about €0.45 m a year, sensitivities for missing housing, well costs and electricity, the deal-breaker Groundwater yield or permit fails with a test well before any design money, and decision gates in months 6 and 12 make it strong. Klinik Floridsdorf, where heat pumps lift a data centre's waste heat from 26 °C to 82 °C for 50 to 70 % of the hospital's heat, shows that hospital heat pumps work at this scale.",
+    "source": "content/docs/en/reference-cases.mdx#klinik-donaustadt-fictional-groundwater-loop"
+  },
+  {
+    "id": "docs:reference-cases#klinik-donaustadt-fictional-groundwater-loop-3",
+    "lang": "en",
+    "title": "Reference cases · Klinik Donaustadt: fictional groundwater loop",
+    "url": "/en/docs/reference-cases#klinik-donaustadt-fictional-groundwater-loop",
+    "text": "Quick Check inputs: 8 buildings (the hospital in Category C, 6 residential blocks, 1 school in Category A) on 25 ha, a network of 2,500 m, groundwater high and waste heat medium, PV, and the plan's demand of 12.2 GWh/a of heat and 2.0 GWh/a of cooling. Everything but the hospital is illustrative. Result: Further analysis required: the heat density is high, but the default capacities of the sources cover only a small part of the demand and the building density is low.\nSources:",
+    "source": "content/docs/en/reference-cases.mdx#klinik-donaustadt-fictional-groundwater-loop"
+  },
+  {
+    "id": "docs:reference-cases#klinik-donaustadt-fictional-groundwater-loop-4",
+    "lang": "en",
+    "title": "Reference cases · Klinik Donaustadt: fictional groundwater loop",
+    "url": "/en/docs/reference-cases#klinik-donaustadt-fictional-groundwater-loop",
+    "text": "- Wiener Gesundheitsverbund, Klinik Donaustadt (2022). Anstaltsordnung der Klinik Donaustadt. Wiener Gesundheitsverbund.\n- Wiener Gesundheitsverbund, Klinik Donaustadt (2026). Das Haus. Wiener Gesundheitsverbund.\n- Stadt Wien, MA 20 Energieplanung (2024). Energie-Info Donaustadt, 22. Bezirk. City of Vienna.\n- Kranzl, L., Patel, N., Fallahnejad, M., Frank-Stocker, A., Hummel, M., Müller, A., Wiechers, E., Worm, J., Ziegler, M. (2026). Anergienetze: Gamechanger oder Nischenlösung? (presentation). 19. Symposium Energieinnovation, TU Graz.\n- Kranzl, L., Frank-Stocker, A., Hummel, M., Müller, A., Patel, N., Wiechers, E., Worm, J., Ziegler, M. (2026). Anergienetze: Gamechanger oder Nischenlösung für die urbane Wärme- und Kälteversorgung?. 19. Symposium Energieinnovation, TU Graz; based on a study for the City of Vienna, MA 20.\n- Landesenergieagentur Sachsen-Anhalt (LENA) (2020). Energieeffizienz für Krankenhäuser in Sachsen-Anhalt. LENA, Magdeburg.\n- Stadt Wien, MA 20 Energieplanung (2026). Energie-Vorzeigeprojekt: Klinik Floridsdorf. City of Vienna.\n- Kommunalkredit Public Consulting (2026). Informationsblatt Erneuerbare Mikronetze für Betriebe und Gemeinden (Version 05/2026).",
+    "source": "content/docs/en/reference-cases.mdx#klinik-donaustadt-fictional-groundwater-loop"
+  },
+  {
+    "id": "docs:reference-cases#klinik-donaustadt-fictional-groundwater-loop-5",
+    "lang": "en",
+    "title": "Reference cases · Klinik Donaustadt: fictional groundwater loop",
+    "url": "/en/docs/reference-cases#klinik-donaustadt-fictional-groundwater-loop",
+    "text": "Umweltförderung im Inland.\n- Stadt Wien, MA 20 Energieplanung (2024). Förderrichtlinie für Wärmenetze (Anergienetze) in Verbindung mit Wärmepumpen im Rahmen einer Heizungsumstellung ab zwei Objekten 2024/2025. City of Vienna.\n- Stadt Wien, MA 20 Energieplanung (2026). Der Wiener Wärmeplan 2040 (map and area categories). City of Vienna.",
+    "source": "content/docs/en/reference-cases.mdx#klinik-donaustadt-fictional-groundwater-loop"
+  },
+  {
+    "id": "docs:reference-cases#ottakringer-bad-fictional-summer-heat-loop-1",
+    "lang": "en",
+    "title": "Reference cases · Ottakringer Bad: fictional summer heat loop",
+    "url": "/en/docs/reference-cases#ottakringer-bad-fictional-summer-heat-loop",
+    "text": "Fictional plan around a real building, middling plan.\nFictional business plan around a real building: neither the owner nor the operator has planned or endorsed it.\nThe real anchor is the Ottakringer Bad, Johann-Staud-Straße 11, 1160 Vienna: a combined pool of the City of Vienna with an indoor pool, a sauna and an outdoor pool open from 2 May to mid-September. The city built it in 1926 as Vienna's first outdoor pool that could warm its water, rebuilt it from 1966 to 1972 and added an indoor pool from 1971. How it is heated is not published. Ottakring has about 3,380 buildings on gas and about 180 on district heating.",
+    "source": "content/docs/en/reference-cases.mdx#ottakringer-bad-fictional-summer-heat-loop"
+  },
+  {
+    "id": "docs:reference-cases#ottakringer-bad-fictional-summer-heat-loop-2",
+    "lang": "en",
+    "title": "Reference cases · Ottakringer Bad: fictional summer heat loop",
+    "url": "/en/docs/reference-cases#ottakringer-bad-fictional-summer-heat-loop",
+    "text": "The illustrative plan is a 700 m loop that takes summer waste heat from a supermarket's refrigeration into the outdoor pool and serves three housing blocks with probes in winter. Outdoor pools need 0.3 to 0.7 MWh per m² of water area and year, indoor pools 3 to 7; the most efficient pools recover heat from outgoing water and air, and the renovated Hallenbad Floridsdorf cut its district-heat use by 95 %. The plan is middling: it quantifies the demand and part of the cost, names Council does not approve the pool investment as the deal-breaker and has three tests, but it has no lifetime check, leaves one test and the decision date open and leaves out the indoor pool.\nQuick Check inputs: 5 buildings (the pool in Category C, a supermarket in Category A, 3 residential blocks from 1919 to 1960) on 4 ha, a network of 700 m, waste heat and geothermal medium, no PV. Everything but the pool is illustrative. Result: Further analysis required, because the heating coverage and the building density are low.\nSources:",
+    "source": "content/docs/en/reference-cases.mdx#ottakringer-bad-fictional-summer-heat-loop"
+  },
+  {
+    "id": "docs:reference-cases#ottakringer-bad-fictional-summer-heat-loop-3",
+    "lang": "en",
+    "title": "Reference cases · Ottakringer Bad: fictional summer heat loop",
+    "url": "/en/docs/reference-cases#ottakringer-bad-fictional-summer-heat-loop",
+    "text": "- Stadt Wien, Wiener Bäder (2026). Ottakringer Bad: Kombibad der Stadt Wien. City of Vienna.\n- Wien Geschichte Wiki (Wiener Stadt- und Landesarchiv, Wienbibliothek im Rathaus) (2023). Ottakringer Bad. City of Vienna.\n- Stadt Wien, MA 20 Energieplanung (2024). Energie-Info Ottakring, 16. Bezirk. City of Vienna.\n- Schlesiger, G. (2002). Energie- und wassersparende Maßnahmen in Bädern. BISp-Jahrbuch 2001, Bundesinstitut für Sportwissenschaft, 55–62.\n- Kampel, W., Aas, B., Bruland, A. (2014). Characteristics of energy-efficient swimming facilities – A case study. Energy 75, 508–512.\n- Stadt Wien, MA 20 Energieplanung (2026). Energie-Vorzeigeprojekt: Hallenbad Floridsdorf. City of Vienna.\n- Stadt Wien, MA 20 Energieplanung (2026). Energie-Vorzeigeprojekt: Kraftwerk Seebogen. City of Vienna.\n- Giunta, F., Sawalha, S. (2021). Techno-economic analysis of heat recovery from supermarket's CO2 refrigeration systems to district heating networks. Applied Thermal Engineering 193, 117000.\n- Kommunalkredit Public Consulting (2026). Informationsblatt Erneuerbare Mikronetze für Betriebe und Gemeinden (Version 05/2026). Umweltförderung im Inland.",
+    "source": "content/docs/en/reference-cases.mdx#ottakringer-bad-fictional-summer-heat-loop"
+  },
+  {
+    "id": "docs:reference-cases#großmarkt-wien-fictional-waste-heat-plan-1",
+    "lang": "en",
+    "title": "Reference cases · Großmarkt Wien: fictional waste-heat plan",
+    "url": "/en/docs/reference-cases#großmarkt-wien-fictional-waste-heat-plan",
+    "text": "Fictional plan around a real building, weak plan.\nFictional business plan around a real building: neither the owner nor the operator has planned or endorsed it.\nThe real anchor is Großmarkt Wien, Laxenburger Straße 365-367, 1230 Vienna, which its operator calls Austria's most important trading hub for fruit, vegetables, food and flowers: about 30 ha with about 220 tenants and about 1,400 employees. It opened in October 1972, was modernised in 1987 and 2001 with more cold and storage rooms, and since January 2019 the Wien Holding group has run it through GMW Großmarkt Wien Betrieb GmbH. Its 2022 brochure lists about 300,000 m² in total, about 76,000 m² of it buildings and halls. Liesing has about 7,570 buildings on gas and about 680 on district heating.",
+    "source": "content/docs/en/reference-cases.mdx#großmarkt-wien-fictional-waste-heat-plan"
+  },
+  {
+    "id": "docs:reference-cases#großmarkt-wien-fictional-waste-heat-plan-2",
+    "lang": "en",
+    "title": "Reference cases · Großmarkt Wien: fictional waste-heat plan",
+    "url": "/en/docs/reference-cases#großmarkt-wien-fictional-waste-heat-plan",
+    "text": "The illustrative plan wants to sell waste heat from the cold stores to neighbours. It is weak on purpose: it does not measure the waste heat, names no customers, leaves costs, financing and the decision empty, marks Pipe construction in streets as the deal-breaker instead of the unknown amount of heat, and assumes without checking that the cooling heat is unused today. A stronger plan would first quantify the heat and its value, as a techno-economic analysis of heat recovery from supermarket refrigeration does.\nQuick Check inputs: 12 buildings, a guess, on 30 ha, all entered as Category A from 1961 to 1990, and waste heat with an unknown potential, no PV. Result: Further analysis required, set by the rule for an unknown source.\nSources:",
+    "source": "content/docs/en/reference-cases.mdx#großmarkt-wien-fictional-waste-heat-plan"
+  },
+  {
+    "id": "docs:reference-cases#großmarkt-wien-fictional-waste-heat-plan-3",
+    "lang": "en",
+    "title": "Reference cases · Großmarkt Wien: fictional waste-heat plan",
+    "url": "/en/docs/reference-cases#großmarkt-wien-fictional-waste-heat-plan",
+    "text": "- GMW Großmarkt Wien Betrieb GmbH (2026). Daten und Fakten. Großmarkt Wien.\n- GMW Großmarkt Wien Betrieb GmbH (2026). GMW Großmarkt Wien Betrieb GmbH. Großmarkt Wien.\n- GMW Großmarkt Wien Betrieb GmbH (2022). 50 Jahre Großmarkt Wien: Festbroschüre. Großmarkt Wien.\n- Wien Geschichte Wiki (Wiener Stadt- und Landesarchiv, Wienbibliothek im Rathaus) (2024). Großmarkt Inzersdorf. City of Vienna.\n- Stadt Wien, MA 20 Energieplanung (2024). Energie-Info Liesing, 23. Bezirk. City of Vienna.\n- Giunta, F., Sawalha, S. (2021). Techno-economic analysis of heat recovery from supermarket's CO2 refrigeration systems to district heating networks. Applied Thermal Engineering 193, 117000.",
+    "source": "content/docs/en/reference-cases.mdx#großmarkt-wien-fictional-waste-heat-plan"
   },
   {
     "id": "docs:what-is-5gdhc",

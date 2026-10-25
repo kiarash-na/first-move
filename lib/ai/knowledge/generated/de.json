@@ -4,31 +4,239 @@
     "lang": "de",
     "title": "KI-Plan-Score",
     "url": "/de/docs/ai-plan-score",
-    "text": "Der KI-Plan-Score ist eine separate KI-Bewertung Ihres Businessplans. Er ist eine Einschätzung, wie solide der geschriebene Plan ist, keine Berechnung und kein Urteil über die Machbarkeit.",
+    "text": "Der KI-Plan-Score ist eine separate KI-Bewertung Ihres Business Plans. Ein KI-Entscheidungsmodell liest Schritt für Schritt, was Sie geschrieben haben, und gibt eine Einschätzung, wie solide der geschriebene Plan ist: wie konkret, beziffert und belegt er ist und ob er klärt, was ein solider Business Plan für ein 5GDHC-Netz klären muss. Er ist optional und läuft nur, wenn Sie ihn starten, auf der Seite KI-Plan-Score im Dashboard.",
     "source": "content/docs/de/ai-plan-score.mdx"
   },
   {
-    "id": "docs:ai-plan-score#was-er-liest",
+    "id": "docs:ai-plan-score#was-er-ist-und-was-nicht",
     "lang": "de",
-    "title": "KI-Plan-Score · Was er liest",
-    "url": "/de/docs/ai-plan-score#was-er-liest",
-    "text": "Er liest die Felder der vier Schritte des Businessplans und, wenn der Quick Check aktiv und vollständig ist, dessen Gesamtergebnis.",
-    "source": "content/docs/de/ai-plan-score.mdx#was-er-liest"
+    "title": "KI-Plan-Score · Was er ist und was nicht",
+    "url": "/de/docs/ai-plan-score#was-er-ist-und-was-nicht",
+    "text": "- Eine KI-Einschätzung des geschriebenen Plans. Er bewertet den Text Ihres Business Plans, nicht das Projekt selbst, und ist überall, wo er erscheint, als KI-generiert gekennzeichnet.\n- Keine Berechnung. Der Quick Check bleibt die einzige Berechnung in First Move, mit seinen veröffentlichten Gleichungen und Standardwerten. Der KI-Plan-Score liest das Ergebnis des Quick Check als Kontext und ändert keine seiner Zahlen.\n- Nicht die Pitch-Vollständigkeit. Die Pitch-Vollständigkeit zählt, welche Felder ausgefüllt sind, und beurteilt nicht, was darin steht. Der KI-Plan-Score beurteilt den Inhalt und lässt die Zählung unberührt.\n- Kein Urteil. Er ist keine Machbarkeitsstudie, keine Jurywertung und keine Vorhersage einer Finanzierung. Forschung zu Wagniskapital fand nur einen schwachen Zusammenhang zwischen Businessplan-Dokumenten und Finanzierungsentscheidungen (Kirsch, Goldfarb und Gera, 2009). Nutzen Sie den Score, um die Lücken in Ihrem Plan zu finden.",
+    "source": "content/docs/de/ai-plan-score.mdx#was-er-ist-und-was-nicht"
   },
   {
-    "id": "docs:ai-plan-score#wie-er-bewertet",
+    "id": "docs:ai-plan-score#was-sie-brauchen",
+    "lang": "de",
+    "title": "KI-Plan-Score · Was Sie brauchen",
+    "url": "/de/docs/ai-plan-score#was-sie-brauchen",
+    "text": "- Einen Schlüssel für das Vercel AI Gateway aus Ihrem eigenen Vercel-Konto. Sie bringen Ihren eigenen Schlüssel mit: Die Anfragen laufen über Ihr Konto und werden ihm nach den Bedingungen von Vercel berechnet.\n- Nur im Arbeitsspeicher. Der Schlüssel liegt nur im Arbeitsspeicher des geöffneten Tabs. Er wird nie in den Speicher des Browsers, in das Projekt oder in einen Export geschrieben und ist weg, sobald Sie den Tab neu laden oder schließen. Sie können ihn auch jederzeit entfernen.\n- Einen Business Plan mit Inhalt. Leere Felder werden ohne jede KI mit 0 bewertet; je mehr Sie geschrieben haben, desto mehr kann der Score aussagen.\n- Ein Textmodell Ihrer Wahl für den kurzen Bericht und die Vorschläge: jedes Sprachmodell, das das Gateway anbietet, aus einer kurzen Liste gewählt oder mit seinem Namen eingegeben.",
+    "source": "content/docs/de/ai-plan-score.mdx#was-sie-brauchen"
+  },
+  {
+    "id": "docs:ai-plan-score#was-gesendet-wird-und-an-wen-1",
+    "lang": "de",
+    "title": "KI-Plan-Score · Was gesendet wird und an wen",
+    "url": "/de/docs/ai-plan-score#was-gesendet-wird-und-an-wen",
+    "text": "Nichts wird gesendet, bevor Sie einen Lauf starten. Dann sendet Ihr Browser Folgendes direkt an das Vercel AI Gateway, unter Ihrem eigenen Konto:\n- die Texte des Business Plans des geöffneten Projekts, einschließlich der gemeinsamen Standortbeschreibung, der Beteiligten und der Partner: nur ausgefüllte Felder, sehr lange Texte gekürzt;\n- den Anwendungsfall, den Sie gewählt haben, falls vorhanden;\n- wenn der Quick Check eingeschaltet und vollständig ist, sein Ergebnis: die Einstufung, die Zahl der Gebäude, die Wärmedichte, den Wärme- und Kältebedarf, die Deckung und das wirtschaftliche Verhältnis.",
+    "source": "content/docs/de/ai-plan-score.mdx#was-gesendet-wird-und-an-wen"
+  },
+  {
+    "id": "docs:ai-plan-score#was-gesendet-wird-und-an-wen-2",
+    "lang": "de",
+    "title": "KI-Plan-Score · Was gesendet wird und an wen",
+    "url": "/de/docs/ai-plan-score#was-gesendet-wird-und-an-wen",
+    "text": "Das Gateway leitet die Entscheidungsfragen an TypeSafe AI weiter, das das Entscheidungsmodell Jev betreibt, und den Bericht und die Vorschläge an den Anbieter des Textmodells, das Sie gewählt haben. Für das Entscheidungsmodell und die aufgeführten Textmodelle bittet die App das Gateway, nur Anbieter ohne Datenspeicherung und ohne Training mit den Eingaben zu nutzen; für ein Modell, das Sie mit seinem Namen eingeben, bittet sie um kein Training mit den Eingaben. Ob eine Anfrage so bedient wird, hängt von den Bedingungen des Gateways und des Anbieters und von Ihrem Vercel-Tarif ab. Nichts läuft über die Server von First Move, und wir erhalten weder Ihren Schlüssel noch Ihren Plan.\nSchreiben Sie keine personenbezogenen Daten anderer Personen in den Plan, etwa die Namen von Bewohnern, es sei denn, Sie dürfen sie weitergeben. Rechtlich maßgeblich sind die Datenschutzerklärung und die Seite KI-Transparenz.",
+    "source": "content/docs/de/ai-plan-score.mdx#was-gesendet-wird-und-an-wen"
+  },
+  {
+    "id": "docs:ai-plan-score#wie-er-bewertet-1",
     "lang": "de",
     "title": "KI-Plan-Score · Wie er bewertet",
     "url": "/de/docs/ai-plan-score#wie-er-bewertet",
-    "text": "Ein KI-Entscheidungsmodell bewertet jedes ausgefüllte Feld in Runden, vom ersten bis zum letzten Schritt.",
+    "text": "1. Runde 0, ohne KI. First Move prüft, welche Teile des Plans ausgefüllt sind. Leere Teile erhalten sicher 0 und werden nie gesendet. Wenn der Quick Check eingeschaltet und vollständig ist, fließt sein Ergebnis als Kontext ein.\n2. Ein Entscheidungsaufruf je Schritt des Business Plans, vom ersten bis zum letzten Feld: Chance, Geschäftslogik, Realitätscheck und Umsetzung. In jedem Aufruf liest das Entscheidungsmodell den ganzen Plan, damit es schrittübergreifend prüfen kann, zusammen mit den Entscheidungen der früheren Schritte.\n3. Drei Arten von Fragen in jedem Aufruf. Eine Bewertungsfrage für jeden ausgefüllten Teil dieses Schritts, auf den fünf Belegstufen; Schwellen, die mit Ja oder Nein oder mit einer Option über den ganzen Plan entscheiden; und Verzweigungen, Auswahlfragen, deren Antwort eine Folgeschwelle für den nächsten Schritt auswählt.\n4. Zusammenführung, ohne KI. Aus den Antworten wird der Score, wie unter Von den Antworten zum Score beschrieben.",
     "source": "content/docs/de/ai-plan-score.mdx#wie-er-bewertet"
   },
   {
-    "id": "docs:ai-plan-score#quellen",
+    "id": "docs:ai-plan-score#wie-er-bewertet-2",
+    "lang": "de",
+    "title": "KI-Plan-Score · Wie er bewertet",
+    "url": "/de/docs/ai-plan-score#wie-er-bewertet",
+    "text": "Der Plan hat 27 Teile in den vier Schritten: 8, 8, 5 und 6. Ein Teil ist ein Feld oder mehrere zusammengefasste Felder, damit derselbe Inhalt nicht doppelt bewertet wird, zum Beispiel die Kundensegmente der Chance und des Canvas. Die Fragen stehen fest und sind auf Englisch formuliert; Ihr Plan darf auf Englisch oder Deutsch sein. Das Entscheidungsmodell ist auf eine Version festgelegt, und die Methode hat eine eigene Version, sodass eine neue Modellversion einen Score nicht unbemerkt ändern kann.\nLehnt das Modell eine Frage ab, wird der Aufruf einmal ohne diese Frage wiederholt. Ein abgelehnter Teil bleibt beim Score außen vor, und eine abgelehnte Schwelle hat keine Wirkung.",
+    "source": "content/docs/de/ai-plan-score.mdx#wie-er-bewertet"
+  },
+  {
+    "id": "docs:ai-plan-score#die-funf-belegstufen-1",
+    "lang": "de",
+    "title": "KI-Plan-Score · Die fünf Belegstufen",
+    "url": "/de/docs/ai-plan-score#die-funf-belegstufen",
+    "text": "Jeder Teil wird auf derselben Skala bewertet. Die Stufen beschreiben Qualität, nie Länge: Ein längerer Text erhält nicht allein dadurch mehr (Brookhart, 2018; Zheng et al., 2023).\n- Fehlt (0): leer, ein Platzhalter oder nicht zu diesem Teil oder diesem Standort.\n- Vage (1): eine allgemeine Aussage, die zu jedem Projekt passen könnte, etwa „Kunden sparen Geld“, ohne benannten Akteur, Ort oder Zahl.\n- Konkret (2): nennt die Akteure, Gebäude, Quellen oder Mechanismen dieses Standorts, aber keine Zahlen oder keine Grundlage dafür.\n- Beziffert (3): die wichtigsten Mengen mit Einheiten und einer genannten Grundlage oder Annahme. Eine aus dem Quick Check übernommene Zahl zählt hier als Grundlage, nicht als Beleg.\n- Belegt (4): Die Zahlen stützen sich auf benannte Daten oder Zusagen, etwa gemessenen Verbrauch, eine Absichtserklärung, eine frühe Prüfung durch eine Behörde, ein Angebot oder eine Umfrage, oder sie sind geprüft, zum Beispiel mit einem Break-even-Wert, und der Text sagt, was passiert, wenn eine Zahl falsch ist. Die bloße Behauptung, etwas sei geprüft, reicht nicht.",
+    "source": "content/docs/de/ai-plan-score.mdx#die-funf-belegstufen"
+  },
+  {
+    "id": "docs:ai-plan-score#die-funf-belegstufen-2",
+    "lang": "de",
+    "title": "KI-Plan-Score · Die fünf Belegstufen",
+    "url": "/de/docs/ai-plan-score#die-funf-belegstufen",
+    "text": "Jeder Teil hat außerdem eine eigene Beschreibung einer starken Antwort. Für die Anschlussquote zum Beispiel: eine Quote mit Grundlage und Zeitplan, die niedrigste Quote, bei der der Plan noch trägt, und was darunter passiert.",
+    "source": "content/docs/de/ai-plan-score.mdx#die-funf-belegstufen"
+  },
+  {
+    "id": "docs:ai-plan-score#schwellen-und-obergrenzen-1",
+    "lang": "de",
+    "title": "KI-Plan-Score · Schwellen und Obergrenzen",
+    "url": "/de/docs/ai-plan-score#schwellen-und-obergrenzen",
+    "text": "Schwellen sind Fragen zum ganzen Plan, und sie geben nie Punkte dazu. Eine Schwelle gilt als bestanden, wenn das Modell ihr eine Wahrscheinlichkeit von 80 % oder mehr gibt, und als gescheitert bei 20 % oder weniger; dazwischen bleibt sie unklar und wird nur als Hinweis gezeigt. Bei einer Schwelle mit Optionen zählt eine teilweise Antwort halb. Eine gescheiterte Pflichtschwelle deckelt ihre Dimension bei Stufe 2, eine gescheiterte Sollschwelle bei Stufe 3, und manche Schwellen geben nur einen Hinweis. Einige Schwellen entscheidet eine Regel vor jeder KI: Ist kein Risiko als K.-o.-Kriterium markiert, ist die Anschlussquote leer oder der Entscheidungspunkt leer, scheitert die jeweilige Schwelle, und nach dem Wiener Wärmeplan wird nur gefragt, wenn der Standort in Wien liegt.",
+    "source": "content/docs/de/ai-plan-score.mdx#schwellen-und-obergrenzen"
+  },
+  {
+    "id": "docs:ai-plan-score#schwellen-und-obergrenzen-2",
+    "lang": "de",
+    "title": "KI-Plan-Score · Schwellen und Obergrenzen",
+    "url": "/de/docs/ai-plan-score#schwellen-und-obergrenzen",
+    "text": "- Ankerkunde (Beteiligung und Zusagen, Pflichtschwelle): Nennt der Plan einen bestimmten Ankerkunden und seine Rolle?\n- Zusatznutzen (Kundennutzen und Bedarf, nur Hinweis): Nutzt der Plan Kühlung oder einen anderen Zusatznutzen, etwa stabile Preise, als Grund für den Anschluss, wo das zutrifft?\n- Netzlänge als Kostentreiber (Technik und Standort, Pflichtschwelle, wenn die Wärmedichte des Quick Check unter 0,5 MWh/m liegt, sonst nur Hinweis): Geht der Plan auf die Trassenlänge oder die Wärmeliniendichte ein, zum Beispiel indem nahe Gebäude zuerst angeschlossen werden?\n- Zone im Wiener Wärmeplan 2040 (Technik und Standort, nur Hinweis, nur in Wien): Nennt der Plan die Zone des Standorts und warum ein 5GDHC-Netz dazu passt?\n- Systemgrenze (Eigentum, Betrieb und Steuerung, Pflichtschwelle): Sagt der Plan, wem die Wärmequelle, das Netz und die Wärmepumpen in den Gebäuden gehören?\n- Betreiber und Pflichten (Eigentum, Betrieb und Steuerung, Sollschwelle): Nennt der Plan einen Betreiber und seine Aufgaben, etwa Wartung, Abrechnung und Störungen?\n- Kostenschlüssel (Eigentum, Betrieb und Steuerung, Sollschwelle): Nennt der Plan eine Regel, wie die Kosten der Quelle, der Leitungen und der",
+    "source": "content/docs/de/ai-plan-score.mdx#schwellen-und-obergrenzen"
+  },
+  {
+    "id": "docs:ai-plan-score#schwellen-und-obergrenzen-3",
+    "lang": "de",
+    "title": "KI-Plan-Score · Schwellen und Obergrenzen",
+    "url": "/de/docs/ai-plan-score#schwellen-und-obergrenzen",
+    "text": "Anschlüsse aufgeteilt werden?\n- Preis gegenüber der Alternative (Kundennutzen und Bedarf, Pflichtschwelle): Wird der Preis für die Kunden mit ihrer realistischen Alternative verglichen, etwa Gas oder einer eigenen Wärmepumpe?\n- Mindestanschlussquote (Beteiligung und Zusagen, Pflichtschwelle): Sagt der Plan, was mit den Kosten oder der Wirtschaftlichkeit passiert, wenn weniger Gebäude anschließen?\n- Erlöse decken die Lebensdauerkosten (Kosten, Erlöse und Finanzierung, Pflichtschwelle): Werden die jährlichen Erlöse mit den jährlichen Kosten der Investition und den laufenden Kosten über 20 bis 30 Jahre verglichen?\n- Plan ohne Förderung (Kosten, Erlöse und Finanzierung, Pflichtschwelle): Wenn der Plan mit einer Förderung rechnet, sagt er, was mit weniger oder ohne sie passiert?\n- K.-o.-Kriterium mit Prüfung (Risiken, Annahmen und Belege, Pflichtschwelle): Ist ein Risiko als mögliches K.-o.-Kriterium markiert, könnte es das Projekt wirklich stoppen, und wie wird es geprüft?\n- Klein anfangen (Umsetzungspfad und Skalierbarkeit, Sollschwelle): Ist eine erste Phase festgelegt, etwa ein Ankercluster, mit Schritten zum Wachsen?\n- Entscheidungstor (Umsetzungspfad und Skalierbarkeit,",
+    "source": "content/docs/de/ai-plan-score.mdx#schwellen-und-obergrenzen"
+  },
+  {
+    "id": "docs:ai-plan-score#schwellen-und-obergrenzen-4",
+    "lang": "de",
+    "title": "KI-Plan-Score · Schwellen und Obergrenzen",
+    "url": "/de/docs/ai-plan-score#schwellen-und-obergrenzen",
+    "text": "Pflichtschwelle): Enthalten die nächsten Schritte eine Go- oder No-Go-Entscheidung mit prüfbaren Kriterien?",
+    "source": "content/docs/de/ai-plan-score.mdx#schwellen-und-obergrenzen"
+  },
+  {
+    "id": "docs:ai-plan-score#verzweigungen-und-folgeschwellen-1",
+    "lang": "de",
+    "title": "KI-Plan-Score · Verzweigungen und Folgeschwellen",
+    "url": "/de/docs/ai-plan-score#verzweigungen-und-folgeschwellen",
+    "text": "Verzweigungen steuern die Fragen. Das Modell wählt die Option, die der Plan beschreibt, und der nächste Schritt fragt nur die Folgeschwelle dieser Option, sodass ein Plan rund um eine Schule andere Fragen bekommt als ein Plan rund um ein Hotel. Die meisten Folgeschwellen geben nur einen Hinweis.",
+    "source": "content/docs/de/ai-plan-score.mdx#verzweigungen-und-folgeschwellen"
+  },
+  {
+    "id": "docs:ai-plan-score#verzweigungen-und-folgeschwellen-2",
+    "lang": "de",
+    "title": "KI-Plan-Score · Verzweigungen und Folgeschwellen",
+    "url": "/de/docs/ai-plan-score#verzweigungen-und-folgeschwellen",
+    "text": "- Art des Ankers (gefragt in Schritt 1, Folge in Schritt 2): ein öffentliches Gebäude, ein Gewerbekunde, ein großer Wohnungseigentümer, ein Abwärme- oder Kältenutzer oder kein Anker. Die Folgeschwellen fragen nach dem öffentlichen Entscheidungsweg, der Vertragslaufzeit eines gewerblichen Ankers, wie Eigentümer und Mieter entscheiden oder wie sicher die Abwärme oder die Kältenachfrage ist.\n- Hauptwärmequelle (gefragt in Schritt 1, Folge in Schritt 2): Grundwasser, ein Erdsondenfeld, Oberflächenwasser, Abwasser, Abwärme, Außenluft oder unklar. Bei Grundwasser, einem Erdsondenfeld oder Oberflächenwasser fragt die Folgeschwelle nach dem Genehmigungsweg oder einer frühen Abstimmung mit der Wasserrechtsbehörde. Sie ist eine Pflichtschwelle für Technik und Standort, weil die Genehmigung ein typisches K.-o.-Kriterium ist (Wasserrechtsgesetz 1959, § 10). Die anderen Quellen fragen nach dem Kanalbetreiber, dem Liefervertrag für die Abwärme oder nach Luft als Quelle bei Kälte.\n- Eigentumsmodell (gefragt in Schritt 2, Folge in Schritt 3): ein Versorger, die Gemeinde, die Nutzer gemeinsam, ein Contractor, ein Bauträger oder unklar. Die Folgeschwellen fragen nach der Zusage des Versorgers, dem",
+    "source": "content/docs/de/ai-plan-score.mdx#verzweigungen-und-folgeschwellen"
+  },
+  {
+    "id": "docs:ai-plan-score#verzweigungen-und-folgeschwellen-3",
+    "lang": "de",
+    "title": "KI-Plan-Score · Verzweigungen und Folgeschwellen",
+    "url": "/de/docs/ai-plan-score#verzweigungen-und-folgeschwellen",
+    "text": "kommunalen Entscheidungsweg, den Regeln der Gemeinschaft, Vertragslaufzeit und Preisen oder dem Betrieb nach der Übergabe.",
+    "source": "content/docs/de/ai-plan-score.mdx#verzweigungen-und-folgeschwellen"
+  },
+  {
+    "id": "docs:ai-plan-score#die-sieben-dimensionen-1",
+    "lang": "de",
+    "title": "KI-Plan-Score · Die sieben Dimensionen",
+    "url": "/de/docs/ai-plan-score#die-sieben-dimensionen",
+    "text": "Die Dimensionen beschreiben, was einen Business Plan für ein 5GDHC-Netz solide macht. Sie gehen von den Aspekten für eine erfolgreiche Umsetzung aus, die die Studie des Forschungsprojekts Anergie Leicht Gemacht nennt: Technik, Kosten, Umsetzungsmodelle (Eigentum und Betrieb, Organisation und Steuerung, Finanzierung) und Beteiligung. Der Realitätscheck und der Weg zur Umsetzung kommen aus der Aufgabenstellung der Challenge. Abgeglichen wurden sie mit Erwünschtheit, Machbarkeit und Wirtschaftlichkeit (Brown, 2008), dem Business Model Canvas (Osterwalder und Pigneur, 2010), dem Commercial Readiness Index (ARENA, 2014) und dem Fünf-Fälle-Modell der britischen Regierung (HM Treasury, 2026).",
+    "source": "content/docs/de/ai-plan-score.mdx#die-sieben-dimensionen"
+  },
+  {
+    "id": "docs:ai-plan-score#die-sieben-dimensionen-2",
+    "lang": "de",
+    "title": "KI-Plan-Score · Die sieben Dimensionen",
+    "url": "/de/docs/ai-plan-score#die-sieben-dimensionen",
+    "text": "- Kundennutzen und Bedarf: 15 %. Wer anschließt, was gebraucht wird und warum das Netz die Alternative schlägt.\n- Technik und Standort: 10 %. Der Standort, seine Wärmequellen und Ressourcen und ob das Netz zum Ort passt.\n- Kosten, Erlöse und Finanzierung: 20 %. Kosten, Tarife, Finanzierung und Förderungen und ob die Erlöse die Kosten über die Lebensdauer decken.\n- Eigentum, Betrieb und Steuerung: 20 %. Wer was besitzt, betreibt und bezahlt und wie Kosten, Risiken und Nutzen verteilt sind.\n- Beteiligung und Zusagen: 15 %. Eigentümer, Beteiligte, der Ankerkunde und die Anschlussquote, auf die der Plan baut.\n- Risiken, Annahmen und Belege: 10 %. Kritische Annahmen und Risiken, das K.-o.-Kriterium und wie jedes geprüft wird.\n- Umsetzungspfad und Skalierbarkeit: 10 %. Die erste Phase, die nächsten Schritte, das Entscheidungstor und wie das Modell wächst.",
+    "source": "content/docs/de/ai-plan-score.mdx#die-sieben-dimensionen"
+  },
+  {
+    "id": "docs:ai-plan-score#die-sieben-dimensionen-3",
+    "lang": "de",
+    "title": "KI-Plan-Score · Die sieben Dimensionen",
+    "url": "/de/docs/ai-plan-score#die-sieben-dimensionen",
+    "text": "Keine Quelle schreibt Gewichte in Zahlen vor, daher sind es begründete Standardwerte. Kosten und Steuerung wiegen am meisten: Das Forschungsprojekt nennt die Umsetzungsmodelle den Schwerpunkt seiner Arbeit und sieht die meisten Herausforderungen eher organisatorisch als technisch, und die Kosten kommen zuerst, mit der Investition vorab und den Erlösen über 25 bis 30 Jahre. Die technische Eignung wiegt weniger, weil der Quick Check den Standort bereits prüft. Belege wiegen als Dimension weniger, weil jeder Teil Belege schon auf seiner eigenen Skala belohnt.",
+    "source": "content/docs/de/ai-plan-score.mdx#die-sieben-dimensionen"
+  },
+  {
+    "id": "docs:ai-plan-score#von-den-antworten-zum-score",
+    "lang": "de",
+    "title": "KI-Plan-Score · Von den Antworten zum Score",
+    "url": "/de/docs/ai-plan-score#von-den-antworten-zum-score",
+    "text": "- Die Stufe eines Teils ist der mit den Wahrscheinlichkeiten gewichtete Mittelwert der fünf Stufen, die erwartete Stufe, wie bei G-Eval (Liu et al., 2023). Ihre Streuung ist die Standardabweichung der Wahrscheinlichkeiten des Modells. Ein leerer Teil zählt 0 ohne Streuung.\n- Eine Dimension ist der Mittelwert ihrer Teile, begrenzt durch die niedrigste Obergrenze ihrer gescheiterten Schwellen, mal 25, sodass sie von 0 bis 100 reicht.\n- Der KI-Plan-Score ist die gewichtete Summe der sieben Dimensionen, von 0 bis 100. Seine Spanne ist eine Standardabweichung, berechnet aus den Streuungen unter der Annahme unabhängiger Teile, was sie wahrscheinlich zu schmal macht.\n- Die Anzeige rundet den Score auf 5 Punkte und die Spanne auf ganze Punkte, mindestens 1, um keine falsche Genauigkeit vorzutäuschen.\nDer Score erhält dann eine von drei Bezeichnungen:\n- Früh: unter 40.\n- Vielversprechend: von 40 bis unter 70, und auch bei 70 oder mehr, wenn eine Pflichtschwelle gescheitert ist.\n- Solide: 70 oder mehr, ohne gescheiterte Pflichtschwelle.",
+    "source": "content/docs/de/ai-plan-score.mdx#von-den-antworten-zum-score"
+  },
+  {
+    "id": "docs:ai-plan-score#bericht-und-vorschlage",
+    "lang": "de",
+    "title": "KI-Plan-Score · Bericht und Vorschläge",
+    "url": "/de/docs/ai-plan-score#bericht-und-vorschlage",
+    "text": "- Den kurzen Bericht schreibt das Textmodell Ihrer Wahl direkt nach dem Score: eine Überschrift, eine Zusammenfassung, bis zu drei Stärken und bis zu drei Lücken, jeweils mit Verweis auf die Teile, auf denen sie beruhen, und bis zu drei nächste Schritte. Das Modell sieht die fertigen Zahlen und kurze Auszüge aus dem Plan.\n- Vorschläge laufen auf Abruf, nur wenn Sie darum bitten: für jeden Teil unter Stufe 2 und jede gescheiterte oder unklare Schwelle ein bis drei allgemeine, machbare Verbesserungen. Sie leiten sich aus der Beschreibung einer starken Antwort und aus belegten Hinweisen ab, etwa einen Ankerkunden zu benennen und eine Absichtserklärung anzustreben.\n- Das Textmodell ändert nie eine Zahl. Die Scores stehen fest, bevor es beginnt. Es ist angewiesen, sie weder neu zu berechnen noch ihnen zu widersprechen und keine Zahlen, Programme, Gesetze, Organisationen oder Quellen zu erfinden. Seine Ausgabe wird geprüft und auf feste Längen gekürzt, und Verweise auf Teile, die es nicht gibt, werden verworfen.\n- Beides ist als KI-generiert gekennzeichnet, wie der Score.",
+    "source": "content/docs/de/ai-plan-score.mdx#bericht-und-vorschlage"
+  },
+  {
+    "id": "docs:ai-plan-score#gespeichert-in-ihrem-projekt",
+    "lang": "de",
+    "title": "KI-Plan-Score · Gespeichert in Ihrem Projekt",
+    "url": "/de/docs/ai-plan-score#gespeichert-in-ihrem-projekt",
+    "text": "- Der letzte Score wird mit seinem Bericht und seinen Vorschlägen im Projekt in Ihrem Browser gespeichert. Er wird mit der Projektdatei exportiert und importiert, wie Ihre Eingaben. Ihr Schlüssel wird nie gespeichert.\n- Jeder Teil behält einen kurzen Fingerabdruck des Texts, den er bewertet hat. Sobald sich ein bewertetes Feld ändert, wird der Score als veraltet markiert und nennt, wie viele Teile sich geändert haben; starten Sie ihn erneut für einen aktuellen Score. Ein neuer Lauf ersetzt den gespeicherten.\n- Der Score erscheint auf der Seite KI-Plan-Score, im Kopf jedes Schritts des Business Plans, oben in der Pitch-Vollständigkeit, in der Übersicht und im Bericht, immer als KI-generiert gekennzeichnet.",
+    "source": "content/docs/de/ai-plan-score.mdx#gespeichert-in-ihrem-projekt"
+  },
+  {
+    "id": "docs:ai-plan-score#grenzen-und-vorbehalte-1",
+    "lang": "de",
+    "title": "KI-Plan-Score · Grenzen und Vorbehalte",
+    "url": "/de/docs/ai-plan-score#grenzen-und-vorbehalte",
+    "text": "- KI kann sich irren. Ein Modell kann einen Text falsch lesen oder zu hoch oder zu niedrig bewerten. Lesen Sie die Begründungen auf der Seite KI-Plan-Score und prüfen Sie sie an Ihrem Plan.\n- Die Wahrscheinlichkeiten sind keine Prognose. Sie sagen, wie sicher das Modell ist, welche Stufe zum Text passt, nicht wie wahrscheinlich das Projekt gelingt, und sie sind nicht kalibriert.\n- Bekannte Verzerrungen. Modelle, die als Bewerter eingesetzt werden, können längere Texte und von KI geschriebene Texte bevorzugen (Zheng et al., 2023; Liu et al., 2023). Die Stufen sind dagegen formuliert, ausschließen lässt es sich aber nicht.\n- Nur als strukturelles Vorbild. Manche Quellen sind britische Leitfäden, etwa der Leitfaden des HM Treasury für Business Cases und der Green Heat Network Fund. Sie haben den Aufbau der Schwellen geprägt und sind keine österreichischen oder deutschen Anforderungen.\n- Keine Beratung. Der Score ist keine Rechts-, Ingenieur- oder Finanzberatung, und er nennt nie Fördersätze, Förderfähigkeit oder den Ausgang einer Genehmigung.\n- Lange Pläne. Sehr lange Texte werden vor dem Senden gekürzt, sodass Einzelheiten am Ende eines sehr langen Texts womöglich nicht gelesen",
+    "source": "content/docs/de/ai-plan-score.mdx#grenzen-und-vorbehalte"
+  },
+  {
+    "id": "docs:ai-plan-score#grenzen-und-vorbehalte-2",
+    "lang": "de",
+    "title": "KI-Plan-Score · Grenzen und Vorbehalte",
+    "url": "/de/docs/ai-plan-score#grenzen-und-vorbehalte",
+    "text": "werden.",
+    "source": "content/docs/de/ai-plan-score.mdx#grenzen-und-vorbehalte"
+  },
+  {
+    "id": "docs:ai-plan-score#quellen-1",
     "lang": "de",
     "title": "KI-Plan-Score · Quellen",
     "url": "/de/docs/ai-plan-score#quellen",
-    "text": "Die Methode folgt dem Material der Challenge und veröffentlichter Forschung.",
+    "text": "Die Methode folgt der Aufgabenstellung der Challenge Business Models for 5GDHC und dem Vortrag des Forschungsprojekts Anergie Leicht Gemacht beim Hackathon, für die es keinen öffentlichen Link gibt, sowie den unten genannten veröffentlichten Quellen. Jeder Link wurde am 24. Oktober 2026 geöffnet und geprüft.",
+    "source": "content/docs/de/ai-plan-score.mdx#quellen"
+  },
+  {
+    "id": "docs:ai-plan-score#quellen-2",
+    "lang": "de",
+    "title": "KI-Plan-Score · Quellen",
+    "url": "/de/docs/ai-plan-score#quellen",
+    "text": "- Buffa, S., Cozzini, M., D'Antoni, M., Baratieri, M., Fedrizzi, R. (2019). 5th generation district heating and cooling systems: A review of existing cases in Europe. Renewable and Sustainable Energy Reviews 104, 504–522.\n- Gjoka, K., Rismanchi, B., Crawford, R.H. (2023). Fifth-generation district heating and cooling systems: A review of recent advancements and implementation barriers. Renewable and Sustainable Energy Reviews 171, 112997.\n- Lygnerud, K., Wheatcroft, E., Wynn, H. (2019). Contracts, business models and barriers to investing in low temperature district heating projects. Applied Sciences 9(15), 3142.\n- Lygnerud, K., Popovic, T., Schultze, S., Støchkel, H.K. (2023). District heating in the future – thoughts on the business model. Energy 278, 127714.\n- Lygnerud, K., Werner, S. (2018). Risk assessment of industrial excess heat recovery in district heating systems. Energy 151, 430–441.\n- Boesten, S., Ivens, W., Dekker, S.C., Eijdems, H. (2019). 5th generation district heating and cooling systems as a solution for renewable urban thermal energy supply. Advances in Geosciences 49, 129–136.\n- Persson, U., Werner, S. (2011). Heat distribution and the future competitiveness of",
+    "source": "content/docs/de/ai-plan-score.mdx#quellen"
+  },
+  {
+    "id": "docs:ai-plan-score#quellen-3",
+    "lang": "de",
+    "title": "KI-Plan-Score · Quellen",
+    "url": "/de/docs/ai-plan-score#quellen",
+    "text": "district heating. Applied Energy 88(3), 568–576.\n- Nussbaumer, T., Thalmann, S. (2016). Influence of system design on heat distribution costs in district heating. Energy 101, 496–505.\n- Reidhav, C., Werner, S. (2008). Profitability of sparse district heating. Applied Energy 85(9), 867–877.\n- Wirtz, M., Kivilip, L., Remmen, P., Müller, D. (2020). Quantifying demand balancing in bidirectional low temperature networks. Energy and Buildings 224, 110245.\n- Hawkey, D., Webb, J., Winskel, M. (2013). Organisation and governance of urban energy systems: district heating and cooling in the UK. Journal of Cleaner Production 50, 22–31.\n- Bush, R.E., Bale, C.S.E., Taylor, P.G. (2016). Realising local government visions for developing district heating: Experiences from a learning country. Energy Policy 98, 84–96.\n- Wüstenhagen, R., Wolsink, M., Bürer, M.J. (2007). Social acceptance of renewable energy innovation: An introduction to the concept. Energy Policy 35(5), 2683–2691.\n- Steffen, B. (2018). The importance of project finance for renewable energy projects. Energy Economics 69, 280–294.\n- Kirsch, D., Goldfarb, B., Gera, A. (2009). Form or substance: the role of business plans in venture",
+    "source": "content/docs/de/ai-plan-score.mdx#quellen"
+  },
+  {
+    "id": "docs:ai-plan-score#quellen-4",
+    "lang": "de",
+    "title": "KI-Plan-Score · Quellen",
+    "url": "/de/docs/ai-plan-score#quellen",
+    "text": "capital decision making. Strategic Management Journal 30(5), 487–515.\n- Brinckmann, J., Grichnik, D., Kapsa, D. (2010). Should entrepreneurs plan or just storm the castle? A meta-analysis on contextual factors impacting the business planning–performance relationship in small firms. Journal of Business Venturing 25(1), 24–40.\n- Brookhart, S.M. (2018). Appropriate criteria: Key to effective rubrics. Frontiers in Education 3, 22.\n- Liu, Y., Iter, D., Xu, Y., Wang, S., Xu, R., Zhu, C. (2023). G-Eval: NLG evaluation using GPT-4 with better human alignment. Proceedings of EMNLP 2023, 2511–2522.\n- Zheng, L., Chiang, W.-L., Sheng, Y., et al. (2023). Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena. NeurIPS 2023 Datasets and Benchmarks Track (arXiv:2306.05685).\n- Osterwalder, A., Pigneur, Y. (2010). Business Model Generation: A Handbook for Visionaries, Game Changers, and Challengers. Wiley, ISBN 978-0-470-87641-1.\n- Bland, D.J. (2020). How assumptions mapping can focus your teams on running experiments that matter. Strategyzer.\n- Brown, T. (2008). Design thinking. Harvard Business Review 86(6).\n- Australian Renewable Energy Agency (2014). Commercial Readiness Index for Renewable",
+    "source": "content/docs/de/ai-plan-score.mdx#quellen"
+  },
+  {
+    "id": "docs:ai-plan-score#quellen-5",
+    "lang": "de",
+    "title": "KI-Plan-Score · Quellen",
+    "url": "/de/docs/ai-plan-score#quellen",
+    "text": "Energy Sectors. ARENA, Canberra.\n- European Commission, DG Regional and Urban Policy (2014). Guide to Cost-Benefit Analysis of Investment Projects: Economic appraisal tool for Cohesion Policy 2014–2020. European Commission.\n- HM Treasury (2026). Guidance on developing business cases for projects and programmes. HM Treasury, London.\n- Department for Energy Security and Net Zero (2026). Green Heat Network Fund: Guidance for Applicants, version 12.0. UK Government.\n- Ivens, W., Boesten, S. (2020). D2Grids WP LT Deliverable DEL.1.1: Roll-out strategy, preliminary version. Interreg North-West Europe.\n- Stadt Wien, MA 20 Energieplanung (2024). Wiener Wärmeplan 2040 (Vienna Heating Plan 2040). City of Vienna.\n- Stadt Wien, MA 20 Energieplanung (2025). Beschreibung der Methodik und der Vorgehensweise zur Entwicklung des Konzeptes „Raus aus Gas – Wiener Wärme und Kälte 2040“ und „Wiener Wärmeplan 2040“. City of Vienna.\n- Republik Österreich (1959). Wasserrechtsgesetz 1959 (WRG 1959), § 10. Rechtsinformationssystem des Bundes (RIS).\n- Land Oberösterreich, Bezirkshauptmannschaft Steyr-Land (2026). Grundwasserwärmepumpen. Land Oberösterreich.\n- Republik Österreich (2024).",
+    "source": "content/docs/de/ai-plan-score.mdx#quellen"
+  },
+  {
+    "id": "docs:ai-plan-score#quellen-6",
+    "lang": "de",
+    "title": "KI-Plan-Score · Quellen",
+    "url": "/de/docs/ai-plan-score#quellen",
+    "text": "Erneuerbare-Wärme-Gesetz (EWG), BGBl. I Nr. 8/2024. Rechtsinformationssystem des Bundes (RIS).\n- Kommunalkredit Public Consulting (Umweltförderung im Inland) (2024). Gewerbliche Wärme- und Kälteversorgung. umweltfoerderung.at.\n- Bundesministerien, Kommunalkredit Public Consulting (2026). Sanierungsoffensive. sanierungsoffensive.gv.at.",
     "source": "content/docs/de/ai-plan-score.mdx#quellen"
   },
   {
@@ -224,20 +432,28 @@
     "source": "content/docs/de/business-plan.mdx#beispielszenarien"
   },
   {
-    "id": "docs:business-plan#pitch-reife-inoffiziell-1",
+    "id": "docs:business-plan#pitch-vollstandigkeit-inoffiziell-1",
     "lang": "de",
-    "title": "Business Plan · Pitch-Reife (inoffiziell)",
-    "url": "/de/docs/business-plan#pitch-reife-inoffiziell",
-    "text": "Der letzte Schritt zeigt, wie weit Ihr Pitch ist: wie viel des finalen Pitches bereits Inhalt hat, gemessen an Ihren Eingaben. Gezählt wird, was ausgefüllt ist, nicht wie gut der Inhalt ist, und die Anzeige ist als inoffiziell gekennzeichnet.\nDie Anzeige prüft die sechs Teile des finalen Pitches (BM-SCOPE-07): Anwendungsfall und Wertangebot, Geschäftsmodell, wirtschaftliche und praktische Machbarkeit, Realitätscheck, Skalierbarkeit und Übertragbarkeit sowie die nächsten Schritte. Daneben zeigt sie die Jurykriterien, die in der ersten Fassung der Aufgabenstellung der Challenge vorgeschlagen wurden (BM-SCOPE-08). Diese Kriterien sind keine offizielle Bewertungsregel.",
-    "source": "content/docs/de/business-plan.mdx#pitch-reife-inoffiziell"
+    "title": "Business Plan · Pitch-Vollständigkeit (inoffiziell)",
+    "url": "/de/docs/business-plan#pitch-vollstandigkeit-inoffiziell",
+    "text": "Der letzte Schritt zeigt, wie vollständig Ihr Pitch ist: wie viel des finalen Pitches bereits Inhalt hat, gemessen an Ihren Eingaben. Gezählt werden nur ausgefüllte Felder, der Inhalt wird nicht beurteilt, und die Anzeige ist als inoffiziell gekennzeichnet.\nDie Anzeige prüft die sechs Teile des finalen Pitches (BM-SCOPE-07): Anwendungsfall und Wertangebot, Geschäftsmodell, wirtschaftliche und praktische Machbarkeit, Realitätscheck, Skalierbarkeit und Übertragbarkeit sowie die nächsten Schritte. Daneben zeigt sie die Jurykriterien, die in der ersten Fassung der Aufgabenstellung der Challenge vorgeschlagen wurden (BM-SCOPE-08). Diese Kriterien sind keine offizielle Bewertungsregel.",
+    "source": "content/docs/de/business-plan.mdx#pitch-vollstandigkeit-inoffiziell"
   },
   {
-    "id": "docs:business-plan#pitch-reife-inoffiziell-2",
+    "id": "docs:business-plan#pitch-vollstandigkeit-inoffiziell-2",
     "lang": "de",
-    "title": "Business Plan · Pitch-Reife (inoffiziell)",
-    "url": "/de/docs/business-plan#pitch-reife-inoffiziell",
-    "text": "Jeder Teil hat eine kurze Liste von Punkten. Ein Textpunkt zählt, wenn sein Feld Text enthält, ein Listenpunkt, wenn seine Liste einen Eintrag hat, und ein Punkt zu Risiken oder kritischen Annahmen, wenn mindestens eine Zeile vollständig und keine Zeile nur halb ausgefüllt ist. Der Anteil der abgedeckten Punkte ergibt den Wert des Teils, und die Pitch-Reife ist der Durchschnitt der sechs Teile. Ein Teil ist pitch-reif, wenn alle seine Punkte abgedeckt sind. Dahinter steht keine Gleichung und keine Beurteilung des Inhalts.",
-    "source": "content/docs/de/business-plan.mdx#pitch-reife-inoffiziell"
+    "title": "Business Plan · Pitch-Vollständigkeit (inoffiziell)",
+    "url": "/de/docs/business-plan#pitch-vollstandigkeit-inoffiziell",
+    "text": "Jeder Teil hat eine kurze Liste von Punkten. Ein Textpunkt zählt, wenn sein Feld Text enthält, ein Listenpunkt, wenn seine Liste einen Eintrag hat, und ein Punkt zu Risiken oder kritischen Annahmen, wenn mindestens eine Zeile vollständig und keine Zeile nur halb ausgefüllt ist. Der Anteil der abgedeckten Punkte ergibt den Wert des Teils, und die Pitch-Vollständigkeit ist der Durchschnitt der sechs Teile. Ein Teil ist vollständig, wenn alle seine Punkte abgedeckt sind. Dahinter steht keine Gleichung und keine Beurteilung des Inhalts.",
+    "source": "content/docs/de/business-plan.mdx#pitch-vollstandigkeit-inoffiziell"
+  },
+  {
+    "id": "docs:business-plan#ki-plan-score",
+    "lang": "de",
+    "title": "Business Plan · KI-Plan-Score",
+    "url": "/de/docs/business-plan#ki-plan-score",
+    "text": "Für eine Beurteilung des Inhalts gibt der optionale KI-Plan-Score eine KI-Einschätzung, wie solide der geschriebene Plan ist. Er steht vor der Pitch-Vollständigkeit und ist kräftiger hervorgehoben, im Kopf jedes Schritts und oben in der Anzeige der Vollständigkeit, und er ist als KI-generiert gekennzeichnet. Er läuft nur, wenn Sie ihn starten, mit Ihrem eigenen Schlüssel für das Vercel AI Gateway, und er ändert weder den Quick Check noch die Pitch-Vollständigkeit. Die Seite KI-Plan-Score erklärt, wie er bewertet, was gesendet wird und auf welchen Quellen er beruht.",
+    "source": "content/docs/de/business-plan.mdx#ki-plan-score"
   },
   {
     "id": "docs:business-plan#zahlen-des-quick-check-im-business-plan",
@@ -284,7 +500,7 @@
     "lang": "de",
     "title": "Daten und Datenschutz · Export und Import",
     "url": "/de/docs/data-and-privacy#export-und-import",
-    "text": "- Exportieren speichert das geöffnete Projekt als Datei .firstmove.json an einem Ort Ihrer Wahl. Die Datei enthält Ihre Eingaben. Die Ergebnisse werden nicht gespeichert; sie werden beim Import der Datei neu berechnet.\n- Importieren liest eine Datei .firstmove.json und prüft sie in Ihrem Browser; nichts wird hochgeladen. Ist das Projekt bereits in diesem Browser, wählen Sie, ob Sie beide behalten oder die gespeicherte Version ersetzen. Eine ersetzte Version wird aufbewahrt, sodass Sie sie wiederherstellen können.\n- Eine Datei aus einer früheren Version von First Move wird beim Import auf das aktuelle Format aktualisiert.\n- Bericht zeigt das geöffnete Projekt als druckbare Seite. Ihr Browser druckt sie oder speichert sie als PDF; nichts wird hochgeladen.\nExportieren Sie Ihre Projekte regelmäßig, denn ein Export ist Ihre Kopie außerhalb dieses Browsers. First Move erinnert Sie von Zeit zu Zeit an den Export.",
+    "text": "- Exportieren speichert das geöffnete Projekt als Datei .firstmove.json an einem Ort Ihrer Wahl. Die Datei enthält Ihre Eingaben und, falls Sie einen erstellt haben, den letzten KI-Plan-Score. Die berechneten Ergebnisse werden nicht gespeichert; sie werden beim Import der Datei neu berechnet.\n- Importieren liest eine Datei .firstmove.json und prüft sie in Ihrem Browser; nichts wird hochgeladen. Ist das Projekt bereits in diesem Browser, wählen Sie, ob Sie beide behalten oder die gespeicherte Version ersetzen. Eine ersetzte Version wird aufbewahrt, sodass Sie sie wiederherstellen können.\n- Eine Datei aus einer früheren Version von First Move wird beim Import auf das aktuelle Format aktualisiert.\n- Bericht zeigt das geöffnete Projekt als druckbare Seite. Ihr Browser druckt sie oder speichert sie als PDF; nichts wird hochgeladen.\nExportieren Sie Ihre Projekte regelmäßig, denn ein Export ist Ihre Kopie außerhalb dieses Browsers. First Move erinnert Sie von Zeit zu Zeit an den Export.",
     "source": "content/docs/de/data-and-privacy.mdx#export-und-import"
   },
   {
@@ -312,11 +528,27 @@
     "source": "content/docs/de/data-and-privacy.mdx#cookies-und-einstellungen"
   },
   {
-    "id": "docs:data-and-privacy#die-ki-funktionen-und-ihre-daten",
+    "id": "docs:data-and-privacy#der-ki-plan-score-und-ihre-daten",
+    "lang": "de",
+    "title": "Daten und Datenschutz · Der KI-Plan-Score und Ihre Daten",
+    "url": "/de/docs/data-and-privacy#der-ki-plan-score-und-ihre-daten",
+    "text": "Der optionale KI-Plan-Score läuft nur, wenn Sie ihn starten, mit Ihrem eigenen Schlüssel für das Vercel AI Gateway. Ihr Browser sendet dann die Texte des Business Plans des geöffneten Projekts und, falls vorhanden, das Ergebnis des Quick Check direkt an das Vercel AI Gateway, unter Ihrem eigenen Konto. Nichts läuft über unsere Server, und wir erhalten weder die Inhalte noch den Schlüssel.\n- Der Schlüssel bleibt im Arbeitsspeicher. Er liegt nur im Arbeitsspeicher des geöffneten Tabs, nie im Speicher des Browsers, im Projekt oder in einem Export, und er ist weg, sobald Sie den Tab neu laden oder schließen.\n- Der Score wird im Projekt gespeichert. Der letzte Score wird mit seinem Bericht und seinen Vorschlägen zusammen mit dem Projekt in Ihrem Browser gespeichert und ist Teil eines Exports, gekennzeichnet als KI-generiert. Ein neuer Lauf ersetzt ihn.\nDie Datenschutzerklärung nennt die Empfänger, und die Seite KI-Transparenz erklärt, wie der Score eingestuft ist.",
+    "source": "content/docs/de/data-and-privacy.mdx#der-ki-plan-score-und-ihre-daten"
+  },
+  {
+    "id": "docs:data-and-privacy#die-ki-funktionen-und-ihre-daten-1",
     "lang": "de",
     "title": "Daten und Datenschutz · Die KI-Funktionen und Ihre Daten",
     "url": "/de/docs/data-and-privacy#die-ki-funktionen-und-ihre-daten",
-    "text": "First Move hat zwei optionale KI-Ebenen, getrennt von der App und voneinander. Die Seite KI-Transparenz gibt an, ob sie derzeit verfügbar sind.\n- Der KI-Assistent im Dashboard arbeitet mit Ihrem eigenen Schlüssel für einen KI-Anbieter Ihrer Wahl. Wenn Sie ihn nutzen, sendet Ihr Browser Ihre Anfrage direkt an diesen Anbieter: Ihre Frage, die Eingaben und Ergebnisse des geöffneten Projekts und die Dokumente, die Sie anhängen; nichts aus Ihren anderen Projekten. Wir erhalten weder die Inhalte noch den Schlüssel. Der Schlüssel bleibt in Ihrem Browser, nur für die Sitzung oder mit einer PIN gesperrt auf diesem Gerät, und auch der Chatverlauf bleibt in Ihrem Browser.\n- Der E-Mail-Agent unter agent@mail.firstmove.energy verarbeitet auf dem Server, was Sie ihm senden, über die in der Datenschutzerklärung genannten Dienstleister, und erst, nachdem Sie einmal bestätigt haben. Die Unterhaltung wird verschlüsselt gespeichert, bis 30 Tage nach Ihrer letzten Nachricht.\nDie Ergebnisse von Quick Check und Business Plan stammen nie von KI, und die Projekte in Ihrem Browser gelangen nie auf unsere Server.\nDie Seiten KI-Assistent und E-Mail-Agent erklären beides ausführlich.",
+    "text": "Neben dem KI-Plan-Score hat First Move zwei optionale KI-Ebenen, getrennt von der App und voneinander. Die Seite KI-Transparenz gibt an, ob sie derzeit verfügbar sind.\n- Der KI-Assistent im Dashboard arbeitet mit Ihrem eigenen Schlüssel für einen KI-Anbieter Ihrer Wahl. Wenn Sie ihn nutzen, sendet Ihr Browser Ihre Anfrage direkt an diesen Anbieter: Ihre Frage, die Eingaben und Ergebnisse des geöffneten Projekts und die Dokumente, die Sie anhängen; nichts aus Ihren anderen Projekten. Wir erhalten weder die Inhalte noch den Schlüssel. Der Schlüssel bleibt in Ihrem Browser, nur für die Sitzung oder mit einer PIN gesperrt auf diesem Gerät, und auch der Chatverlauf bleibt in Ihrem Browser.\n- Der E-Mail-Agent unter agent@mail.firstmove.energy verarbeitet auf dem Server, was Sie ihm senden, über die in der Datenschutzerklärung genannten Dienstleister, und erst, nachdem Sie einmal bestätigt haben. Die Unterhaltung wird verschlüsselt gespeichert, bis 30 Tage nach Ihrer letzten Nachricht.\nDie Ergebnisse des Quick Check und die Pitch-Vollständigkeit stammen nie von KI, und die Projekte in Ihrem Browser gelangen nie auf unsere Server.",
+    "source": "content/docs/de/data-and-privacy.mdx#die-ki-funktionen-und-ihre-daten"
+  },
+  {
+    "id": "docs:data-and-privacy#die-ki-funktionen-und-ihre-daten-2",
+    "lang": "de",
+    "title": "Daten und Datenschutz · Die KI-Funktionen und Ihre Daten",
+    "url": "/de/docs/data-and-privacy#die-ki-funktionen-und-ihre-daten",
+    "text": "Die Seiten KI-Assistent und E-Mail-Agent erklären beides ausführlich.",
     "source": "content/docs/de/data-and-privacy.mdx#die-ki-funktionen-und-ihre-daten"
   },
   {
@@ -460,7 +692,7 @@
     "lang": "de",
     "title": "Einführung · Weiterlesen",
     "url": "/de/docs#weiterlesen",
-    "text": "- Was ist 5GDHC?: die Idee hinter den Netzen, wo sie passen und wo nicht.\n- Quick Check: jede Eingabe, wie das Ergebnis berechnet wird und was es bedeutet.\n- Business Plan: die vier Schritte, die Beispielszenarien und die Checkliste zur Pitch-Reife.\n- Daten und Datenschutz: wo Ihre Projekte liegen, Export, Import und das Löschen von Daten.\n- KI-Assistent: der optionale Assistent im Dashboard, mit Ihrem eigenen Schlüssel.\n- E-Mail-Agent: ein Quick Check oder ein Business Plan per E-Mail.",
+    "text": "- Was ist 5GDHC?: die Idee hinter den Netzen, wo sie passen und wo nicht.\n- Quick Check: jede Eingabe, wie das Ergebnis berechnet wird und was es bedeutet.\n- Business Plan: die vier Schritte, die Beispielszenarien und die Checkliste zur Pitch-Vollständigkeit.\n- KI-Plan-Score: die optionale KI-Einschätzung, wie solide Ihr geschriebener Business Plan ist, mit Ihrem eigenen Schlüssel.\n- Daten und Datenschutz: wo Ihre Projekte liegen, Export, Import und das Löschen von Daten.\n- KI-Assistent: der optionale Assistent im Dashboard, mit Ihrem eigenen Schlüssel.\n- E-Mail-Agent: ein Quick Check oder ein Business Plan per E-Mail.",
     "source": "content/docs/de/index.mdx#weiterlesen"
   },
   {
@@ -700,32 +932,184 @@
     "lang": "de",
     "title": "Referenzfälle",
     "url": "/de/docs/reference-cases",
-    "text": "Sechs Referenzfälle aus Wien zeigen, wie ein schwacher, ein mittlerer und ein starker Businessplan aussehen.",
+    "text": "Sechs Fälle aus Wien zeigen, wie ein schwacher, ein mittlerer und ein starker Businessplan aussehen. Drei beschreiben reale Anergienetze, drei sind fiktive Pläne rund um reale Gebäude.\nSie finden sie ganz unten auf der Startseite des Dashboards unter Referenzfälle aus Wien, eingeklappt, bis Sie den Abschnitt öffnen. Beim Öffnen eines Falls entsteht Ihre eigene Kopie mit beiden ausgefüllten Modulen, als Beispiel gekennzeichnet. Jede Karte verlinkt auf ihren Abschnitt auf dieser Seite.",
     "source": "content/docs/de/reference-cases.mdx"
   },
   {
-    "id": "docs:reference-cases#drei-reale-anergienetze",
+    "id": "docs:reference-cases#so-lesen-sie-die-falle-1",
     "lang": "de",
-    "title": "Referenzfälle · Drei reale Anergienetze",
-    "url": "/de/docs/reference-cases#drei-reale-anergienetze",
-    "text": "Drei Fälle beschreiben Anergienetze, die es in Wien gibt.",
-    "source": "content/docs/de/reference-cases.mdx#drei-reale-anergienetze"
+    "title": "Referenzfälle · So lesen Sie die Fälle",
+    "url": "/de/docs/reference-cases#so-lesen-sie-die-falle",
+    "text": "- Fakten: Was ein Fall über ein reales Gebäude oder Projekt sagt, stammt aus den darunter genannten Quellen. Jeder Link wurde am 25. Oktober 2026 geöffnet und sein Inhalt geprüft. Die Fälle nutzen amtliche Seiten und Dokumente, begutachtete Fachartikel und die eigenen Seiten von Bauträgern oder Betreibern zu ihrem eigenen Projekt, aber keine Nachrichtenartikel oder Blogs.\n- Reale Fälle: Der Plan gibt veröffentlichte Fakten wieder. Wo er etwas ergänzt, das nicht veröffentlicht ist, steht (vorgeschlagen) im Text, oder der Text sagt, dass die Angabe nicht öffentlich ist.\n- Fiktive Fälle: Ein reales Gebäude ist der Anker, der Plan rundherum ist erfunden. Erfundene Details sind mit (illustrativ) markiert. Jeder fiktive Fall sagt das auf seiner Karte, im Projekt, das er öffnet, und unten.\n- Planqualität: Jede Gruppe hat einen starken, einen mittleren und einen schwachen Plan. Ein starker Plan ist konkret, beziffert und mit Quellen belegt, nennt ein K.-o.-Kriterium samt Prüfung, rechnet seine Kosten über die Laufzeit und endet mit einem Entscheidungspunkt. Ein mittlerer Plan ist konkret, lässt aber die Prüfung über die Laufzeit, einzelne Prüfungen oder den Entscheidungstermin offen. Ein",
+    "source": "content/docs/de/reference-cases.mdx#so-lesen-sie-die-falle"
   },
   {
-    "id": "docs:reference-cases#drei-fiktive-plane-rund-um-reale-gebaude",
+    "id": "docs:reference-cases#so-lesen-sie-die-falle-2",
     "lang": "de",
-    "title": "Referenzfälle · Drei fiktive Pläne rund um reale Gebäude",
-    "url": "/de/docs/reference-cases#drei-fiktive-plane-rund-um-reale-gebaude",
-    "text": "Drei Fälle sind fiktive Pläne rund um reale Gebäude in Wien.",
-    "source": "content/docs/de/reference-cases.mdx#drei-fiktive-plane-rund-um-reale-gebaude"
+    "title": "Referenzfälle · So lesen Sie die Fälle",
+    "url": "/de/docs/reference-cases#so-lesen-sie-die-falle",
+    "text": "schwacher Plan bleibt kurz und vage, lässt Felder leer und markiert das falsche Risiko als K.-o.-Kriterium. Schwache Pläne sind schwach durch das, was sie weglassen, nie durch falsche Aussagen über ein reales Gebäude.\n- Quick Check: Der Quick Check ist ein erstes Screening. Er zählt Gebäude mit Standard-Nutzflächen und setzt jede Quelle mit ihrer Standardkapazität an. Große Projekte zeigen daher eine geringe Wärmedeckung, und alle sechs Fälle enden bei Weitere Analyse erforderlich. Wo ein Fall seinen Jahresbedarf nennt, ist er als bekannter Bedarf eingetragen. Nicht veröffentlichte Eingaben sind Schätzungen und werden beim jeweiligen Fall genannt.",
+    "source": "content/docs/de/reference-cases.mdx#so-lesen-sie-die-falle"
   },
   {
-    "id": "docs:reference-cases#so-nutzen-sie-sie",
+    "id": "docs:reference-cases#smart-block-geblergasse-1",
     "lang": "de",
-    "title": "Referenzfälle · So nutzen Sie sie",
-    "url": "/de/docs/reference-cases#so-nutzen-sie-sie",
-    "text": "Öffnen Sie einen Fall im Startbildschirm des Dashboards.",
-    "source": "content/docs/de/reference-cases.mdx#so-nutzen-sie-sie"
+    "title": "Referenzfälle · Smart Block Geblergasse",
+    "url": "/de/docs/reference-cases#smart-block-geblergasse",
+    "text": "Reales Anergienetz, starker Plan.\nGeblergasse 11 und 13 in Hernals, 1170 Wien: Zwei Gründerzeithäuser mit 25 Wohnungen teilen Erdwärmesonden unter dem Hof, zwei Hybrid-Solardächer mit je 54 m² und eine Wärmepumpe, gebaut ab August 2018. Es ist das erste Anergienetz in einem Wiener Gründerzeitblock und so angelegt, dass die übrigen 16 Häuser des Blocks über vorbereitete Leitungsstutzen dazukommen können.\nDer Plan ist stark, weil er mit veröffentlichten Zahlen arbeitet: Planwerte von 90 + 67 MWh/a Raumwärme und 30 + 20 MWh/a Warmwasser, Kosten laut Ausschreibung von rund 320.000 € und eine Förderung der Stadt von 30 %, rund 95.000 €. Er legt eine Preisregel fest, Kosten der Mieter*innen höchstens auf Fernwärmeniveau, rechnet die Kosten über 20 Jahre mit den Standardwerten des Quick Check, nennt Kein Bohrplatz für Phase 2 als K.-o.-Kriterium und endet mit einer Entscheidung über Phase 2 binnen 12 Monaten unter vier Bedingungen. Das Wärmeliefer-Contracting und Phase 2 sind Vorschläge.",
+    "source": "content/docs/de/reference-cases.mdx#smart-block-geblergasse"
+  },
+  {
+    "id": "docs:reference-cases#smart-block-geblergasse-2",
+    "lang": "de",
+    "title": "Referenzfälle · Smart Block Geblergasse",
+    "url": "/de/docs/reference-cases#smart-block-geblergasse",
+    "text": "Eingaben im Quick Check: 2 Wohngebäude von vor 1919 auf 1.000 m², Geothermie und Solarthermie mittel, Umgebungsluft gering, PV und der veröffentlichte Wärmebedarf von 207.000 kWh/a. Ergebnis: Weitere Analyse erforderlich, weil die Standardkapazitäten der Quellen weniger als die Hälfte dieses Bedarfs decken.\nQuellen:",
+    "source": "content/docs/de/reference-cases.mdx#smart-block-geblergasse"
+  },
+  {
+    "id": "docs:reference-cases#smart-block-geblergasse-3",
+    "lang": "de",
+    "title": "Referenzfälle · Smart Block Geblergasse",
+    "url": "/de/docs/reference-cases#smart-block-geblergasse",
+    "text": "- Burtscher-Durig ZT GmbH, ÖGUT, Komobile w7, Gruber, M., Zeininger, J. (2018). SMART BLOCK II Energy: Energie, Mobilität, Finanzierung, Kommunikation. Publizierbarer Endbericht. Klima- und Energiefonds, Blue Globe Report Smart Cities 6/2018.\n- Stadt Wien, MA 20 Energieplanung, mit dem Bundesministerium BMK und dem Österreichischen Städtebund (2020). Projektbericht AnergieUrban, Stufe 1: Die Stadt als Energiespeicher. Stadt Wien, über Wienbibliothek digital.\n- Stadt Wien, Wiener Wohnen Kundenservice GmbH (2026). SMART BLOCK Geblergasse. socialhousing.wien, das Wohnportal der Stadt Wien.\n- Stadt Wien, MA 20 Energieplanung (2024). Förderrichtlinie für Wärmenetze (Anergienetze) in Verbindung mit Wärmepumpen im Rahmen einer Heizungsumstellung ab zwei Objekten 2024/2025. Stadt Wien.\n- Kommunalkredit Public Consulting (2026). Informationsblatt Erneuerbare Mikronetze für Betriebe und Gemeinden (Version 05/2026). Umweltförderung im Inland.\n- Stadt Wien (2025). WieNeu+ im Grätzl 20+2: Anergienetz Startzellen (ÖGUT). Stadt Wien, über Wienbibliothek digital.\n- Stadt Wien, MA 20 Energieplanung (2026). Der Wiener Wärmeplan 2040 (Karte und Gebietskategorien). Stadt Wien.\n- Kranzl, L.,",
+    "source": "content/docs/de/reference-cases.mdx#smart-block-geblergasse"
+  },
+  {
+    "id": "docs:reference-cases#smart-block-geblergasse-4",
+    "lang": "de",
+    "title": "Referenzfälle · Smart Block Geblergasse",
+    "url": "/de/docs/reference-cases#smart-block-geblergasse",
+    "text": "Frank-Stocker, A., Hummel, M., Müller, A., Patel, N., Wiechers, E., Worm, J., Ziegler, M. (2026). Anergienetze: Gamechanger oder Nischenlösung für die urbane Wärme- und Kälteversorgung?. 19. Symposium Energieinnovation, TU Graz; auf Basis einer Studie für die Stadt Wien, MA 20.",
+    "source": "content/docs/de/reference-cases.mdx#smart-block-geblergasse"
+  },
+  {
+    "id": "docs:reference-cases#kraftwerk-seebogen-seestadt-aspern-1",
+    "lang": "de",
+    "title": "Referenzfälle · Kraftwerk Seebogen, Seestadt Aspern",
+    "url": "/de/docs/reference-cases#kraftwerk-seebogen-seestadt-aspern",
+    "text": "Reales Anergienetz, mittlerer Plan.\nAm Bauplatz H6 der Seestadt Aspern, 1220 Wien, teilen fünf Bauträger ein Anergienetz für rund 270 Wohnungen und rund 250 Arbeitsplätze auf knapp 20.000 m² neuer Nutzfläche. Zwei Sondenfelder mit 92 Bohrungen zu je 150 m dienen als saisonaler Speicher; Außenluft, Abwärme eines Supermarkts und weiterer Räume sowie vier Dach-PV-Anlagen ergänzen es. Das Netz läuft mit 4 °C im Frühjahr bis 16 °C im Herbst, deckt rund 1.600 MWh/a Raumwärme samt Warmwasser und Sommerkühlung und spart rund 440 t CO2 pro Jahr. beyond carbon energy hat die Anlage gebaut; der Gewerbehof der Wirtschaftsagentur Wien am selben Bauplatz nutzt Fernwärme.\nDer Plan ist mittel, weil die öffentlichen Quellen Lücken lassen, die er nicht schließt: wem welcher Teil gehört und wer ihn betreibt, die Preise, die Finanzierung, die Kostenaufteilung zwischen den fünf Bauträgern und ein Entscheidungstermin. Wo Fakten vorliegen, ist er konkret, nennt grobe Bohrkosten zu Preisen von 2020 und ein K.-o.-Kriterium, Fünf Bauträger sind uneinig, aber seine Prüfungen bleiben offen.",
+    "source": "content/docs/de/reference-cases.mdx#kraftwerk-seebogen-seestadt-aspern"
+  },
+  {
+    "id": "docs:reference-cases#kraftwerk-seebogen-seestadt-aspern-2",
+    "lang": "de",
+    "title": "Referenzfälle · Kraftwerk Seebogen, Seestadt Aspern",
+    "url": "/de/docs/reference-cases#kraftwerk-seebogen-seestadt-aspern",
+    "text": "Eingaben im Quick Check: 5 Gebäude ab 2011 auf 1 ha, 80 % Wohnen und 20 % Kategorie A, alle drei geschätzt; Geothermie hoch, Abwärme und Umgebungsluft mittel, PV und die veröffentlichten 1.600.000 kWh/a Raumwärme. Ergebnis: Weitere Analyse erforderlich, weil die Gebäudedichte gering ist und die Standardkapazitäten nur einen Teil des Bedarfs decken.\nQuellen:",
+    "source": "content/docs/de/reference-cases.mdx#kraftwerk-seebogen-seestadt-aspern"
+  },
+  {
+    "id": "docs:reference-cases#kraftwerk-seebogen-seestadt-aspern-3",
+    "lang": "de",
+    "title": "Referenzfälle · Kraftwerk Seebogen, Seestadt Aspern",
+    "url": "/de/docs/reference-cases#kraftwerk-seebogen-seestadt-aspern",
+    "text": "- Stadt Wien, MA 20 Energieplanung (2026). Energie-Vorzeigeprojekt: Kraftwerk Seebogen. Stadt Wien.\n- Berg, E. (Wien 3420 aspern Development AG) (2022). Bubbling with New Energy. aspern Seestadt, eigene Publikation der Entwicklungsgesellschaft.\n- Stadt Wien, MA 20 Energieplanung, mit dem Bundesministerium BMK und dem Österreichischen Städtebund (2020). Projektbericht AnergieUrban, Stufe 1: Die Stadt als Energiespeicher. Stadt Wien, über Wienbibliothek digital.\n- Stadt Wien, MA 20 Energieplanung (2024). Förderrichtlinie für Wärmenetze (Anergienetze) in Verbindung mit Wärmepumpen im Rahmen einer Heizungsumstellung ab zwei Objekten 2024/2025. Stadt Wien.\n- Kranzl, L., Frank-Stocker, A., Hummel, M., Müller, A., Patel, N., Wiechers, E., Worm, J., Ziegler, M. (2026). Anergienetze: Gamechanger oder Nischenlösung für die urbane Wärme- und Kälteversorgung?. 19. Symposium Energieinnovation, TU Graz; auf Basis einer Studie für die Stadt Wien, MA 20.",
+    "source": "content/docs/de/reference-cases.mdx#kraftwerk-seebogen-seestadt-aspern"
+  },
+  {
+    "id": "docs:reference-cases#village-im-dritten-1",
+    "lang": "de",
+    "title": "Referenzfälle · Village im Dritten",
+    "url": "/de/docs/reference-cases#village-im-dritten",
+    "text": "Reales Anergienetz, schwacher Plan.\nVillage im Dritten ist ein neues Quartier in der Landstraße, 1030 Wien, entwickelt von ARE Austrian Real Estate mit weiteren Bauträgern: rund 11,5 ha mit 22 Bauplätzen, rund 250.000 m² Bruttogeschoßfläche und rund 1.900 bis 2.000 Wohnungen. Sein Energiesystem nutzt, was die Entwicklerin das größte Erdsondenfeld Österreichs nennt: 500 Sonden mit 150 m Tiefe speisen ein Anergienetz zu den Wärmepumpen in jedem Gebäude, die die Wohnungen über Fußbodenheizung mit bis zu rund 37 °C heizen. Fernwärme deckt Spitzen und Warmwasser, im Sommer temperiert das Erdreich die Wohnungen und kühlt die Gewerbeflächen, und PV mit rund 1 MW erzeugt Strom. Wien Energie hat das Konzept 2023 vorgestellt.\nDer Plan ist schwach, obwohl diese Fakten öffentlich sind: Er nennt Bedarf, Kosten und Betreiber nur vage, lässt Kundenbeziehung, Finanzierung, Feedback, wirtschaftliche Skalierbarkeit und Pilot leer, prüft seine einzige kritische Annahme später und markiert Bauverzögerungen als K.-o.-Kriterium. Alles, was er sagt, stimmt; ein stärkerer Plan würde die Fakten oben nutzen und die Erdreichbilanz der 500 Sonden prüfen.",
+    "source": "content/docs/de/reference-cases.mdx#village-im-dritten"
+  },
+  {
+    "id": "docs:reference-cases#village-im-dritten-2",
+    "lang": "de",
+    "title": "Referenzfälle · Village im Dritten",
+    "url": "/de/docs/reference-cases#village-im-dritten",
+    "text": "Eingaben im Quick Check: 22 Gebäude ab 2011 auf 11,5 ha, Geothermie hoch, PV. Ein Gebäude pro Bauplatz ist eine Schätzung, und der Wohnanteil an der Fläche, 76 %, dient als Anteil der Wohngebäude, der Rest als Kategorie A. Ergebnis: Weitere Analyse erforderlich, weil Wärmedeckung und Gebäudedichte gering sind.\nQuellen:\n- ARE Austrian Real Estate (2026). Village im Dritten: Projekt. ARE Austrian Real Estate.\n- ARE Austrian Real Estate (2026). Village im Dritten: Energiesystem. ARE Austrian Real Estate.\n- ARE Austrian Real Estate (2021). Village im Dritten: Projektfolder. ARE Austrian Real Estate.\n- Köfinger, M. (Wien Energie) (2023). Volle Energie fürs Klima! Mit innovativen Konzepten in eine klimaneutrale Zukunft. Zero Emission City 2023, Wirtschaftskammer Wien.",
+    "source": "content/docs/de/reference-cases.mdx#village-im-dritten"
+  },
+  {
+    "id": "docs:reference-cases#klinik-donaustadt-fiktives-grundwassernetz-1",
+    "lang": "de",
+    "title": "Referenzfälle · Klinik Donaustadt: fiktives Grundwassernetz",
+    "url": "/de/docs/reference-cases#klinik-donaustadt-fiktives-grundwassernetz",
+    "text": "Fiktiver Plan rund um ein reales Gebäude, starker Plan.\nFiktiver Businessplan rund um ein reales Gebäude: Weder Eigentümer noch Betreiber haben ihn geplant oder befürwortet.\nDer reale Anker ist die Klinik Donaustadt, Langobardenstraße 122, 1220 Wien: ein kommunales Spital der Stadt Wien, geführt vom Wiener Gesundheitsverbund, mit 963 systemisierten Betten (Anstaltsordnung, 2022), niedrig gebaut mit höchstens fünf Stockwerken auf insgesamt 170.000 m². Ein Energieprojekt des Spitals ist nicht veröffentlicht, seine Wärmeversorgung nicht öffentlich. Die Donaustadt hat rund 12.010 Gebäude mit Gas und rund 1.500 mit Fernwärme, und eine Studie der TU Wien für die Stadt nennt die Donaustadt als Gebiet, in dem Grundwassernutzung realistisch ist.",
+    "source": "content/docs/de/reference-cases.mdx#klinik-donaustadt-fiktives-grundwassernetz"
+  },
+  {
+    "id": "docs:reference-cases#klinik-donaustadt-fiktives-grundwassernetz-2",
+    "lang": "de",
+    "title": "Referenzfälle · Klinik Donaustadt: fiktives Grundwassernetz",
+    "url": "/de/docs/reference-cases#klinik-donaustadt-fiktives-grundwassernetz",
+    "text": "Der illustrative Plan ist ein Grundwasser-Anergienetz von 2,5 km für das Spital, sechs Wohnblöcke mit 600 Wohnungen und eine Schule. Er schätzt die Wärme des Spitals mit 27,9 GWh/a aus dem deutschen Durchschnitt von 29 MWh pro Bett und Jahr, nimmt davon 25 % plus die Kälte des Spitals und kommt auf rund 12,2 GWh/a oder 4,9 MWh pro Meter Künette. Eine Investition von 12,9 Mio. €, eine Prüfung über die Laufzeit mit einem Überschuss von rund 0,45 Mio. € pro Jahr, Sensitivitäten für fehlende Wohnbauten, Brunnenkosten und Strom, das K.-o.-Kriterium Grundwasserergiebigkeit oder Bewilligung scheitert mit einem Probebrunnen vor jedem Planungsgeld und Entscheidungspunkte in den Monaten 6 und 12 machen ihn stark. Die Klinik Floridsdorf, wo Wärmepumpen die Abwärme eines Rechenzentrums von 26 °C auf 82 °C für 50 bis 70 % der Spitalswärme heben, zeigt, dass Wärmepumpen im Spital in dieser Größe funktionieren.",
+    "source": "content/docs/de/reference-cases.mdx#klinik-donaustadt-fiktives-grundwassernetz"
+  },
+  {
+    "id": "docs:reference-cases#klinik-donaustadt-fiktives-grundwassernetz-3",
+    "lang": "de",
+    "title": "Referenzfälle · Klinik Donaustadt: fiktives Grundwassernetz",
+    "url": "/de/docs/reference-cases#klinik-donaustadt-fiktives-grundwassernetz",
+    "text": "Eingaben im Quick Check: 8 Gebäude (das Spital in Kategorie C, 6 Wohnblöcke, 1 Schule in Kategorie A) auf 25 ha, ein Netz von 2.500 m, Grundwasser hoch und Abwärme mittel, PV und der Bedarf laut Plan von 12,2 GWh/a Wärme und 2,0 GWh/a Kälte. Alles außer dem Spital ist illustrativ. Ergebnis: Weitere Analyse erforderlich: Die Wärmedichte ist hoch, aber die Standardkapazitäten der Quellen decken nur einen kleinen Teil des Bedarfs, und die Gebäudedichte ist gering.\nQuellen:",
+    "source": "content/docs/de/reference-cases.mdx#klinik-donaustadt-fiktives-grundwassernetz"
+  },
+  {
+    "id": "docs:reference-cases#klinik-donaustadt-fiktives-grundwassernetz-4",
+    "lang": "de",
+    "title": "Referenzfälle · Klinik Donaustadt: fiktives Grundwassernetz",
+    "url": "/de/docs/reference-cases#klinik-donaustadt-fiktives-grundwassernetz",
+    "text": "- Wiener Gesundheitsverbund, Klinik Donaustadt (2022). Anstaltsordnung der Klinik Donaustadt. Wiener Gesundheitsverbund.\n- Wiener Gesundheitsverbund, Klinik Donaustadt (2026). Das Haus. Wiener Gesundheitsverbund.\n- Stadt Wien, MA 20 Energieplanung (2024). Energie-Info Donaustadt, 22. Bezirk. Stadt Wien.\n- Kranzl, L., Patel, N., Fallahnejad, M., Frank-Stocker, A., Hummel, M., Müller, A., Wiechers, E., Worm, J., Ziegler, M. (2026). Anergienetze: Gamechanger oder Nischenlösung? (Vortrag). 19. Symposium Energieinnovation, TU Graz.\n- Kranzl, L., Frank-Stocker, A., Hummel, M., Müller, A., Patel, N., Wiechers, E., Worm, J., Ziegler, M. (2026). Anergienetze: Gamechanger oder Nischenlösung für die urbane Wärme- und Kälteversorgung?. 19. Symposium Energieinnovation, TU Graz; auf Basis einer Studie für die Stadt Wien, MA 20.\n- Landesenergieagentur Sachsen-Anhalt (LENA) (2020). Energieeffizienz für Krankenhäuser in Sachsen-Anhalt. LENA, Magdeburg.\n- Stadt Wien, MA 20 Energieplanung (2026). Energie-Vorzeigeprojekt: Klinik Floridsdorf. Stadt Wien.\n- Kommunalkredit Public Consulting (2026). Informationsblatt Erneuerbare Mikronetze für Betriebe und Gemeinden (Version 05/2026). Umweltförderung im",
+    "source": "content/docs/de/reference-cases.mdx#klinik-donaustadt-fiktives-grundwassernetz"
+  },
+  {
+    "id": "docs:reference-cases#klinik-donaustadt-fiktives-grundwassernetz-5",
+    "lang": "de",
+    "title": "Referenzfälle · Klinik Donaustadt: fiktives Grundwassernetz",
+    "url": "/de/docs/reference-cases#klinik-donaustadt-fiktives-grundwassernetz",
+    "text": "Inland.\n- Stadt Wien, MA 20 Energieplanung (2024). Förderrichtlinie für Wärmenetze (Anergienetze) in Verbindung mit Wärmepumpen im Rahmen einer Heizungsumstellung ab zwei Objekten 2024/2025. Stadt Wien.\n- Stadt Wien, MA 20 Energieplanung (2026). Der Wiener Wärmeplan 2040 (Karte und Gebietskategorien). Stadt Wien.",
+    "source": "content/docs/de/reference-cases.mdx#klinik-donaustadt-fiktives-grundwassernetz"
+  },
+  {
+    "id": "docs:reference-cases#ottakringer-bad-fiktives-sommerwarmenetz-1",
+    "lang": "de",
+    "title": "Referenzfälle · Ottakringer Bad: fiktives Sommerwärmenetz",
+    "url": "/de/docs/reference-cases#ottakringer-bad-fiktives-sommerwarmenetz",
+    "text": "Fiktiver Plan rund um ein reales Gebäude, mittlerer Plan.\nFiktiver Businessplan rund um ein reales Gebäude: Weder Eigentümer noch Betreiber haben ihn geplant oder befürwortet.\nDer reale Anker ist das Ottakringer Bad, Johann-Staud-Straße 11, 1160 Wien: ein Kombibad der Stadt Wien mit Hallenbad, Sauna und einem Freibad, das vom 2. Mai bis Mitte September offen hat. Die Stadt errichtete es 1926 als erstes Wiener Freibad, das sein Wasser vorwärmen konnte, baute es von 1966 bis 1972 um und ergänzte ab 1971 ein Hallenbad. Wie es beheizt wird, ist nicht veröffentlicht. Ottakring hat rund 3.380 Gebäude mit Gas und rund 180 mit Fernwärme.",
+    "source": "content/docs/de/reference-cases.mdx#ottakringer-bad-fiktives-sommerwarmenetz"
+  },
+  {
+    "id": "docs:reference-cases#ottakringer-bad-fiktives-sommerwarmenetz-2",
+    "lang": "de",
+    "title": "Referenzfälle · Ottakringer Bad: fiktives Sommerwärmenetz",
+    "url": "/de/docs/reference-cases#ottakringer-bad-fiktives-sommerwarmenetz",
+    "text": "Der illustrative Plan ist ein Netz von 700 m, das sommerliche Abwärme der Kühlung eines Supermarkts ins Freibad leitet und im Winter drei Wohnblöcke über Sonden versorgt. Freibäder brauchen 0,3 bis 0,7 MWh pro m² Wasserfläche und Jahr, Hallenbäder 3 bis 7; die effizientesten Bäder gewinnen Wärme aus Abwasser und Abluft zurück, und das sanierte Hallenbad Floridsdorf senkte seinen Fernwärmeverbrauch um 95 %. Der Plan ist mittel: Er beziffert den Bedarf und einen Teil der Kosten, nennt Gemeinderat genehmigt die Investition im Bad nicht als K.-o.-Kriterium und hat drei Prüfungen, aber keine Prüfung über die Laufzeit, lässt eine Prüfung und den Entscheidungstermin offen und lässt das Hallenbad weg.\nEingaben im Quick Check: 5 Gebäude (das Bad in Kategorie C, ein Supermarkt in Kategorie A, 3 Wohnblöcke von 1919 bis 1960) auf 4 ha, ein Netz von 700 m, Abwärme und Geothermie mittel, keine PV. Alles außer dem Bad ist illustrativ. Ergebnis: Weitere Analyse erforderlich, weil Wärmedeckung und Gebäudedichte gering sind.\nQuellen:",
+    "source": "content/docs/de/reference-cases.mdx#ottakringer-bad-fiktives-sommerwarmenetz"
+  },
+  {
+    "id": "docs:reference-cases#ottakringer-bad-fiktives-sommerwarmenetz-3",
+    "lang": "de",
+    "title": "Referenzfälle · Ottakringer Bad: fiktives Sommerwärmenetz",
+    "url": "/de/docs/reference-cases#ottakringer-bad-fiktives-sommerwarmenetz",
+    "text": "- Stadt Wien, Wiener Bäder (2026). Ottakringer Bad: Kombibad der Stadt Wien. Stadt Wien.\n- Wien Geschichte Wiki (Wiener Stadt- und Landesarchiv, Wienbibliothek im Rathaus) (2023). Ottakringer Bad. Stadt Wien.\n- Stadt Wien, MA 20 Energieplanung (2024). Energie-Info Ottakring, 16. Bezirk. Stadt Wien.\n- Schlesiger, G. (2002). Energie- und wassersparende Maßnahmen in Bädern. BISp-Jahrbuch 2001, Bundesinstitut für Sportwissenschaft, 55–62.\n- Kampel, W., Aas, B., Bruland, A. (2014). Characteristics of energy-efficient swimming facilities – A case study. Energy 75, 508–512.\n- Stadt Wien, MA 20 Energieplanung (2026). Energie-Vorzeigeprojekt: Hallenbad Floridsdorf. Stadt Wien.\n- Stadt Wien, MA 20 Energieplanung (2026). Energie-Vorzeigeprojekt: Kraftwerk Seebogen. Stadt Wien.\n- Giunta, F., Sawalha, S. (2021). Techno-economic analysis of heat recovery from supermarket's CO2 refrigeration systems to district heating networks. Applied Thermal Engineering 193, 117000.\n- Kommunalkredit Public Consulting (2026). Informationsblatt Erneuerbare Mikronetze für Betriebe und Gemeinden (Version 05/2026). Umweltförderung im Inland.",
+    "source": "content/docs/de/reference-cases.mdx#ottakringer-bad-fiktives-sommerwarmenetz"
+  },
+  {
+    "id": "docs:reference-cases#großmarkt-wien-fiktiver-abwarmeplan-1",
+    "lang": "de",
+    "title": "Referenzfälle · Großmarkt Wien: fiktiver Abwärmeplan",
+    "url": "/de/docs/reference-cases#großmarkt-wien-fiktiver-abwarmeplan",
+    "text": "Fiktiver Plan rund um ein reales Gebäude, schwacher Plan.\nFiktiver Businessplan rund um ein reales Gebäude: Weder Eigentümer noch Betreiber haben ihn geplant oder befürwortet.\nDer reale Anker ist der Großmarkt Wien, Laxenburger Straße 365-367, 1230 Wien, den sein Betreiber Österreichs bedeutendste Handelsdrehscheibe für Obst, Gemüse, Lebensmittel und Blumen nennt: rund 30 ha mit rund 220 Bestandnehmer*innen und rund 1.400 Beschäftigten. Er wurde im Oktober 1972 eröffnet, 1987 und 2001 mit mehr Kühl- und Lagerräumen modernisiert und wird seit Jänner 2019 von der Wien Holding über die GMW Großmarkt Wien Betrieb GmbH geführt. Seine Broschüre von 2022 nennt rund 300.000 m² Gesamtfläche, davon rund 76.000 m² Gebäude und Hallen. Liesing hat rund 7.570 Gebäude mit Gas und rund 680 mit Fernwärme.",
+    "source": "content/docs/de/reference-cases.mdx#großmarkt-wien-fiktiver-abwarmeplan"
+  },
+  {
+    "id": "docs:reference-cases#großmarkt-wien-fiktiver-abwarmeplan-2",
+    "lang": "de",
+    "title": "Referenzfälle · Großmarkt Wien: fiktiver Abwärmeplan",
+    "url": "/de/docs/reference-cases#großmarkt-wien-fiktiver-abwarmeplan",
+    "text": "Der illustrative Plan will Abwärme aus den Kühlräumen an die Nachbarschaft verkaufen. Er ist absichtlich schwach: Er misst die Abwärme nicht, nennt keine Kund*innen, lässt Kosten, Finanzierung und Entscheidung leer, markiert Leitungsbau in Straßen als K.-o.-Kriterium statt der unbekannten Wärmemenge und nimmt ungeprüft an, dass die Kühlwärme heute ungenutzt ist. Ein stärkerer Plan würde zuerst Wärmemenge und Wert beziffern, wie es eine techno-ökonomische Analyse der Wärmerückgewinnung aus Supermarkt-Kälteanlagen tut.\nEingaben im Quick Check: 12 Gebäude, geschätzt, auf 30 ha, alle als Kategorie A von 1961 bis 1990 eingetragen, und Abwärme mit unbekanntem Potenzial, keine PV. Ergebnis: Weitere Analyse erforderlich, festgelegt durch die Regel für eine unbekannte Quelle.\nQuellen:",
+    "source": "content/docs/de/reference-cases.mdx#großmarkt-wien-fiktiver-abwarmeplan"
+  },
+  {
+    "id": "docs:reference-cases#großmarkt-wien-fiktiver-abwarmeplan-3",
+    "lang": "de",
+    "title": "Referenzfälle · Großmarkt Wien: fiktiver Abwärmeplan",
+    "url": "/de/docs/reference-cases#großmarkt-wien-fiktiver-abwarmeplan",
+    "text": "- GMW Großmarkt Wien Betrieb GmbH (2026). Daten und Fakten. Großmarkt Wien.\n- GMW Großmarkt Wien Betrieb GmbH (2026). GMW Großmarkt Wien Betrieb GmbH. Großmarkt Wien.\n- GMW Großmarkt Wien Betrieb GmbH (2022). 50 Jahre Großmarkt Wien: Festbroschüre. Großmarkt Wien.\n- Wien Geschichte Wiki (Wiener Stadt- und Landesarchiv, Wienbibliothek im Rathaus) (2024). Großmarkt Inzersdorf. Stadt Wien.\n- Stadt Wien, MA 20 Energieplanung (2024). Energie-Info Liesing, 23. Bezirk. Stadt Wien.\n- Giunta, F., Sawalha, S. (2021). Techno-economic analysis of heat recovery from supermarket's CO2 refrigeration systems to district heating networks. Applied Thermal Engineering 193, 117000.",
+    "source": "content/docs/de/reference-cases.mdx#großmarkt-wien-fiktiver-abwarmeplan"
   },
   {
     "id": "docs:what-is-5gdhc",
