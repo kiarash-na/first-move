@@ -1,7 +1,7 @@
 import { generateText, Output, type LanguageModel } from "ai"
 import { z } from "zod"
 import { AI_SCORE_LIMITS, aiReportSchema, type AiReport, type AiScore, type Project } from "@/lib/project"
-import { cleanKeys, fit, LANGUAGE_NAME, planExcerpts, scoreFacts, TEXT_RULES, type TextLang } from "./text-input"
+import { cleanKeys, fit, LANGUAGE_RULE, planExcerpts, scoreFacts, TEXT_RULES, type TextLang } from "./text-input"
 
 /**
  * The short report (PLAN-AI-SCORE-00 step 4): the chosen text model writes a headline, a summary,
@@ -49,7 +49,7 @@ export interface TextResult<T> {
 export function reportPrompt(project: Project, score: AiScore, lang: TextLang): { system: string; prompt: string } {
   const filled = score.judgements.filter((entry) => entry.source !== "empty").map((entry) => entry.id)
   const system =
-    `${TEXT_RULES} Write the short report of the AI Plan Score in ${LANGUAGE_NAME[lang]}, addressed to the team, ` +
+    `${TEXT_RULES} ${LANGUAGE_RULE[lang]} Write the short report of the AI Plan Score, addressed to the team, ` +
     "plain and specific: what is strong, what is missing and what to do next. Refer to parts of the plan by their " +
     "labels, and put their keys only into the `keys` arrays. Never state a number that is not in the scores."
   const prompt = [

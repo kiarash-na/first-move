@@ -7,7 +7,7 @@ import { HINTS } from "./hints"
 import { judgementOf } from "./judgements"
 import type { TextOptions, TextResult } from "./report"
 import { weakJudgements } from "./report"
-import { fit, GATE_STATEMENTS, LANGUAGE_NAME, planExcerpts, TEXT_RULES } from "./text-input"
+import { fit, GATE_STATEMENTS, LANGUAGE_RULE, planExcerpts, TEXT_RULES } from "./text-input"
 
 /**
  * On-demand suggestions (D-77): for each weak judgement and each failed or unclear gate, one to
@@ -44,7 +44,7 @@ function target(key: string) {
 
 export function suggestPrompt(project: Project, keys: readonly string[], lang: TextOptions["lang"]): { system: string; prompt: string } {
   const system =
-    `${TEXT_RULES} Suggest improvements in ${LANGUAGE_NAME[lang]} for the weak parts and failed checks of a business plan. ` +
+    `${TEXT_RULES} ${LANGUAGE_RULE[lang]} Suggest improvements for the weak parts and failed checks of a business plan. ` +
     "For each key give one to three short suggestions (one sentence each) that the team can carry out with ordinary " +
     "effort: general and feasible, based on what a strong answer contains and on the hints given. Do not invent " +
     "programmes, prices, laws, organisations or figures."
