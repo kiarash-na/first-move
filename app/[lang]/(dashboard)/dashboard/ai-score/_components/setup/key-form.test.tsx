@@ -3,6 +3,7 @@ import userEvent from "@testing-library/user-event"
 import { afterEach, describe, expect, it, vi } from "vitest"
 
 import { clearGatewayKey, readGatewayKey } from "@/lib/assistant/gateway/key"
+import { EMPTY_VALUE } from "@/lib/i18n/format"
 import { fakeClient } from "../test-utils/fake-client"
 import { aiScoreCopy, aiScoreStore, renderAiScore } from "../test-utils/render"
 import { example } from "../test-utils/scored"
@@ -30,6 +31,11 @@ describe("KeyForm (bring your own key, D-71)", () => {
     expect(field).toHaveAttribute("autocomplete", "off")
     expect(field).toHaveAttribute("spellcheck", "false")
     expect(field).not.toHaveAttribute("name")
+    expect(field.closest("form")).toBeNull()
+    expect(field).toHaveAttribute("data-1p-ignore")
+    expect(field).toHaveAttribute("data-lpignore", "true")
+    expect(field).toHaveAttribute("data-bwignore")
+    expect(field).toHaveAttribute("data-form-type", "other")
     expect(screen.getByText(copy.setup.key.none)).toBeInTheDocument()
     expect(screen.queryByRole("button", { name: copy.setup.key.forget })).not.toBeInTheDocument()
     expect(screen.getByText(copy.setup.key.memory)).toBeInTheDocument()
@@ -62,6 +68,22 @@ describe("KeyForm (bring your own key, D-71)", () => {
     expect(setItem).not.toHaveBeenCalled()
     expect(pushState).not.toHaveBeenCalled()
     expect(replaceState).not.toHaveBeenCalled()
+  })
+
+  it("uses the key on Enter too", async () => {
+    const { field, fake } = setup()
+    await userEvent.type(field, `${KEY}{Enter}`)
+    expect(readGatewayKey()).toBe(KEY)
+    expect(field).toHaveValue("")
+    expect(fake.create).toHaveBeenCalledTimes(1)
+    expect(await screen.findByText("Key accepted. Balance: $4.20")).toBeInTheDocument()
+  })
+
+  it("shows the empty value when the Gateway sends no readable balance", async () => {
+    const { field } = setup({ balance: "n/a" })
+    await userEvent.type(field, KEY)
+    await userEvent.click(screen.getByRole("button", { name: copy.setup.key.use }))
+    expect(await screen.findByText(`Key accepted. Balance: ${EMPTY_VALUE}`)).toBeInTheDocument()
   })
 
   it("keeps the key when only the balance check fails", async () => {
