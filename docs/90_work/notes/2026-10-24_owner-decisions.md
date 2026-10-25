@@ -134,6 +134,7 @@ Given by the owner in the cloud session on `dev`, answering numbered questions 1
 | D-76 | **Reference cases**: 3 real Vienna anergy projects and 3 fictional anchor-building cases, one weak, one middling and one strong plan per group, with verified public references; on the start screen and in the public docs. |
 | D-77 | Improvement suggestions run **on demand** for weak fields only. |
 | D-78 | Start screen: **examples come last**, below the user's own projects, and start **collapsed**; this holds for the illustrative examples and the reference cases. |
+| D-79 | The three **fictional** reference cases are built around **real Vienna buildings** with enough verified public facts (owner, 2026-10-25). The building facts are sourced; the plan around them stays fictional, is marked illustrative and says that the owner has not planned or endorsed it. |
 
 ## Defaults added in plan review (2026-10-24)
 
