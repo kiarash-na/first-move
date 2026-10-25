@@ -5,7 +5,7 @@ import { applyProposal } from "./apply"
 import { projectWith } from "./test-utils/project"
 
 const NOW = new Date(Date.UTC(2026, 9, 25, 10))
-const MODEL = "anthropic/claude-haiku-test"
+const MODEL = "anthropic/text-model-test"
 
 function proposal(entries: { key: string; value: unknown; file?: string }[]): Proposal {
   const valid = entries.map(({ key, value, file }) => ({ key, value, label: key, sources: [{ quote: "q", ...(file && { file }) }] }))

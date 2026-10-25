@@ -48,7 +48,7 @@ export function calcNotes(result: QuickCheckComplete, t: MailTexts): CalcNote[] 
 export function calcNotesSection(result: QuickCheckComplete, t: MailTexts, docsUrl: string): Section {
   const { results } = t.mail.conversation
   return {
-    kicker: results.notes,
+    kicker: t.mail.conversation.kicker.quickCheck,
     title: t.calc.ui.title,
     accent: "ink",
     blocks: [

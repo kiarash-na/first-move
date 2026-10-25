@@ -23,10 +23,11 @@ export const MAX_ROUNDS = 40
 export const STORED_REPLY = z.strictObject({
   emailId: z.string().max(128),
   kind: z.string().max(40),
-  text: z.string().max(200_000),
-  html: z.string().max(100_000).optional(),
+  locale: z.enum(LOCALES),
+  text: z.string().max(100_000),
+  html: z.string().max(400_000).optional(),
   attachments: z
-    .array(z.strictObject({ filename: z.string().max(200), content: z.string().max(4_000_000), contentType: z.string().max(100) }))
+    .array(z.strictObject({ filename: z.string().max(200), content: z.string().max(2_000_000), contentType: z.string().max(100) }))
     .max(1)
     .optional(),
 })
@@ -77,6 +78,14 @@ export function newConversation(locale: Locale, threadId: string, now: number): 
     rev: 0,
     updatedAt: new Date(now).toISOString(),
   }
+}
+
+/** Where the conversation stands, as Jev's `phase` (PLAN-AGENT-06 step 9): new, menu, collect:quick-check, collect:business-plan:<step>, results. */
+export function guardPhase(state: ConversationState | null): string {
+  if (!state) return "new"
+  if (state.phase !== "collect") return state.phase
+  if (state.bpStep === null) return "collect:quick-check"
+  return `collect:business-plan:${BUSINESS_PLAN_STEPS[Math.min(state.bpStep, BUSINESS_PLAN_STEPS.length - 1)]}`
 }
 
 /** Remembers an applied email id (the newest few). */

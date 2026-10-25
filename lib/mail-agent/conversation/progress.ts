@@ -16,7 +16,7 @@ function unclearLines(proposal: Proposal, project: Project, applied: Applied, no
   const lines = [
     ...proposal.unclear.map((value) => `${value.label}: ${progress.reasons[value.reason]}`),
     ...proposal.invalid.map((entry) => `${entry.label}: ${entry.message}`),
-    ...proposal.conflicts.map((conflict) => `${conflict.label}: ${conflict.candidates.map((candidate) => String(candidate.value)).join(" / ")}`),
+    ...proposal.conflicts.map((conflict) => `${conflict.label}: ${conflict.candidates.map((candidate) => formatFieldValue(conflict.id, candidate.value, t)).join(" / ")}`),
   ]
   const group = getGroup(SHARES)
   if (group && applied.values.some((value) => value.key.startsWith(`${SHARES}.`))) {

@@ -12,6 +12,9 @@ const secret = z
 const count = z.coerce.number().int().positive().max(1_000_000)
 const model = z.string().regex(/^[a-z0-9-]+\/[a-z0-9.-]+$/)
 
+/** The Gateway model the email agent writes with unless `EMAIL_AGENT_TEXT_MODEL` names another (D-64). */
+export const DEFAULT_TEXT_MODEL = "anthropic/claude-haiku-5.5"
+
 /** Every name of `.env.example` with its rule. Values never leave this module in errors. */
 const SCHEMA = z.object({
   SITE_URL: z.url({ protocol: /^https?$/ }).transform((url) => url.replace(/\/+$/, "")),
@@ -26,7 +29,7 @@ const SCHEMA = z.object({
   RESEND_AGENT_INBOX_ID: z.string().regex(/^[A-Za-z0-9_-]{1,100}$/),
   AI_GATEWAY_API_KEY: z.string().min(1).max(500),
   EMAIL_AGENT_DECISION_MODEL: model.default("typesafe-ai/jev-1.14.0"),
-  EMAIL_AGENT_TEXT_MODEL: model.default("anthropic/claude-haiku-5.5"),
+  EMAIL_AGENT_TEXT_MODEL: model.default(DEFAULT_TEXT_MODEL),
   KV_REST_API_URL: z.url({ protocol: /^https$/ }),
   KV_REST_API_TOKEN: z.string().min(1).max(500),
   EMAIL_AGENT_HASH_SECRET: secret,

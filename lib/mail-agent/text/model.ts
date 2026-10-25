@@ -31,7 +31,7 @@ export interface TextModel {
 }
 
 /**
- * Claude Haiku 5.5's price in USD per million tokens: $0.10 in, $0.50 out for prompts up to
+ * The text model's price in USD per million tokens: $0.10 in, $0.50 out for prompts up to
  * 100K tokens, five times that above (research note). The agent's prompts stay far below.
  */
 export const HAIKU_PRICE = { input: 0.1, output: 0.5, longInput: 0.5, longOutput: 2.5, longFrom: 100_000 } as const

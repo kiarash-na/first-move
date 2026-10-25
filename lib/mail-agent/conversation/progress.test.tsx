@@ -32,7 +32,7 @@ describe("progressSection", () => {
     const text = renderText(<MessageSection section={progressSection({ applied, proposal, notes: ["“about 40” is not a number of buildings"] }, t, "cool")} />)
     expect(text).toContain("Total number of buildings  42")
     expect(text).toContain("Share of buildings · Residential buildings · 1961-1990\nfrom stock.xlsx  60%")
-    expect(text).toContain("- Total project area: 35000 / 40000")
+    expect(text).toContain("- Total project area: 35,000 m² (3.5 ha) / 40,000 m² (4 ha)")
     expect(text).toContain("- Photovoltaic (PV) available: please answer yes or no")
     expect(text).toContain("- The shares add up to 60 %; they must add up to 100 %.")
     expect(text).toContain("- “about 40” is not a number of buildings")

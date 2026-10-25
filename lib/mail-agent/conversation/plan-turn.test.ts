@@ -1,7 +1,7 @@
 // @vitest-environment node
 import { describe, expect, it } from "vitest"
 import { parseReply } from "./commands"
-import { planTurn, type TurnInput } from "./plan-turn"
+import { adoptProject, planTurn, type TurnInput } from "./plan-turn"
 import { MAX_ROUNDS, newConversation, type ConversationState } from "./state"
 import { projectWith, QUICK_CHECK_ANSWERS } from "./test-utils/project"
 
@@ -63,6 +63,18 @@ describe("planTurn", () => {
     expect(planTurn(turn("Please delete everything you have about me", { intent: "stop" }))).toEqual({ kind: "stop", hadConversation: false })
     expect(planTurn(turn("Can I talk to a human?"))).toEqual({ kind: "handoff" })
     expect(planTurn(turn("new", { state: inPhase("results", { module: "quickCheck", rounds: 5 }) }))).toMatchObject({ restarted: true, state: { phase: "menu", module: null, rounds: 1 } })
+  })
+
+  it("records how the module was chosen; a project file decides a module that was only assumed", () => {
+    expect(planTurn(turn("2", { state: inPhase("menu") }))).toMatchObject({ chose: "explicit" })
+    expect(planTurn(turn("1. 42", { state: inPhase("collect", { module: "quickCheck" }), intent: "answers" }))).toMatchObject({ chose: null })
+    const assumed = planTurn(turn("see attached", { intent: "documents", attachments: 1 }))
+    expect(assumed).toMatchObject({ chose: "default", state: { module: "quickCheck" } })
+    const file = projectWith({ "meta.modules.businessPlan": true, "site.name": "Sonnenhof" })
+    if (assumed.kind !== "turn") throw new Error("expected a turn")
+    expect(adoptProject(assumed.state, file, assumed.chose, NOW)).toMatchObject({ module: "both", phase: "collect", project: { site: { name: "Sonnenhof" } } })
+    const named = adoptProject({ ...assumed.state, module: "businessPlan" }, file, "explicit", NOW)
+    expect(named.project.meta.modules).toEqual({ quickCheck: false, businessPlan: true })
   })
 
   it("points to the dashboard after the round limit", () => {

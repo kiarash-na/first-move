@@ -13,7 +13,7 @@ const USAGE = { inputTokens: 2_000, outputTokens: 300 }
 export function fakeTextModel(answer: (request: StructuredRequest<unknown>) => FakeAnswer) {
   const requests: StructuredRequest<unknown>[] = []
   const model: TextModel = {
-    modelId: "anthropic/claude-haiku-test",
+    modelId: "anthropic/text-model-test",
     async structured<T>(request: StructuredRequest<T>): Promise<StructuredResult<T>> {
       requests.push(request as StructuredRequest<unknown>)
       const value = answer(request as StructuredRequest<unknown>)

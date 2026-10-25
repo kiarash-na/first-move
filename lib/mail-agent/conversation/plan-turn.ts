@@ -39,7 +39,11 @@ export type TurnPlan =
       next: boolean
       /** Show the menu with "please choose 1, 2 or 3". */
       menuAgain: boolean
+      /** How this email chose the module: in words (or by Jev's reading), by sending data, or not at all. */
+      chose: "explicit" | "default" | null
     }
+
+export type TurnStep = Extract<TurnPlan, { kind: "turn" }>
 
 export const includesQuickCheck = (module: ModuleChoice | null) => module === "quickCheck" || module === "both"
 export const includesBusinessPlan = (module: ModuleChoice | null) => module === "businessPlan" || module === "both"
@@ -59,7 +63,7 @@ export function withModule(state: ConversationState, module: ModuleChoice, now: 
 }
 
 /** The fields to read in the collect and results phases: the Quick Check until it is complete, then the current Business Plan step; everything when files came. */
-function scopeFor(state: ConversationState, attachments: number): ExtractScope {
+export function extractScope(state: ConversationState, attachments: number): ExtractScope {
   const qc = includesQuickCheck(state.module)
   const bp = includesBusinessPlan(state.module)
   if (state.phase === "results" || attachments > 0) return { quickCheck: qc, bpSteps: bp ? BUSINESS_PLAN_STEPS : [] }
@@ -93,7 +97,7 @@ export function planTurn(input: TurnInput): TurnPlan {
   const wantsFile = sendFile ? true : state.wantsFile === null ? (parsed.wantsFile ?? intentFile) : (intentFile ?? state.wantsFile)
   state = { ...state, wantsFile }
 
-  const base = { restarted, sendFile, next: parsed.command === "next", menuAgain: false }
+  const base = { restarted, sendFile, next: parsed.command === "next", menuAgain: false, chose: null }
   if (state.rounds > MAX_ROUNDS && parsed.command !== "new") return { kind: "turn", state, ...base, limit: true, answer: false, extract: null }
 
   const smallTalk = action === "small_talk"
@@ -101,12 +105,25 @@ export function planTurn(input: TurnInput): TurnPlan {
   const data = !smallTalk && parsed.command === null && (attachments > 0 || !NO_DATA.includes(intent) || parsed.hasNumbers)
 
   if (state.phase === "menu") {
-    const chosen = parsed.module ?? (intent ? INTENT_MODULE[intent] : undefined) ?? (data && (attachments > 0 || intent === "answers" || intent === "documents") ? "quickCheck" : null)
+    const named = parsed.module ?? (intent ? INTENT_MODULE[intent] : undefined) ?? null
+    const chosen = named ?? (data && (attachments > 0 || intent === "answers" || intent === "documents") ? "quickCheck" : null)
     if (!chosen) return { kind: "turn", state, ...base, limit: false, answer, extract: null, menuAgain: !fresh && !answer && !smallTalk }
     state = withModule(state, chosen, now)
     // A short menu answer ("1, yes") carries no values; a longer first email may.
-    const extract = attachments > 0 || (parsed.module === null && data) ? scopeFor(state, attachments) : null
-    return { kind: "turn", state, ...base, limit: false, answer, extract }
+    const extract = attachments > 0 || (parsed.module === null && data) ? extractScope(state, attachments) : null
+    return { kind: "turn", state, ...base, limit: false, answer, extract, chose: named ? "explicit" : "default" }
   }
-  return { kind: "turn", state, ...base, limit: false, answer, extract: data ? scopeFor(state, attachments) : null }
+  return { kind: "turn", state, ...base, limit: false, answer, extract: data ? extractScope(state, attachments) : null }
+}
+
+/**
+ * A project file the sender attached becomes the draft (D-13), validated and migrated like an
+ * import. The module named in the conversation stays; a module only assumed because data came
+ * with the first email gives way to the file's own.
+ */
+export function adoptProject(state: ConversationState, imported: Project, chose: TurnStep["chose"], now: number): ConversationState {
+  const choice = chose === "default" || state.module === null ? moduleOf(imported) : state.module
+  const patch = { "meta.modules.quickCheck": includesQuickCheck(choice), "meta.modules.businessPlan": includesBusinessPlan(choice) }
+  const phase = state.phase === "menu" ? "collect" : state.phase
+  return { ...state, module: choice, phase, project: applyPatch(imported, patch, { now: new Date(now) }).project }
 }

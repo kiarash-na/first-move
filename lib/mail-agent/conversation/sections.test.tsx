@@ -58,7 +58,8 @@ describe("conversation sections", () => {
 
   it("has a line for every phase, the hand-off, the end, a restart and the limit", () => {
     expect(text(reminderSection("collect", en))).toContain("still collecting")
-    expect(text(handoffSection(en))).toContain("human@mail.firstmove.energy")
+    expect(text(handoffSection(en, { again: false }))).toContain("I passed your message on to a person at First Move")
+    expect(text(handoffSection(de, { again: true }))).toContain("human@mail.firstmove.energy")
     expect(text(stoppedSection(en, { hadConversation: true }))).toContain("deleted the project data")
     expect(text(stoppedSection(en, { hadConversation: false }))).toContain("There was no conversation to end.")
     expect(text(restartedSection(de))).toContain("Wir beginnen von vorne.")

@@ -4,7 +4,7 @@ import { applyPatch } from "@/lib/project"
 import { seal } from "../store/crypto"
 import { keys } from "../store/keys"
 import { createMemoryStore } from "../store/memory-store"
-import { deleteConversation, loadConversation, newConversation, saveConversation, withHandled } from "./state"
+import { deleteConversation, guardPhase, loadConversation, newConversation, saveConversation, withHandled } from "./state"
 
 const SECRET = new Uint8Array(32).fill(7)
 const NOW = Date.UTC(2026, 9, 25, 9)
@@ -62,5 +62,14 @@ describe("conversation state (PLAN-AGENT-07 step 5)", () => {
     expect(state.handled).toHaveLength(20)
     expect(state.handled.at(-1)).toBe("email-10")
     expect(state.handled).not.toContain("email-0")
+  })
+
+  it("tells the guard where the conversation stands", () => {
+    const fresh = newConversation("en", "t1", 0)
+    expect(guardPhase(null)).toBe("new")
+    expect(guardPhase(fresh)).toBe("menu")
+    expect(guardPhase({ ...fresh, phase: "collect", module: "both" })).toBe("collect:quick-check")
+    expect(guardPhase({ ...fresh, phase: "collect", module: "both", bpStep: 2 })).toBe("collect:business-plan:reality-check")
+    expect(guardPhase({ ...fresh, phase: "results", bpStep: 4 })).toBe("results")
   })
 })

@@ -1,6 +1,7 @@
 // @vitest-environment node
 import { describe, expect, it } from "vitest"
 import { z } from "zod"
+import { DEFAULT_TEXT_MODEL } from "../env"
 import { anthropicTextModel } from "./anthropic"
 import { textCost } from "./model"
 
@@ -11,7 +12,7 @@ import { textCost } from "./model"
  */
 const apiKey = process.env.AI_GATEWAY_API_KEY
 const live = process.env.MAIL_AGENT_LIVE_TEXT === "1" && Boolean(apiKey)
-const model = process.env.EMAIL_AGENT_TEXT_MODEL || "anthropic/claude-haiku-5.5"
+const model = process.env.EMAIL_AGENT_TEXT_MODEL || DEFAULT_TEXT_MODEL
 
 describe.skipIf(!live)("Claude Haiku through the AI Gateway (live)", () => {
   it("returns schema-valid structured output", async () => {

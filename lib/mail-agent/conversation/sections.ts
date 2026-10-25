@@ -71,9 +71,11 @@ export function reminderSection(phase: Phase, t: MailTexts): Section {
   return { kicker: conversation.kicker.progress, accent: "ink", blocks: [{ type: "text", text: conversation.reminder[phase] }] }
 }
 
-export function handoffSection(t: MailTexts): Section {
+/** A person takes over; `again` when the person already has an earlier email of the same day. */
+export function handoffSection(t: MailTexts, { again }: { again: boolean }): Section {
   const { conversation } = t.mail
-  return { kicker: conversation.kicker.handoff, title: conversation.handoff.title, accent: "ink", blocks: [{ type: "text", text: interpolate(conversation.handoff.body, { address: OPERATOR.emailHuman }) }] }
+  const { handoff } = conversation
+  return { kicker: conversation.kicker.handoff, title: handoff.title, accent: "ink", blocks: [{ type: "text", text: interpolate(again ? handoff.again : handoff.body, { address: OPERATOR.emailHuman }) }] }
 }
 
 export function stoppedSection(t: MailTexts, { hadConversation }: { hadConversation: boolean }): Section {

@@ -10,7 +10,7 @@ function message(overrides: Record<string, unknown> = {}) {
     id: "msg_1",
     type: "message",
     role: "assistant",
-    model: "claude-haiku-5-5",
+    model: "text-model",
     content: [{ type: "text", text: JSON.stringify({ answer: "Fifth-generation networks run at low temperature." }) }],
     stop_reason: "end_turn",
     stop_sequence: null,
@@ -32,7 +32,7 @@ function fakeFetch(...bodies: (Record<string, unknown> | number)[]) {
   return { fetch: fetch as typeof globalThis.fetch, requests }
 }
 
-const model = (fetch: typeof globalThis.fetch) => anthropicTextModel({ apiKey: "gateway-key", model: "anthropic/claude-haiku-5.5", fetch })
+const model = (fetch: typeof globalThis.fetch) => anthropicTextModel({ apiKey: "gateway-key", model: "anthropic/text-model", fetch })
 const request = { system: "You answer.", user: "What is 5GDHC?", schema: SCHEMA, maxTokens: 500 }
 
 describe("anthropicTextModel (D-64)", () => {
@@ -46,7 +46,7 @@ describe("anthropicTextModel (D-64)", () => {
     expect(sent.headers.get("authorization")).toBe("Bearer gateway-key")
     expect(sent.headers.get("x-api-key")).toBeNull()
     expect(sent.body).toMatchObject({
-      model: "anthropic/claude-haiku-5.5",
+      model: "anthropic/text-model",
       max_tokens: 500,
       system: "You answer.",
       messages: [{ role: "user", content: "What is 5GDHC?" }],
