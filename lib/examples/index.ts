@@ -7,6 +7,7 @@
 import { housingCooperatives } from "./housing-cooperatives"
 import { newBuildQuarter } from "./new-build-quarter"
 import { officeRetailBlock } from "./office-retail-block"
+import { getReferenceCase } from "./reference-cases"
 import { ruralVillageHotel } from "./rural-village-hotel"
 import { schoolKindergartenFlats } from "./school-kindergarten-flats"
 import { thermalSpaHotels } from "./thermal-spa-hotels"
@@ -24,8 +25,9 @@ export const EXAMPLES: readonly ExampleDefinition[] = [
 
 export const EXAMPLE_IDS = EXAMPLES.map((example) => example.id)
 
+/** An example or a reference case from Vienna (D-76): both load the same way. */
 export function getExample(id: string): ExampleDefinition | undefined {
-  return EXAMPLES.find((example) => example.id === id)
+  return EXAMPLES.find((example) => example.id === id) ?? getReferenceCase(id)
 }
 
 export { EXAMPLE_DATE, localizeExample } from "./localize"

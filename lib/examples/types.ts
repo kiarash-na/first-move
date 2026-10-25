@@ -63,5 +63,10 @@ export interface ExampleDefinition {
   sources: { potentials: Partial<Record<SourceKey, Potential>>; pv: boolean }
   /** Known network length in m (QCT-IN-08); omitted = estimated by EQ-3.4a/b. */
   networkLengthM?: number
+  /**
+   * Known annual demand in kWh/a (QCT-IN-05, OQ-05), as a reference case states it; omitted or
+   * null = estimated by EQ-3.2c/d from the buildings.
+   */
+  manualDemand?: { heatingKwhPerYear: number | null; coolingKwhPerYear: number | null }
   businessPlan: ExampleBusinessPlan
 }

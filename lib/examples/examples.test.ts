@@ -58,6 +58,9 @@ describe("the example list", () => {
   it("is found by id", () => {
     expect(getExample("new-build-quarter")?.name.en).toBe("New-build quarter")
     expect(getExample("missing")).toBeUndefined()
+    // The reference cases from Vienna load the same way, but are not part of the six (D-76).
+    expect(getExample("smart-block-geblergasse")?.name.en).toBe("Smart Block Geblergasse")
+    expect(EXAMPLES.map((example) => example.id)).not.toContain("smart-block-geblergasse")
   })
 
   it("takes the label 'Illustrative inputs only' from the shell dictionary (DESIGN-TOKENS section 6)", async () => {
