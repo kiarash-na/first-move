@@ -77,6 +77,20 @@ describe.each(LOCALES)("legal facts (%s)", (lang) => {
     expect(doc.sections.map((section) => section.id)).toContain("ai-plan-score")
   })
 
+  it("AI page and Privacy Policy say on which Vercel plans zero data retention is offered, and what applies to BYOK keys", async () => {
+    for (const slug of ["ai", "privacy"] as const) {
+      const text = await fullText(lang, slug)
+      expect(text, slug).toMatch(/Pro (and|und) Enterprise/)
+      expect(text, slug).toContain("BYOK")
+    }
+  })
+
+  it("Terms cover the AI Plan Score, which the AI page points to (/terms#ai-features)", async () => {
+    const doc = (await getDictionary(lang, "terms")) as unknown as LegalDocCopy
+    const body = doc.sections.find((section) => section.id === "ai-features")?.body.join("\n") ?? ""
+    for (const fact of ["(/ai#plan-score)", "Vercel AI Gateway"]) expect(body, fact).toContain(fact)
+  })
+
   it("Cookie Policy names the AI Gateway in its connection rules", async () => {
     expect(await fullText(lang, "cookies")).toContain("Vercel AI Gateway")
   })
