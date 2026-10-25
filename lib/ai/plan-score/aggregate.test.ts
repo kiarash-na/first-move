@@ -72,4 +72,10 @@ describe("aggregate (PLAN-AI-SCORE-01 § Aggregation)", () => {
     expect(displayScore(62.4, 7.6)).toEqual({ score: 60, band: 8 })
     expect(displayScore(63, 0.2)).toEqual({ score: 65, band: 1 })
   })
+
+  it("labels the score as stored, so the saved score and its label agree", () => {
+    // Level 2.7984 everywhere: 25 × 2.7984 = 69.96, stored with one decimal as 70.
+    const nodes = DIMENSIONS.map(({ id }): JudgementNode => ({ ...judgement(id, id, null), level: 2.7984 }))
+    expect(aggregate(nodes)).toMatchObject({ score: 70, level: "solid" })
+  })
 })
