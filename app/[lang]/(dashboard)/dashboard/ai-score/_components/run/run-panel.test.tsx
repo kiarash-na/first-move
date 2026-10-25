@@ -13,9 +13,15 @@ const copy = aiScoreCopy().run
 const IDLE: AnalysisRun = { phase: "idle", progress: null, error: null, reportError: null, saved: null }
 const READY: RunReadiness = { key: true, ack: true, model: true }
 
-function show({ project = example(), run = IDLE, readiness = READY, hasScore = false }: { project?: ReturnType<typeof example>; run?: AnalysisRun; readiness?: RunReadiness; hasScore?: boolean } = {}) {
+function show({
+  project = example(),
+  run = IDLE,
+  readiness = READY,
+  hasScore = false,
+  textBusy = false,
+}: { project?: ReturnType<typeof example>; run?: AnalysisRun; readiness?: RunReadiness; hasScore?: boolean; textBusy?: boolean } = {}) {
   const handlers = { onStart: vi.fn(), onCancel: vi.fn(), onWriteAgain: vi.fn() }
-  renderAiScore(<RunPanel project={project} run={run} readiness={readiness} hasScore={hasScore} hasReport={false} writing={false} textError={null} {...handlers} />, {
+  renderAiScore(<RunPanel project={project} run={run} readiness={readiness} hasScore={hasScore} hasReport={false} writing={false} textBusy={textBusy} textError={null} {...handlers} />, {
     store: aiScoreStore(project).store,
   })
   return handlers
@@ -60,6 +66,11 @@ describe("RunPanel", () => {
     show({ hasScore: true })
     expect(screen.getByRole("button", { name: copy.again })).toBeEnabled()
     expect(screen.getByText(copy.againNote)).toBeInTheDocument()
+  })
+
+  it("waits while a report or suggestions are being written", () => {
+    show({ hasScore: true, textBusy: true })
+    expect(screen.getByRole("button", { name: copy.again })).toBeDisabled()
   })
 
   it("writes a failed report again", async () => {

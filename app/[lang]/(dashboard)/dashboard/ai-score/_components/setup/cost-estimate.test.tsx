@@ -3,8 +3,9 @@ import userEvent from "@testing-library/user-event"
 import { describe, expect, it } from "vitest"
 
 import { TEXT_MODELS } from "@/lib/assistant/gateway/models"
+import { createProject } from "@/lib/project"
 import { aiScoreCopy, aiScoreStore, renderAiScore } from "../test-utils/render"
-import { example } from "../test-utils/scored"
+import { example, NOW } from "../test-utils/scored"
 import { CostEstimate } from "./cost-estimate"
 import { estimateCost, roughAmount } from "./cost"
 
@@ -26,9 +27,23 @@ describe("CostEstimate (D-33)", () => {
 
   it("prices only the decisions for a custom model", async () => {
     const project = example()
+    const rough = roughAmount(estimateCost(project, null).decisionUsd)
     renderAiScore(<CostEstimate project={project} model={null} modelId="example/custom-model" />, { store: aiScoreStore(project).store })
-    expect(screen.getByText(/The price of this text model is not known here/)).toBeInTheDocument()
+    expect(screen.getByText(`${rough.below ? "Less than" : "About"} $${rough.value} for the decisions. The price of this text model is not known here.`)).toBeInTheDocument()
     await userEvent.click(screen.getByRole("button", { name: copy.how.title }))
     expect(screen.getByText(/The prices of this model are not known here/)).toBeInTheDocument()
+  })
+
+  it("says \"less than\" when the decisions of a small plan cost below the floor", () => {
+    const empty = createProject({ modules: { businessPlan: true }, id: "11111111-1111-4111-8111-111111111111", now: NOW() })
+    expect(roughAmount(estimateCost(empty, null).decisionUsd).below).toBe(true)
+    renderAiScore(<CostEstimate project={empty} model={null} modelId="example/custom-model" />, { store: aiScoreStore(empty).store })
+    expect(screen.getByText("Less than $0.001 for the decisions. The price of this text model is not known here.")).toBeInTheDocument()
+  })
+
+  it("reads naturally in German", () => {
+    const empty = createProject({ modules: { businessPlan: true }, id: "11111111-1111-4111-8111-111111111111", now: NOW() })
+    renderAiScore(<CostEstimate project={empty} model={null} modelId="example/custom-model" />, { store: aiScoreStore(empty).store, lang: "de" })
+    expect(screen.getByText("Weniger als 0,001 $ für die Entscheidungen. Der Preis dieses Textmodells ist hier nicht bekannt.")).toBeInTheDocument()
   })
 })

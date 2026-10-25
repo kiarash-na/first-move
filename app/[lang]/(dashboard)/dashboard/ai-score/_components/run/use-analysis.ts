@@ -28,7 +28,8 @@ const IDLE: AnalysisRun = { phase: "idle", progress: null, error: null, reportEr
  * One AI Plan Score run from the page (PLAN-AI-SCORE-00 step 6): reads the key from memory at the
  * start only, follows the turns live, saves the score with `setAiScore` even when the plan
  * changed meanwhile (its hashes mark those fields outdated) and maps errors to copy codes. A
- * cancel, a new run or leaving the page aborts the requests.
+ * cancel, a new run or leaving the page aborts the requests, at any step, and then nothing is
+ * saved.
  */
 export function useAnalysis(store: ProjectStore, createClient: (key: string) => GatewayClient) {
   const [run, setRun] = useState<AnalysisRun>(IDLE)
@@ -56,6 +57,11 @@ export function useAnalysis(store: ProjectStore, createClient: (key: string) => 
           },
         })
         if (!current()) return
+        // A cancel while the report is written ends the run too: the score is not saved.
+        if (abort.signal.aborted) {
+          setRun((previous) => ({ ...previous, phase: "failed", progress: previous.progress && stopProgress(previous.progress), error: "aborted" }))
+          return
+        }
         const saved = store.setAiScore(project.meta.id, result.score)
         setRun((previous) => ({
           phase: "done",

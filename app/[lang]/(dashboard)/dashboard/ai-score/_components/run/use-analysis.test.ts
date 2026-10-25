@@ -79,6 +79,34 @@ describe("useAnalysis", () => {
     expect(store.setAiScore).not.toHaveBeenCalled()
   })
 
+  it("saves nothing when cancelled while the report is written", async () => {
+    setGatewayKey(KEY)
+    const { project, store, hook } = setup({ holdText: true })
+    let done: Promise<void> = Promise.resolve()
+    act(() => {
+      done = hook.result.current.start(project, "x/y", "en")
+    })
+    await waitFor(() => expect(hook.result.current.run.progress?.report).toBe("running"))
+    act(() => hook.result.current.cancel())
+    await act(() => done)
+    expect(hook.result.current.run).toMatchObject({ phase: "failed", error: "aborted" })
+    expect(hook.result.current.run.progress?.report).toBe("failed")
+    expect(store.setAiScore).not.toHaveBeenCalled()
+  })
+
+  it("saves nothing when the page is left while the report is written", async () => {
+    setGatewayKey(KEY)
+    const { project, store, hook } = setup({ holdText: true })
+    let done: Promise<void> = Promise.resolve()
+    act(() => {
+      done = hook.result.current.start(project, "x/y", "en")
+    })
+    await waitFor(() => expect(hook.result.current.run.progress?.report).toBe("running"))
+    hook.unmount()
+    await act(() => done)
+    expect(store.setAiScore).not.toHaveBeenCalled()
+  })
+
   it("saves even when the plan changed during the run", async () => {
     setGatewayKey(KEY)
     const { project, store, fake, hook } = setup({ hold: true })

@@ -16,13 +16,13 @@ beforeAll(async () => {
 })
 afterEach(() => clearGatewayKey())
 
-function setup(options: Parameters<typeof fakeClient>[0] = {}, ready = true) {
+function setup(options: Parameters<typeof fakeClient>[0] = {}, ready = true, running = false) {
   const project = { ...example(), aiScore: score }
   const store = aiScoreStore(project)
   const fake = fakeClient(options)
   const onRemove = vi.fn()
   const hook = renderHook(() =>
-    useTextActions({ store: store.store, createClient: fake.create, project, score, textModelId: "example/text-model", lang: "en", ready, onRemove }),
+    useTextActions({ store: store.store, createClient: fake.create, project, score, textModelId: "example/text-model", lang: "en", ready, running, onRemove }),
   )
   return { store, fake, hook, onRemove }
 }
@@ -53,6 +53,41 @@ describe("useTextActions (ResultActions)", () => {
     await act(async () => hook.result.current.rewriteReport())
     await vi.waitFor(() => expect(hook.result.current.error).toBe("rate"))
     expect(store.setAiScore).not.toHaveBeenCalled()
+  })
+
+  it("drops a result when a newer run replaced the score meanwhile", async () => {
+    setGatewayKey(KEY)
+    const { store, fake, hook } = setup({ holdText: true })
+    await act(async () => hook.result.current.rewriteReport())
+    expect(hook.result.current.busy).toBe("report")
+    const newer: AiScore = { ...score, at: "2026-10-25T12:00:00.000Z", score: 12.3, report: null }
+    act(() => {
+      store.store.setAiScore(store.current().meta.id, newer)
+    })
+    fake.releaseText()
+    await vi.waitFor(() => expect(hook.result.current.busy).toBeNull())
+    expect(store.setAiScore).toHaveBeenCalledTimes(1)
+    expect(store.current().aiScore).toBe(newer)
+    expect(hook.result.current.error).toBeNull()
+  })
+
+  it("starts no text request while a run is in flight", () => {
+    setGatewayKey(KEY)
+    const { fake, hook } = setup({}, true, true)
+    expect(hook.result.current.canUseAi).toBe(false)
+    act(() => hook.result.current.rewriteReport())
+    act(() => hook.result.current.suggest())
+    expect(fake.create).not.toHaveBeenCalled()
+    expect(hook.result.current.busy).toBeNull()
+  })
+
+  it("forgets the last error on request", async () => {
+    setGatewayKey(KEY)
+    const { hook } = setup({ textStatus: 429 })
+    await act(async () => hook.result.current.rewriteReport())
+    await vi.waitFor(() => expect(hook.result.current.error).toBe("rate"))
+    act(() => hook.result.current.clearError())
+    expect(hook.result.current.error).toBeNull()
   })
 
   it("does nothing while not ready, and removes the saved score", () => {

@@ -68,9 +68,9 @@ export function FlowColumn({
         )}
       >
         <span className="font-mono text-xs tracking-[0.06em] text-hot uppercase">{eyebrow}</span>
-        <h4 id={headingId} className="text-base leading-tight font-[560] tracking-[-0.02em] [font-stretch:88%]">
+        <h3 id={headingId} className="text-base leading-tight font-[560] tracking-[-0.02em] [font-stretch:88%]">
           {title}
-        </h4>
+        </h3>
         <span className="font-mono text-xs tracking-[0.04em] text-muted-foreground uppercase">{note}</span>
       </header>
       {waiting && <p className="text-sm text-text-secondary">{waiting}</p>}

@@ -1,13 +1,14 @@
 "use client"
 
 import { KeyRoundIcon, LoaderCircleIcon, Trash2Icon } from "lucide-react"
-import { useId, useRef, useState, type FormEvent } from "react"
+import { useId, useRef, useState, type KeyboardEvent } from "react"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import type { GatewayClient } from "@/lib/assistant/gateway/client"
 import { gatewayErrorCode, type GatewayErrorCode } from "@/lib/assistant/gateway/errors"
 import { clearGatewayKey, isPlausibleGatewayKey, setGatewayKey } from "@/lib/assistant/gateway/key"
+import { EMPTY_VALUE } from "@/lib/i18n/format"
 import { interpolate } from "@/lib/i18n/interpolate"
 import { useDictionary, useLocale } from "../../../_components/i18n-provider"
 import { formatUsd } from "./usd"
@@ -17,9 +18,10 @@ type Check = { state: "idle" } | { state: "invalid" } | { state: "checking" } | 
 
 /**
  * The bring-your-own-key field (D-71): the key goes into module memory (`setGatewayKey`) and the
- * field is emptied at once; the input has no name, so even a native submit could not put it in a
- * URL. "Use key" checks it against the Gateway's credits endpoint and shows the balance; a key the
- * Gateway rejects is forgotten again. The page only ever shows the masked key.
+ * field is emptied at once. The field has no name and sits in no form, so nothing submits it and
+ * password managers get no login form to offer saving; their opt-out attributes say the same.
+ * "Use key" (or Enter) checks it against the Gateway's credits endpoint and shows the balance; a
+ * key the Gateway rejects is forgotten again. The page only ever shows the masked key.
  */
 export function KeyForm({ createClient }: { createClient: (key: string) => GatewayClient }) {
   const lang = useLocale()
@@ -31,10 +33,9 @@ export function KeyForm({ createClient }: { createClient: (key: string) => Gatew
   const inputId = useId()
   const statusId = useId()
 
-  async function use(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault()
+  async function submitKey() {
     const field = input.current
-    if (!field) return
+    if (!field || check.state === "checking") return
     const value = field.value
     if (!isPlausibleGatewayKey(value)) {
       setCheck({ state: "invalid" })
@@ -53,6 +54,12 @@ export function KeyForm({ createClient }: { createClient: (key: string) => Gatew
     }
   }
 
+  function onKeyDown(event: KeyboardEvent<HTMLInputElement>) {
+    if (event.key !== "Enter" || event.nativeEvent.isComposing) return
+    event.preventDefault()
+    void submitKey()
+  }
+
   function forget() {
     clearGatewayKey()
     setCheck({ state: "idle" })
@@ -64,14 +71,14 @@ export function KeyForm({ createClient }: { createClient: (key: string) => Gatew
       : check.state === "checking"
         ? copy.setup.credits.checking
         : check.state === "ok"
-          ? interpolate(copy.setup.credits.balance, { amount: Number.isFinite(check.balance) ? formatUsd(check.balance, lang, { min: 2, max: 2 }) : "–" })
+          ? interpolate(copy.setup.credits.balance, { amount: Number.isFinite(check.balance) ? formatUsd(check.balance, lang, { min: 2, max: 2 }) : EMPTY_VALUE })
           : check.state === "failed" || check.state === "rejected"
             ? interpolate(copy.setup.credits[check.state], { reason: copy.errors[check.code] })
             : null
 
   return (
     <div data-slot="key-form" className="flex flex-col gap-4">
-      <form onSubmit={use} className="flex flex-col gap-2" autoComplete="off">
+      <div className="flex flex-col gap-2">
         <label htmlFor={inputId} className="text-[17px] leading-snug font-[480]">
           {text.label}
         </label>
@@ -84,13 +91,18 @@ export function KeyForm({ createClient }: { createClient: (key: string) => Gatew
             autoCapitalize="none"
             autoCorrect="off"
             spellCheck={false}
+            data-1p-ignore
+            data-lpignore="true"
+            data-bwignore
+            data-form-type="other"
             placeholder={text.placeholder}
             aria-invalid={check.state === "invalid" || undefined}
             aria-describedby={statusId}
             onChange={() => check.state === "invalid" && setCheck({ state: "idle" })}
+            onKeyDown={onKeyDown}
             className="font-mono sm:max-w-md"
           />
-          <Button type="submit" variant="hot" disabled={check.state === "checking"}>
+          <Button type="button" variant="hot" disabled={check.state === "checking"} onClick={() => void submitKey()}>
             <KeyRoundIcon strokeWidth={1.6} aria-hidden="true" />
             {text.use}
           </Button>
@@ -99,7 +111,7 @@ export function KeyForm({ createClient }: { createClient: (key: string) => Gatew
           {check.state === "checking" && <LoaderCircleIcon className="mr-2 inline size-4 motion-safe:animate-spin" strokeWidth={1.6} aria-hidden="true" />}
           {status}
         </p>
-      </form>
+      </div>
       <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
         <p className="font-mono text-xs tracking-[0.06em] uppercase" data-key-state={masked ? "set" : "none"}>
           {masked ? interpolate(text.active, { masked }) : text.none}

@@ -23,9 +23,20 @@ export interface FakeClientOptions {
   creditsStatus?: number
   /** Holds every Jev call until `release()`, to see a run in flight. */
   hold?: boolean
+  /** Holds every text call until `releaseText()`, to see a report or a suggestion in flight. */
+  holdText?: boolean
 }
 
 const failure = (status: number) => Object.assign(new Error(`status ${status}`), { statusCode: status })
+
+/** Waits for `gate`, or fails like a real request when `signal` aborts first. */
+function held(gate: Promise<void>, signal: AbortSignal | undefined) {
+  return new Promise<void>((resolve, reject) => {
+    if (signal?.aborted) return reject(signal.reason)
+    signal?.addEventListener("abort", () => reject(signal.reason), { once: true })
+    void gate.then(resolve)
+  })
+}
 
 /**
  * Tests only: a Gateway client whose models are the engine's mocks (no network). `create` is what
@@ -38,14 +49,12 @@ export function fakeClient(options: FakeClientOptions = {}) {
   if (options.hold) gate = new Promise<void>((resolve) => (open = resolve))
   const doDecide = jev.model.doDecide.bind(jev.model)
   jev.model.doDecide = async (call) => {
-    await new Promise<void>((resolve, reject) => {
-      const signal = call.abortSignal
-      if (signal?.aborted) return reject(signal.reason)
-      signal?.addEventListener("abort", () => reject(signal.reason), { once: true })
-      void gate.then(resolve)
-    })
+    await held(gate, call.abortSignal)
     return doDecide(call)
   }
+  let openText: () => void = () => {}
+  let textGate: Promise<void> = Promise.resolve()
+  if (options.holdText) textGate = new Promise<void>((resolve) => (openText = resolve))
   const credits = vi.fn(async () => {
     if (options.creditsStatus) throw failure(options.creditsStatus)
     return { balance: options.balance ?? "4.2", totalUsed: "0.8" }
@@ -53,12 +62,18 @@ export function fakeClient(options: FakeClientOptions = {}) {
   const textModel = vi.fn((id: string) => {
     void id
     if (options.textStatus) throw failure(options.textStatus)
-    return mockText(options.text ?? REPORT)
+    const model = mockText(options.text ?? REPORT)
+    const doGenerate = model.doGenerate.bind(model)
+    model.doGenerate = async (call) => {
+      await held(textGate, call.abortSignal)
+      return doGenerate(call)
+    }
+    return model
   })
   const client = { decisionModel: () => jev.model, textModel, credits } as unknown as GatewayClient
   const create = vi.fn((key: string) => {
     void key
     return client
   })
-  return { client, create, jev, credits, textModel, release: () => open() }
+  return { client, create, jev, credits, textModel, release: () => open(), releaseText: () => openText() }
 }

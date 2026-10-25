@@ -1,7 +1,7 @@
 "use client"
 
 import { SparklesIcon } from "lucide-react"
-import { useMemo, useState } from "react"
+import { useCallback, useMemo, useState } from "react"
 
 import { Badge } from "@/components/ui/badge"
 import { gatewayClient, type GatewayClient } from "@/lib/assistant/gateway/client"
@@ -46,16 +46,22 @@ export function AiScoreView({ createClient = gatewayClient }: { createClient?: (
   const ready = readiness.key && readiness.ack && readiness.model
   const textModelId = chosenModelId(model)
   const score = project?.aiScore ?? null
+  const running = run.phase === "running"
   const changed = useMemo(() => (project ? aiScoreStatus(project).changed : []), [project])
-  const actions = useTextActions({ store, createClient, project, score, textModelId, lang, ready, onRemove: reset })
+  // Deleting the score also stops a run in flight, so its score does not come back.
+  const onRemove = useCallback(() => {
+    cancel()
+    reset()
+  }, [cancel, reset])
+  const actions = useTextActions({ store, createClient, project, score, textModelId, lang, ready, running, onRemove })
   const writing = actions.busy === "report"
 
   const source = useMemo<FlowSource>(() => {
-    if (run.phase === "running" && run.progress) return { mode: "live", progress: run.progress }
+    if (running && run.progress) return { mode: "live", progress: run.progress }
     if (score) return { mode: "saved", score, changed, writing }
     if (run.progress) return { mode: "live", progress: run.progress }
     return { mode: "idle" }
-  }, [run.phase, run.progress, score, changed, writing])
+  }, [running, run.progress, score, changed, writing])
 
   if (!project) return null
 
@@ -82,8 +88,12 @@ export function AiScoreView({ createClient = gatewayClient }: { createClient?: (
         hasScore={score !== null}
         hasReport={score?.report != null}
         writing={writing}
+        textBusy={actions.busy !== null}
         textError={actions.error}
-        onStart={() => void start(project, textModelId, lang)}
+        onStart={() => {
+          actions.clearError()
+          void start(project, textModelId, lang)
+        }}
         onCancel={cancel}
         onWriteAgain={actions.rewriteReport}
       />

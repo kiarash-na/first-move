@@ -71,7 +71,7 @@
     "title": "Rough cost of a run",
     "value": "About {amount}",
     "below": "Less than {amount}",
-    "decisionOnly": "Decisions about {amount}. The price of this text model is not known here.",
+    "decisionOnly": "{amount} for the decisions. The price of this text model is not known here.",
     "note": "An order of magnitude only. The Gateway bills the tokens actually used.",
     "tokens": "{count} tokens",
     "how": {
