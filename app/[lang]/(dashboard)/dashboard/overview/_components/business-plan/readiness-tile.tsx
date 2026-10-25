@@ -12,7 +12,7 @@ import type { Project } from "@/lib/project"
 import { useDictionary, useLocale } from "../../../_components/i18n-provider"
 import { BpTile } from "./bp-tile"
 
-/** Pitch readiness (D-30): the score, its level and how many points are covered. Counts what is filled in, not quality. */
+/** Pitch completeness (D-30, D-74; ids keep "readiness"): the score, its level and how many points are covered. Counts what is filled in, not quality. */
 export function ReadinessTile({ project }: { project: Project }) {
   const lang = useLocale()
   const copy = useDictionary("overview").bp.readiness

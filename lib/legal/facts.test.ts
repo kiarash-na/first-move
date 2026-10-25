@@ -8,6 +8,7 @@ import { THEME_STORAGE_KEY } from "@/lib/theme/theme"
 import { LOCALE_COOKIE } from "@/lib/i18n/locales"
 import { LEGAL_DOCS, type LegalSlug } from "./docs"
 import { interpolate } from "./interpolate"
+import type { AiStatus } from "./ai"
 import { NOTICE_ACK_KEY } from "./notice"
 import { AUTHORITY, LICENSE, OPERATOR, PROCESSORS } from "./operator"
 import type { LegalDocCopy } from "./types"
@@ -58,14 +59,26 @@ describe.each(LOCALES)("legal facts (%s)", (lang) => {
     }
   })
 
-  it("AI page says what the two functions are and carries a status for both states", async () => {
-    const doc = (await getDictionary(lang, "ai")) as unknown as LegalDocCopy & { status: { planned: string; live: string } }
-    expect(doc.status.planned.trim()).not.toBe("")
-    expect(doc.status.live.trim()).not.toBe("")
+  it("AI page says what the functions are and carries a status for every state", async () => {
+    const doc = (await getDictionary(lang, "ai")) as unknown as LegalDocCopy & { status: Record<AiStatus, string> }
+    for (const state of ["planned", "score", "live"] as const) expect(doc.status[state].trim(), state).not.toBe("")
     const ids = doc.sections.map((section) => section.id)
-    for (const id of ["functions", "risk-classification", "transparency", "human-oversight", "responsible-ai"]) {
+    for (const id of ["plan-score", "functions", "risk-classification", "transparency", "human-oversight", "responsible-ai"]) {
       expect(ids, id).toContain(id)
     }
+  })
+
+  it("AI page and Privacy Policy describe the AI Plan Score and its recipients", async () => {
+    const ai = await fullText(lang, "ai")
+    const privacy = await fullText(lang, "privacy")
+    for (const fact of ["Vercel AI Gateway", "TypeSafe AI", "Jev", "Art. 50"]) expect(ai, fact).toContain(fact)
+    for (const fact of [PROCESSORS.hosting.name, "TypeSafe AI, Inc.", "ai-gateway.vercel.sh", "Art. 45"]) expect(privacy, fact).toContain(fact)
+    const doc = (await getDictionary(lang, "privacy")) as unknown as LegalDocCopy
+    expect(doc.sections.map((section) => section.id)).toContain("ai-plan-score")
+  })
+
+  it("Cookie Policy names the AI Gateway in its connection rules", async () => {
+    expect(await fullText(lang, "cookies")).toContain("Vercel AI Gateway")
   })
 
   it("Licence page names the licence and the font licence", async () => {

@@ -16,11 +16,11 @@ describe("ReadinessMeter", () => {
     expect(screen.getByText("Nicht begonnen")).toBeInTheDocument()
   })
 
-  it("reads 100% and pitch-ready for a filled example", async () => {
+  it("reads 100% and complete for a filled example", async () => {
     const tab = await openProject({ example: "housing-cooperatives" })
     renderDashboard(<ReadinessMeter />, { store: tab.store })
     expect(screen.getByText("100%")).toBeInTheDocument()
-    expect(screen.getByText("Pitch-ready")).toBeInTheDocument()
+    expect(screen.getByText("Complete")).toBeInTheDocument()
   })
 
   it("moves with a patch", async () => {

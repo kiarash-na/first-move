@@ -4,6 +4,7 @@ import { applyPatch } from "@/lib/project"
 import { testDictionaries } from "../../_components/test-utils/dictionaries"
 import { emptyProject, exampleProject, projectStore } from "../../_components/test-utils/project-store"
 import { renderDashboard } from "../../_components/test-utils/render"
+import { withAiScore } from "../../business-plan/_components/test-utils/ai-score"
 import { ReportView } from "./report-view"
 
 describe("ReportView (D-09, D-70)", () => {
@@ -22,7 +23,7 @@ describe("ReportView (D-09, D-70)", () => {
     expect(screen.getByRole("region", { name: report.sections.businessPlan })).toHaveClass("print:break-before-page")
   })
 
-  it("adds the Business Plan and its pitch readiness when the module is on, and leaves out what is off", () => {
+  it("adds the Business Plan and its pitch completeness when the module is on, and leaves out what is off", () => {
     const { report } = testDictionaries()
     const withPlan = applyPatch(exampleProject("housing-cooperatives"), { "meta.modules.businessPlan": true, "meta.modules.quickCheck": false }).project
     renderDashboard(<ReportView />, { store: projectStore(withPlan).store })
@@ -30,6 +31,15 @@ describe("ReportView (D-09, D-70)", () => {
     expect(screen.getByRole("region", { name: report.sections.businessPlan })).not.toHaveClass("print:break-before-page")
     expect(screen.getByRole("region", { name: report.sections.readiness })).toBeInTheDocument()
     expect(screen.queryByRole("region", { name: report.sections.quickCheck })).not.toBeInTheDocument()
+  })
+
+  it("prints the saved AI Plan Score as one line in the completeness section", () => {
+    const { report } = testDictionaries()
+    const withPlan = applyPatch(exampleProject("housing-cooperatives"), { "meta.modules.businessPlan": true }).project
+    renderDashboard(<ReportView />, { store: projectStore(withAiScore(withPlan)).store })
+    const section = screen.getByRole("region", { name: report.sections.readiness })
+    expect(section.querySelector("[data-slot=report-ai-score]")).toHaveTextContent("AI Plan Score")
+    expect(section.querySelector("[data-slot=report-ai-score]")).toHaveAttribute("data-ai-generated", "true")
   })
 
   it("prints what is missing instead of a result for an incomplete Quick Check", () => {

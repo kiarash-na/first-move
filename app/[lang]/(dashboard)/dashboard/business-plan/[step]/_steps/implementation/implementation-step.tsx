@@ -5,7 +5,7 @@ import { ReadinessPanel } from "../../../_components/readiness/readiness-panel"
 
 /**
  * BM-STEP-04 · Improve and prepare implementation: refinements, scalability by context and the
- * next practical steps, closed by the pitch readiness (D-30).
+ * next practical steps, closed by the pitch completeness (D-30, D-74).
  */
 export function ImplementationStep() {
   return (

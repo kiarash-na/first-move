@@ -11,6 +11,7 @@ import { UnknownSourcesNote } from "../../_components/results/unknown-sources-no
 import { VerdictPanel } from "../../_components/results/verdict-panel"
 import { useDictionary } from "../../_components/i18n-provider"
 import { useQuickCheck } from "../../_components/use-quick-check"
+import { ReportAiScore } from "./report-ai-score"
 import { ReportBusinessPlan } from "./report-business-plan"
 import { ReportCalculation } from "./report-calculation"
 import { ReportFooter } from "./report-footer"
@@ -25,8 +26,8 @@ import "./report.css"
 /**
  * The report of the open project (D-09, D-70, QCT-SCOPE-06 "Export Results"): one light sheet
  * (DESIGN-TOKENS §1, reports on light surfaces) with the Quick Check result and its reasons, the
- * inputs, the parameters and the equations, then the Business Plan as written and its pitch
- * readiness. Every number comes from `run()` through `useQuickCheck`, as on the other pages.
+ * inputs, the parameters and the equations, then the Business Plan as written, its AI Plan Score
+ * (one line, AI-generated) and its pitch completeness. Every number comes from `run()` through `useQuickCheck`, as on the other pages.
  * The browser prints it; "Save as PDF" in the print dialog makes the PDF.
  */
 export function ReportView() {
@@ -81,6 +82,7 @@ export function ReportView() {
               <ReportBusinessPlan project={project} />
             </ReportSection>
             <ReportSection title={copy.readiness} tone="hot">
+              <ReportAiScore project={project} />
               <ReportReadiness project={project} />
             </ReportSection>
           </>

@@ -35,7 +35,7 @@
   },
   "aiProviders": {
     "label": "AI providers you can connect",
-    "none": "No AI provider is connected yet. Providers are listed here once the AI features are available.",
+    "none": "No AI provider for the assistant is connected yet. Providers are listed here once the assistant is available.",
     "region": "Processing region"
   }
 }

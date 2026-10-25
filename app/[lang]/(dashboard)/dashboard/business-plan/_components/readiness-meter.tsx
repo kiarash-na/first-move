@@ -11,7 +11,7 @@ import { interpolate } from "@/lib/i18n/interpolate"
 import { useDictionary, useLocale } from "../../_components/i18n-provider"
 import { useStoreState } from "../../_components/store-provider"
 
-/** The pitch readiness at a glance, in the header of every step; links to the full panel. */
+/** The pitch completeness at a glance (ids keep "readiness"), in the header of every step; links to the full panel. */
 export function ReadinessMeter() {
   const lang = useLocale()
   const bp = useDictionary("business-plan")

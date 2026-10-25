@@ -2,12 +2,16 @@
 
 import type { Project } from "@/lib/project"
 import { useDictionary } from "../../../_components/i18n-provider"
+import { AiScoreTile } from "./ai-score-tile"
 import { DealBreakerTile } from "./deal-breaker-tile"
 import { ReadinessTile } from "./readiness-tile"
 import { RisksTile } from "./risks-tile"
 import { StepProgressTile } from "./step-progress-tile"
 
-/** The Business Plan tiles of the overview (PLAN-DASH-09 step 6): step progress, pitch readiness, top risks, deal-breaker. */
+/**
+ * The Business Plan tiles of the overview (PLAN-DASH-09 step 6): the AI Plan Score on top, bolder
+ * (D-74), then step progress, pitch completeness, top risks and the deal-breaker.
+ */
 export function BusinessPlanSection({ project }: { project: Project }) {
   const title = useDictionary("overview").sections.businessPlan
   return (
@@ -16,6 +20,7 @@ export function BusinessPlanSection({ project }: { project: Project }) {
         {title}
       </h2>
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        <AiScoreTile project={project} />
         <StepProgressTile project={project} />
         <ReadinessTile project={project} />
         <RisksTile project={project} />

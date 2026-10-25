@@ -1,12 +1,12 @@
 {
   "meta": {
     "title": "Datenschutzerklärung",
-    "description": "Wie First Move mit personenbezogenen Daten umgeht: Ihre Projekte bleiben in Ihrem Browser, die Website verwendet kein Tracking, und nur die hier genannten Dienstleister verarbeiten die Daten, die für den Betrieb der Website und für unsere Antworten auf E-Mails nötig sind."
+    "description": "Wie First Move mit personenbezogenen Daten umgeht: Ihre Projekte bleiben in Ihrem Browser, die Website verwendet kein Tracking, nur die hier genannten Dienstleister verarbeiten die Daten, die für den Betrieb der Website und für unsere Antworten auf E-Mails nötig sind, und der optionale KI-Plan-Score sendet Ihren Plan nur, wenn Sie ihn starten."
   },
   "title": "Datenschutzerklärung",
   "intro": "Diese Datenschutzerklärung erläutert, welche personenbezogenen Daten verarbeitet werden, wenn Sie First Move unter {{site.domain}} nutzen oder uns schreiben, zu welchen Zwecken und auf welcher Rechtsgrundlage dies geschieht und welche Rechte Sie haben. Sie enthält die Informationen nach Art. 13 und 14 der Datenschutz-Grundverordnung (DSGVO, Verordnung (EU) 2016/679). Personenbezogene Daten sind alle Informationen, die sich auf eine identifizierte oder identifizierbare Person beziehen (Art. 4 Nr. 1 DSGVO).",
-  "updated": "2026-10-24",
-  "version": "1.2",
+  "updated": "2026-10-25",
+  "version": "1.3",
   "sections": [
     {
       "id": "summary",
@@ -17,7 +17,8 @@
         "- **Kein Tracking auf der Website.** Es gibt keine Analyse, keine Werbung, keine Social-Media-Widgets und keine Skripte, Schriften, Karten oder eingebetteten Inhalte von Dritten. E-Mails, die wir senden, enthalten ein minimales Tracking, das gesondert unter [E-Mail-Tracking](#email-tracking) beschrieben ist.",
         "- **Unser Webhoster** verarbeitet die technischen Daten, die bei jedem Website-Besuch anfallen, etwa Ihre IP-Adresse, um die Website auszuliefern und sicher zu betreiben.",
         "- **Wenn Sie uns schreiben**, verarbeiten wir Ihre E-Mail, um sie zu beantworten. Nachrichten an `{{operator.emailAgent}}` beantwortet ein KI-System, nachdem Sie einmal bestätigt haben ([E-Mail](#email)).",
-        "- **KI-Funktionen** sind, sobald sie verfügbar sind, freiwillig. Ihr Browser kommuniziert dann direkt mit dem KI-Anbieter, den Sie gewählt haben, und nutzt dabei Ihren eigenen Schlüssel. Wir erhalten weder die Inhalte noch den Schlüssel.",
+        "- **Der KI-Plan-Score** ist freiwillig und läuft nur, wenn Sie ihn starten. Ihr Browser sendet dann den Business Plan des geöffneten Projekts direkt an das Vercel AI Gateway, unter Ihrem eigenen Konto und mit Ihrem eigenen Schlüssel. Wir erhalten weder die Inhalte noch den Schlüssel ([KI-Plan-Score](#ai-plan-score)).",
+        "- **Die weiteren KI-Funktionen** sind, sobald sie verfügbar sind, freiwillig. Ihr Browser kommuniziert dann direkt mit dem KI-Anbieter, den Sie gewählt haben, und nutzt dabei Ihren eigenen Schlüssel. Wir erhalten weder die Inhalte noch den Schlüssel.",
         "- **Ihre Rechte** finden Sie unter [Ihre Rechte](#rights). Um sie auszuüben, schreiben Sie an [{{operator.emailHuman}}](mailto:{{operator.emailHuman}}).",
         "Sie sind weder gesetzlich noch vertraglich verpflichtet, personenbezogene Daten bereitzustellen. Ohne die technischen Daten einer Anfrage kann Ihr Browser die Website jedoch nicht laden, und ohne Ihre E-Mail-Adresse können wir Ihnen nicht antworten."
       ]
@@ -58,7 +59,7 @@
       "heading": "Ihre Projekte im Browser",
       "body": [
         "Ihre Projekte, Einstellungen und Auswahlen werden ausschließlich in Ihrem eigenen Browser gespeichert: in dessen IndexedDB-Datenbank, im Local Storage und im Session Storage. Nichts davon wird an uns oder an den Hoster gesendet. Wir erhalten, sehen oder speichern Ihre Projekte nie, und es gibt keine Konten und keine Datenbanken auf einem Server. Die [Cookie-Richtlinie](/cookies) führt jedes Cookie und jeden Speichereintrag mit Namen auf.",
-        "- **Export**: Sie können ein Projekt als Datei `.firstmove.json` exportieren. Die Datei enthält Ihre Eingaben, wird in Ihrem Browser erstellt und dort gespeichert, wo Sie es wählen.",
+        "- **Export**: Sie können ein Projekt als Datei `.firstmove.json` exportieren. Die Datei enthält Ihre Eingaben und, falls Sie einen erstellt haben, den letzten KI-Plan-Score, wird in Ihrem Browser erstellt und dort gespeichert, wo Sie es wählen.",
         "- **Import**: Eine Datei, die Sie importieren, wird in Ihrem Browser gelesen und geprüft. Sie wird nicht hochgeladen.",
         "- **Verknüpfte Datei**: In Chromium-basierten Browsern können Sie ein Projekt optional mit einer Datei auf Ihrem eigenen Datenträger verknüpfen (File System Access API). Dabei wird nichts hochgeladen.",
         "- **Dauerhafter Speicher**: Die App bittet Ihren Browser, seinen Speicher dauerhaft zu erhalten, damit der Browser Ihre Projekte seltener von sich aus entfernt.",
@@ -97,11 +98,27 @@
       ]
     },
     {
+      "id": "ai-plan-score",
+      "heading": "KI-Plan-Score",
+      "body": [
+        "Der KI-Plan-Score ist eine optionale KI-Bewertung Ihres Business Plans im Dashboard. Die Seite [KI-Transparenz](/ai#plan-score) erklärt, wie er arbeitet. Nichts wird gesendet, bevor Sie einen Lauf mit einem Schlüssel für das Vercel AI Gateway aus Ihrem eigenen Vercel-Konto starten.",
+        "- **Was verarbeitet wird**: die ausgefüllten Texte des Business Plans des geöffneten Projekts, einschließlich der gemeinsamen Standortbeschreibung, der Beteiligten und der Partner, der gewählte Anwendungsfall und, wenn der Quick Check vollständig ist, seine Ergebniszahlen. Diese Texte können personenbezogene Daten enthalten, etwa Namen von Ansprechpersonen, wenn Sie sie in den Plan geschrieben haben. Wie jeder Server, mit dem sich Ihr Browser verbindet, sehen auch die Empfänger Ihre IP-Adresse und technische Angaben zu Ihrem Browser.",
+        "- **Wer sie erhält**: Ihr Browser sendet die Anfragen direkt an das AI Gateway von {{hosting.name}}, unter Ihrem Vercel-Konto. Das Gateway leitet sie an TypeSafe AI, Inc. weiter, dessen Entscheidungsmodell Jev den Plan bewertet, und an den Anbieter des Textmodells, das Sie wählen, das den Bericht und, nur wenn Sie darum bitten, die Vorschläge schreibt. Sie verarbeiten die Anfragen nach ihren eigenen Bedingungen und Datenschutzerklärungen.",
+        "- **Wir erhalten sie nicht**: Nichts läuft über unsere Server. Wir erhalten weder die Inhalte noch Ihren Schlüssel und sind für diese Daten kein Auftragsverarbeiter.",
+        "- **Ihr Schlüssel**: Er wird nur im Arbeitsspeicher des geöffneten Tabs gehalten, nie im Speicher Ihres Browsers, im Projekt oder in einem Export, und ist weg, sobald Sie den Tab neu laden oder schließen.",
+        "- **Speicherdauer**: Die App bittet das Gateway um keine Datenspeicherung (Zero Data Retention) und kein Training mit den Eingaben. Nach Angaben von Vercel speichert das AI Gateway selbst weder Eingaben noch Antworten. Wie lange ein Modellanbieter eine Anfrage aufbewahrt, hängt von seinen Bedingungen und von Ihrem Vercel-Tarif ab. Der Score, sein Bericht und seine Vorschläge werden im Projekt in Ihrem Browser gespeichert, bis Sie das Projekt löschen oder einen neuen Lauf starten, und sind Teil eines Exports.",
+        "- **Übermittlung außerhalb der EU**: {{hosting.name}} hat seinen Sitz in den USA und ist nach dem EU-US-Datenschutzrahmen zertifiziert (Angemessenheitsbeschluss vom 10. Juli 2023, Art. 45 DSGVO). TypeSafe AI, Inc. betreibt seine Dienste in den USA. Für TypeSafe AI und den Anbieter des Textmodells, das Sie wählen, erfolgt die Übermittlung nach den Bedingungen des jeweiligen Anbieters.",
+        "- **Automatisierte Entscheidungen**: Der Score ist eine Einschätzung des Texts eines Plans. Er ist keine Entscheidung über Sie und hat keine rechtliche oder ähnlich erhebliche Wirkung ([Keine automatisierten Entscheidungen](#automated-decisions)).",
+        "- **Sie entscheiden, was gesendet wird**: Sie starten jeden Lauf selbst und entscheiden, was der Plan enthält. Schreiben Sie keine personenbezogenen Daten anderer Personen und keine vertraulichen Informationen in den Plan, sofern Sie sie nicht an diese Empfänger senden dürfen.",
+        "Das Speichern des Scores im Projekt ist unter [Ihre Projekte im Browser](#local-storage) beschrieben."
+      ]
+    },
+    {
       "id": "ai-features",
       "heading": "KI-Funktionen in der App",
       "body": [
         "First Move plant zwei optionale KI-Funktionen: Fragen zu Ihren Projektdaten beantworten und von Ihnen bereitgestellte Dokumente (zum Beispiel PDFs) lesen, um Werte für die Felder eines Projekts vorzuschlagen. Die Seite [KI-Transparenz](/ai) zeigt, ob sie heute verfügbar sind und welche Anbieter Sie wählen können. Als Anbieter stehen Anthropic und OpenRouter zur Verfügung (einschließlich des Auto Routers von OpenRouter, der für jede Frage ein Modell auswählt).",
-        "Sobald die KI-Funktionen verfügbar sind, funktionieren sie so:",
+        "Der [KI-Plan-Score](#ai-plan-score) ist oben gesondert beschrieben. Sobald die beiden KI-Funktionen verfügbar sind, funktionieren sie so:",
         "- **Aus, bis Sie sie einrichten**: An einen KI-Anbieter wird nichts gesendet, bis Sie eine Funktion einrichten und nutzen.",
         "- **Ihr eigener Schlüssel**: Ihr Browser sendet Ihre Anfrage direkt an den KI-Anbieter, den Sie gewählt haben, mit Ihrem eigenen API-Schlüssel. Wir betreiben keinen KI-Server.",
         "- **Wir erhalten nichts**: Wir erhalten weder die Inhalte, die Sie senden, noch Ihren Schlüssel und sind für diese Daten kein Auftragsverarbeiter. Der Anbieter ist eine eigenständige Stelle; für das, was Sie senden, gelten seine eigenen Bedingungen und seine Datenschutzerklärung. Wie jeder Server, mit dem sich Ihr Browser verbindet, sieht auch der Anbieter Ihre IP-Adresse.",
@@ -135,7 +152,10 @@
         "| TypeSafe AI, Entscheidungsmodell Jev | Prüft jede Nachricht an {{operator.emailAgent}} auf Themenbezug und Missbrauch | USA; abgerufen über das AI Gateway von Vercel ohne Datenspeicherung beim Modellanbieter; eine Übermittlung erfolgt nur mit einer Garantie nach Art. 44 bis 46 DSGVO |",
         "| Anthropic PBC, Claude Haiku | Liest Nachrichten und angehängte Dateien an {{operator.emailAgent}}, um aus der öffentlichen Dokumentation zu antworten und Projektwerte einzutragen | USA; eine Übermittlung erfolgt nur mit einer Garantie nach Art. 44 bis 46 DSGVO |",
         "| Upstash, Inc., Upstash Redis | Speichert die Einträge des KI-Postfachs: gehashte Absenderkennungen, die verschlüsselte Unterhaltung, Bestätigungen, Hinweise und Sperren | Datenbank in der EU; Unternehmen in den USA; eine Übermittlung erfolgt nur mit einer Garantie nach Art. 44 bis 46 DSGVO |",
-        "| Der KI-Anbieter Ihrer Wahl (geplant) | Beantwortet Ihre Fragen und schlägt Werte vor, nur wenn Sie die KI-Funktionen nutzen ([KI-Funktionen](#ai-features)) | Von Ihnen gewählt; Ihr Browser kontaktiert ihn direkt nach dessen eigenen Bedingungen; wir senden ihm nichts |"
+        "| Der KI-Anbieter Ihrer Wahl (geplant) | Beantwortet Ihre Fragen und schlägt Werte vor, nur wenn Sie die KI-Funktionen nutzen ([KI-Funktionen](#ai-features)) | Von Ihnen gewählt; Ihr Browser kontaktiert ihn direkt nach dessen eigenen Bedingungen; wir senden ihm nichts |",
+        "| {{hosting.name}}, AI Gateway für den KI-Plan-Score | Empfängt die Anfragen Ihrer Läufe des KI-Plan-Scores unter Ihrem Vercel-Konto und leitet sie weiter ([KI-Plan-Score](#ai-plan-score)) | {{hosting.country}}; EU-US-Datenschutzrahmen, Angemessenheitsbeschluss vom 10. Juli 2023 (Art. 45 DSGVO); Ihr Browser kontaktiert es direkt; wir senden ihm nichts |",
+        "| TypeSafe AI, Inc., Entscheidungsmodell Jev für den KI-Plan-Score | Bewertet jeden Teil Ihres Business Plans ([KI-Plan-Score](#ai-plan-score)) | USA; abgerufen über das AI Gateway unter Ihrem Vercel-Konto ohne Datenspeicherung; die Übermittlung erfolgt nach den Bedingungen des Anbieters |",
+        "| Der Anbieter des Textmodells, das Sie für den KI-Plan-Score wählen | Schreibt den kurzen Bericht und, wenn Sie darum bitten, die Vorschläge ([KI-Plan-Score](#ai-plan-score)) | Hängt vom gewählten Modell ab; abgerufen über das AI Gateway unter Ihrem Vercel-Konto; die Übermittlung erfolgt nach den Bedingungen des Anbieters |"
       ]
     },
     {
@@ -148,7 +168,8 @@
         "- **Projekte und Einstellungen in Ihrem Browser**: Sie bleiben, bis Sie sie löschen. Wir haben keine Kopie.",
         "- **Exportierte Dateien**: Sie bleiben dort, wo Sie sie gespeichert haben, unter Ihrer Kontrolle.",
         "- **KI-Postfach ({{operator.emailAgent}})**: eine unbestätigte erste Nachricht 7 Tage; die Unterhaltung 30 Tage nach Ihrer letzten Nachricht; Hinweise 90 Tage; eine Pause 30 Tage; eine Sperre, bis wir sie löschen; Ihre Bestätigung 12 Monate nach Ihrer letzten Nachricht. Die E-Mails selbst bleiben 30 Tage bei {{mail.name}}, dessen Kontoprotokolle in den USA gespeichert werden.",
-        "- **KI-Funktionen**: Was Sie an einen KI-Anbieter senden, wird nach dessen Bedingungen gespeichert. Ihr Chatverlauf bleibt in Ihrem Browser, bis Sie ihn löschen."
+        "- **KI-Funktionen**: Was Sie an einen KI-Anbieter senden, wird nach dessen Bedingungen gespeichert. Ihr Chatverlauf bleibt in Ihrem Browser, bis Sie ihn löschen.",
+        "- **KI-Plan-Score**: Für jeden Lauf wird keine Datenspeicherung angefordert, und ein Modellanbieter bewahrt eine Anfrage nur so auf, wie es seine Bedingungen und Ihr Vercel-Tarif zulassen. Der gespeicherte Score bleibt im Projekt in Ihrem Browser, bis Sie das Projekt löschen oder einen neuen Lauf starten."
       ]
     },
     {
@@ -177,6 +198,7 @@
         "- Ergebnisse von Quick Check und Business Plan sind Berechnungen aus veröffentlichten Gleichungen und Standardwerten, die Ihnen als erste Einschätzung angezeigt werden. Sie sind keine Entscheidungen über Sie.",
         "- Antworten von {{operator.emailAgent}} verfasst ein KI-System. Sie beantworten Ihre Nachricht und sind keine Entscheidungen über Sie.",
         "- Sobald die KI-Funktionen verfügbar sind, schlagen sie Werte nur vor. Sie entscheiden, was Sie übernehmen.",
+        "- Der KI-Plan-Score ist eine KI-Einschätzung des Texts eines Business Plans, die nur Ihnen angezeigt wird. Er ändert nichts an Ihrem Projekt und ist keine Entscheidung über Sie.",
         "- Das KI-Postfach pausiert oder sperrt einen Absender automatisch nach Nachrichten ohne Themenbezug oder bei erkanntem Missbrauch. Das betrifft nur dieses Postfach und hat keine rechtliche oder ähnlich erhebliche Wirkung: Sie können jederzeit an {{operator.emailHuman}} schreiben; diese Adresse liest ein Mensch."
       ]
     },
@@ -187,7 +209,7 @@
         "First Move ist darauf ausgelegt, dass möglichst wenige Daten Ihr Gerät verlassen:",
         "- Der Hoster liefert die Website über eine verschlüsselte Verbindung (HTTPS) aus.",
         "- Ihre Projekte werden nur auf Ihrem Gerät gespeichert, nicht auf einem Server.",
-        "- Eine Content-Security-Policy beschränkt die Verbindungen, die die Seite aufbauen darf, auf die Website selbst. Auf den Seiten des Dashboards erlaubt sie zusätzlich die beiden KI-Anbieter des Assistenten (`api.anthropic.com`, `openrouter.ai`); Ihr Browser kontaktiert sie nur, wenn Sie den Assistenten nutzen.",
+        "- Eine Content-Security-Policy beschränkt die Verbindungen, die die Seite aufbauen darf, auf die Website selbst. Auf den Seiten des Dashboards erlaubt sie zusätzlich die beiden KI-Anbieter des Assistenten (`api.anthropic.com`, `openrouter.ai`) und das Vercel AI Gateway des KI-Plan-Scores (`ai-gateway.vercel.sh`); Ihr Browser kontaktiert sie nur, wenn Sie den Assistenten nutzen oder einen KI-Plan-Score starten.",
         "- Die Website lädt keine Skripte, Schriften oder eingebetteten Inhalte von Dritten.",
         "- Die Website sendet `Referrer-Policy: no-referrer`, sodass andere Websites nicht erfahren, von welcher Seite Sie kommen.",
         "Ihre Projekte sind nur so sicher wie Ihr Gerät. Wer Zugriff auf Ihr Browserprofil hat, kann sie öffnen. Schützen Sie Ihr Gerät, und bewahren Sie exportierte Dateien so sorgfältig auf wie Ihre anderen Arbeitsdateien."
@@ -204,7 +226,7 @@
       "id": "changes",
       "heading": "Änderungen dieser Datenschutzerklärung",
       "body": [
-        "Wir aktualisieren diese Datenschutzerklärung, wenn sich First Move oder die Rechtslage ändert, zum Beispiel wenn die KI-Funktionen verfügbar werden oder ein Dienstleister wechselt. Datum und Version oben auf dieser Seite zeigen, welche Fassung gilt.",
+        "Wir aktualisieren diese Datenschutzerklärung, wenn sich First Move oder die Rechtslage ändert, zum Beispiel wenn weitere KI-Funktionen verfügbar werden oder ein Dienstleister wechselt. Datum und Version oben auf dieser Seite zeigen, welche Fassung gilt.",
         "Überträgt der Betreiber den Dienst auf ein Unternehmen oder einen anderen Nachfolger, wird dieser Nachfolger Verantwortlicher. Wir kündigen eine solche Änderung mindestens 30 Tage vor ihrem Wirksamwerden auf der Website an, wie in den [Nutzungsbedingungen](/terms) festgelegt.",
         "Fragen zu dieser Datenschutzerklärung: [{{operator.emailHuman}}](mailto:{{operator.emailHuman}})."
       ]

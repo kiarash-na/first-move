@@ -7,7 +7,7 @@ import { openProject, stopTabs } from "./test-utils/open-project"
 afterEach(stopTabs)
 
 describe("StepFrame", () => {
-  it("frames a step: orange eyebrow, title, lead, readiness, step navigation, prompts, content", async () => {
+  it("frames a step: orange eyebrow, title, lead, AI Plan Score, completeness, step navigation, prompts, content", async () => {
     const tab = await openProject()
     renderDashboard(
       <StepFrame step="reality-check">
@@ -18,7 +18,10 @@ describe("StepFrame", () => {
     expect(screen.getByRole("heading", { level: 1, name: "Reality check" })).toBeInTheDocument()
     expect(screen.getByText("Business Plan · 03").className).toContain("text-hot")
     expect(screen.getByText(/Use rough but transparent assumptions/)).toBeInTheDocument()
-    expect(screen.getByText("Pitch readiness")).toBeInTheDocument()
+    expect(screen.getByText("Pitch completeness")).toBeInTheDocument()
+    const badge = screen.getByRole("link", { name: /Get an AI Plan Score/ })
+    const meter = screen.getByRole("link", { name: /Pitch completeness/ })
+    expect(badge.compareDocumentPosition(meter) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
     expect(screen.getByRole("navigation", { name: "Business Plan steps" })).toBeInTheDocument()
     expect(screen.getByRole("button", { name: /Guiding questions/ })).toBeInTheDocument()
     expect(screen.getByText("Panels")).toBeInTheDocument()

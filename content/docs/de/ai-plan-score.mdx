@@ -1,15 +1,167 @@
 # KI-Plan-Score
 
-Der KI-Plan-Score ist eine separate KI-Bewertung Ihres Businessplans. Er ist eine Einschätzung, wie solide der geschriebene Plan ist, keine Berechnung und kein Urteil über die Machbarkeit.
+Der KI-Plan-Score ist eine separate KI-Bewertung Ihres Business Plans. Ein KI-Entscheidungsmodell liest Schritt für Schritt, was Sie geschrieben haben, und gibt eine Einschätzung, wie solide der geschriebene Plan ist: wie konkret, beziffert und belegt er ist und ob er klärt, was ein solider Business Plan für ein 5GDHC-Netz klären muss. Er ist optional und läuft nur, wenn Sie ihn starten, auf der Seite KI-Plan-Score im [Dashboard](/dashboard/ai-score).
 
-## Was er liest
+## Was er ist und was nicht
 
-Er liest die Felder der vier Schritte des Businessplans und, wenn der Quick Check aktiv und vollständig ist, dessen Gesamtergebnis.
+- **Eine KI-Einschätzung des geschriebenen Plans.** Er bewertet den Text Ihres Business Plans, nicht das Projekt selbst, und ist überall, wo er erscheint, als KI-generiert gekennzeichnet.
+- **Keine Berechnung.** Der [Quick Check](/docs/quick-check) bleibt die einzige Berechnung in First Move, mit seinen veröffentlichten Gleichungen und Standardwerten. Der KI-Plan-Score liest das Ergebnis des Quick Check als Kontext und ändert keine seiner Zahlen.
+- **Nicht die Pitch-Vollständigkeit.** Die [Pitch-Vollständigkeit](/docs/business-plan#pitch-vollstandigkeit-inoffiziell) zählt, welche Felder ausgefüllt sind, und beurteilt nicht, was darin steht. Der KI-Plan-Score beurteilt den Inhalt und lässt die Zählung unberührt.
+- **Kein Urteil.** Er ist keine Machbarkeitsstudie, keine Jurywertung und keine Vorhersage einer Finanzierung. Forschung zu Wagniskapital fand nur einen schwachen Zusammenhang zwischen Businessplan-Dokumenten und Finanzierungsentscheidungen ([Kirsch, Goldfarb und Gera, 2009](https://doi.org/10.1002/smj.751)). Nutzen Sie den Score, um die Lücken in Ihrem Plan zu finden.
+
+## Was Sie brauchen
+
+- **Einen Schlüssel für das Vercel AI Gateway** aus Ihrem eigenen Vercel-Konto. Sie bringen Ihren eigenen Schlüssel mit: Die Anfragen laufen über Ihr Konto und werden ihm nach den Bedingungen von Vercel berechnet.
+- **Nur im Arbeitsspeicher.** Der Schlüssel liegt nur im Arbeitsspeicher des geöffneten Tabs. Er wird nie in den Speicher des Browsers, in das Projekt oder in einen Export geschrieben und ist weg, sobald Sie den Tab neu laden oder schließen. Sie können ihn auch jederzeit entfernen.
+- **Einen Business Plan mit Inhalt.** Leere Felder werden ohne jede KI mit 0 bewertet; je mehr Sie geschrieben haben, desto mehr kann der Score aussagen.
+- **Ein Textmodell Ihrer Wahl** für den kurzen Bericht und die Vorschläge: jedes Sprachmodell, das das Gateway anbietet, aus einer kurzen Liste gewählt oder mit seinem Namen eingegeben.
+
+## Was gesendet wird und an wen
+
+Nichts wird gesendet, bevor Sie einen Lauf starten. Dann sendet Ihr Browser Folgendes direkt an das Vercel AI Gateway, unter Ihrem eigenen Konto:
+
+- die Texte des Business Plans des geöffneten Projekts, einschließlich der gemeinsamen Standortbeschreibung, der Beteiligten und der Partner: nur ausgefüllte Felder, sehr lange Texte gekürzt;
+- den Anwendungsfall, den Sie gewählt haben, falls vorhanden;
+- wenn der Quick Check eingeschaltet und vollständig ist, sein Ergebnis: die Einstufung, die Zahl der Gebäude, die Wärmedichte, den Wärme- und Kältebedarf, die Deckung und das wirtschaftliche Verhältnis.
+
+Das Gateway leitet die Entscheidungsfragen an TypeSafe AI weiter, das das Entscheidungsmodell Jev betreibt, und den Bericht und die Vorschläge an den Anbieter des Textmodells, das Sie gewählt haben. Für das Entscheidungsmodell und die aufgeführten Textmodelle bittet die App das Gateway, nur Anbieter ohne Datenspeicherung und ohne Training mit den Eingaben zu nutzen; für ein Modell, das Sie mit seinem Namen eingeben, bittet sie um kein Training mit den Eingaben. Ob eine Anfrage so bedient wird, hängt von den Bedingungen des Gateways und des Anbieters und von Ihrem Vercel-Tarif ab. Nichts läuft über die Server von First Move, und wir erhalten weder Ihren Schlüssel noch Ihren Plan.
+
+Schreiben Sie keine personenbezogenen Daten anderer Personen in den Plan, etwa die Namen von Bewohnern, es sei denn, Sie dürfen sie weitergeben. Rechtlich maßgeblich sind die [Datenschutzerklärung](/privacy#ai-plan-score) und die Seite [KI-Transparenz](/ai#plan-score).
 
 ## Wie er bewertet
 
-Ein KI-Entscheidungsmodell bewertet jedes ausgefüllte Feld in Runden, vom ersten bis zum letzten Schritt.
+1. **Runde 0, ohne KI.** First Move prüft, welche Teile des Plans ausgefüllt sind. Leere Teile erhalten sicher 0 und werden nie gesendet. Wenn der Quick Check eingeschaltet und vollständig ist, fließt sein Ergebnis als Kontext ein.
+2. **Ein Entscheidungsaufruf je Schritt des Business Plans**, vom ersten bis zum letzten Feld: Chance, Geschäftslogik, Realitätscheck und Umsetzung. In jedem Aufruf liest das Entscheidungsmodell den ganzen Plan, damit es schrittübergreifend prüfen kann, zusammen mit den Entscheidungen der früheren Schritte.
+3. **Drei Arten von Fragen in jedem Aufruf.** Eine Bewertungsfrage für jeden ausgefüllten Teil dieses Schritts, auf den fünf Belegstufen; Schwellen, die mit Ja oder Nein oder mit einer Option über den ganzen Plan entscheiden; und Verzweigungen, Auswahlfragen, deren Antwort eine Folgeschwelle für den nächsten Schritt auswählt.
+4. **Zusammenführung, ohne KI.** Aus den Antworten wird der Score, wie unter [Von den Antworten zum Score](#von-den-antworten-zum-score) beschrieben.
+
+Der Plan hat 27 Teile in den vier Schritten: 8, 8, 5 und 6. Ein Teil ist ein Feld oder mehrere zusammengefasste Felder, damit derselbe Inhalt nicht doppelt bewertet wird, zum Beispiel die Kundensegmente der Chance und des Canvas. Die Fragen stehen fest und sind auf Englisch formuliert; Ihr Plan darf auf Englisch oder Deutsch sein. Das Entscheidungsmodell ist auf eine Version festgelegt, und die Methode hat eine eigene Version, sodass eine neue Modellversion einen Score nicht unbemerkt ändern kann.
+
+Lehnt das Modell eine Frage ab, wird der Aufruf einmal ohne diese Frage wiederholt. Ein abgelehnter Teil bleibt beim Score außen vor, und eine abgelehnte Schwelle hat keine Wirkung.
+
+## Die fünf Belegstufen
+
+Jeder Teil wird auf derselben Skala bewertet. Die Stufen beschreiben Qualität, nie Länge: Ein längerer Text erhält nicht allein dadurch mehr ([Brookhart, 2018](https://doi.org/10.3389/feduc.2018.00022); [Zheng et al., 2023](https://arxiv.org/abs/2306.05685)).
+
+- **Fehlt (0)**: leer, ein Platzhalter oder nicht zu diesem Teil oder diesem Standort.
+- **Vage (1)**: eine allgemeine Aussage, die zu jedem Projekt passen könnte, etwa „Kunden sparen Geld“, ohne benannten Akteur, Ort oder Zahl.
+- **Konkret (2)**: nennt die Akteure, Gebäude, Quellen oder Mechanismen dieses Standorts, aber keine Zahlen oder keine Grundlage dafür.
+- **Beziffert (3)**: die wichtigsten Mengen mit Einheiten und einer genannten Grundlage oder Annahme. Eine aus dem Quick Check übernommene Zahl zählt hier als Grundlage, nicht als Beleg.
+- **Belegt (4)**: Die Zahlen stützen sich auf benannte Daten oder Zusagen, etwa gemessenen Verbrauch, eine Absichtserklärung, eine frühe Prüfung durch eine Behörde, ein Angebot oder eine Umfrage, oder sie sind geprüft, zum Beispiel mit einem Break-even-Wert, und der Text sagt, was passiert, wenn eine Zahl falsch ist. Die bloße Behauptung, etwas sei geprüft, reicht nicht.
+
+Jeder Teil hat außerdem eine eigene Beschreibung einer starken Antwort. Für die Anschlussquote zum Beispiel: eine Quote mit Grundlage und Zeitplan, die niedrigste Quote, bei der der Plan noch trägt, und was darunter passiert.
+
+## Schwellen und Obergrenzen
+
+Schwellen sind Fragen zum ganzen Plan, und sie geben nie Punkte dazu. Eine Schwelle gilt als bestanden, wenn das Modell ihr eine Wahrscheinlichkeit von 80 % oder mehr gibt, und als gescheitert bei 20 % oder weniger; dazwischen bleibt sie unklar und wird nur als Hinweis gezeigt. Bei einer Schwelle mit Optionen zählt eine teilweise Antwort halb. Eine gescheiterte Pflichtschwelle deckelt ihre Dimension bei Stufe 2, eine gescheiterte Sollschwelle bei Stufe 3, und manche Schwellen geben nur einen Hinweis. Einige Schwellen entscheidet eine Regel vor jeder KI: Ist kein Risiko als K.-o.-Kriterium markiert, ist die Anschlussquote leer oder der Entscheidungspunkt leer, scheitert die jeweilige Schwelle, und nach dem Wiener Wärmeplan wird nur gefragt, wenn der Standort in Wien liegt.
+
+- **Ankerkunde** (Beteiligung und Zusagen, Pflichtschwelle): Nennt der Plan einen bestimmten Ankerkunden und seine Rolle?
+- **Zusatznutzen** (Kundennutzen und Bedarf, nur Hinweis): Nutzt der Plan Kühlung oder einen anderen Zusatznutzen, etwa stabile Preise, als Grund für den Anschluss, wo das zutrifft?
+- **Netzlänge als Kostentreiber** (Technik und Standort, Pflichtschwelle, wenn die Wärmedichte des Quick Check unter 0,5 MWh/m liegt, sonst nur Hinweis): Geht der Plan auf die Trassenlänge oder die Wärmeliniendichte ein, zum Beispiel indem nahe Gebäude zuerst angeschlossen werden?
+- **Zone im Wiener Wärmeplan 2040** (Technik und Standort, nur Hinweis, nur in Wien): Nennt der Plan die Zone des Standorts und warum ein 5GDHC-Netz dazu passt?
+- **Systemgrenze** (Eigentum, Betrieb und Steuerung, Pflichtschwelle): Sagt der Plan, wem die Wärmequelle, das Netz und die Wärmepumpen in den Gebäuden gehören?
+- **Betreiber und Pflichten** (Eigentum, Betrieb und Steuerung, Sollschwelle): Nennt der Plan einen Betreiber und seine Aufgaben, etwa Wartung, Abrechnung und Störungen?
+- **Kostenschlüssel** (Eigentum, Betrieb und Steuerung, Sollschwelle): Nennt der Plan eine Regel, wie die Kosten der Quelle, der Leitungen und der Anschlüsse aufgeteilt werden?
+- **Preis gegenüber der Alternative** (Kundennutzen und Bedarf, Pflichtschwelle): Wird der Preis für die Kunden mit ihrer realistischen Alternative verglichen, etwa Gas oder einer eigenen Wärmepumpe?
+- **Mindestanschlussquote** (Beteiligung und Zusagen, Pflichtschwelle): Sagt der Plan, was mit den Kosten oder der Wirtschaftlichkeit passiert, wenn weniger Gebäude anschließen?
+- **Erlöse decken die Lebensdauerkosten** (Kosten, Erlöse und Finanzierung, Pflichtschwelle): Werden die jährlichen Erlöse mit den jährlichen Kosten der Investition und den laufenden Kosten über 20 bis 30 Jahre verglichen?
+- **Plan ohne Förderung** (Kosten, Erlöse und Finanzierung, Pflichtschwelle): Wenn der Plan mit einer Förderung rechnet, sagt er, was mit weniger oder ohne sie passiert?
+- **K.-o.-Kriterium mit Prüfung** (Risiken, Annahmen und Belege, Pflichtschwelle): Ist ein Risiko als mögliches K.-o.-Kriterium markiert, könnte es das Projekt wirklich stoppen, und wie wird es geprüft?
+- **Klein anfangen** (Umsetzungspfad und Skalierbarkeit, Sollschwelle): Ist eine erste Phase festgelegt, etwa ein Ankercluster, mit Schritten zum Wachsen?
+- **Entscheidungstor** (Umsetzungspfad und Skalierbarkeit, Pflichtschwelle): Enthalten die nächsten Schritte eine Go- oder No-Go-Entscheidung mit prüfbaren Kriterien?
+
+## Verzweigungen und Folgeschwellen
+
+Verzweigungen steuern die Fragen. Das Modell wählt die Option, die der Plan beschreibt, und der nächste Schritt fragt nur die Folgeschwelle dieser Option, sodass ein Plan rund um eine Schule andere Fragen bekommt als ein Plan rund um ein Hotel. Die meisten Folgeschwellen geben nur einen Hinweis.
+
+- **Art des Ankers** (gefragt in Schritt 1, Folge in Schritt 2): ein öffentliches Gebäude, ein Gewerbekunde, ein großer Wohnungseigentümer, ein Abwärme- oder Kältenutzer oder kein Anker. Die Folgeschwellen fragen nach dem öffentlichen Entscheidungsweg, der Vertragslaufzeit eines gewerblichen Ankers, wie Eigentümer und Mieter entscheiden oder wie sicher die Abwärme oder die Kältenachfrage ist.
+- **Hauptwärmequelle** (gefragt in Schritt 1, Folge in Schritt 2): Grundwasser, ein Erdsondenfeld, Oberflächenwasser, Abwasser, Abwärme, Außenluft oder unklar. Bei Grundwasser, einem Erdsondenfeld oder Oberflächenwasser fragt die Folgeschwelle nach dem Genehmigungsweg oder einer frühen Abstimmung mit der Wasserrechtsbehörde. Sie ist eine Pflichtschwelle für Technik und Standort, weil die Genehmigung ein typisches K.-o.-Kriterium ist ([Wasserrechtsgesetz 1959, § 10](https://ogd.ris.bka.gv.at/Dokumente/Bundesnormen/NOR12141151/NOR12141151.html)). Die anderen Quellen fragen nach dem Kanalbetreiber, dem Liefervertrag für die Abwärme oder nach Luft als Quelle bei Kälte.
+- **Eigentumsmodell** (gefragt in Schritt 2, Folge in Schritt 3): ein Versorger, die Gemeinde, die Nutzer gemeinsam, ein Contractor, ein Bauträger oder unklar. Die Folgeschwellen fragen nach der Zusage des Versorgers, dem kommunalen Entscheidungsweg, den Regeln der Gemeinschaft, Vertragslaufzeit und Preisen oder dem Betrieb nach der Übergabe.
+
+## Die sieben Dimensionen
+
+Die Dimensionen beschreiben, was einen Business Plan für ein 5GDHC-Netz solide macht. Sie gehen von den Aspekten für eine erfolgreiche Umsetzung aus, die die Studie des Forschungsprojekts Anergie Leicht Gemacht nennt: Technik, Kosten, Umsetzungsmodelle (Eigentum und Betrieb, Organisation und Steuerung, Finanzierung) und Beteiligung. Der Realitätscheck und der Weg zur Umsetzung kommen aus der Aufgabenstellung der Challenge. Abgeglichen wurden sie mit Erwünschtheit, Machbarkeit und Wirtschaftlichkeit ([Brown, 2008](https://hbr.org/2008/06/design-thinking)), dem Business Model Canvas ([Osterwalder und Pigneur, 2010](https://www.wiley.com/en-us/Business+Model+Generation%3A+A+Handbook+for+Visionaries%2C+Game+Changers%2C+and+Challengers-p-9780470876411)), dem Commercial Readiness Index ([ARENA, 2014](https://arena.gov.au/assets/2014/02/Commercial-Readiness-Index.pdf)) und dem Fünf-Fälle-Modell der britischen Regierung ([HM Treasury, 2026](https://assets.publishing.service.gov.uk/media/6a4390675b6406df58c14006/Guidance_on_Developing_Business_Cases.pdf)).
+
+- **Kundennutzen und Bedarf**: 15 %. Wer anschließt, was gebraucht wird und warum das Netz die Alternative schlägt.
+- **Technik und Standort**: 10 %. Der Standort, seine Wärmequellen und Ressourcen und ob das Netz zum Ort passt.
+- **Kosten, Erlöse und Finanzierung**: 20 %. Kosten, Tarife, Finanzierung und Förderungen und ob die Erlöse die Kosten über die Lebensdauer decken.
+- **Eigentum, Betrieb und Steuerung**: 20 %. Wer was besitzt, betreibt und bezahlt und wie Kosten, Risiken und Nutzen verteilt sind.
+- **Beteiligung und Zusagen**: 15 %. Eigentümer, Beteiligte, der Ankerkunde und die Anschlussquote, auf die der Plan baut.
+- **Risiken, Annahmen und Belege**: 10 %. Kritische Annahmen und Risiken, das K.-o.-Kriterium und wie jedes geprüft wird.
+- **Umsetzungspfad und Skalierbarkeit**: 10 %. Die erste Phase, die nächsten Schritte, das Entscheidungstor und wie das Modell wächst.
+
+Keine Quelle schreibt Gewichte in Zahlen vor, daher sind es begründete Standardwerte. Kosten und Steuerung wiegen am meisten: Das Forschungsprojekt nennt die Umsetzungsmodelle den Schwerpunkt seiner Arbeit und sieht die meisten Herausforderungen eher organisatorisch als technisch, und die Kosten kommen zuerst, mit der Investition vorab und den Erlösen über 25 bis 30 Jahre. Die technische Eignung wiegt weniger, weil der Quick Check den Standort bereits prüft. Belege wiegen als Dimension weniger, weil jeder Teil Belege schon auf seiner eigenen Skala belohnt.
+
+## Von den Antworten zum Score
+
+- **Die Stufe eines Teils** ist der mit den Wahrscheinlichkeiten gewichtete Mittelwert der fünf Stufen, die erwartete Stufe, wie bei G-Eval ([Liu et al., 2023](https://doi.org/10.18653/v1/2023.emnlp-main.153)). Ihre Streuung ist die Standardabweichung der Wahrscheinlichkeiten des Modells. Ein leerer Teil zählt 0 ohne Streuung.
+- **Eine Dimension** ist der Mittelwert ihrer Teile, begrenzt durch die niedrigste Obergrenze ihrer gescheiterten Schwellen, mal 25, sodass sie von 0 bis 100 reicht.
+- **Der KI-Plan-Score** ist die gewichtete Summe der sieben Dimensionen, von 0 bis 100. Seine Spanne ist eine Standardabweichung, berechnet aus den Streuungen unter der Annahme unabhängiger Teile, was sie wahrscheinlich zu schmal macht.
+- **Die Anzeige** rundet den Score auf 5 Punkte und die Spanne auf ganze Punkte, mindestens 1, um keine falsche Genauigkeit vorzutäuschen.
+
+Der Score erhält dann eine von drei Bezeichnungen:
+
+- **Früh**: unter 40.
+- **Vielversprechend**: von 40 bis unter 70, und auch bei 70 oder mehr, wenn eine Pflichtschwelle gescheitert ist.
+- **Solide**: 70 oder mehr, ohne gescheiterte Pflichtschwelle.
+
+## Bericht und Vorschläge
+
+- **Den kurzen Bericht** schreibt das Textmodell Ihrer Wahl direkt nach dem Score: eine Überschrift, eine Zusammenfassung, bis zu drei Stärken und bis zu drei Lücken, jeweils mit Verweis auf die Teile, auf denen sie beruhen, und bis zu drei nächste Schritte. Das Modell sieht die fertigen Zahlen und kurze Auszüge aus dem Plan.
+- **Vorschläge laufen auf Abruf**, nur wenn Sie darum bitten: für jeden Teil unter Stufe 2 und jede gescheiterte oder unklare Schwelle ein bis drei allgemeine, machbare Verbesserungen. Sie leiten sich aus der Beschreibung einer starken Antwort und aus belegten Hinweisen ab, etwa einen Ankerkunden zu benennen und eine Absichtserklärung anzustreben.
+- **Das Textmodell ändert nie eine Zahl.** Die Scores stehen fest, bevor es beginnt. Es ist angewiesen, sie weder neu zu berechnen noch ihnen zu widersprechen und keine Zahlen, Programme, Gesetze, Organisationen oder Quellen zu erfinden. Seine Ausgabe wird geprüft und auf feste Längen gekürzt, und Verweise auf Teile, die es nicht gibt, werden verworfen.
+- **Beides ist als KI-generiert gekennzeichnet**, wie der Score.
+
+## Gespeichert in Ihrem Projekt
+
+- Der letzte Score wird mit seinem Bericht und seinen Vorschlägen im Projekt in Ihrem Browser gespeichert. Er wird mit der Projektdatei exportiert und importiert, wie Ihre Eingaben. Ihr Schlüssel wird nie gespeichert.
+- Jeder Teil behält einen kurzen Fingerabdruck des Texts, den er bewertet hat. Sobald sich ein bewertetes Feld ändert, wird der Score als veraltet markiert und nennt, wie viele Teile sich geändert haben; starten Sie ihn erneut für einen aktuellen Score. Ein neuer Lauf ersetzt den gespeicherten.
+- Der Score erscheint auf der Seite KI-Plan-Score, im Kopf jedes Schritts des Business Plans, oben in der Pitch-Vollständigkeit, in der Übersicht und im Bericht, immer als KI-generiert gekennzeichnet.
+
+## Grenzen und Vorbehalte
+
+- **KI kann sich irren.** Ein Modell kann einen Text falsch lesen oder zu hoch oder zu niedrig bewerten. Lesen Sie die Begründungen auf der Seite KI-Plan-Score und prüfen Sie sie an Ihrem Plan.
+- **Die Wahrscheinlichkeiten sind keine Prognose.** Sie sagen, wie sicher das Modell ist, welche Stufe zum Text passt, nicht wie wahrscheinlich das Projekt gelingt, und sie sind nicht kalibriert.
+- **Bekannte Verzerrungen.** Modelle, die als Bewerter eingesetzt werden, können längere Texte und von KI geschriebene Texte bevorzugen ([Zheng et al., 2023](https://arxiv.org/abs/2306.05685); [Liu et al., 2023](https://doi.org/10.18653/v1/2023.emnlp-main.153)). Die Stufen sind dagegen formuliert, ausschließen lässt es sich aber nicht.
+- **Nur als strukturelles Vorbild.** Manche Quellen sind britische Leitfäden, etwa der Leitfaden des HM Treasury für Business Cases und der Green Heat Network Fund. Sie haben den Aufbau der Schwellen geprägt und sind keine österreichischen oder deutschen Anforderungen.
+- **Keine Beratung.** Der Score ist keine Rechts-, Ingenieur- oder Finanzberatung, und er nennt nie Fördersätze, Förderfähigkeit oder den Ausgang einer Genehmigung.
+- **Lange Pläne.** Sehr lange Texte werden vor dem Senden gekürzt, sodass Einzelheiten am Ende eines sehr langen Texts womöglich nicht gelesen werden.
 
 ## Quellen
 
-Die Methode folgt dem Material der Challenge und veröffentlichter Forschung.
+Die Methode folgt der Aufgabenstellung der Challenge Business Models for 5GDHC und dem Vortrag des Forschungsprojekts Anergie Leicht Gemacht beim Hackathon, für die es keinen öffentlichen Link gibt, sowie den unten genannten veröffentlichten Quellen. Jeder Link wurde am 24. Oktober 2026 geöffnet und geprüft.
+
+- Buffa, S., Cozzini, M., D'Antoni, M., Baratieri, M., Fedrizzi, R. (2019). [5th generation district heating and cooling systems: A review of existing cases in Europe](https://doi.org/10.1016/j.rser.2018.12.059). Renewable and Sustainable Energy Reviews 104, 504–522.
+- Gjoka, K., Rismanchi, B., Crawford, R.H. (2023). [Fifth-generation district heating and cooling systems: A review of recent advancements and implementation barriers](https://doi.org/10.1016/j.rser.2022.112997). Renewable and Sustainable Energy Reviews 171, 112997.
+- Lygnerud, K., Wheatcroft, E., Wynn, H. (2019). [Contracts, business models and barriers to investing in low temperature district heating projects](https://doi.org/10.3390/app9153142). Applied Sciences 9(15), 3142.
+- Lygnerud, K., Popovic, T., Schultze, S., Støchkel, H.K. (2023). [District heating in the future – thoughts on the business model](https://doi.org/10.1016/j.energy.2023.127714). Energy 278, 127714.
+- Lygnerud, K., Werner, S. (2018). [Risk assessment of industrial excess heat recovery in district heating systems](https://doi.org/10.1016/j.energy.2018.03.047). Energy 151, 430–441.
+- Boesten, S., Ivens, W., Dekker, S.C., Eijdems, H. (2019). [5th generation district heating and cooling systems as a solution for renewable urban thermal energy supply](https://doi.org/10.5194/adgeo-49-129-2019). Advances in Geosciences 49, 129–136.
+- Persson, U., Werner, S. (2011). [Heat distribution and the future competitiveness of district heating](https://doi.org/10.1016/j.apenergy.2010.09.020). Applied Energy 88(3), 568–576.
+- Nussbaumer, T., Thalmann, S. (2016). [Influence of system design on heat distribution costs in district heating](https://doi.org/10.1016/j.energy.2016.02.062). Energy 101, 496–505.
+- Reidhav, C., Werner, S. (2008). [Profitability of sparse district heating](https://doi.org/10.1016/j.apenergy.2008.01.006). Applied Energy 85(9), 867–877.
+- Wirtz, M., Kivilip, L., Remmen, P., Müller, D. (2020). [Quantifying demand balancing in bidirectional low temperature networks](https://doi.org/10.1016/j.enbuild.2020.110245). Energy and Buildings 224, 110245.
+- Hawkey, D., Webb, J., Winskel, M. (2013). [Organisation and governance of urban energy systems: district heating and cooling in the UK](https://doi.org/10.1016/j.jclepro.2012.11.018). Journal of Cleaner Production 50, 22–31.
+- Bush, R.E., Bale, C.S.E., Taylor, P.G. (2016). [Realising local government visions for developing district heating: Experiences from a learning country](https://doi.org/10.1016/j.enpol.2016.08.013). Energy Policy 98, 84–96.
+- Wüstenhagen, R., Wolsink, M., Bürer, M.J. (2007). [Social acceptance of renewable energy innovation: An introduction to the concept](https://doi.org/10.1016/j.enpol.2006.12.001). Energy Policy 35(5), 2683–2691.
+- Steffen, B. (2018). [The importance of project finance for renewable energy projects](https://doi.org/10.1016/j.eneco.2017.11.006). Energy Economics 69, 280–294.
+- Kirsch, D., Goldfarb, B., Gera, A. (2009). [Form or substance: the role of business plans in venture capital decision making](https://doi.org/10.1002/smj.751). Strategic Management Journal 30(5), 487–515.
+- Brinckmann, J., Grichnik, D., Kapsa, D. (2010). [Should entrepreneurs plan or just storm the castle? A meta-analysis on contextual factors impacting the business planning–performance relationship in small firms](https://doi.org/10.1016/j.jbusvent.2008.10.007). Journal of Business Venturing 25(1), 24–40.
+- Brookhart, S.M. (2018). [Appropriate criteria: Key to effective rubrics](https://doi.org/10.3389/feduc.2018.00022). Frontiers in Education 3, 22.
+- Liu, Y., Iter, D., Xu, Y., Wang, S., Xu, R., Zhu, C. (2023). [G-Eval: NLG evaluation using GPT-4 with better human alignment](https://doi.org/10.18653/v1/2023.emnlp-main.153). Proceedings of EMNLP 2023, 2511–2522.
+- Zheng, L., Chiang, W.-L., Sheng, Y., et al. (2023). [Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena](https://arxiv.org/abs/2306.05685). NeurIPS 2023 Datasets and Benchmarks Track (arXiv:2306.05685).
+- Osterwalder, A., Pigneur, Y. (2010). [Business Model Generation: A Handbook for Visionaries, Game Changers, and Challengers](https://www.wiley.com/en-us/Business+Model+Generation%3A+A+Handbook+for+Visionaries%2C+Game+Changers%2C+and+Challengers-p-9780470876411). Wiley, ISBN 978-0-470-87641-1.
+- Bland, D.J. (2020). [How assumptions mapping can focus your teams on running experiments that matter](https://strategyzer.com/library/how-assumptions-mapping-can-focus-your-teams-on-running-experiments-that-matter). Strategyzer.
+- Brown, T. (2008). [Design thinking](https://hbr.org/2008/06/design-thinking). Harvard Business Review 86(6).
+- Australian Renewable Energy Agency (2014). [Commercial Readiness Index for Renewable Energy Sectors](https://arena.gov.au/assets/2014/02/Commercial-Readiness-Index.pdf). ARENA, Canberra.
+- European Commission, DG Regional and Urban Policy (2014). [Guide to Cost-Benefit Analysis of Investment Projects: Economic appraisal tool for Cohesion Policy 2014–2020](https://jaspers.eib.org/LibraryNP/EC%20Reports/DG%20REGIO%20CBA%20Guide%20for%202014-2020.pdf). European Commission.
+- HM Treasury (2026). [Guidance on developing business cases for projects and programmes](https://assets.publishing.service.gov.uk/media/6a4390675b6406df58c14006/Guidance_on_Developing_Business_Cases.pdf). HM Treasury, London.
+- Department for Energy Security and Net Zero (2026). [Green Heat Network Fund: Guidance for Applicants, version 12.0](https://assets.publishing.service.gov.uk/media/698c8f63547c54ae7c023662/GHNF-guidance-for-applicants-R11.pdf). UK Government.
+- Ivens, W., Boesten, S. (2020). [D2Grids WP LT Deliverable DEL.1.1: Roll-out strategy, preliminary version](https://vb.nweurope.eu/media/11178/wplt-d11-roll-out-strategy-preliminary-version-final.pdf). Interreg North-West Europe.
+- Stadt Wien, MA 20 Energieplanung (2024). [Wiener Wärmeplan 2040 (Vienna Heating Plan 2040)](https://www.wien.gv.at/umwelt/waermeplan-2040). City of Vienna.
+- Stadt Wien, MA 20 Energieplanung (2025). [Beschreibung der Methodik und der Vorgehensweise zur Entwicklung des Konzeptes „Raus aus Gas – Wiener Wärme und Kälte 2040“ und „Wiener Wärmeplan 2040“](https://www.wien.gv.at/pdf/ma20/methoden-beschreibung-waermeplan.pdf). City of Vienna.
+- Republik Österreich (1959). [Wasserrechtsgesetz 1959 (WRG 1959), § 10](https://ogd.ris.bka.gv.at/Dokumente/Bundesnormen/NOR12141151/NOR12141151.html). Rechtsinformationssystem des Bundes (RIS).
+- Land Oberösterreich, Bezirkshauptmannschaft Steyr-Land (2026). [Grundwasserwärmepumpen](https://www.land-oberoesterreich.gv.at/29454.htm). Land Oberösterreich.
+- Republik Österreich (2024). [Erneuerbare-Wärme-Gesetz (EWG), BGBl. I Nr. 8/2024](https://ogd.ris.bka.gv.at/Dokumente/Bundesnormen/NOR40260603/NOR40260603.html). Rechtsinformationssystem des Bundes (RIS).
+- Kommunalkredit Public Consulting (Umweltförderung im Inland) (2024). [Gewerbliche Wärme- und Kälteversorgung](https://www.umweltfoerderung.at/betriebe/wkv/unterkategorie-waermekaelte). umweltfoerderung.at.
+- Bundesministerien, Kommunalkredit Public Consulting (2026). [Sanierungsoffensive](https://www.sanierungsoffensive.gv.at/). sanierungsoffensive.gv.at.

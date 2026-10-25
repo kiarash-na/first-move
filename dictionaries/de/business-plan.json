@@ -302,7 +302,7 @@
       "lead": "Verwenden Sie grobe, aber transparente Annahmen. Benennen Sie die wichtigsten kritischen Annahmen und Risiken, markieren Sie ein mögliches K.-o.-Kriterium und geben Sie an, wie sich jeder Punkt überprüfen ließe."
     },
     "implementation": {
-      "lead": "Verfeinern Sie das Modell, schätzen Sie ein, wo es sich übertragen ließe, und skizzieren Sie die praktischen nächsten Schritte. Prüfen Sie dann die Pitch-Reife."
+      "lead": "Verfeinern Sie das Modell, schätzen Sie ein, wo es sich übertragen ließe, und skizzieren Sie die praktischen nächsten Schritte. Prüfen Sie dann, wie vollständig Ihr Pitch ist."
     }
   },
   "stepNav": {
@@ -438,14 +438,38 @@
     "body": "Ein Projekt enthält ein Geschäftsmodell. Um eine Alternative zu vergleichen, duplizieren Sie das Projekt und ändern Sie die Kopie.",
     "action": "Projekt duplizieren"
   },
+  "aiScore": {
+    "title": "KI-Plan-Score",
+    "aiGenerated": "KI-generiert",
+    "outOf": "von 100",
+    "band": "Spanne von einer Standardabweichung: plus oder minus {band} Punkte",
+    "levels": {
+      "early": "Früh",
+      "promising": "Vielversprechend",
+      "solid": "Solide"
+    },
+    "state": {
+      "current": "Bewertet am {date}",
+      "outdated": "Veraltet: {count} von {total} bewerteten Teilen seit dem Lauf geändert"
+    },
+    "cta": "KI-Plan-Score erstellen",
+    "lead": "Eine KI-Einschätzung, wie solide Ihr geschriebener Plan ist. Optional, mit Ihrem eigenen Schlüssel für das Vercel AI Gateway.",
+    "caveat": "Eine KI-Einschätzung des geschriebenen Plans, keine Berechnung und kein Urteil über die Machbarkeit.",
+    "completeness": "Die Pitch-Vollständigkeit darunter zählt nur ausgefüllte Felder.",
+    "how": {
+      "title": "So entsteht der KI-Plan-Score",
+      "body": "Ein KI-Entscheidungsmodell, Jev von TypeSafe AI, liest den Plan Schritt für Schritt, vom ersten bis zum letzten Feld. Es bewertet jeden ausgefüllten Teil auf fünf Belegstufen, von „fehlt“ bis „belegt“; leere Teile zählen ohne KI mit 0. Schwellen, also Ja-Nein-Fragen über den ganzen Plan, können eine Dimension deckeln, wenn etwas fehlt, das ein solider Plan klären muss. Sieben gewichtete Dimensionen ergeben einen Score von 100, angezeigt auf 5 gerundet und mit einer Spanne von einer Standardabweichung. Unter 40 heißt Früh, ab 70 Solide, sofern keine Pflichtschwelle gescheitert ist, dazwischen Vielversprechend. Der Score wird im Projekt gespeichert und als veraltet markiert, sobald sich ein bewertetes Feld ändert. Die einzige Berechnung bleibt der Quick Check.",
+      "docs": "Die ganze Methode in der Dokumentation"
+    }
+  },
   "readiness": {
-    "title": "Pitch-Reife",
-    "lead": "Wie viel des finalen Pitches bereits Inhalt hat, gemessen an Ihren Eingaben.",
+    "title": "Pitch-Vollständigkeit",
+    "lead": "Wie viel des finalen Pitches bereits Inhalt hat. Gezählt werden nur ausgefüllte Felder, der Inhalt wird nicht beurteilt.",
     "caveat": "Gezählt wird, was ausgefüllt ist, nicht wie gut der Inhalt ist.",
     "level": {
       "not-started": "Nicht begonnen",
       "in-progress": "In Arbeit",
-      "ready": "Pitch-reif"
+      "ready": "Vollständig"
     },
     "summary": "{met} von {total} Punkten abgedeckt",
     "open": "Details ansehen",
@@ -536,8 +560,8 @@
       "nextDecisions": "Wichtige Entscheidungen und der Entscheidungspunkt"
     },
     "how": {
-      "title": "So wird die Pitch-Reife gezählt",
-      "body": "Jeder Teil des Pitches hat eine kurze Liste von Punkten. Ein Textpunkt zählt, wenn sein Feld Text enthält, ein Listenpunkt, wenn die Liste einen Eintrag hat, und ein Punkt zu Risiken oder kritischen Annahmen, wenn mindestens eine Zeile vollständig und keine Zeile nur halb ausgefüllt ist. Der Anteil der abgedeckten Punkte ist die Bewertung des Teils, und die Pitch-Reife ist der Durchschnitt der sechs Teile. Ein Teil ist pitch-reif, wenn alle seine Punkte abgedeckt sind. Dahinter steht keine Gleichung und keine Beurteilung des Inhalts."
+      "title": "So wird die Pitch-Vollständigkeit gezählt",
+      "body": "Jeder Teil des Pitches hat eine kurze Liste von Punkten. Ein Textpunkt zählt, wenn sein Feld Text enthält, ein Listenpunkt, wenn die Liste einen Eintrag hat, und ein Punkt zu Risiken oder kritischen Annahmen, wenn mindestens eine Zeile vollständig und keine Zeile nur halb ausgefüllt ist. Der Anteil der abgedeckten Punkte ist die Bewertung des Teils, und die Pitch-Vollständigkeit ist der Durchschnitt der sechs Teile. Ein Teil ist vollständig, wenn alle seine Punkte abgedeckt sind. Dahinter steht keine Gleichung und keine Beurteilung des Inhalts: Eine KI-Einschätzung des Inhalts gibt der KI-Plan-Score."
     }
   }
 }

@@ -6,7 +6,7 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 import { useDictionary } from "../../../_components/i18n-provider"
 
 /**
- * "How readiness is counted": the quiet, collapsed explanation (D-33) in the same form as
+ * "How completeness is counted": the quiet, collapsed explanation (D-33) in the same form as
  * "How we calculate". The Business Plan has no equation (D-27), so it is a plain sentence only.
  */
 export function ReadinessHow() {
