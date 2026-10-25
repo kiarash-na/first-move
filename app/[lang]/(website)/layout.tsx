@@ -8,6 +8,7 @@ import { getDictionary } from "@/lib/i18n/get-dictionary"
 import { localeParams } from "@/lib/i18n/locales"
 import { requireLocale } from "@/lib/i18n/require-locale"
 import { publicMetadata } from "@/lib/seo/metadata"
+import { JsonLd } from "./_components/json-ld"
 
 export async function generateMetadata({ params }: LayoutProps<"/[lang]">): Promise<Metadata> {
   const lang = requireLocale((await params).lang)
@@ -29,11 +30,12 @@ export function generateStaticParams() {
 /** Root layout of the landing page: always dark (D-16), no theme script. */
 export default async function WebsiteLayout({ children, params }: LayoutProps<"/[lang]">) {
   const lang = requireLocale((await params).lang)
-  const legal = await getDictionary(lang, "legal")
+  const [{ meta }, common, legal] = await Promise.all([getDictionary(lang, "landing"), getDictionary(lang, "common"), getDictionary(lang, "legal")])
 
   return (
     <html lang={lang} data-theme="dark" data-scroll-behavior="smooth">
       <body>
+        <JsonLd lang={lang} name={common.app.name} slogan={common.app.slogan} description={meta.description} />
         {children}
         <CookieNotice lang={lang} copy={legal.cookieNotice} />
       </body>
