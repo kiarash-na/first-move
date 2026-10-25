@@ -8,12 +8,13 @@ import { ExamplesGallery } from "./examples-gallery"
 import { ImportDropZone } from "./import-drop-zone"
 import { PathTiles } from "./path-tiles"
 import { ProjectList } from "./project-list"
+import { ReferenceCasesGallery } from "./reference-cases-gallery"
 import { StorageBanner } from "./storage-banner"
 
 /**
  * The start screen at every visit (D-03): continue where you left off, import, the storage
- * warning, path tiles, the project list and, last and collapsed, the examples. Static parts render at once; parts that
- * need stored data show skeletons until the store is ready.
+ * warning, path tiles, the project list and, last and collapsed, the examples and then the reference cases from
+ * Vienna. Static parts render at once; parts that need stored data show skeletons until the store is ready.
  */
 export function StartScreen({ examples }: { examples: readonly ExampleCard[] }) {
   const start = useDictionary("start")
@@ -31,6 +32,8 @@ export function StartScreen({ examples }: { examples: readonly ExampleCard[] }) 
       <ProjectList />
       {/* Seed data comes last and starts collapsed (owner, 2026-10-24): the user's own projects first. */}
       <ExamplesGallery examples={examples} />
+      {/* The reference cases from Vienna come at the very bottom, collapsed (owner, 2026-10-25). */}
+      <ReferenceCasesGallery />
     </div>
   )
 }

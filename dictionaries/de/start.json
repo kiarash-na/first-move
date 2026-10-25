@@ -55,6 +55,26 @@
     "show": "{count} Beispiele anzeigen",
     "hide": "Beispiele ausblenden"
   },
+  "referenceCases": {
+    "title": "Referenzfälle aus Wien",
+    "body": "Drei reale Anergienetze und drei fiktive Pläne rund um reale Wiener Gebäude, jeweils als schwacher, mittlerer oder starker Businessplan geschrieben. Die Fakten stammen aus geprüften Quellen. Beim Öffnen entsteht Ihre eigene Kopie.",
+    "show": "{count} Referenzfälle anzeigen",
+    "hide": "Referenzfälle ausblenden",
+    "kinds": {
+      "real": "Reales Netz",
+      "fictional": "Fiktiver Plan"
+    },
+    "quality": "Beabsichtigte Planqualität",
+    "tiers": {
+      "weak": "Schwach",
+      "middling": "Mittel",
+      "strong": "Stark"
+    },
+    "disclaimer": "Fiktiver Businessplan rund um ein reales Gebäude: Weder Eigentümer noch Betreiber haben ihn geplant oder befürwortet.",
+    "sources": "Quellen und Details",
+    "open": "Kopie öffnen",
+    "opened": "„{name}“ als Kopie geöffnet"
+  },
   "import": {
     "title": "Projekt importieren",
     "body": "Legen Sie hier eine .firstmove.json-Datei ab oder wählen Sie eine aus. Dateien werden geprüft und verlassen diesen Browser nie.",

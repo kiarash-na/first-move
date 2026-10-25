@@ -38,6 +38,12 @@ describe("localizeExample", () => {
     expect(project.quickCheck.networkLengthM).toBe(7_000)
   })
 
+  it("leaves the demand estimated unless the example states it (QCT-IN-05)", () => {
+    expect(localizeExample(ruralVillageHotel, "en").quickCheck.manualDemand).toEqual({ heatingKwhPerYear: null, coolingKwhPerYear: null })
+    const stated: ExampleDefinition = { ...ruralVillageHotel, manualDemand: { heatingKwhPerYear: 207_000, coolingKwhPerYear: null } }
+    expect(localizeExample(stated, "de").quickCheck.manualDemand).toEqual({ heatingKwhPerYear: 207_000, coolingKwhPerYear: null })
+  })
+
   it("throws for an example the schema rejects, naming it", () => {
     const broken: ExampleDefinition = { ...ruralVillageHotel, buildings: { ...ruralVillageHotel.buildings, total: -1 } }
     expect(() => localizeExample(broken, "en")).toThrow(/rural-village-hotel/)

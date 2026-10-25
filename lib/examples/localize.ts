@@ -50,6 +50,10 @@ export function localizeExample(example: ExampleDefinition, lang: Locale): Proje
     ...sharePatch(example.buildings.shares),
     ...sourcePatch(example.sources),
     "quickCheck.networkLengthM": example.networkLengthM ?? null,
+    ...(example.manualDemand && {
+      "quickCheck.manualDemand.heatingKwhPerYear": example.manualDemand.heatingKwhPerYear,
+      "quickCheck.manualDemand.coolingKwhPerYear": example.manualDemand.coolingKwhPerYear,
+    }),
     "businessPlan.scenarioId": example.scenarioId,
     ...planPatch(plan),
   }

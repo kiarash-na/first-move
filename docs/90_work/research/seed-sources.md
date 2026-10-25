@@ -1,7 +1,7 @@
 ---
 id: RESEARCH-SEED-SOURCES
 title: 'Reference cases: verified bibliography'
-source: [web research by a Claude sub-agent, 2026-10-24; every link opened and every DOI resolved on that day]
+source: [web research by a Claude sub-agent, 2026-10-24; revised 2026-10-25 for the re-anchored reference cases; every link opened and every DOI resolved on those days]
 ---
 
 # Seed sources: bibliography and link verification
@@ -18,6 +18,15 @@ Reliability labels:
 - **internal**: a file in this repository.
 
 The numbers match the [n] markers in `seed-dossier.md`.
+
+## Revision of 2026-10-25: what the app cites
+
+The owner set two rules on 2026-10-25: the links must be sound ("make sure the links are science proven"), and the three fictional cases must be re-anchored on real, named Vienna buildings. Since then:
+
+- **The app cites only `lib/examples/reference-cases/sources.ts`** (`REFERENCE_CASE_SOURCES`, ids `RC-…`), next to the method references of `lib/docs/references.ts`. All 32 entries were opened again on **2026-10-25** (HTTP 200, content read; DOIs resolved at doi.org); `node scripts/check-references.mjs` fetches them on demand.
+- **Allowed kinds:** official pages and documents, research reports, peer-reviewed papers through doi.org, and a developer's or operator's own page about its own project. **No news and no blogs**: [33] to [38] below stay in this log as research history, but no fact in the app or on the public docs page rests on them. Where a news item was the only source of a number (Geblergasse 2021: 18 probes and €350,000 [36]; Klinik Floridsdorf heat demand and investment [37]; Hallenbad Floridsdorf cost and groundwater heat pump [38]; Village im Dritten partners and construction state [34][35]), the number was dropped.
+- **Mapping to this list:** RC-WIEN-SEEBOGEN [1], RC-WIEN-KLINIK-FLORIDSDORF [3], RC-WIEN-HALLENBAD-FLORIDSDORF [4], RC-WIEN-WAERMEPLAN [5], RC-WIEN-ANERGY-GRANT [6], RC-ANERGIEURBAN [7], RC-WIENEU-STARTZELLEN [8], RC-SOCIALHOUSING-GEBLERGASSE [9], RC-SMART-BLOCK-II [11], RC-UFI-MIKRONETZE [13], RC-KRANZL-2026-PAPER [17], RC-KRANZL-2026-SLIDES [18], RC-LENA-HOSPITALS [20], RC-BISP-POOLS [22], RC-KAMPEL-2014 [26], RC-ARE-VILLAGE-FOLDER and RC-ARE-VILLAGE-PROJECT [30], RC-WIEN-ENERGIE-ZEC-2023 [31], RC-ASPERN-SEEBOGEN-2022 [32]; new on 2026-10-25: [42] to [54].
+- **Not cited in the app any more:** [2], [10], [12], [14] to [16], [19], [21], [23] to [25], [27] to [29], [33] to [41]. They served the candidate screening, the first fictional cases or background, and stay listed for the record.
 
 ## Official: City of Vienna
 
@@ -247,7 +256,7 @@ Verified: 200 · "„Eine CO₂-freie Wärme- und Kälteversorgung ist möglich�
 Supports: BCE plans, builds and runs systems; probes 150 m deep; a Seestadt project of ~23,000 m² usable area being commissioned (not explicitly named H6); ongoing extension at Viertel Zwei; prices "largely market-standard".
 Reliability: company (a bank's customer story quoting the company).
 
-## News and trade press
+## News and trade press (not used in the app since 2026-10-25)
 
 **[34] futurezone (Barbara Wimmer): "Weg vom Gas: Mit 500 Erdsonden werden 2.000 Wohnungen geheizt"**, 01.03.2023.
 URL: https://futurezone.at/digital-life/erdsonden-erdwaerme-waermepumpen-wien-energie-are-photovoltaik-klimaschutz-village/402347568
@@ -296,6 +305,87 @@ Verified: 200 · "SmartCity Baumgarten - Demonstration of an anergy network and 
 Supports: a cross-property anergy network for heat, cold and power in an existing 14th-district quarter that is mostly gas-heated and outside district heating; a new building on a vacant lot enables the probes; status "ongoing".
 Reliability: official.
 
+## Added on 2026-10-25 (re-anchored cases)
+
+All opened on 2026-10-25 through the session proxy; PDFs read with `pdftotext`.
+
+**[42] Stadt Wien, MA 20 Energieplanung: "Energie-Info Ottakring, 16. Bezirk"** (district energy sheet, PDF, 2024).
+URL: https://www.wien.gv.at/pdf/ma20/energie-info-bezirk-16.pdf
+Verified: 200 · PDF
+Supports: Ottakring had about 6,897 buildings (2021); about 180 buildings (about 1.5 million m²) on district heating and about 3,380 (about 4.5 million m²) on gas.
+Reliability: official.
+
+**[43] Stadt Wien, MA 20 Energieplanung: "Energie-Info Donaustadt, 22. Bezirk"** (PDF, 2024).
+URL: https://www.wien.gv.at/pdf/ma20/energie-info-bezirk-22.pdf
+Verified: 200 · PDF
+Supports: Donaustadt had about 33,002 buildings (2021); about 1,500 on district heating and about 12,010 on gas.
+Reliability: official.
+
+**[44] Stadt Wien, MA 20 Energieplanung: "Energie-Info Liesing, 23. Bezirk"** (PDF, 2024).
+URL: https://www.wien.gv.at/pdf/ma20/energie-info-bezirk-23.pdf
+Verified: 200 · PDF
+Supports: Liesing had about 16,713 buildings (2021); about 680 (about 3.0 million m²) on district heating and about 7,570 (about 4.8 million m²) on gas.
+Reliability: official.
+
+**[45] Stadt Wien, Wiener Bäder: "Ottakringer Bad – Kombibad der Stadt Wien".**
+URL: https://www.wien.gv.at/freizeit/ottakringer-bad
+Verified: 200 · "Ottakringer Bad - Kombibad - Stadt Wien"
+Supports: 16., Johann-Staud-Straße 11; indoor pool (multi-purpose pool, diving pool for schools and clubs, saunas, cold plunge) and outdoor pool (multi-purpose pool, adventure pool with slide, paddling pool); outdoor season 2 May to mid-September. Nothing on the heat supply.
+Reliability: official.
+
+**[46] Wien Geschichte Wiki (Wiener Stadt- und Landesarchiv, Wienbibliothek im Rathaus): "Ottakringer Bad"** (last edited 03.11.2023).
+URL: https://www.geschichtewiki.wien.gv.at/Ottakringer_Bad
+Verified: 200 · "Ottakringer Bad – Wien Geschichte Wiki"
+Supports: built by the City of Vienna in 1926 as the first Vienna outdoor pool able to raise its water temperature with an electric pre-heater; reopened on 20 May 1945; rebuilt 1966 to 1972 (Friedrich Florian Grünberger), with an indoor pool added from 1971.
+Reliability: official (the city's history wiki, run by the city archive and library).
+
+**[47] Wien Geschichte Wiki: "Großmarkt Inzersdorf".**
+URL: https://www.geschichtewiki.wien.gv.at/Gro%C3%9Fmarkt_Inzersdorf
+Verified: 200 · "Großmarkt Inzersdorf – Wien Geschichte Wiki"
+Supports: 23., Laxenburger Straße 367; flower hall of about 3,500 m² opened 26 November 1969; the whole market opened 30 October 1972; flower market enlarged to about 10,000 m² in 1987.
+Reliability: official.
+
+**[48] Wiener Gesundheitsverbund, Klinik Donaustadt: "Anstaltsordnung der Klinik Donaustadt"** (hospital statute, PDF, 2022).
+URL: https://klinik-donaustadt.gesundheitsverbund.at/wp-content/uploads/sites/9/2023/09/KDO-Anstaltsordnung-2022.pdf
+Verified: 200 · PDF
+Supports: Klinik Donaustadt is a municipal hospital with 963 systemised beds.
+Reliability: official (statute of a public hospital).
+
+**[49] Wiener Gesundheitsverbund, Klinik Donaustadt: "Das Haus".**
+URL: https://klinik-donaustadt.gesundheitsverbund.at/das-haus/
+Verified: 200 · page
+Supports: Langobardenstraße 122, 1220 Vienna; foundation stone 1985, third part finished 1996 with 933 beds at the time; "auf insgesamt 170.000 m²" a low building of at most 5 storeys. Nothing on the energy supply.
+Reliability: official.
+
+**[50] ARE Austrian Real Estate: "Village im Dritten – Energiesystem".**
+URL: https://villageimdritten.at/energiesystem/
+Verified: 200 · page
+Supports: "the largest geothermal probe field in Austria" with 500 probes, 150 m deep; anergy network to heat pumps in the energy centre of each building, up to about 37 °C into floor heating; district heating for peaks and hot water; moderate cooling of the flats (free of charge) and cooling for the commercial spaces in summer, with the heat stored in the ground; PV of about 1 MW in total. The project page (https://villageimdritten.at/, 200) gives about 11 ha, 22 plots and about 2,000 flats.
+Reliability: company (developer, own project).
+
+**[51] GMW Großmarkt Wien Betrieb GmbH: "Daten und Fakten".**
+URL: https://www.grossmarkt-wien.at/grossmarkt-daten-und-fakten
+Verified: 200 · "Daten und Fakten – Großmarkt Wien"
+Supports: Laxenburger Straße 365-367, 1230 Vienna; "Österreichs bedeutendste Handelsdrehscheibe für Obst, Gemüse, Lebensmittel und Blumen"; about 30 ha with halls, buildings and open space; about 220 tenants and about 1,400 employees.
+Reliability: company (operator, own site).
+
+**[52] GMW Großmarkt Wien Betrieb GmbH: "GMW Großmarkt Wien Betrieb GmbH".**
+URL: https://www.grossmarkt-wien.at/grossmarkt-betrieb-gmbh
+Verified: 200 · page
+Supports: the economic management moved from MA 59 (Marktamt) to the Wien Holding in January 2019; GMW is part of WSE Wiener Standortentwicklung, a Wien Holding company.
+Reliability: company (operator, own site).
+
+**[53] GMW Großmarkt Wien Betrieb GmbH: "50 Jahre Großmarkt Wien – Festbroschüre"** (PDF, 2022).
+URL: https://www.grossmarkt-wien.at/wp-content/uploads/2025/12/50-Jahre-GMW_Festbroschure_2022.pdf
+Verified: 200 · PDF
+Supports: built 1969 to 1972, opened 30 October 1972; modernisations in 1987 and 2001 with more cold and storage rooms; 2022 area split: about 300,000 m² in total, about 76,000 m² buildings and halls, about 17,000 m² open space, flower hall about 10,000 m², meat market about 7,000 m², offices about 1,500 m². No figure on cooling capacity or waste heat.
+Reliability: company (operator, own publication).
+
+**[54] Giunta, F.; Sawalha, S. (2021): "Techno-economic analysis of heat recovery from supermarket's CO2 refrigeration systems to district heating networks."** Applied Thermal Engineering 193, 117000.
+DOI: 10.1016/j.applthermaleng.2021.117000
+Verified: Crossref metadata (title, authors, journal, volume, article number); doi.org resolves. The abstract could not be read (publisher 403), so only what the title says is used: such a techno-economic analysis exists.
+Reliability: peer-reviewed.
+
 ## Dropped or unverified (not used for any fact)
 
 | Source | Reason |
@@ -310,4 +400,8 @@ Reliability: official.
 | Trianti-Stourna et al. (1998), Energy and Buildings 27, 123-135, DOI 10.1016/S0378-7788(97)00041-8; Kampel et al. (2013), Energy and Buildings 59, 181-186, DOI 10.1016/j.enbuild.2012.11.011; Woolley et al. (2011), Building and Environment 46, 187-195, DOI 10.1016/j.buildenv.2010.07.014; Harrington & Modera (2013), Energy and Buildings 59, 252-264, DOI 10.1016/j.enbuild.2012.12.038; Gjoka et al. (2023), RSER 171, 112997, DOI 10.1016/j.rser.2022.112997 | DOIs exist (Crossref), but no abstract or full text could be read (ScienceDirect 403, API rate limits). Not cited for any number. |
 | Trending Topics, 01.03.2023, "Zukunftsquartier Village im Dritten: Erdwärme-Bohrungen für Bauprojekt begonnen" | 200, but not needed; facts come from [34] and [35]. |
 | HSLU lecture note that Seestadt as a whole rejected an anergy network in favour of district heating | Seen only in a search snippet; not opened; not used. |
+| News and trade press [34] to [38] | Owner's rule of 2026-10-25: no news and no blogs. Kept above as research history; every number that rested only on them was dropped from the app. |
+| Data centres as anchors for the fictional cases (Equinix Vienna pages; Vienna Scientific Cluster VSC-5 in the Arsenal) | Equinix pages answered **404**, the VSC site **502**. The only Vienna data-centre heat project with an official page is the real Klinik Floridsdorf project [3], so a fictional data-centre plan would have blurred into it. Dropped; the waste-heat anchor became Großmarkt Wien [51] to [53]. |
+| City of Vienna open-data WFS layers for Ottakring (Energieampel probes and groundwater heat pumps, geothermal potential) | The queries for the pool's surroundings returned no features; no site-level potential is claimed for the Ottakringer Bad. |
+| Wayback Machine snapshots | Still blocked from this environment (egress policy); nothing from archived pages is used. |
 | Neu Leopoldau, Gräf & Stift, Nordbahnhof / Nordbahnviertel | No source found describing an anergy network. For the Nordbahnviertel, a ORF report found by search describes Wien Energie district cooling with heat recovery (not 5GDHC; not opened, not used). |

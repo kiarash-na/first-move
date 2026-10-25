@@ -1,12 +1,14 @@
 ---
 id: RESEARCH-SEED-DOSSIER
 title: 'Reference cases: seed dossier (3 Vienna, 3 fictional)'
-source: [web research by a Claude sub-agent, 2026-10-24; every link opened and every DOI resolved on that day]
+source: [web research by a Claude sub-agent, 2026-10-24; fictional cases re-anchored on real Vienna buildings and all app sources re-opened on 2026-10-25]
 ---
 
 # Seed dossier: six Business Plan examples (Vienna, 5GDHC / Anergienetz)
 
-Access date for all sources: **2026-10-24**. Numbers in square brackets, e.g. [11], point to the global bibliography in `seed-sources.md`; each example also ends with its own reference list. Field ids are the registry ids of `lib/project/fields/business-plan.ts`.
+**Revised 2026-10-25** (see "Revision log" before the open doubts): the three fictional cases are now fictional plans around real, named Vienna buildings, news sources are no longer used, and the field text of all six cases lives in `lib/examples/reference-cases/`. The public page is `content/docs/{en,de}/reference-cases.mdx`.
+
+Access date: **2026-10-24** for the first research, **2026-10-25** for every source the app cites (`lib/examples/reference-cases/sources.ts`). Numbers in square brackets, e.g. [11], point to the global bibliography in `seed-sources.md`; each example also ends with its own reference list. Field ids are the registry ids of `lib/project/fields/business-plan.ts`.
 
 Markers used in the text:
 
@@ -24,9 +26,9 @@ Short fields (`site.name`, `site.location`, `site.siteType`, `site.units`, list 
 | R1 | `smart-block-geblergasse` | real (17th district) | **strong** |
 | R2 | `kraftwerk-seebogen-aspern` | real (22nd district) | **middling** |
 | R3 | `village-im-dritten` | real (3rd district) | **weak** |
-| F1 | `hospital-anchor-quarter` | fictional | **strong** |
-| F2 | `pool-anchor-campus` | fictional | **middling** |
-| F3 | `data-centre-waste-heat` | fictional | **weak** |
+| F1 | `klinik-donaustadt-groundwater-loop` | fictional plan around Klinik Donaustadt (22nd district) | **strong** |
+| F2 | `ottakringer-bad-summer-loop` | fictional plan around the Ottakringer Bad (16th district) | **middling** |
+| F3 | `grossmarkt-wien-waste-heat` | fictional plan around Großmarkt Wien (23rd district) | **weak** |
 
 ## Scoring rubric used for the tiers
 
@@ -48,9 +50,9 @@ The rubric combines the jury criteria (BM-SCOPE-08), the step requirements (BM-S
 | R1 Geblergasse | meets | meets | meets | meets | meets | meets | meets | meets | strong |
 | R2 Seebogen | meets | partial | fails | partial | partial | partial | partial | fails | middling |
 | R3 Village im Dritten | partial | fails | fails | fails | fails | fails | fails | fails | weak |
-| F1 Hospital | meets | meets | meets | meets | meets | meets | meets | meets | strong |
-| F2 Pool | meets | partial | partial | meets | partial | partial | partial | partial | middling |
-| F3 Data centre | fails | fails | fails | fails | fails | fails | fails | fails | weak |
+| F1 Klinik Donaustadt | meets | meets | meets | meets | meets | meets | meets | meets | strong |
+| F2 Ottakringer Bad | meets | partial | partial | meets | partial | partial | partial | partial | middling |
+| F3 Großmarkt Wien | fails | fails | fails | fails | fails | fails | fails | fails | weak |
 
 ## How the three real projects were chosen
 
@@ -467,403 +469,87 @@ Candidates checked (details and links in `seed-sources.md`, section "Dropped or 
 
 ---
 
-## F1 · `hospital-anchor-quarter` · STRONG · fictional
+## F1 · `klinik-donaustadt-groundwater-loop` · STRONG · fictional (re-anchored 2026-10-25)
 
-**Summary (EN):** A 450-bed hospital with 24/7 heating and cooling anchors a groundwater anergy loop for 600 neighbouring flats and a school (illustrative).
-**Summary (DE):** Ein Spital mit 450 Betten und ganzjährigem Wärme- und Kältebedarf trägt als Ankerkunde ein Grundwasser-Anergienetz für 600 Nachbarwohnungen und eine Schule (illustrativ).
-**Site name (DE):** Spitalsquartier mit Ankerkunde, Nordosten Wiens (illustrativ)
+Replaces the anonymous `hospital-anchor-quarter` of 2026-10-24. Code: `lib/examples/reference-cases/klinik-donaustadt-groundwater-loop.ts` (every field in EN and DE). Disclaimer first in `site.ownership`, on the card and on the docs page.
 
-**Why strong:** C1 every demand figure is derived from a cited benchmark: hospital heat per bed [20], cooling from metered chiller electricity [20], and housing from the Quick Check tables [39]. C2 the hospital is the anchor, with a take-or-pay contract and an LOI threshold [13]. C3 explicit boundary: the ESCO owns wells, loop and heat pumps, and the hospital keeps district heating as backup. C4 the cost key follows the e7 tip [40]. C5 capex, revenue and annual costs are computed with Quick Check defaults and an outside reference [3][37][39]. C6 three assumptions, each with a test. C7 one real deal-breaker: groundwater yield or permit. C8 two gates with dates and criteria. No real hospital or housing company is modelled; the real Klinik Floridsdorf project [3] is used only as an evidence point.
+**Real anchor and its facts (only these are claimed):** Klinik Donaustadt, Langobardenstraße 122, 1220 Vienna [49]; a municipal hospital with 963 systemised beds [48], run by the Wiener Gesundheitsverbund; a low building of at most 5 storeys "auf insgesamt 170.000 m²" [49]. No energy project of the hospital is published, and its heat supply is not public: the plan says so and keeps "the existing supply" as backup without naming it. Donaustadt: about 12,010 buildings on gas, about 1,500 on district heating [43]. A TU Wien study for the city names Floridsdorf and Donaustadt as areas where groundwater use is realistic [18], and finds groundwater concepts close to economic viability against building-by-building supply, while probe concepts need optimisation, extra sources, good areas or renovation [17].
 
-**Derivations (all illustrative unless sourced):**
+**Why Klinik Donaustadt:** a large public anchor with year-round heat and cooling, in a district the city's own study names for groundwater, with no published energy project that a fictional plan could be confused with. The real Klinik Floridsdorf data-centre project [3] is used only as evidence that hospital heat pumps work at this scale (26 °C to 82 °C, 50 to 70 % of the heat, up to 4,000 t CO2/a).
 
-- Hospital heat: 450 beds × 29 MWh/bed·a (German average [20]) ≈ 13.0 GWh/a. Cross-checks: Klinik Floridsdorf ≈ 21 GWh/a for ~800 beds = 26 MWh/bed [37][3]; an NRW hospital with 660 beds used 22.0 GWh/a = 33 MWh/bed [21].
-- Hospital cooling: Klinikum Magdeburg (779 beds) used ~560 MWh/a of electricity for compression chillers [20]. With an assumed EER of 3 (illustrative), that is ~1.7 GWh/a of cooling, or 2.2 MWh/bed, so 450 beds ≈ 1.0 GWh/a.
-- Loop-served heat: 50% of the hospital's heat (6.5 GWh/a, the lower end of Klinik Floridsdorf's 50-70% [3]) + housing 42,000 m² × 109.3 kWh/m²a = 4.6 GWh/a + school 6,000 m² × 104.3 kWh/m²a = 0.63 GWh/a [39] → **~11.7 GWh/a**.
-- Line density: 11.7 GWh/a ÷ 2,500 m trench ≈ **4.7 MWh/m**, against the e7 rule of thumb of ~1 MWh/m [40].
-- Cooling sold: hospital 1.0 GWh/a + housing 42,000 m² × 11.0 kWh/m²a = 0.46 GWh/a [39] → ~1.46 GWh/a.
-- Hospital floor area, if needed: ~150 m² GFA per bed, from the NRW case (100,000 m² for 660 beds) [21] → ~68,000 m².
+**Derivations (illustrative unless sourced):**
 
-### Site
+- Hospital heat: 963 beds × 29 MWh per bed and year (German average [20]) = 27.9 GWh/a, to be replaced by metered data. The loop takes 25 %: about 7.0 GWh/a (low-temperature circuits and hot-water preheating).
+- Hospital cooling: 1.5 GWh/a (illustrative; no clean public benchmark, see open doubt 4).
+- Housing: 42,000 m² × 109.3 kWh/m²a = 4.6 GWh/a; school: 6,000 m² × 104.3 kWh/m²a = 0.6 GWh/a; housing cooling 42,000 m² × 11.0 kWh/m²a = 0.46 GWh/a [39].
+- Loop heat 12.2 GWh/a; hospital share about 57 %; on a 2.5 km trench 4.9 MWh/m, above the 1.5 MWh/m from which the Quick Check rates heat density as high (TBL-9 [39]). The old dossier compared against the ~1 MWh/m rule of thumb of the e7 talk [40]; the app now cites only the Quick Check table, which users can see.
+- Source: groundwater, two well pairs at least 50 m apart, about 8 GWh/a.
+- Capex €12.9 m: loop 2.5 km × €500/m = €1.25 m; wells at the Quick Check default of €1.00 per kWh/a × 8 GWh/a = €8.0 m (an upper bound); hospital heat-pump plant ~2 MW €2.0 m and block heat pumps €1.6 m (illustrative).
+- Annual costs: annuity factor 0.0672 (3 %, 20 years [39]) → €0.86 m; maintenance 2 % → €0.26 m; electricity 2.44 GWh × €0.20 → €0.49 m; total ≈ €1.61 m.
+- Revenue: heat 12.2 GWh × €0.12 = €1.46 m; base price €6/m² × 48,000 m² = €0.29 m; hospital capacity price €0.15 m (illustrative); cooling 2.0 GWh × €0.08 = €0.16 m; total ≈ €2.06 m; margin ≈ €0.45 m/a.
+- Sensitivities: without the housing ≈ −€0.2 m/a; break-even with the hospital and about a third of the housing floor area; a €4 m well quote adds ≈ €0.35 m/a; electricity +50 % costs ≈ €0.24 m/a.
+- A 70 m² flat using 7,650 kWh pays ≈ €1,340 a year at the Quick Check defaults.
+- Grants: the city's anergy grant (30 %, at most €200,000 per case, 2024/25 rules, successor not verified) [6]; UFI micro-networks only for 2 to 9 external customers or under 800 MWh/a [13], so this network needs another programme. The 50 % letters-of-intent rule and indexed prices are taken from the UFI micro-network sheet [13].
+- Deal-breaker: groundwater yield or permit fails; test well pair and water-authority pre-consultation before gate 1.
+- Gates: month 6 (test well and permit outlook positive, heads of terms with the hospital, letters of intent ≥ 50 % of phase-1 heat); month 12 (grant decision known, Quick Check and lifetime check positive at 80 % connection). Phase 1: hospital + 3 association blocks on 1.2 km, ≈ 9.3 GWh/a.
 
-- `site.name`: Hospital anchor quarter, north-east Vienna (illustrative)
-- `site.location`: Vienna, Floridsdorf or Donaustadt, areas where groundwater use is realistic [18] (illustrative site; no real hospital modelled)
-- `site.siteType`: Urban edge: hospital campus next to 1960s-80s housing and a school (illustrative)
-- `site.ownership`: A public hospital campus (3 buildings), 5 rental blocks of a limited-profit housing association (WGG), 1 condominium block (WEG) and a municipal school (illustrative). Each owner decides separately; the WEG block needs an owners' vote (illustrative).
-- `site.units`: 10 buildings: 3 hospital (450 beds), 6 housing (600 flats), 1 school (illustrative)
-- `site.currentSupply`:
-  - District heating for the hospital, incl. steam (illustrative)
-  - Electric chillers with dry coolers at the hospital (illustrative)
-  - Gas boilers in the housing blocks and the school (illustrative)
-- `site.stakeholders`:
-  - Hospital operator and its technical department (illustrative)
-  - Limited-profit housing association (illustrative)
-  - Condominium owners (WEG) (illustrative)
-  - Municipality as school owner and landowner (illustrative)
-  - Water authority (groundwater permit) (illustrative)
-- `site.partners`:
-  - Energy-services company (ESCO) running a project company (SPV) (illustrative)
-  - Hydrogeology office (illustrative)
-  - District-heating supplier as backup supplier (illustrative)
+**Quick Check inputs:** 8 buildings (category_c 1991-2010 12.5 %, residential 1961-1990 75 %, category_a 1961-1990 12.5 %), 250,000 m² project area, network 2,500 m, ground_water high and waste_heat medium, PV, and the plan's demand as known demand (12,200,000 kWh/a heat, 2,000,000 kWh/a cooling; QCT-IN-05). Result through the engine: **further analysis required** (heat density high, economics favorable, heating coverage not feasible because TBL-4 capacities are absolute, building density low). Without the known demand the engine would count 8 buildings at TBL-3 floor areas (0.55 GWh/a) and answer "not promising"; that is why examples can now carry a known demand.
 
-### Step 1 · Opportunity
-
-- `businessPlan.opportunity.customerSegments`: The anchor is a 450-bed hospital with 24/7 heat, hot water and cooling (illustrative). Next door are 600 rental and condominium flats and a school (illustrative).
-- `businessPlan.opportunity.needs`: Hospital heat ~13 GWh/a (450 beds × 29 MWh/bed, the German average [20]; cross-check: 21 GWh/a for ~800 beds at Klinik Floridsdorf [37][3]) and cooling ~1 GWh/a (from Magdeburg chiller data with an illustrative EER of 3) [20]. Housing ~4.6 GWh/a and school ~0.6 GWh/a (Quick Check Table 1, 1961-1990) [39].
-- `businessPlan.opportunity.heatSources`: Groundwater from one or two well pairs, ≥50 m apart as in the TU Wien criteria [18]; heat rejected by the hospital's 24/7 cooling (operating rooms, IT, labs), fed into the loop instead of the air (illustrative); rooftop PV for pump power (illustrative).
-- `businessPlan.opportunity.painPoint`: The hospital pays twice: for district heat in winter and for chillers that dump heat into the air all year (illustrative). The housing next door burns gas and has no summer cooling, and no single owner can justify a groundwater source alone (illustrative).
-- `businessPlan.opportunity.alternatives`: The hospital could stay on district heating plus chillers; the housing could install air or ground heat pumps per block, or connect to district heating where it is offered (illustrative). Klinik Floridsdorf shows that a bilateral waste-heat deal can cover 50-70% of a hospital's heat [3].
-- `businessPlan.opportunity.advantage`: The hospital's cooling waste heat and steady demand give the loop a 24/7 base load. At ~11.7 GWh/a on 2.5 km the line density is ~4.7 MWh/m, far above the ~1 MWh/m threshold [40] (illustrative). Groundwater concepts are the anergy option closest to cost parity in Vienna [17].
-
-### Step 2 · Business Model Canvas
-
-- `businessPlan.canvas.keyPartners`: The hospital operator (anchor), the housing association and the WEG, the municipality (school, land for wells), an ESCO as operator, the water authority, and the district-heating supplier as backup (illustrative).
-- `businessPlan.canvas.keyActivities`: Get permits for and drill the wells, build a 2.5 km ambient loop, install a ~1.8 MW high-temperature heat pump at the hospital and heat pumps in each block, then operate, meter and bill and manage the groundwater balance (illustrative).
-- `businessPlan.canvas.keyResources`: Groundwater rights, the hospital plant room, a trench corridor on hospital and public land, a long-term anchor contract and the ESCO's balance sheet (illustrative).
-- `businessPlan.canvas.valueProposition`: The hospital gets cheaper cooling, ~50% of its heat from renewable sources and a hedge against heat prices, with district heating kept as backup (illustrative; compare Klinik Floridsdorf [3]). Residents get a gas exit plus summer cooling at a regulated price (illustrative).
-- `businessPlan.canvas.customerRelationships`: A 20-year take-or-pay heat and cooling contract with the hospital and 15-year supply contracts with the housing owners. Prices are indexed to electricity and CPI, as UFI requires indexed heat prices [13] (illustrative terms).
-- `businessPlan.canvas.channels`: The hospital board and technical department, the housing association board, the WEG owners' assembly, the district council and tenant information events (illustrative).
-- `businessPlan.canvas.customerSegments`: A public hospital (anchor, ~56% of loop heat), limited-profit rental housing, a condominium and a municipal school (illustrative).
-- `businessPlan.canvas.costStructure`: Network 2.5 km × €500/m = €1.25 m [39]; groundwater source at the Quick Check default of €1.00 per kWh/a = €11.7 m (an upper bound) [39]; hospital heat-pump plant ~€2.1 m, scaled from €3.5 m for 3 MW at Klinik Floridsdorf [37]; building heat pumps €0.15 m at the default [39]. Electricity ~€0.47 m/a; O&M 2% of capex [39] (illustrative).
-- `businessPlan.canvas.revenueStreams`: Heat 11.7 GWh/a × €0.12/kWh = €1.40 m; base price €6/m² on 48,000 m² of housing and school = €0.29 m; cooling 1.46 GWh/a × €0.08/kWh = €0.12 m; connection fees of €1,000 per building (Quick Check defaults) [39]. Total ~€1.8 m/a (illustrative).
-- `businessPlan.canvas.operatorResponsibilities`: System boundary: the ESCO's project company owns wells, loop, the hospital heat-pump plant and the building heat pumps up to each building's heat meter; owners keep their internal distribution. The hospital keeps its district-heating connection for steam and peaks, so the ESCO is never the only supplier for critical care (illustrative).
-- `businessPlan.allocation[0]`
-  - `stakeholder`: Hospital operator (anchor, illustrative)
-  - `investment`: Plant-room space, hydraulic changes and a 20-year take-or-pay contract for ~6.5 GWh/a of heat and all its cooling (illustrative).
-  - `risk`: Supply security for critical care, reduced by keeping district heating as backup; at Klinik Floridsdorf, heat pumps cover 50-70% [3].
-  - `benefit`: Lower cooling cost, price stability and CO2 savings; Klinik Floridsdorf saves up to 4,000 t CO2/a at a larger scale [3] (illustrative).
-- `businessPlan.allocation[1]`
-  - `stakeholder`: ESCO / project company (illustrative)
-  - `investment`: ~€15 m upper bound before grants (wells, loop, heat pumps), financed with 30% equity and 70% loans at 3% (illustrative; default interest rate [39]).
-  - `risk`: Groundwater yield, connection rate, electricity price and anchor default. Cost key: source cost by connected load, pipe cost by the users of each branch [40].
-  - `benefit`: ~€1.8 m/a revenue over 20 years (Quick Check defaults [39]) and a first-mover position for further anchors (illustrative).
-- `businessPlan.allocation[2]`
-  - `stakeholder`: Housing owners: association and WEG (illustrative)
-  - `investment`: A €1,000 connection fee per building [39], plus radiator checks and hydraulic balancing (illustrative).
-  - `risk`: The WEG vote may fail or come late; tenant cost rules limit what can be passed on (illustrative).
-  - `benefit`: A gas exit without their own heat source, summer cooling and a stable regulated price (illustrative).
-
-### Step 3 · Reality check
-
-- `businessPlan.assumptions.connectionRate`: The hospital connects at 100% (anchor contract), the association with 5 of 5 blocks, and the WEG block in year 3. The base case is 90% of loop heat, with 60%, 80% and 100% as sensitivities (illustrative). Every building that stays out raises costs for the rest [40].
-- `businessPlan.assumptions.tariffs`: Quick Check defaults: heat €6/m² + €0.12/kWh, cooling €3/m² + €0.08/kWh [39]; the hospital pays a capacity price instead of the m² base price (illustrative). Test: the price must stay ≤ the hospital's current district-heating plus chiller cost per MWh (to be measured).
-- `businessPlan.assumptions.capex`: €15.2 m upper bound: loop €1.25 m; groundwater source €11.7 m at the tool default, to be replaced by a well-pair quote; hospital heat pumps €2.1 m, scaled from Klinik Floridsdorf [37]; building heat pumps €0.15 m [39] (illustrative).
-- `businessPlan.assumptions.financing`: A project company with 30% ESCO equity and 70% long-term loans at 3% over 20 years: annuity factor 0.067 → ~€1.0 m/a; O&M 2% → €0.3 m/a; electricity €0.47 m/a [39]. At the upper-bound capex, costs ≈ revenues (€1.8 m/a), so grants or a cheaper source decide the case (illustrative).
-- `businessPlan.assumptions.subsidies`: The base case without grants breaks even; a 30% capex grant cuts annual costs by ~€0.3 m (illustrative). The UFI micro-network module (up to 40%) only covers 2-9 external customers or <800 MWh/a [13], so the module and rate for a larger network must be confirmed with KPC. The city's anergy grant paid 30%, max €200,000 (2024/25 rules) [6].
-- `businessPlan.criticalAssumptions[0]`
-  - `statement`: The hospital signs a 20-year contract for ~6.5 GWh/a of heat (50% of its demand) and all its cooling (illustrative).
-  - `validation`: Heads of terms approved by the hospital board before the feasibility study. Together with housing letters of intent, they must cover ≥50% of planned heat sales, the UFI rule for networks [13].
-- `businessPlan.criticalAssumptions[1]`
-  - `statement`: Groundwater can deliver ~8-9 GWh/a of source energy with well pairs ≥50 m apart (illustrative).
-  - `validation`: A desk study with the city's groundwater data, then one test well pair with a pumping test. Kranzl et al. see groundwater use as realistic only in areas with enough groundwater, e.g. Floridsdorf and Donaustadt [18].
-- `businessPlan.criticalAssumptions[2]`
-  - `statement`: Heat pumps can supply the hospital's heating circuits at ≤82 °C for ~50% of its demand.
-  - `validation`: Log supply and return temperatures of every hospital circuit for one heating season. Klinik Floridsdorf reaches 82 °C with 3 MW of heat pumps and covers 50-70% of its heat [3].
-- `businessPlan.risks[0]` · **deal-breaker**
-  - `title`: Groundwater yield or permit fails
-  - `description`: Without a water-rights permit and enough yield, the loop loses its main source. Probes cannot replace ~8 GWh/a on this site, and air would lower efficiency (illustrative).
-  - `dealBreaker`: true
-  - `validation`: A test well pair and a pre-consultation with the water authority before Gate 1; no design money is spent until both are positive (illustrative).
-- `businessPlan.risks[1]`
-  - `title`: Housing connects late or not at all
-  - `description`: WEG votes and tenancy rules slow connections, and every building that stays out raises costs for the rest [40].
-  - `dealBreaker`: false
-  - `validation`: Phase 1 covers only the hospital and association blocks; model 60/80/100% connection in the Quick Check; offer the WEG a price fixed for 5 years (illustrative).
-- `businessPlan.risks[2]`
-  - `title`: Electricity price and low COP at 82 °C
-  - `description`: If the hospital heat pumps run below the default COP of 5 [39], electricity costs rise; a 50% higher power price alone adds ~€0.24 m/a (illustrative).
-  - `dealBreaker`: false
-  - `validation`: An indexed heat price, as UFI requires [13]; a COP guarantee in the heat-pump tender; PV on hospital roofs (illustrative).
-
-### Step 4 · Implementation
-
-- `businessPlan.refinements.feedback`: Illustrative expert feedback: keep district heating for steam and peaks; do not size the loop on the hospital's full heat; start where the anchor and the nearest housing sit.
-- `businessPlan.refinements.changes`: The scope is cut to ~50% of hospital heat via heat pumps, the lower end of what Klinik Floridsdorf achieves [3]. Phase 1 is the hospital plus 3 association blocks on 1.2 km; phase 2 adds the rest (illustrative).
-- `businessPlan.scalability.geographical`: Hospitals, care homes and campuses next to housing, in Vienna's groundwater areas (e.g. Floridsdorf, Donaustadt) [18] and in "Lokale Wärme gemeinsam" zones [5].
-- `businessPlan.scalability.economic`: The model works where line density is well above ~1 MWh/m [40] and a 24/7 cooling user exists; probe-only sites need more optimisation to pay off [17] (illustrative).
-- `businessPlan.scalability.organisational`: An ESCO project company with one public anchor contract and standard connection offers for neighbours can be repeated for other public anchors (illustrative).
-- `businessPlan.nextSteps.data`: Hospital: 15-minute heat and cooling loads and circuit temperatures for 12 months. Housing: 3 years of gas bills per block. Groundwater: city data plus a test well pair (illustrative).
-- `businessPlan.nextSteps.stakeholders`: The hospital board and technical director, the housing association board, the WEG assembly, the school owner, the water authority and the district council (illustrative).
-- `businessPlan.nextSteps.partnerships`: Tender the ESCO role and pre-check grants with KPC (UFI) and the city's energy planning department [13][6] (illustrative).
-- `businessPlan.nextSteps.pilots`: Phase 1: the hospital plus 3 association blocks, a 1.2 km loop, one well pair and ~8.8 GWh/a (illustrative).
-- `businessPlan.nextSteps.decisions`: Gate 1 (month 6): test well and permit outlook positive, hospital heads of terms signed, LOIs ≥50% of phase-1 heat [13] → fund detailed design. Gate 2 (month 12): grant decision taken and the Quick Check reality check positive at 80% connection → investment decision (illustrative).
-
-### Quick-Check facts (illustrative inputs)
-
-| Input | Value | Basis |
-|---|---|---|
-| Buildings (QCT-IN-01) | 10 | illustrative |
-| Project area (QCT-IN-02) | 120,000 m² (12 ha) | illustrative |
-| Shares (QCT-IN-04, % of buildings) | residential 1961-1990: 60; category_c 1991-2010: 30; category_a 1961-1990: 10 | illustrative; types per [39] |
-| Manual demand (QCT-IN-05) | heating 11,700 MWh/a (loop-served); cooling 1,460 MWh/a | derived above from [20], [39], [3] |
-| Why manual | Table 3 default floor areas (e.g. 866.9 m² per category C building) would understate a hospital by far | [39] |
-| Sources (QCT-IN-06/07) | ground_water: high, with a capacity override (~8-9 GWh/a source energy, D-10); waste_heat (hospital chillers): medium; PV: yes | illustrative; [18] |
-| Network length (QCT-IN-08) | 2,500 m | illustrative |
-| Line density | ~4.7 MWh/m | derived |
-| Heat pumps | 1 high-temperature plant ~1.8 MW at the hospital + 7 building heat pumps | illustrative; scale from [3] |
-| Year / operator | design 2027, operation 2029; ESCO project company | illustrative |
-
-### References (F1)
-
-[3] Stadt Wien, Klinik Floridsdorf · [5] Wiener Wärmeplan 2040 · [6] MA 20 anergy grant 2024/25 · [13] UFI Erneuerbare Mikronetze · [17] Kranzl et al. 2026 abstract · [18] Kranzl et al. 2026 slides · [20] LENA hospital guide 2020 · [21] NRW hospital brochure 2003 · [27] Bawaneh et al. 2019 (background: hospitals use ~2.6× the energy per m² of other commercial buildings in the US) · [37] ZFK 2024 · [39] Quick Check tables · [40] e7 ALG talk
+**References (F1):** [3] [6] [13] [17] [18] [20] [39] [43] [48] [49]; in the app: RC-KDO-STATUTE, RC-KDO-HOUSE, RC-WIEN-ENERGIE-INFO-22, RC-KRANZL-2026-SLIDES, RC-KRANZL-2026-PAPER, RC-LENA-HOSPITALS, RC-WIEN-KLINIK-FLORIDSDORF, RC-UFI-MIKRONETZE, RC-WIEN-ANERGY-GRANT, RC-WIEN-WAERMEPLAN.
 
 ---
 
-## F2 · `pool-anchor-campus` · MIDDLING · fictional
+## F2 · `ottakringer-bad-summer-loop` · MIDDLING · fictional (re-anchored 2026-10-25)
 
-**Summary (EN):** A combined indoor and outdoor pool takes summer waste heat from a supermarket and an office, and anchors a low-temperature loop for a school and 250 flats (illustrative).
-**Summary (DE):** Ein Hallen- und Freibad nimmt im Sommer Abwärme von Supermarkt und Büro auf und trägt als Ankerkunde ein Niedertemperaturnetz für eine Schule und 250 Wohnungen (illustrativ).
-**Site name (DE):** Hallen- und Freibad als Ankerkunde am Wiener Stadtrand (illustrativ)
+Replaces the anonymous `pool-anchor-campus`. Code: `lib/examples/reference-cases/ottakringer-bad-summer-loop.ts`.
 
-**Why middling:** C1 is met: demand is derived from a federal sports-institute benchmark [22] and the Quick Check tables [39]. C2 is partial: the pool is the anchor, but its owner has not committed. C3 is partial: two operator options remain open. C4 is met: three allocation rows with clear stakes. C5 is partial: loop capex and default tariffs are given, but the source cost, a comparison with today's bill and grant eligibility are missing. C6 is partial: two of three assumptions have concrete tests, and the third has none. C7 is partial: a sensible deal-breaker, but a vague validation ("date not set"). C8 is partial: next steps exist, but the decision has no criteria or date.
+**Real anchor and its facts:** Ottakringer Bad, Johann-Staud-Straße 11, 1160 Vienna, a combined pool of the City of Vienna (Wiener Bäder) with indoor pool, saunas and an outdoor pool open 2 May to mid-September [45]; built by the city in 1926 as Vienna's first outdoor pool able to warm its water, rebuilt 1966 to 1972, indoor pool added from 1971 [46]. The heat supply is not published ("not checked" in the plan). Ottakring: about 3,380 buildings on gas, about 180 on district heating [42].
 
-**Derivations (illustrative unless sourced):** indoor pool water area 750 m² × 3-7 MWh/m²a (BISp) [22] = 2.25-5.25 GWh/a, taking the low end, **2.25 GWh/a**, because efficient pools recover heat [26]. Outdoor pool water area 1,500 m² × 0.3-0.7 MWh/m²a [22] = 0.45-1.05 GWh per season, taking the middle, **0.75 GWh/a**. School 5,000 m² × 104.3 kWh/m²a = 0.52 GWh/a; flats 17,500 m² × 92.5 kWh/m²a = 1.62 GWh/a [39]. Total ≈ **5.1 GWh/a**; on a 1.6 km trench ≈ 3.2 MWh/m.
+**Why the Ottakringer Bad:** a public anchor whose outdoor pool needs heat exactly when supermarket refrigeration rejects most heat, in a gas-heavy district. The supermarket and the three housing blocks are invented and unnamed, so no real business is implied.
 
-### Site
+**Derivations (illustrative unless sourced):** outdoor pool 0.3 to 0.7 MWh per m² of water and year [22] × an assumed 2,000 m² of water → about 1.0 GWh/a (the water area is not published); indoor pools 3 to 7 MWh/m²a [22], left out of phase 1 on purpose; housing 15,000 m² × 131.5 kWh/m²a (TBL-1, 1919-1960 [39]) ≈ 2.0 GWh/a; supermarket waste heat about 0.3 GWh/a (illustrative, not measured; such recovery is studied in [54], and Kraftwerk Seebogen uses supermarket heat [1]); loop 700 m × €500 = €0.35 m; probes about 1.5 GWh/a × €1.50 = €2.3 m [39]. Evidence points: the most efficient pools recover heat from outgoing water and air [26]; the renovated Hallenbad Floridsdorf cut district heat by 95 %, electricity by 25 % and water by 55 % with heat pumps, PV and thermal renovation [4].
 
-- `site.name`: Indoor-outdoor pool quarter, Vienna outskirts (illustrative)
-- `site.location`: Outer district of Vienna in a groundwater area (illustrative; no real pool modelled)
-- `site.siteType`: Suburban mixed area: public pool, school, supermarket, office and housing (illustrative)
-- `site.ownership`: A municipal pool and school (public), a supermarket and an office building (private commercial), and 250 flats of a limited-profit housing association (illustrative).
-- `site.units`: 6 buildings: pool, school, supermarket, office, 2 housing blocks with 250 flats (illustrative)
-- `site.currentSupply`:
-  - District heating for pool and school (illustrative)
-  - Gas boilers in housing and office (illustrative)
-  - Air-cooled chillers and refrigeration in supermarket and office (illustrative)
-- `site.stakeholders`:
-  - Municipality as owner of pool and school (illustrative)
-  - Pool operator (illustrative)
-  - Limited-profit housing association (illustrative)
-  - Supermarket and office owners (illustrative)
-  - Pool visitors, pupils and residents (illustrative)
-- `site.partners`:
-  - Energy contractor or utility, not yet chosen (illustrative)
-  - Hydrogeology office (illustrative)
+**Why middling:** every field is filled and the demand is quantified, but there is no lifetime check, the third critical assumption's validation is "Not yet defined.", the deal-breaker "Council does not approve the pool investment" has no date, the decision is "A council decision on the anchor investment (timing open)." and the indoor pool is left out. UFI eligibility (2 to 9 external customers [13]) is noted, not checked.
 
-### Step 1 · Opportunity
+**Quick Check inputs:** 5 buildings (category_c 1961-1990 20 %, category_a 1991-2010 20 %, residential 1919-1960 60 %), 40,000 m², network 700 m, waste_heat and geothermal medium, no PV; demand estimated by the engine. Result: **further analysis required** (heating coverage not feasible, building density low, economics favorable).
 
-- `businessPlan.opportunity.customerSegments`: The pool is the anchor: indoor all year, outdoor from May to September. Other customers are a school, 250 flats, an office and a supermarket (illustrative).
-- `businessPlan.opportunity.needs`: Indoor pool with 750 m² of water: 2.25 GWh/a at the low end of 3-7 MWh/m²a [22]. Outdoor pool with 1,500 m² of water: ~0.75 GWh per season (0.3-0.7 MWh/m²a) [22]. School ~0.52 GWh/a and flats ~1.62 GWh/a (Quick Check Table 1) [39]. Office and supermarket need cooling in summer (illustrative).
-- `businessPlan.opportunity.heatSources`: Groundwater, as at Hallenbad Floridsdorf, which now runs on a groundwater heat pump [38][4]; waste heat from supermarket refrigeration and office cooling, as a supermarket feeds Kraftwerk Seebogen [1]; ambient air as backup (illustrative).
-- `businessPlan.opportunity.painPoint`: Swimming facilities have particularly high energy use [26][22]. The outdoor pool needs heat in summer, exactly when the supermarket and office reject heat into the air (illustrative).
-- `businessPlan.opportunity.alternatives`: Stay on district heating; install a pool-only groundwater heat pump, as Hallenbad Floridsdorf did [4][38]; keep separate air chillers for office and supermarket (illustrative).
-- `businessPlan.opportunity.advantage`: A shared loop moves summer waste heat into the outdoor pool instead of the air; in a field test, heat from one air conditioner cut a pool's heating by 29% [23]. The pool's steady low-temperature demand suits heat pumps (illustrative).
-
-### Step 2 · Business Model Canvas
-
-- `businessPlan.canvas.keyPartners`: The municipality (pool, school), the housing association, the supermarket, the office owner, and an energy contractor still to be chosen (illustrative).
-- `businessPlan.canvas.keyActivities`: Drill and get a permit for a well pair, build a ~1.6 km loop, install heat pumps in pool, school and housing, recover supermarket and office heat, then operate and bill (illustrative).
-- `businessPlan.canvas.keyResources`: Groundwater rights, the pool plant room, roofs for PV, and the outdoor pool as a summer heat sink (illustrative).
-- `businessPlan.canvas.valueProposition`: Lower and more stable heat costs for the pool, cheaper cooling for the supermarket and office, and fossil-free heat for the school and flats (illustrative).
-- `businessPlan.canvas.customerRelationships`: 20-year supply contracts with the municipality and the housing association; heat-recovery agreements with the supermarket and the office (illustrative).
-- `businessPlan.canvas.channels`: The municipal council and the pool operator, the housing association board, and direct talks with the supermarket chain (illustrative).
-- `businessPlan.canvas.customerSegments`: Pool and school (public), housing (limited-profit), supermarket and office (private) (illustrative).
-- `businessPlan.canvas.costStructure`: Loop 1.6 km × €500/m = €0.8 m [39]; heat pumps at the default €15,000 per building × 6 = €0.09 m [39], far too low for a pool, so a quote is needed; groundwater source not yet estimated; electricity at €0.20/kWh [39] (illustrative).
-- `businessPlan.canvas.revenueStreams`: Heat €0.12/kWh plus €6/m² base; cooling €0.08/kWh plus €3/m² base; a connection fee of €1,000 per building (Quick Check defaults) [39].
-- `businessPlan.canvas.operatorResponsibilities`: Open: either the municipality runs the loop through its pool operator, or a contractor owns source and loop and sells heat. Heat pumps in the buildings stay with the owners (illustrative).
-- `businessPlan.allocation[0]`
-  - `stakeholder`: Municipality (pool and school) (illustrative)
-  - `investment`: Pool and school heat pumps, and wells on municipal land (illustrative).
-  - `risk`: Budget approval; pool closures cut the demand (illustrative).
-  - `benefit`: Lower pool energy costs and CO2 emissions (illustrative).
-- `businessPlan.allocation[1]`
-  - `stakeholder`: Housing association (illustrative)
-  - `investment`: Connection fees and building heat pumps (illustrative).
-  - `risk`: Tenant cost rules limit what can be passed on (illustrative).
-  - `benefit`: A gas exit and summer cooling (illustrative).
-- `businessPlan.allocation[2]`
-  - `stakeholder`: Supermarket and office owners (illustrative)
-  - `investment`: The heat-recovery connection (illustrative).
-  - `risk`: Their cooling depends on the loop (illustrative).
-  - `benefit`: Lower cooling electricity and a possible heat credit (illustrative).
-
-### Step 3 · Reality check
-
-- `businessPlan.assumptions.connectionRate`: All 6 buildings connect; housing joins in year 2 (illustrative). No sensitivity has been tested.
-- `businessPlan.assumptions.tariffs`: Quick Check defaults [39]; not yet compared with the pool's current district-heating bill.
-- `businessPlan.assumptions.capex`: ~€0.8 m for the loop [39] plus source and heat pumps; the source cost is not yet estimated.
-- `businessPlan.assumptions.financing`: Municipal budget plus a bank loan at 3% (default) [39] (illustrative).
-- `businessPlan.assumptions.subsidies`: UFI micro-networks may pay up to 40% (municipalities get 60% of the business rate) for 2-9 external customers or <800 MWh/a of heat sales [13]; eligibility has not been checked yet.
-- `businessPlan.criticalAssumptions[0]`
-  - `statement`: Groundwater can supply the pool and the loop with roughly 4 GWh/a of source heat (illustrative).
-  - `validation`: A hydrogeological desk study and a test well pair before design (illustrative).
-- `businessPlan.criticalAssumptions[1]`
-  - `statement`: The supermarket and the office will feed their cooling waste heat into the loop (illustrative).
-  - `validation`: Letters of intent from both owners (illustrative).
-- `businessPlan.criticalAssumptions[2]`
-  - `statement`: The outdoor pool can absorb most of the summer waste heat (illustrative).
-  - `validation`: Not yet defined.
-- `businessPlan.risks[0]` · **deal-breaker**
-  - `title`: Council does not approve the pool investment
-  - `description`: The pool is the anchor; without the municipality's budget decision, the loop loses its main customer (illustrative).
-  - `dealBreaker`: true
-  - `validation`: Present to the council (date not set).
-- `businessPlan.risks[1]`
-  - `title`: Pool closes for renovation
-  - `description`: Demand drops for more than a year; Hallenbad Floridsdorf was closed for 15 months for its conversion [38].
-  - `dealBreaker`: false
-  - `validation`: Align the loop's start with the pool's renovation plan (illustrative).
-- `businessPlan.risks[2]`
-  - `title`: Groundwater permit delays
-  - `description`: Permits for well pairs take time and may limit the flow rate (illustrative).
-  - `dealBreaker`: false
-  - `validation`: An early meeting with the water authority (illustrative).
-
-### Step 4 · Implementation
-
-- `businessPlan.refinements.feedback`: Illustrative expert feedback: indoor-pool heat demand ranges from 3 to 7 MWh/m² of water per year [22], so heat recovery in the pool comes first [26].
-- `businessPlan.refinements.changes`: Use the low end (3 MWh/m²a) and plan heat recovery in the pool before sizing the loop (illustrative).
-- `businessPlan.scalability.geographical`: Many municipal pools sit next to schools and shops; Vienna has already converted Hallenbad Floridsdorf to groundwater heat pumps [4][38].
-- `businessPlan.scalability.economic`: Best where the pool already plans a renovation and its current heat is expensive (illustrative).
-- `businessPlan.scalability.organisational`: The municipal pool operator acts as anchor and owner of the source; this is repeatable in other districts (illustrative).
-- `businessPlan.nextSteps.data`: Monthly pool heat-meter data, supermarket and office cooling loads, and groundwater data (illustrative).
-- `businessPlan.nextSteps.stakeholders`: The council, the pool operator, the housing association and the supermarket chain (illustrative).
-- `businessPlan.nextSteps.partnerships`: Choose an operator model and check UFI eligibility with KPC [13].
-- `businessPlan.nextSteps.pilots`: Start with the pool, the school and the supermarket (illustrative).
-- `businessPlan.nextSteps.decisions`: A council decision on the anchor investment (timing open).
-
-### Quick-Check facts (illustrative inputs)
-
-| Input | Value | Basis |
-|---|---|---|
-| Buildings (QCT-IN-01) | 6 | illustrative |
-| Project area (QCT-IN-02) | 40,000 m² (4 ha) | illustrative |
-| Shares (QCT-IN-04, % of buildings) | category_c 1961-1990 (pool): 16.6; category_a 1961-1990 (school): 16.6; category_a 2011-today (supermarket): 16.7; category_a 1991-2010 (office): 16.7; residential 1991-2010: 33.4 (1 of 6 buildings each, housing 2 of 6; rounded to sum 100) | illustrative; pools are category C, schools and supermarkets category A [39] |
-| Manual demand (QCT-IN-05) | heating ~5,140 MWh/a; cooling: tool defaults give ~0.2 GWh/a (flats and office); supermarket refrigeration is a source, not a demand | derived from [22], [39] |
-| Sources (QCT-IN-06/07) | ground_water: high (capacity override needed, D-10); waste_heat (supermarket, office): medium; ambient_air: medium; PV: yes | illustrative; analogues [1], [4] |
-| Network length (QCT-IN-08) | 1,600 m | illustrative |
-| Line density | ~3.2 MWh/m | derived |
-| Heat pumps | 5 (pool, school, office, 2 housing blocks) | illustrative |
-
-### References (F2)
-
-[1] Stadt Wien, Kraftwerk Seebogen · [4] Stadt Wien, Hallenbad Floridsdorf · [13] UFI Erneuerbare Mikronetze · [22] BISp-Jahrbuch 2001 (Schlesiger) · [23] UC Davis WCEC 2018 · [26] Kampel et al. 2014 · [38] wien.ORF.at 2025 · [39] Quick Check tables
+**References (F2):** [1] [4] [13] [22] [26] [42] [45] [46] [54].
 
 ---
 
-## F3 · `data-centre-waste-heat` · WEAK · fictional
+## F3 · `grossmarkt-wien-waste-heat` · WEAK · fictional (re-anchored 2026-10-25)
 
-**Summary (EN):** A data centre has waste heat to give away; businesses and flats nearby might use it, but nobody has committed yet (illustrative).
-**Summary (DE):** Ein Rechenzentrum hat Abwärme abzugeben; Betriebe und Wohnungen in der Nähe könnten sie nutzen, aber noch hat niemand zugesagt (illustrativ).
-**Site name (DE):** Rechenzentrums-Abwärme für ein Betriebsgebiet im Süden Wiens (illustrativ)
+Replaces the anonymous `data-centre-waste-heat` (data centres were dropped, see `seed-sources.md`, "Dropped or unverified"). Code: `lib/examples/reference-cases/grossmarkt-wien-waste-heat.ts`.
 
-**Why weak:** C1 fails: no waste-heat quantity, no demand, no building count in the plan text. C2 fails: no anchor customer, although the real Vienna case worked because a hospital sat next door [3]. C3 fails: "not decided". C4 fails: generic rows. C5 fails: "cheaper than gas" with no numbers. The plan also claims the heat is "free", while the literature names low-grade heat and high investment as the main barriers [29] and data-centre cooling water is only ~26 °C [3]. C6 fails: validations are "ask" and "later". C7 fails: the flag sits on "pipe construction in streets"; the real deal-breaker, a binding heat-offtake agreement with the data-centre operator (volume, temperature, price, who pays the heat pumps), is missing, and business models between data centres and heat networks are often opaque [29]. C8 fails: no feedback, no gate. Also, industrial buildings have no default demand in the Quick Check (Table 1 shows "-", OQ-02), so the tool cannot estimate demand without manual input [39].
+**Real anchor and its facts:** Großmarkt Wien, Laxenburger Straße 365-367, 1230 Vienna; the operator calls it Austria's most important trading hub for fruit, vegetables, food and flowers; about 30 ha, about 220 tenants, about 1,400 employees [51]; run by GMW Großmarkt Wien Betrieb GmbH, part of the Wien Holding group since January 2019 [52]; opened 30 October 1972, modernised 1987 and 2001 with more cold and storage rooms; 2022: about 300,000 m² in total, about 76,000 m² buildings and halls [53][47]. Liesing: about 7,570 buildings on gas, about 680 on district heating [44]. No public figure on its cooling capacity or waste heat.
 
-### Site
+**Why weak (by omission only):** short, vague texts; empty fields (alternatives, customer relationships, channels, operator responsibilities, capex, financing, two validations, refinements, economic and organisational scalability, partnerships, pilots, decisions); one critical assumption without a test; the deal-breaker sits on "Pipe construction in streets" instead of the unknown heat amount; the pain point "assumes the cooling heat is not used today (not checked)". Nothing it says about the market is false. A few invented items are marked (illustrative).
 
-- `site.name`: Data-centre waste heat for a southern Vienna business park (illustrative)
-- `site.location`: Industrial area in southern Vienna (illustrative)
-- `site.siteType`: Industrial and commercial area with some housing nearby (illustrative)
-- `site.ownership`: A private data centre, several businesses, and housing nearby (illustrative).
-- `site.units`: The data centre and neighbouring buildings (illustrative)
-- `site.currentSupply`:
-  - Gas (illustrative)
-  - Data-centre cooling to the air (illustrative)
-- `site.stakeholders`:
-  - Data-centre operator (illustrative)
-  - Neighbouring businesses (illustrative)
-  - Residents (illustrative)
-- `site.partners`:
-  - To be identified
+**Quick Check inputs:** 12 buildings (a guess) on 300,000 m², all category_a 1961-1990, waste_heat **unknown**, no PV. Result: **further analysis required, forced** by the unknown-source rule.
 
-### Step 1 · Opportunity
+**References (F3):** [44] [47] [51] [52] [53] [54].
 
-- `businessPlan.opportunity.customerSegments`: Businesses and households near the data centre (illustrative).
-- `businessPlan.opportunity.needs`: Heating in winter (illustrative).
-- `businessPlan.opportunity.heatSources`: Waste heat from the data centre's servers (illustrative). In Vienna a data centre already heats a hospital [3].
-- `businessPlan.opportunity.painPoint`: The waste heat is lost today (illustrative).
-- `businessPlan.opportunity.alternatives`: Gas or district heating (illustrative).
-- `businessPlan.opportunity.advantage`: Free heat that is otherwise wasted (illustrative).
+---
 
-### Step 2 · Business Model Canvas
+## Revision log (2026-10-25)
 
-- `businessPlan.canvas.keyPartners`: The data centre (illustrative).
-- `businessPlan.canvas.keyActivities`: Build pipes (illustrative).
-- `businessPlan.canvas.keyResources`: Waste heat (illustrative).
-- `businessPlan.canvas.valueProposition`: Cheap green heat (illustrative).
-- `businessPlan.canvas.customerRelationships`: To be defined.
-- `businessPlan.canvas.channels`: Direct contact (illustrative).
-- `businessPlan.canvas.customerSegments`: Neighbours (illustrative).
-- `businessPlan.canvas.costStructure`: Pipes and heat pumps (illustrative).
-- `businessPlan.canvas.revenueStreams`: Selling heat (illustrative).
-- `businessPlan.canvas.operatorResponsibilities`: Not decided.
-- `businessPlan.allocation[0]`
-  - `stakeholder`: Data centre (illustrative)
-  - `investment`: Not decided.
-  - `risk`: None.
-  - `benefit`: A green image (illustrative).
-- `businessPlan.allocation[1]`
-  - `stakeholder`: Neighbours (illustrative)
-  - `investment`: The connection.
-  - `risk`: Not assessed.
-  - `benefit`: Cheap heat (illustrative).
-- `businessPlan.allocation[2]`
-  - `stakeholder`: City (illustrative)
-  - `investment`: Funding, perhaps.
-  - `risk`: Not assessed.
-  - `benefit`: Climate goals (illustrative).
+What changed against the dossier of 2026-10-24, and what was dropped:
 
-### Step 3 · Reality check
-
-- `businessPlan.assumptions.connectionRate`: Most neighbours will connect (illustrative).
-- `businessPlan.assumptions.tariffs`: Cheaper than gas (illustrative).
-- `businessPlan.assumptions.capex`: Moderate (illustrative).
-- `businessPlan.assumptions.financing`: Grants and partners (illustrative).
-- `businessPlan.assumptions.subsidies`: EU and city funding expected (illustrative).
-- `businessPlan.criticalAssumptions[0]`
-  - `statement`: The data centre gives its waste heat for free (illustrative).
-  - `validation`: Ask the data centre.
-- `businessPlan.criticalAssumptions[1]`
-  - `statement`: Neighbours want the heat (illustrative).
-  - `validation`: Later.
-- `businessPlan.risks[0]` · deal-breaker (misplaced, see "Why weak")
-  - `title`: Pipe construction in streets
-  - `description`: Digging may be disruptive (illustrative).
-  - `dealBreaker`: true
-  - `validation`: Plan carefully.
-- `businessPlan.risks[1]`
-  - `title`: Heat price
-  - `description`: Customers may find it expensive (illustrative).
-  - `dealBreaker`: false
-  - `validation`: A market study.
-
-### Step 4 · Implementation
-
-- `businessPlan.refinements.feedback`: Not collected yet.
-- `businessPlan.refinements.changes`: None so far.
-- `businessPlan.scalability.geographical`: Every data centre in Vienna (illustrative).
-- `businessPlan.scalability.economic`: Data centres are growing (illustrative).
-- `businessPlan.scalability.organisational`: A partnership model (illustrative).
-- `businessPlan.nextSteps.data`: Get data from the data centre.
-- `businessPlan.nextSteps.stakeholders`: The data centre and the neighbours.
-- `businessPlan.nextSteps.partnerships`: Find an operator.
-- `businessPlan.nextSteps.pilots`: Start with one building.
-- `businessPlan.nextSteps.decisions`: Decide later.
-
-### Quick-Check facts (illustrative inputs; a better plan would state these)
-
-| Input | Value | Basis |
-|---|---|---|
-| Buildings (QCT-IN-01) | 12 | illustrative |
-| Project area (QCT-IN-02) | 150,000 m² (15 ha) | illustrative |
-| Shares (QCT-IN-04, % of buildings) | industry 1961-1990: 50; category_a 1991-2010: 30; residential 1961-1990: 20 | illustrative; industry has no defaults (OQ-02) [39] |
-| Manual demand (QCT-IN-05) | needed for the industry share; not stated in the plan | gap |
-| Sources (QCT-IN-06/07) | waste_heat: high (capacity override needed, D-10); ambient_air: medium; PV: no | illustrative |
-| Waste-heat temperature | ~26 °C server cooling water, cooled to 16 °C, in the Vienna reference case; heat pumps are needed to use it | [3] |
-| What a strong plan would add | IT load and hours (e.g. 5 MW IT × 8,000 h ≈ 40 GWh/a of low-grade heat, illustrative), an anchor offtaker, an offtake contract and heat-pump ownership | illustrative; [3], [28], [29] |
-| Network length (QCT-IN-08) | not stated | gap |
-
-### References (F3)
-
-[3] Stadt Wien, Klinik Floridsdorf · [28] Huang et al. 2020 · [29] Wahlroos et al. 2018 · [39] Quick Check tables
+- **The fictional cases were re-anchored** on real, named Vienna buildings (owner): F1 hospital → Klinik Donaustadt; F2 pool campus → Ottakringer Bad; F3 data centre → Großmarkt Wien. The old anonymous texts (450-bed hospital, pool campus, data centre) were removed from this dossier; their derivation method stays (F1 now uses 963 real beds instead of 450).
+- **Every fictional case carries one plain disclaimer** ("neither the owner nor the operator has planned or endorsed it") and marks invented details "(illustrative)". The weak and middling tiers are reached by omission and vagueness only.
+- **News sources dropped** from the app: [34] to [38]. R1 no longer uses the 2021 news figures (18 probes × 110 m, €350,000; it states the 2017 design of 8 probes × about 120 m and the AnergieUrban expert survey of probes drilled to about 100 to 110 m [7][11]); R3 uses the developer's own pages [30][50] and Wien Energie's slides [31] instead of [34][35]; the Klinik Floridsdorf heat demand and investment [37] and the Hallenbad Floridsdorf cost [38] are not used.
+- **Dropped candidates:** data centres (Equinix pages 404, VSC-5 site 502, overlap with the real Klinik Floridsdorf project); site-level potentials from the city's WFS layers (no features returned); archived pages (Wayback blocked).
+- **Field-level text** for all six cases now lives in `lib/examples/reference-cases/*.ts` (EN and DE); the R1 to R3 field lists above are the research draft they were built from. Where they differ, the code is current.
+- **Quick Check:** examples can now carry a known demand (QCT-IN-05). R1 (207 MWh/a design heat), R2 (1,600 MWh/a space heating) and F1 (the plan's 12.2 GWh/a heat and 2.0 GWh/a cooling) use it. All six cases end at "further analysis required" through the engine; F3 is forced by the unknown source.
 
 ---
 
 ## Open doubts for the owner
 
 1. **Viertel Zwei** is the best-known Vienna anergy example (also in the e7 talk) but is not used: the detailed klimaaktiv evaluation now returns 404, the Wayback Machine is blocked from this environment, and the Energie Krieau PDF is gone. Search snippets of that evaluation suggest a planning change and a remaining gas share, which we could not verify, so nothing from it is used.
-2. **Geblergasse numbers diverge** between the 2017 design and the 2021 news (probes, cost). Both are shown with dates. The AEE INTEC slide [15] almost certainly describes Geblergasse (block of 18 houses, 157 MWh/a), but it does not name the site and says 20 flats, not 25.
+2. **Geblergasse numbers diverge** between the 2017 design and the 2021 news (probes, cost). Since 2026-10-25 the app uses only the 2017 design and the AnergieUrban survey [7][11]; the news figures [36] are not cited. The AEE INTEC slide [15] almost certainly describes Geblergasse (block of 18 houses, 157 MWh/a), but it does not name the site and says 20 flats, not 25.
 3. **The Vienna anergy grant [6]** applied to applications until 31.12.2025. No 2026 successor was found; the examples say "successor not verified".
-4. **Hospital cooling** has no clean public benchmark. F1 derives it from metered chiller electricity [20] with an assumed EER of 3, marked illustrative. The Quick Check default for category C (4-7.5 kWh/m²a) would understate hospital cooling.
-5. **Quick Check source capacities (TBL-4)** top out at 150 MWh/a, and default source cost is €1.00 per kWh/a supplied. For district-scale examples, both need overrides (D-10) or they dominate the result; this is flagged in F1 and R2.
-6. **The BISp pool benchmarks [22]** are from 2001/2002 and the NRW hospital brochure [21] from 2003; both are official, but old.
+4. **Hospital cooling** has no clean public benchmark. F1 now states 1.5 GWh/a as illustrative, to be replaced by the hospital's metered chiller data (critical assumption "hospital-demand"). The Quick Check default for category C (4-7.5 kWh/m²a) would understate hospital cooling.
+5. **Quick Check source capacities (TBL-4)** top out at 150 MWh/a, and default source cost is €1.00 per kWh/a supplied. For district-scale cases the heating coverage stays "not feasible" even with a known demand; all six cases therefore end at "further analysis required". Overrides of TBL-4/TBL-6 (D-10) are not part of an example definition; the docs page says so.
+6. **The BISp pool benchmarks [22]** are from 2001/2002 and the NRW hospital brochure [21] from 2003; both are official, but old. [21] is no longer cited in the app.
+7. **Real buildings in fictional plans** (Klinik Donaustadt, Ottakringer Bad, Großmarkt Wien): the owner asked for this on 2026-10-25. The plans name the buildings and their public owners or operators, carry the disclaimer, and claim nothing about them beyond [42] to [53]. If any of these organisations objects, swap the anchor; the case files keep all invented content in one place.
