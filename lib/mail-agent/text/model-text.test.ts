@@ -26,6 +26,6 @@ describe("cleanModelText", () => {
 
   it("cuts long text and drops empty text", () => {
     expect([...cleanModelText("word ".repeat(100), policy)!].length).toBeLessThanOrEqual(120)
-    expect(cleanModelText("  ​ ", policy)).toBeNull()
+    expect(cleanModelText("  \u200b ", policy)).toBeNull()
   })
 })

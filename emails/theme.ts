@@ -45,11 +45,14 @@ export const WIDTH = 600
 /** The colour of each accent role (D-15): cyan for the Quick Check, orange for the Business Plan and risks. */
 export const ACCENTS = { cool: COLORS.cool, hot: COLORS.hot, ink: COLORS.ink } as const
 
+/** Long words (German compounds, file names) may break, so a narrow card never widens the email on a phone. */
+const WRAP = { overflowWrap: "anywhere", wordBreak: "break-word" } as const
+
 /** Text styles shared by the templates, inline because mail clients drop `<style>` blocks. */
 export const TEXT = {
-  body: { fontFamily: FONTS.sans, fontSize: 15, lineHeight: 1.55, color: COLORS.ink, margin: "0 0 12px" },
-  small: { fontFamily: FONTS.sans, fontSize: 13, lineHeight: 1.5, color: COLORS.muted, margin: "0 0 8px" },
-  kicker: { fontFamily: FONTS.mono, fontSize: 11, lineHeight: 1.4, letterSpacing: "0.075em", textTransform: "uppercase", margin: "0 0 6px" },
-  title: { fontFamily: FONTS.sans, fontSize: 21, lineHeight: 1.2, fontWeight: 600, letterSpacing: "-0.02em", color: COLORS.ink, margin: "0 0 14px" },
+  body: { fontFamily: FONTS.sans, fontSize: 15, lineHeight: 1.55, color: COLORS.ink, margin: "0 0 12px", ...WRAP },
+  small: { fontFamily: FONTS.sans, fontSize: 13, lineHeight: 1.5, color: COLORS.muted, margin: "0 0 8px", ...WRAP },
+  kicker: { fontFamily: FONTS.mono, fontSize: 11, lineHeight: 1.4, letterSpacing: "0.075em", textTransform: "uppercase", margin: "0 0 6px", ...WRAP },
+  title: { fontFamily: FONTS.sans, fontSize: 21, lineHeight: 1.2, fontWeight: 600, letterSpacing: "-0.02em", color: COLORS.ink, margin: "0 0 14px", ...WRAP },
   mono: { fontFamily: FONTS.mono, fontSize: 13, lineHeight: 1.45, color: COLORS.ink },
 } as const

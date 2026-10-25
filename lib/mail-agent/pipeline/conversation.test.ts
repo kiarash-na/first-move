@@ -127,6 +127,35 @@ describe("conversation by email: Quick Check (PLAN-AGENT-07)", () => {
   })
 })
 
+describe("conversation by email: both modules with a spreadsheet", () => {
+  it("reads the CSV through the guard, sends the result, then walks the Business Plan to its summary and the file", async () => {
+    const h = pipelineHarness()
+    await h.consent()
+    expect(await talk(h, "3, yes", "choose_both")).toBe("questions")
+    const csv = "Project;Sonnenhof\nBuildings;42\nArea;3.5 ha\nResidential 1961-1990;60 %\nResidential 2011-today;30 %\nCategory A 1991-2010;10 %\nGround water;high\nAmbient air;medium\n"
+    h.fake.files["email-2/att-1"] = new TextEncoder().encode(csv)
+    const fromFile = { ...QC_VALUES, values: QC_VALUES.values.map((value) => ({ ...value, file: "stock.csv" })) }
+    h.respondWith((request) => (isExtraction(request) && request.user.includes("stock.csv") ? fromFile : SILENT_TEXT(request)))
+    const attachments = [{ id: "att-1", name: "stock.csv", size: csv.length, contentType: "text/csv", inline: false }]
+    expect(await talk(h, "Our data is attached.", "documents", { attachments })).toBe("questions")
+    const reply = lastReply(h).text
+    expect(reply).toContain("Read: stock.csv")
+    expect(reply).toContain("from stock.csv")
+    expect(reply).toContain("Your Quick Check result")
+    expect(reply).toContain("Business Plan, step 1 of 4")
+    // Jev judged two emails and the one file.
+    expect(h.jev.calls).toHaveLength(3)
+    for (const step of [2, 3, 4]) {
+      expect(await talk(h, "next", "other")).toBe("questions")
+      expect(lastReply(h).text).toContain(`Business Plan, step ${step} of 4`)
+    }
+    expect(await talk(h, "next", "other")).toBe("results")
+    expect(lastReply(h).text).toContain("Your Business Plan")
+    expect(lastReply(h).text).toContain("From the Quick Check (read-only)")
+    expect(lastReply(h).attachments).toHaveLength(1)
+  })
+})
+
 describe("conversation by email: Business Plan in German", () => {
   it("asks the four steps in the sender's language and sums them up", async () => {
     const h = pipelineHarness()
@@ -166,6 +195,14 @@ describe("conversation by email: control", () => {
     expect(await talk(h, "stop", "stop")).toBe("stopped")
     expect(await h.store.get(keys.conversation(sid))).toBeNull()
     expect(lastReply(h).text).toContain("I ended our conversation and deleted the project data")
+  })
+
+  it("forgets a conversation after 30 quiet days and starts with the menu", async () => {
+    const h = pipelineHarness()
+    await h.consent()
+    await talk(h, "1", "choose_quick_check")
+    h.clock.now += 31 * 86_400_000
+    expect(await talk(h, "Hello again", "other")).toBe("menu")
   })
 
   it("starts over on “new”", async () => {
