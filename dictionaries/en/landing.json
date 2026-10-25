@@ -368,5 +368,11 @@
         "source": "Source code on GitHub"
       }
     }
+  },
+  "mobile": {
+    "hero": {
+      "visualLabel": "Low-temperature district network",
+      "visualAlt": "An illustration of a district: buildings on a bidirectional low-temperature loop, with a local heat source at its edge."
+    }
   }
 }

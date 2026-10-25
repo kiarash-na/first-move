@@ -368,5 +368,11 @@
         "source": "Quellcode auf GitHub"
       }
     }
+  },
+  "mobile": {
+    "hero": {
+      "visualLabel": "Niedertemperatur-Quartiersnetz",
+      "visualAlt": "Eine Illustration eines Quartiers: Gebäude an einem bidirektionalen Niedertemperaturring, mit einer lokalen Wärmequelle an seinem Rand."
+    }
   }
 }
