@@ -175,11 +175,12 @@ for (const lang of LANGS) {
 }
 
 // The landing hides its product links at 1100 px and below; the presentation sits in the legal row, which stays.
-for (const width of [390, 1024]) {
+// Below 1024 px the phone and tablet landing shows, with its own footer (PLAN-LANDING-MOBILE-00).
+for (const [width, footer] of [[390, "footer.m-footer"], [1024, "footer.site-footer"]] as const) {
   test(`the landing footer shows the presentation link at ${width} px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 844 })
     await page.goto("/de")
-    const link = page.locator("footer.site-footer").getByRole("link", { name: text("de", "landing", "presentation.footer"), exact: true })
+    const link = page.locator(footer).getByRole("link", { name: text("de", "landing", "presentation.footer"), exact: true })
     await link.scrollIntoViewIfNeeded()
     await expect(link).toBeVisible()
     await link.click()

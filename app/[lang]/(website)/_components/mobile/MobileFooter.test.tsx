@@ -16,12 +16,14 @@ describe('MobileFooter', () => {
     expect(screen.getByText(copy.openSource)).toBeInTheDocument()
   })
 
-  it('links the six legal pages and the source code, localized', () => {
+  it('links the six legal pages, the presentation and the source code, localized', () => {
     render(<MobileFooter t={en} lang="de" />)
     const nav = screen.getByRole('navigation', { name: en.closing.footer.legal.nav })
     expect(within(nav).getAllByRole('link').map((link) => link.getAttribute('href'))).toEqual([
       '/de/terms', '/de/privacy', '/de/cookies', '/de/imprint', '/de/ai', '/de/license',
+      '/de/presentation',
       'https://github.com/kiarash-na/first-move',
     ])
+    expect(within(nav).getByRole('link', { name: en.presentation.footer })).toHaveAttribute('href', '/de/presentation')
   })
 })

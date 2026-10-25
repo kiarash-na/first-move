@@ -5,7 +5,7 @@ import { withLocale } from '@/lib/i18n/locale-path'
 import { REPOSITORY } from '@/lib/legal/operator'
 import type { LandingCopyProps } from '../types'
 
-/** The footer: brand, open source, the three links, back to top and the legal links. */
+/** The footer: brand, open source, the three links, back to top, the legal links, the presentation and the source. */
 export function MobileFooter({ t, lang }: LandingCopyProps) {
   const copy = t.closing.footer
   const dashboard = withLocale('/dashboard', lang)
@@ -31,7 +31,10 @@ export function MobileFooter({ t, lang }: LandingCopyProps) {
         lang={lang}
         labels={copy.legal}
         navLabel={copy.legal.nav}
-        extra={{ label: copy.legal.source, href: REPOSITORY.url }}
+        extra={[
+          { label: t.presentation.footer, href: withLocale('/presentation', lang) },
+          { label: copy.legal.source, href: REPOSITORY.url },
+        ]}
       />
     </footer>
   )

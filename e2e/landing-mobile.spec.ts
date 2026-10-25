@@ -89,7 +89,9 @@ for (const lang of ["en", "de"] as Lang[]) {
       const closing = page.locator("#m-get-started")
       await expect(closing.getByRole("link", { name: t("closing.getStarted.primary") })).toHaveAttribute("href", `/${lang}/dashboard`)
       await expect(closing.getByRole("link", { name: t("closing.getStarted.secondary") })).toHaveAttribute("href", `/${lang}/docs`)
-      await expect(page.getByRole("navigation", { name: t("closing.footer.legal.nav") }).getByRole("link")).toHaveCount(7)
+      const legal = page.getByRole("navigation", { name: t("closing.footer.legal.nav") })
+      await expect(legal.getByRole("link")).toHaveCount(8)
+      await expect(legal.getByRole("link", { name: t("presentation.footer"), exact: true })).toHaveAttribute("href", `/${lang}/presentation`)
 
       // Nothing scrolls sideways once everything is revealed; three.js never arrived.
       expect(await overflow(page), `sideways overflow at ${viewport.width}px`).toBe(0)
