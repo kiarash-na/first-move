@@ -28,8 +28,10 @@ export type RunEvent =
   | { type: "turn-end"; turn: RunTurn; nodes: FlowNode[]; inputTokens: number }
 
 export interface ScoreOptions {
-  /** Jev through the user's Gateway key (`lib/assistant/gateway`), or a mock in tests. */
+  /** Jev through the user's key — the Gateway's decision API, or the OpenRouter adapter — or a mock in tests. */
   decisionModel: Exclude<Experimental_DecisionModel, string>
+  /** The privacy switches of the decision call's provider; the Gateway's ZDR/no-training options by default. */
+  providerOptions?: DecisionProviderOptions
   abortSignal?: AbortSignal
   now?: () => Date
   onEvent?: (event: RunEvent) => void
@@ -126,7 +128,7 @@ export async function scorePlan(project: Project, options: ScoreOptions): Promis
     const { questions, nodes: asked, rules } = turnQuestions(turn, filled, choices, context)
     emit({ type: "turn-start", turn, questions: Object.keys(questions).length })
     const state = buildState(project, signal, decisionsForState(choices)) as unknown as Experimental_DecisionState
-    const { answers, inputTokens } = await decideTurn(options.decisionModel, state, questions, options.abortSignal)
+    const { answers, inputTokens } = await decideTurn(options.decisionModel, state, questions, options.abortSignal, options.providerOptions)
     decisionTokens += inputTokens
     const ruled = rules.map(({ gate, branch, outcome }) =>
       gateNode(gate, branch, turn, context, { source: "rule", probability: null, outcome: outcome === "fail" ? "fail" : "skipped" }),
