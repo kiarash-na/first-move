@@ -1,7 +1,7 @@
 import "server-only"
 
-/** A plain address: one @, no spaces or angle brackets, a domain with a dot. */
-const ADDRESS = /^[^\s@<>"]+@[^\s@<>"]+\.[^\s@<>"]+$/
+/** A plain address: one @, no spaces, angle brackets, quotes or list separators, a domain with a dot. */
+const ADDRESS = /^[^\s@<>",;]+@[^\s@<>",;]+\.[^\s@<>",;]+$/
 const GMAIL = new Set(["gmail.com", "googlemail.com"])
 
 /** The address in a From field (`Name <a@b.c>` or `a@b.c`), lower case; null when there is none. */

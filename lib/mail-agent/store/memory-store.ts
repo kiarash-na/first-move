@@ -37,6 +37,12 @@ export function createMemoryStore({ now = () => Date.now() }: { now?: () => numb
       entries.delete(key)
       return value
     },
+    async compareAndDelete(key, expected) {
+      const entry = live(key)
+      if (!entry || entry.value !== expected) return false
+      entries.delete(key)
+      return true
+    },
     async del(key) {
       entries.delete(key)
     },

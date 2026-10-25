@@ -46,6 +46,7 @@ function prefixed(store: MailStore, prefix: string) {
     get: (name) => store.get(key(name)),
     set: (name, value, options) => store.set(key(name), value, options),
     getdel: (name) => store.getdel(key(name)),
+    compareAndDelete: (name, expected) => store.compareAndDelete(key(name), expected),
     del: (name) => store.del(key(name)),
     incr: (name, ttlMs, by) => store.incr(key(name), ttlMs, by),
     expire: (name, ttlMs) => store.expire(key(name), ttlMs),

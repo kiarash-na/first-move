@@ -7,7 +7,8 @@ export type Locked<T> = { ok: true; value: T } | { ok: false }
 /**
  * Runs `work` while holding the sender's lock (`SET NX PX 120000`), so two emails from one sender
  * never update the same state at once. Busy → `{ ok: false }` (the step retries later). The lock is
- * released only if it is still ours; it expires by itself if a run dies.
+ * released only if it is still ours, atomically: a lock that lapsed and was re-acquired mid-flight
+ * is never deleted from under its new holder. The lock expires by itself if a run dies.
  */
 export async function withSenderLock<T>(store: MailStore, sid: string, work: () => Promise<T>): Promise<Locked<T>> {
   const key = keys.lock(sid)
@@ -16,6 +17,6 @@ export async function withSenderLock<T>(store: MailStore, sid: string, work: () 
   try {
     return { ok: true, value: await work() }
   } finally {
-    if ((await store.get(key)) === token) await store.del(key)
+    await store.compareAndDelete(key, token)
   }
 }
