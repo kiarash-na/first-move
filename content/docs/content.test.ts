@@ -453,6 +453,17 @@ describe("AI Plan Score numbers in the docs match the engine", () => {
     expect(displayScore(62.4, 7.6)).toEqual({ score: 60, band: 8 })
   })
 
+  it.each(LANGS)("%s: says the label follows the score as shown, with an example the engine gives (D-81)", (lang) => {
+    const page = source("ai-plan-score", lang)
+    const raw = SOLID_FROM - 2
+    const shown = displayScore(raw, 0).score
+    expect(shown).toBe(SOLID_FROM)
+    expect(labelOf(shown, false)).toBe("solid")
+    expect(labelOf(shown, true)).toBe("promising")
+    const solid = LABELS[lang].scoreLevels.solid.name
+    expect(page).toContain(lang === "en" ? `a plan at ${raw} shows ${shown} and is ${solid}, unless a must-have gate failed` : `Ein Plan mit ${raw} wird als ${shown} angezeigt und ist ${solid}, außer eine Pflichtschwelle ist gescheitert`)
+  })
+
   it.each(LANGS)("%s: states the gate rule, every gate with its dimension and effect, and the branches", (lang) => {
     const page = source("ai-plan-score", lang)
     const w = WORDS[lang]

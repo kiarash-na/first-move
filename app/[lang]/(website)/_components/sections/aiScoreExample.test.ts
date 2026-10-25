@@ -56,9 +56,10 @@ describe('the AI Plan Score example run', () => {
     expect(labelOf(85, true)).toBe('promising')
   })
 
-  it('is a Promising plan, shown rounded to 5 points like the app', () => {
-    expect(EXAMPLE_RAW_SCORE).toBeGreaterThanOrEqual(PROMISING_FROM)
-    expect(EXAMPLE_RAW_SCORE).toBeLessThan(SOLID_FROM)
+  it('is a Promising plan, shown rounded to 5 points like the app and labelled as shown', () => {
+    expect(EXAMPLE_SCORE.score).toBeGreaterThanOrEqual(PROMISING_FROM)
+    expect(EXAMPLE_SCORE.score).toBeLessThan(SOLID_FROM)
+    expect(EXAMPLE_LEVEL).toBe(labelOf(EXAMPLE_SCORE.score))
     expect(EXAMPLE_LEVEL).toBe('promising')
     expect(EXAMPLE_SCORE).toEqual({ score: 60, band: 6 })
     expect(EXAMPLE_SCORE.score % 5).toBe(0)

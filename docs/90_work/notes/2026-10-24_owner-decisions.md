@@ -136,6 +136,7 @@ Given by the owner in the cloud session on `dev`, answering numbered questions 1
 | D-78 | Start screen: **examples come last**, below the user's own projects, and start **collapsed**; this holds for the illustrative examples and the reference cases. |
 | D-79 | The three **fictional** reference cases are built around **real Vienna buildings** with enough verified public facts (owner, 2026-10-25). The building facts are sourced; the plan around them stays fictional, is marked illustrative and says that the owner has not planned or endorsed it. |
 | D-80 | Legal pages and public docs carry **no draft or demo marking** (owner, 2026-10-25): the German draft marking of D-44 goes, and texts no longer call built functions planned or unavailable. |
+| D-81 | The AI Plan Score's **label follows the shown score** (rounded to 5), so the number a user sees and its label always agree: a plan at 68 shows 70 and is Solid (before: Promising). A failed must-have gate still keeps a plan below Solid. Method version 1.1.0 ([PLAN-AI-SCORE-01 § Labels](../plans/2026-10-24_ai-score-01_method.md#labels)). **Orchestrator decision on the owner's behalf (2026-10-25), owner to confirm**, answering open question 4 of the [AI Plan Score note](2026-10-25_ai-score.md#open-questions-for-the-owner); the owner also confirms the minor version step (see the method's changelog). |
 
 ## Defaults added in plan review (2026-10-24)
 

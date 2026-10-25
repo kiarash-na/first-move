@@ -13,9 +13,10 @@ import { MAX_LEVEL } from "./scale"
  *    its score is 25 × level (0..100) and its band √(Σ SD²) / n, the judgements taken as
  *    independent (which probably understates it);
  * 3. the AI Plan Score is Σ weight × dimension score, its band √(Σ (weight × band)²);
- * 4. labels: Early < 40 ≤ Promising < 70 ≤ Solid; a must-have cap (level 2) keeps it below Solid.
- *    The label reads the score as stored (one decimal), so the saved score and its label agree.
- * Shown rounded to 5 points, to avoid false precision (QCT-RES-LEVELS).
+ * 4. shown rounded to 5 points, to avoid false precision (QCT-RES-LEVELS);
+ * 5. labels on the score as shown: Early < 40 ≤ Promising < 70 ≤ Solid, so the number the user
+ *    sees and its label always agree (D-81, method 1.1.0): 68 shows 70 and is Solid. A must-have
+ *    cap (level 2) still keeps it below Solid.
  */
 export const SOLID_FROM = 70
 export const PROMISING_FROM = 40
@@ -48,9 +49,10 @@ const round = (value: number, digits: number) => Math.round(value * 10 ** digits
 /** The cap a gate applies: only a failed gate with a cap. */
 export const appliedCap = (gate: GateNode) => (gate.outcome === "fail" ? gate.cap : null)
 
-export function labelOf(score: number, mustHaveCap: boolean): AiScoreLevel {
-  if (score < PROMISING_FROM) return "early"
-  return score >= SOLID_FROM && !mustHaveCap ? "solid" : "promising"
+/** The label of a score as shown (`displayScore(…).score`); a must-have cap keeps it below Solid. */
+export function labelOf(shown: number, mustHaveCap: boolean): AiScoreLevel {
+  if (shown < PROMISING_FROM) return "early"
+  return shown >= SOLID_FROM && !mustHaveCap ? "solid" : "promising"
 }
 
 /** Rounded for display; core owns it so the Business Plan badge shows the same number. */
@@ -77,5 +79,6 @@ export function aggregate(nodes: readonly FlowNode[]): Aggregate {
   const sd = 100 * Math.sqrt(dimensions.reduce((sum, dimension) => sum + (dimension.weight * dimension.sd) ** 2, 0))
   const capped = gates.some((gate) => appliedCap(gate) === 2)
   const stored = round(score, 1)
-  return { score: stored, sd: round(sd, 1), level: labelOf(stored, capped), capped, dimensions }
+  const band = round(sd, 1)
+  return { score: stored, sd: band, level: labelOf(displayScore(stored, band).score, capped), capped, dimensions }
 }

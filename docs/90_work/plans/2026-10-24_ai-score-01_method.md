@@ -3,13 +3,13 @@ id: PLAN-AI-SCORE-01
 date: 2026-10-24
 status: in-progress
 challenge: [business-models]
-covers: [D-71, D-73, D-74, D-75, D-77, D-27, D-30, D-33, BM-STEP-01, BM-STEP-02, BM-STEP-03, BM-STEP-04, BM-SCOPE-02, BM-SCOPE-03]
+covers: [D-71, D-73, D-74, D-75, D-77, D-81, D-27, D-30, D-33, BM-STEP-01, BM-STEP-02, BM-STEP-03, BM-STEP-04, BM-SCOPE-02, BM-SCOPE-03]
 blocked_by: []
 ---
 
-# AI Plan Score: the method (version 1.0.0)
+# AI Plan Score: the method (version 1.1.0)
 
-This is the method behind [PLAN-AI-SCORE-00](2026-10-24_ai-score-00_plan.md): what the AI Plan Score judges, how it turns answers into a number, and why. It describes method version 1.0.0 as built in `lib/ai/plan-score/`. The code is the reference for every value; this file gives the reasons, and `lib/ai/plan-score/method.test.ts` checks the structure (27 judgements that read every Business Plan field once, 14 gates plus the water-law follow-up, weights that sum to 1, a source on every item).
+This is the method behind [PLAN-AI-SCORE-00](2026-10-24_ai-score-00_plan.md): what the AI Plan Score judges, how it turns answers into a number, and why. It describes method version 1.1.0 as built in `lib/ai/plan-score/` (changes in the [Changelog](#changelog)). The code is the reference for every value; this file gives the reasons, and `lib/ai/plan-score/method.test.ts` checks the structure (27 judgements that read every Business Plan field once, 14 gates plus the water-law follow-up, weights that sum to 1, a source on every item).
 
 Research behind it: [RESEARCH-AI-SCORE-RUBRIC](../research/scoring-rubric-proposal.md) and the [scoring sources](../research/scoring-sources.md). Where the built method differs from that proposal, this file says so under [Deviations from the research proposal](#deviations-from-the-research-proposal). The public, user-facing version is `content/docs/{en,de}/ai-plan-score.mdx`; `content/docs/content.test.ts` checks its numbers against the engine constants.
 
@@ -107,7 +107,7 @@ The analogy is the gated metrics of the Green Heat Network Fund, which must be p
 **How an answer becomes an outcome.** Every gate question ends with "Answer from what the plan states; what it only implies counts as not stated."
 
 - A boolean gate passes when P(yes) ≥ 0.8 (`GATE_PASS`) and fails when P(yes) ≤ 0.2 (`GATE_FAIL`). In between it is **unclear**: shown, offered for suggestions, never a cap.
-- A choice gate turns its option probabilities into one pass probability, weighting each option by its verdict (pass 1, partial 0.5, fail 0) over the options that apply, and then uses the same two thresholds. Options marked not applicable would skip the gate once they hold half the probability; no gate of version 1.0.0 has one.
+- A choice gate turns its option probabilities into one pass probability, weighting each option by its verdict (pass 1, partial 0.5, fail 0) over the options that apply, and then uses the same two thresholds. Options marked not applicable would skip the gate once they hold half the probability; no gate of version 1.1.0 has one.
 - Only a **failed** gate caps, and only its own dimension. When several caps hit one dimension, the lowest wins.
 - A refused question is **skipped**: no cap.
 - A **rule** (precheck) decides some gates in code before any AI call: it fails a gate whose required field is empty, or skips a gate that does not apply. Such a gate is not sent to Jev.
@@ -215,8 +215,8 @@ From the decided nodes to the score, in code, without AI (`distribution.ts`, `ag
 1. **Judgement.** Jev's level probabilities p(0..4) are renormalised. The expected level is E = Σ k·p(k), the probability-weighted score of G-Eval (SRC-GEVAL-2023), and the spread SD = √(Σ p(k)·(k − E)²). An answer without a distribution counts with Jev's score, clamped to 0..4, and no spread. An empty judgement counts as 0 with no spread. A refused judgement does not count.
 2. **Dimension.** Level = mean of E over its counted judgements, then cut by the lowest cap of its failed gates: level = min(mean, cap). Score = level / 4, shown as 0 to 100 (25 points a level). Band = √(Σ SD²) / n / 4, the judgements taken as independent, which probably understates it. A dimension with no counted judgement scores 0.
 3. **AI Plan Score.** Score = 100 × Σ weight × dimension score; band = 100 × √(Σ (weight × dimension band)²). Stored with one decimal, with the raw (uncapped) and capped score and the band of each dimension.
-4. **Label.** See [Labels](#labels).
-5. **Display.** `displayScore` (core, `lib/business-plan/ai-score-status.ts`) rounds the score to the nearest 5 points and the band to whole points, at least 1: "60 ± 8". The route, the Business Plan badge, the completeness panel, the overview tile and the report all use it, so they always show the same number. Rounding to 5 avoids false precision, as the Quick Check does with its three levels (QCT-RES-LEVELS).
+4. **Display.** `displayScore` (core, `lib/business-plan/ai-score-status.ts`) rounds the stored score to the nearest 5 points and the band to whole points, at least 1: "60 ± 8". The route, the Business Plan badge, the completeness panel, the overview tile and the report all use it, so they always show the same number. Rounding to 5 avoids false precision, as the Quick Check does with its three levels (QCT-RES-LEVELS).
+5. **Label.** Read from the score as displayed (step 4). See [Labels](#labels).
 6. **Outdated.** Each judgement stores an 8-character hash (FNV-1a) of its fields' values when scored. `aiScoreStatus` compares them with the current values: any difference marks the score outdated and counts the changed judgements ("N of M scored parts changed since the run"). Nothing runs again by itself.
 
 Worked example. A judgement with p = (0, 0.1, 0.5, 0.3, 0.1) has E = 0.1 + 1.0 + 0.9 + 0.4 = 2.4 and SD = √(0.1·1.96 + 0.5·0.16 + 0.3·0.36 + 0.1·2.56) = √0.64 = 0.8. Its dimension also holds a judgement at E = 3.0 with no spread: mean 2.7, which is 67.5 of 100. If a must-have gate of that dimension failed, the level is cut to 2: 50 of 100, and the plan cannot be labelled Solid.
@@ -227,11 +227,13 @@ What a saved score holds (`aiScoreSchema`, schema v3, D-73): the method version,
 
 | Label | Rule | Copy (EN / DE) |
 |---|---|---|
-| `early` | score < 40 (`PROMISING_FROM`) | Early / Früh |
-| `promising` | 40 ≤ score < 70, or score ≥ 70 while a must-have cap (level 2) is active in any dimension | Promising / Vielversprechend |
-| `solid` | score ≥ 70 (`SOLID_FROM`) and no must-have cap active | Solid / Solide |
+| `early` | shown score < 40 (`PROMISING_FROM`) | Early / Früh |
+| `promising` | 40 ≤ shown score < 70, or shown score ≥ 70 while a must-have cap (level 2) is active in any dimension | Promising / Vielversprechend |
+| `solid` | shown score ≥ 70 (`SOLID_FROM`) and no must-have cap active | Solid / Solide |
 
-The thresholds are a design choice (research proposal § 4), not taken from a source: wide bands, because the band of a typical plan is several points and the probabilities are not calibrated. The rule "a must-have keeps it below Solid" makes sure a plan that misses something essential is never called solid, however well the rest is written. The label is computed on the score as stored (one decimal), not on the display rounded to 5, so a saved score and its label always agree.
+The thresholds are a design choice (research proposal § 4), not taken from a source: wide bands, because the band of a typical plan is several points and the probabilities are not calibrated. The rule "a must-have keeps it below Solid" makes sure a plan that misses something essential is never called solid, however well the rest is written.
+
+**The label reads the shown score** (`labelOf(displayScore(score, sd).score, capped)` in `aggregate.ts`, D-81, since method 1.1.0): the stored score (one decimal) rounded to 5, the number every view shows. So the number a user sees and its label never contradict each other: a plan at 68 shows 70 and is Solid; one at 38 shows 40 and is Promising. On the stored score the thresholds therefore fall at 37.5 and 67.5. The must-have rule is unchanged: a plan shown as 70 or more with a failed must-have gate is Promising.
 
 ## Turn and token budget
 
@@ -251,10 +253,17 @@ The thresholds are a design choice (research proposal § 4), not taken from a so
 
 ## Versioning
 
-- **Method version** `METHOD_VERSION = "1.0.0"` (`run.ts`), stored in every saved score as `method`. The method covers the scale, the judgements (fields and "what a strong answer contains"), the gates and branches (wording, options, effects, rules), the shared question context, the weights, the thresholds and the aggregation; the question wording is part of it (`questions.ts`). Proposed rule for changes (owner to confirm): a change that makes old and new scores incomparable (scale, weights, caps, thresholds, aggregation) raises the major number; an added, removed or regrouped question raises the minor number; a wording fix that should not move scores raises the patch number and is checked against the labelled set first.
+- **Method version** `METHOD_VERSION = "1.1.0"` (`run.ts`), stored in every saved score as `method`. The method covers the scale, the judgements (fields and "what a strong answer contains"), the gates and branches (wording, options, effects, rules), the shared question context, the weights, the thresholds and the aggregation; the question wording is part of it (`questions.ts`). Proposed rule for changes (owner to confirm): a change that makes old and new scores incomparable (scale, weights, caps, thresholds, aggregation) raises the major number; an added, removed or regrouped question raises the minor number; a wording fix that should not move scores raises the patch number and is checked against the labelled set first.
 - **Pinned decision model**: Jev, version 1.14.0, pinned in `DECISION_MODEL_ID` (`run.ts`) so that a new release cannot change scores silently (D-71). The model id is stored with every score. Moving to a new Jev version is a method change.
 - **The text model is free.** Its id is stored with the report and the suggestions; it changes no number, so it is not part of the method version.
-- A saved score keeps the method version and the model it was made with. Scores of different versions are not comparable.
+- A saved score keeps the method version and the model it was made with. Scores of different versions are not comparable, unless the [Changelog](#changelog) says otherwise.
+
+### Changelog
+
+| Version | Date | Change | Comparable with the previous version |
+|---|---|---|---|
+| 1.0.0 | 2026-10-24 | First method. During the review the label moved from the unrounded score to the score as stored (one decimal), without a version change: only scores within 0.05 of a threshold could change. | – |
+| 1.1.0 | 2026-10-25 | The label follows the shown score (`displayScore`, rounded to 5) instead of the stored one, so the number a user sees and its label always agree (D-81, orchestrator decision on the owner's behalf, owner to confirm). The must-have cap still keeps a plan below Solid. | Yes for every number (scores, bands, dimensions, judgements, gates): only the label of a stored score from 37.5 to 39.9 or from 67.5 to 69.9 moves up one step. Hence a minor step; under the proposed rule above a threshold change would raise the major number, so the owner confirms the step together with D-81. |
 
 ## The text model: role and guards
 
@@ -302,7 +311,7 @@ The hints the suggestion run may adapt (`hints.ts`), three per dimension, each w
 - **Model-judge biases.** Judges can favour longer texts (SRC-ZHENG-2023) and text written by a language model (SRC-GEVAL-2023). The scale describes quality, not length, and the context says so, but a padding test (words without substance must not raise E) is still open.
 - **German plans** have not been evaluated separately.
 - **The band** treats judgements as independent and probably understates the uncertainty; caps are not part of it. No sensitivity check with equal weights (1/7 each) exists yet.
-- **Rounding and labels.** The label uses the score as stored (one decimal), while the display rounds to 5: a plan at 68 shows 70 and is labelled Promising; a plan at 38 shows 40 and is labelled Early.
+- **Rounding and labels.** Since method 1.1.0 the label follows the shown score, so a plan at 67.5 is Solid (shown 70) and one at 67.4 is Promising (shown 65): the rounding step decides near a threshold, and the band of a typical plan is wider than that step. The scale picture in the results still marks the unrounded score and its band, so near a threshold its mark can sit just below the zone the label names (68 in the Promising zone, labelled Solid as 70); the text beside it states the unrounded value. Scores saved with method 1.0.0 keep the label they were saved with.
 - **Heat density.** The Quick Check measures MWh per metre of network (OQ-10); the provider's rule of thumb of about 1 MWh/m is per metre of trench (ALG-09), and 5GDHC cases exist below classic district heating thresholds (SRC-BUFFA-2019). Hence the conditional cap only.
 - **Vienna by name.** The Vienna zone question depends on "Wien" or "Vienna" in the site's name or location. A site in Vienna described otherwise is not asked (the gate is only a flag).
 - **One option per branch.** A plan with two main sources or anchors gets the follow-up of the one Jev picks.

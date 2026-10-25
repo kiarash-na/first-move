@@ -28,10 +28,13 @@ export interface ExampleTurnRun {
   decision: { kind: 'branch' } | { kind: 'gate'; outcome: ExampleOutcome }
 }
 
-/** The same rule as the engine's `labelOf`: a must-have cap keeps a plan below Solid. */
-export function labelOf(score: number, mustHaveCap = false): ExampleLevel {
-  if (score < PROMISING_FROM) return 'early'
-  return score >= SOLID_FROM && !mustHaveCap ? 'solid' : 'promising'
+/**
+ * The same rule as the engine's `labelOf`, on the score as shown (D-81): a must-have cap keeps a
+ * plan below Solid.
+ */
+export function labelOf(shown: number, mustHaveCap = false): ExampleLevel {
+  if (shown < PROMISING_FROM) return 'early'
+  return shown >= SOLID_FROM && !mustHaveCap ? 'solid' : 'promising'
 }
 
 export const EXAMPLE_TURNS: readonly ExampleTurnRun[] = [
@@ -90,7 +93,7 @@ export const EXAMPLE_SD = 6.2
 
 /** Shown exactly as the app shows it: rounded to 5 points, the band to whole points. */
 export const EXAMPLE_SCORE = displayScore(EXAMPLE_RAW_SCORE, EXAMPLE_SD)
-export const EXAMPLE_LEVEL: ExampleLevel = labelOf(EXAMPLE_RAW_SCORE)
+export const EXAMPLE_LEVEL: ExampleLevel = labelOf(EXAMPLE_SCORE.score)
 
 /** How many judgements (items) the example scores: the engine's 27, over the plan's 42 fields. */
 export const EXAMPLE_JUDGEMENTS = EXAMPLE_TURNS.reduce((sum, turn) => sum + turn.levels.length, 0)
