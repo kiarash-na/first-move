@@ -32,4 +32,12 @@ describe("SiteFooter", () => {
     expect(presentation).toHaveAttribute("href", "/de/presentation")
     expect(links.indexOf(presentation)).toBe(links.length - 2)
   })
+
+  it("links the public docs in the page's language, right before the presentation (PLAN-LANDING-POLISH-00 step b)", () => {
+    render(<SiteFooter lang="de" copy={de} />)
+    const links = screen.getAllByRole("link")
+    const docs = screen.getByRole("link", { name: de.documentation })
+    expect(docs).toHaveAttribute("href", "/de/docs")
+    expect(links.indexOf(docs)).toBe(links.length - 3)
+  })
 })

@@ -5,7 +5,7 @@ import { interpolate } from "@/lib/legal/interpolate"
 import { REPOSITORY } from "@/lib/legal/operator"
 import { LegalLinks } from "./legal-links"
 
-/** Footer of the public pages: copyright and licence line, the legal links, the presentation and the source code. */
+/** Footer of the public pages: copyright and licence line, the legal links, the docs, the presentation and the source code. */
 export function SiteFooter({ lang, copy }: { lang: Locale; copy: Dictionary<"legal"> }) {
   return (
     <footer className="border-t">
@@ -19,6 +19,7 @@ export function SiteFooter({ lang, copy }: { lang: Locale; copy: Dictionary<"leg
           navLabel={copy.footer.nav}
           linkClassName="font-mono text-xs text-text-secondary"
           extra={[
+            { label: copy.documentation, href: withLocale("/docs", lang) },
             { label: copy.presentation, href: withLocale("/presentation", lang) },
             { label: copy.footer.source, href: REPOSITORY.url },
           ]}

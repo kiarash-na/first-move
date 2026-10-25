@@ -95,12 +95,9 @@
   text-wrap: balance;
 }
 
+/* Emphasised words share the title's style: no italic on the landing (owner, 2026-10-25, D-LP-1). */
 .m-title em {
-  font-stretch: 88%;
-  font-style: italic;
-  font-weight: 300;
-  letter-spacing: -0.04em;
-  text-transform: none;
+  font-style: normal;
 }
 
 .m-body {
@@ -517,14 +514,9 @@
   display: block;
 }
 
+/* The third line shares the style of the two above it (D-LP-1). */
 .m-hero__title .m-hero__accent {
-  margin-top: 0.05em;
-  font-stretch: 88%;
-  font-style: italic;
-  font-weight: 300;
-  letter-spacing: -0.045em;
-  line-height: 0.92;
-  text-transform: none;
+  font-style: normal;
 }
 
 .m-hero__intro {
@@ -1865,6 +1857,22 @@
   color: var(--accent-cool);
 }
 
+/* A must-have gate failed in the recorded run: said under the score. */
+.m-ai-score__capped {
+  margin: 8px 0 0;
+  color: var(--accent-hot);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.03em;
+  line-height: 1.5;
+  opacity: 0;
+  transition: opacity 400ms ease-out 150ms;
+}
+
+.m-ai[data-scored] .m-ai-score__capped {
+  opacity: 1;
+}
+
 .m-ai-scale {
   position: relative;
   display: flex;
@@ -1977,6 +1985,11 @@
   transform: none;
 }
 
+/* A dimension held at its cap: a hatched bar, so the cap reads as a limit, not a measure. */
+.m-ai-dimensions li[data-capped] i::after {
+  background: repeating-linear-gradient(135deg, var(--accent-hot) 0 3px, color-mix(in oklab, var(--accent-hot) 35%, transparent) 3px 6px);
+}
+
 @media (min-width: 768px) {
   .m-ai-dimensions {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1987,6 +2000,23 @@
 .m-ai__note {
   margin: 0;
   padding: 0 18px 16px;
+}
+
+/* The way to the blind test on slide 5. */
+.m-ai__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  gap: 5px;
+  border-bottom: 1px solid var(--line-subtle);
+  color: var(--text-primary);
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+}
+
+.m-ai__link svg {
+  flex: 0 0 auto;
+  color: var(--accent-cool);
 }
 
 /* ---------------------------------------------------------------------- */

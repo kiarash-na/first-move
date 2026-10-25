@@ -2,6 +2,8 @@
 import { describe, expect, it } from 'vitest'
 import common from '@/dictionaries/de/common.json'
 import de from '@/dictionaries/de/landing.json'
+import deAiScore from '@/dictionaries/de/ai-score.json'
+import { recordedRun } from '@/lib/presentation/blind-test/recorded-run'
 import Home from './_components/Home'
 import { LandingSwitch } from './_components/LandingSwitch'
 import { MobileLanding } from './_components/mobile/MobileLanding'
@@ -27,5 +29,9 @@ describe('landing page', () => {
     expect(mobile.props.t).toBe(desktop.props.t)
     expect(mobile.props.t.mobile.hero.visualLabel).toBe(de.mobile.hero.visualLabel)
     expect(mobile.props.language).toBe(desktop.props.language)
+
+    // The recorded blind test, once, with its decisions named in German (PLAN-LANDING-POLISH-00 step f).
+    expect(desktop.props.run).toEqual(recordedRun(deAiScore.labels))
+    expect(mobile.props.run).toBe(desktop.props.run)
   })
 })

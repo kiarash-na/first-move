@@ -7,6 +7,7 @@ import './ai-score-story.css'
 import { DistrictScene } from './DistrictScene'
 import { Header, type ToolId } from './Header'
 import type { LanguageSwitchProps } from '@/components/language-switch/language-switch'
+import type { RecordedRun } from '@/lib/presentation/blind-test/recorded-run'
 import { HERO_ANCHORS, type AnchorPosition } from './sceneAnchors'
 import type { LandingCopyProps } from './types'
 import { useActiveChapter, useScrollReveal } from './useLandingPage'
@@ -19,9 +20,11 @@ import { QuickCheckStory } from './sections/QuickCheckStory'
 
 interface HomeProps extends LandingCopyProps {
   language: Omit<LanguageSwitchProps, 'lang' | 'className'>
+  /** The recorded blind test the AI Plan Score chapter replays. */
+  run: RecordedRun
 }
 
-export default function Home({ t, lang, language }: HomeProps) {
+export default function Home({ t, lang, language, run }: HomeProps) {
   const [selectedTool, setSelectedTool] = useState<ToolId | null>(null)
   const [flowDirection, setFlowDirection] = useState<1 | -1>(1)
   const [previewInputs, setPreviewInputs] = useState({ demand: 78, source: 72 })
@@ -70,7 +73,7 @@ export default function Home({ t, lang, language }: HomeProps) {
         <ProductStory t={t} onToolSelect={setSelectedTool} />
         <QuickCheckStory t={t} onPreviewChange={(demand, source) => setPreviewInputs({ demand, source })} />
         <BusinessModelStory t={t} />
-        <AiScoreStory t={t} lang={lang} />
+        <AiScoreStory t={t} lang={lang} run={run} />
         <Closing t={t} lang={lang} />
       </main>
     </div>

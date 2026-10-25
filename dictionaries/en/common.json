@@ -26,6 +26,7 @@
     "home": "Go to the start page"
   },
   "docs": {
-    "metaTitle": "Docs"
+    "metaTitle": "Docs",
+    "link": "Docs"
   }
 }

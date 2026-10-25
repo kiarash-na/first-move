@@ -1,3 +1,4 @@
+import Link from "next/link"
 import type * as React from "react"
 
 import { Brand } from "@/components/brand/brand"
@@ -7,7 +8,9 @@ import type { Dictionary } from "@/lib/i18n/dictionaries"
 import type { Locale } from "@/lib/i18n/locales"
 
 /**
- * Minimal top bar of the docs layout: brand, optional actions, language switch, theme toggle.
+ * Minimal top bar of the docs layout: brand, optional actions, the docs link, language switch,
+ * theme toggle. The docs link reaches the docs index from every legal page and docs page
+ * (PLAN-LANDING-POLISH-00 step b).
  */
 export function AppHeader({
   lang,
@@ -23,6 +26,13 @@ export function AppHeader({
       <Brand href={`/${lang}`} name={common.app.name} label={common.app.homeLabel} />
       <div className="flex items-center gap-2">
         {children}
+        <Link
+          href={`/${lang}/docs`}
+          prefetch={false}
+          className="inline-flex min-h-11 items-center px-2.5 font-mono text-xs tracking-[0.06em] text-muted-foreground uppercase transition-colors duration-[180ms] hover:text-foreground"
+        >
+          {common.docs.link}
+        </Link>
         <LanguageSwitch
           lang={lang}
           label={common.language.label}
