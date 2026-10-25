@@ -1,17 +1,14 @@
 import type { CSSProperties } from 'react'
-import { ArrowDown, ArrowUpRight } from 'lucide-react'
-import { RichText } from '../rich-text'
+import { ArrowDown } from 'lucide-react'
 import type { Landing } from '../types'
 import { MobileDistrict } from './MobileDistrict'
 
-const TOOLS = [
-  { key: 'quickCheck', index: '01', href: '#m-quick-check', tone: 'cool' },
-  { key: 'businessModels', index: '02', href: '#m-business-models', tone: 'hot' },
-] as const
-
 const rise = (index: number) => ({ '--i': index }) as CSSProperties
 
-/** The hero: eyebrow, title, intro, the static district with its legend, and the gateway to the two tools. */
+/**
+ * The hero: eyebrow, title, intro and the static district with its legend. Unlike the desktop it
+ * has no gateway to the two tools: the tools chapter follows a screen later with the same links.
+ */
 export function MobileHero({ t }: { t: Landing }) {
   const copy = t.hero
   const visual = t.mobile.hero
@@ -44,23 +41,6 @@ export function MobileHero({ t }: { t: Landing }) {
           <span className="m-hero__temperature">{copy.temperature}</span>
         </figcaption>
       </figure>
-
-      <nav className="m-gateway" aria-labelledby="m-gateway-label" data-m-rise style={rise(6)}>
-        <p className="m-gateway__label" id="m-gateway-label"><RichText text={copy.gatewayLabel} /></p>
-        <div className="m-gateway__paths">
-          {TOOLS.map((tool) => {
-            const item = copy.tools[tool.key]
-            return (
-              <a key={tool.key} className={`m-tool-path m-tool-path--${tool.tone}`} href={tool.href}>
-                <span className="m-tool-path__index">{tool.index}</span>
-                <span className="m-tool-path__title">{item.title}</span>
-                <span className="m-tool-path__description">{item.description}</span>
-                <ArrowUpRight className="m-tool-path__arrow" size={22} strokeWidth={1.5} aria-hidden="true" />
-              </a>
-            )
-          })}
-        </div>
-      </nav>
     </section>
   )
 }

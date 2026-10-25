@@ -1,4 +1,4 @@
-import { render, screen, within } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 import en from '@/dictionaries/en/landing.json'
 import { MobileHero } from './MobileHero'
@@ -15,11 +15,9 @@ describe('MobileHero', () => {
     expect(screen.getByRole('link', { name: en.hero.discover })).toHaveAttribute('href', '#m-system')
   })
 
-  it('leads to the two tools from the gateway', () => {
+  it('has no gateway: the tools chapter leads to the two tools', () => {
     render(<MobileHero t={en} />)
-    const gateway = screen.getByRole('navigation', { name: /Two tools/ })
-    expect(within(gateway).getByRole('link', { name: new RegExp(en.hero.tools.quickCheck.title) })).toHaveAttribute('href', '#m-quick-check')
-    expect(within(gateway).getByRole('link', { name: new RegExp(en.hero.tools.businessModels.title) })).toHaveAttribute('href', '#m-business-models')
-    expect(within(gateway).getByText(en.hero.tools.quickCheck.description)).toBeInTheDocument()
+    expect(screen.queryByRole('navigation')).toBeNull()
+    expect(screen.queryByText(en.hero.tools.quickCheck.description)).toBeNull()
   })
 })
