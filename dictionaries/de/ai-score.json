@@ -142,7 +142,9 @@
       "turn": "Runde {turn}",
       "read": "Plan lesen",
       "aggregate": "Zusammenführen",
+      "aggregateTitle": "Dimensionen und Score",
       "report": "Bericht",
+      "reportTitle": "Kurzer Bericht",
       "noAi": "Ohne KI",
       "jev": "Jev",
       "textModel": "Textmodell"
@@ -171,6 +173,8 @@
       "heatDensity": "Wärmedichte {value}",
       "economicRatio": "Wirtschaftlichkeitsverhältnis {value}",
       "filled": "{filled} von {total} Planteilen ausgefüllt",
+      "points": "{value} von 100",
+      "cappedAt": "Begrenzt auf Stufe {level}",
       "final": "KI-Plan-Score",
       "score": "{score} ± {band}",
       "capped": "Eine Pflichtprüfung ist gescheitert, daher bleibt der Score unter Solide.",
@@ -224,6 +228,8 @@
       "skippedNote": "Nicht gefragt: Sie trifft auf diesen Plan nicht zu.",
       "changedNote": "Der Text hat sich nach dem Durchlauf geändert, daher ist diese Stufe womöglich veraltet.",
       "signalNote": "Das Ergebnis des Quick Checks geht als festes Signal ein. Die KI berechnet es nie.",
+      "heatDensity": "Wärmedichte",
+      "economicRatio": "Wirtschaftlichkeitsverhältnis",
       "roundedNote": "Auf 5 Punkte gerundet angezeigt, um keine falsche Genauigkeit vorzutäuschen.",
       "headline": "Überschrift",
       "model": "Modell"

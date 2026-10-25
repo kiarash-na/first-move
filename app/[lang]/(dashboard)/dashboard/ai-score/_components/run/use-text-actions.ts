@@ -14,7 +14,8 @@ import type { ResultActions } from "../types"
 export interface TextActionsInput {
   store: ProjectStore
   createClient: (key: string) => GatewayClient
-  project: Project
+  /** The open project; null while none is open (nothing runs then). */
+  project: Project | null
   score: AiScore | null
   textModelId: string
   lang: TextLang
@@ -33,19 +34,20 @@ export function useTextActions({ store, createClient, project, score, textModelI
   const [busy, setBusy] = useState<ResultActions["busy"]>(null)
   const [error, setError] = useState<GatewayErrorCode | null>(null)
   const controller = useRef<AbortController | null>(null)
+  const projectId = project?.meta.id ?? null
 
   useEffect(() => () => controller.current?.abort(), [])
 
   const request = useCallback(
     async (kind: "report" | "suggestions", write: (client: GatewayClient, signal: AbortSignal) => Promise<AiScore>) => {
       const key = readGatewayKey()
-      if (!key || !ready || controller.current) return
+      if (!key || !ready || !projectId || controller.current) return
       const abort = new AbortController()
       controller.current = abort
       setBusy(kind)
       setError(null)
       try {
-        store.setAiScore(project.meta.id, await write(createClient(key), abort.signal))
+        store.setAiScore(projectId, await write(createClient(key), abort.signal))
       } catch (caught) {
         setError(abort.signal.aborted ? "aborted" : gatewayErrorCode(caught))
       } finally {
@@ -53,17 +55,17 @@ export function useTextActions({ store, createClient, project, score, textModelI
         setBusy(null)
       }
     },
-    [store, createClient, project.meta.id, ready],
+    [store, createClient, projectId, ready],
   )
 
   const rewrite = useCallback(() => {
-    if (!score) return
+    if (!score || !project) return
     void request("report", (client, abortSignal) => rewriteReport(project, score, { client, textModelId, lang, abortSignal }))
   }, [request, project, score, textModelId, lang])
 
   const suggestFor = useCallback(
     (keys?: readonly string[]) => {
-      if (!score) return
+      if (!score || !project) return
       void request("suggestions", (client, abortSignal) => suggest(project, score, { client, textModelId, lang, abortSignal, keys }))
     },
     [request, project, score, textModelId, lang],
@@ -71,8 +73,8 @@ export function useTextActions({ store, createClient, project, score, textModelI
 
   const remove = useCallback(() => {
     controller.current?.abort()
-    if (store.setAiScore(project.meta.id, null)) onRemove?.()
-  }, [store, project.meta.id, onRemove])
+    if (projectId && store.setAiScore(projectId, null)) onRemove?.()
+  }, [store, projectId, onRemove])
 
   return { canUseAi: ready && score !== null, busy, error, rewriteReport: rewrite, suggest: suggestFor, remove }
 }

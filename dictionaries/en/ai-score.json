@@ -142,7 +142,9 @@
       "turn": "Turn {turn}",
       "read": "Read the plan",
       "aggregate": "Aggregate",
+      "aggregateTitle": "Dimensions and score",
       "report": "Report",
+      "reportTitle": "Short report",
       "noAi": "No AI",
       "jev": "Jev",
       "textModel": "Text model"
@@ -171,6 +173,8 @@
       "heatDensity": "Heat density {value}",
       "economicRatio": "Economic ratio {value}",
       "filled": "{filled} of {total} plan parts filled",
+      "points": "{value} of 100",
+      "cappedAt": "Capped at level {level}",
       "final": "AI Plan Score",
       "score": "{score} ± {band}",
       "capped": "A must-have check failed, so the score stays below Solid.",
@@ -224,6 +228,8 @@
       "skippedNote": "Not asked: it does not apply to this plan.",
       "changedNote": "The text changed after the run, so this level may be outdated.",
       "signalNote": "The Quick Check result enters as a fixed signal. The AI never computes it.",
+      "heatDensity": "Heat density",
+      "economicRatio": "Economic ratio",
       "roundedNote": "Shown rounded to 5 points, to avoid false precision.",
       "headline": "Headline",
       "model": "Model"
