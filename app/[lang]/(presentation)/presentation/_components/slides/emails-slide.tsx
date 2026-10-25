@@ -8,8 +8,8 @@ import { SlideHeading } from "../slide-heading"
 type Copy = Dictionary<"presentation">["slides"]["emails"]
 
 /**
- * Slide 6: the two addresses (lib/legal/operator.ts). agent@ is answered by an AI agent and is not
- * live yet (intake and guard built in A06, the conversation is A07); human@ is read by a person.
+ * Slide 6: the two addresses (lib/legal/operator.ts). agent@ is answered by an AI agent — built
+ * and live-tested, tagged experimental while it proves itself; human@ is read by a person.
  */
 export function EmailsSlide({ number, copy }: { number: number; copy: Copy }) {
   const cards = [

@@ -12,6 +12,8 @@ export interface CostFiguresCopy {
   about: string
   run: string
   maintenance: string
+  /** The small print: the work hours the build figure does not count. */
+  hours: string
 }
 
 /** Slide 10's two numbers, counting up when the slide enters: what First Move cost to build and costs to run. */
@@ -38,6 +40,7 @@ export function CostFigures({ lang, copy, cost }: { lang: Locale; copy: CostFigu
         ))}
       </div>
       <p className="cost__note">{copy.maintenance}</p>
+      <p className="cost__note cost__note--small">{copy.hours}</p>
     </div>
   )
 }

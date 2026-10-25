@@ -70,6 +70,18 @@
   background: var(--accent-hot);
 }
 
+/* The hours the build figure does not count: even smaller, no marker, plain case. */
+.cost__note--small {
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  opacity: 0.75;
+}
+
+.cost__note--small::before {
+  display: none;
+}
+
 .contact__open {
   max-width: 24ch;
   margin: 0;
