@@ -202,6 +202,7 @@
         "sheet-too-large": "die Tabelle ist zu groß",
         "too-many": "höchstens {max} Dateien pro E-Mail",
         "unsafe": "die Datei enthält Text, der wie Anweisungen an den Assistenten aussieht, deshalb wurde sie nicht verwendet",
+        "unchecked": "die Datei ließ sich gerade nicht prüfen; bitte senden Sie sie später noch einmal",
         "unavailable": "die Datei ließ sich nicht herunterladen",
         "no-text": "kein Text gefunden, zum Beispiel ein eingescanntes PDF",
         "project": "die Projektdatei ließ sich nicht öffnen: {detail}"

@@ -202,6 +202,7 @@
         "sheet-too-large": "the sheet is too large",
         "too-many": "at most {max} files per email",
         "unsafe": "the file contains text that looks like instructions to the assistant, so it was not used",
+        "unchecked": "the file could not be checked right now; please send it again later",
         "unavailable": "the file could not be downloaded",
         "no-text": "no text found, for example a scanned PDF",
         "project": "the project file could not be opened: {detail}"

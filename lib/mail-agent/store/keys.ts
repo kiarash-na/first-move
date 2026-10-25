@@ -18,6 +18,10 @@ export const TTL = {
   lock: 120_000,
   budget: 3 * DAY,
   alerts: 2 * DAY,
+  /** A reply kept until it is sent, when no conversation record holds it (stop, hand-off). */
+  outbox: DAY,
+  handoff: DAY,
+  relay: 2 * DAY,
 } as const
 
 /** Ids from outside (webhook ids, email ids) and our own ids; anything else is refused. */
@@ -56,6 +60,9 @@ export const keys = {
   budget: (date: string) => `${PREFIX}budget:${day(date)}`,
   alerts: (date: string) => `${PREFIX}alerts:${day(date)}`,
   alertOnce: (kind: string, date: string) => `${PREFIX}alert-once:${id(kind)}:${day(date)}`,
+  outbox: (emailId: string) => `${PREFIX}out:${id(emailId)}`,
+  handoff: (sid: string, date: string) => `${PREFIX}handoff:${id(sid)}:${day(date)}`,
+  relay: (date: string) => `${PREFIX}relay:${day(date)}`,
 }
 
 /** The UTC day of a time, as budgets and alert counters use it. */

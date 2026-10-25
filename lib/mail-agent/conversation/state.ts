@@ -19,6 +19,20 @@ const HANDLED_KEPT = 20
 /** At most this many emails per conversation; then the agent points to the dashboard. */
 export const MAX_ROUNDS = 40
 
+/** The reply to the latest email, kept with the state it belongs to, so a retried step resends it instead of computing again. */
+export const STORED_REPLY = z.strictObject({
+  emailId: z.string().max(128),
+  kind: z.string().max(40),
+  text: z.string().max(200_000),
+  html: z.string().max(100_000).optional(),
+  attachments: z
+    .array(z.strictObject({ filename: z.string().max(200), content: z.string().max(4_000_000), contentType: z.string().max(100) }))
+    .max(1)
+    .optional(),
+})
+
+export type StoredReply = z.infer<typeof STORED_REPLY>
+
 /**
  * One sender's conversation (PLAN-AGENT-07 step 5), sealed in `conv:{sid}` for 30 days after the
  * last message: the language, the phase, the module and file choice, the Business Plan step being
@@ -38,6 +52,7 @@ const STATE = z.strictObject({
   rounds: z.int().min(0),
   threadId: z.string().max(128),
   handled: z.array(z.string().max(128)).max(HANDLED_KEPT),
+  reply: STORED_REPLY.nullable(),
   rev: z.int().min(0),
   updatedAt: z.iso.datetime(),
 })
@@ -58,6 +73,7 @@ export function newConversation(locale: Locale, threadId: string, now: number): 
     rounds: 0,
     threadId,
     handled: [],
+    reply: null,
     rev: 0,
     updatedAt: new Date(now).toISOString(),
   }
