@@ -61,7 +61,7 @@ The owner gave these in chat on 2026-10-25 and asked for them to be finished, te
 | O4 | Home page: visual and code audit and fix on brand (Fable), plus a scroll-animated section for the AI Plan Score | none | in-progress (same workflow) |
 | O5 | A SEPARATE phone and tablet version of the landing page; the desktop version stays untouched (pixel-identical) | O4 | in-progress (same workflow) |
 | O6 | Home page: no italic text; the words that are italic now take the same style as the main title | O4, O5 | todo |
-| O7 | In-app AI assistant (A05) built and working | O1 | todo |
-| O8 | Email agent conversation, extraction and results (A07) built and working, agent@ and human@ | O1 | todo |
+| O7 | In-app AI assistant (A05), **minimal and quick, no over-engineering** (owner, 2026-10-25): a 48 px `Bot` icon button fixed bottom right in the dashboard, a small panel; the PIN vault of D-50 for the key (session by default, "remember" with a 6-digit PIN); one key for all AI features: the user's Vercel AI Gateway key, shared with the AI Plan Score (the vault may hold it; memory stays the default), instead of separate provider keys and OAuth; built, tested and working | O1 | todo |
+| O8 | Email agent **finished fully and actually working** (owner, 2026-10-25): conversation, extraction and on-brand results (A07) for agent@mail.firstmove.energy, human@ forwarding to a person; tested live with the configured Resend, KV and Gateway (test mails only to the project's own addresses) | O1 | todo |
 | O9 | Legal texts, docs and go-live switch of the assistant and the email agent (A08) | O7, O8 | todo |
 | O10 | QA, security review, live test (A09) and a final full check: `pnpm lint && pnpm typecheck && pnpm test && pnpm build`, e2e, notes, push | all | todo |
