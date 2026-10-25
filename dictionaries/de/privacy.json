@@ -6,7 +6,7 @@
   "title": "Datenschutzerklärung",
   "intro": "Diese Datenschutzerklärung erläutert, welche personenbezogenen Daten verarbeitet werden, wenn Sie First Move unter {{site.domain}} nutzen oder uns schreiben, zu welchen Zwecken und auf welcher Rechtsgrundlage dies geschieht und welche Rechte Sie haben. Sie enthält die Informationen nach Art. 13 und 14 der Datenschutz-Grundverordnung (DSGVO, Verordnung (EU) 2016/679). Personenbezogene Daten sind alle Informationen, die sich auf eine identifizierte oder identifizierbare Person beziehen (Art. 4 Nr. 1 DSGVO).",
   "updated": "2026-10-25",
-  "version": "1.3",
+  "version": "1.4",
   "sections": [
     {
       "id": "summary",
@@ -209,7 +209,7 @@
         "First Move ist darauf ausgelegt, dass möglichst wenige Daten Ihr Gerät verlassen:",
         "- Der Hoster liefert die Website über eine verschlüsselte Verbindung (HTTPS) aus.",
         "- Ihre Projekte werden nur auf Ihrem Gerät gespeichert, nicht auf einem Server.",
-        "- Eine Content-Security-Policy beschränkt die Verbindungen, die die Seite aufbauen darf, auf die Website selbst. Auf den Seiten des Dashboards erlaubt sie zusätzlich die beiden KI-Anbieter des Assistenten (`api.anthropic.com`, `openrouter.ai`) und das Vercel AI Gateway des KI-Plan-Scores (`ai-gateway.vercel.sh`); Ihr Browser kontaktiert sie nur, wenn Sie den Assistenten nutzen oder einen KI-Plan-Score starten.",
+        "- Eine Content-Security-Policy beschränkt die Verbindungen, die die Seite aufbauen darf, auf die Website selbst. Auf den Seiten des Dashboards erlaubt sie zusätzlich die beiden KI-Anbieter, die Sie mit Ihrem eigenen Schlüssel verbinden können (`openrouter.ai` und `ai-gateway.vercel.sh`); Ihr Browser kontaktiert sie nur, wenn Sie den Assistenten nutzen oder einen KI-Plan-Score starten.",
         "- Die Website lädt keine Skripte, Schriften oder eingebetteten Inhalte von Dritten.",
         "- Die Website sendet `Referrer-Policy: no-referrer`, sodass andere Websites nicht erfahren, von welcher Seite Sie kommen.",
         "Ihre Projekte sind nur so sicher wie Ihr Gerät. Wer Zugriff auf Ihr Browserprofil hat, kann sie öffnen. Schützen Sie Ihr Gerät, und bewahren Sie exportierte Dateien so sorgfältig auf wie Ihre anderen Arbeitsdateien."

@@ -6,7 +6,7 @@
   "title": "Cookie Policy",
   "intro": "This policy explains which cookie and which other browser storage First Move uses, what each one is for, and how you can delete or block them.",
   "updated": "2026-10-25",
-  "version": "1.3",
+  "version": "1.4",
   "sections": [
     {
       "id": "summary",
@@ -74,7 +74,7 @@
         "First Move contains no analytics, no advertising, no tracking pixels and no social media widgets.",
         "It loads no scripts, fonts, maps or embedded content from third parties. Our fonts are served from our own site.",
         "We do not use any of the entries to identify you, build a profile or follow you across websites.",
-        "The site sends the header `Referrer-Policy: no-referrer`, so your browser does not tell other sites which page of First Move you came from. Its Content Security Policy limits the app's connections to its own origin and, on dashboard pages, to the two AI providers of the assistant and to the Vercel AI Gateway of the AI Plan Score.",
+        "The site sends the header `Referrer-Policy: no-referrer`, so your browser does not tell other sites which page of First Move you came from. Its Content Security Policy limits the app's connections to its own origin and, on dashboard pages, to the two AI providers you can connect with your own key (OpenRouter and the Vercel AI Gateway), which the AI Plan Score also runs through.",
         "E-mails are a separate matter: the e-mails we send contain minimal tracking by our e-mail provider, described under [E-mail tracking](/privacy#email-tracking)."
       ]
     },
