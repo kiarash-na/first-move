@@ -1,8 +1,8 @@
 /**
- * The providers the in-app assistant can use with the user's own key (O7): the Vercel AI
- * Gateway, with the same key as the AI Plan Score, and OpenRouter.
+ * The providers the in-app assistant can use with the user's own key (O7): OpenRouter by default,
+ * the Vercel AI Gateway second (owner, 2026-10-25). The Gateway key is the AI Plan Score's.
  */
-export const PROVIDERS = ["gateway", "openrouter"] as const
+export const PROVIDERS = ["openrouter", "gateway"] as const
 export type Provider = (typeof PROVIDERS)[number]
 
 export function isProvider(value: unknown): value is Provider {

@@ -2,8 +2,8 @@ import { describe, expect, it } from "vitest"
 import { isProvider, PROVIDERS } from "./types"
 
 describe("assistant providers", () => {
-  it("are the Vercel AI Gateway and OpenRouter, and nothing else", () => {
-    expect(PROVIDERS).toEqual(["gateway", "openrouter"])
+  it("are OpenRouter (the default) and the Vercel AI Gateway, and nothing else", () => {
+    expect(PROVIDERS).toEqual(["openrouter", "gateway"])
     expect(isProvider("gateway")).toBe(true)
     expect(isProvider("openrouter")).toBe(true)
     expect(isProvider("anthropic")).toBe(false)
