@@ -5,6 +5,255 @@
   },
   "title": "AI Plan Score",
   "lead": "A separate AI scoring of your Business Plan, apart from the app's own calculations.",
+  "intro": {
+    "badge": "AI scoring",
+    "title": "A separate AI scoring of your written plan",
+    "body": "The AI Plan Score is an AI opinion on how specific, quantified and evidenced the texts of your Business Plan are.",
+    "points": {
+      "calculation": "It is not the app's calculation. The Quick Check stays the only calculation, and Pitch completeness still only counts which fields are filled.",
+      "verdict": "It is not a feasibility study and not a funding or investment verdict. Use it to see where the plan is still thin.",
+      "models": "Jev, an AI decision model, takes every decision. The text model you choose only writes the report from Jev's numbers and never changes them."
+    },
+    "docs": "How the AI Plan Score works"
+  },
+  "setup": {
+    "title": "Connect your key",
+    "lead": "The AI Plan Score runs on your own Vercel AI Gateway key (bring your own key). The Gateway bills your account for what a run uses.",
+    "key": {
+      "label": "Vercel AI Gateway key",
+      "placeholder": "Paste your API key",
+      "use": "Use key",
+      "forget": "Forget key",
+      "invalid": "This does not look like a Gateway key. Paste the whole key, without spaces.",
+      "active": "Key in use: {masked}",
+      "none": "No key in use.",
+      "memory": "The key stays in this tab's memory only and is gone when you reload or close the tab. It is never saved, exported or put in a link, and it is sent nowhere except to the Vercel AI Gateway.",
+      "where": "Where to get a key: sign in to Vercel, open AI Gateway in your dashboard and create an API key there. The Gateway needs credits on your account before it runs a model."
+    },
+    "credits": {
+      "checking": "Checking the key and your balance…",
+      "balance": "Key accepted. Balance: {amount}",
+      "failed": "The key is kept, but the balance could not be checked. {reason}",
+      "rejected": "The key was not accepted and has been forgotten. {reason}"
+    },
+    "decision": {
+      "label": "Decision model",
+      "name": "Jev by TypeSafe AI",
+      "version": "Version {version}, fixed",
+      "note": "Jev takes every decision: the level of each plan part, the checks and the branches. It is fixed, so scores stay comparable between runs.",
+      "zdr": "Zero data retention and no training requested"
+    },
+    "text": {
+      "label": "Text model for the report and suggestions",
+      "help": "Writes the short report and, when you ask, suggestions from Jev's numbers. It never changes a number. Any language model of the Gateway works.",
+      "price": "{input} input · {output} output per million tokens",
+      "zdr": "Zero data retention requested",
+      "custom": "Another model",
+      "customLabel": "Gateway model id",
+      "customPlaceholder": "creator/model",
+      "customInvalid": "Use the Gateway form creator/model, for example {example}.",
+      "customPrice": "Its price is not known here: see the model list of the Gateway. No training on your texts is requested."
+    },
+    "data": {
+      "title": "What is sent and to whom",
+      "points": {
+        "what": "What: the texts of the filled Business Plan fields and, if there is one, the Quick Check result. Empty fields are never sent.",
+        "how": "How: from your browser straight to the Vercel AI Gateway, under your key. Nothing passes through First Move's servers.",
+        "who": "To whom: the Gateway passes the plan to TypeSafe AI for Jev's decisions, and the decided numbers with short plan excerpts to the provider of the text model you chose.",
+        "terms": "Zero data retention and no training on your texts are requested. The terms of Vercel and of the providers apply.",
+        "when": "When: only when you start a run, write the report again or ask for suggestions."
+      },
+      "ack": "I understand what is sent and to whom, and I want to use my key for it.",
+      "ackNote": "This confirmation is kept for this tab only."
+    }
+  },
+  "usage": {
+    "title": "Rough cost of a run",
+    "value": "About {amount}",
+    "below": "Less than {amount}",
+    "decisionOnly": "Decisions about {amount}. The price of this text model is not known here.",
+    "note": "An order of magnitude only. The Gateway bills the tokens actually used.",
+    "tokens": "{count} tokens",
+    "how": {
+      "title": "How we estimate",
+      "decision": "Decisions: about {tokens} tokens of plan and questions over the four turns, at Jev's input price of {price} per million tokens: {amount}.",
+      "text": "Report: about {input} input tokens and up to {output} output tokens at the prices of {model}: {amount}.",
+      "textUnknown": "Report: about {input} input tokens and up to {output} output tokens. The prices of this model are not known here.",
+      "tokens": "A token is counted as about three characters, as the app does elsewhere. Suggestions cost extra, and only when you ask for them."
+    }
+  },
+  "run": {
+    "title": "Score the plan",
+    "lead": "Jev reads the plan in five turns, from the first field to the last: one turn without AI, then one per Business Plan step. You can cancel at any time.",
+    "start": "Score my plan",
+    "again": "Score again",
+    "againNote": "A new run replaces the saved score.",
+    "cancel": "Cancel",
+    "running": "Scoring…",
+    "filled": "{filled} of {total} plan parts have text.",
+    "openPlan": "Open the Business Plan",
+    "needs": {
+      "key": "Use a Gateway key first.",
+      "ack": "Confirm what is sent first.",
+      "model": "Choose a valid text model first.",
+      "filled": "Nothing to score yet: no Business Plan field has text."
+    },
+    "progress": {
+      "label": "Progress of the run",
+      "turn": "Turn {turn}",
+      "report": "Report",
+      "noAi": "No AI",
+      "questions": "{count} questions",
+      "states": {
+        "pending": "Waiting",
+        "running": "Running",
+        "done": "Done",
+        "failed": "Stopped",
+        "skipped": "Not run"
+      }
+    },
+    "done": "Scored. The score is saved in this project.",
+    "notSaved": "The run finished, but this project is no longer open, so the score was not saved.",
+    "reportError": "The score is saved, but the report could not be written. {reason}",
+    "writeAgain": "Write the report again",
+    "failed": "The run stopped and nothing was saved. {reason}"
+  },
+  "errors": {
+    "key": "The Gateway did not accept the key. Check that you pasted the whole key and that it is still active.",
+    "credits": "Your Gateway account has no credits left. Add credits in your Vercel account, then try again.",
+    "forbidden": "The key may not use this model or feature. Check the settings of your Gateway, or choose another text model.",
+    "model": "The Gateway does not know this model. Choose another text model.",
+    "rate": "Too many requests right now. Wait a minute, then try again.",
+    "provider": "The model provider had a problem. Try again in a moment.",
+    "network": "The Gateway could not be reached, or it took too long. Check your connection, then try again.",
+    "aborted": "Cancelled.",
+    "unknown": "Something went wrong. Try again."
+  },
+  "flow": {
+    "title": "Decision flow",
+    "lead": "Every decision Jev took, turn by turn, from the first field to the last. Select a node to see its details.",
+    "placeholder": "The flow appears here when you score the plan.",
+    "view": {
+      "label": "View",
+      "graph": "Graph",
+      "table": "Table"
+    },
+    "columns": {
+      "turn": "Turn {turn}",
+      "read": "Read the plan",
+      "aggregate": "Aggregate",
+      "report": "Report",
+      "noAi": "No AI",
+      "jev": "Jev",
+      "textModel": "Text model"
+    },
+    "groups": {
+      "empty": "Empty fields",
+      "judgements": "Plan parts",
+      "gates": "Checks",
+      "branches": "Branches",
+      "dimensions": "Dimensions"
+    },
+    "state": {
+      "pending": "Waiting",
+      "running": "Deciding…",
+      "none": "Nothing to decide here"
+    },
+    "node": {
+      "level": "{level} · {name}",
+      "empty": "Empty · 0",
+      "refused": "No answer",
+      "probability": "{outcome} · {value}",
+      "capApplied": "{outcome} · caps at {level}",
+      "chosen": "{value} sure",
+      "changed": "Changed since the run",
+      "signalNone": "No complete Quick Check: Jev reads the plan alone.",
+      "heatDensity": "Heat density {value}",
+      "economicRatio": "Economic ratio {value}",
+      "filled": "{filled} of {total} plan parts filled",
+      "final": "AI Plan Score",
+      "score": "{score} ± {band}",
+      "capped": "A must-have check failed, so the score stays below Solid.",
+      "reportNone": "Not written yet",
+      "reportWriting": "Writing…",
+      "reportFailed": "Could not be written",
+      "reportBy": "Written by {model}",
+      "step": "Step {step}"
+    },
+    "detail": {
+      "kinds": {
+        "judgement": "Plan part",
+        "gate": "Check",
+        "followUp": "Follow-up check",
+        "branch": "Branch",
+        "signal": "Quick Check signal",
+        "dimension": "Dimension",
+        "score": "AI Plan Score",
+        "report": "Report"
+      },
+      "expected": "Expected level",
+      "expectedValue": "{level} of 4 · {name}",
+      "histogram": "Probability per level",
+      "confidence": "Confidence",
+      "confidenceHelp": "How concentrated Jev's answer is: 100 % when one level holds everything, 0 % when every level is equally likely.",
+      "spread": "Spread",
+      "spreadValue": "± {value} levels",
+      "dimension": "Dimension",
+      "step": "Business Plan step",
+      "source": "Decided",
+      "question": "Question",
+      "outcome": "Outcome",
+      "probability": "Probability that it passes",
+      "effect": "Effect",
+      "cap": "Caps “{dimension}” at level {level} when it fails.",
+      "capConditional": "Caps “{dimension}” at level {level} when it fails and the Quick Check heat density is low.",
+      "flag": "A flag only: it never lowers the score.",
+      "applied": "Applied: “{dimension}” is capped at level {level}.",
+      "openedBy": "Asked because the branch “{branch}” chose “{option}”.",
+      "options": "Options",
+      "chosen": "Chosen",
+      "followUp": "Follow-up check in the next turn",
+      "none": "None",
+      "weight": "Weight",
+      "beforeCap": "Before caps",
+      "afterCap": "After caps",
+      "band": "Band (one standard deviation)",
+      "emptyNote": "No text: scored 0 without AI and never sent.",
+      "refusedNote": "Jev declined to answer, so this part is not counted.",
+      "ruleNote": "Decided by a rule before any AI.",
+      "skippedNote": "Not asked: it does not apply to this plan.",
+      "changedNote": "The text changed after the run, so this level may be outdated.",
+      "signalNote": "The Quick Check result enters as a fixed signal. The AI never computes it.",
+      "roundedNote": "Shown rounded to 5 points, to avoid false precision.",
+      "headline": "Headline",
+      "model": "Model"
+    },
+    "legend": {
+      "label": "Legend",
+      "levels": "Expected level",
+      "empty": "Empty field",
+      "refused": "No answer",
+      "branch": "Branch",
+      "edge": "Opens a follow-up check"
+    },
+    "table": {
+      "caption": "Decision flow as a table",
+      "heading": "Item",
+      "turn": "Turn",
+      "kind": "Kind",
+      "result": "Result",
+      "certainty": "Probability or confidence"
+    },
+    "how": {
+      "title": "How the flow decides",
+      "read": "Turn 0, without AI: the app checks which plan parts have text. Empty ones score 0 for certain and are never sent. A complete Quick Check result enters as a fixed signal.",
+      "turns": "Turns 1 to 4, one Jev call per Business Plan step: Jev rates each filled plan part on five levels (missing, vague, specific, quantified, evidenced) and returns a probability for each level. The expected level is E = Σ k · p(k), for k from 0 to 4.",
+      "gates": "Checks are yes or no questions across the plan. They never add points. A check that fails with confidence caps its dimension at level 2 or 3; an unclear answer is only a flag. Some checks are decided by a rule before any AI.",
+      "branches": "Branches are choices, such as the main heat source. The option Jev picks decides which follow-up check the next turn asks.",
+      "aggregate": "Aggregate, without AI: a dimension is the mean of its plan parts, cut by the lowest cap of its failed checks. The AI Plan Score is the weighted sum of the seven dimensions, from 0 to 100, with a band of one standard deviation. Early below 40, Promising from 40, Solid from 70; a failed must-have check keeps it below Solid.",
+      "report": "Report: the text model you chose writes a short report from these numbers. It cannot change them."
+    }
+  },
   "labels": {
     "scoreLevels": {
       "early": {
