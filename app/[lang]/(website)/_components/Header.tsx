@@ -22,6 +22,7 @@ export function Header({ t, lang, language, onToolSelect }: HeaderProps) {
     { label: copy.nav.system, href: '#promise' },
     { label: copy.nav.quickCheck, href: '#quick-inputs', tool: 'quick-check' as const },
     { label: copy.nav.businessModels, href: '#business-use-cases', tool: 'business-models' as const },
+    { label: copy.nav.aiScore, href: '#ai-score' },
     { label: copy.nav.methodology, href: '#methodology' },
   ]
   const [menuOpen, setMenuOpen] = useState(false)

@@ -3,12 +3,14 @@
 import { useCallback, useRef, useState } from 'react'
 import './landing.css'
 import './story.css'
+import './ai-score-story.css'
 import { DistrictScene } from './DistrictScene'
 import { Header, type ToolId } from './Header'
 import type { LanguageSwitchProps } from '@/components/language-switch/language-switch'
 import { HERO_ANCHORS, type AnchorPosition } from './sceneAnchors'
 import type { LandingCopyProps } from './types'
 import { useActiveChapter, useScrollReveal } from './useLandingPage'
+import { AiScoreStory } from './sections/AiScoreStory'
 import { BusinessModelStory } from './sections/BusinessModelStory'
 import { Closing } from './sections/Closing'
 import { Hero } from './sections/Hero'
@@ -68,6 +70,7 @@ export default function Home({ t, lang, language }: HomeProps) {
         <ProductStory t={t} onToolSelect={setSelectedTool} />
         <QuickCheckStory t={t} onPreviewChange={(demand, source) => setPreviewInputs({ demand, source })} />
         <BusinessModelStory t={t} />
+        <AiScoreStory t={t} lang={lang} />
         <Closing t={t} lang={lang} />
       </main>
     </div>

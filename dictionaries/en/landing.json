@@ -16,6 +16,7 @@
       "system": "The System",
       "quickCheck": "Quick Check",
       "businessModels": "Business Models",
+      "aiScore": "AI Plan Score",
       "methodology": "Methodology"
     }
   },
@@ -75,6 +76,11 @@
         "title": "Business Models",
         "subtitle": "Structure value, ownership, risk and operation.",
         "meta": "Canvas · Reality Check · replication · next steps"
+      },
+      "aiScore": {
+        "title": "AI Plan Score",
+        "subtitle": "A separate AI opinion on the written Business Plan.",
+        "meta": "Four turns · seven dimensions · an opinion, not a calculation"
       }
     }
   },
@@ -268,6 +274,42 @@
       ]
     }
   },
+  "aiScore": {
+    "kicker": "AI Plan Score · Business Plan",
+    "title": "Score the plan.\n*See every decision.*",
+    "body": "A separate AI reading of the written Business Plan. Jev, a decision model, takes every decision in four turns, from the first field to the last. A text model of your choice writes the short report and, on demand, suggestions.",
+    "facts": [
+      { "label": "01 / Four turns", "title": "Every decision shown", "text": "Five evidence levels per field, gates across fields, branches that pick the next questions, seven dimensions." },
+      { "label": "02 / Your key", "title": "Nothing passes through us", "text": "Bring your own Vercel AI Gateway key. It stays in memory for the open tab; the plan goes straight to the models you chose." },
+      { "label": "03 / An opinion", "title": "Not a calculation", "text": "The score judges how solid the written plan is. The Quick Check stays the only calculation." }
+    ],
+    "primary": "Try the AI Plan Score",
+    "secondary": "How we score",
+    "link": "Check the methodology",
+    "console": {
+      "title": "Example run",
+      "tag": "Illustrative",
+      "replay": "Replay",
+      "summary": "An example run: {fields} fields scored in four turns, a score of {score} ± {band}, {level}.",
+      "turns": { "1": "Opportunity", "2": "Business logic", "3": "Reality check", "4": "Implementation" },
+      "fields": "{count} fields",
+      "branch": "Branch",
+      "gate": "Gate",
+      "decisions": {
+        "1": { "name": "Main heat source", "result": "Groundwater" },
+        "2": { "name": "System boundary", "result": "Pass" },
+        "3": { "name": "Deal-breaker with a validation", "result": "Unclear" },
+        "4": { "name": "Decision gate", "result": "Pass" }
+      },
+      "evidenceLabel": "Evidence level",
+      "evidence": ["Missing", "Vague", "Specific", "Quantified", "Evidenced"],
+      "scoreLabel": "AI Plan Score",
+      "levels": { "early": "Early", "promising": "Promising", "solid": "Solid" },
+      "dimensionsLabel": "Seven dimensions",
+      "dimensions": { "value": "Value", "technology": "Technology", "economics": "Economics", "governance": "Governance", "participation": "Participation", "evidence": "Evidence", "path": "Path" },
+      "note": "Illustrative decisions · the real score depends on the written plan and the decision model."
+    }
+  },
   "closing": {
     "methodology": {
       "kicker": "Methodology & credibility",
@@ -277,7 +319,8 @@
         { "title": "Predefined calculation methodology", "text": "A defined screening method turns project parameters into a consistent three-stage assessment indicator." },
         { "title": "Research foundation", "text": "Built on the “Anergie Leicht Gemacht” research project and its approach to making local energy potential actionable." },
         { "title": "Predefined project scenarios", "text": "Scenario-based testing supports methodology checks, usability and practical screening applicability." },
-        { "title": "Flexible output", "text": "Results can be communicated through a PDF, online view or another output document without losing the reasoning." }
+        { "title": "Flexible output", "text": "Results can be communicated through a PDF, online view or another output document without losing the reasoning." },
+        { "title": "Separate AI opinion", "text": "The AI Plan Score reads the written Business Plan and shows every decision it takes; the Quick Check stays the only calculation." }
       ],
       "boundaryLabel": "Explicit boundary",
       "boundaryLead": "Fast initial screening,",

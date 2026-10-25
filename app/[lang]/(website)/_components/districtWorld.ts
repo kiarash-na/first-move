@@ -63,6 +63,7 @@ const CHAPTER_POSES: Record<string, ChapterPose> = {
   'reality-check': { camera: [-1, 2, 1], district: [-5.8, -0.6, 0], target: [-1.2, 0.4, 0], scale: 0.96, rotation: -0.36 },
   scalability: { camera: [0, 10, 4], district: [1.2, -1.4, 0], target: [0.8, 0, 0], scale: 0.64, rotation: 0.12 },
   implementation: { camera: [-2, 5, -2], district: [-5.2, -1, 0], target: [-1, 0.2, 0], scale: 0.8, rotation: 0.34 },
+  'ai-score': { camera: [1, 9, 2], district: [-5.6, -1.3, 0], target: [-1.2, 0.3, 0], scale: 0.7, rotation: 0.22 },
   methodology: { camera: [0, 5, 0], district: [0, -1, 0], target: [0, 0, 0], scale: 0.8, rotation: -0.1 },
   'get-started': { camera: [-1, 2, 0], district: [-3.4, -0.4, 0], target: [0, 0.3, 0], scale: 1.08, rotation: -0.1 },
 }
@@ -755,7 +756,7 @@ export function mountDistrictWorld(
     const activeChapter = chapterRef.current
     const chapterKind = activeChapter.startsWith('quick')
       ? 'cool'
-      : activeChapter.startsWith('business') || activeChapter === 'reality-check' || activeChapter === 'implementation'
+      : activeChapter.startsWith('business') || activeChapter === 'reality-check' || activeChapter === 'implementation' || activeChapter === 'ai-score'
         ? 'hot'
         : null
     const selectedKind = activeChapter === 'overview' && emphasisRef.current
@@ -778,7 +779,8 @@ export function mountDistrictWorld(
     })
 
     updateLayer(district.layers.scan, activeChapter === 'quick-inputs' || activeChapter === 'quick-assessment' ? 1 : 0, delta)
-    updateLayer(district.layers.business, activeChapter === 'business-use-cases' || activeChapter === 'business-canvas' || activeChapter === 'implementation' ? 1 : 0, delta)
+    // The business layer, six nodes around one core, is also the AI chapter's "experts at one table".
+    updateLayer(district.layers.business, activeChapter === 'business-use-cases' || activeChapter === 'business-canvas' || activeChapter === 'implementation' || activeChapter === 'ai-score' ? 1 : 0, delta)
     updateLayer(district.layers.risk, activeChapter === 'reality-check' ? 1 : 0, delta)
     updateLayer(district.layers.replication, activeChapter === 'scalability' ? 1 : 0, delta)
 

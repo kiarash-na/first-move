@@ -53,11 +53,35 @@
 .main-nav a {
   padding-right: 11px;
   padding-left: 11px;
+  white-space: nowrap;
 }
 
 .main-nav a::after {
   right: 11px;
   left: 11px;
+}
+
+/* Five entries between the brand and the actions: tighter from 1199 px down to the collapse at 899 px. */
+@media (max-width: 1199px) {
+  .main-nav {
+    gap: 0;
+  }
+
+  .main-nav a {
+    padding-right: 7px;
+    padding-left: 7px;
+    letter-spacing: 0.02em;
+  }
+
+  .main-nav a::after {
+    right: 7px;
+    left: 7px;
+  }
+
+  .header-cta {
+    gap: 12px;
+    padding: 0 14px;
+  }
 }
 
 .mobile-menu-toggle,
@@ -328,6 +352,24 @@
 
 .tool-chapter--hot .tool-chapter__title {
   color: var(--accent-hot);
+}
+
+/* The AI Plan Score belongs to the Business Plan, not a third tool: a quieter row in paper. */
+.tool-chapter--ai {
+  min-height: 118px;
+}
+
+.tool-chapter--ai::before {
+  background: oklch(0.95 0.012 200 / 0.045);
+}
+
+.tool-chapter--ai .tool-chapter__index {
+  color: var(--accent-hot);
+}
+
+.tool-chapter--ai .tool-chapter__title {
+  color: var(--text-primary);
+  font-size: clamp(1.6rem, 2.4vw, 2.5rem);
 }
 
 .tool-chapter__subtitle {

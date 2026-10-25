@@ -16,6 +16,7 @@
       "system": "Das System",
       "quickCheck": "Quick Check",
       "businessModels": "Geschäftsmodelle",
+      "aiScore": "KI-Plan-Score",
       "methodology": "Methodik"
     }
   },
@@ -75,6 +76,11 @@
         "title": "Geschäftsmodelle",
         "subtitle": "Strukturieren Sie Wert, Eigentum, Risiko und Betrieb.",
         "meta": "Canvas · Realitätscheck · Übertragung · nächste Schritte"
+      },
+      "aiScore": {
+        "title": "KI-Plan-Score",
+        "subtitle": "Eine separate KI-Einschätzung des geschriebenen Businessplans.",
+        "meta": "Vier Runden · sieben Dimensionen · Einschätzung, keine Berechnung"
       }
     }
   },
@@ -268,6 +274,42 @@
       ]
     }
   },
+  "aiScore": {
+    "kicker": "KI-Plan-Score · Businessplan",
+    "title": "Den Plan bewerten.\n*Jede Entscheidung sehen.*",
+    "body": "Eine separate KI-Lesung des geschriebenen Businessplans. Jev, ein Entscheidungsmodell, trifft jede Entscheidung in vier Runden, vom ersten Feld bis zum letzten. Ein Textmodell Ihrer Wahl schreibt den kurzen Bericht und auf Wunsch Vorschläge.",
+    "facts": [
+      { "label": "01 / Vier Runden", "title": "Jede Entscheidung sichtbar", "text": "Fünf Belegstufen je Feld, Schwellen über Felder hinweg, Verzweigungen, die die nächsten Fragen wählen, sieben Dimensionen." },
+      { "label": "02 / Ihr Schlüssel", "title": "Nichts läuft über uns", "text": "Bringen Sie Ihren eigenen Vercel-AI-Gateway-Schlüssel mit. Er bleibt im Speicher des offenen Tabs; der Plan geht direkt an die Modelle, die Sie gewählt haben." },
+      { "label": "03 / Eine Einschätzung", "title": "Keine Berechnung", "text": "Der Score beurteilt, wie solide der geschriebene Plan ist. Der Quick Check bleibt die einzige Berechnung." }
+    ],
+    "primary": "KI-Plan-Score ausprobieren",
+    "secondary": "So bewerten wir",
+    "link": "Methodik prüfen",
+    "console": {
+      "title": "Beispiellauf",
+      "tag": "Beispielhaft",
+      "replay": "Erneut abspielen",
+      "summary": "Ein Beispiellauf: {fields} Felder in vier Runden bewertet, ein Score von {score} ± {band}, {level}.",
+      "turns": { "1": "Chance", "2": "Geschäftslogik", "3": "Realitätscheck", "4": "Umsetzung" },
+      "fields": "{count} Felder",
+      "branch": "Verzweigung",
+      "gate": "Schwelle",
+      "decisions": {
+        "1": { "name": "Hauptwärmequelle", "result": "Grundwasser" },
+        "2": { "name": "Systemgrenze", "result": "Erfüllt" },
+        "3": { "name": "K.-o.-Kriterium mit Prüfung", "result": "Unklar" },
+        "4": { "name": "Entscheidungstor", "result": "Erfüllt" }
+      },
+      "evidenceLabel": "Belegstufe",
+      "evidence": ["Fehlt", "Vage", "Konkret", "Beziffert", "Belegt"],
+      "scoreLabel": "KI-Plan-Score",
+      "levels": { "early": "Früh", "promising": "Vielversprechend", "solid": "Solide" },
+      "dimensionsLabel": "Sieben Dimensionen",
+      "dimensions": { "value": "Nutzen", "technology": "Technik", "economics": "Wirtschaft", "governance": "Steuerung", "participation": "Beteiligung", "evidence": "Belege", "path": "Umsetzung" },
+      "note": "Beispielhafte Entscheidungen · der echte Score hängt vom geschriebenen Plan und vom Entscheidungsmodell ab."
+    }
+  },
   "closing": {
     "methodology": {
       "kicker": "Methodik und Glaubwürdigkeit",
@@ -277,7 +319,8 @@
         { "title": "Vordefinierte Berechnungsmethodik", "text": "Eine festgelegte Screening-Methode macht aus Projektparametern einen einheitlichen, dreistufigen Bewertungsindikator." },
         { "title": "Forschungsgrundlage", "text": "Aufgebaut auf dem Forschungsprojekt „Anergie Leicht Gemacht“ und seinem Ansatz, lokales Energiepotenzial nutzbar zu machen." },
         { "title": "Vordefinierte Projektszenarien", "text": "Tests mit Szenarien unterstützen die Prüfung der Methodik, die Benutzerfreundlichkeit und die praktische Anwendbarkeit im Screening." },
-        { "title": "Flexible Ausgabe", "text": "Ergebnisse lassen sich als PDF, Online-Ansicht oder anderes Ergebnisdokument vermitteln, ohne dass die Begründung verloren geht." }
+        { "title": "Flexible Ausgabe", "text": "Ergebnisse lassen sich als PDF, Online-Ansicht oder anderes Ergebnisdokument vermitteln, ohne dass die Begründung verloren geht." },
+        { "title": "Separate KI-Einschätzung", "text": "Der KI-Plan-Score liest den geschriebenen Businessplan und zeigt jede Entscheidung, die er trifft; der Quick Check bleibt die einzige Berechnung." }
       ],
       "boundaryLabel": "Klare Abgrenzung",
       "boundaryLead": "Schnelles erstes Screening,",
