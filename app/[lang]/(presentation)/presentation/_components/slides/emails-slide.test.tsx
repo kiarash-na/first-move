@@ -15,7 +15,7 @@ describe("EmailsSlide", () => {
     expect(OPERATOR.emailHuman).toBe("human@mail.firstmove.energy")
   })
 
-  it("says plainly that the agent is not live yet, and only on the agent's card", () => {
+  it("tags the agent as experimental, and only on the agent's card", () => {
     render(<EmailsSlide number={6} copy={copy} />)
     const [agent, human] = screen.getAllByRole("listitem")
     expect(agent).toHaveTextContent(copy.agent.status)

@@ -16,6 +16,7 @@ describe("CostFigures", () => {
     expect(build).toHaveTextContent(/about.*€180.*to build/)
     expect(run).toHaveTextContent(/about.*€5.*a month to run, up to 1,000 active users/)
     expect(container).toHaveTextContent(en.slides.contact.maintenance)
+    expect(container.querySelector(".cost__note--small")).toHaveTextContent(/17 hours of work and about 38 hours of AI work/)
   })
 
   it("formats them the German way", () => {
