@@ -1,22 +1,24 @@
 import { describe, expect, it } from "vitest"
+import { DECISION_PROVIDER_OPTIONS } from "@/lib/ai/plan-score/decide-turn"
 import { mockJev } from "@/lib/ai/plan-score/test-utils/mock-jev"
 import { mockText } from "@/lib/ai/plan-score/test-utils/mock-text"
 import { getExample, localizeExample } from "@/lib/examples"
-import type { GatewayClient } from "../gateway/client"
+import type { ScoreClient } from "./client"
 import { runAnalysis, suggest } from "./run-analysis"
 
 const now = () => new Date("2026-10-24T12:00:00.000Z")
 const project = localizeExample(getExample("housing-cooperatives")!, "en")
 const REPORT = { headline: "Promising.", summary: "Specific plan.", strengths: [], gaps: [], actions: [] }
 
-function client(text: ReturnType<typeof mockText> | "fail", jev = mockJev()): GatewayClient {
+function client(text: ReturnType<typeof mockText> | "fail", jev = mockJev()): ScoreClient {
   return {
     decisionModel: () => jev.model,
+    decisionProviderOptions: DECISION_PROVIDER_OPTIONS,
     textModel: () => {
       if (text === "fail") throw Object.assign(new Error("402"), { statusCode: 402 })
       return text
     },
-    credits: async () => ({ balance: "1", totalUsed: "0" }),
+    textProviderOptions: () => ({}),
   }
 }
 

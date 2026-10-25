@@ -3,10 +3,11 @@
 import { useCallback, useEffect, useRef, useState } from "react"
 
 import type { TextLang } from "@/lib/ai/plan-score/text-input"
-import type { GatewayClient } from "@/lib/assistant/gateway/client"
-import { gatewayErrorCode, type GatewayErrorCode } from "@/lib/assistant/gateway/errors"
-import { readGatewayKey } from "@/lib/assistant/gateway/key"
+import { KEYS } from "@/lib/assistant/keys/registry"
+import type { ScoreClient } from "@/lib/assistant/plan-score/client"
 import { runAnalysis } from "@/lib/assistant/plan-score/run-analysis"
+import { assistantErrorCode, type AssistantErrorCode } from "@/lib/assistant/providers/errors"
+import type { Provider } from "@/lib/assistant/providers/types"
 import type { Project } from "@/lib/project"
 import type { ProjectStore } from "@/lib/store"
 import { applyEvent, finishProgress, startProgress, stopProgress, type RunProgress } from "./progress"
@@ -14,24 +15,27 @@ import { applyEvent, finishProgress, startProgress, stopProgress, type RunProgre
 export interface AnalysisRun {
   phase: "idle" | "running" | "done" | "failed"
   progress: RunProgress | null
-  /** Why the run stopped (a Gateway error, or `aborted`). */
-  error: GatewayErrorCode | null
+  /** Why the run stopped (a provider error, or `aborted`). */
+  error: AssistantErrorCode | null
   /** The score was kept, but the report failed. */
-  reportError: GatewayErrorCode | null
+  reportError: AssistantErrorCode | null
   /** Whether the store took the score (false when the project was closed meanwhile). */
   saved: boolean | null
 }
 
 const IDLE: AnalysisRun = { phase: "idle", progress: null, error: null, reportError: null, saved: null }
 
+/** Builds the score client of a provider for the user's key; injectable for tests. */
+export type ScoreClientFactory = (provider: Provider, key: string) => ScoreClient
+
 /**
- * One AI Plan Score run from the page (PLAN-AI-SCORE-00 step 6): reads the key from memory at the
- * start only, follows the turns live, saves the score with `setAiScore` even when the plan
- * changed meanwhile (its hashes mark those fields outdated) and maps errors to copy codes. A
- * cancel, a new run or leaving the page aborts the requests, at any step, and then nothing is
- * saved.
+ * One AI Plan Score run from the page (PLAN-AI-SCORE-00 step 6): reads the chosen provider's key
+ * from memory at the start only, follows the turns live, saves the score with `setAiScore` even
+ * when the plan changed meanwhile (its hashes mark those fields outdated) and maps errors to copy
+ * codes. A cancel, a new run or leaving the page aborts the requests, at any step, and then
+ * nothing is saved.
  */
-export function useAnalysis(store: ProjectStore, createClient: (key: string) => GatewayClient) {
+export function useAnalysis(store: ProjectStore, createClient: ScoreClientFactory, provider: Provider) {
   const [run, setRun] = useState<AnalysisRun>(IDLE)
   const controller = useRef<AbortController | null>(null)
 
@@ -39,7 +43,7 @@ export function useAnalysis(store: ProjectStore, createClient: (key: string) => 
 
   const start = useCallback(
     async (project: Project, textModelId: string, lang: TextLang) => {
-      const key = readGatewayKey()
+      const key = KEYS[provider].read()
       if (!key) return
       controller.current?.abort()
       const abort = new AbortController()
@@ -48,7 +52,7 @@ export function useAnalysis(store: ProjectStore, createClient: (key: string) => 
       setRun({ phase: "running", progress: startProgress(), error: null, reportError: null, saved: null })
       try {
         const result = await runAnalysis(project, {
-          client: createClient(key),
+          client: createClient(provider, key),
           textModelId,
           lang,
           abortSignal: abort.signal,
@@ -72,13 +76,13 @@ export function useAnalysis(store: ProjectStore, createClient: (key: string) => 
         }))
       } catch (error) {
         if (!current()) return
-        const code = abort.signal.aborted ? "aborted" : gatewayErrorCode(error)
+        const code = abort.signal.aborted ? "aborted" : assistantErrorCode(error)
         setRun((previous) => ({ ...previous, phase: "failed", progress: previous.progress && stopProgress(previous.progress), error: code }))
       } finally {
         if (current()) controller.current = null
       }
     },
-    [store, createClient],
+    [store, createClient, provider],
   )
 
   const cancel = useCallback(() => controller.current?.abort(), [])

@@ -90,6 +90,14 @@ Not done in this run; the app runs live without them. Next session, in this orde
 4. Presentation: slide 5 label "Every source, linked"; slide 6 says agent@ is live (follow-up 6); the presentation note's blind-test paragraph still describes the 1.0.0 recording (now 1.1.0: 56.2 shown 55 ± 3).
 5. Security review of the AI layer and a browser test of the assistant with a key (A09); the privacy wording of follow-up 7.
 
+## Handoff (2026-10-25, providers and activation, PR #3)
+
+`dev` is one commit ahead of the PR #3 state: the note [2026-10-25_providers-and-activation](../notes/2026-10-25_providers-and-activation.md) (this handoff) — after the PR merges, `dev` = `main` + that note. Gates at the PR: lint, typecheck, test (4076), build all pass; e2e not re-run (only the ai-score spec was updated).
+
+Done: email agent activated (webhook created, both switches on locally, live pipeline test green), OpenRouter is the default key of the assistant and the AI Plan Score (decisions via the `typesafe/jev-router` adapter, method 1.1.0 unchanged).
+
+Left, in the note's order: owner sets the Vercel Production variables and redeploys, then one outside test mail; owner live test with a real OpenRouter key; presentation fixes (cost-slide hours note, light/dark switch, email tag "experimental"); the one-click test-case run the docs promise; full e2e; the deferred legal/docs batch.
+
 ## Handoff (2026-10-25, clean stop before the PR, v.0.8)
 
 `dev` = `origin/dev` at the tagged commit `v.0.8`; tree clean; no worktree or workflow running. The owner continues locally. State of the checks at eb9e948: `pnpm lint` and `pnpm typecheck` pass; the targeted unit tests of every change pass (legal, docs, dashboard shell and layout, AI Plan Score results, presentation, landing); the full `pnpm test`, `pnpm build` and the e2e suite were started but not confirmed in this session (the full suite last passed at 1557a21, e2e at e6bbeac). First thing locally: `pnpm test && pnpm build && pnpm test:e2e` (the assistant e2e specs run for the first time with the switch on), then the deferred list above.

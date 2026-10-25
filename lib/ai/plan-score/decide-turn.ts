@@ -24,14 +24,24 @@ export interface TurnAnswers {
 
 /** The Gateway routes only to providers that keep no data and do not train on prompts (Jev 1.14.0 has both). */
 export const DECISION_PROVIDER_OPTIONS = { gateway: { zeroDataRetention: true, disallowPromptTraining: true } }
+
+/** Provider options of a decision call (the SDK does not export the type by name). */
+export type DecisionProviderOptions = NonNullable<Parameters<typeof experimental_decide>[0]["providerOptions"]>
+
 const TIMEOUT_MS = 60_000
 
 /** When a provider reports no usage: about three characters a token, questions included. */
 const estimate = (state: Experimental_DecisionState, questions: object) => Math.ceil((JSON.stringify(state).length + JSON.stringify(questions).length) / 3)
 
-async function ask(model: Experimental_DecisionModel, state: Experimental_DecisionState, questions: Record<string, Experimental_DecisionQuestion>, abortSignal?: AbortSignal) {
+async function ask(
+  model: Experimental_DecisionModel,
+  state: Experimental_DecisionState,
+  questions: Record<string, Experimental_DecisionQuestion>,
+  abortSignal: AbortSignal | undefined,
+  providerOptions: DecisionProviderOptions,
+) {
   const signal = abortSignal ? AbortSignal.any([abortSignal, AbortSignal.timeout(TIMEOUT_MS)]) : AbortSignal.timeout(TIMEOUT_MS)
-  const result = await experimental_decide({ model, state, questions, maxRetries: 2, abortSignal: signal, providerOptions: DECISION_PROVIDER_OPTIONS })
+  const result = await experimental_decide({ model, state, questions, maxRetries: 2, abortSignal: signal, providerOptions })
   return {
     answers: result.answers as Record<string, DecisionAnswer>,
     inputTokens: result.usage.inputTokens ?? estimate(state, questions),
@@ -43,17 +53,18 @@ export async function decideTurn(
   state: Experimental_DecisionState,
   questions: Record<string, Experimental_DecisionQuestion>,
   abortSignal?: AbortSignal,
+  providerOptions: DecisionProviderOptions = DECISION_PROVIDER_OPTIONS,
 ): Promise<TurnAnswers> {
   if (Object.keys(questions).length === 0) return { answers: {}, inputTokens: 0 }
   try {
-    return await ask(model, state, questions, abortSignal)
+    return await ask(model, state, questions, abortSignal, providerOptions)
   } catch (error) {
     if (!Experimental_DecisionRefusalError.isInstance(error)) throw error
     const refused = new Set(error.questionIds)
     const rest = Object.fromEntries(Object.entries(questions).filter(([id]) => !refused.has(id)))
     const declined = Object.fromEntries([...refused].map((id) => [id, { type: "refusal" as const }]))
     if (Object.keys(rest).length === 0) return { answers: declined, inputTokens: 0 }
-    const again = await ask(model, state, rest, abortSignal).catch((retryError: unknown) => {
+    const again = await ask(model, state, rest, abortSignal, providerOptions).catch((retryError: unknown) => {
       if (!Experimental_DecisionRefusalError.isInstance(retryError)) throw retryError
       return { answers: Object.fromEntries(Object.keys(rest).map((id) => [id, { type: "refusal" as const }])), inputTokens: 0 }
     })

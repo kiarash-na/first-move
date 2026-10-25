@@ -18,49 +18,112 @@
   },
   "setup": {
     "title": "Connect your key",
-    "lead": "The AI Plan Score runs on your own Vercel AI Gateway key (bring your own key). The Gateway bills your account for what a run uses.",
+    "lead": "The AI Plan Score runs on your own key (bring your own key): OpenRouter by default, or the Vercel AI Gateway. The provider bills your account for what a run uses.",
+    "providers": {
+      "openrouter": "OpenRouter",
+      "gateway": "Vercel AI Gateway"
+    },
+    "provider": {
+      "label": "Provider",
+      "openrouterHint": "The default. One key for many models; the Jev Router takes the decisions.",
+      "gatewayHint": "The pinned Jev 1.14.0 takes the decisions; scores stay comparable with earlier runs."
+    },
     "key": {
-      "label": "Vercel AI Gateway key",
+      "label": {
+        "openrouter": "OpenRouter key",
+        "gateway": "Vercel AI Gateway key"
+      },
       "placeholder": "Paste your API key",
       "use": "Use key",
       "forget": "Forget key",
-      "invalid": "This does not look like a Gateway key. Paste the whole key, without spaces.",
+      "invalid": {
+        "openrouter": "This does not look like an OpenRouter key. Paste the whole key, without spaces.",
+        "gateway": "This does not look like a Gateway key. Paste the whole key, without spaces."
+      },
       "active": "Key in use: {masked}",
       "none": "No key in use.",
-      "memory": "The key stays in this tab's memory only and is gone when you reload or close the tab. It is never saved, exported or put in a link, and it is sent nowhere except to the Vercel AI Gateway.",
-      "where": "Where to get a key: sign in to Vercel, open AI Gateway in your dashboard and create an API key there. The Gateway needs credits on your account before it runs a model."
+      "memory": {
+        "openrouter": "The key stays in this tab's memory only and is gone when you reload or close the tab. It is never saved, exported or put in a link, and it is sent nowhere except to OpenRouter.",
+        "gateway": "The key stays in this tab's memory only and is gone when you reload or close the tab. It is never saved, exported or put in a link, and it is sent nowhere except to the Vercel AI Gateway."
+      },
+      "where": {
+        "openrouter": "Where to get a key: sign in at openrouter.ai, open Keys and create a key there. OpenRouter needs credits on your account for paid models.",
+        "gateway": "Where to get a key: sign in to Vercel, open AI Gateway in your dashboard and create an API key there. The Gateway needs credits on your account before it runs a model."
+      }
     },
     "credits": {
-      "checking": "Checking the key and your balance…",
+      "checking": "Checking the key with the provider…",
       "balance": "Key accepted. Balance: {amount}",
-      "failed": "The key is kept, but the balance could not be checked. {reason}",
+      "accepted": "Key accepted.",
+      "limit": "Credit limit of this key: {amount}, {remaining} left.",
+      "limitReset": "It resets {reset}.",
+      "resets": {
+        "daily": "every day",
+        "weekly": "every week",
+        "monthly": "every month"
+      },
+      "noLimit": "This key has no credit limit. Set one on the key at openrouter.ai/keys, or create a new key with a limit.",
+      "expires": "The key expires on {date}.",
+      "noExpiry": "OpenRouter reports no expiry date for this key. Create a key with an expiration, or delete this one when you are done.",
+      "failed": "The key is kept, but it could not be checked. {reason}",
       "rejected": "The key was not accepted and has been forgotten. {reason}"
     },
     "decision": {
       "label": "Decision model",
-      "name": "Jev by TypeSafe AI",
-      "version": "Version {version}, fixed",
-      "note": "Jev takes every decision: the level of each plan part, the checks and the branches. It is fixed, so scores stay comparable between runs.",
-      "zdr": "Zero data retention and no training requested"
+      "gateway": {
+        "name": "Jev by TypeSafe AI",
+        "version": "Version {version}, fixed",
+        "note": "Jev takes every decision: the level of each plan part, the checks and the branches. It is fixed, so scores stay comparable between runs.",
+        "zdr": "Zero data retention and no training requested"
+      },
+      "openrouter": {
+        "name": "Jev Router by TypeSafe AI",
+        "version": "Routes each request, not fixed",
+        "note": "On OpenRouter the Jev Router takes every decision: it runs on Jev but picks the model and effort itself. These scores are not comparable with scores made on the Gateway.",
+        "zdr": "Only providers that do not collect your data are used"
+      }
     },
     "text": {
       "label": "Text model for the report and suggestions",
-      "help": "Writes the short report and, when you ask, suggestions from Jev's numbers. It never changes a number. Any language model of the Gateway works.",
+      "help": {
+        "openrouter": "Writes the short report and, when you ask, suggestions from the decision model's numbers. It never changes a number. Any chat model of OpenRouter works.",
+        "gateway": "Writes the short report and, when you ask, suggestions from Jev's numbers. It never changes a number. Any language model of the Gateway works."
+      },
       "price": "{input} input · {output} output per million tokens",
+      "priceUnknown": "Priced as the model the router picks",
       "zdr": "Zero data retention requested",
+      "deny": "Only providers that do not collect your data",
       "custom": "Another model",
-      "customLabel": "Gateway model id",
+      "customLabel": {
+        "openrouter": "OpenRouter model id",
+        "gateway": "Gateway model id"
+      },
       "customPlaceholder": "creator/model",
-      "customInvalid": "Use the Gateway form creator/model, for example {example}.",
-      "customPrice": "Its price is not known here: see the model list of the Gateway. No training on your texts is requested."
+      "customInvalid": {
+        "openrouter": "Use the OpenRouter form creator/model, for example {example}.",
+        "gateway": "Use the Gateway form creator/model, for example {example}."
+      },
+      "customPrice": {
+        "openrouter": "Its price is not known here: see the model list of OpenRouter. Only providers that do not collect your data are used.",
+        "gateway": "Its price is not known here: see the model list of the Gateway. No training on your texts is requested."
+      }
     },
     "data": {
       "title": "What is sent and to whom",
       "points": {
         "what": "What: the texts of the filled Business Plan fields and, if there is one, the Quick Check result. Empty fields are never sent.",
-        "how": "How: from your browser straight to the Vercel AI Gateway, under your key. Nothing passes through First Move's servers.",
-        "who": "To whom: the Gateway passes the plan to TypeSafe AI for Jev's decisions, and the decided numbers with short plan excerpts to the provider of the text model you chose.",
-        "terms": "Zero data retention and no training on your texts are requested. The terms of Vercel and of the providers apply.",
+        "how": {
+          "openrouter": "How: from your browser straight to OpenRouter, under your key. Nothing passes through First Move's servers.",
+          "gateway": "How: from your browser straight to the Vercel AI Gateway, under your key. Nothing passes through First Move's servers."
+        },
+        "who": {
+          "openrouter": "To whom: OpenRouter passes the plan to TypeSafe AI for the Jev Router's decisions, and the decided numbers with short plan excerpts to the provider of the text model you chose.",
+          "gateway": "To whom: the Gateway passes the plan to TypeSafe AI for Jev's decisions, and the decided numbers with short plan excerpts to the provider of the text model you chose."
+        },
+        "terms": {
+          "openrouter": "Only providers that do not collect your data are used. The terms of OpenRouter and of the providers apply.",
+          "gateway": "Zero data retention and no training on your texts are requested. The terms of Vercel and of the providers apply."
+        },
         "when": "When: only when you start a run, write the report again or ask for suggestions."
       },
       "ack": "I understand what is sent and to whom, and I want to use my key for it.",
@@ -68,11 +131,21 @@
     },
     "notice": {
       "title": "Set a spending limit and an expiry date on the key",
-      "lead": "First Move keeps the key in this tab's memory, but the limit that really protects you is the one at Vercel. Set both when you create the key:",
-      "limit": "Spending limit: in the Create key dialog of the AI Gateway API Keys page, turn on the budget option, enter a spending limit in dollars and choose a refresh period (daily, weekly, monthly or none). AI Gateway then rejects requests once the limit is exceeded. A budget is a soft cap: the request that crosses it still completes.",
-      "expiry": "Expiry date: Vercel's docs offer an expiry only when you create the key with the Vercel CLI or API, for example vercel ai-gateway api-keys create --name first-move --limit 10 --expiration 30d (7d, 30d, 60d, 90d or 1y). A key created in the dashboard never expires until you delete it, so delete it when you no longer need it and create a new one.",
-      "docs": "Vercel docs: API key budgets",
-      "docsUrl": "https://vercel.com/docs/ai-gateway/observability-and-spend/budgets#api-key-budgets",
+      "lead": "First Move keeps the key in this tab's memory, but the limit that really protects you is the one at your provider. Set both when you create the key:",
+      "gateway": {
+        "limit": "Spending limit: in the Create key dialog of the AI Gateway API Keys page, turn on the budget option, enter a spending limit in dollars and choose a refresh period (daily, weekly, monthly or none). AI Gateway then rejects requests once the limit is exceeded. A budget is a soft cap: the request that crosses it still completes.",
+        "expiry": "Expiry date: Vercel's docs offer an expiry only when you create the key with the Vercel CLI or API, for example vercel ai-gateway api-keys create --name first-move --limit 10 --expiration 30d (7d, 30d, 60d, 90d or 1y). A key created in the dashboard never expires until you delete it, so delete it when you no longer need it and create a new one.",
+        "docs": "Vercel docs: API key budgets",
+        "docsUrl": "https://vercel.com/docs/ai-gateway/observability-and-spend/budgets#api-key-budgets"
+      },
+      "openrouter": {
+        "limit": "Credit limit: when you create the key at openrouter.ai/keys, choose a credit limit and, if you like, a daily, weekly or monthly reset. Once the key has used its limit, OpenRouter rejects its requests. OpenRouter recommends a limit on every key.",
+        "expiry": "Expiry date: give the key an expiration date when you create it. The expiration of an existing key cannot be changed, so set it then.",
+        "docs": "OpenRouter docs: API keys and limits",
+        "docsUrl": "https://openrouter.ai/docs/api-reference/authentication",
+        "docsExpiry": "OpenRouter docs: key expiration",
+        "docsExpiryUrl": "https://openrouter.ai/docs/guides/overview/auth/security-settings#act-on-keys"
+      },
       "ack": "I have set a spending limit and an expiry date on this key, or I will delete the key when I no longer need it.",
       "required": "Confirm this before the key is used."
     },
@@ -87,8 +160,7 @@
       "missing": "No remembered key was found. Paste the key again.",
       "unavailable": "This browser cannot open the remembered key.",
       "other": "Paste a key instead",
-      "remove": "Remove remembered key",
-      "provider": "Vercel AI Gateway"
+      "remove": "Remove remembered key"
     }
   },
   "usage": {
@@ -96,11 +168,17 @@
     "value": "About {amount}",
     "below": "Less than {amount}",
     "decisionOnly": "{amount} for the decisions. The price of this text model is not known here.",
-    "note": "An order of magnitude only. The Gateway bills the tokens actually used.",
+    "textOnly": "{amount} for the report. The decisions are priced by the model the Jev Router picks.",
+    "unknown": "The prices are not known here: the provider bills the tokens actually used.",
+    "note": {
+      "openrouter": "An order of magnitude only. OpenRouter bills the tokens actually used.",
+      "gateway": "An order of magnitude only. The Gateway bills the tokens actually used."
+    },
     "tokens": "{count} tokens",
     "how": {
       "title": "How we estimate",
       "decision": "Decisions: about {tokens} tokens of plan and questions over the four turns, at Jev's input price of {price} per million tokens: {amount}.",
+      "decisionRouter": "Decisions: about {tokens} tokens of plan and questions over the four turns, priced as the model the Jev Router picks.",
       "text": "Report: about {input} input tokens and up to {output} output tokens at the prices of {model}: {amount}.",
       "textUnknown": "Report: about {input} input tokens and up to {output} output tokens. The prices of this model are not known here.",
       "tokens": "A token is counted as about three characters, as the app does elsewhere. Suggestions cost extra, and only when you ask for them."
@@ -143,13 +221,13 @@
     "failed": "The run stopped and nothing was saved. {reason}"
   },
   "errors": {
-    "key": "The Gateway did not accept the key. Check that you pasted the whole key and that it is still active.",
-    "credits": "Your Gateway account has no credits left. Add credits in your Vercel account, then try again.",
-    "forbidden": "The key may not use this model or feature. Check the settings of your Gateway, or choose another text model.",
-    "model": "The Gateway does not know this model. Choose another text model.",
+    "key": "The provider did not accept the key. Check that you pasted the whole key and that it is still active.",
+    "credits": "Your account at the provider has no credits left. Add credits there, then try again.",
+    "forbidden": "The key may not use this model or feature. Check the key's settings at your provider, or choose another text model.",
+    "model": "The provider does not know this model. Choose another text model.",
     "rate": "Too many requests right now. Wait a minute, then try again.",
     "provider": "The model provider had a problem. Try again in a moment.",
-    "network": "The Gateway could not be reached, or it took too long. Check your connection, then try again.",
+    "network": "The provider could not be reached, or it took too long. Check your connection, then try again.",
     "aborted": "Cancelled.",
     "unknown": "Something went wrong. Try again."
   },

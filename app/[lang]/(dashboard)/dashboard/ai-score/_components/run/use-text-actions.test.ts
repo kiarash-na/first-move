@@ -22,7 +22,7 @@ function setup(options: Parameters<typeof fakeClient>[0] = {}, ready = true, run
   const fake = fakeClient(options)
   const onRemove = vi.fn()
   const hook = renderHook(() =>
-    useTextActions({ store: store.store, createClient: fake.create, project, score, textModelId: "example/text-model", lang: "en", ready, running, onRemove }),
+    useTextActions({ store: store.store, createClient: fake.create, provider: "gateway", project, score, textModelId: "example/text-model", lang: "en", ready, running, onRemove }),
   )
   return { store, fake, hook, onRemove }
 }

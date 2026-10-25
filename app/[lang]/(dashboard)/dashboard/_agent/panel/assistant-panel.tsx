@@ -6,6 +6,7 @@ import { useEffect, useId, useRef, useState, type KeyboardEvent } from "react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { KEYS } from "@/lib/assistant/keys/registry"
+import { firstProvider } from "@/lib/assistant/providers/first-provider"
 import { ASSISTANT_MODELS, DEFAULT_MODEL } from "@/lib/assistant/providers/models"
 import type { Provider } from "@/lib/assistant/providers/types"
 import type { ProjectStoreState } from "@/lib/store"
@@ -22,9 +23,6 @@ import { wrapTab } from "./wrap-tab"
 
 const selectActiveId = (state: ProjectStoreState) => state.activeId
 
-/** A key already in memory decides the first provider: the Gateway key may come from the AI Plan Score. */
-const firstProvider = (): Provider => (KEYS.gateway.read() || !KEYS.openrouter.read() ? "gateway" : "openrouter")
-
 /**
  * The assistant's panel (O7): a side sheet on the right from `md` up, the full screen on phones.
  * From `md` up it is not modal, so the page stays usable next to it. On phones it covers the
@@ -35,12 +33,15 @@ const firstProvider = (): Provider => (KEYS.gateway.read() || !KEYS.openrouter.r
  */
 export function AssistantPanel({ open, onClose }: { open: boolean; onClose: () => void }) {
   const copy = useDictionary("assistant")
-  const [provider, setProvider] = useState<Provider>(firstProvider)
+  /** The provider the user picked by hand; null while the defaults below decide. */
+  const [picked, setPicked] = useState<Provider | null>(null)
   const [models, setModels] = useState<Record<Provider, string>>(DEFAULT_MODEL)
   const [outcome, setOutcome] = useState<ConnectOutcome | null>(null)
   const [view, setView] = useState<"chat" | "connection">("chat")
-  const masked = useMaskedKey(provider)
   const { entries, refresh } = useVaultEntries()
+  // A key in memory decides; without one, a single remembered key hints its provider (D-50).
+  const provider = picked ?? (KEYS.gateway.read() || KEYS.openrouter.read() ? firstProvider() : entries.length === 1 ? entries[0].provider : firstProvider())
+  const masked = useMaskedKey(provider)
   const projectId = useStoreState(selectActiveId)
   const panel = useRef<HTMLElement>(null)
   const modal = usePhone()
@@ -103,7 +104,7 @@ export function AssistantPanel({ open, onClose }: { open: boolean; onClose: () =
           <ConnectionView
             provider={provider}
             onProvider={(next) => {
-              setProvider(next)
+              setPicked(next)
               setOutcome(null)
             }}
             masked={masked}
