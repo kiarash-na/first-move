@@ -43,7 +43,7 @@ export const ottakringerBad: ReferenceCase = {
       "5 Gebäude: das Bad, 1 Supermarkt und 3 Wohnblöcke mit rund 240 Wohnungen (Nachbarn illustrativ)",
     ),
     currentSupply: [
-      text("Pool: supply not published (not checked)", "Bad: Versorgung nicht veröffentlicht (nicht geprüft)"),
+      text("Pool: supply not stated in the sources checked", "Bad: Versorgung in den geprüften Quellen nicht genannt"),
       text("Housing: gas boilers (illustrative)", "Wohnbauten: Gaskessel (illustrativ)"),
       text(
         "Ottakring: about 3,380 buildings on gas and about 180 on district heating (MA 20, 2024)",
@@ -186,8 +186,8 @@ export const ottakringerBad: ReferenceCase = {
         "Das Budget der Stadt für den Teil des Bades und ein Bankkredit für das Netz (illustrativ); über die Laufzeit noch nicht berechnet.",
       ),
       subsidies: text(
-        "The federal UFI programme pays up to 40 % for micro-networks with 2 to 9 external customers or under 800 MWh of heat sold a year. With 4 customers this plan may fit; eligibility is not yet checked.",
-        "Die UFI des Bundes zahlt bis zu 40 % für Mikronetze mit 2 bis 9 externen Abnehmer*innen oder unter 800 MWh verkaufter Wärme pro Jahr. Mit 4 Abnehmer*innen könnte dieser Plan passen; die Förderfähigkeit ist noch nicht geprüft.",
+        "The federal UFI programme pays up to 40 % for micro-networks with 2 to 9 external customers or under 800 MWh of heat sold a year, at most €6 m per project. For waste heat UFI counts only heat sold under 800 MWh/a, not the number of customers, and this plan would sell about 3 GWh/a (pool about 1.0, housing about 2.0), so it would not fit as planned; other grants are not yet checked.",
+        "Die UFI des Bundes zahlt bis zu 40 % für Mikronetze mit 2 bis 9 externen Abnehmer*innen oder unter 800 MWh verkaufter Wärme pro Jahr, höchstens 6 Mio. € pro Projekt. Bei Abwärme zählt die UFI nur verkaufte Wärme unter 800 MWh/a, nicht die Zahl der Abnehmer*innen, und dieser Plan würde rund 3 GWh/a verkaufen (Bad rund 1,0, Wohnbauten rund 2,0); so geplant passt er daher nicht. Andere Förderungen sind noch nicht geprüft.",
       ),
     },
     criticalAssumptions: [

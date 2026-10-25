@@ -36,8 +36,8 @@ export const klinikDonaustadt: ReferenceCase = {
       "Äußerer Bezirk: ein großes, flaches Spital mit höchstens 5 Geschoßen neben Wohnbauten und einer Schule (die Nachbarn sind illustrativ)",
     ),
     ownership: withFictionalDisclaimer(
-      "Klinik Donaustadt is a public general hospital of the City of Vienna, run by the Wiener Gesundheitsverbund (hospital statute, 2022). The neighbours of this plan are illustrative: 5 rental blocks of a limited-profit housing association (WGG), 1 condominium block (WEG) and a municipal school. Each owner decides separately, and the WEG block needs an owners' vote.",
-      "Die Klinik Donaustadt ist eine öffentliche Schwerpunktkrankenanstalt der Stadt Wien, geführt vom Wiener Gesundheitsverbund (Anstaltsordnung, 2022). Die Nachbarn in diesem Plan sind illustrativ: 5 Mietblöcke einer gemeinnützigen Bauvereinigung (WGG), 1 Block im Wohnungseigentum (WEG) und eine städtische Schule. Jede Eigentümerin entscheidet für sich, der WEG-Block braucht einen Beschluss der Eigentümer*innen.",
+      "Klinik Donaustadt is a general public hospital at centre level (Schwerpunktkrankenanstalt) of the City of Vienna, run by the Wiener Gesundheitsverbund (hospital statute, 2022). The neighbours of this plan are illustrative: 5 rental blocks of a limited-profit housing association (WGG), 1 condominium block (WEG) and a municipal school. Each owner decides separately, and the WEG block needs an owners' vote.",
+      "Die Klinik Donaustadt ist eine allgemeine öffentliche Schwerpunktkrankenanstalt der Stadt Wien, geführt vom Wiener Gesundheitsverbund (Anstaltsordnung, 2022). Die Nachbarn in diesem Plan sind illustrativ: 5 Mietblöcke einer gemeinnützigen Bauvereinigung (WGG), 1 Block im Wohnungseigentum (WEG) und eine städtische Schule. Jede Eigentümerin entscheidet für sich, der WEG-Block braucht einen Beschluss der Eigentümer*innen.",
     ),
     units: text(
       "8 buildings: the hospital (963 beds), 6 housing blocks with 600 flats and 1 school (neighbours illustrative)",
@@ -45,8 +45,8 @@ export const klinikDonaustadt: ReferenceCase = {
     ),
     currentSupply: [
       text(
-        "Hospital: supply not published; this plan keeps the existing supply as backup",
-        "Spital: Versorgung nicht veröffentlicht; dieser Plan behält die bestehende Versorgung als Reserve",
+        "Hospital: supply not stated in the sources checked; this plan keeps the existing supply as backup",
+        "Spital: Versorgung in den geprüften Quellen nicht genannt; dieser Plan behält die bestehende Versorgung als Reserve",
       ),
       text("Housing and school: gas boilers (illustrative)", "Wohnbauten und Schule: Gaskessel (illustrativ)"),
       text(
@@ -90,8 +90,8 @@ export const klinikDonaustadt: ReferenceCase = {
         "Wärmebedarf des Spitals rund 27,9 GWh/a, geschätzt als 963 Betten × 29 MWh pro Bett und Jahr, dem deutschen Durchschnitt (LENA-Leitfaden für Krankenhäuser, 2020), später durch Messdaten zu ersetzen. Das Netz deckt 25 % davon, rund 7,0 GWh/a, für Niedertemperaturkreise und Warmwasser-Vorwärmung, dazu die Kälte des Spitals, angenommen mit 1,5 GWh/a (illustrativ). Wohnbauten 42.000 m² × 109,3 kWh/m²a = 4,6 GWh/a und Schule 6.000 m² × 104,3 kWh/m²a = 0,6 GWh/a (Quick Check, Tabelle 1, 1961 bis 1990).",
       ),
       heatSources: text(
-        "Groundwater from two well pairs at least 50 m apart; a TU Wien study for the city sees groundwater use as realistic where there is enough of it, for example in Donaustadt (2026). Heat rejected by the hospital's cooling goes into the loop instead of the air. Rooftop PV for pump power (illustrative).",
-        "Grundwasser aus zwei Brunnenpaaren mit mindestens 50 m Abstand; eine Studie der TU Wien für die Stadt hält Grundwassernutzung dort für realistisch, wo genug davon vorhanden ist, etwa in der Donaustadt (2026). Die Abwärme der Spitalskühlung geht ins Netz statt an die Luft. Dach-PV für den Pumpenstrom (illustrativ).",
+        "Groundwater from two well pairs at least 50 m apart; a study by TU Wien and e-think for the city sees groundwater use as realistic where there is enough of it, for example in Donaustadt (Kranzl et al., 2026). Heat rejected by the hospital's cooling goes into the loop instead of the air. Rooftop PV for pump power (illustrative).",
+        "Grundwasser aus zwei Brunnenpaaren mit mindestens 50 m Abstand; eine Studie von TU Wien und e-think für die Stadt hält Grundwassernutzung dort für realistisch, wo genug davon vorhanden ist, etwa in der Donaustadt (Kranzl et al., 2026). Die Abwärme der Spitalskühlung geht ins Netz statt an die Luft. Dach-PV für den Pumpenstrom (illustrativ).",
       ),
       painPoint: text(
         "A hospital needs heat all year and rejects heat from its cooling at the same time; without a shared loop the two never meet (illustrative). The neighbouring blocks burn gas, as about 12,010 buildings in Donaustadt do, and no single owner can justify a groundwater source alone.",
@@ -102,8 +102,8 @@ export const klinikDonaustadt: ReferenceCase = {
         "Das Spital behält Versorgung und Kältemaschinen; die Wohnbauten bauen Luft- oder Erdwärmepumpen pro Block ein oder schließen an die Fernwärme an, wo sie angeboten wird. Die Klinik Floridsdorf zeigt, dass Wärmepumpen Abwärme von 26 °C auf 82 °C heben und 50 bis 70 % des Wärmebedarfs eines Spitals decken können (Stadt Wien).",
       ),
       advantage: text(
-        "The hospital's steady demand and cooling waste heat give the loop a year-round base load. With about 12.2 GWh/a on a 2.5 km trench, the line density is about 4.9 MWh per metre, far above the 1.5 MWh per metre from which the Quick Check rates the heat density as high (Table 9). A TU Wien study for the city finds groundwater concepts close to cost-competitive with building-by-building heating and cooling in Vienna (2026).",
-        "Der stetige Bedarf des Spitals und seine Kühlabwärme geben dem Netz eine ganzjährige Grundlast. Mit rund 12,2 GWh/a auf 2,5 km Künette liegt die Liniendichte bei rund 4,9 MWh pro Meter, weit über den 1,5 MWh pro Meter, ab denen der Quick Check die Wärmedichte als hoch einstuft (Tabelle 9). Eine Studie der TU Wien für die Stadt sieht Grundwasserkonzepte in Wien nahe an der Wirtschaftlichkeit im Vergleich mit dezentraler Wärme- und Kälteversorgung (2026).",
+        "The hospital's steady demand and cooling waste heat give the loop a year-round base load. With about 12.2 GWh/a on a 2.5 km trench, the line density is about 4.9 MWh per metre, far above the 1.5 MWh per metre from which the Quick Check rates the heat density as high (Table 9). A study by TU Wien and e-think for the city finds groundwater concepts close to cost-competitive with building-by-building heating and cooling in Vienna (Kranzl et al., 2026).",
+        "Der stetige Bedarf des Spitals und seine Kühlabwärme geben dem Netz eine ganzjährige Grundlast. Mit rund 12,2 GWh/a auf 2,5 km Künette liegt die Liniendichte bei rund 4,9 MWh pro Meter, weit über den 1,5 MWh pro Meter, ab denen der Quick Check die Wärmedichte als hoch einstuft (Tabelle 9). Eine Studie von TU Wien und e-think für die Stadt sieht Grundwasserkonzepte in Wien nahe an der Wirtschaftlichkeit im Vergleich mit dezentraler Wärme- und Kälteversorgung (Kranzl et al., 2026).",
       ),
     },
     canvas: {
@@ -204,8 +204,8 @@ export const klinikDonaustadt: ReferenceCase = {
         "Das Spital schließt mit 25 % seiner Wärme über den Ankervertrag an, die Bauvereinigung mit 5 von 5 Blöcken und der WEG-Block im Jahr 3: 100 % der geplanten Netzwärme ab Jahr 3 (illustrativ). Sensitivität: Ohne die Wohnbauten verliert der Plan rund 0,2 Mio. € pro Jahr; mit dem Spital und rund einem Drittel der Wohnfläche erreicht er die Gewinnschwelle. Jedes Gebäude, das fernbleibt, verteuert es für die anderen.",
       ),
       tariffs: text(
-        "Quick Check defaults: heat €6 per m² and year plus €0.12 per kWh, cooling €3 per m² plus €0.08 per kWh; the hospital pays a capacity price instead of the m² price (illustrative). For a 70 m² flat using 7,650 kWh this is about €1,340 a year, to be compared with the block's last 3 years of gas bills plus the avoided boiler renewal. The hospital's price must stay at or below its current heat and chiller cost per MWh, which the technical department provides.",
-        "Standardwerte des Quick Check: Wärme 6 € pro m² und Jahr plus 0,12 € pro kWh, Kälte 3 € pro m² plus 0,08 € pro kWh; das Spital zahlt statt des m²-Preises einen Leistungspreis (illustrativ). Für eine Wohnung mit 70 m² und 7.650 kWh sind das rund 1.340 € pro Jahr, zu vergleichen mit den Gasrechnungen des Blocks der letzten 3 Jahre plus der ersparten Kesselerneuerung. Der Preis für das Spital muss auf oder unter seinen heutigen Wärme- und Kältekosten pro MWh liegen, die die Technik liefert.",
+        "Quick Check defaults: heat €6 per m² and year plus €0.12 per kWh, cooling €3 per m² plus €0.08 per kWh; the hospital pays a capacity price instead of the m² price (illustrative). For a 70 m² flat using 7,650 kWh this is about €1,340 a year, to be compared with the block's last 3 years of gas bills plus the avoided boiler renewal. The hospital's price must stay at or below its current heat and chiller cost per MWh, which the hospital's technical department would have to provide (illustrative).",
+        "Standardwerte des Quick Check: Wärme 6 € pro m² und Jahr plus 0,12 € pro kWh, Kälte 3 € pro m² plus 0,08 € pro kWh; das Spital zahlt statt des m²-Preises einen Leistungspreis (illustrativ). Für eine Wohnung mit 70 m² und 7.650 kWh sind das rund 1.340 € pro Jahr, zu vergleichen mit den Gasrechnungen des Blocks der letzten 3 Jahre plus der ersparten Kesselerneuerung. Der Preis für das Spital muss auf oder unter seinen heutigen Wärme- und Kältekosten pro MWh liegen, die die Technik des Spitals liefern müsste (illustrativ).",
       ),
       capex: text(
         "€12.9 m upper bound: loop €1.25 m; groundwater €8.0 m at the tool default, to be replaced by a quote for two well pairs; hospital heat pumps €2.0 m and block heat pumps €1.6 m (illustrative).",
@@ -216,8 +216,8 @@ export const klinikDonaustadt: ReferenceCase = {
         "Eine Projektgesellschaft mit 30 % Eigenkapital des ESCO und 70 % langfristigen Darlehen zu 3 % über 20 Jahre (illustrativ). Prüfung über die Laufzeit: Annuitätenfaktor 0,0672, also 0,86 Mio. € pro Jahr; Wartung 0,26 Mio. €; Strom 0,49 Mio. €; zusammen rund 1,61 Mio. € gegenüber Erlösen von rund 2,06 Mio. €, ein Überschuss von rund 0,45 Mio. € pro Jahr. Kostet die Brunnenanlage laut Angebot 4 statt 8 Mio. €, steigt der Überschuss um rund 0,35 Mio. €.",
       ),
       subsidies: text(
-        "The base case assumes no grant and still covers its costs; any grant lowers prices. The city's anergy grant paid 30 %, at most €200,000 per case (2024/25 rules, successor not verified). UFI micro-networks (up to 40 %) only cover 2 to 9 external customers or under 800 MWh/a, so this network needs another programme, to be confirmed with the funding agency (illustrative).",
-        "Der Basisfall rechnet ohne Förderung und deckt trotzdem seine Kosten; jede Förderung senkt die Preise. Die Anergienetz-Förderung der Stadt zahlte 30 %, höchstens 200.000 € pro Fall (Regeln 2024/25, Nachfolge nicht bestätigt). UFI-Mikronetze (bis zu 40 %) gelten nur für 2 bis 9 externe Abnehmer*innen oder unter 800 MWh/a; dieses Netz braucht daher ein anderes Programm, abzuklären mit der Förderstelle (illustrativ).",
+        "The base case assumes no grant and still covers its costs; any grant lowers prices. The city's anergy grant paid 30 %, at most €200,000 per case (2024/25 rules, successor not verified). UFI micro-networks pay up to 40 % for 2 to 9 external customers or under 800 MWh/a of heat sold, at most €6 m per project. With 4 external customers (the hospital, the association, the WEG and the school) the groundwater part could qualify, but for the hospital's waste heat UFI counts only heat sold under 800 MWh/a, not the number of customers; eligibility is to be confirmed with the funding agency (illustrative).",
+        "Der Basisfall rechnet ohne Förderung und deckt trotzdem seine Kosten; jede Förderung senkt die Preise. Die Anergienetz-Förderung der Stadt zahlte 30 %, höchstens 200.000 € pro Fall (Regeln 2024/25, Nachfolge nicht bestätigt). UFI-Mikronetze zahlen bis zu 40 % für 2 bis 9 externe Abnehmer*innen oder unter 800 MWh/a verkaufter Wärme, höchstens 6 Mio. € pro Projekt. Mit 4 externen Abnehmer*innen (Spital, Bauvereinigung, WEG und Schule) könnte der Grundwasserteil in Frage kommen, doch für die Abwärme des Spitals zählt bei der UFI nur verkaufte Wärme unter 800 MWh/a, nicht die Zahl der Abnehmer*innen; die Förderfähigkeit ist mit der Förderstelle abzuklären (illustrativ).",
       ),
     },
     criticalAssumptions: [
@@ -308,12 +308,12 @@ export const klinikDonaustadt: ReferenceCase = {
     },
     scalability: {
       geographical: text(
-        "Hospitals, care homes and campuses next to housing, in Vienna's groundwater areas such as Floridsdorf and Donaustadt (TU Wien, 2026) and in the Lokale Wärme gemeinsam areas of the Vienna Heating Plan 2040.",
-        "Spitäler, Pflegeheime und Campusse neben Wohnbauten, in Wiens Grundwassergebieten wie Floridsdorf und Donaustadt (TU Wien, 2026) und in den Gebieten „Lokale Wärme gemeinsam“ des Wiener Wärmeplans 2040.",
+        "Hospitals, care homes and campuses next to housing, in Vienna's groundwater areas such as Floridsdorf and Donaustadt (Kranzl et al., 2026) and in the Lokale Wärme gemeinsam areas of the Vienna Heating Plan 2040.",
+        "Spitäler, Pflegeheime und Campusse neben Wohnbauten, in Wiens Grundwassergebieten wie Floridsdorf und Donaustadt (Kranzl et al., 2026) und in den Gebieten „Lokale Wärme gemeinsam“ des Wiener Wärmeplans 2040.",
       ),
       economic: text(
-        "The model works where the line density is well above 1.5 MWh per metre and a year-round cooling user exists. Concepts on geothermal probes alone pay off only with thorough optimisation, further heat sources, well-suited areas or renovated buildings (TU Wien, 2026).",
-        "Das Modell trägt, wo die Liniendichte deutlich über 1,5 MWh pro Meter liegt und ein ganzjähriger Kältebedarf besteht. Konzepte allein auf Erdwärmesonden rechnen sich nur mit umfassender Optimierung, weiteren Wärmequellen, gut geeigneten Gebieten oder sanierten Gebäuden (TU Wien, 2026).",
+        "The model works where the line density is well above 1.5 MWh per metre and a year-round cooling user exists. Concepts on geothermal probes alone pay off only with thorough optimisation, further heat sources, well-suited areas or renovated buildings (Kranzl et al., 2026).",
+        "Das Modell trägt, wo die Liniendichte deutlich über 1,5 MWh pro Meter liegt und ein ganzjähriger Kältebedarf besteht. Konzepte allein auf Erdwärmesonden rechnen sich nur mit umfassender Optimierung, weiteren Wärmequellen, gut geeigneten Gebieten oder sanierten Gebäuden (Kranzl et al., 2026).",
       ),
       organisational: text(
         "An ESCO project company with one public anchor contract and standard connection offers for neighbours can be repeated for other public anchors (illustrative).",

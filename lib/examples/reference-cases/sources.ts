@@ -58,10 +58,9 @@ export const REFERENCE_CASE_SOURCES: readonly Reference[] = [
   ref("RC-ARE-VILLAGE-PROJECT", "company", "ARE Austrian Real Estate", 2026, "Village im Dritten: Projekt", "ARE Austrian Real Estate", "https://villageimdritten.at/"),
   ref("RC-ARE-VILLAGE-ENERGY", "company", "ARE Austrian Real Estate", 2026, "Village im Dritten: Energiesystem", "ARE Austrian Real Estate", "https://villageimdritten.at/energiesystem/"),
   ref("RC-WIEN-ENERGIE-ZEC-2023", "company", "Köfinger, M. (Wien Energie)", 2023, "Volle Energie fürs Klima! Mit innovativen Konzepten in eine klimaneutrale Zukunft", "Zero Emission City 2023, Wirtschaftskammer Wien", "https://www.wko.at/wien/energie/markus-koefinger-wien-energie-innovative-konzepte-zec2023.pdf"),
-  ref("RC-ASPERN-SEEBOGEN-2022", "company", "Berg, E. (Wien 3420 aspern Development AG)", 2022, "Bubbling with New Energy", "aspern Seestadt, the developer's own publication", "https://www.aspern-seestadt.at/en/blog/post/bubbling-with-new-energy"),
   ref("RC-GMW-FACTS", "company", "GMW Großmarkt Wien Betrieb GmbH", 2026, "Daten und Fakten", "Großmarkt Wien", "https://www.grossmarkt-wien.at/grossmarkt-daten-und-fakten"),
   ref("RC-GMW-OPERATOR", "company", "GMW Großmarkt Wien Betrieb GmbH", 2026, "GMW Großmarkt Wien Betrieb GmbH", "Großmarkt Wien", "https://www.grossmarkt-wien.at/grossmarkt-betrieb-gmbh"),
-  ref("RC-GMW-50-YEARS", "company", "GMW Großmarkt Wien Betrieb GmbH", 2022, "50 Jahre Großmarkt Wien: Festbroschüre", "Großmarkt Wien", "https://www.grossmarkt-wien.at/wp-content/uploads/2025/12/50-Jahre-GMW_Festbroschure_2022.pdf"),
+  ref("RC-GMW-50-YEARS", "company", "GMW Großmarkt Wien Betrieb GmbH", 2022, "Jubiläumsbroschüre 50 Jahre Großmarkt Wien: Garantierte Versorgung für Wien", "Großmarkt Wien", "https://www.grossmarkt-wien.at/wp-content/uploads/2025/12/50-Jahre-GMW_Festbroschure_2022.pdf"),
 ]
 
 export function referenceCaseSourceOf(id: string): Reference | undefined {

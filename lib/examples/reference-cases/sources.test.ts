@@ -5,6 +5,8 @@ import { REFERENCE_CASE_SOURCES, referenceCaseSourceOf } from "./sources"
 
 /** News sites and blogs are not sources for the reference cases (owner, 2026-10-25). */
 const NEWS = /\b(?:orf\.at|derstandard|diepresse|kurier\.at|krone\.at|heute\.at|vienna\.at|meinbezirk|falter\.at|profil\.at|medium\.com|blogspot|wordpress\.com)\b/
+/** A page under a site's blog, such as an organisation's own blog post. */
+const BLOG = /\/blogs?(?:\/|$)/i
 
 describe("REFERENCE_CASE_SOURCES (D-76)", () => {
   it("has unique RC- ids that do not clash with the method references", () => {
@@ -27,6 +29,7 @@ describe("REFERENCE_CASE_SOURCES (D-76)", () => {
       expect(REFERENCE_KINDS).toContain(source.kind)
       if (source.kind === "peer-reviewed") expect(source.url, source.id).toMatch(/^https:\/\/doi\.org\/10\.\d{4,}\//)
       expect(source.url, source.id).not.toMatch(NEWS)
+      expect(new URL(source.url).pathname, source.id).not.toMatch(BLOG)
     }
   })
 
