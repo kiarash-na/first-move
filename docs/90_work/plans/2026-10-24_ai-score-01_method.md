@@ -240,7 +240,7 @@ The thresholds are a design choice (research proposal § 4), not taken from a so
 - **Long plans** are cut per text, from generous to tight (1,500, then 1,000, 600 and 300 characters, marked with "…"), until the state fits.
 - **Each call** has a 60-second timeout and up to 2 retries for transient errors (SDK `maxRetries`); the user can stop a run at any time.
 - **Usage** is recorded: input tokens of the decision calls as the provider reports them, else estimated from state and questions; input and output tokens of the text calls.
-- **Text calls**: the report allows 1,500 output tokens, the suggestions 2,500, each with up to 2 retries.
+- **Text calls**: the report allows 6,000 output tokens (`REPORT_MAX_OUTPUT_TOKENS`), the suggestions 8,000 (`SUGGESTIONS_MAX_OUTPUT_TOKENS`), each with up to 2 retries. The caps count the reasoning tokens of a model that thinks before it answers; the first caps (1,500 and 2,500) cut German answers off mid-JSON in the presentation's blind test. The stored lengths below still cut every text. The text model is not part of the method, so the caps are not either.
 
 ## Refusals and errors
 

@@ -21,6 +21,14 @@ export const reportOutputSchema = z.object({
 })
 type ReportOutput = z.infer<typeof reportOutputSchema>
 
+/**
+ * The report's output token cap. A model that thinks before it answers counts its reasoning
+ * tokens against the cap, and German takes more tokens than English: at 1,500 a German report was
+ * cut off mid-JSON (finish reason "length", no object) in the presentation's blind test. The cap
+ * only bounds the cost; the stored lengths (`AI_SCORE_LIMITS`) still cut every text afterwards.
+ */
+export const REPORT_MAX_OUTPUT_TOKENS = 6_000
+
 /** Provider options of a text call (the SDK does not export the type by name). */
 export type ProviderOptions = NonNullable<Parameters<typeof generateText>[0]["providerOptions"]>
 
@@ -79,7 +87,7 @@ export async function writeReport(project: Project, score: AiScore, options: Tex
     system,
     prompt,
     output: Output.object({ schema: reportOutputSchema, name: "ai_plan_score_report" }),
-    maxOutputTokens: 1500,
+    maxOutputTokens: REPORT_MAX_OUTPUT_TOKENS,
     maxRetries: 2,
     abortSignal: options.abortSignal,
     providerOptions: options.providerOptions,

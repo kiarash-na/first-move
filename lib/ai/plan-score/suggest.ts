@@ -19,6 +19,12 @@ export const suggestionsOutputSchema = z.object({
 })
 type SuggestionsOutput = z.infer<typeof suggestionsOutputSchema>
 
+/**
+ * The suggestions' output token cap, reasoning tokens included (see `REPORT_MAX_OUTPUT_TOKENS`):
+ * at 2,500 German suggestions were cut off in the blind test. Stored lengths still apply.
+ */
+export const SUGGESTIONS_MAX_OUTPUT_TOKENS = 8_000
+
 /** What needs suggestions: weak judgements, then gates that failed or stayed unclear. */
 export function suggestionTargets(score: AiScore, only?: readonly string[]): string[] {
   const gates = score.gates.filter((gate) => gate.outcome === "fail" || gate.outcome === "unclear").map((gate) => gate.id)
@@ -70,7 +76,7 @@ export async function writeSuggestions(project: Project, score: AiScore, options
     system,
     prompt,
     output: Output.object({ schema: suggestionsOutputSchema, name: "ai_plan_score_suggestions" }),
-    maxOutputTokens: 2500,
+    maxOutputTokens: SUGGESTIONS_MAX_OUTPUT_TOKENS,
     maxRetries: 2,
     abortSignal: options.abortSignal,
     providerOptions: options.providerOptions,
