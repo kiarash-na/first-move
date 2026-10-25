@@ -8,7 +8,7 @@ const TOOLS = [
   { key: 'aiScore', index: 'AI', href: '#m-ai-score', tone: 'ai' },
 ] as const
 
-/** "Two tools. One system.": the three rows that lead to their chapters. */
+/** "Three parts. One system.": the three rows that lead to their chapters. */
 export function MobileTools({ t }: { t: Landing }) {
   const { tools } = t.product
 

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { ArrowDownRight, Menu, X } from 'lucide-react'
+import { ArrowDownRight, ArrowUpRight, Menu, X } from 'lucide-react'
 import { BrandMark } from '@/components/brand/brand-mark'
 import { LanguageSwitch, type LanguageSwitchProps } from '@/components/language-switch/language-switch'
 import { withLocale } from '@/lib/i18n/locale-path'
@@ -21,7 +21,7 @@ interface MobileHeaderProps extends LandingCopyProps {
   language: Omit<LanguageSwitchProps, 'lang' | 'className'>
 }
 
-/** Fixed header: brand, "Get Started" and a menu button that opens the five chapters and the language switch. */
+/** Fixed header: brand, "Get Started" and a menu button that opens the five chapters, the public docs and the language switch. */
 export function MobileHeader({ t, lang, language }: MobileHeaderProps) {
   const copy = t.header
   const [open, setOpen] = useState(false)
@@ -80,6 +80,11 @@ export function MobileHeader({ t, lang, language }: MobileHeaderProps) {
             <ArrowDownRight size={17} strokeWidth={1.5} aria-hidden="true" />
           </a>
         ))}
+        {/* The public docs: a page of its own, so its arrow points out of the page (PLAN-LANDING-POLISH-00 step b). */}
+        <Link href={withLocale('/docs', lang)} prefetch={false} onClick={() => setOpen(false)}>
+          {copy.nav.docs}
+          <ArrowUpRight size={17} strokeWidth={1.5} aria-hidden="true" />
+        </Link>
         <LanguageSwitch lang={lang} className="m-menu__language" {...language} />
       </nav>
     </header>

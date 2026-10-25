@@ -26,6 +26,7 @@
     "home": "Zur Startseite"
   },
   "docs": {
-    "metaTitle": "Doku"
+    "metaTitle": "Doku",
+    "link": "Doku"
   }
 }

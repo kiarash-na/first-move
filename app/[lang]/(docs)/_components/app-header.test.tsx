@@ -17,4 +17,9 @@ describe("AppHeader", () => {
     expect(screen.getByRole("navigation", { name: en.language.label })).toBeInTheDocument()
     expect(screen.getByRole("button", { name: en.theme.switchToLight })).toBeInTheDocument()
   })
+
+  it("links the docs index in the page's language (PLAN-LANDING-POLISH-00 step b)", () => {
+    render(<AppHeader lang="de" common={en} />)
+    expect(screen.getByRole("link", { name: en.docs.link })).toHaveAttribute("href", "/de/docs")
+  })
 })

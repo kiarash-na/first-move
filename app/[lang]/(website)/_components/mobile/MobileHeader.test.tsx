@@ -13,8 +13,8 @@ describe('MobileHeader', () => {
     expect(screen.getByRole('link', { name: en.header.getStarted })).toHaveAttribute('href', '/de/dashboard')
   })
 
-  it('opens a menu with the five chapters and the language switch, and closes it on a chapter link', () => {
-    render(<MobileHeader t={en} lang="en" language={common.language} />)
+  it('opens a menu with the five chapters, the public docs and the language switch, and closes it on a chapter link', () => {
+    render(<MobileHeader t={en} lang="de" language={common.language} />)
     const toggle = screen.getByRole('button', { name: en.header.openMenu })
     expect(toggle).toHaveAttribute('aria-expanded', 'false')
     expect(screen.queryByRole('navigation', { name: en.header.mobileNav })).toBeNull()
@@ -25,6 +25,8 @@ describe('MobileHeader', () => {
     for (const chapter of MOBILE_CHAPTERS) {
       expect(screen.getByRole('link', { name: en.header.nav[chapter.key] })).toHaveAttribute('href', `#${chapter.id}`)
     }
+    expect(screen.getByRole('link', { name: en.header.nav.docs })).toHaveAttribute('href', '/de/docs')
+    expect(menu.querySelector('a[href="/de/docs"]')?.previousElementSibling).toHaveAttribute('href', '#m-methodology')
     expect(screen.getByRole('navigation', { name: common.language.label })).toBeInTheDocument()
     expect(menu).toContainElement(screen.getByRole('navigation', { name: common.language.label }))
 

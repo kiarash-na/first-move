@@ -1,14 +1,14 @@
 import Link from 'next/link'
 import { ArrowUp } from 'lucide-react'
 import { LegalLinks } from '@/components/site-footer/legal-links'
+import { docHref } from '@/lib/docs/pages'
 import { withLocale } from '@/lib/i18n/locale-path'
 import { REPOSITORY } from '@/lib/legal/operator'
 import type { LandingCopyProps } from '../types'
 
-/** The footer: brand, open source, the three links, back to top, the legal links, the presentation and the source. */
+/** The footer: brand, open source, the four links, back to top, the legal links, the presentation and the source. */
 export function MobileFooter({ t, lang }: LandingCopyProps) {
   const copy = t.closing.footer
-  const dashboard = withLocale('/dashboard', lang)
 
   return (
     <footer className="m-footer">
@@ -17,10 +17,12 @@ export function MobileFooter({ t, lang }: LandingCopyProps) {
         <span className="sr-only">, {copy.brandBack}</span>
       </a>
       <p className="m-footer__open"><i aria-hidden="true" />{copy.openSource}</p>
+      {/* The two modules lead to their docs pages, not to the dashboard (D-LP-3); the docs index closes the row. */}
       <nav className="m-footer__nav" aria-label={copy.nav}>
-        <Link href={dashboard}>{copy.quickCheck}</Link>
-        <Link href={dashboard}>{copy.businessModels}</Link>
+        <Link href={docHref(lang, 'quick-check')} prefetch={false}>{copy.quickCheck}</Link>
+        <Link href={docHref(lang, 'business-plan')} prefetch={false}>{copy.businessModels}</Link>
         <a href="#m-methodology">{copy.methodology}</a>
+        <Link href={docHref(lang, 'index')} prefetch={false}>{copy.docs}</Link>
       </nav>
       <a className="m-footer__top" href="#m-overview">
         {copy.backToTop}

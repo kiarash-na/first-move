@@ -17,7 +17,8 @@
       "quickCheck": "Quick Check",
       "businessModels": "Business Models",
       "aiScore": "AI Plan Score",
-      "methodology": "Methodology"
+      "methodology": "Methodology",
+      "docs": "Docs"
     }
   },
   "hero": {
@@ -38,7 +39,7 @@
     "hint": "Move to shift perspective",
     "reverseFlow": "Reverse flow",
     "restoreFlow": "Restore flow",
-    "gatewayLabel": "Two tools.\nOne workflow.",
+    "gatewayLabel": "Screen. Plan. Score.\nOne workflow.",
     "tools": {
       "quickCheck": {
         "title": "Quick Check",
@@ -65,7 +66,7 @@
       { "title": "Project initiators", "text": "Test the first idea before committing to full feasibility." }
     ],
     "tools": {
-      "kicker": "Two tools. One system.",
+      "kicker": "Three parts. One system.",
       "title": "First know if.\n*Then know how.*",
       "quickCheck": {
         "title": "Quick Check",
@@ -356,6 +357,7 @@
       "quickCheck": "Quick Check",
       "businessModels": "Business Models",
       "methodology": "Methodology",
+      "docs": "Docs",
       "backToTop": "Back to top",
       "legal": {
         "nav": "Legal",

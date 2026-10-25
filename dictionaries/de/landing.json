@@ -17,7 +17,8 @@
       "quickCheck": "Quick Check",
       "businessModels": "Geschäftsmodelle",
       "aiScore": "KI-Plan-Score",
-      "methodology": "Methodik"
+      "methodology": "Methodik",
+      "docs": "Doku"
     }
   },
   "hero": {
@@ -38,7 +39,7 @@
     "hint": "Bewegen, um die Perspektive zu ändern",
     "reverseFlow": "Fluss umkehren",
     "restoreFlow": "Fluss zurücksetzen",
-    "gatewayLabel": "Zwei Werkzeuge.\nEin Ablauf.",
+    "gatewayLabel": "Prüfen. Planen. Bewerten.\nEin Ablauf.",
     "tools": {
       "quickCheck": {
         "title": "Quick Check",
@@ -65,7 +66,7 @@
       { "title": "Projektinitiatoren", "text": "Testen Sie die erste Idee, bevor Sie sich auf eine vollständige Machbarkeitsstudie festlegen." }
     ],
     "tools": {
-      "kicker": "Zwei Werkzeuge. Ein System.",
+      "kicker": "Drei Teile. Ein System.",
       "title": "Erst wissen, ob.\n*Dann wissen, wie.*",
       "quickCheck": {
         "title": "Quick Check",
@@ -356,6 +357,7 @@
       "quickCheck": "Quick Check",
       "businessModels": "Geschäftsmodelle",
       "methodology": "Methodik",
+      "docs": "Doku",
       "backToTop": "Nach oben",
       "legal": {
         "nav": "Rechtliches",

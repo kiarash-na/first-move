@@ -38,5 +38,6 @@
     "none": "Noch ist kein KI-Anbieter für den Assistenten angebunden. Sobald der Assistent verfügbar ist, werden die Anbieter hier aufgeführt.",
     "region": "Verarbeitungsregion"
   },
+  "documentation": "Doku",
   "presentation": "Präsentation"
 }

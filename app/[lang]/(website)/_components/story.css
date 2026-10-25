@@ -82,6 +82,11 @@
     gap: 12px;
     padding: 0 14px;
   }
+
+  /* Six entries now end right where the actions begin at 1024 px: a little air between the two. */
+  .header-actions {
+    padding-left: 14px;
+  }
 }
 
 .mobile-menu-toggle,
@@ -1709,14 +1714,6 @@
 
   .business-canvas {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .site-footer {
-    grid-template-columns: 1fr auto auto;
-  }
-
-  .site-footer nav {
-    display: none;
   }
 }
 
