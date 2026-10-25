@@ -14,9 +14,13 @@ const STYLE: Record<AiGateOutcome, { icon: typeof CheckIcon; className: string }
   skipped: { icon: MinusIcon, className: "border-border text-muted-foreground" },
 }
 
-/** The outcome of a check as a tag with icon and word, never colour alone. */
-export function OutcomeTag({ outcome, className }: { outcome: AiGateOutcome; className?: string }) {
-  const label = useDictionary("ai-score").labels.outcomes[outcome]
+/**
+ * The outcome of a check as a tag with icon and word, never colour alone. `label` replaces the word
+ * where the outcome alone would mislead (a check Jev was asked but did not answer is not "Not asked").
+ */
+export function OutcomeTag({ outcome, label: override, className }: { outcome: AiGateOutcome; label?: string; className?: string }) {
+  const outcomes = useDictionary("ai-score").labels.outcomes
+  const label = override ?? outcomes[outcome]
   const { icon: Icon, className: tone } = STYLE[outcome]
   return (
     <span

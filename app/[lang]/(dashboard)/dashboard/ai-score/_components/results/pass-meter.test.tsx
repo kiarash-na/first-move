@@ -15,6 +15,13 @@ describe("PassMeter", () => {
     expect(container.querySelector("[data-measure]")).toHaveAttribute("fill", "var(--chart-2)")
   })
 
+  it("keeps a probability next to a threshold on its side", () => {
+    // 0.7953 is unclear: it must not read 80%, the pass threshold.
+    renderResults(<PassMeter probability={0.7953} />)
+    expect(screen.getByText("Pass probability 79.5%")).toBeInTheDocument()
+    expect(screen.getByText(/^Probability that it passes: 79\.5%\./)).toBeInTheDocument()
+  })
+
   it("formats the probability in German", () => {
     renderResults(<PassMeter probability={0.1} />, { lang: "de" })
     expect(screen.getByText(/10\s%/, { selector: "[aria-hidden=true]" })).toBeInTheDocument()

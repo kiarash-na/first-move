@@ -46,9 +46,9 @@ export function SuggestionsPanel({ score, actions, error }: { score: AiScore; ac
       <RequestError code={error} />
       {saved && saved.items.length > 0 ? (
         <div lang={saved.lang} data-ai-generated="true" className="flex flex-col gap-5">
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+          <div lang={lang} className="flex flex-wrap items-center gap-x-3 gap-y-2">
             <AiBadge />
-            <span lang={lang} className="font-mono text-xs text-muted-foreground">
+            <span className="font-mono text-xs text-muted-foreground">
               {interpolate(text.by, { model: saved.model, date: formatDateTime(saved.at, lang) })}
             </span>
           </div>

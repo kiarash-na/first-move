@@ -18,9 +18,21 @@ import { ResultsSection } from "./results-section"
  * The short report (PLAN-AI-SCORE-00 step 4): written by the chosen text model from Jev's final
  * numbers, never changing one. Headline, summary, strengths and gaps with chips to the parts they
  * rest on, next actions. When it is missing or in the other language, the page can write it
- * (again) in the page language; busy and error states come from the page's actions.
+ * (again) in the page language; busy and error states come from the page's actions. App copy
+ * inside the report (the AI badge, the by-line, the chips) keeps the page language.
  */
-export function ReportPanel({ report, actions, error }: { report: AiReport | null; actions: ResultActions; error: GatewayErrorCode | null }) {
+export function ReportPanel({
+  report,
+  rows,
+  actions,
+  error,
+}: {
+  report: AiReport | null
+  /** Ids with a row on the page (`rowKeys`), the only ones a chip may point to. */
+  rows: ReadonlySet<string>
+  actions: ResultActions
+  error: GatewayErrorCode | null
+}) {
   const lang = useLocale()
   const copy = useDictionary("ai-score").results
   const text = copy.report
@@ -51,7 +63,7 @@ export function ReportPanel({ report, actions, error }: { report: AiReport | nul
         <p className="text-sm text-muted-foreground">{text.none}</p>
       ) : (
         <article lang={report.lang} data-ai-generated="true" className="flex flex-col gap-5">
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+          <div lang={lang} className="flex flex-wrap items-center gap-x-3 gap-y-2">
             <AiBadge />
             <span className="font-mono text-xs text-muted-foreground">{interpolate(text.by, { model: report.model })}</span>
           </div>
@@ -69,8 +81,8 @@ export function ReportPanel({ report, actions, error }: { report: AiReport | nul
                   {text[kind]}
                 </h4>
                 <ul className="flex flex-col gap-3">
-                  {report[kind].map((item) => (
-                    <li key={item.text} className="flex items-start gap-2.5">
+                  {report[kind].map((item, index) => (
+                    <li key={`${index}-${item.text}`} className="flex items-start gap-2.5">
                       {kind === "strengths" ? (
                         <CheckIcon className="mt-0.5 size-4 shrink-0 text-primary" strokeWidth={1.8} aria-hidden="true" />
                       ) : (
@@ -78,7 +90,7 @@ export function ReportPanel({ report, actions, error }: { report: AiReport | nul
                       )}
                       <div className="flex min-w-0 flex-col gap-1.5">
                         <span className="text-sm leading-snug">{item.text}</span>
-                        <KeyChips keys={item.keys} />
+                        <KeyChips keys={item.keys} rows={rows} lang={lang} />
                       </div>
                     </li>
                   ))}
@@ -93,7 +105,7 @@ export function ReportPanel({ report, actions, error }: { report: AiReport | nul
               </h4>
               <ol className="flex flex-col gap-2">
                 {report.actions.map((action, index) => (
-                  <li key={action} className="flex items-start gap-3 text-sm leading-snug">
+                  <li key={`${index}-${action}`} className="flex items-start gap-3 text-sm leading-snug">
                     <span className="font-mono text-xs text-hot tabular-nums">{formatNumber(index + 1, lang)}</span>
                     <span>{action}</span>
                   </li>

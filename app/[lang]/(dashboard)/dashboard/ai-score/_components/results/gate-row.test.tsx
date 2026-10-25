@@ -1,25 +1,27 @@
 import { screen, within } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import { beforeAll, describe, expect, it } from "vitest"
+import { LOW_HEAT_DENSITY } from "@/lib/ai/plan-score/gates"
 import type { AiScore } from "@/lib/project"
 import { GateRow } from "./gate-row"
-import { CAPPED, scored, type Scored } from "./test-utils/fixtures"
+import { CAPPED, scored, VARIED, type Scored } from "./test-utils/fixtures"
 import { aiScoreCopy, mockActions, renderResults } from "./test-utils/render"
 
 let varied: Scored
 let capped: Scored
+let refused: Scored
 beforeAll(async () => {
-  ;[varied, capped] = await Promise.all([scored(), scored(CAPPED)])
+  ;[varied, capped, refused] = await Promise.all([scored(), scored(CAPPED), scored({ ...VARIED, refuse: ["financing", "cost-key"] })])
 })
 
 const copy = aiScoreCopy("en")
 
-function renderGate(score: AiScore, id: string, options: { suggestions?: string[]; actions?: ReturnType<typeof mockActions> } = {}) {
+function renderGate(score: AiScore, id: string, options: { suggestions?: string[]; suggestionsLang?: string; actions?: ReturnType<typeof mockActions> } = {}) {
   const gate = score.gates.find((entry) => entry.id === id)!
   const actions = options.actions ?? mockActions()
   const view = renderResults(
     <ul>
-      <GateRow gate={gate} score={score} suggestions={options.suggestions ?? []} actions={actions} />
+      <GateRow gate={gate} score={score} suggestions={options.suggestions ?? []} suggestionsLang={options.suggestionsLang} actions={actions} />
     </ul>,
   )
   return { ...view, actions, row: view.container.querySelector<HTMLElement>(`[data-check="${id}"]`)! }
@@ -59,6 +61,25 @@ describe("GateRow", () => {
     expect(row.querySelector("[data-effect]")).toHaveTextContent(/heat density is low/)
   })
 
+  it("calls the heat density check a must-have only while the Quick Check heat density is low", () => {
+    // VARIED: the example's heat density is not low, so failing would cap nothing.
+    expect(varied.score.quickCheck!.heatDensityMwhPerM).toBeGreaterThanOrEqual(LOW_HEAT_DENSITY)
+    expect(renderGate(varied.score, "heat-density").row).not.toHaveTextContent(copy.results.checks.mustHave)
+    expect(renderGate({ ...varied.score, quickCheck: null }, "heat-density").row).not.toHaveTextContent(copy.results.checks.mustHave)
+    const low = { ...varied.score, quickCheck: { ...varied.score.quickCheck!, heatDensityMwhPerM: LOW_HEAT_DENSITY / 2 } }
+    expect(renderGate(low, "heat-density").row).toHaveTextContent(copy.results.checks.mustHave)
+  })
+
+  it("says a check Jev did not answer has no answer, not that it was not asked", () => {
+    const { row } = renderGate(refused.score, "cost-key")
+    const tag = row.querySelector("[data-slot=outcome-tag]")!
+    expect(tag).toHaveAttribute("data-outcome", "skipped")
+    expect(tag).toHaveTextContent(copy.labels.gateSources.refused)
+    expect(tag).not.toHaveTextContent(copy.labels.outcomes.skipped)
+    // A check a rule left out is still "Not asked".
+    expect(renderGate(varied.score, "vienna-zone").row.querySelector("[data-slot=outcome-tag]")).toHaveTextContent(copy.labels.outcomes.skipped)
+  })
+
   it("shows the decision that asked a follow-up check", () => {
     const { row } = renderGate(varied.score, "water-permit")
     expect(row).toHaveTextContent(copy.results.checks.followUp)
@@ -73,8 +94,11 @@ describe("GateRow", () => {
   })
 
   it("offers suggestions for a failed or unclear check and lists the saved ones", async () => {
-    const { row, actions } = renderGate(varied.score, "operator", { suggestions: ["Name who maintains the network."] })
+    const { row, actions } = renderGate(varied.score, "operator", { suggestions: ["Name who maintains the network."], suggestionsLang: "en" })
     expect(within(row).getByText("Name who maintains the network.")).toBeInTheDocument()
+    // Marked as AI output in sight, and in the language it was written in.
+    expect(within(row).getByText(copy.results.aiGenerated)).toBeInTheDocument()
+    expect(row.querySelector("[data-slot=suggestion-texts]")).toHaveAttribute("lang", "en")
     await userEvent.click(within(row).getByRole("button", { name: `Suggest improvements for ${copy.labels.gates.operator.name}` }))
     expect(actions.suggest).toHaveBeenCalledWith(["operator"])
     const passed = renderGate(varied.score, "anchor").row

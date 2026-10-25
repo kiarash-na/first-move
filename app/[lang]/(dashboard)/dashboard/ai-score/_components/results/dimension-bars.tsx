@@ -15,7 +15,8 @@ const pct = (points: number) => `${clampPoints(points)}%`
  * The seven dimensions as horizontal bars on the 0..100 scale (PLAN-AI-SCORE-01 § Aggregation):
  * the score in orange, the mean before a cap as a paler ghost behind it, the cap of a failed check
  * as a line at cap × 25, a whisker of ± one standard deviation and the weight. Every number is
- * text in the row; the marks are decorative (the table view carries the same data).
+ * text in the row, the score before a cap included; the marks are decorative (the table view
+ * carries the same data).
  */
 export function DimensionBars({ dimensions }: { dimensions: readonly AiDimension[] }) {
   const lang = useLocale()
@@ -70,6 +71,7 @@ export function DimensionBars({ dimensions }: { dimensions: readonly AiDimension
                 {dimension.cap !== null && (
                   <span className="font-mono text-xs text-hot">{interpolate(text.capped, { level: formatNumber(dimension.cap, lang) })}</span>
                 )}
+                {raw > score && <span data-raw-text className="font-mono text-xs text-muted-foreground">{interpolate(text.before, { value: points(dimension.raw) })}</span>}
               </div>
             </li>
           )

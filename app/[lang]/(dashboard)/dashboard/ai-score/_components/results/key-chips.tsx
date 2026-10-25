@@ -8,11 +8,13 @@ import { keyName } from "./labels"
 
 /**
  * The plan parts and checks a report line rests on, as chips that jump to their row. A key the
- * engine does not know is left out.
+ * engine does not know, or one without a row in this run (`rows`, from `rowKeys`), is left out.
+ * `lang` is the page's: the chips are app copy inside AI text that may be in the other language.
  */
-export function KeyChips({ keys }: { keys: readonly string[] }) {
+export function KeyChips({ keys, rows, lang }: { keys: readonly string[]; rows: ReadonlySet<string>; lang?: string }) {
   const copy = useDictionary("ai-score")
   const chips = [...new Set(keys)].flatMap((key) => {
+    if (!rows.has(key)) return []
     const anchor = keyAnchor(key)
     const name = keyName(copy.labels, key)
     return anchor && name ? [{ key, anchor, name }] : []
@@ -20,7 +22,7 @@ export function KeyChips({ keys }: { keys: readonly string[] }) {
   if (chips.length === 0) return null
 
   return (
-    <ul aria-label={copy.results.report.pointsTo} data-slot="key-chips" className="flex flex-wrap gap-1.5">
+    <ul lang={lang} aria-label={copy.results.report.pointsTo} data-slot="key-chips" className="flex flex-wrap gap-1.5">
       {chips.map((chip) => (
         <li key={chip.key}>
           <a
