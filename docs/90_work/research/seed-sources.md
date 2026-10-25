@@ -23,10 +23,10 @@ The numbers match the [n] markers in `seed-dossier.md`.
 
 The owner set two rules on 2026-10-25: the links must be sound ("make sure the links are science proven"), and the three fictional cases must be re-anchored on real, named Vienna buildings. Since then:
 
-- **The app cites only `lib/examples/reference-cases/sources.ts`** (`REFERENCE_CASE_SOURCES`, ids `RC-…`), next to the method references of `lib/docs/references.ts`. All 32 entries were opened again on **2026-10-25** (HTTP 200, content read; DOIs resolved at doi.org); `node scripts/check-references.mjs` fetches them on demand.
+- **The app cites only `lib/examples/reference-cases/sources.ts`** (`REFERENCE_CASE_SOURCES`, ids `RC-…`), next to the method references of `lib/docs/references.ts`. All entries were opened again on **2026-10-25** (HTTP 200, content read; DOIs resolved at doi.org); `node scripts/check-references.mjs` fetches them on demand.
 - **Allowed kinds:** official pages and documents, research reports, peer-reviewed papers through doi.org, and a developer's or operator's own page about its own project. **No news and no blogs**: [33] to [38] below stay in this log as research history, but no fact in the app or on the public docs page rests on them. Where a news item was the only source of a number (Geblergasse 2021: 18 probes and €350,000 [36]; Klinik Floridsdorf heat demand and investment [37]; Hallenbad Floridsdorf cost and groundwater heat pump [38]; Village im Dritten partners and construction state [34][35]), the number was dropped.
-- **Mapping to this list:** RC-WIEN-SEEBOGEN [1], RC-WIEN-KLINIK-FLORIDSDORF [3], RC-WIEN-HALLENBAD-FLORIDSDORF [4], RC-WIEN-WAERMEPLAN [5], RC-WIEN-ANERGY-GRANT [6], RC-ANERGIEURBAN [7], RC-WIENEU-STARTZELLEN [8], RC-SOCIALHOUSING-GEBLERGASSE [9], RC-SMART-BLOCK-II [11], RC-UFI-MIKRONETZE [13], RC-KRANZL-2026-PAPER [17], RC-KRANZL-2026-SLIDES [18], RC-LENA-HOSPITALS [20], RC-BISP-POOLS [22], RC-KAMPEL-2014 [26], RC-ARE-VILLAGE-FOLDER and RC-ARE-VILLAGE-PROJECT [30], RC-WIEN-ENERGIE-ZEC-2023 [31], RC-ASPERN-SEEBOGEN-2022 [32]; new on 2026-10-25: [42] to [54].
-- **Not cited in the app any more:** [2], [10], [12], [14] to [16], [19], [21], [23] to [25], [27] to [29], [33] to [41]. They served the candidate screening, the first fictional cases or background, and stay listed for the record.
+- **Mapping to this list:** RC-WIEN-SEEBOGEN [1], RC-WIEN-KLINIK-FLORIDSDORF [3], RC-WIEN-HALLENBAD-FLORIDSDORF [4], RC-WIEN-WAERMEPLAN [5], RC-WIEN-ANERGY-GRANT [6], RC-ANERGIEURBAN [7], RC-WIENEU-STARTZELLEN [8], RC-SOCIALHOUSING-GEBLERGASSE [9], RC-SMART-BLOCK-II [11], RC-UFI-MIKRONETZE [13], RC-KRANZL-2026-PAPER [17], RC-KRANZL-2026-SLIDES [18], RC-LENA-HOSPITALS [20], RC-BISP-POOLS [22], RC-KAMPEL-2014 [26], RC-ARE-VILLAGE-FOLDER and RC-ARE-VILLAGE-PROJECT [30], RC-WIEN-ENERGIE-ZEC-2023 [31]; new on 2026-10-25: [42] to [54]. RC-ASPERN-SEEBOGEN-2022 [32] was removed after the review of 2026-10-25 because it is a blog post (see [32]).
+- **Not cited in the app any more:** [2], [10], [12], [14] to [16], [19], [21], [23] to [25], [27] to [29], [32] to [41]. They served the candidate screening, the first fictional cases or background, and stay listed for the record.
 
 ## Official: City of Vienna
 
@@ -248,7 +248,7 @@ Reliability: company (utility, own project).
 URL: https://www.aspern-seestadt.at/en/blog/post/bubbling-with-new-energy
 Verified: 200 · "2202-bubbling-with-new-energy | aspern Seestadt"
 Supports: Kraftwerk Seebogen recently went into operation on plot H6, supplying nearly 20,000 m²; probes plus a low-temperature network give a CO2-free supply "which does not cost residents more than conventional systems"; David Bauernfeind, project manager at beyond carbon energy, "the company that built the power plant".
-Reliability: company (area developer's own blog).
+Reliability: blog (the area developer's blog "Seestadt Stories", reprinting a magazine article). **Not cited since the review of 2026-10-25** (owner's rule: no blogs). The claims that rested only on it (nearly 20,000 m², beyond carbon energy as the builder, no extra cost for residents) were dropped from the app and the docs page; no non-blog page of the builder or developer stating them was found.
 
 **[33] Erste Sparkasse, "Unternehmen wir Zukunft": "Eine CO₂-freie Wärme- und Kälteversorgung ist möglich"** (interview with Herbert Hetzel, managing director of Beyond Carbon Energy, 02.09.2022).
 URL: https://www.sparkasse.at/sgruppe/unternehmen/unternehmen-wir-zukunft/artikel/BCE
@@ -375,7 +375,7 @@ Verified: 200 · page
 Supports: the economic management moved from MA 59 (Marktamt) to the Wien Holding in January 2019; GMW is part of WSE Wiener Standortentwicklung, a Wien Holding company.
 Reliability: company (operator, own site).
 
-**[53] GMW Großmarkt Wien Betrieb GmbH: "50 Jahre Großmarkt Wien – Festbroschüre"** (PDF, 2022).
+**[53] GMW Großmarkt Wien Betrieb GmbH: "Jubiläumsbroschüre 50 Jahre Großmarkt Wien: Garantierte Versorgung für Wien"** (PDF, 2022; cover title, linked on the facts page as "Jubiläumsbroschüre 50 Jahre GMW").
 URL: https://www.grossmarkt-wien.at/wp-content/uploads/2025/12/50-Jahre-GMW_Festbroschure_2022.pdf
 Verified: 200 · PDF
 Supports: built 1969 to 1972, opened 30 October 1972; modernisations in 1987 and 2001 with more cold and storage rooms; 2022 area split: about 300,000 m² in total, about 76,000 m² buildings and halls, about 17,000 m² open space, flower hall about 10,000 m², meat market about 7,000 m², offices about 1,500 m². No figure on cooling capacity or waste heat.

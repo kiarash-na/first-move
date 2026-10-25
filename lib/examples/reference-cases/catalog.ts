@@ -26,8 +26,8 @@ export const REFERENCE_CASE_CARDS = {
     tier: "middling",
     name: text("Kraftwerk Seebogen, Seestadt Aspern", "Kraftwerk Seebogen, Seestadt Aspern"),
     summary: text(
-      "Five developers on plot H6 in Seestadt Aspern share two geothermal probe fields with 92 boreholes, an anergy loop, supermarket waste heat and rooftop PV.",
-      "Fünf Bauträger teilen am Bauplatz H6 der Seestadt Aspern zwei Erdsondenfelder mit 92 Bohrungen, ein Anergienetz, Supermarkt-Abwärme und Dach-PV.",
+      "Five developers on plot H6 in Seestadt Aspern largely share one energy system: two geothermal probe fields with 92 boreholes, an anergy loop, supermarket waste heat and rooftop PV.",
+      "Fünf Bauträger teilen am Bauplatz H6 der Seestadt Aspern großteils ein Energiesystem: zwei Erdsondenfelder mit 92 Bohrungen, ein Anergienetz, Supermarkt-Abwärme und Dach-PV.",
     ),
   }),
   villageImDritten: card({

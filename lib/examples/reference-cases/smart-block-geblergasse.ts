@@ -32,8 +32,8 @@ export const smartBlockGeblergasse: ReferenceCase = {
       "Dichter Gründerzeit-Blockrand, Bestandsgebäude mit gemeinsamem Innenhof",
     ),
     ownership: text(
-      "Two private rental houses, refurbished with support of the Wiener Wohnbaufonds; one owner is part of the research team. The block holds 18 properties with separate owners: 12 were unrenovated in 2017, and the study team reached the owners of half of them. Each house decides alone, and tenants' heating costs fall under tenancy law, so the owners set one condition: tenants pay no more than with district heating (Smart Block II final report, 2017).",
-      "Zwei private Miethäuser, saniert mit Unterstützung des Wiener Wohnbaufonds; ein Eigentümer gehört zum Forschungsteam. Der Block umfasst 18 Liegenschaften mit eigenen Eigentümer*innen: 12 waren 2017 unsaniert, das Studienteam erreichte die Eigentümer*innen der Hälfte davon. Jedes Haus entscheidet allein, und die Heizkosten der Mieter*innen unterliegen dem Mietrecht. Die Eigentümer setzten deshalb eine Bedingung: Die Mieter*innen zahlen nicht mehr als mit Fernwärme (Endbericht Smart Block II, 2017).",
+      "Two private rental houses, refurbished with support of the Wiener Wohnbaufonds; one owner is part of the research team. The block holds 18 properties with separate owners: 12 were unrenovated in 2017, and the study team reached the owners of half of them. Each house decides alone, and tenants' heating costs fall under tenancy law, so the owners set one condition: tenants pay no more than with district heating (Smart Block II final report, 2018; data as of 2017).",
+      "Zwei private Miethäuser, saniert mit Unterstützung des Wiener Wohnbaufonds; ein Eigentümer gehört zum Forschungsteam. Der Block umfasst 18 Liegenschaften mit eigenen Eigentümer*innen: 12 waren 2017 unsaniert, das Studienteam erreichte die Eigentümer*innen der Hälfte davon. Jedes Haus entscheidet allein, und die Heizkosten der Mieter*innen unterliegen dem Mietrecht. Die Eigentümer setzten deshalb eine Bedingung: Die Mieter*innen zahlen nicht mehr als mit Fernwärme (Endbericht Smart Block II, 2018; Stand 2017).",
     ),
     units: text(
       "2 houses, 25 flats (16 + 9), 2,000 m² gross floor area; 18 properties in the block for later phases",
@@ -79,12 +79,12 @@ export const smartBlockGeblergasse: ReferenceCase = {
   businessPlan: {
     opportunity: {
       customerSegments: text(
-        "Tenants of 25 flats (16 in No. 11, 9 in No. 13) who use heat, hot water and some cooling, with the two owners as contract partners. Expansion customers are the owners of the 16 other houses in the block, first those already planning works: Ottakringer Straße 18 (refurbishment) and Veronikagasse 36 (new building) (Smart Block II final report).",
-        "Mieter*innen von 25 Wohnungen (16 in Nr. 11, 9 in Nr. 13), die Wärme, Warmwasser und etwas Kühlung nutzen; Vertragspartner sind die beiden Eigentümer. Erweiterungskunden sind die Eigentümer*innen der 16 anderen Häuser im Block, zuerst jene, die ohnehin bauen: Ottakringer Straße 18 (Sanierung) und Veronikagasse 36 (Neubau) (Endbericht Smart Block II).",
+        "Tenants of 25 flats (16 in No. 11, 9 in No. 13) who use heat, hot water and some cooling, with the two owners as contract partners. Expansion customers are the owners of the 16 other houses in the block, first owners who planned works in 2017: Ottakringer Straße 18 (refurbishment) and Veronikagasse 36 (new building) (Smart Block II final report).",
+        "Mieter*innen von 25 Wohnungen (16 in Nr. 11, 9 in Nr. 13), die Wärme, Warmwasser und etwas Kühlung nutzen; Vertragspartner sind die beiden Eigentümer. Erweiterungskunden sind die Eigentümer*innen der 16 anderen Häuser im Block, zuerst Eigentümer*innen, die 2017 Bauarbeiten planten: Ottakringer Straße 18 (Sanierung) und Veronikagasse 36 (Neubau) (Endbericht Smart Block II).",
       ),
       needs: text(
-        "Design values after renovation: space heat 90 + 67 MWh/a, hot water 30 + 20 MWh/a, heat load 60 + 45 kW (No. 11 + No. 13). Moderate summer cooling in No. 11 through the floor heating, about 3 weeks a year from 10:00 to 14:00. Unrenovated block houses need about 125 kWh/m²a of heat plus about 25 kWh/m²a of hot water (Smart Block II final report, 2017).",
-        "Planwerte nach der Sanierung: Raumwärme 90 + 67 MWh/a, Warmwasser 30 + 20 MWh/a, Heizlast 60 + 45 kW (Nr. 11 + Nr. 13). Moderate Sommerkühlung in Nr. 11 über die Fußbodenheizung, rund 3 Wochen im Jahr von 10 bis 14 Uhr. Unsanierte Blockhäuser brauchen rund 125 kWh/m²a Wärme plus rund 25 kWh/m²a Warmwasser (Endbericht Smart Block II, 2017).",
+        "Design values after renovation: space heat 90 + 67 MWh/a, hot water 30 + 20 MWh/a, heat load 60 + 45 kW (No. 11 + No. 13). Moderate summer cooling in No. 11 through the floor heating, about 3 weeks a year from 10:00 to 14:00. Unrenovated block houses need about 125 kWh/m²a of heat plus about 25 kWh/m²a of hot water (Smart Block II final report, 2018; data as of 2017).",
+        "Planwerte nach der Sanierung: Raumwärme 90 + 67 MWh/a, Warmwasser 30 + 20 MWh/a, Heizlast 60 + 45 kW (Nr. 11 + Nr. 13). Moderate Sommerkühlung in Nr. 11 über die Fußbodenheizung, rund 3 Wochen im Jahr von 10 bis 14 Uhr. Unsanierte Blockhäuser brauchen rund 125 kWh/m²a Wärme plus rund 25 kWh/m²a Warmwasser (Endbericht Smart Block II, 2018; Stand 2017).",
       ),
       heatSources: text(
         "The ground under the courtyard as a seasonal store, planned with 8 boreholes of about 120 m; the drilled probes reached about 100 to 110 m (AnergieUrban expert survey). Two 54 m² hybrid PV-T roofs, outdoor air through an air-water exchanger down to about −5 °C, and one 110 kW heat pump that also makes summer cold.",
@@ -95,12 +95,12 @@ export const smartBlockGeblergasse: ReferenceCase = {
         "Gründerzeithäusern fehlen Zentralheizung und Platz. Unter den geltenden Regeln und Kosten bauen Eigentümer*innen Gasetagenheizungen ein und binden sich so für Jahrzehnte an fossile Wärme. Eine gemeinsame erneuerbare Anlage kostet rund das Dreifache einer Gaszentralheizung (Endbericht Smart Block II).",
       ),
       alternatives: text(
-        "Gas central or storey heating, the cheapest up front. District heating, which Wien Energie put at about €60,000 per Gründerzeit house to connect. One heat pump per house, limited by courtyard space and small drilling rigs (AnergieUrban).",
-        "Gaszentral- oder Gasetagenheizung, in der Anschaffung am günstigsten. Fernwärme, deren Anschluss Wien Energie mit rund 60.000 € pro Gründerzeithaus bezifferte. Eine Wärmepumpe pro Haus, begrenzt durch Hofgröße und kleine Bohrgeräte (AnergieUrban).",
+        "Gas central or storey heating, the cheapest up front. District heating, which Wien Energie put at about €60,000 per Gründerzeit house to connect (Smart Block II final report). One heat pump per house, limited by courtyard space and small drilling rigs (AnergieUrban).",
+        "Gaszentral- oder Gasetagenheizung, in der Anschaffung am günstigsten. Fernwärme, deren Anschluss Wien Energie mit rund 60.000 € pro Gründerzeithaus bezifferte (Endbericht Smart Block II). Eine Wärmepumpe pro Haus, begrenzt durch Hofgröße und kleine Bohrgeräte (AnergieUrban).",
       ),
       advantage: text(
-        "Linking houses lets a house without drilling space store solar heat in the shared ground and take it back in winter. Over 20 years the full cost of heat, hot water and moderate cooling is about €10 per m² of usable floor area and year, the same as continuing with gas, and lower over a longer period (AnergieUrban, June 2018 prices).",
-        "Durch die Verbindung kann ein Haus ohne Bohrfläche Solarwärme im gemeinsamen Erdreich speichern und im Winter zurückholen. Über 20 Jahre kosten Wärme, Warmwasser und moderate Kühlung rund 10 € pro m² Wohnnutzfläche und Jahr, gleich viel wie die Weiterführung der Gasheizung, über längere Zeit weniger (AnergieUrban, Preise Juni 2018).",
+        "Linking houses lets a house without drilling space store solar heat in the shared ground and take it back in winter. Over 20 years the full cost of heat, hot water and moderate cooling for a model building of 1,000 m² with 15 flats is about €10 per m² of usable floor area and year, the same as continuing with gas, and lower over a longer period (AnergieUrban, June 2018 prices).",
+        "Durch die Verbindung kann ein Haus ohne Bohrfläche Solarwärme im gemeinsamen Erdreich speichern und im Winter zurückholen. Über 20 Jahre kosten Wärme, Warmwasser und moderate Kühlung in einem Modellgebäude mit 1.000 m² und 15 Wohnungen rund 10 € pro m² Wohnnutzfläche und Jahr, gleich viel wie die Weiterführung der Gasheizung, über längere Zeit weniger (AnergieUrban, Preise Juni 2018).",
       ),
     },
     canvas: {
@@ -129,12 +129,12 @@ export const smartBlockGeblergasse: ReferenceCase = {
         "Kontakt von Eigentümer zu Eigentümer über das Kernteam; eine Steuerungsgruppe aus allen beitretenden Eigentümer*innen, Vertreter*innen der Bewohner*innen, Dienststellen der Stadt und Fördergebern; externe Moderation, etwa durch die Gebietsbetreuung (Strategie Smart Block II).",
       ),
       customerSegments: text(
-        "End users: tenants of 25 flats. Contract partners: the two owners. Next: owners of neighbouring houses that plan works, first Ottakringer Straße 18 and Veronikagasse 36.",
-        "Nutzer*innen: Mieter*innen von 25 Wohnungen. Vertragspartner: die beiden Eigentümer. Als Nächstes: Eigentümer*innen benachbarter Häuser, die ohnehin bauen, zuerst Ottakringer Straße 18 und Veronikagasse 36.",
+        "End users: tenants of 25 flats. Contract partners: the two owners. Next: owners of neighbouring houses that plan works, first the two that planned works in 2017, Ottakringer Straße 18 and Veronikagasse 36.",
+        "Nutzer*innen: Mieter*innen von 25 Wohnungen. Vertragspartner: die beiden Eigentümer. Als Nächstes: Eigentümer*innen benachbarter Häuser, die ohnehin bauen, zuerst die beiden, die 2017 Bauarbeiten planten: Ottakringer Straße 18 und Veronikagasse 36.",
       ),
       costStructure: text(
-        "The shared plant cost about €320,000 at tender for both houses, about €160 per m² of gross floor area and about three times a gas central heating. Running costs: heat-pump electricity, partly from the PV-T roofs, maintenance, metering and billing.",
-        "Die gemeinsame Anlage kostete laut Ausschreibung rund 320.000 € für beide Häuser, rund 160 € pro m² Bruttogeschoßfläche und rund das Dreifache einer Gaszentralheizung. Laufende Kosten: Wärmepumpenstrom, teils von den PVT-Dächern, Wartung, Messung und Abrechnung.",
+        "The shared plant cost about €320,000 at tender for both houses, about €160 per m² of gross floor area; after the 30 % grant about €225,000, about three times a gas central heating. Running costs: heat-pump electricity, partly from the PV-T roofs, maintenance, metering and billing.",
+        "Die gemeinsame Anlage kostete laut Ausschreibung rund 320.000 € für beide Häuser, rund 160 € pro m² Bruttogeschoßfläche; nach der Förderung von 30 % rund 225.000 €, rund das Dreifache einer Gaszentralheizung. Laufende Kosten: Wärmepumpenstrom, teils von den PVT-Dächern, Wartung, Messung und Abrechnung.",
       ),
       revenueStreams: text(
         "Heat and cooling prices per unit, indexed (proposed); the owners' construction-cost contribution; the MA 25 grant of 30 %, about €95,000; connection fees from houses that join later (proposed).",
@@ -158,8 +158,8 @@ export const smartBlockGeblergasse: ReferenceCase = {
           "Mieter*innen könnten die Kosten ablehnen; der Contractor könnte ausfallen; die Sonden bleiben jahrzehntelang auf ihrem Grund (vorgeschlagene Risikoliste).",
         ),
         benefit: text(
-          "No boiler of their own, renovated houses ready for the gas phase-out, and an award-winning reference (Goldenes Güteziegel, Pioneering Achievement).",
-          "Kein eigener Kessel, sanierte Häuser bereit für den Gasausstieg und eine ausgezeichnete Referenz (Goldenes Güteziegel der Wiener Stadterneuerung).",
+          "No boiler of their own, renovated houses ready for the gas phase-out, and an award-winning reference (Goldenes Güteziegel of the Vienna Urban Renewal Awards, Pioneering Achievement category).",
+          "Kein eigener Kessel, sanierte Häuser bereit für den Gasausstieg und eine ausgezeichnete Referenz (Goldenes Güteziegel des Wiener Stadterneuerungspreises in der Kategorie Pionierleistung).",
         ),
       },
       {
@@ -302,12 +302,12 @@ export const smartBlockGeblergasse: ReferenceCase = {
     },
     scalability: {
       geographical: text(
-        "The Vienna Heating Plan 2040 marks dense areas as Lokale Wärme gemeinsam, meant for shared neighbourhood networks. A TU Wien study for the city finds that local networks could supply 2 to 3 TWh/a of Vienna's 13 to 14 TWh/a of building heat, about 43 % of it through anergy networks.",
-        "Der Wiener Wärmeplan 2040 weist dichte Gebiete als „Lokale Wärme gemeinsam“ für nachbarschaftliche Netze aus. Eine Studie der TU Wien für die Stadt ergibt, dass lokale Netze 2 bis 3 TWh/a der 13 bis 14 TWh/a Gebäudewärme Wiens liefern könnten, rund 43 % davon über Anergienetze.",
+        "The Vienna Heating Plan 2040 marks dense areas as Lokale Wärme gemeinsam, meant for shared neighbourhood networks. A study by TU Wien and e-think for the city (Kranzl et al., 2026) finds that local networks could supply 2 to 3 TWh/a of Vienna's 13 to 14 TWh/a of building heat, about 43 % of it through anergy networks.",
+        "Der Wiener Wärmeplan 2040 weist dichte Gebiete als „Lokale Wärme gemeinsam“ für nachbarschaftliche Netze aus. Eine Studie von TU Wien und e-think für die Stadt (Kranzl et al., 2026) ergibt, dass lokale Netze 2 bis 3 TWh/a der 13 bis 14 TWh/a Gebäudewärme Wiens liefern könnten, rund 43 % davon über Anergienetze.",
       ),
       economic: text(
-        "Probe-based networks reach cost parity only with optimisation, extra sources and renovation, while groundwater concepts are close to parity (TU Wien, 2026). Higher gas prices help: in 2017 gas had to rise about 70 % to break even.",
-        "Sondenbasierte Netze erreichen Kostenparität nur mit Optimierung, zusätzlichen Quellen und Sanierung, Grundwasserkonzepte liegen nahe daran (TU Wien, 2026). Höhere Gaspreise helfen: 2017 hätte Gas um rund 70 % steigen müssen, um gleichzuziehen.",
+        "Probe-based networks reach cost parity only with optimisation, extra sources and renovation, while groundwater concepts are close to parity (Kranzl et al., 2026). Higher gas prices help: in 2017 gas had to rise about 70 % to break even.",
+        "Sondenbasierte Netze erreichen Kostenparität nur mit Optimierung, zusätzlichen Quellen und Sanierung, Grundwasserkonzepte liegen nahe daran (Kranzl et al., 2026). Höhere Gaspreise helfen: 2017 hätte Gas um rund 70 % steigen müssen, um gleichzuziehen.",
       ),
       organisational: text(
         "The start-cell model is being repeated: ÖGUT assessed nine housing blocks for anergy start cells, and the city's renewal programme found that owner decisions need neutral moderation over several years (WieNeu+). A block contractor plus a steering group per block can be copied (proposed).",
@@ -320,8 +320,8 @@ export const smartBlockGeblergasse: ReferenceCase = {
         "Zwei Jahre Messdaten der Startzelle zu Wärme, Kälte, Strom und Sondentemperaturen; Wärmebedarf, Sanierungstermine und freie Bohrfläche für jedes der 16 anderen Häuser (vorgeschlagen).",
       ),
       stakeholders: text(
-        "Owners already considering the loop (Ottakringer Straße 18, Veronikagasse 36); the tenants; MA 20 on public land and grants.",
-        "Eigentümer*innen, die das Netz bereits erwägen (Ottakringer Straße 18, Veronikagasse 36); die Mieter*innen; die MA 20 zu öffentlichem Grund und Förderungen.",
+        "Owners who considered the loop in 2017 (Ottakringer Straße 18, Veronikagasse 36); the tenants; MA 20 on public land and grants.",
+        "Eigentümer*innen, die das Netz 2017 erwogen (Ottakringer Straße 18, Veronikagasse 36); die Mieter*innen; die MA 20 zu öffentlichem Grund und Förderungen.",
       ),
       partnerships: text(
         "A phase-2 contract with the contractor; ÖGUT or the area renewal office as moderator; grant applications to MA 20 and UFI before any binding order (proposed).",

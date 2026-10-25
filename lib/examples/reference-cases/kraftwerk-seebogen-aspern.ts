@@ -4,14 +4,14 @@ import type { ReferenceCase } from "./types"
 
 /**
  * R2 · real · middling. Kraftwerk Seebogen on plot H6, Seestadt Aspern (1220 Vienna). Every stated
- * fact is from the city's project page or the area developer's own publication; the gaps
- * (ownership, operator, prices, financing, decision gate) are honest gaps, which is what makes the
- * plan middling. Research log: `docs/90_work/research/seed-dossier.md` § R2.
+ * fact about the project is from the city's project page; the gaps (builder, ownership, operator,
+ * prices, financing, decision gate) are honest gaps, which is what makes the plan middling.
+ * Research log: `docs/90_work/research/seed-dossier.md` § R2.
  */
 export const kraftwerkSeebogen: ReferenceCase = {
   ...REFERENCE_CASE_CARDS.kraftwerkSeebogen,
   scenarioId: "custom",
-  references: ["RC-WIEN-SEEBOGEN", "RC-ASPERN-SEEBOGEN-2022", "RC-ANERGIEURBAN", "RC-WIEN-ANERGY-GRANT", "RC-KRANZL-2026-PAPER"],
+  references: ["RC-WIEN-SEEBOGEN", "RC-ANERGIEURBAN", "RC-WIEN-ANERGY-GRANT", "RC-KRANZL-2026-PAPER"],
   site: {
     name: text(
       "Kraftwerk Seebogen, quarter Am Seebogen (plot H6), Seestadt Aspern",
@@ -30,8 +30,8 @@ export const kraftwerkSeebogen: ReferenceCase = {
       "Fünf Bauträger teilen sich den Bauplatz H6 und großteils das Energiesystem; ihre Namen und ihr Mix aus Miet- und Eigentumswohnungen stehen nicht auf der Projektseite der Stadt. Der Gewerbehof der Wirtschaftsagentur Wien am selben Bauplatz nutzt stattdessen Fernwärme.",
     ),
     units: text(
-      "About 270 flats and about 250 workplaces; nearly 20,000 m² of new floor area",
-      "Rund 270 Wohnungen und rund 250 Arbeitsplätze; knapp 20.000 m² neue Nutzfläche",
+      "About 270 flats and about 250 workplaces in the block",
+      "Rund 270 Wohnungen und rund 250 Arbeitsplätze im Block",
     ),
     currentSupply: [
       text("Anergy loop with 2 probe fields, 92 boreholes of 150 m", "Anergienetz mit 2 Sondenfeldern, 92 Bohrungen zu je 150 m"),
@@ -47,10 +47,7 @@ export const kraftwerkSeebogen: ReferenceCase = {
       text("Supermarket branch, also a heat source", "Supermarktfiliale, zugleich Wärmequelle"),
       text("Wien 3420 aspern Development AG (area developer)", "Wien 3420 aspern Development AG (Gebietsentwicklerin)"),
     ],
-    partners: [
-      text("beyond carbon energy (built the plant)", "beyond carbon energy (hat die Anlage gebaut)"),
-      text("Owners of the 4 rooftop PV systems", "Eigentümer*innen der 4 Dach-PV-Anlagen"),
-    ],
+    partners: [text("Owners of the 4 rooftop PV systems", "Eigentümer*innen der 4 Dach-PV-Anlagen")],
   },
   // Building count and plot area are not public: estimates (docs page § Quick Check inputs).
   buildings: {
@@ -85,14 +82,14 @@ export const kraftwerkSeebogen: ReferenceCase = {
         "Fernwärme, die der Gewerbehof am selben Bauplatz nutzt, oder getrennte Wärmepumpen pro Gebäude (nicht bewertet).",
       ),
       advantage: text(
-        "The loop runs at 4 °C in spring to 16 °C in autumn with hardly any losses, can heat and cool at the same time and saves about 440 t of CO2 a year. The area developer reports that it costs residents no more than conventional systems.",
-        "Das Netz läuft mit 4 °C im Frühjahr bis 16 °C im Herbst nahezu verlustfrei, kann gleichzeitig heizen und kühlen und spart rund 440 t CO2 pro Jahr. Laut Gebietsentwicklerin kostet es die Bewohner*innen nicht mehr als konventionelle Systeme.",
+        "The loop runs at 4 °C in spring to 16 °C in autumn with hardly any losses, can heat and cool at the same time and saves about 440 t of CO2 a year.",
+        "Das Netz läuft mit 4 °C im Frühjahr bis 16 °C im Herbst nahezu verlustfrei, kann gleichzeitig heizen und kühlen und spart rund 440 t CO2 pro Jahr.",
       ),
     },
     canvas: {
       keyPartners: text(
-        "The five developers, beyond carbon energy as the plant builder, the supermarket as heat supplier and the owners of the four rooftop PV systems.",
-        "Die fünf Bauträger, beyond carbon energy als Errichterin der Anlage, der Supermarkt als Wärmelieferant und die Eigentümer*innen der vier Dach-PV-Anlagen.",
+        "The five developers, the supermarket as heat supplier and the owners of the four rooftop PV systems.",
+        "Die fünf Bauträger, der Supermarkt als Wärmelieferant und die Eigentümer*innen der vier Dach-PV-Anlagen.",
       ),
       keyActivities: text(
         "Run two probe fields and the loop, balance heating and cooling, operate the building heat pumps and bill the users. Who does which part is not public.",
@@ -103,8 +100,8 @@ export const kraftwerkSeebogen: ReferenceCase = {
         "92 Bohrungen zu je 150 m, rund 13,8 km Sonden, das Anergienetz, Wärmepumpen in jedem Gebäude und 4 Dach-PV-Anlagen.",
       ),
       valueProposition: text(
-        "Fossil-free heating, hot water and cooling for a mixed block, at no higher cost to residents than conventional systems.",
-        "Fossilfreie Wärme, Warmwasser und Kühlung für einen gemischten Block, für die Bewohner*innen nicht teurer als konventionelle Systeme.",
+        "Fossil-free heating, hot water and cooling for a mixed block of housing and businesses; what residents pay is not public.",
+        "Fossilfreie Wärme, Warmwasser und Kühlung für einen gemischten Block aus Wohnen und Gewerbe; was die Bewohner*innen zahlen, ist nicht öffentlich.",
       ),
       customerRelationships: text(
         "Long-term supply to the developers and their residents; the contract form is not public.",
@@ -121,8 +118,8 @@ export const kraftwerkSeebogen: ReferenceCase = {
       ),
       revenueStreams: text("Heat and cooling prices paid by the users; structure and prices are not public.", "Wärme- und Kältepreise der Nutzer*innen; Struktur und Preise sind nicht öffentlich."),
       operatorResponsibilities: text(
-        "beyond carbon energy built the plant. Public sources do not say who owns the probes, the loop and the heat pumps or who operates them.",
-        "beyond carbon energy hat die Anlage gebaut. Öffentliche Quellen sagen nicht, wem Sonden, Netz und Wärmepumpen gehören und wer sie betreibt.",
+        "The city's project page does not say who built the plant, who owns the probes, the loop and the heat pumps, or who operates them.",
+        "Die Projektseite der Stadt sagt nicht, wer die Anlage gebaut hat, wem Sonden, Netz und Wärmepumpen gehören und wer sie betreibt.",
       ),
     },
     allocation: [
@@ -154,8 +151,8 @@ export const kraftwerkSeebogen: ReferenceCase = {
         "Alle Gebäude am Bauplatz H6 außer dem fernwärmeversorgten Gewerbehof sind angeschlossen.",
       ),
       tariffs: text(
-        "Not public; the area developer states there is no extra cost for residents. For screening, the Quick Check defaults could be used (€0.12 per kWh of heat, €0.08 per kWh of cooling).",
-        "Nicht öffentlich; laut Gebietsentwicklerin entstehen den Bewohner*innen keine Mehrkosten. Für ein Screening ließen sich die Standardwerte des Quick Check verwenden (0,12 € pro kWh Wärme, 0,08 € pro kWh Kälte).",
+        "Not public. For screening, the Quick Check defaults could be used (€0.12 per kWh of heat, €0.08 per kWh of cooling).",
+        "Nicht öffentlich. Für ein Screening ließen sich die Standardwerte des Quick Check verwenden (0,12 € pro kWh Wärme, 0,08 € pro kWh Kälte).",
       ),
       capex: text(
         "Not public; drilling alone is about €0.7 to €0.9 m (13,800 m at €50 to €65 per m, 2020 prices).",
@@ -217,8 +214,8 @@ export const kraftwerkSeebogen: ReferenceCase = {
         "Andere Bauplätze mit mehreren Bauträgern, in der Seestadt und anderswo in Wien.",
       ),
       economic: text(
-        "Depends on drilling costs and on extra sources such as waste heat (TU Wien, 2026).",
-        "Hängt von den Bohrkosten und von zusätzlichen Quellen wie Abwärme ab (TU Wien, 2026).",
+        "Depends on drilling costs and on extra sources such as waste heat (Kranzl et al., 2026).",
+        "Hängt von den Bohrkosten und von zusätzlichen Quellen wie Abwärme ab (Kranzl et al., 2026).",
       ),
       organisational: text(
         "A plot-level shared energy system could become a standard for plots with several developers; details still to be worked out.",
