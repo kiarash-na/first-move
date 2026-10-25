@@ -38,7 +38,7 @@ describe('MobileAiConsole', () => {
       expect(screen.getByText(copy.turns[turn])).toBeInTheDocument()
       expect(screen.getByText(copy.decisions[turn].name)).toBeInTheDocument()
     }
-    expect(screen.getByRole('img', { name: `An example run: ${EXAMPLE_JUDGEMENTS} fields scored in four turns, a score of ${EXAMPLE_SCORE.score} ± ${EXAMPLE_SCORE.band}, ${copy.levels.promising}.` })).toBeInTheDocument()
+    expect(screen.getByRole('img', { name: `An example run: ${EXAMPLE_JUDGEMENTS} items scored in four turns, a score of ${EXAMPLE_SCORE.score} ± ${EXAMPLE_SCORE.band}, ${copy.levels.promising}.` })).toBeInTheDocument()
     expect(screen.getByText(copy.note)).toBeInTheDocument()
   })
 

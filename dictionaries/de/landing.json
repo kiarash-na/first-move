@@ -279,8 +279,8 @@
     "title": "Den Plan bewerten.\n*Jede Entscheidung sehen.*",
     "body": "Eine separate KI-Lesung des geschriebenen Businessplans. Jev, ein Entscheidungsmodell, trifft jede Entscheidung in vier Runden, vom ersten Feld bis zum letzten. Ein Textmodell Ihrer Wahl schreibt den kurzen Bericht und auf Wunsch Vorschläge.",
     "facts": [
-      { "label": "01 / Vier Runden", "title": "Jede Entscheidung sichtbar", "text": "Fünf Belegstufen je Feld, Schwellen über Felder hinweg, Verzweigungen, die die nächsten Fragen wählen, sieben Dimensionen." },
-      { "label": "02 / Ihr Schlüssel", "title": "Nichts läuft über uns", "text": "Bringen Sie Ihren eigenen Vercel-AI-Gateway-Schlüssel mit. Er bleibt im Speicher des offenen Tabs; der Plan geht direkt an die Modelle, die Sie gewählt haben." },
+      { "label": "01 / Vier Runden", "title": "Jede Entscheidung sichtbar", "text": "Fünf Belegstufen je Punkt, Schwellen über Felder hinweg, Verzweigungen, die die nächsten Fragen wählen, sieben Dimensionen." },
+      { "label": "02 / Ihr Schlüssel", "title": "Nichts läuft über uns", "text": "Bringen Sie Ihren eigenen Vercel-AI-Gateway-Schlüssel mit. Er bleibt im Speicher des offenen Tabs; der Plan geht direkt aus Ihrem Browser an Jev und das Textmodell Ihrer Wahl." },
       { "label": "03 / Eine Einschätzung", "title": "Keine Berechnung", "text": "Der Score beurteilt, wie solide der geschriebene Plan ist. Der Quick Check bleibt die einzige Berechnung." }
     ],
     "primary": "KI-Plan-Score ausprobieren",
@@ -290,9 +290,9 @@
       "title": "Beispiellauf",
       "tag": "Beispielhaft",
       "replay": "Erneut abspielen",
-      "summary": "Ein Beispiellauf: {fields} Felder in vier Runden bewertet, ein Score von {score} ± {band}, {level}.",
+      "summary": "Ein Beispiellauf: {fields} Punkte in vier Runden bewertet, ein Score von {score} ± {band}, {level}.",
       "turns": { "1": "Chance", "2": "Geschäftslogik", "3": "Realitätscheck", "4": "Umsetzung" },
-      "fields": "{count} Felder",
+      "fields": "{count} Punkte",
       "branch": "Verzweigung",
       "gate": "Schwelle",
       "decisions": {

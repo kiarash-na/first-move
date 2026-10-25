@@ -48,7 +48,7 @@ describe('AiScoreConsole', () => {
     expect(container.querySelector('.ai-result__number')).toHaveTextContent('60')
     expect(container.querySelector('.ai-result__band')).toHaveTextContent('±6')
     expect(container.querySelector('.ai-result__level')).toHaveTextContent(en.aiScore.console.levels.promising)
-    expect(screen.getByRole('img')).toHaveAccessibleName('An example run: 27 fields scored in four turns, a score of 60 ± 6, Promising.')
+    expect(screen.getByRole('img')).toHaveAccessibleName('An example run: 27 items scored in four turns, a score of 60 ± 6, Promising.')
   })
 
   it('replays from the start', () => {
@@ -63,6 +63,6 @@ describe('AiScoreConsole', () => {
   it('formats the German summary with German numbers and labels', () => {
     render(<AiScoreConsole copy={de.aiScore.console} lang="de" />)
     act(() => intersect?.([{ isIntersecting: true }]))
-    expect(screen.getByRole('img')).toHaveAccessibleName(/27 Felder .* 60 ± 6, Vielversprechend\./)
+    expect(screen.getByRole('img')).toHaveAccessibleName(/27 Punkte .* 60 ± 6, Vielversprechend\./)
   })
 })

@@ -279,8 +279,8 @@
     "title": "Score the plan.\n*See every decision.*",
     "body": "A separate AI reading of the written Business Plan. Jev, a decision model, takes every decision in four turns, from the first field to the last. A text model of your choice writes the short report and, on demand, suggestions.",
     "facts": [
-      { "label": "01 / Four turns", "title": "Every decision shown", "text": "Five evidence levels per field, gates across fields, branches that pick the next questions, seven dimensions." },
-      { "label": "02 / Your key", "title": "Nothing passes through us", "text": "Bring your own Vercel AI Gateway key. It stays in memory for the open tab; the plan goes straight to the models you chose." },
+      { "label": "01 / Four turns", "title": "Every decision shown", "text": "Five evidence levels per item, gates across fields, branches that pick the next questions, seven dimensions." },
+      { "label": "02 / Your key", "title": "Nothing passes through us", "text": "Bring your own Vercel AI Gateway key. It stays in memory for the open tab; the plan goes straight from your browser to Jev and the text model you chose." },
       { "label": "03 / An opinion", "title": "Not a calculation", "text": "The score judges how solid the written plan is. The Quick Check stays the only calculation." }
     ],
     "primary": "Try the AI Plan Score",
@@ -290,9 +290,9 @@
       "title": "Example run",
       "tag": "Illustrative",
       "replay": "Replay",
-      "summary": "An example run: {fields} fields scored in four turns, a score of {score} ± {band}, {level}.",
+      "summary": "An example run: {fields} items scored in four turns, a score of {score} ± {band}, {level}.",
       "turns": { "1": "Opportunity", "2": "Business logic", "3": "Reality check", "4": "Implementation" },
-      "fields": "{count} fields",
+      "fields": "{count} items",
       "branch": "Branch",
       "gate": "Gate",
       "decisions": {
