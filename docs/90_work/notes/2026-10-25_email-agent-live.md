@@ -30,6 +30,17 @@ incomplete env answers 404 before the signature check).
    11:35 UTC, four seconds after delivery (seen in Resend's outbound list; the owner clicked it).
    End-to-end: real mail → webhook → workflow → reply.
 
+## Second bug, same family: the consent confirm 403 (PR #6)
+
+That first reply was the agent's **consent request**. The owner clicked it — and nothing more
+came. The link's GET follows the apex → www redirect and the confirm page loads, but its POST
+goes with Origin `https://www.firstmove.energy` while the route compared Origin to `SITE_URL`
+(apex) → **403, no consent, no answer** (`confirm.ts`). The route now compares Origin with the
+origin the request actually reached — the same guarantee (only a page we served can confirm),
+independent of host configuration; preview deployments work too. Regression test: SITE_URL apex,
+request on www → confirmed. Until this reaches main, `SITE_URL=https://www.firstmove.energy` on
+Vercel fixes production on its own.
+
 ## The guard (this PR)
 
 The doctor checked that a webhook *points at* `SITE_URL/api/mail/inbound` but never that the
@@ -42,9 +53,10 @@ with `SITE_URL=https://firstmove.energy` it fails `webhook` and `endpoint` (308)
 
 ## Left
 
-- Owner: `SITE_URL=https://www.firstmove.energy` on Vercel + redeploy (reply links skip the apex
-  hop; doctor goes green against production). Everything else of the Vercel list is done — the
-  reply proves env, secret and both switches.
+- Owner: `SITE_URL=https://www.firstmove.energy` on Vercel + redeploy — this also fixes the
+  consent confirm on production before PR #6 lands on main (links and the confirm page then sit
+  on the configured origin). Everything else of the Vercel list is done — the reply proves env,
+  secret and both switches.
 - This morning's 7 test events (09:27 UTC, from the local live test) keep retrying and will now
   reach the endpoint: expect a few late consent requests between the project's own test addresses;
   harmless, they stop once delivered. Seeding their dedupe markers in KV was denied (persistent
