@@ -106,7 +106,9 @@ export function planTurn(input: TurnInput): TurnPlan {
 
   if (state.phase === "menu") {
     const named = parsed.module ?? (intent ? INTENT_MODULE[intent] : undefined) ?? null
-    const chosen = named ?? (data && (attachments > 0 || intent === "answers" || intent === "documents") ? "quickCheck" : null)
+    // Values or files in a first email mean the Quick Check; a question with a number in it does not.
+    const impliesQuickCheck = attachments > 0 || intent === "answers" || intent === "documents" || (parsed.hasNumbers && intent !== "question")
+    const chosen = named ?? (data && impliesQuickCheck ? "quickCheck" : null)
     if (!chosen) return { kind: "turn", state, ...base, limit: false, answer, extract: null, menuAgain: !fresh && !answer && !smallTalk }
     state = withModule(state, chosen, now)
     // A short menu answer ("1, yes") carries no values; a longer first email may.

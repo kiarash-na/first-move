@@ -35,6 +35,9 @@ describe("planTurn", () => {
     expect(plan).toMatchObject({ kind: "turn", extract: { quickCheck: true, bpSteps: [] }, state: { module: "quickCheck", phase: "collect" } })
     const data = planTurn(turn("We have 42 buildings and ground water.", { intent: "answers" }))
     expect(data).toMatchObject({ extract: { quickCheck: true }, state: { module: "quickCheck" } })
+    const withFile = planTurn(turn("Please send me the project file. We have 42 buildings on 3.5 ha.", { intent: "wants_file" }))
+    expect(withFile).toMatchObject({ sendFile: true, chose: "default", extract: { quickCheck: true }, state: { module: "quickCheck" } })
+    expect(planTurn(turn("What if a project has 40 buildings?", { intent: "question" }))).toMatchObject({ chose: null, extract: null, state: { phase: "menu" } })
   })
 
   it("asks again when a menu reply chooses nothing", () => {
