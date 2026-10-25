@@ -2,13 +2,17 @@
 /**
  * `node --env-file=.env.local scripts/mail-agent-doctor.mjs` (PLAN-AGENT-06 step 14): a read-only
  * check of the email agent's setup before it is switched on. It reads only (GET requests) and
- * prints names and codes, never a value:
+ * prints names and codes, never a value, with one exception: an unsigned POST of `{}` to the
+ * webhook endpoint, which the route refuses before anything runs:
  *
  * - every variable of `.env.example` is set, and the secrets are 32 bytes of base64;
  * - whether the agent and the human@ relay are switched on (each warns while off);
  * - Upstash answers;
  * - the agent@ and human@ inboxes exist, and Resend's Inbox agent has no actions on either (D-53);
  * - one enabled webhook for `inbox.email.received` points at `SITE_URL/api/mail/inbound`;
+ * - that endpoint answers without a redirect: webhook senders do not follow redirects (a 308
+ *   silently kills every delivery), 400 is the healthy answer, 404 means the route is not
+ *   deployed or the deployed env is incomplete;
  * - the mail domain has open and click tracking on, as the Privacy Policy discloses (D-63).
  *
  * Exits with 1 when a check fails. `scripts/mail-agent-doctor.test.ts` runs it against fakes.
@@ -124,6 +128,30 @@ async function checkTracking(env, resend) {
   return result("fail", "tracking", "open and click tracking must both be on, as the Privacy Policy discloses (D-63)")
 }
 
+/**
+ * An unsigned POST to the webhook endpoint: the route refuses it (400) after the signature check,
+ * before anything runs. A redirect fails the check — webhook senders do not follow redirects, so
+ * a redirected endpoint never sees an event.
+ */
+async function probeEndpoint(env, fetchImpl) {
+  const endpoint = `${read(env, "SITE_URL").replace(/\/+$/, "")}${WEBHOOK_PATH}`
+  try {
+    const response = await fetchImpl(endpoint, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: "{}",
+      redirect: "manual",
+    })
+    if (response.status >= 300 && response.status < 400)
+      return result("fail", "endpoint", `HTTP ${response.status}: redirects — webhook senders do not follow redirects`)
+    if (response.status === 400) return result("ok", "endpoint", "answers; unsigned POST refused")
+    if (response.status === 404) return result("fail", "endpoint", "404: route not deployed or its env incomplete")
+    return result("warn", "endpoint", `HTTP ${response.status} to an unsigned POST (400 expected)`)
+  } catch (error) {
+    return result("fail", "endpoint", `unreachable (${code(error)})`)
+  }
+}
+
 /** Runs every check; API checks run only when the variables they need are set. */
 export async function runDoctor({ env, example, resend, fetchImpl }) {
   const names = envNames(example)
@@ -145,6 +173,7 @@ export async function runDoctor({ env, example, resend, fetchImpl }) {
       lines.push(result("fail", "resend", `request failed (${code(error)})`))
     }
   }
+  if (has("SITE_URL")) lines.push(await probeEndpoint(env, fetchImpl))
   return lines
 }
 
