@@ -105,14 +105,15 @@ export function planTurn(input: TurnInput): TurnPlan {
   const data = !smallTalk && parsed.command === null && (attachments > 0 || !NO_DATA.includes(intent) || parsed.hasNumbers)
 
   if (state.phase === "menu") {
-    const named = parsed.module ?? (intent ? INTENT_MODULE[intent] : undefined) ?? null
+    // Jev reads the whole email; where its choice and the menu answer disagree, its choice wins.
+    const named = (intent ? INTENT_MODULE[intent] : undefined) ?? parsed.module ?? null
     // Values or files in a first email mean the Quick Check; a question with a number in it does not.
     const impliesQuickCheck = attachments > 0 || intent === "answers" || intent === "documents" || (parsed.hasNumbers && intent !== "question")
     const chosen = named ?? (data && impliesQuickCheck ? "quickCheck" : null)
     if (!chosen) return { kind: "turn", state, ...base, limit: false, answer, extract: null, menuAgain: !fresh && !answer && !smallTalk }
     state = withModule(state, chosen, now)
-    // A short menu answer ("1, yes") carries no values; a longer first email may.
-    const extract = attachments > 0 || (parsed.module === null && data) ? extractScope(state, attachments) : null
+    // A reply that is only the menu answer ("1, yes") carries no values; anything more may.
+    const extract = attachments > 0 || (data && !parsed.onlyChoice) ? extractScope(state, attachments) : null
     return { kind: "turn", state, ...base, limit: false, answer, extract, chose: named ? "explicit" : "default" }
   }
   return { kind: "turn", state, ...base, limit: false, answer, extract: data ? extractScope(state, attachments) : null }

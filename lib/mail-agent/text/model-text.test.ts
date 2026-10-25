@@ -1,6 +1,6 @@
 // @vitest-environment node
 import { describe, expect, it } from "vitest"
-import { cleanModelText } from "./model-text"
+import { cleanModelText, forbiddenModelText } from "./model-text"
 
 const policy = {
   siteUrl: "https://firstmove.energy",
@@ -22,6 +22,12 @@ describe("cleanModelText", () => {
   it("refuses an address other than ours, keeps ours", () => {
     expect(cleanModelText("Write to boss@evil.example for details.", policy)).toBeNull()
     expect(cleanModelText("Write to human@mail.firstmove.energy.", policy)).toBe("Write to human@mail.firstmove.energy.")
+  })
+
+  it("forbids hidden characters inside the canary or a foreign address", () => {
+    expect(forbiddenModelText("fm-0123\u200b456789abcdef", policy)).toBe(true)
+    expect(forbiddenModelText("boss@\u200bevil.example", policy)).toBe(true)
+    expect(forbiddenModelText("Sonnenhof estate, 42 buildings", policy)).toBe(false)
   })
 
   it("cuts long text and drops empty text", () => {

@@ -45,6 +45,11 @@ const ALIASES: Record<string, string> = {
 
 export interface MailAgentConfig {
   siteUrl: string
+  /**
+   * `EMAIL_HUMAN_RELAY_ENABLED`: pass human@'s mail on to the admin address (O8). Off unless set,
+   * because the Privacy Policy must name the forwarding and the mailbox first (A08).
+   */
+  humanRelay: boolean
   limits: { dailyBudgetUsd: number; senderPerHour: number; senderPerDay: number; globalPerDay: number }
   addresses: { agent: string; admin: string }
   resend: { apiKey: string; webhookSecret: string; agentInboxId: string }
@@ -60,9 +65,12 @@ export type MailAgentEnv =
   /** Names only: `missing` are empty, `invalid` have a value that breaks their rule. */
   | { status: "incomplete"; enabled: boolean; missing: string[]; invalid: string[] }
 
+/** `true` (or `1`) switches on; anything else keeps it off. */
+const switchedOn = (value: string | undefined) => ["true", "1"].includes((value ?? "").trim().toLowerCase())
+
 /** `EMAIL_AGENT_ENABLED=true` (or `1`) switches the agent on; anything else keeps it off. */
 export function isEnabled(env: Env): boolean {
-  return ["true", "1"].includes((env.EMAIL_AGENT_ENABLED ?? "").trim().toLowerCase())
+  return switchedOn(env.EMAIL_AGENT_ENABLED)
 }
 
 /**
@@ -91,6 +99,7 @@ export function readMailAgentEnv(env: Env): MailAgentEnv {
     status: enabled ? "ready" : "disabled",
     config: {
       siteUrl: v.SITE_URL,
+      humanRelay: switchedOn(env.EMAIL_HUMAN_RELAY_ENABLED),
       limits: {
         dailyBudgetUsd: v.EMAIL_AGENT_DAILY_BUDGET_USD,
         senderPerHour: v.EMAIL_AGENT_SENDER_PER_HOUR,

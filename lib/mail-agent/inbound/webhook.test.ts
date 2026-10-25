@@ -117,6 +117,14 @@ describe("handleWebhook", () => {
     expect(lines.map((line) => JSON.parse(line).result)).toEqual(["relay-started"])
   })
 
+  it("leaves human@'s mail in its inbox while the relay is switched off, even with the agent on", async () => {
+    const env: MailAgentEnv = { status: "ready", config: testConfig({ EMAIL_HUMAN_RELAY_ENABLED: "false" }) }
+    expect((await handleWebhook(request(event({ inbox_id: "inbox-human" })), { ...deps, env })).status).toBe(200)
+    expect(relayed).toEqual([])
+    expect(store.size()).toBe(0)
+    expect(lines.map((line) => JSON.parse(line).result)).toEqual(["relay-off"])
+  })
+
   it("verifies, then drops the agent's mail while switched off; human@ still reaches a person", async () => {
     const env: MailAgentEnv = { status: "disabled", config }
     expect((await handleWebhook(request(event()), { ...deps, env })).status).toBe(200)

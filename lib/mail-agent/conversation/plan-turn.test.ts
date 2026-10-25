@@ -40,6 +40,34 @@ describe("planTurn", () => {
     expect(planTurn(turn("What if a project has 40 buildings?", { intent: "question" }))).toMatchObject({ chose: null, extract: null, state: { phase: "menu" } })
   })
 
+  it("takes the module from Jev when an opener or a number starts the menu reply, and reads its values", () => {
+    const menu = { state: inPhase("menu", { rounds: 1 }) }
+    const quickCheckOnly = { quickCheck: true, businessPlan: false }
+    for (const text of ["All right, the Quick Check please.", "Alles klar, ich nehme den Quick Check. Datei ja."]) {
+      const plan = planTurn(turn(text, { ...menu, intent: "choose_quick_check" }))
+      expect(plan, text).toMatchObject({ chose: "explicit", extract: { quickCheck: true, bpSteps: [] }, state: { module: "quickCheck" } })
+      expect(plan.kind === "turn" && plan.state.project.meta.modules, text).toEqual(quickCheckOnly)
+    }
+    const values = planTurn(turn("3,5 ha, 42 Gebäude, Wohngebäude 1961-1990: 100 %, Grundwasser hoch", { ...menu, intent: "answers" }))
+    expect(values).toMatchObject({ chose: "default", extract: { quickCheck: true, bpSteps: [] }, state: { module: "quickCheck" } })
+    const question = planTurn(turn("One question first: what does 5GDHC mean?", { ...menu, intent: "question" }))
+    expect(question).toMatchObject({ answer: true, extract: null, chose: null, state: { phase: "menu", module: null } })
+    expect(planTurn(turn("1, yes", { ...menu, intent: "choose_business_plan" }))).toMatchObject({ state: { module: "businessPlan" } })
+    expect(planTurn(turn("2, no\n\nThe project is called Sonnenhof.", { ...menu, intent: "choose_business_plan" }))).toMatchObject({ extract: { quickCheck: false } })
+  })
+
+  it("keeps project text that mentions people out of the hand-off", () => {
+    for (const text of [
+      "We will talk to people in the district at a town hall meeting",
+      "first we need to speak with someone at the municipality",
+      "Our plan is to chat with people from the neighbourhood association",
+      "Quick Check: 42 Gebäude, 3,5 ha. Wir wollen mit echten Menschen im Quartier reden.",
+    ]) {
+      const plan = planTurn(turn(text, { state: inPhase("collect", { module: "both", rounds: 3 }), intent: "answers" }))
+      expect(plan, text).toMatchObject({ kind: "turn", extract: { quickCheck: true } })
+    }
+  })
+
   it("asks again when a menu reply chooses nothing", () => {
     expect(planTurn(turn("hmm", { state: inPhase("menu"), intent: "other" }))).toMatchObject({ menuAgain: true, extract: null })
   })

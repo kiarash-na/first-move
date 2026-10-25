@@ -14,7 +14,7 @@ The email agent now answers. After consent and Jev's verdict, a person can run a
 - It computes the Quick Check with the app's own `run(project)`.
 - It sends on-brand results with a plain-text version, and attaches the `.firstmove.json` file when asked.
 
-A request for a person goes to the person behind human@, and mail to human@ is passed on to that person (O8).
+A request for a person goes to the person behind human@, and mail to human@ is passed on to that person (O8). The human@ relay has its own switch, `EMAIL_HUMAN_RELAY_ENABLED`, off until A08 has published the privacy text that names it.
 
 Everything ran live on 2026-10-25 against the configured Resend, Upstash and AI Gateway, with test mail only between the project's own addresses. Only the parts that need the deployed site are left for the owner (checklist below).
 
@@ -96,11 +96,17 @@ Checks, run at the end in the worktree:
 
 ### Not run here: the owner's checklist after deployment
 
-1. In Vercel, set `RESEND_WEBHOOK_SECRET` from the Resend webhook below. The other variables of `.env.example` already pass the doctor.
-2. In Resend, create one webhook for `inbox.email.received` pointing at `SITE_URL/api/mail/inbound`. It serves both inboxes; the human@ relay needs the human@ events too. Then `node --env-file=.env.local scripts/mail-agent-doctor.mjs` passes.
-3. `EMAIL_AGENT_ENABLED=true` only when A08 has switched `AI_FEATURES_LIVE` and published the legal texts. The human@ relay runs as soon as the configuration is complete, also while the agent is off.
-4. Recommended: let the admin mailbox send as human@ (Resend SMTP), so answers to a hand-off or a relayed email go out from human@ and not from the private address.
-5. On production, write once from an outside address to agent@ (confirm, then the result) and once to human@ (forwarded to the admin address with Reply-To).
+The doctor runs above used `.env.local`, which holds local values (`SITE_URL=https://localhost:3015`, D-65) and no webhook secret. They say nothing about production.
+
+1. In Vercel Production, set every variable of `.env.example`:
+   - `SITE_URL=https://firstmove.energy`. The confirm links and the confirm route's Origin check depend on it.
+   - The Upstash `KV_REST_API_URL` and `KV_REST_API_TOKEN`, added by hand (A01 note), with the database in the EU.
+   - `EMAIL_AGENT_ENABLED=false` and `EMAIL_HUMAN_RELAY_ENABLED=false`.
+2. In Resend, create one webhook for `inbox.email.received` at `https://firstmove.energy/api/mail/inbound`. It serves both inboxes. Put its signing secret in Vercel Production as `RESEND_WEBHOOK_SECRET`, then redeploy. While both switches are off, the route verifies each event and drops it, and human@'s mail stays in its inbox.
+3. Check with the production values: `vercel env pull .env.production.local --environment=production && node --env-file=.env.production.local scripts/mail-agent-doctor.mjs`. Every line passes except `switch` and `relay`, which warn while off. Delete `.env.production.local` afterwards.
+4. Only after A08 has switched `AI_FEATURES_LIVE` on and published the legal texts, including the forwarding to the admin mailbox and that mailbox's provider (open questions), set `EMAIL_AGENT_ENABLED=true` and `EMAIL_HUMAN_RELAY_ENABLED=true`, then redeploy. Until then no mail of agent@ or human@ leaves Resend.
+5. Recommended: let the admin mailbox send as human@ (Resend SMTP), so answers to a hand-off or a relayed email go out from human@ and not from the private address.
+6. On production, write once from an outside address to agent@ (confirm, then the result) and once to human@ (forwarded to the admin address with Reply-To).
 
 ## Decisions made on the owner's behalf
 
@@ -109,6 +115,7 @@ Checks, run at the end in the worktree:
   - Mail in the human@ inbox goes to the admin address with `original.eml`, and Reply-To only when DMARC passed.
   - Left in the inbox: machine mail, mail from agent@, human@ or the admin address, and anything over 100 a day (one note, then silence).
   - No model reads it. The webhook starts it for any inbox but the agent's, and the step checks that the inbox is human@.
+  - It has its own switch, `EMAIL_HUMAN_RELAY_ENABLED`, off by default and independent of the agent's. While it is off, the webhook drops human@ events (`relay-off`) and the mail stays in the inbox, as before A07.
 - **A first email with values starts the Quick Check**, even if Jev reads it as "wants the file". A question with a number in it does not.
 - **A project file decides the module** unless the person named one; a module named in the conversation stays.
 - **Stop deletes the conversation at once.** Consent, strikes and the done markers stay, as D-56 says.
@@ -119,6 +126,14 @@ Checks, run at the end in the worktree:
 - **A complete building mix replaces the old one.** Shares that add up to 100 ± 0.5 % clear every other cell; a single corrected cell changes only that cell.
 - "How we calculate" links to `/docs/quick-check`.
 - Tests use neutral model ids. The default text model id lives only in `lib/mail-agent/env.ts`.
+
+## Review fixes (2026-10-25)
+
+- **Commands read the first line only.** A request for a person must be addressed to us, in the first person ("Could I talk to a human?", "Kann ich bitte mit einem Menschen sprechen?", or just "human"), on the first line of a short reply; a greeting line before it is skipped. Before, "talk to people in the district" anywhere in the text started a hand-off: the answers were dropped and the email went to the admin mailbox.
+- **A menu answer is the whole line.** "1", "2, yes", "beides, ja bitte" and "Quick Check please" still choose; "All right…", "Alles klar…", "3,5 ha…" and "One question first…" no longer choose "both" or the Quick Check. Where Jev's `choose_*` intent and the parsed answer disagree, the intent wins. A menu reply with more than the answer has its values read.
+- **The human@ relay has its own switch** (`EMAIL_HUMAN_RELAY_ENABLED`, above).
+- **Jev judges an attachment's name with its text**, because the extractor reads the name too.
+- **Extracted values follow the model-text rule.** A value, a conflicting candidate or a cited file name with the canary, the instructions or an address other than ours is withheld, and the reply says so; links elsewhere are defanged. Before, only the model's notes were filtered.
 
 ## Deviations from the plan
 
@@ -149,7 +164,7 @@ Checks, run at the end in the worktree:
   - The hand-off marker: 1 day.
   - The relay counter: 2 days.
   - "Done" markers, ids only: 30 days.
-- A request for a person, and every email to human@, is forwarded with its attachments to the operator's mailbox (currently a Gmail address, see open questions). Reply-To is the sender when their address was verified.
+- A request for a person, and every email to human@, is forwarded with its attachments to the operator's mailbox (currently a Gmail address, see open questions). Reply-To is the sender when their address was verified. Today the policy says human@ is "read by a person" and names no mailbox provider; the owner turns `EMAIL_HUMAN_RELAY_ENABLED` on only once this text is live.
 - Values taken from emails are marked as AI-proposed in the project file.
 - Replies are in the sender's language, English or German.
 

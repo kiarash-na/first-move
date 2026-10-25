@@ -51,7 +51,7 @@ async function injectionOf(deps: AttachmentDeps, text: string, now: number): Pro
 /**
  * Reads an email's attachments (PLAN-AGENT-07 step 8, phase 06 step 9): at most five files,
  * signature images ignored; each downloaded within the size cap, read by `lib/ai/documents`
- * (type from the bytes, zip-bomb and sheet guards), and its text judged by Jev for instructions.
+ * (type from the bytes, zip-bomb and sheet guards), and its name and text judged by Jev for instructions.
  * A file that tries to instruct the assistant is skipped and the admin is told, without a strike:
  * people forward documents they did not write. A `.firstmove.json` file is imported, not read.
  */
@@ -86,7 +86,8 @@ export async function readAttachments(deps: AttachmentDeps, email: InboundEmail 
       out.reports.push({ name: read.document.name, status: "skipped", reason: "no-text" })
       continue
     }
-    const injection = await injectionOf(deps, text, now)
+    // The extractor sees the file's name too, so Jev judges the name together with the text.
+    const injection = await injectionOf(deps, `${read.document.name}\n${text}`, now)
     if (injection === null) {
       out.reports.push({ name: read.document.name, status: "skipped", reason: "unchecked" })
       continue

@@ -172,6 +172,7 @@
       "nothing": "I found no values for your project in this email.",
       "from": "from {file}",
       "sum": "The shares add up to {sum} %; they must add up to 100 %.",
+      "withheld": "it contains an email address or text I may not repeat, so I did not take it",
       "reasons": {
         "not-in-scope": "not a value I can use here",
         "missing-item": "which entry it belongs to is unclear",

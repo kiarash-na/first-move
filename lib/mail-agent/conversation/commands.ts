@@ -9,6 +9,8 @@ export interface ParsedReply {
   command: Command | null
   /** A menu choice: "1", "2, yes", "both, no", "beides, ja", "Quick Check". */
   module: ModuleChoice | null
+  /** The new text is nothing but the menu answer (after a greeting line), so it carries no values. */
+  onlyChoice: boolean
   /** A yes or no to the project file, when the reply is short enough to be one. */
   wantsFile: boolean | null
   /** Whether the new text has digits: answers to the Quick Check usually do. */
@@ -25,28 +27,44 @@ const COMMANDS: [Command, RegExp][] = [
   ["next", /^(?:next|weiter|skip|überspringen|next step|nächster schritt)$/],
 ]
 
-/** Asking for a person anywhere in the text, in English or German. */
+/**
+ * Asking us for a person, in the first person, at the start of a sentence of the first line:
+ * "Could I talk to a human?", "I'd like to speak with a real person", "Kann ich bitte mit einem
+ * Menschen sprechen?", or just "human". Talking to people in the district is project data.
+ */
 const HUMAN = [
-  /\b(?:talk|speak|write|chat)\s+(?:to|with)\s+(?:a\s+)?(?:real\s+)?(?:human|person|someone|somebody|people)\b/,
-  /\b(?:real|actual)\s+(?:human|person)\b/,
-  /\bhuman\s+(?:please|instead|support)\b/,
-  /\b(?:mit\s+)?(?:einem|einer)\s+(?:echten\s+)?(?:menschen|mensch|person|mitarbeiter(?:in)?)\s+(?:sprechen|reden|schreiben)\b/,
-  /\bechte[nr]?\s+(?:menschen|mensch|person)\b/,
-  /^(?:human|mensch)$/,
+  /^(?:a\s+)?(?:real\s+|actual\s+)?(?:human|person)(?:\s+(?:please|instead))?$/,
+  /^(?:einen?\s+)?(?:echte[nr]?\s+)?(?:mensch(?:en)?|person)(?:\s+bitte)?$/,
+  /(?:^|[.!?,;]\s*)(?:please\s+)?(?:can|could|may)\s+i\s+(?:please\s+)?(?:talk|speak|write|chat)\s+(?:to|with)\s+(?:a\s+)?(?:real\s+|actual\s+)?(?:human|person)\b/,
+  /(?:^|[.!?,;]\s*)i(?:'d|’d|\s+would)\s+(?:like|prefer)\s+to\s+(?:talk|speak|write|chat)\s+(?:to|with)\s+(?:a\s+)?(?:real\s+|actual\s+)?(?:human|person)\b/,
+  /(?:^|[.!?,;]\s*)i\s+(?:want|need)\s+(?:to\s+(?:talk|speak|write|chat)\s+(?:to|with)\s+)?(?:a\s+)?(?:real\s+|actual\s+)?(?:human|person)\b/,
+  /(?:^|[.!?,;]\s*)(?:please\s+)?(?:let\s+me\s+(?:talk|speak)\s+(?:to|with)|put\s+me\s+through\s+to|connect\s+me\s+(?:to|with))\s+(?:a\s+)?(?:real\s+|actual\s+)?(?:human|person)\b/,
+  /(?:^|[.!?,;]\s*)(?:bitte\s+)?(?:kann|könnte|darf)\s+ich\s+(?:bitte\s+)?(?:auch\s+)?mit\s+(?:einem|einer)\s+(?:echten\s+)?(?:menschen|person|mitarbeiter(?:in)?)\s+(?:sprechen|reden|schreiben)\b/,
+  /(?:^|[.!?,;]\s*)ich\s+(?:möchte|würde|will)\s+(?:bitte\s+)?(?:gerne?\s+)?(?:lieber\s+)?mit\s+(?:einem|einer)\s+(?:echten\s+)?(?:menschen|person|mitarbeiter(?:in)?)\s+(?:sprechen|reden|schreiben)\b/,
 ]
 
+/** What may follow a menu choice on its line: the file answer and polite words ("1, yes", "beides, ja bitte"). */
+const TAIL = String.raw`(?:[\s,;.:/–-]+(?:yes|yeah|yep|sure|no|nope|ja|nein|please|bitte|gerne|gern|klar|thanks|danke))*$`
+const choice = (pattern: string) => new RegExp(`^(?:${pattern})${TAIL}`)
+const NUMBERED = String.raw`(?:option\s+|number\s+|nummer\s+|nr\.?\s*)?`
+const QUICK_CHECK = String.raw`(?:the\s+|den\s+)?quick\s*-?\s*check`
+const BUSINESS_PLAN = String.raw`(?:the\s+|den\s+)?(?:business\s*-?\s*plan|geschäftsplan|geschäftsmodell)`
+
+/** A menu answer is the whole line: "3,5 ha", "All right" or "One question first" choose nothing. */
 const MODULES: [ModuleChoice, RegExp][] = [
-  ["both", /^(?:3|three|drei|both|beides|beide|all|alles)\b|\bboth\b|\bbeides?\b|quick\s*-?\s*check\s+(?:and|und|\+|&)\s+(?:the\s+|den\s+)?business\s*-?\s*plan/],
-  ["quickCheck", /^(?:1|one|eins)\b|^(?:the\s+|den\s+)?quick\s*-?\s*check\b/],
-  ["businessPlan", /^(?:2|two|zwei)\b|^(?:the\s+|den\s+)?(?:business\s*-?\s*plan|geschäftsplan|geschäftsmodell)\b/],
+  ["both", choice(`${NUMBERED}(?:3|three|drei)|both|beides?|${QUICK_CHECK}\\s+(?:and|und|\\+|&)\\s+${BUSINESS_PLAN}`)],
+  ["quickCheck", choice(`${NUMBERED}(?:1|one|eins)|${QUICK_CHECK}`)],
+  ["businessPlan", choice(`${NUMBERED}(?:2|two|zwei)|${BUSINESS_PLAN}`)],
 ]
 
 const YES = /(?:^|[\s,;.:/-])(?:yes|yeah|yep|sure|please|ja|gerne|gern|bitte|klar)(?=$|[\s,;.!])/
 const NO = /(?:^|[\s,;.:/-])(?:no|nope|no thanks|nein|nein danke|kein|keine)(?=$|[\s,;.!])/
 
-/** The first line of the new text, lower case, without punctuation at its ends. */
-function firstLine(text: string): string {
-  const line = text.split("\n").find((entry) => entry.trim()) ?? ""
+/** A salutation on a line of its own ("Hi,", "Dear team,", "Hallo Jev!"): the reply starts after it. */
+const GREETING = /^(?:hi|hello|hey|dear|good\s+(?:morning|afternoon|evening|day)|hallo|guten\s+(?:tag|morgen|abend)|liebe[rs]?|sehr\s+geehrte[rs]?|moin|servus)\b[^?!:;,]{0,40}[,!]?$/
+
+/** A line in lower case, without punctuation at its ends. */
+function cleanLine(line: string): string {
   return line
     .normalize("NFKC")
     .toLowerCase()
@@ -55,18 +73,20 @@ function firstLine(text: string): string {
 }
 
 /**
- * Reads the deterministic parts of a reply (PLAN-AGENT-07 step 6): a command word on the first
- * line ("stop", "new", "file", "next" and their German words), a request for a person anywhere,
- * a menu choice ("1", "2, yes", "both, no", "beides, ja") and a yes or no to the file. Jev's
- * `intent` covers the free text these rules leave open.
+ * Reads the deterministic parts of a reply (PLAN-AGENT-07 step 6) from the first line of the new
+ * text, after a greeting line: a command word ("stop", "new", "file", "next" and their German
+ * words), a request for a person, a menu choice ("1", "2, yes", "both, no", "beides, ja") and a
+ * yes or no to the file. Jev's `intent` covers the free text these rules leave open.
  */
 export function parseReply(rawText: string): ParsedReply {
   const text = newEmailText(rawText).text
-  const lower = text.normalize("NFKC").toLowerCase()
-  const line = firstLine(text)
+  const lines = text.split("\n").map((entry) => entry.trim()).filter(Boolean)
+  const start = lines.length > 1 && GREETING.test(lines[0].normalize("NFKC").toLowerCase()) ? 1 : 0
+  const line = cleanLine(lines[start] ?? "")
   const short = line.length <= SHORT
-  const command = HUMAN.some((pattern) => pattern.test(lower)) ? "human" : short ? (COMMANDS.find(([, pattern]) => pattern.test(line))?.[0] ?? null) : null
-  const choice = short && command === null ? (MODULES.find(([, pattern]) => pattern.test(line))?.[0] ?? null) : null
+  const human = short && HUMAN.some((pattern) => pattern.test(line))
+  const command = human ? "human" : short ? (COMMANDS.find(([, pattern]) => pattern.test(line))?.[0] ?? null) : null
+  const chosen = short && command === null ? (MODULES.find(([, pattern]) => pattern.test(line))?.[0] ?? null) : null
   const wantsFile = short && command === null ? (NO.test(` ${line}`) ? false : YES.test(` ${line}`) ? true : null) : null
-  return { command, module: choice, wantsFile, hasNumbers: /\d/.test(text) }
+  return { command, module: chosen, onlyChoice: chosen !== null && lines.length === start + 1, wantsFile, hasNumbers: /\d/.test(text) }
 }

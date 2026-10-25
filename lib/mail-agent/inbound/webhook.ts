@@ -38,7 +38,8 @@ const reply = (status: number, result: string) => {
  * the route does not exist (404). Otherwise: a bounded read, the Svix signature on the raw body,
  * then only inbound `inbox.email.received` events go on. The agent's inbox starts the agent's
  * run, unless the agent is switched off; any other inbox starts the human@ relay, which checks
- * the inbox and passes human@'s mail on to a person without a model. Each Svix message starts one
+ * the inbox and passes human@'s mail on to a person without a model, unless the relay is switched
+ * off (`EMAIL_HUMAN_RELAY_ENABLED`; the mail then stays in its inbox). Each Svix message starts one
  * run; when the start fails, the marker goes again so Resend's retry can start it. Responses
  * carry no detail.
  */
@@ -60,6 +61,7 @@ export async function handleWebhook(request: Request, deps: WebhookDeps): Promis
   if (event.direction === "outbound") return reply(200, "outbound")
   const agent = event.ref.inboxId === config.resend.agentInboxId
   if (agent && env.status === "disabled") return reply(200, "disabled")
+  if (!agent && !config.humanRelay) return reply(200, "relay-off")
 
   const marker = keys.event(verified.svixId)
   if (!(await store.set(marker, "1", { ttlMs: TTL.event, ifAbsent: true }))) return reply(200, "duplicate")

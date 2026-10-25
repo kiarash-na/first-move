@@ -5,6 +5,7 @@
  * prints names and codes, never a value:
  *
  * - every variable of `.env.example` is set, and the secrets are 32 bytes of base64;
+ * - whether the agent and the human@ relay are switched on (each warns while off);
  * - Upstash answers;
  * - the agent@ and human@ inboxes exist, and Resend's Inbox agent has no actions on either (D-53);
  * - one enabled webhook for `inbox.email.received` points at `SITE_URL/api/mail/inbound`;
@@ -21,9 +22,10 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..")
 export const WEBHOOK_EVENT = "inbox.email.received"
 export const WEBHOOK_PATH = "/api/mail/inbound"
 
-/** Names with a default in `lib/mail-agent/env.ts`, and the switch itself: they may stay empty. */
+/** Names with a default in `lib/mail-agent/env.ts`, and the switches: they may stay empty. */
 export const OPTIONAL = new Set([
   "EMAIL_AGENT_ENABLED",
+  "EMAIL_HUMAN_RELAY_ENABLED",
   "EMAIL_AGENT_DAILY_BUDGET_USD",
   "EMAIL_AGENT_SENDER_PER_HOUR",
   "EMAIL_AGENT_SENDER_PER_DAY",
@@ -55,7 +57,9 @@ export function checkEnv(env, names) {
   return result("ok", "env", `${names.length} names checked`)
 }
 
-const enabled = (env) => ["true", "1"].includes(read(env, "EMAIL_AGENT_ENABLED").toLowerCase())
+const switchedOn = (env, name) => ["true", "1"].includes(read(env, name).toLowerCase())
+const enabled = (env) => switchedOn(env, "EMAIL_AGENT_ENABLED")
+const relayOn = (env) => switchedOn(env, "EMAIL_HUMAN_RELAY_ENABLED")
 const domainOf = (address) => address.slice(address.lastIndexOf("@") + 1).toLowerCase()
 const code = (error) => String(error?.name ?? "unknown_error").replace(/[^a-z_]/gi, "")
 
@@ -123,7 +127,11 @@ async function checkTracking(env, resend) {
 /** Runs every check; API checks run only when the variables they need are set. */
 export async function runDoctor({ env, example, resend, fetchImpl }) {
   const names = envNames(example)
-  const lines = [checkEnv(env, names), result(enabled(env) ? "ok" : "warn", "switch", enabled(env) ? "EMAIL_AGENT_ENABLED is on" : "EMAIL_AGENT_ENABLED is off")]
+  const lines = [
+    checkEnv(env, names),
+    result(enabled(env) ? "ok" : "warn", "switch", enabled(env) ? "EMAIL_AGENT_ENABLED is on" : "EMAIL_AGENT_ENABLED is off"),
+    result(relayOn(env) ? "ok" : "warn", "relay", relayOn(env) ? "EMAIL_HUMAN_RELAY_ENABLED is on" : "EMAIL_HUMAN_RELAY_ENABLED is off: human@ mail stays in its inbox"),
+  ]
   const has = (...wanted) => wanted.every((name) => read(env, name))
 
   if (has("KV_REST_API_URL", "KV_REST_API_TOKEN")) lines.push(await checkStore(env, fetchImpl))

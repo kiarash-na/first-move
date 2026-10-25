@@ -23,6 +23,7 @@ import { answerQuestion } from "../text/answer"
 import { extractValues } from "../text/extract"
 import { textCost } from "../text/model"
 import { cleanModelText } from "../text/model-text"
+import { screenProposal } from "../text/safe-values"
 import { deliver, deliverOnce, toStored } from "./deliver"
 import type { Sender } from "./sender"
 import { SenderBusyError, type InboundInput, type MailDeps } from "./types"
@@ -48,7 +49,8 @@ type Extracted = { ok: true; state: ConversationState; extraction: TurnOutcome["
 
 /**
  * Reads values from the email and its documents (PLAN-AGENT-07 step 8) and applies the valid
- * ones to the draft with provenance. A refused or unreadable answer counts as nothing found; a
+ * ones that pass the model-text rule to the draft with provenance; the reply names the ones
+ * withheld. A refused or unreadable answer counts as nothing found; a
  * model that does not answer at all makes the caller send the "try later" notice.
  */
 async function extract(deps: MailDeps, ctx: ConverseInput, state: ConversationState, files: ReadFiles, t: MailTexts, canary: string, imported: boolean): Promise<Extracted> {
@@ -72,10 +74,14 @@ async function extract(deps: MailDeps, ctx: ConverseInput, state: ConversationSt
   })
   await addSpend(deps.store, textCost(outcome.usage), now)
   if (!outcome.ok && outcome.reason === "failed") return { ok: false }
-  const proposal = outcome.ok ? outcome.proposal : NOTHING_FOUND
-  const applied = applyProposal(state.project, proposal, { model: deps.textModel.modelId, now: new Date(now) })
   const policy = { siteUrl: deps.config.siteUrl, canary, instructions: extractionInstructions(catalogue), maxChars: NOTE_CHARS }
-  const notes = proposal.notes.flatMap((note) => cleanModelText(`${note.topic}: ${note.reason}`, policy) ?? [])
+  // Values are model text too: what may not reach a reply never reaches the draft either.
+  const { proposal, withheld } = screenProposal(outcome.ok ? outcome.proposal : NOTHING_FOUND, policy)
+  const applied = applyProposal(state.project, proposal, { model: deps.textModel.modelId, now: new Date(now) })
+  const notes = [
+    ...withheld.map((label) => `${label}: ${t.mail.conversation.progress.withheld}`),
+    ...proposal.notes.flatMap((note) => cleanModelText(`${note.topic}: ${note.reason}`, policy) ?? []),
+  ]
   logEvent("extract", { sid: sidPrefix(sender.sid), ok: outcome.ok, reason: outcome.ok ? null : outcome.reason, values: applied.values.length, unclear: proposal.unclear.length + proposal.invalid.length })
   return { ok: true, state: { ...state, project: applied.project }, extraction: { applied, proposal, notes } }
 }

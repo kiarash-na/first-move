@@ -63,6 +63,8 @@ describe("mail-agent doctor", () => {
       expect(lines[check]?.status, check).toBe("ok")
     }
     expect(lines.switch).toMatchObject({ status: "warn", detail: "EMAIL_AGENT_ENABLED is off" })
+    expect(lines.relay).toMatchObject({ status: "warn", detail: "EMAIL_HUMAN_RELAY_ENABLED is off: human@ mail stays in its inbox" })
+    expect((await doctor({ EMAIL_HUMAN_RELAY_ENABLED: "true" })).relay).toMatchObject({ status: "ok", detail: "EMAIL_HUMAN_RELAY_ENABLED is on" })
     expect(pong).toHaveBeenCalledWith("https://store.example.org/ping", { headers: { authorization: "Bearer test-token" } })
   })
 

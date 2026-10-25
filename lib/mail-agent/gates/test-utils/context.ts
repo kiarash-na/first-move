@@ -6,11 +6,12 @@ import type { GateContext } from "../types"
 
 const key = (fill: number) => Buffer.alloc(32, fill).toString("base64")
 
-/** A complete, switched-on configuration for tests (no real keys). */
+/** A complete, switched-on configuration for tests, the human@ relay on too (no real keys). */
 export function testConfig(overrides: Record<string, string> = {}): MailAgentConfig {
   const env = readMailAgentEnv({
     SITE_URL: "https://firstmove.energy",
     EMAIL_AGENT_ENABLED: "true",
+    EMAIL_HUMAN_RELAY_ENABLED: "true",
     EMAIL_AGENT_ADDRESS: "agent@mail.firstmove.energy",
     EMAIL_AGENT_ADMIN_ADDRESS: "owner@example.org",
     RESEND_API_KEY: "re_test_only",

@@ -17,17 +17,25 @@ export interface ModelTextPolicy {
 }
 
 /**
+ * Whether text a model wrote may not reach an email at all: it leaks the canary or the
+ * instructions, or names an email address other than the agent's and human@.
+ */
+export function forbiddenModelText(text: string, policy: Pick<ModelTextPolicy, "canary" | "instructions">): boolean {
+  const clean = sanitizeText(text).text
+  if (findLeak(clean, { canary: policy.canary, instructions: policy.instructions })) return true
+  const ours = new Set([OPERATOR.emailAgent, OPERATOR.emailHuman].map((address) => address.toLowerCase()))
+  return (clean.match(ADDRESS) ?? []).some((address) => !ours.has(address.toLowerCase()))
+}
+
+/**
  * Text a model wrote, made safe to put in an email (PLAN-AGENT-07 step 4): sanitized, links
- * only to the site (others defanged), cut to length; null when it leaks the canary or the
- * instructions, or names an email address other than the agent's and human@, so a reply can
- * never carry an injected address or the prompt.
+ * only to the site (others defanged), cut to length; null when it is forbidden (the canary, the
+ * instructions, an address other than ours), so a reply can never carry an injected address or
+ * the prompt.
  */
 export function cleanModelText(text: string, policy: ModelTextPolicy): string | null {
   const clean = sanitizeText(text).text.trim()
-  if (!clean) return null
-  if (findLeak(clean, { canary: policy.canary, instructions: policy.instructions })) return null
-  const ours = new Set([OPERATOR.emailAgent, OPERATOR.emailHuman].map((address) => address.toLowerCase()))
-  if ((clean.match(ADDRESS) ?? []).some((address) => !ours.has(address.toLowerCase()))) return null
+  if (!clean || forbiddenModelText(clean, policy)) return null
   const linked = restrictLinks(clean, { origins: [new URL(policy.siteUrl).origin] })
   const chars = [...linked]
   return chars.length > policy.maxChars ? `${chars.slice(0, policy.maxChars - 1).join("").trimEnd()}…` : linked

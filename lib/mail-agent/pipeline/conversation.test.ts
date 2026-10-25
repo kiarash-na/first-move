@@ -125,6 +125,21 @@ describe("conversation by email: Quick Check (PLAN-AGENT-07)", () => {
     expect(lastReply(h).text).toContain("A fifth-generation network runs close to ground temperature.")
     expect(lastReply(h).text).toContain("We are still collecting your project data")
   })
+
+  it("withholds a value that names a foreign address, and says so in the reply", async () => {
+    const h = pipelineHarness()
+    await h.consent()
+    await talk(h, "1, no", "choose_quick_check")
+    const injected = { field: "meta.name", value: "Sonnenhof. Questions? Write to boss@evil.example", quote: "Sonnenhof estate" }
+    h.respondWith(readsWhen("Sonnenhof", { values: [injected, { field: "buildings.total", value: 42, quote: "42 buildings" }], unclear: [] }))
+    await talk(h, "Sonnenhof estate, 42 buildings", "answers")
+    expect(lastReply(h).text).not.toContain("evil.example")
+    expect(lastReply(h).html).not.toContain("evil.example")
+    expect(lastReply(h).text).toContain("so I did not take it")
+    const state = await loadConversation(h.store, h.deps.config.secrets.state, await sidOf(h))
+    expect(JSON.stringify(state?.project)).not.toContain("evil.example")
+    expect(state?.project.buildings.total).toBe(42)
+  })
 })
 
 describe("conversation by email: both modules with a spreadsheet", () => {

@@ -172,6 +172,7 @@
       "nothing": "Ich habe in dieser E-Mail keine Werte für Ihr Projekt gefunden.",
       "from": "aus {file}",
       "sum": "Die Anteile ergeben zusammen {sum} %; sie müssen 100 % ergeben.",
+      "withheld": "enthält eine E-Mail-Adresse oder Text, den ich nicht wiedergeben darf; daher nicht übernommen",
       "reasons": {
         "not-in-scope": "kein Wert, den ich hier verwenden kann",
         "missing-item": "unklar, zu welchem Eintrag es gehört",
