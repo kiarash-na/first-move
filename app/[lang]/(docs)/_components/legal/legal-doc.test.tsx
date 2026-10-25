@@ -29,18 +29,25 @@ describe("LegalDoc", () => {
     expect(page.props.after).toBeUndefined()
   })
 
-  it("shows the 'not available yet' status on the AI page while the features are off", async () => {
+  it("shows that only the AI Plan Score is available while the other AI features are off", async () => {
     const page = await render("ai")
-    expect(page.props.status).toBe(enAi.status.planned)
+    expect(page.props.status).toBe(enAi.status.score)
     expect(page.props.after?.["how-it-runs"].type).toBe(AiProviders)
   })
 
-  it("shows the 'live' status once the switch is on", async () => {
+  it.each([
+    { features: true, score: true, expected: enAi.status.live },
+    { features: false, score: false, expected: enAi.status.planned },
+  ])("shows the matching status for features $features and score $score", async ({ features, score, expected }) => {
     vi.resetModules()
-    vi.doMock("@/lib/legal/ai", () => ({ AI_FEATURES_LIVE: true, AI_PROVIDERS: [] }))
-    const { LegalDoc: Live } = await import("./legal-doc")
-    const page = (await Live({ slug: "ai", lang: "en" })) as PageElement
-    expect(page.props.status).toBe(enAi.status.live)
+    vi.doMock("@/lib/legal/ai", async (importOriginal) => ({
+      ...(await importOriginal<typeof import("@/lib/legal/ai")>()),
+      AI_FEATURES_LIVE: features,
+      AI_PLAN_SCORE_LIVE: score,
+    }))
+    const { LegalDoc: Switched } = await import("./legal-doc")
+    const page = (await Switched({ slug: "ai", lang: "en" })) as PageElement
+    expect(page.props.status).toBe(expected)
     vi.doUnmock("@/lib/legal/ai")
   })
 

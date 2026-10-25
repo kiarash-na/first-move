@@ -6,6 +6,21 @@
  */
 export const AI_FEATURES_LIVE = false
 
+/**
+ * The AI Plan Score (PLAN-AI-SCORE-00) is available: an optional AI opinion on the Business Plan,
+ * run with the user's own Vercel AI Gateway key. The AI page, the Privacy Policy and the Cookie
+ * Policy describe it as available while this is `true`.
+ */
+export const AI_PLAN_SCORE_LIVE = true
+
+/** Which status line the AI page shows: nothing live, only the AI Plan Score, or all AI features. */
+export type AiStatus = "planned" | "score" | "live"
+
+export function aiStatus(features: boolean, score: boolean): AiStatus {
+  if (features) return "live"
+  return score ? "score" : "planned"
+}
+
 /** An AI provider the user can connect with their own API key (bring-your-own-key, D-42). */
 export interface AiProvider {
   name: string

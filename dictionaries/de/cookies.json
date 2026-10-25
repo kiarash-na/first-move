@@ -5,8 +5,8 @@
   },
   "title": "Cookie-Richtlinie",
   "intro": "Diese Richtlinie erklärt, welches Cookie und welche weiteren Browserspeicher First Move verwendet, wofür sie dienen und wie Sie sie löschen oder blockieren können.",
-  "updated": "2026-10-24",
-  "version": "1.2",
+  "updated": "2026-10-25",
+  "version": "1.3",
   "sections": [
     {
       "id": "summary",
@@ -74,7 +74,7 @@
         "First Move enthält keine Analysewerkzeuge, keine Werbung, keine Tracking-Pixel und keine Social-Media-Plugins.",
         "Es lädt keine Skripte, Schriften, Karten oder eingebetteten Inhalte von Dritten. Unsere Schriften werden von unserer eigenen Website ausgeliefert.",
         "Wir nutzen keinen der Einträge, um Sie zu identifizieren, ein Profil zu erstellen oder Sie über Websites hinweg zu verfolgen.",
-        "Die Website sendet den Header `Referrer-Policy: no-referrer`, damit Ihr Browser anderen Websites nicht mitteilt, von welcher Seite von First Move Sie kommen. Ihre Content Security Policy beschränkt die Verbindungen der App auf die eigene Herkunft (Origin) und auf den Seiten des Dashboards auf die beiden KI-Anbieter des Assistenten.",
+        "Die Website sendet den Header `Referrer-Policy: no-referrer`, damit Ihr Browser anderen Websites nicht mitteilt, von welcher Seite von First Move Sie kommen. Ihre Content Security Policy beschränkt die Verbindungen der App auf die eigene Herkunft (Origin) und auf den Seiten des Dashboards auf die beiden KI-Anbieter des Assistenten und auf das Vercel AI Gateway des KI-Plan-Scores.",
         "Für E-Mails gilt Folgendes gesondert: Die E-Mails, die wir senden, enthalten ein minimales Tracking durch unseren E-Mail-Anbieter, beschrieben unter [E-Mail-Tracking](/privacy#email-tracking)."
       ]
     },
@@ -85,7 +85,7 @@
         "First Move setzt keine Cookies von Drittanbietern und gibt keinem Dritten Zugriff auf die hier aufgeführten Speicher.",
         "Unser Hosting-Anbieter, {{hosting.name}}, liefert die Seiten aus und verarbeitet dafür die üblichen Anfragedaten. Was er verarbeitet und warum, beschreibt die [Datenschutzerklärung](/privacy).",
         "Links zu anderen Websites, etwa zu GitHub in der Fußzeile, führen zu Diensten mit eigenen Cookie- und Datenschutzrichtlinien. Diese gelten, sobald Sie dem Link folgen.",
-        "Wenn die optionalen KI-Funktionen verfügbar sind und Sie sie einrichten, sendet Ihr Browser die von Ihnen ausgelösten Anfragen direkt an den KI-Anbieter Ihrer Wahl, und es gelten dessen Bedingungen und Richtlinien. Die Einträge, die der Assistent in Ihrem Browser speichert, etwa Ihren verschlüsselten API-Schlüssel, führt die [Tabelle](#what-we-use) auf. Mehr dazu unter [KI-Transparenz](/ai)."
+        "Wenn die optionalen KI-Funktionen verfügbar sind und Sie sie einrichten, sendet Ihr Browser die von Ihnen ausgelösten Anfragen direkt an den KI-Anbieter Ihrer Wahl, und es gelten dessen Bedingungen und Richtlinien. Die Einträge, die der Assistent in Ihrem Browser speichert, etwa Ihren verschlüsselten API-Schlüssel, führt die [Tabelle](#what-we-use) auf. Der optionale KI-Plan-Score setzt kein Cookie und keinen eigenen Speichereintrag: Sein Schlüssel bleibt nur im Arbeitsspeicher des geöffneten Tabs, und der Score wird im Projekt gespeichert. Mehr dazu unter [KI-Transparenz](/ai)."
       ]
     },
     {
