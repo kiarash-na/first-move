@@ -1,5 +1,6 @@
 // @vitest-environment node
 import { describe, expect, it } from "vitest"
+import { CookieNotice } from "@/components/cookie-notice/cookie-notice"
 import common from "@/dictionaries/de/common.json"
 import PresentationLayout, { generateMetadata, generateStaticParams } from "./layout"
 
@@ -23,5 +24,12 @@ describe("presentation layout", () => {
     expect(root.props).toMatchObject({ lang: "de", "data-theme": "dark" })
     const [head] = root.props.children
     expect(head.type).toBe("head")
+  })
+
+  it("lifts the cookie notice above the deck's bottom bar", async () => {
+    const root = await PresentationLayout({ ...props("en"), children: null })
+    const [, body] = root.props.children
+    const notice = [body.props.children].flat().find((child: { type?: unknown }) => child?.type === CookieNotice)
+    expect(notice.props.className).toMatch(/^bottom-\[calc\(.+_\+_\d+px\)\]$/)
   })
 })

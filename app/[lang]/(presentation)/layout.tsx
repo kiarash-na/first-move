@@ -26,6 +26,9 @@ export function generateStaticParams() {
   return localeParams()
 }
 
+/** The cookie notice sits above the deck's bottom bar, so it never covers the slide select or the arrows. */
+const NOTICE_ABOVE_DECK_BAR = "bottom-[calc(max(14px,env(safe-area-inset-bottom))_+_60px)]"
+
 /**
  * Root layout of the presentation (PLAN-PRESENTATION-00): always dark like the landing, no site
  * header; the deck brings its own small bar. The boot script turns the stacked slides into a deck
@@ -42,7 +45,7 @@ export default async function PresentationLayout({ children, params }: LayoutPro
       </head>
       <body>
         {children}
-        <CookieNotice lang={lang} copy={legal.cookieNotice} />
+        <CookieNotice lang={lang} copy={legal.cookieNotice} className={NOTICE_ABOVE_DECK_BAR} />
       </body>
     </html>
   )
