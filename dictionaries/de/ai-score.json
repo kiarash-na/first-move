@@ -71,7 +71,7 @@
     "title": "Grobe Kosten eines Durchlaufs",
     "value": "Etwa {amount}",
     "below": "Weniger als {amount}",
-    "decisionOnly": "Entscheidungen etwa {amount}. Der Preis dieses Textmodells ist hier nicht bekannt.",
+    "decisionOnly": "{amount} für die Entscheidungen. Der Preis dieses Textmodells ist hier nicht bekannt.",
     "note": "Nur eine Größenordnung. Das Gateway rechnet die tatsächlich verbrauchten Tokens ab.",
     "tokens": "{count} Tokens",
     "how": {

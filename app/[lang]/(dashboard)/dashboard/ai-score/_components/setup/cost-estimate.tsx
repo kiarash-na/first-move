@@ -27,7 +27,7 @@ export function CostEstimate({ project, model, modelId }: { project: Project; mo
     const { below, value: amount } = roughAmount(value)
     return interpolate(below ? copy.below : copy.value, { amount: usd(amount) })
   }
-  const headline = estimate.totalUsd === null ? interpolate(copy.decisionOnly, { amount: usd(roughAmount(estimate.decisionUsd).value) }) : rough(estimate.totalUsd)
+  const headline = estimate.totalUsd === null ? interpolate(copy.decisionOnly, { amount: rough(estimate.decisionUsd) }) : rough(estimate.totalUsd)
 
   return (
     <div data-slot="cost-estimate" className="flex flex-col gap-2">
