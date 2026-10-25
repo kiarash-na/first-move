@@ -9,7 +9,9 @@ const props = (lang: string) => ({ params: Promise.resolve({ lang }) }) as PageP
 
 describe("terms page", () => {
   it("titles the page from its document, per language", async () => {
-    expect(await generateMetadata(props("en"))).toEqual({ title: en.meta.title, description: en.meta.description })
+    const meta = await generateMetadata(props("en"))
+    expect(meta).toMatchObject({ title: en.meta.title, description: en.meta.description })
+    expect(meta.alternates).toMatchObject({ canonical: "https://www.firstmove.energy/en/terms" })
     expect((await generateMetadata(props("de"))).title).toBeTruthy()
   })
 

@@ -7,8 +7,9 @@ import { describe, expect, it } from "vitest"
  * D-14: imported (and all user) text is never rendered as HTML. React escapes text, so the only
  * risk is raw HTML injection. These files inject build-time strings that never contain user data:
  * the theme, sidebar and presentation pre-paint scripts (D-16, D-59, PLAN-PRESENTATION-00), the
- * chart colour CSS and the "How we calculate" MathML (generated from the docs at
- * `pnpm gen:reference` time, D-33). Add a file here only for such strings.
+ * chart colour CSS, the "How we calculate" MathML (generated from the docs at
+ * `pnpm gen:reference` time, D-33) and the landing's JSON-LD (dictionary strings, `<` escaped).
+ * Add a file here only for such strings.
  */
 const ALLOWED = new Set([
   "components/theme/theme-script.tsx",
@@ -16,6 +17,7 @@ const ALLOWED = new Set([
   "app/[lang]/(presentation)/_components/deck-boot-script.tsx",
   "components/ui/chart.tsx",
   "app/[lang]/(dashboard)/dashboard/_components/how-we-calculate/formula-math.tsx",
+  "app/[lang]/(website)/_components/json-ld.tsx",
 ])
 const ROOTS = ["app", "components", "lib"]
 const RAW_HTML = /dangerouslySetInnerHTML|\.innerHTML\s*=|\.outerHTML\s*=|insertAdjacentHTML|document\.write\(/
