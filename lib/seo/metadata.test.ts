@@ -45,6 +45,7 @@ describe("publicMetadata", () => {
       url: `${BASE}/en/docs/quick-check`,
       locale: "en_US",
       alternateLocale: "de_DE",
+      images: [{ url: "/en/opengraph-image", width: 1200, height: 630, alt: "First Move" }],
     })
     expect(meta.twitter).toMatchObject({ card: "summary_large_image" })
   })

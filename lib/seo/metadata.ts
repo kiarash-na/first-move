@@ -22,10 +22,12 @@ export function localizedAlternates(lang: Locale, path: string): Metadata["alter
 }
 
 /**
- * The metadata every public page shares: metadataBase so the generated OG image URLs resolve,
- * the canonical and hreflang links, and the Open Graph and Twitter card shells. og:title and
+ * The metadata every public page shares: metadataBase so relative image URLs resolve, the
+ * canonical and hreflang links, and the Open Graph and Twitter card shells. og:title and
  * og:description stay unset on purpose — Next inherits them from the page's title (template
- * applied) and description. The caller adds the page's title and description.
+ * applied) and description, and the Twitter card inherits its image from Open Graph.
+ * The image is referenced explicitly: the opengraph-image file convention does not attach to
+ * pages across the route groups of the multiple root layouts, so its URL is named here.
  */
 export function publicMetadata(lang: Locale, path: string, siteName: string): Metadata {
   return {
@@ -37,6 +39,7 @@ export function publicMetadata(lang: Locale, path: string, siteName: string): Me
       url: localizedUrl(lang, path),
       locale: lang === "de" ? "de_DE" : "en_US",
       alternateLocale: lang === "de" ? "en_US" : "de_DE",
+      images: [{ url: `/${lang}/opengraph-image`, width: 1200, height: 630, alt: siteName }],
     },
     twitter: { card: "summary_large_image" },
   }

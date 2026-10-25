@@ -73,7 +73,14 @@ describe("legalMetadata", () => {
         canonical: `${BASE}/en/terms`,
         languages: { en: `${BASE}/en/terms`, de: `${BASE}/de/terms`, "x-default": `${BASE}/de/terms` },
       },
-      openGraph: { type: "website", siteName: "First Move", url: `${BASE}/en/terms`, locale: "en_US", alternateLocale: "de_DE" },
+      openGraph: {
+        type: "website",
+        siteName: "First Move",
+        url: `${BASE}/en/terms`,
+        locale: "en_US",
+        alternateLocale: "de_DE",
+        images: [{ url: "/en/opengraph-image", width: 1200, height: 630, alt: "First Move" }],
+      },
       twitter: { card: "summary_large_image" },
     })
     expect(await legalMetadata("privacy", "de")).toMatchObject({

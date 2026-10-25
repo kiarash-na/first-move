@@ -46,7 +46,14 @@ describe("docs page (PLAN-AGENT-04)", () => {
         canonical: `${BASE}/en/docs`,
         languages: { en: `${BASE}/en/docs`, de: `${BASE}/de/docs`, "x-default": `${BASE}/de/docs` },
       },
-      openGraph: { type: "website", siteName: "First Move", url: `${BASE}/en/docs`, locale: "en_US", alternateLocale: "de_DE" },
+      openGraph: {
+        type: "website",
+        siteName: "First Move",
+        url: `${BASE}/en/docs`,
+        locale: "en_US",
+        alternateLocale: "de_DE",
+        images: [{ url: "/en/opengraph-image", width: 1200, height: 630, alt: "First Move" }],
+      },
       twitter: { card: "summary_large_image" },
     })
     expect(await generateMetadata(props("de", ["data-and-privacy"]))).toMatchObject({
