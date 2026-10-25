@@ -22,7 +22,7 @@ function setup(options: Parameters<typeof fakeClient>[0] = {}, ready = true) {
   const fake = fakeClient(options)
   const onRemove = vi.fn()
   const hook = renderHook(() =>
-    useTextActions({ store: store.store, createClient: fake.create, project, score, textModelId: "anthropic/claude-haiku-5.5", lang: "en", ready, onRemove }),
+    useTextActions({ store: store.store, createClient: fake.create, project, score, textModelId: "example/text-model", lang: "en", ready, onRemove }),
   )
   return { store, fake, hook, onRemove }
 }
@@ -34,7 +34,7 @@ describe("useTextActions (ResultActions)", () => {
     expect(hook.result.current.canUseAi).toBe(true)
     await act(async () => hook.result.current.rewriteReport())
     await vi.waitFor(() => expect(store.setAiScore).toHaveBeenCalled())
-    expect(fake.textModel).toHaveBeenCalledWith("anthropic/claude-haiku-5.5")
+    expect(fake.textModel).toHaveBeenCalledWith("example/text-model")
     expect(store.setAiScore.mock.calls[0][1]?.report?.headline).toBe(REPORT.headline)
     expect(hook.result.current.busy).toBeNull()
   })

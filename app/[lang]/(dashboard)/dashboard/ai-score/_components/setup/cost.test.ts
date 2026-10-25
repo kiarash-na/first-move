@@ -8,11 +8,11 @@ import { estimateCost, JEV_INPUT_PRICE, REPORT_OUTPUT_TOKENS, roughAmount } from
 
 describe("cost estimate", () => {
   it("prices four Jev turns at Jev's input price and the report at the model's prices", () => {
-    const sonnet = TEXT_MODELS[0]
-    const estimate = estimateCost(example(), sonnet)
+    const model = TEXT_MODELS[0]
+    const estimate = estimateCost(example(), model)
     expect(estimate.decisionUsd).toBeCloseTo((estimate.decisionTokens * JEV_INPUT_PRICE) / 1e6, 12)
     expect(estimate.textOutputTokens).toBe(REPORT_OUTPUT_TOKENS)
-    expect(estimate.textUsd).toBeCloseTo((estimate.textInputTokens * 2 + REPORT_OUTPUT_TOKENS * 10) / 1e6, 12)
+    expect(estimate.textUsd).toBeCloseTo((estimate.textInputTokens * model.price.input + REPORT_OUTPUT_TOKENS * model.price.output) / 1e6, 12)
     expect(estimate.totalUsd).toBeCloseTo(estimate.decisionUsd + estimate.textUsd!, 12)
   })
 

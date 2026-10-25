@@ -1,0 +1,1013 @@
+{
+  "format": "first-move/project",
+  "formatVersion": 1,
+  "exportedAt": "2026-10-24T12:00:00.000Z",
+  "project": {
+    "meta": {
+      "id": "00000000-0000-4000-8000-000000000000",
+      "name": "AI Plan Score fixture",
+      "createdAt": "2026-10-24T00:00:00.000Z",
+      "updatedAt": "2026-10-24T00:00:00.000Z",
+      "schemaVersion": 3,
+      "methodologyVersion": "1.0.0",
+      "modules": {
+        "quickCheck": true,
+        "businessPlan": true
+      },
+      "exampleId": "housing-cooperatives"
+    },
+    "site": {
+      "name": "Mixed-ownership housing district (illustrative)",
+      "location": "Urban outskirts",
+      "siteType": "Urban outskirts",
+      "ownership": "Condominium ownership (WEG), rental housing (MRG), non-profit housing (WGG).",
+      "units": "3-20 buildings",
+      "currentSupply": [
+        "Natural gas",
+        "Biomass"
+      ],
+      "stakeholders": [
+        "Private homeowners",
+        "Housing cooperatives",
+        "Municipality",
+        "Educational facilities"
+      ],
+      "partners": [
+        "To be identified"
+      ]
+    },
+    "buildings": {
+      "total": 8,
+      "areaM2": 100000,
+      "shares": {
+        "residential": {
+          "until_1919": null,
+          "1919_1960": null,
+          "1961_1990": 37.5,
+          "1991_2010": 37.5,
+          "2011_today": 12.5
+        },
+        "category_a": {
+          "until_1919": null,
+          "1919_1960": null,
+          "1961_1990": null,
+          "1991_2010": 12.5,
+          "2011_today": null
+        },
+        "category_b": {
+          "until_1919": null,
+          "1919_1960": null,
+          "1961_1990": null,
+          "1991_2010": null,
+          "2011_today": null
+        },
+        "category_c": {
+          "until_1919": null,
+          "1919_1960": null,
+          "1961_1990": null,
+          "1991_2010": null,
+          "2011_today": null
+        },
+        "industry": {
+          "until_1919": null,
+          "1919_1960": null,
+          "1961_1990": null,
+          "1991_2010": null,
+          "2011_today": null
+        }
+      }
+    },
+    "sources": {
+      "potentials": {
+        "geothermal": null,
+        "waste_heat": null,
+        "ground_water": "high",
+        "surface_water": null,
+        "solar_thermal": null,
+        "ambient_air": "high"
+      },
+      "pv": true
+    },
+    "quickCheck": {
+      "manualDemand": {
+        "heatingKwhPerYear": null,
+        "coolingKwhPerYear": null
+      },
+      "networkLengthM": null,
+      "overrides": {
+        "heating": {
+          "geothermal": {
+            "low": null,
+            "medium": null,
+            "high": null,
+            "cop": null
+          },
+          "waste_heat": {
+            "low": null,
+            "medium": null,
+            "high": null,
+            "cop": null
+          },
+          "ground_water": {
+            "low": null,
+            "medium": null,
+            "high": null,
+            "cop": null
+          },
+          "surface_water": {
+            "low": null,
+            "medium": null,
+            "high": null,
+            "cop": null
+          },
+          "solar_thermal": {
+            "low": null,
+            "medium": null,
+            "high": null,
+            "cop": null
+          },
+          "ambient_air": {
+            "low": null,
+            "medium": null,
+            "high": null,
+            "cop": null
+          }
+        },
+        "cooling": {
+          "geothermal": {
+            "low": null,
+            "medium": null,
+            "high": null,
+            "cop": null
+          },
+          "waste_heat": {
+            "low": null,
+            "medium": null,
+            "high": null,
+            "cop": null
+          },
+          "ground_water": {
+            "low": null,
+            "medium": null,
+            "high": null,
+            "cop": null
+          },
+          "surface_water": {
+            "low": null,
+            "medium": null,
+            "high": null,
+            "cop": null
+          },
+          "solar_thermal": {
+            "low": null,
+            "medium": null,
+            "high": null,
+            "cop": null
+          },
+          "ambient_air": {
+            "low": null,
+            "medium": null,
+            "high": null,
+            "cop": null
+          }
+        },
+        "economic": {
+          "heating_base_price": null,
+          "heating_energy_price": null,
+          "cooling_base_price": null,
+          "cooling_energy_price": null,
+          "connection_fee": null,
+          "network_construction_costs": null,
+          "installation_costs_geothermal": null,
+          "installation_costs_waste_heat": null,
+          "installation_costs_ground_water": null,
+          "installation_costs_surface_water": null,
+          "installation_costs_solar_thermal": null,
+          "installation_costs_ambient_air": null,
+          "heat_pump": null,
+          "electricity_cost": null,
+          "pv_cost_reduction": null,
+          "depreciation_period": null,
+          "interest_rate": null
+        }
+      }
+    },
+    "businessPlan": {
+      "scenarioId": "BM-SCN-03",
+      "opportunity": {
+        "customerSegments": "Private homeowners (WEG), rental housing (MRG), non-profit housing cooperatives (WGG), the municipality and educational facilities.",
+        "needs": "Heating and hot water for all housing; a school with daytime demand (illustrative).",
+        "heatSources": "Ground water and ambient air, both with high potential (illustrative). Partners for further sources are still to be identified.",
+        "painPoint": "Heat comes from natural gas and biomass in separate systems. Owners decide separately, so no one coordinates a shared solution.",
+        "alternatives": "Each owner replaces its own boiler: biomass or gas stays, or individual heat pumps (illustrative).",
+        "advantage": "A shared network lets the mixed owners pool the demand and the investment, and use one ground-water source for all. The buildings are far apart, so building density is the challenge."
+      },
+      "canvas": {
+        "keyPartners": "Housing cooperatives, owner associations, the municipality, partners still to be identified.",
+        "keyActivities": "Agree on the shared model, build the network, operate the source and the heat pumps.",
+        "keyResources": "Ground-water rights, land for pipes, heat pumps, the cooperatives' building stock.",
+        "valueProposition": "A common heat supply that removes gas and biomass boilers, with the cooperatives' non-profit logic: cost-covering prices.",
+        "customerRelationships": "Heat supply contracts with each owner type; owner-association votes for the WEG buildings.",
+        "channels": "Cooperative boards, owner assemblies and the municipality.",
+        "customerSegments": "WEG, MRG and WGG housing; educational facilities.",
+        "costStructure": "Wells, heat pumps and a longer network, electricity, operation.",
+        "revenueStreams": "Base price per m², energy price, connection fees (Quick Check defaults).",
+        "operatorResponsibilities": "Open question: a cooperative-owned operating company, the municipal utility or a contractor (illustrative)."
+      },
+      "allocation": [
+        {
+          "id": "cooperatives",
+          "stakeholder": "Housing cooperatives",
+          "investment": "Connection of their buildings; possibly shares in the operator.",
+          "risk": "Tenants may not accept rent increases.",
+          "benefit": "Cost-covering heat and a plan to leave gas and biomass."
+        },
+        {
+          "id": "homeowners",
+          "stakeholder": "Private homeowners (WEG)",
+          "investment": "Connection fee after an owner-association vote.",
+          "risk": "Vote may fail or be delayed.",
+          "benefit": "No boiler replacement."
+        },
+        {
+          "id": "municipality",
+          "stakeholder": "Municipality",
+          "investment": "Possibly the school connection and support for permits.",
+          "risk": "Reputation if the project fails.",
+          "benefit": "Climate target and local control."
+        }
+      ],
+      "assumptions": {
+        "connectionRate": "WGG and MRG decide centrally; WEG buildings need a vote. Assume all but one connect (illustrative).",
+        "tariffs": "Quick Check defaults; a lower base price for non-profit housing is possible.",
+        "capex": "Wells, heat pumps and a network over a large area.",
+        "financing": "Cooperative equity, bank loans and municipal support (illustrative).",
+        "subsidies": "Not decisive in this scenario, but would help the longer pipe routes."
+      },
+      "criticalAssumptions": [
+        {
+          "id": "vote",
+          "statement": "The owner associations of the WEG buildings approve the connection.",
+          "validation": "Present the offer at the next owner assemblies."
+        },
+        {
+          "id": "source",
+          "statement": "One ground-water source can supply all buildings.",
+          "validation": "Hydrogeological study and a test well."
+        }
+      ],
+      "risks": [
+        {
+          "id": "ownership",
+          "title": "Mixed ownership slows decisions",
+          "description": "Three different ownership forms follow three different decision rules.",
+          "dealBreaker": true,
+          "validation": "Map decision rules and timelines per owner group."
+        },
+        {
+          "id": "spread",
+          "title": "Buildings too far apart",
+          "description": "Long pipes can raise the heat cost.",
+          "dealBreaker": false,
+          "validation": "Check the real route length and rerun the Quick Check."
+        }
+      ],
+      "refinements": {
+        "feedback": "Illustrative: experts recommend one lead cooperative and a phased connection.",
+        "changes": "Start with the cooperative buildings next to the school; add the WEG buildings later."
+      },
+      "scalability": {
+        "geographical": "Other districts with several cooperatives and one educational facility.",
+        "economic": "Works where gas and biomass prices are rising.",
+        "organisational": "A cooperative operating company could serve other districts."
+      },
+      "nextSteps": {
+        "data": "Heat consumption per building and the actual building positions.",
+        "stakeholders": "Cooperative boards, owner associations, school, municipality.",
+        "partnerships": "Identify further partners (named as 'to be identified' in the scenario).",
+        "pilots": "A first cluster of cooperative buildings.",
+        "decisions": "Decide on the operator form before approaching the owner associations."
+      }
+    },
+    "provenance": {
+      "ai": {}
+    },
+    "aiScore": {
+      "method": "1.0.0",
+      "at": "2026-10-24T12:00:00.000Z",
+      "decisionModel": "jev-test",
+      "score": 54.3,
+      "sd": 4.3,
+      "level": "promising",
+      "capped": true,
+      "dimensions": [
+        {
+          "id": "value",
+          "weight": 0.15,
+          "score": 0.5775,
+          "raw": 0.5775,
+          "sd": 0.0944,
+          "cap": null
+        },
+        {
+          "id": "technology",
+          "weight": 0.1,
+          "score": 0.5358,
+          "raw": 0.5358,
+          "sd": 0.1218,
+          "cap": null
+        },
+        {
+          "id": "economics",
+          "weight": 0.2,
+          "score": 0.5344,
+          "raw": 0.5344,
+          "sd": 0.1058,
+          "cap": null
+        },
+        {
+          "id": "governance",
+          "weight": 0.2,
+          "score": 0.5417,
+          "raw": 0.5417,
+          "sd": 0.1216,
+          "cap": null
+        },
+        {
+          "id": "participation",
+          "weight": 0.15,
+          "score": 0.5,
+          "raw": 0.6756,
+          "sd": 0.0956,
+          "cap": 2
+        },
+        {
+          "id": "evidence",
+          "weight": 0.1,
+          "score": 0.4917,
+          "raw": 0.4917,
+          "sd": 0.1315,
+          "cap": null
+        },
+        {
+          "id": "path",
+          "weight": 0.1,
+          "score": 0.634,
+          "raw": 0.634,
+          "sd": 0.0899,
+          "cap": null
+        }
+      ],
+      "judgements": [
+        {
+          "id": "site",
+          "fields": [
+            "site.name",
+            "site.location",
+            "site.siteType",
+            "site.units",
+            "site.currentSupply"
+          ],
+          "hash": "8cbdb033",
+          "source": "model",
+          "level": 2.1,
+          "probabilities": [
+            0.05,
+            0.15,
+            0.5,
+            0.25,
+            0.05
+          ]
+        },
+        {
+          "id": "ownership",
+          "fields": [
+            "site.ownership"
+          ],
+          "hash": "485c446d",
+          "source": "model",
+          "level": 3,
+          "probabilities": [
+            0,
+            0.05,
+            0.2,
+            0.45,
+            0.3
+          ]
+        },
+        {
+          "id": "stakeholders",
+          "fields": [
+            "site.stakeholders",
+            "site.partners"
+          ],
+          "hash": "66ae90a5",
+          "source": "model",
+          "level": 2.23,
+          "probabilities": [
+            0.02,
+            0.08,
+            0.6,
+            0.25,
+            0.05
+          ]
+        },
+        {
+          "id": "segments",
+          "fields": [
+            "businessPlan.opportunity.customerSegments",
+            "businessPlan.canvas.customerSegments"
+          ],
+          "hash": "479c3bcd",
+          "source": "model",
+          "level": 1.4,
+          "probabilities": [
+            0.1,
+            0.5,
+            0.3,
+            0.1,
+            0
+          ]
+        },
+        {
+          "id": "needs",
+          "fields": [
+            "businessPlan.opportunity.needs"
+          ],
+          "hash": "90e699cc",
+          "source": "model",
+          "level": 3.35,
+          "probabilities": [
+            0,
+            0,
+            0.15,
+            0.35,
+            0.5
+          ]
+        },
+        {
+          "id": "pain-point",
+          "fields": [
+            "businessPlan.opportunity.painPoint"
+          ],
+          "hash": "e4f61880",
+          "source": "model",
+          "level": 2.7,
+          "probabilities": [
+            0,
+            0.1,
+            0.3,
+            0.4,
+            0.2
+          ]
+        },
+        {
+          "id": "advantage",
+          "fields": [
+            "businessPlan.opportunity.alternatives",
+            "businessPlan.opportunity.advantage"
+          ],
+          "hash": "574027e1",
+          "source": "model",
+          "level": 1.1,
+          "probabilities": [
+            0.3,
+            0.4,
+            0.2,
+            0.1,
+            0
+          ]
+        },
+        {
+          "id": "heat-sources",
+          "fields": [
+            "businessPlan.opportunity.heatSources"
+          ],
+          "hash": "bf5bf671",
+          "source": "model",
+          "level": 2.1,
+          "probabilities": [
+            0.05,
+            0.15,
+            0.5,
+            0.25,
+            0.05
+          ]
+        },
+        {
+          "id": "value-proposition",
+          "fields": [
+            "businessPlan.canvas.valueProposition"
+          ],
+          "hash": "5bda048d",
+          "source": "model",
+          "level": 3,
+          "probabilities": [
+            0,
+            0.05,
+            0.2,
+            0.45,
+            0.3
+          ]
+        },
+        {
+          "id": "resources",
+          "fields": [
+            "businessPlan.canvas.keyResources"
+          ],
+          "hash": "5d3ba0f1",
+          "source": "model",
+          "level": 2.23,
+          "probabilities": [
+            0.02,
+            0.08,
+            0.6,
+            0.25,
+            0.05
+          ]
+        },
+        {
+          "id": "partners",
+          "fields": [
+            "businessPlan.canvas.keyPartners"
+          ],
+          "hash": "1c612d76",
+          "source": "model",
+          "level": 1.4,
+          "probabilities": [
+            0.1,
+            0.5,
+            0.3,
+            0.1,
+            0
+          ]
+        },
+        {
+          "id": "engagement",
+          "fields": [
+            "businessPlan.canvas.customerRelationships",
+            "businessPlan.canvas.channels"
+          ],
+          "hash": "7a7c189b",
+          "source": "model",
+          "level": 3.35,
+          "probabilities": [
+            0,
+            0,
+            0.15,
+            0.35,
+            0.5
+          ]
+        },
+        {
+          "id": "cost-basis",
+          "fields": [
+            "businessPlan.canvas.costStructure",
+            "businessPlan.assumptions.capex"
+          ],
+          "hash": "264828af",
+          "source": "model",
+          "level": 2.7,
+          "probabilities": [
+            0,
+            0.1,
+            0.3,
+            0.4,
+            0.2
+          ]
+        },
+        {
+          "id": "revenue",
+          "fields": [
+            "businessPlan.canvas.revenueStreams",
+            "businessPlan.assumptions.tariffs"
+          ],
+          "hash": "11dd69f2",
+          "source": "model",
+          "level": 1.1,
+          "probabilities": [
+            0.3,
+            0.4,
+            0.2,
+            0.1,
+            0
+          ]
+        },
+        {
+          "id": "operations",
+          "fields": [
+            "businessPlan.canvas.keyActivities",
+            "businessPlan.canvas.operatorResponsibilities"
+          ],
+          "hash": "fd385710",
+          "source": "model",
+          "level": 2.1,
+          "probabilities": [
+            0.05,
+            0.15,
+            0.5,
+            0.25,
+            0.05
+          ]
+        },
+        {
+          "id": "allocation",
+          "fields": [
+            "businessPlan.allocation"
+          ],
+          "hash": "76422b58",
+          "source": "model",
+          "level": 3,
+          "probabilities": [
+            0,
+            0.05,
+            0.2,
+            0.45,
+            0.3
+          ]
+        },
+        {
+          "id": "connection-rate",
+          "fields": [
+            "businessPlan.assumptions.connectionRate"
+          ],
+          "hash": "f3dbca86",
+          "source": "model",
+          "level": 2.23,
+          "probabilities": [
+            0.02,
+            0.08,
+            0.6,
+            0.25,
+            0.05
+          ]
+        },
+        {
+          "id": "financing",
+          "fields": [
+            "businessPlan.assumptions.financing"
+          ],
+          "hash": "92e0746d",
+          "source": "model",
+          "level": 1.4,
+          "probabilities": [
+            0.1,
+            0.5,
+            0.3,
+            0.1,
+            0
+          ]
+        },
+        {
+          "id": "subsidies",
+          "fields": [
+            "businessPlan.assumptions.subsidies"
+          ],
+          "hash": "3066d8c2",
+          "source": "model",
+          "level": 3.35,
+          "probabilities": [
+            0,
+            0,
+            0.15,
+            0.35,
+            0.5
+          ]
+        },
+        {
+          "id": "assumptions",
+          "fields": [
+            "businessPlan.criticalAssumptions"
+          ],
+          "hash": "b53dcff1",
+          "source": "model",
+          "level": 2.7,
+          "probabilities": [
+            0,
+            0.1,
+            0.3,
+            0.4,
+            0.2
+          ]
+        },
+        {
+          "id": "risks",
+          "fields": [
+            "businessPlan.risks"
+          ],
+          "hash": "785ebc42",
+          "source": "model",
+          "level": 1.1,
+          "probabilities": [
+            0.3,
+            0.4,
+            0.2,
+            0.1,
+            0
+          ]
+        },
+        {
+          "id": "learning",
+          "fields": [
+            "businessPlan.refinements.feedback",
+            "businessPlan.refinements.changes"
+          ],
+          "hash": "68a69193",
+          "source": "model",
+          "level": 2.1,
+          "probabilities": [
+            0.05,
+            0.15,
+            0.5,
+            0.25,
+            0.05
+          ]
+        },
+        {
+          "id": "scalability",
+          "fields": [
+            "businessPlan.scalability.geographical",
+            "businessPlan.scalability.economic",
+            "businessPlan.scalability.organisational"
+          ],
+          "hash": "3f276177",
+          "source": "model",
+          "level": 3,
+          "probabilities": [
+            0,
+            0.05,
+            0.2,
+            0.45,
+            0.3
+          ]
+        },
+        {
+          "id": "data",
+          "fields": [
+            "businessPlan.nextSteps.data"
+          ],
+          "hash": "3c2c8119",
+          "source": "model",
+          "level": 2.23,
+          "probabilities": [
+            0.02,
+            0.08,
+            0.6,
+            0.25,
+            0.05
+          ]
+        },
+        {
+          "id": "next-partners",
+          "fields": [
+            "businessPlan.nextSteps.stakeholders",
+            "businessPlan.nextSteps.partnerships"
+          ],
+          "hash": "09421826",
+          "source": "model",
+          "level": 1.4,
+          "probabilities": [
+            0.1,
+            0.5,
+            0.3,
+            0.1,
+            0
+          ]
+        },
+        {
+          "id": "pilot",
+          "fields": [
+            "businessPlan.nextSteps.pilots"
+          ],
+          "hash": "5218354d",
+          "source": "model",
+          "level": 3.35,
+          "probabilities": [
+            0,
+            0,
+            0.15,
+            0.35,
+            0.5
+          ]
+        },
+        {
+          "id": "decisions",
+          "fields": [
+            "businessPlan.nextSteps.decisions"
+          ],
+          "hash": "fde4806c",
+          "source": "model",
+          "level": 2.7,
+          "probabilities": [
+            0,
+            0.1,
+            0.3,
+            0.4,
+            0.2
+          ]
+        }
+      ],
+      "gates": [
+        {
+          "id": "anchor",
+          "source": "model",
+          "probability": 0.05,
+          "outcome": "fail",
+          "cap": 2
+        },
+        {
+          "id": "extra-value",
+          "source": "model",
+          "probability": 0.1,
+          "outcome": "fail",
+          "cap": null
+        },
+        {
+          "id": "heat-density",
+          "source": "model",
+          "probability": 0.9,
+          "outcome": "pass",
+          "cap": null
+        },
+        {
+          "id": "vienna-zone",
+          "source": "rule",
+          "probability": null,
+          "outcome": "skipped",
+          "cap": null
+        },
+        {
+          "id": "boundary",
+          "source": "model",
+          "probability": 0.9,
+          "outcome": "pass",
+          "cap": null
+        },
+        {
+          "id": "operator",
+          "source": "model",
+          "probability": 0.5,
+          "outcome": "unclear",
+          "cap": null
+        },
+        {
+          "id": "cost-key",
+          "source": "model",
+          "probability": 0.9,
+          "outcome": "pass",
+          "cap": null
+        },
+        {
+          "id": "price-vs-alternative",
+          "source": "model",
+          "probability": 0.9,
+          "outcome": "pass",
+          "cap": null
+        },
+        {
+          "id": "anchor-residential",
+          "source": "model",
+          "probability": 0.9,
+          "outcome": "pass",
+          "cap": null
+        },
+        {
+          "id": "water-permit",
+          "source": "model",
+          "probability": 0.9,
+          "outcome": "pass",
+          "cap": null
+        },
+        {
+          "id": "connection-threshold",
+          "source": "model",
+          "probability": 0.9,
+          "outcome": "pass",
+          "cap": null
+        },
+        {
+          "id": "lifetime-cover",
+          "source": "model",
+          "probability": 0.925,
+          "outcome": "pass",
+          "cap": null
+        },
+        {
+          "id": "subsidy-dependence",
+          "source": "model",
+          "probability": 0.95,
+          "outcome": "pass",
+          "cap": null
+        },
+        {
+          "id": "deal-breaker",
+          "source": "model",
+          "probability": 0.9,
+          "outcome": "pass",
+          "cap": null
+        },
+        {
+          "id": "owner-community",
+          "source": "model",
+          "probability": 0.9,
+          "outcome": "pass",
+          "cap": null
+        },
+        {
+          "id": "start-small",
+          "source": "model",
+          "probability": 0.6,
+          "outcome": "unclear",
+          "cap": null
+        },
+        {
+          "id": "decision-gate",
+          "source": "model",
+          "probability": 0.9,
+          "outcome": "pass",
+          "cap": null
+        }
+      ],
+      "branches": [
+        {
+          "id": "anchor-type",
+          "choice": "residential",
+          "probabilities": {
+            "public": 0.025,
+            "commercial": 0.025,
+            "residential": 0.9,
+            "industry": 0.025,
+            "none": 0.025
+          }
+        },
+        {
+          "id": "source-type",
+          "choice": "groundwater",
+          "probabilities": {
+            "groundwater": 0.9,
+            "borehole": 0.0167,
+            "surface-water": 0.0167,
+            "wastewater": 0.0167,
+            "waste-heat": 0.0167,
+            "air": 0.0167,
+            "unclear": 0.0167
+          }
+        },
+        {
+          "id": "ownership",
+          "choice": "community",
+          "probabilities": {
+            "utility": 0.02,
+            "municipal": 0.02,
+            "community": 0.9,
+            "contracting": 0.02,
+            "developer": 0.02,
+            "unclear": 0.02
+          }
+        }
+      ],
+      "quickCheck": {
+        "level": "further_analysis",
+        "heatDensityMwhPerM": 1.591,
+        "economicRatio": 1.447
+      },
+      "usage": {
+        "decisionTokens": 4000,
+        "textTokens": 1200
+      },
+      "report": {
+        "model": "example/text-model",
+        "lang": "en",
+        "headline": "A specific plan whose anchor customer and financing are still open.",
+        "summary": "The plan names its site, owners and sources in detail. It does not yet name an anchor customer, and the financing has no lender or term.",
+        "strengths": [
+          {
+            "text": "The site and its buildings are described with numbers.",
+            "keys": [
+              "site"
+            ]
+          }
+        ],
+        "gaps": [
+          {
+            "text": "No anchor customer is named.",
+            "keys": [
+              "anchor"
+            ]
+          },
+          {
+            "text": "Financing has no lender or term.",
+            "keys": [
+              "financing"
+            ]
+          }
+        ],
+        "actions": [
+          "Name one anchor building and ask its owner for a letter of intent.",
+          "Ask a bank for an indicative loan offer."
+        ]
+      },
+      "suggestions": null
+    }
+  }
+}

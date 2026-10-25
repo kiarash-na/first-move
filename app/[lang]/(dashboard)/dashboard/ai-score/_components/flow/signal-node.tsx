@@ -5,7 +5,6 @@ import { GaugeIcon } from "lucide-react"
 import { formatNumber, formatQuantity } from "@/lib/i18n/format"
 import { interpolate } from "@/lib/i18n/interpolate"
 import { useDictionary, useLocale } from "../../../_components/i18n-provider"
-import { VerdictBadge } from "../../../_components/verdict-badge"
 import { DetailList } from "./detail-list"
 import type { SignalView } from "./flow-model"
 import { FlowNodeButton } from "./flow-node-button"
@@ -35,7 +34,7 @@ export function SignalNode({ signal }: { signal: SignalView | null }) {
           <span className="flex min-w-0 flex-col gap-1">
             {signal ? (
               <>
-                <VerdictBadge level={signal.level} className="whitespace-normal" />
+                <span className="text-sm leading-snug text-foreground">{levels[signal.level].label}</span>
                 <span className="font-mono text-xs tracking-[0.04em] text-text-secondary">{interpolate(copy.node.heatDensity, { value: density! })}</span>
               </>
             ) : (

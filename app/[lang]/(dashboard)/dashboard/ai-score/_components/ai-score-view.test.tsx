@@ -4,6 +4,7 @@ import { afterEach, describe, expect, it, vi } from "vitest"
 
 import { mockText } from "@/lib/ai/plan-score/test-utils/mock-text"
 import { clearGatewayKey, readGatewayKey } from "@/lib/assistant/gateway/key"
+import { DEFAULT_TEXT_MODEL } from "@/lib/assistant/gateway/models"
 import { aiScoreSchema } from "@/lib/project"
 import { AiScoreView } from "./ai-score-view"
 import { setAcknowledged } from "./setup/acknowledgement"
@@ -56,7 +57,7 @@ describe("AiScoreView (D-71)", () => {
     await userEvent.click(startButton())
     expect(await screen.findByText(copy.run.done)).toBeInTheDocument()
     expect(fake.create).toHaveBeenCalledWith(KEY)
-    expect(fake.textModel).toHaveBeenCalledWith("anthropic/claude-sonnet-5.5")
+    expect(fake.textModel).toHaveBeenCalledWith(DEFAULT_TEXT_MODEL)
     const saved = aiScoreSchema.parse(store.current().aiScore)
     expect(saved.report?.headline).toBe(REPORT.headline)
     expect(document.querySelector("[data-slot='decision-flow']")).toHaveAttribute("data-mode", "saved")

@@ -23,7 +23,7 @@ function setup(options: Parameters<typeof fakeClient>[0] = {}) {
 describe("useAnalysis", () => {
   it("does nothing without a key", async () => {
     const { project, fake, hook } = setup()
-    await act(() => hook.result.current.start(project, "anthropic/claude-haiku-5.5", "en"))
+    await act(() => hook.result.current.start(project, "example/text-model", "en"))
     expect(fake.create).not.toHaveBeenCalled()
     expect(hook.result.current.run.phase).toBe("idle")
   })
@@ -31,9 +31,9 @@ describe("useAnalysis", () => {
   it("runs every turn, writes the report and saves a valid score", async () => {
     setGatewayKey(KEY)
     const { project, store, fake, hook } = setup()
-    await act(() => hook.result.current.start(project, "anthropic/claude-haiku-5.5", "de"))
+    await act(() => hook.result.current.start(project, "example/text-model", "de"))
     expect(fake.create).toHaveBeenCalledWith(KEY)
-    expect(fake.textModel).toHaveBeenCalledWith("anthropic/claude-haiku-5.5")
+    expect(fake.textModel).toHaveBeenCalledWith("example/text-model")
     const { run } = hook.result.current
     expect(run).toMatchObject({ phase: "done", error: null, reportError: null, saved: true })
     expect(run.progress?.turns.every((entry) => entry.state === "done")).toBe(true)

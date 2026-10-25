@@ -16,7 +16,7 @@ beforeAll(async () => {
 describe("FlowTable", () => {
   it("lists every node, the dimensions, the score and the report in reading order", () => {
     const graph = graphFromScore(score)
-    const report = { model: "anthropic/claude-haiku-5.5", lang: "en" as const, headline: "H.", summary: "S.", strengths: [], gaps: [], actions: [] }
+    const report = { model: "example/text-model", lang: "en" as const, headline: "H.", summary: "S.", strengths: [], gaps: [], actions: [] }
     renderAiScore(<FlowTable graph={graph} aggregate={aggregateOfScore(score)} report={report} />, { store: aiScoreStore(example()).store })
     const table = screen.getByRole("table", { name: "Decision flow as a table" })
     const rows = within(table).getAllByRole("row").slice(1)
@@ -30,7 +30,7 @@ describe("FlowTable", () => {
     expect(branch).toHaveTextContent("Groundwater → Permit route for water or ground")
     expect(rows.find((row) => row.dataset.row === "dimension-participation")).toHaveTextContent("Capped at level 2")
     expect(rows.at(-2)).toHaveTextContent(/AI Plan Score.*±/)
-    expect(rows.at(-1)).toHaveTextContent("Written by anthropic/claude-haiku-5.5")
+    expect(rows.at(-1)).toHaveTextContent("Written by example/text-model")
   })
 
   it("lists only what is decided during a run", () => {

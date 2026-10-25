@@ -7,14 +7,14 @@ import { aiScoreStore, renderAiScore } from "../test-utils/render"
 import { example } from "../test-utils/scored"
 import { ReportNode } from "./report-node"
 
-const REPORT: AiReport = { model: "anthropic/claude-haiku-5.5", lang: "en", headline: "Specific, open financing.", summary: "S.", strengths: [], gaps: [], actions: [] }
+const REPORT: AiReport = { model: "example/text-model", lang: "en", headline: "Specific, open financing.", summary: "S.", strengths: [], gaps: [], actions: [] }
 const show = (state: Parameters<typeof ReportNode>[0]["state"], report: AiReport | null = null) =>
   renderAiScore(<ReportNode state={state} report={report} />, { store: aiScoreStore(example()).store })
 
 describe("ReportNode", () => {
   it("names the model that wrote the report and shows its headline", async () => {
     show("done", REPORT)
-    const node = screen.getByRole("button", { name: /Written by anthropic\/claude-haiku-5\.5/ })
+    const node = screen.getByRole("button", { name: /Written by example\/text-model/ })
     await userEvent.click(node)
     expect(screen.getByRole("dialog", { name: "Report" })).toHaveTextContent("Specific, open financing.")
   })

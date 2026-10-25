@@ -21,12 +21,12 @@ describe("CostEstimate (D-33)", () => {
     expect(screen.getByText(copy.note)).toBeInTheDocument()
     await userEvent.click(screen.getByRole("button", { name: copy.how.title }))
     expect(screen.getByText(/at Jev's input price of \$0\.042 per million tokens/)).toBeInTheDocument()
-    expect(screen.getByText(/at the prices of Claude Sonnet 5\.5/)).toBeInTheDocument()
+    expect(screen.getByText((_, element) => element?.tagName === "P" && (element.textContent ?? "").includes(`at the prices of ${model.name}`))).toBeInTheDocument()
   })
 
   it("prices only the decisions for a custom model", async () => {
     const project = example()
-    renderAiScore(<CostEstimate project={project} model={null} modelId="xai/grok-5" />, { store: aiScoreStore(project).store })
+    renderAiScore(<CostEstimate project={project} model={null} modelId="example/custom-model" />, { store: aiScoreStore(project).store })
     expect(screen.getByText(/The price of this text model is not known here/)).toBeInTheDocument()
     await userEvent.click(screen.getByRole("button", { name: copy.how.title }))
     expect(screen.getByText(/The prices of this model are not known here/)).toBeInTheDocument()
