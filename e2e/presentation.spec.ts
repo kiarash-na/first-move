@@ -89,6 +89,21 @@ test("a deep link opens its slide, survives a reload and the language switch kee
   await expectOnSlide(page, 5)
 })
 
+test("the title masks leave room above capitals for their accents (NÄCHSTE)", async ({ page }) => {
+  await open(page, "/de/presentation#9")
+  await expectOnSlide(page, 9)
+  const title = slide(page, 9).locator(".slide-title")
+  await expect(title).toContainText("Ä")
+  const lines = await title.locator(".slide-title__line").evaluateAll((elements) =>
+    elements.map((line) => {
+      const text = line.firstElementChild?.getBoundingClientRect()
+      return { headroom: (text?.top ?? 0) - line.getBoundingClientRect().top, font: parseFloat(getComputedStyle(line).fontSize) }
+    }),
+  )
+  expect(lines).toHaveLength(2)
+  for (const line of lines) expect(line.headroom).toBeGreaterThanOrEqual(0.18 * line.font)
+})
+
 test("the jury criteria jump to the slide that answers them", async ({ page }) => {
   await open(page, "/en/presentation#2")
   await page.getByRole("button", { name: /Risks and validation/ }).click()
