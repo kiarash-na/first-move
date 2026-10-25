@@ -90,6 +90,12 @@ Not done in this run; the app runs live without them. Next session, in this orde
 4. Presentation: slide 5 label "Every source, linked"; slide 6 says agent@ is live (follow-up 6); the presentation note's blind-test paragraph still describes the 1.0.0 recording (now 1.1.0: 56.2 shown 55 ± 3).
 5. Security review of the AI layer and a browser test of the assistant with a key (A09); the privacy wording of follow-up 7.
 
+## Handoff (2026-10-25, providers and activation, PR #3 — merged; presentation, PR #4 — open)
+
+PR #3 (email agent activation + OpenRouter default) is merged. PR #4 (presentation: experimental email tag, build-hours note, light/dark switch) branches off the merged main and is presentation-only; gates ran on a byte-identical tree. `dev` = merged main + the notes commit ([2026-10-25_presentation-fixes](../notes/2026-10-25_presentation-fixes.md)). While PR #4 is open, `dev` carries no code it lacks.
+
+Left, in order: the **one-click test-case run** (verify or build, next task); owner sets the Vercel Production variables (`EMAIL_AGENT_ENABLED=true`, `EMAIL_HUMAN_RELAY_ENABLED=true`, `RESEND_WEBHOOK_SECRET` from the webhook) and redeploys, then one outside test mail; owner live test with a real OpenRouter key; full e2e; the deferred legal/docs batch.
+
 ## Handoff (2026-10-25, providers and activation, PR #3)
 
 `dev` is one commit ahead of the PR #3 state: the note [2026-10-25_providers-and-activation](../notes/2026-10-25_providers-and-activation.md) (this handoff) — after the PR merges, `dev` = `main` + that note. Gates at the PR: lint, typecheck, test (4076), build all pass; e2e not re-run (only the ai-score spec was updated).
