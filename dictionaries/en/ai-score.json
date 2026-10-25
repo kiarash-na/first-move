@@ -305,9 +305,7 @@
       "capped": "A must-have check failed, so the label stays below {solid} however many points the plan has.",
       "seeChecks": "See the checks",
       "scale": {
-        "label": "The score on the scale from 0 to 100, with its band and the label zones",
-        "score": "Score",
-        "band": "Band"
+        "label": "The score on the scale from 0 to 100, with its band and the label zones"
       }
     },
     "signal": {
@@ -352,7 +350,6 @@
       "weight": "Weight {value}",
       "value": "{score} ± {sd}",
       "capped": "Capped at level {level}",
-      "axis": "Points, 0 to 100",
       "table": {
         "caption": "Table view of the seven dimensions",
         "heading": "Dimension",
@@ -441,6 +438,8 @@
       "targets": "{count} weak parts or checks",
       "nothing": "No weak plan parts and no failed or unclear checks: nothing to suggest.",
       "none": "No suggestions yet.",
+      "parts": "Plan parts",
+      "checks": "Checks",
       "by": "Suggested by {model} on {date}",
       "otherLanguage": "These suggestions are in {language}. Ask again to get them in {current}."
     },
@@ -473,7 +472,8 @@
       },
       "checks": {
         "title": "Checks and caps",
-        "body": "A check passes when Jev puts its probability at {pass} or above and fails at {fail} or below; in between it stays unclear and is only a flag. A failed check caps its dimension at level {caps}. A failed must-have check caps at level {mustHave} and keeps the label below {solid}. A flag never caps."
+        "body": "A check passes when Jev puts its probability at {pass} or above and fails at {fail} or below; in between it stays unclear and is only a flag. A failed check caps its dimension at level {caps}. A failed must-have check caps at level {mustHave} and keeps the label below {solid}. A flag never caps.",
+        "or": "or"
       },
       "branches": {
         "title": "Branches and follow-up checks",
