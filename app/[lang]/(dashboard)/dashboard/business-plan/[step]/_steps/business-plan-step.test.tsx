@@ -14,7 +14,7 @@ const CONTENT = {
   opportunity: "Start from a use case",
   "business-logic": "Business Model Canvas",
   "reality-check": "Rough assumptions",
-  implementation: "Pitch readiness",
+  implementation: "Pitch completeness",
 } as const
 
 describe("BusinessPlanStep", () => {

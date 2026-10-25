@@ -30,6 +30,14 @@ describe("BusinessPlanSection", () => {
     expect(tile("dealBreaker")).toHaveTextContent(risks[0].title)
   })
 
+  it("puts the AI Plan Score first, as a bolder strip before the completeness (D-74)", () => {
+    const project = exampleWith("housing-cooperatives")
+    renderOverview(<BusinessPlanSection project={project} />, project)
+    expect(tile("aiScore")).toHaveTextContent("AI Plan Score")
+    expect(tile("aiScore").compareDocumentPosition(tile("readiness")) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+    expect(tile("readiness")).toHaveTextContent("Pitch completeness")
+  })
+
   it("nudges when nothing is entered yet", () => {
     const project = exampleWith("school-kindergarten-flats", { "businessPlan.risks": [] })
     renderOverview(<BusinessPlanSection project={project} />, project)

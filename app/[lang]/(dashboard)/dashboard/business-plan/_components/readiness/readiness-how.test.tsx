@@ -7,11 +7,11 @@ import { ReadinessHow } from "./readiness-how"
 
 afterEach(stopTabs)
 
-describe("ReadinessHow", () => {
+describe("ReadinessHow (pitch completeness)", () => {
   it("is a quiet disclosure, closed until asked (D-33)", async () => {
     const tab = await openProject()
     renderDashboard(<ReadinessHow />, { store: tab.store })
-    const toggle = screen.getByRole("button", { name: "How readiness is counted" })
+    const toggle = screen.getByRole("button", { name: "How completeness is counted" })
     expect(toggle).toHaveAttribute("aria-expanded", "false")
     expect(screen.queryByText(/average of the six parts/)).toBeNull()
     await userEvent.click(toggle)

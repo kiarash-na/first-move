@@ -9,7 +9,7 @@ import type { Project } from "@/lib/project"
 import { useDictionary, useLocale } from "../../_components/i18n-provider"
 
 /**
- * Pitch readiness for paper (D-30, D-37): the score, then each of the six pitch sections with
+ * Pitch completeness for paper (D-30, D-37, D-74; ids keep "readiness"): the score, then each of the six pitch sections with
  * its checks, covered or open (icon and words, never colour alone). Unofficial, and it counts
  * filled fields only.
  */

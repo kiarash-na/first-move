@@ -8,10 +8,10 @@ import { ImplementationStep } from "./implementation-step"
 afterEach(stopTabs)
 
 describe("ImplementationStep (BM-STEP-04)", () => {
-  it("has refinements, scalability by context, next steps and the pitch readiness", async () => {
+  it("has refinements, scalability by context, next steps and the pitch completeness", async () => {
     const tab = await openProject()
     renderDashboard(<ImplementationStep />, { store: tab.store })
-    for (const name of ["Refinements", "Scalability and replication", "Next steps", "Pitch readiness"]) {
+    for (const name of ["Refinements", "Scalability and replication", "Next steps", "Pitch completeness"]) {
       expect(screen.getByRole("region", { name })).toBeInTheDocument()
     }
     expect(screen.getByLabelText("Key decisions and the decision gate")).toBeInTheDocument()

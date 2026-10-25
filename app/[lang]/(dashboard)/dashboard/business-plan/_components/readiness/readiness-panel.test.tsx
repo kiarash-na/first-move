@@ -3,6 +3,7 @@ import userEvent from "@testing-library/user-event"
 import { afterEach, describe, expect, it } from "vitest"
 import { JURY_CRITERIA, PITCH_SECTIONS } from "@/lib/business-plan"
 import { renderDashboard } from "../../../_components/test-utils/render"
+import { testAiScore } from "../test-utils/ai-score"
 import { openProject, stopTabs } from "../test-utils/open-project"
 import { ReadinessPanel } from "./readiness-panel"
 
@@ -41,20 +42,41 @@ describe("ReadinessPanel (D-30)", () => {
     expect(links[0]).toHaveAccessibleName("Ausfüllen: Zu erhebende Daten")
   })
 
-  it("reaches 100% and pitch-ready when the Business Plan is complete (Example 3)", async () => {
+  it("reaches 100% and complete when the Business Plan is complete (Example 3)", async () => {
     const tab = await openProject({ example: "housing-cooperatives" })
     renderDashboard(<ReadinessPanel />, { store: tab.store })
     expect(screen.getAllByText("100%").length).toBeGreaterThan(0)
-    expect(screen.getAllByText("Pitch-ready").length).toBeGreaterThan(PITCH_SECTIONS.length)
+    expect(screen.getAllByText("Complete").length).toBeGreaterThan(PITCH_SECTIONS.length)
     expect(screen.queryByRole("link", { name: /^Fill in/ })).toBeNull()
   })
 
-  it("explains how readiness is counted, collapsed by default (D-33)", async () => {
+  it("explains how completeness is counted, collapsed by default (D-33)", async () => {
     const tab = await openProject()
     renderDashboard(<ReadinessPanel />, { store: tab.store })
-    const toggle = screen.getByRole("button", { name: /How readiness is counted/ })
+    const toggle = screen.getByRole("button", { name: /How completeness is counted/ })
     expect(toggle).toHaveAttribute("aria-expanded", "false")
     await userEvent.click(toggle)
     expect(screen.getByText(/There is no equation behind this/)).toBeInTheDocument()
+  })
+
+  it("opens with the AI Plan Score, bolder and before the completeness, with its caveat and how it is made (D-74)", async () => {
+    const tab = await openProject()
+    renderDashboard(<ReadinessPanel />, { store: tab.store })
+    const badge = screen.getByRole("link", { name: /Get an AI Plan Score/ })
+    const completeness = screen.getByRole("progressbar", { name: "Pitch completeness" })
+    expect(badge.compareDocumentPosition(completeness) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+    expect(screen.getByText(/not a calculation and not a feasibility verdict/)).toBeInTheDocument()
+    expect(screen.getByRole("button", { name: /How the AI Plan Score is made/ })).toHaveAttribute("aria-expanded", "false")
+  })
+
+  it("shows a saved score at the top of the panel", async () => {
+    const tab = await openProject()
+    const project = tab.store.getState().active!
+    tab.store.setAiScore(project.meta.id, testAiScore(project))
+    renderDashboard(<ReadinessPanel />, { store: tab.store })
+    const badge = screen.getByRole("link", { name: /AI Plan Score/ })
+    expect(badge).toHaveAttribute("data-state", "current")
+    expect(badge).toHaveTextContent("60")
+    expect(badge).toHaveTextContent("Promising")
   })
 })
