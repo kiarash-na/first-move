@@ -36,9 +36,9 @@ describe("ScoreSummary", () => {
     for (const { score } of [varied, capped]) expect(score.level).toBe(labelOf(displayScore(score.score, score.sd).score, score.capped))
   })
 
-  it("puts the scale mark at the unrounded score", () => {
+  it("puts the scale mark at the score as shown, in the zone of its label (D-81)", () => {
     const { container } = renderResults(<ScoreSummary score={varied.score} />)
-    expect(container.querySelector<HTMLElement>("[data-marker]")!.style.left).toBe(`${varied.score.score}%`)
+    expect(container.querySelector<HTMLElement>("[data-marker]")!.style.left).toBe(`${displayScore(varied.score.score, varied.score.sd).score}%`)
   })
 
   it("draws the same band the text states", () => {

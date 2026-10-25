@@ -20,16 +20,16 @@ const pct = (points: number) => `${clampPoints(points)}%`
 /**
  * The AI Plan Score on its 0..100 scale (PLAN-AI-SCORE-01 § Aggregation): the label zones
  * (Early < 40 ≤ Promising < 70 ≤ Solid, from the engine), the band of one standard deviation
- * shaded around the score, and the score as a mark. The mark and the band sit at the numbers as
- * shown (`displayScore`, rounded to 5), so the mark is always in the zone its label names
- * (D-81). The picture is decorative; the numbers and zones are text beside and below it.
+ * shaded around the unrounded score (the range the caption states), and the score as a mark at
+ * the number as shown (`displayScore`, rounded to 5), so the mark is always in the zone its
+ * label names (D-81). The picture is decorative; the numbers and zones are text beside and below it.
  */
 export function ScoreScale({ score, sd, level }: { score: number; sd: number; level: AiScoreLevel }) {
   const lang = useLocale()
   const copy = useDictionary("ai-score")
-  const shown = displayScore(score, sd)
-  const from = clampPoints(shown.score - shown.band)
-  const to = clampPoints(shown.score + shown.band)
+  const shown = displayScore(score, sd).score
+  const from = clampPoints(score - sd)
+  const to = clampPoints(score + sd)
 
   return (
     <figure data-slot="score-scale" className="flex flex-col gap-2">
@@ -51,7 +51,7 @@ export function ScoreScale({ score, sd, level }: { score: number; sd: number; le
         <span
           data-marker
           className="absolute -inset-y-1.5 w-[3px] -translate-x-1/2 bg-hot transition-[left] duration-[240ms] ease-signature"
-          style={{ left: pct(shown.score) }}
+          style={{ left: pct(shown) }}
         />
       </div>
       <div aria-hidden="true" className="relative h-4 font-mono text-xs text-muted-foreground tabular-nums">

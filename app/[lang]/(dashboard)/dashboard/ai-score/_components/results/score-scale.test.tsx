@@ -14,8 +14,8 @@ describe("ScoreScale", () => {
       ["solid", `${SOLID_FROM}%`, `${100 - SOLID_FROM}%`],
     ])
     const band = container.querySelector<HTMLElement>("[data-band]")!
-    expect(parseFloat(band.style.left)).toBeCloseTo(55 - 6, 6)
-    expect(parseFloat(band.style.width)).toBeCloseTo(2 * 6, 6)
+    expect(parseFloat(band.style.left)).toBeCloseTo(57.3 - 6.2, 6)
+    expect(parseFloat(band.style.width)).toBeCloseTo(2 * 6.2, 6)
     expect(container.querySelector<HTMLElement>("[data-marker]")!.style.left).toBe("55%")
   })
 
@@ -28,7 +28,7 @@ describe("ScoreScale", () => {
     const { container } = renderResults(<ScoreScale score={3} sd={8} level="early" />)
     const band = container.querySelector<HTMLElement>("[data-band]")!
     expect(band.style.left).toBe("0%")
-    expect(parseFloat(band.style.width)).toBeCloseTo(5 + 8, 6)
+    expect(parseFloat(band.style.width)).toBeCloseTo(11, 6)
   })
 
   it.each(["en", "de"] as const)("names the zones and highlights the current label (%s)", (lang) => {
