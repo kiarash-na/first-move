@@ -67,8 +67,8 @@ test.describe("AI Plan Score (D-71)", () => {
     await openFromSidebar(page)
 
     const results = page.locator("[data-slot='ai-score-results']")
-    // The result view itself is tested with its component; here: the saved score reaches it.
-    await expect(results).toBeAttached()
+    // The result view itself is tested with its component; here: the saved score reaches it and shows.
+    await expect(results).toBeVisible()
     await expect(results).toHaveAttribute("data-score", /^\d+(\.\d+)?$/)
     const flow = page.locator("[data-slot='decision-flow']")
     await expect(flow).toHaveAttribute("data-mode", "saved")
