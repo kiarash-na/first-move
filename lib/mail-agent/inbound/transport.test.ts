@@ -24,13 +24,14 @@ describe("toInboundEmail", () => {
     expect(toInboundEmail(RECEIVED)).toEqual({
       id: RECEIVED.id,
       from: "spike@mail.firstmove.energy",
+      to: ["agent@mail.firstmove.energy"],
       replyTo: [],
       subject: "A06 spike: inbound check",
       text: RECEIVED.text,
       headers: { "content-type": "multipart/mixed", received: "from a\nfrom b", "x-ses-outgoing": "2026.10.24" },
       messageId: RECEIVED.message_id,
       authentication: { spf: "pass", dkim: "pass", dmarc: "pass" },
-      attachments: [{ id: "8f26266a", name: "buildings.csv", size: 27, contentType: "text/csv" }],
+      attachments: [{ id: "8f26266a", name: "buildings.csv", size: 27, contentType: "text/csv", inline: false }],
     })
   })
 
@@ -96,6 +97,50 @@ describe("resendTransport", () => {
     expect(await resendTransport("re_test").replyInThread(reply)).toBe(ALREADY_SENT)
     fakeResend([409, { name: "invalid_idempotent_request", message: "x", statusCode: 409 }])
     expect(await resendTransport("re_test").send(email)).toBe(ALREADY_SENT)
+  })
+
+  it("downloads an attachment within the size cap, and refuses a larger one", async () => {
+    const calls: string[] = []
+    vi.stubGlobal("fetch", async (url: string) => {
+      calls.push(String(url))
+      if (String(url).startsWith("https://files.example/")) return new Response(new Uint8Array([1, 2, 3, 4]), { status: 200 })
+      return Response.json({ object: "attachment", id: "a1", size: 4, content_type: "text/csv", download_url: "https://files.example/a1" })
+    })
+    expect(await resendTransport("re_test").getAttachment("e1", "a1", 10)).toEqual(new Uint8Array([1, 2, 3, 4]))
+    expect(calls[0]).toContain("/emails/receiving/e1/attachments/a1")
+    expect(await resendTransport("re_test").getAttachment("e1", "a1", 3)).toBeNull()
+  })
+
+  it("forwards a received email to our own address with the original attached", async () => {
+    const posts: unknown[] = []
+    vi.stubGlobal("fetch", async (url: string, init?: RequestInit) => {
+      if (String(url).startsWith("https://files.example/")) return new Response("Subject: Hi\r\n\r\nHello", { status: 200 })
+      if (init?.method === "POST") {
+        posts.push(JSON.parse(String(init.body)))
+        return Response.json({ id: "fwd-1" })
+      }
+      return Response.json({ ...RECEIVED, raw: { download_url: "https://files.example/raw" } })
+    })
+    const id = await resendTransport("re_test").forward({ emailId: "e1", from: "human@mail.firstmove.energy", to: "owner@example.org", subject: "Fwd: Hi", text: "Cover", replyTo: "jane@example.org", headers: {}, idempotencyKey: "relay/e1" })
+    expect(id).toBe("fwd-1")
+    expect(posts[0]).toMatchObject({
+      to: ["owner@example.org"],
+      reply_to: "jane@example.org",
+      attachments: [{ filename: "original.eml", content_type: "message/rfc822", content: Buffer.from("Subject: Hi\r\n\r\nHello").toString("base64") }],
+    })
+  })
+
+  it("looks up an inbox's address, and gives null for an unknown inbox", async () => {
+    const calls = fakeResend([200, { object: "inbox", id: "inbox-human", email_address: "Human@Mail.FirstMove.Energy" }])
+    expect(await resendTransport("re_test").inboxAddress("inbox-human")).toBe("human@mail.firstmove.energy")
+    expect(calls[0].url).toContain("/inboxes/inbox-human")
+    fakeResend([404, { name: "not_found", message: "Inbox not found", statusCode: 404 }])
+    expect(await resendTransport("re_test").inboxAddress("missing")).toBeNull()
+  })
+
+  it("marks signature images as inline", () => {
+    const email = toInboundEmail({ ...RECEIVED, attachments: [{ id: "i1", filename: "logo.png", size: 900, content_type: "image/png", content_id: "logo@x", content_disposition: "inline" }] })
+    expect(email?.attachments[0].inline).toBe(true)
   })
 
   it("tells retryable failures from final ones", async () => {

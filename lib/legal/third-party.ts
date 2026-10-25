@@ -37,6 +37,7 @@ export const THIRD_PARTY: readonly ThirdPartyEntry[] = [
   { name: "read-excel-file", license: "MIT", url: "https://gitlab.com/catamphetamine/read-excel-file", role: "Excel values for the AI assistants" },
   { name: "ai", license: "Apache-2.0", url: "https://ai-sdk.dev", role: "AI SDK: the AI Plan Score, the AI assistant and the email agent's guard decisions" },
   { name: "@ai-sdk/openai-compatible", license: "Apache-2.0", url: "https://ai-sdk.dev", role: "AI SDK provider: the AI assistant's OpenRouter connection" },
+  { name: "@anthropic-ai/sdk", license: "Apache-2.0", url: "https://github.com/anthropics/anthropic-sdk-typescript", role: "The email agent's answers and value extraction" },
   { name: "resend", license: "MIT", url: "https://github.com/resend/resend-node", role: "Receiving and sending the email agent's mail" },
   { name: "@upstash/redis", license: "MIT", url: "https://github.com/upstash/redis-js", role: "The email agent's encrypted state" },
   { name: "qrcode-generator", license: "MIT", url: "https://github.com/kazuhikoarase/qrcode-generator", role: "QR code on the presentation" },

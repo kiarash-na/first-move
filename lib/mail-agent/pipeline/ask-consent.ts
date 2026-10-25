@@ -2,6 +2,8 @@ import "server-only"
 import { addPending } from "../consent/pending"
 import { CONFIRM_DAYS, confirmToken, tokenIdFor } from "../consent/token"
 import { logEvent, sidPrefix } from "../log"
+import { emailLocale } from "../locale/email-locale"
+import { sitePage } from "../outbound/message"
 import { confirmNotice } from "../outbound/notices"
 import { sendReply } from "../outbound/send"
 import { keys, TTL } from "../store/keys"
@@ -42,8 +44,10 @@ export async function askConsent(deps: MailDeps, input: InboundInput, now: numbe
     logEvent("consent", { sid: sidPrefix(sid), status: "waiting" })
     return "consent-waiting"
   }
-  const link = `${config.siteUrl}/en/mail/confirm#t=${locked.value}`
-  await sendReply(deps.transport, config, email, input, await confirmNotice(link, `${config.siteUrl}/en/terms`))
+  // Nothing is known about the sender yet: the confirmation speaks the language the email is written in.
+  const locale = emailLocale(email)
+  const link = `${sitePage(config, locale, "/mail/confirm")}#t=${locked.value}`
+  await sendReply(deps.transport, config, email, input, await confirmNotice(config, locale, link), locale)
   logEvent("consent", { sid: sidPrefix(sid), status: "asked" })
   return "consent-asked"
 }

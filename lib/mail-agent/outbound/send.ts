@@ -1,6 +1,7 @@
 import "server-only"
 import { sanitizeText } from "@/lib/ai/text/sanitize"
 import { getDictionary } from "@/lib/i18n/get-dictionary"
+import type { Locale } from "@/lib/i18n/locales"
 import type { MailAgentConfig } from "../env"
 import type { InboundEmail, MailTransport } from "../inbound/transport"
 import { normalizeAddress } from "../store/sender-id"
@@ -17,11 +18,19 @@ export interface ThreadRef {
   threadId: string
 }
 
+/** A file sent with a reply: the project file (`.firstmove.json`), base64. */
+export interface ReplyAttachment {
+  filename: string
+  content: string
+  contentType: string
+}
+
 /** One reply; `kind` names it in the idempotency key, so a retried step never sends it twice. */
 export interface OutgoingReply {
   kind: string
   text: string
   html?: string
+  attachments?: ReplyAttachment[]
 }
 
 /** A Message-ID we may repeat in a header: angle brackets, no spaces or line breaks. */
@@ -44,8 +53,8 @@ export function replySubject(subject: string): string {
 }
 
 /** `"First Move assistant (AI)" <agent@…>`: quoted, so the brackets stay part of the name. */
-export async function agentFrom(config: MailAgentConfig): Promise<string> {
-  const { sender } = await getDictionary("en", "mail")
+export async function agentFrom(config: Pick<MailAgentConfig, "addresses">, locale: Locale = "en"): Promise<string> {
+  const { sender } = await getDictionary(locale, "mail")
   return `"${sender.name}" <${config.addresses.agent}>`
 }
 
@@ -60,9 +69,10 @@ export async function sendReply(
   email: InboundEmail & { from: string },
   thread: ThreadRef,
   reply: OutgoingReply,
+  locale: Locale = "en",
 ): Promise<string> {
   const idempotencyKey = `reply/${email.id}/${reply.kind}`
-  const body = { text: reply.text, ...(reply.html && { html: reply.html }) }
+  const body = { text: reply.text, ...(reply.html && { html: reply.html }), ...(reply.attachments?.length && { attachments: reply.attachments }) }
   if (repliesInThread(email)) {
     return transport.replyInThread({ ...thread, emailId: email.id, ...body, headers: { ...AI_HEADERS }, idempotencyKey })
   }
@@ -71,5 +81,5 @@ export async function sendReply(
     headers["In-Reply-To"] = email.messageId
     headers.References = email.messageId
   }
-  return transport.send({ from: await agentFrom(config), to: email.from, subject: replySubject(email.subject), ...body, headers, idempotencyKey })
+  return transport.send({ from: await agentFrom(config, locale), to: email.from, subject: replySubject(email.subject), ...body, headers, idempotencyKey })
 }

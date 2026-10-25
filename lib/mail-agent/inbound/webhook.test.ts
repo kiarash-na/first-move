@@ -5,6 +5,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest"
 import type { MailAgentEnv } from "../env"
 import { testConfig } from "../gates/test-utils/context"
 import type { InboundInput } from "../pipeline/types"
+import type { InboundRef } from "./event"
 import { keys } from "../store/keys"
 import { createMemoryStore } from "../store/memory-store"
 import { handleWebhook, MAX_WEBHOOK_BYTES, type WebhookDeps } from "./webhook"
@@ -34,18 +35,21 @@ function request(body: string, { msgId = "msg_1", at = now, secret = config.rese
 describe("handleWebhook", () => {
   let store: ReturnType<typeof createMemoryStore>
   let started: InboundInput[]
+  let relayed: InboundRef[]
   let deps: WebhookDeps
   let lines: string[]
 
   beforeEach(() => {
     store = createMemoryStore()
     started = []
+    relayed = []
     lines = []
     vi.spyOn(console, "info").mockImplementation((line: string) => void lines.push(line))
     deps = {
       env: ready,
       clients: () => ({ resend: new Resend("re_test_only"), store }),
       start: async (input) => void started.push(input),
+      startRelay: async (ref) => void relayed.push(ref),
       now,
     }
   })
@@ -94,23 +98,41 @@ describe("handleWebhook", () => {
     expect(started).toEqual([])
   })
 
-  it("ignores other event types, other inboxes and outbound email", async () => {
+  it("ignores other event types and outbound email", async () => {
     const responses = [
       await handleWebhook(request(event({}, "email.received"), { msgId: "msg_a" }), deps),
-      await handleWebhook(request(event({ inbox_id: "inbox-human" }), { msgId: "msg_b" }), deps),
       await handleWebhook(request(event({ email: { direction: "outbound" } }), { msgId: "msg_c" }), deps),
+      await handleWebhook(request(event({ inbox_id: "inbox-human", email: { direction: "outbound" } }), { msgId: "msg_d" }), deps),
     ]
     expect(responses.map((response) => response.status)).toEqual([200, 200, 200])
     expect(started).toEqual([])
+    expect(relayed).toEqual([])
     expect(store.size()).toBe(0)
   })
 
-  it("verifies, then drops everything while switched off", async () => {
+  it("starts the human@ relay for another inbox, with ids only (O8)", async () => {
+    expect((await handleWebhook(request(event({ inbox_id: "inbox-human" })), deps)).status).toBe(200)
+    expect(relayed).toEqual([{ emailId: "email-1", threadId: "thread-1", inboxId: "inbox-human" }])
+    expect(started).toEqual([])
+    expect(lines.map((line) => JSON.parse(line).result)).toEqual(["relay-started"])
+  })
+
+  it("leaves human@'s mail in its inbox while the relay is switched off, even with the agent on", async () => {
+    const env: MailAgentEnv = { status: "ready", config: testConfig({ EMAIL_HUMAN_RELAY_ENABLED: "false" }) }
+    expect((await handleWebhook(request(event({ inbox_id: "inbox-human" })), { ...deps, env })).status).toBe(200)
+    expect(relayed).toEqual([])
+    expect(store.size()).toBe(0)
+    expect(lines.map((line) => JSON.parse(line).result)).toEqual(["relay-off"])
+  })
+
+  it("verifies, then drops the agent's mail while switched off; human@ still reaches a person", async () => {
     const env: MailAgentEnv = { status: "disabled", config }
     expect((await handleWebhook(request(event()), { ...deps, env })).status).toBe(200)
     expect((await handleWebhook(request(event(), { secret: `whsec_${Buffer.alloc(24, 1).toString("base64")}` }), { ...deps, env })).status).toBe(400)
+    expect((await handleWebhook(request(event({ inbox_id: "inbox-human" }), { msgId: "msg_h" }), { ...deps, env })).status).toBe(200)
     expect(started).toEqual([])
-    expect(lines.map((line) => JSON.parse(line).result)).toEqual(["disabled", "unverified"])
+    expect(relayed).toHaveLength(1)
+    expect(lines.map((line) => JSON.parse(line).result)).toEqual(["disabled", "unverified", "relay-started"])
   })
 
   it("starts a repeated delivery of the same message once", async () => {

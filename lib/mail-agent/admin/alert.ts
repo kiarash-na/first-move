@@ -16,7 +16,7 @@ export const MAX_ALERTS_PER_DAY = 20
 export const EXCERPT_CHARS = 300
 
 export type SenderAlertKind = "block" | "guard-failed" | "attachment-injection"
-export type SystemAlertKind = "rate-global" | "budget"
+export type SystemAlertKind = "rate-global" | "budget" | "text-failed"
 
 /** About one sender's email, with its scores; or about the agent as a whole, with no sender data. */
 export type Alert =
