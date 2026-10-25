@@ -141,7 +141,7 @@ for (const viewport of DESKTOP) {
     await expect(page.locator(".site-shell")).toBeVisible()
     await expect(page.locator(".m-landing")).toHaveCount(0)
     await expect(page.locator(".landing-mobile")).toBeHidden()
-    await expect(page.locator(".main-nav a")).toHaveCount(5)
+    await expect(page.locator(".main-nav a")).toHaveCount(6)
   })
 }
 
@@ -185,6 +185,10 @@ for (const lang of ["en", "de"] as Lang[]) {
     await page.goto(`/${lang}`)
     await expect(page.locator(".landing-mobile")).toHaveAttribute("data-variant", "mobile")
     await overflow(page)
+    // The reveal fades a block in over 520 ms; axe reads a block mid-fade as low-contrast text, so wait until every block has settled.
+    await expect
+      .poll(() => page.evaluate(() => [...document.querySelectorAll<HTMLElement>("[data-m-reveal]")].every((element) => getComputedStyle(element).opacity === "1")))
+      .toBe(true)
     expect(await axeViolations(page), "menu closed").toEqual([])
     await page.locator(".m-header").getByRole("button", { name: text(lang, "landing", "header.openMenu") }).click()
     expect(await axeViolations(page, { include: ".m-header" }), "menu open").toEqual([])
