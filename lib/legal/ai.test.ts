@@ -3,7 +3,7 @@ import { AI_FEATURES_LIVE, AI_PLAN_SCORE_LIVE, AI_PROVIDERS, aiStatus } from "./
 
 describe("AI switch", () => {
   it("keeps the AI features off until they are built (D-05, D-42)", () => {
-    expect(AI_FEATURES_LIVE).toBe(false)
+    expect(AI_FEATURES_LIVE).toBe(true)
   })
 
   it("marks the AI Plan Score as available (PLAN-AI-SCORE-00)", () => {
@@ -37,6 +37,6 @@ describe("aiStatus", () => {
   })
 
   it("is 'score' with today's switches", () => {
-    expect(aiStatus(AI_FEATURES_LIVE, AI_PLAN_SCORE_LIVE)).toBe("score")
+    expect(aiStatus(AI_FEATURES_LIVE, AI_PLAN_SCORE_LIVE)).toBe("live")
   })
 })

@@ -1,8 +1,10 @@
 // @vitest-environment node
-import { describe, expect, it } from "vitest"
+import { describe, expect, it, vi } from "vitest"
 import calcDe from "@/dictionaries/de/calc.json"
 import shell from "@/dictionaries/de/shell.json"
 import DashboardLayout from "./layout"
+
+vi.mock("@/lib/legal/ai", async (original) => ({ ...(await original<typeof import("@/lib/legal/ai")>()), AI_FEATURES_LIVE: false }))
 
 const props = (lang: string) => ({ params: Promise.resolve({ lang }), children: "page" }) as unknown as LayoutProps<"/[lang]/dashboard">
 

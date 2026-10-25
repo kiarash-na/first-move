@@ -5,13 +5,16 @@
     "created": "2017-10-30",
     "modules": "businessPlan"
   },
-  "at": "2026-10-25T00:51:31.355Z",
+  "at": "2026-10-25T08:20:43.270Z",
   "models": {
     "decision": "typesafe-ai/jev-1.14.0",
     "text": "anthropic/claude-sonnet-5.5",
-    "textMaxOutputTokens": 8000
+    "textMaxOutputTokens": {
+      "report": 6000,
+      "suggestions": 8000
+    }
   },
-  "method": "1.0.0",
+  "method": "1.1.0",
   "engine": {
     "judgements": 27,
     "turns": 4,
@@ -21,11 +24,11 @@
     "levels": 5
   },
   "timing": {
-    "decisionsMs": 1418,
-    "textMs": 49592
+    "decisionsMs": 1724,
+    "textMs": 55538
   },
   "score": {
-    "value": 54,
+    "value": 56.2,
     "sd": 2.5,
     "shown": 55,
     "band": 3,
@@ -36,50 +39,50 @@
     {
       "id": "value",
       "weight": 0.15,
-      "score": 0.7,
-      "raw": 0.7,
+      "score": 0.7035,
+      "raw": 0.7035,
       "cap": null
     },
     {
       "id": "technology",
       "weight": 0.1,
       "score": 0.5,
-      "raw": 0.6891,
+      "raw": 0.7025,
       "cap": 2
     },
     {
       "id": "economics",
       "weight": 0.2,
       "score": 0.5,
-      "raw": 0.7769,
+      "raw": 0.7819,
       "cap": 2
     },
     {
       "id": "governance",
       "weight": 0.2,
       "score": 0.5,
-      "raw": 0.6117,
+      "raw": 0.61,
       "cap": 2
     },
     {
       "id": "participation",
       "weight": 0.15,
-      "score": 0.5,
-      "raw": 0.6481,
-      "cap": 2
+      "score": 0.6469,
+      "raw": 0.6469,
+      "cap": null
     },
     {
       "id": "evidence",
       "weight": 0.1,
-      "score": 0.6742,
-      "raw": 0.6742,
+      "score": 0.6625,
+      "raw": 0.6625,
       "cap": null
     },
     {
       "id": "path",
       "weight": 0.1,
-      "score": 0.428,
-      "raw": 0.428,
+      "score": 0.4305,
+      "raw": 0.4305,
       "cap": null
     }
   ],
@@ -92,32 +95,32 @@
     {
       "id": "ownership",
       "source": "model",
-      "level": 2.96
+      "level": 2.98
     },
     {
       "id": "stakeholders",
       "source": "model",
-      "level": 2.39
+      "level": 2.33
     },
     {
       "id": "segments",
       "source": "model",
-      "level": 2.87
+      "level": 2.88
     },
     {
       "id": "needs",
       "source": "model",
-      "level": 3.02
+      "level": 3.03
     },
     {
       "id": "pain-point",
       "source": "model",
-      "level": 2.8
+      "level": 2.82
     },
     {
       "id": "advantage",
       "source": "model",
-      "level": 3.23
+      "level": 3.24
     },
     {
       "id": "heat-sources",
@@ -127,12 +130,12 @@
     {
       "id": "value-proposition",
       "source": "model",
-      "level": 2.08
+      "level": 2.1
     },
     {
       "id": "resources",
       "source": "model",
-      "level": 2.38
+      "level": 2.54
     },
     {
       "id": "partners",
@@ -142,17 +145,17 @@
     {
       "id": "engagement",
       "source": "model",
-      "level": 2.07
+      "level": 2.06
     },
     {
       "id": "cost-basis",
       "source": "model",
-      "level": 3.15
+      "level": 3.2
     },
     {
       "id": "revenue",
       "source": "model",
-      "level": 3.42
+      "level": 3.39
     },
     {
       "id": "operations",
@@ -162,42 +165,42 @@
     {
       "id": "allocation",
       "source": "model",
-      "level": 3.34
+      "level": 3.32
     },
     {
       "id": "connection-rate",
       "source": "model",
-      "level": 2.95
+      "level": 2.98
     },
     {
       "id": "financing",
       "source": "model",
-      "level": 2.82
+      "level": 2.89
     },
     {
       "id": "subsidies",
       "source": "model",
-      "level": 3.04
+      "level": 3.03
     },
     {
       "id": "assumptions",
       "source": "model",
-      "level": 2.67
+      "level": 2.55
     },
     {
       "id": "risks",
       "source": "model",
-      "level": 3.55
+      "level": 3.52
     },
     {
       "id": "learning",
       "source": "model",
-      "level": 1.87
+      "level": 1.88
     },
     {
       "id": "scalability",
       "source": "model",
-      "level": 2.74
+      "level": 2.84
     },
     {
       "id": "data",
@@ -207,31 +210,31 @@
     {
       "id": "next-partners",
       "source": "model",
-      "level": 2.05
+      "level": 2.051
     },
     {
       "id": "pilot",
       "source": "model",
-      "level": 2.01
+      "level": 1.99
     },
     {
       "id": "decisions",
       "source": "model",
-      "level": 1.76
+      "level": 1.73
     }
   ],
   "gates": [
     {
       "id": "anchor",
       "source": "model",
-      "probability": 0.82,
-      "outcome": "pass",
+      "probability": 0.78,
+      "outcome": "unclear",
       "cap": null
     },
     {
       "id": "extra-value",
       "source": "model",
-      "probability": 0.91,
+      "probability": 0.89,
       "outcome": "pass",
       "cap": null
     },
@@ -259,7 +262,7 @@
     {
       "id": "operator",
       "source": "model",
-      "probability": 0.23,
+      "probability": 0.22,
       "outcome": "unclear",
       "cap": null
     },
@@ -273,14 +276,14 @@
     {
       "id": "price-vs-alternative",
       "source": "model",
-      "probability": 0.64,
+      "probability": 0.61,
       "outcome": "unclear",
       "cap": null
     },
     {
       "id": "anchor-residential",
       "source": "model",
-      "probability": 0.47,
+      "probability": 0.44,
       "outcome": "unclear",
       "cap": null
     },
@@ -294,14 +297,14 @@
     {
       "id": "connection-threshold",
       "source": "model",
-      "probability": 0.2,
-      "outcome": "fail",
-      "cap": 2
+      "probability": 0.21,
+      "outcome": "unclear",
+      "cap": null
     },
     {
       "id": "lifetime-cover",
       "source": "model",
-      "probability": 0.465,
+      "probability": 0.41,
       "outcome": "unclear",
       "cap": null
     },
@@ -315,21 +318,21 @@
     {
       "id": "deal-breaker",
       "source": "model",
-      "probability": 0.54,
+      "probability": 0.53,
       "outcome": "unclear",
       "cap": null
     },
     {
       "id": "start-small",
       "source": "model",
-      "probability": 0.96,
+      "probability": 0.97,
       "outcome": "pass",
       "cap": null
     },
     {
       "id": "decision-gate",
       "source": "model",
-      "probability": 0.41,
+      "probability": 0.42,
       "outcome": "unclear",
       "cap": null
     }
@@ -365,53 +368,52 @@
       "probabilities": {
         "utility": 0,
         "municipal": 0,
-        "community": 0.11,
+        "community": 0.09,
         "contracting": 0.07,
         "developer": 0.05,
-        "unclear": 0.77
+        "unclear": 0.79
       }
     }
   ],
   "usage": {
     "decisionTokens": 31133,
-    "textTokens": 27306
+    "textTokens": 29740
   },
   "report": {
     "en": {
       "model": "anthropic/claude-sonnet-5.5",
       "lang": "en",
-      "headline": "Promising plan at 55, but an unclear ownership model and several failed gates cap four dimensions at level 2.",
-      "summary": "The AI Plan Score is 55 (band 3, promising), but a must-have gate failed. Customer value and demand is the strongest dimension at 70%, and risks and evidence follow at 67%. Technical fit, costs and financing, ownership and governance, and participation are each held at level 2 by failed gates, and the implementation path is lowest at 43%.",
+      "headline": "A promising plan at 55 (band 3), held back by open ownership, no water permit route and a failed must-have gate.",
+      "summary": "The plan is strongest on customer value and demand (70%), with a clear advantage over gas and district heating, a developed revenue model and a named deal-breaker risk. A must-have gate failed, and the Technical and site fit, Costs, revenues and financing, and Ownership, operation and governance dimensions are each held at 50%. Implementation path and scalability is lowest at 43%, because the decision gate is weak and no data to collect is described.",
       "strengths": [
         {
-          "text": "The customer case is concrete. A named anchor group, cooling as an extra value and a clear advantage over gas and district heating put customer value and demand at 70%.",
+          "text": "The case for tenants and owners is convincing: the advantage over the alternatives, the revenue model with its tariff rule, and the deal-breaker risk are all well developed, and cooling is used as an extra reason to connect.",
           "keys": [
-            "anchor",
-            "extra-value",
             "advantage",
-            "needs"
+            "revenue",
+            "risks",
+            "extra-value"
           ]
         },
         {
-          "text": "The cost and revenue picture is well developed. Costs, capital expenditure, the revenue model and the allocation of investment, risk and benefit all score above 3 of 4.",
+          "text": "A first phase is defined, starting with the shared plant of the two houses and with neighbouring houses as later growth, which gives a realistic start-small path.",
+          "keys": [
+            "start-small",
+            "pilot",
+            "scalability"
+          ]
+        },
+        {
+          "text": "Costs, capital expenditure and the allocation of investment, risk and benefit are described in good detail.",
           "keys": [
             "cost-basis",
-            "revenue",
             "allocation"
-          ]
-        },
-        {
-          "text": "The deal-breaker risk is identified, and a small first phase is defined with the two houses before any wider network.",
-          "keys": [
-            "risks",
-            "start-small",
-            "pilot"
           ]
         }
       ],
       "gaps": [
         {
-          "text": "Ownership of the source, the network and the heat pumps is not stated, and the operator is unclear. The plan leaves ownership and operation open, which caps ownership and governance at level 2.",
+          "text": "The plan does not say who owns the heat source, the network and the building heat pumps, and no operator with clear duties is named. This failed gate caps the governance dimension.",
           "keys": [
             "boundary",
             "operator",
@@ -419,67 +421,64 @@
           ]
         },
         {
-          "text": "Costs and viability are not secured. There is no cost-splitting rule, no minimum connection rate or fallback, and the plan depends on subsidies. Lifetime cover and the price comparison with the alternative remain unclear.",
+          "text": "There is no permit route for using the ground or groundwater and no early check with the water authority. The plan also has no rule for splitting costs among users and depends on the subsidy. These gates cap the technical and financing dimensions.",
           "keys": [
+            "water-permit",
             "cost-key",
-            "connection-threshold",
-            "subsidy-dependence",
-            "lifetime-cover",
-            "price-vs-alternative"
+            "subsidy-dependence"
           ]
         },
         {
-          "text": "Site and process basics are missing: the groundwater and ground permit route, the Vienna Heating Plan 2040 zone, and heat line density as a cost driver. There is also no data-to-collect section, and no go or no-go gate with checkable criteria.",
+          "text": "The path to a decision is thin. The decision gate has no checkable go or no-go criteria, the data to collect is empty, and the plan neither states its Vienna Heating Plan 2040 zone nor addresses line density as a cost driver.",
           "keys": [
-            "water-permit",
-            "vienna-zone",
-            "heat-density",
-            "data",
             "decisions",
-            "decision-gate"
+            "decision-gate",
+            "data",
+            "vienna-zone",
+            "heat-density"
           ]
         }
       ],
       "actions": [
-        "Decide between owner financing and contracting, and write down who owns the boreholes, the network and the heat pumps, and who operates them.",
-        "Contact the water authority about the borehole permit, and state the site's zone in the Vienna Heating Plan 2040.",
-        "Add a go or no-go gate with checkable criteria, a cost-splitting rule, and a validation step for the tenant-cost deal-breaker that says what, who and when."
+        "Decide between owner financing and contracting, then state in writing who owns the source, the network and the heat pumps, and who operates and maintains them.",
+        "Contact the water authority early to settle the permit route for the boreholes, and add a rule for splitting the costs of source, pipes and connections.",
+        "Write a go or no-go gate with checkable criteria and a list of data to collect, and state the site's zone in the Vienna Heating Plan 2040 and why 5GDHC fits it."
       ]
     },
     "de": {
       "model": "anthropic/claude-sonnet-5.5",
       "lang": "de",
-      "headline": "Der Plan ist mit 55 Punkten vielversprechend, scheitert aber an einem Pflicht-Gate: Wer Quelle, Netz und Wärmepumpen besitzt, ist offen.",
-      "summary": "Der AI Plan Score liegt bei 55 (Stufe 3, vielversprechend), ein Must-have-Gate ist aber nicht bestanden. Stark sind der Kundennutzen mit 70 Prozent und die Risikobetrachtung mit 67 Prozent. Technik, Finanzierung, Betreiberfrage und Beteiligung bleiben bei 50 Prozent hängen, weil Eigentum, Kostenschlüssel, Wasserrecht, Anschlussquote und Förderabhängigkeit nicht geklärt sind. Der Umsetzungspfad ist mit 43 Prozent die schwächste Dimension.",
+      "headline": "Der Plan überzeugt beim Kundennutzen, scheitert aber an einem Muss-Kriterium: Eigentum und Betrieb des Netzes bleiben offen.",
+      "summary": "Ihr Plan erreicht 55 Punkte und liegt damit im Band 3 (vielversprechend), doch ein Muss-Kriterium ist nicht erfüllt. Stark sind der Kundennutzen mit 70 Prozent sowie Beteiligung und Risiken mit 65 und 66 Prozent. Technik und Standort, Kosten und Finanzierung sowie Eigentum und Governance sind auf Stufe 2 gedeckelt, die Umsetzung liegt bei 43 Prozent. Vor allem Eigentumsgrenzen, Kostenschlüssel, Wasserrecht und Förderabhängigkeit müssen geklärt werden.",
       "strengths": [
         {
-          "text": "Der Plan benennt einen konkreten Ankerkunden, begründet den Anschluss auch mit Kühlung und beschreibt klar den Vorteil gegenüber den Alternativen.",
+          "text": "Der Kundennutzen ist gut begründet: Sie beschreiben Bedarf und Vorteil gegenüber den Alternativen konkret, das Erlösmodell ist mit den Tarifen klar umrissen, und Kühlung als Zusatznutzen ist als Anschlussgrund genutzt.",
           "keys": [
-            "anchor",
-            "extra-value",
-            "advantage"
-          ]
-        },
-        {
-          "text": "Erlösmodell und Tarife, Kostenbasis und die Verteilung von Investition, Risiko und Nutzen sind gut ausgearbeitet. Das Risiko mit Ausschlusspotenzial ist ebenfalls sauber herausgearbeitet.",
-          "keys": [
+            "needs",
+            "advantage",
             "revenue",
-            "cost-basis",
-            "allocation",
-            "risks"
+            "extra-value"
           ]
         },
         {
-          "text": "Der Plan startet klein: Eine erste Phase mit späterem Wachstum ist definiert.",
+          "text": "Der Plan benennt ein Risiko als möglichen Deal-Breaker und stellt Kosten sowie die Verteilung von Investition, Risiko und Nutzen nachvollziehbar dar.",
+          "keys": [
+            "risks",
+            "cost-basis",
+            "allocation"
+          ]
+        },
+        {
+          "text": "Eine erste Phase mit kleinem Start ist definiert, und das Wachstum auf Nachbarhäuser ist als späterer Schritt angelegt.",
           "keys": [
             "start-small",
-            "pilot"
+            "scalability"
           ]
         }
       ],
       "gaps": [
         {
-          "text": "Eigentum, Betrieb und Kostenaufteilung sind offen: Es fehlt, wem Quelle, Netz und Gebäude-Wärmepumpen gehören. Ein Kostenschlüssel für Quelle, Leitungen und Anschlüsse fehlt, und der Betreiber mit seinen Pflichten ist nicht klar benannt. Das ist das nicht bestandene Pflicht-Gate.",
+          "text": "Das Muss-Kriterium zu den Eigentumsgrenzen ist nicht erfüllt: Wer Quelle, Netz und Wärmepumpen besitzt, bleibt offen. Auch ein Betreiber mit Aufgaben ist nicht benannt, und es fehlt ein Kostenschlüssel für Quelle, Leitungen und Anschlüsse.",
           "keys": [
             "boundary",
             "operator",
@@ -488,31 +487,30 @@
           ]
         },
         {
-          "text": "Technische und wirtschaftliche Absicherung fehlt: Der Genehmigungsweg für die Nutzung von Grundwasser oder Erdreich ist nicht genannt. Es gibt keine Anschlussschwelle und keine Aussage, was bei weniger Anschlüssen passiert. Die Abhängigkeit von Förderungen ist nicht aufgefangen, und der Preisvergleich mit der…",
+          "text": "Bei Technik und Finanzierung fehlen belastbare Nachweise: Der Genehmigungsweg für Erdwärmesonden und Grundwasser ist nicht genannt, die Förderabhängigkeit wird nicht ausreichend aufgefangen. Zone im Wiener Wärmeplan 2040 und Leitungslänge als Kostentreiber sind ebenfalls nicht behandelt.",
           "keys": [
             "water-permit",
-            "connection-threshold",
             "subsidy-dependence",
-            "price-vs-alternative",
-            "lifetime-cover"
+            "vienna-zone",
+            "heat-density"
           ]
         },
         {
-          "text": "Entscheidungsweg und Einordnung fehlen: Es gibt kein Go-/No-go-Kriterium, keine Datenerhebung, und der Prüfschritt zum Ausschlussrisiko ist nicht ausreichend konkret. Wärmedichte und Zone im Wiener Wärmeplan 2040 sind nicht behandelt.",
+          "text": "Der Umsetzungspfad ist schwach: Die Rubrik zu den zu erhebenden Daten ist leer, und Schlüsselentscheidungen sowie ein Go-/No-go-Kriterium sind kaum ausgearbeitet. Anschlussschwelle, Lebenszyklusdeckung und Preisvergleich mit der Alternative bleiben unklar.",
           "keys": [
+            "data",
             "decisions",
             "decision-gate",
-            "data",
-            "deal-breaker",
-            "heat-density",
-            "vienna-zone"
+            "connection-threshold",
+            "lifetime-cover",
+            "price-vs-alternative"
           ]
         }
       ],
       "actions": [
-        "Legt fest, wem Wärmequelle, Netz und Wärmepumpen gehören, wer den Betrieb übernimmt und nach welchem Schlüssel die Kosten verteilt werden.",
-        "Klärt früh mit der Wasserbehörde den Genehmigungsweg, und legt eine Anschlussschwelle samt Folgen für die Kosten pro Kunde fest.",
-        "Ergänzt ein Go-/No-go-Kriterium mit prüfbaren Werten, einen Plan zur Datenerhebung und die Zone im Wiener Wärmeplan 2040 mit Begründung."
+        "Legen Sie fest, wem Wärmequelle, Netz und Wärmepumpen gehören, benennen Sie den Betreiber mit seinen Pflichten und entscheiden Sie zwischen Eigenfinanzierung und Contracting.",
+        "Formulieren Sie einen Kostenschlüssel und klären Sie frühzeitig mit der Wasserbehörde den Genehmigungsweg für die Sonden.",
+        "Ergänzen Sie die zu erhebenden Daten sowie ein Go-/No-go-Kriterium mit prüfbaren Schwellen, einschließlich Validierungsschritt für den Deal-Breaker mit Wer und Wann."
       ]
     }
   },
@@ -521,68 +519,88 @@
       {
         "key": "operations",
         "texts": [
-          "Draw the system boundary and name who owns, finances and operates the boreholes, the network and the heat pumps, whether the owners or an energy contractor.",
-          "Name who meters and bills, balances the network and handles faults and security of supply, and write the cost key as a rule such as the source by connected load.",
-          "List the contract points to settle in a simple operator or connection agreement: supply details, renegotiation and mitigation."
+          "Draw the system boundary and state who owns, finances and operates the boreholes, the network and the heat pumps, and decide between owner operation and a contractor.",
+          "Write the cost key as a simple rule, for example the source by connected load and the pipes by those who use them, and check that no party carries a risk without a matching benefit.",
+          "List the contract points to settle with the operator: supply details, renegotiation, mitigation and a simple contract."
         ]
       },
       {
         "key": "learning",
         "texts": [
           "Rank the assumptions by importance and by evidence, and test the important ones without evidence first.",
-          "Name the deal-breaker, the test that shows it, who runs the test and by when.",
-          "Record what changed in the model after the exploratory study feedback and why, and note what was dropped."
+          "Name the deal-breaker concretely: what would stop the project, which test shows it, who runs it and by when.",
+          "Record what changed in the plan after the exploratory study feedback, and why."
         ]
       },
       {
         "key": "data",
         "texts": [
-          "Tie each data item to the assumption it tests, for example metered consumption of both houses, a groundwater or borehole test, the trench route and an owner survey.",
-          "Define a first phase as a small cluster of the two houses and the steps to grow from it.",
-          "State under which conditions the model transfers to other sites and where it does not."
+          "Tie each data item to the assumption it tests, for example metered or billed consumption of both houses, a groundwater and borehole check, and the trench route to neighbours.",
+          "Add an owner survey on willingness to join, and say which decision each result informs.",
+          "Give each data item an owner and a date so the results are ready before the decision gate."
+        ]
+      },
+      {
+        "key": "pilot",
+        "texts": [
+          "Define the two-house shared plant as the first phase, with scope, cost and measurable success criteria.",
+          "Describe the steps to grow from it to an anergy network with neighbouring houses.",
+          "State under which conditions the model transfers to other sites, and where it does not."
         ]
       },
       {
         "key": "decisions",
         "texts": [
-          "Set a go or no-go gate with measurable criteria such as owner commitments, a positive permit pre-check and a financing indication, plus a decision-maker and a date.",
-          "Decide between owner financing and contracting by comparing both on risk and cost, and say who decides on the owners' construction-cost contribution and by which rule.",
-          "Define the first phase and the steps to grow from it."
+          "Set a go or no-go gate with measurable criteria, such as letters of intent covering a share of the demand, a positive permit pre-check and a financing indication.",
+          "Name the decision-maker and a date for the gate, and link the choice between owner financing and contracting to it.",
+          "Define the first phase as a small cluster and the steps to grow from it."
+        ]
+      },
+      {
+        "key": "anchor",
+        "texts": [
+          "Name one anchor customer, for example one of the two core houses, state its role and aim for a letter of intent.",
+          "Develop the offer with a small group of committed first customers.",
+          "Involve the municipality early as a partner."
         ]
       },
       {
         "key": "heat-density",
         "texts": [
           "State the trench length and the heat demand per metre of trench, and connect close buildings first.",
-          "Replace benchmark demand with billed or metered consumption, at least for the anchor buildings."
+          "Replace benchmark demand with billed or metered consumption, at least for the anchor buildings.",
+          "Show how the neighbouring houses change the trench length and the demand per metre."
         ]
       },
       {
         "key": "vienna-zone",
         "texts": [
-          "State the site's zone in the Vienna Heating Plan 2040 and explain in a sentence or two why a 5GDHC network fits that zone.",
-          "Add the trench length and the heat demand per metre of trench to show that the site suits a network."
+          "State the site's zone in the Vienna Heating Plan 2040 and say what it implies for heat supply.",
+          "Explain in a sentence or two why a 5GDHC network fits that zone.",
+          "Check the groundwater and borehole potential in public maps to support the fit."
         ]
       },
       {
         "key": "boundary",
         "texts": [
           "Draw the system boundary and state who owns the heat source, the network and the heat pumps in the buildings.",
+          "Say who finances each part, and note where ownership differs between owner operation and a contractor.",
           "Check that no party carries a risk without a matching benefit."
         ]
       },
       {
         "key": "operator",
         "texts": [
-          "Name the operator, either the owners or the energy contractor, instead of leaving it open.",
-          "List the operator's duties: maintenance, metering and billing, fault handling and security of supply.",
-          "Note the contract points to settle: supply details, renegotiation and mitigation."
+          "Name the operator, either the owners' association or an energy contractor, and decide which it will be.",
+          "List its duties: maintenance, metering and billing, fault handling and security of supply.",
+          "List the contract points to settle: supply details, renegotiation, mitigation and a simple contract."
         ]
       },
       {
         "key": "cost-key",
         "texts": [
           "Write the cost key as a rule, for example the source by connected load and the pipes by those who use them.",
+          "State how connection costs are charged to each user.",
           "Check that no party carries a risk without a matching benefit."
         ]
       },
@@ -597,53 +615,57 @@
       {
         "key": "anchor-residential",
         "texts": [
-          "For each owner type, write who decides and by which rule, for example condominium owners' votes, rental or non-profit housing.",
-          "Name one anchor customer and aim for a letter of intent.",
-          "Involve the municipality early and develop the offer with a small group of committed first customers."
+          "For each owner type, write who decides and by which rule, for example condominium votes, rental and non-profit housing.",
+          "Describe how tenants are informed or give consent where tenancy rules apply.",
+          "Develop the offer with a small group of committed first customers."
         ]
       },
       {
         "key": "water-permit",
         "texts": [
-          "Check the groundwater and borehole potential in public maps.",
-          "Book an early meeting with the water authority and name the permit route in the plan."
+          "Name the permit route for using groundwater or the ground for the boreholes.",
+          "Book an early meeting with the water authority and note the date and the question to ask.",
+          "Check the groundwater and borehole potential in public maps beforehand."
         ]
       },
       {
         "key": "connection-threshold",
         "texts": [
-          "State the expected connection rate and a minimum rate below which the plan is no longer viable.",
+          "State the expected connection rate, and the minimum rate at which the plan still works.",
           "Show the effect on the cost per customer if fewer buildings connect.",
-          "Name one anchor customer and aim for a letter of intent."
+          "Name one anchor customer and aim for a letter of intent to secure the first connections."
         ]
       },
       {
         "key": "lifetime-cover",
         "texts": [
           "Spread the investment over its depreciation period and compare it each year with the revenues and the running costs, heat-pump electricity included.",
-          "Change the connection rate, the tariff, the investment and the electricity price one at a time and note the value at which the plan breaks even."
+          "Change the connection rate, the tariff, the investment and the electricity price one at a time and note the value at which the plan breaks even.",
+          "Add a contingency for optimism."
         ]
       },
       {
         "key": "subsidy-dependence",
         "texts": [
-          "State clearly which parts of the plan depend on subsidies and how much of the result they carry.",
-          "Show the plan without any subsidy and add a contingency for optimism."
+          "State which parts of the plan rely on subsidies and how much of the investment they cover.",
+          "Show the plan without any subsidy and say whether it still breaks even.",
+          "Add a contingency for optimism and test the main assumptions one at a time."
         ]
       },
       {
         "key": "deal-breaker",
         "texts": [
-          "Rank the assumptions by importance and by evidence, and mark one as the potential deal-breaker.",
-          "Make it concrete: what would stop the project, which test shows it, who runs it and by when."
+          "Rank the assumptions by importance and by evidence, and mark the most important one without evidence as the potential deal-breaker.",
+          "Say what would stop the project if it fails.",
+          "Define the validation step: what is tested, who runs it and by when."
         ]
       },
       {
         "key": "decision-gate",
         "texts": [
           "Set a go or no-go gate with measurable criteria, a decision-maker and a date.",
-          "Define a first phase as a small cluster or micro-network, and the steps to grow from it.",
-          "State under which conditions the model transfers to other sites and where it does not."
+          "Use checkable criteria such as letters of intent covering a share of the demand, a positive permit pre-check and a financing indication.",
+          "Define the first phase as a small cluster and the steps to grow from it."
         ]
       }
     ],
@@ -651,133 +673,153 @@
       {
         "key": "operations",
         "texts": [
-          "Legt fest, wer Wärmequelle, Netz und Wärmepumpen besitzt, finanziert und betreibt, und entscheidet euch zwischen Eigenbetrieb durch die Eigentümer und Contracting.",
-          "Schreibt den Kostenschlüssel als klare Regel auf, zum Beispiel die Quelle nach Anschlussleistung und die Leitungen nach den Nutzern, und prüft, dass keine Partei ein Risiko ohne passenden Nutzen trägt.",
-          "Listet die zu klärenden Vertragspunkte auf: Versorgungsdetails, Neuverhandlung, Risikominderung und einen einfachen Vertrag."
+          "Zeichnen Sie die Systemgrenze und legen Sie fest, wer die Wärmequelle, das Netz und die Wärmepumpen besitzt, finanziert und betreibt, und entscheiden Sie die Frage Eigenbetrieb oder Contracting.",
+          "Formulieren Sie einen Kostenschlüssel als Regel, zum Beispiel die Quelle nach Anschlussleistung und die Leitungen nach Nutzung, und prüfen Sie, dass keine Partei ein Risiko ohne Gegenleistung trägt.",
+          "Listen Sie die Vertragspunkte auf, die Sie klären müssen: Liefermodalitäten, Nachverhandlung, Risikominderung und ein einfacher Vertrag."
         ]
       },
       {
         "key": "learning",
         "texts": [
-          "Reiht die Annahmen nach Wichtigkeit und Belegbarkeit und testet zuerst die wichtigen Annahmen ohne Beleg.",
-          "Benennt den möglichen Showstopper konkret: was das Projekt stoppen würde, welcher Test es zeigt, wer ihn durchführt und bis wann.",
-          "Haltet fest, was sich nach dem Feedback im Modell geändert hat und warum, und was verworfen wurde."
+          "Ordnen Sie Ihre Annahmen nach Wichtigkeit und Belegen und testen Sie zuerst die wichtigen Annahmen ohne Beleg.",
+          "Machen Sie den möglichen Projektstopper konkret: was das Projekt stoppen würde, welcher Test es zeigt, wer ihn durchführt und bis wann.",
+          "Halten Sie fest, was sich nach dem Feedback im Modell geändert hat und warum, und was Sie verworfen haben."
         ]
       },
       {
         "key": "data",
         "texts": [
-          "Ordnet jedes Datum der Annahme zu, die es prüft, etwa gemessener Verbrauch, ein Grundwassertest, die Trassenführung oder eine Eigentümerbefragung.",
-          "Definiert eine erste Phase als kleinen Cluster oder Mikronetz und die Schritte, um davon aus zu wachsen.",
-          "Legt ein Go-/No-go-Tor mit messbaren Kriterien, einer entscheidenden Person und einem Datum fest."
+          "Tragen Sie zu jeder Annahme die passende Datenerhebung ein, etwa gemessenen Verbrauch, einen Grundwassertest, die Trassenführung oder eine Eigentümerbefragung.",
+          "Legen Sie fest, wer welche Daten bis wann beschafft, und beginnen Sie bei den wichtigsten Annahmen ohne Beleg.",
+          "Setzen Sie ein Go-/No-go-Tor mit messbaren Kriterien, einer entscheidenden Person und einem Datum."
+        ]
+      },
+      {
+        "key": "pilot",
+        "texts": [
+          "Beschreiben Sie die gemeinsame Anlage der beiden Häuser als kleinen ersten Schritt mit Umfang, Kosten und Erfolgskriterien.",
+          "Legen Sie die nächsten Schritte fest, um von dort zu den Nachbarhäusern zu wachsen.",
+          "Benennen Sie, unter welchen Bedingungen sich das Modell auf andere Standorte übertragen lässt und wo nicht."
         ]
       },
       {
         "key": "decisions",
         "texts": [
-          "Formuliert ein Go-/No-go-Tor mit prüfbaren Kriterien, zum Beispiel Absichtserklärungen für einen Teil des Bedarfs, eine positive Genehmigungsvorprüfung und eine Finanzierungsindikation.",
-          "Nennt die entscheidende Person und ein Datum für das Tor.",
-          "Beschreibt die erste Phase als kleinen Cluster und unter welchen Bedingungen sich das Modell auf andere Standorte übertragen lässt."
+          "Setzen Sie ein Go-/No-go-Tor mit messbaren Kriterien, zum Beispiel Absichtserklärungen für einen Teil des Bedarfs, eine positive Genehmigungsvorprüfung und eine Finanzierungszusage.",
+          "Benennen Sie eine entscheidende Person und ein Datum für das Tor.",
+          "Definieren Sie die erste Phase als kleinen Cluster oder Mikronetz und die Schritte zum Ausbau."
+        ]
+      },
+      {
+        "key": "anchor",
+        "texts": [
+          "Nennen Sie mindestens einen konkreten Ankerkunden mit seiner Rolle, zum Beispiel eines der beiden Häuser.",
+          "Streben Sie für diesen Ankerkunden eine Absichtserklärung an.",
+          "Beziehen Sie die Gemeinde früh als Partnerin ein und entwickeln Sie das Angebot mit einer kleinen Gruppe entschlossener Erstkunden."
         ]
       },
       {
         "key": "heat-density",
         "texts": [
-          "Nennt die Trassenlänge und den Wärmebedarf je Trassenmeter und schließt nahe beieinanderliegende Gebäude zuerst an.",
-          "Ersetzt Richtwerte für den Bedarf durch abgerechnete oder gemessene Verbräuche, zumindest für die Ankergebäude."
+          "Geben Sie die Trassenlänge und den Wärmebedarf pro Meter Trasse an und schließen Sie nahe beieinanderliegende Gebäude zuerst an.",
+          "Ersetzen Sie Richtwerte durch abgerechnete oder gemessene Verbräuche, mindestens für die Ankergebäude.",
+          "Prüfen Sie Grundwasser- und Bohrpotenzial in öffentlichen Karten und vereinbaren Sie früh einen Termin bei der Wasserbehörde."
         ]
       },
       {
         "key": "vienna-zone",
         "texts": [
-          "Prüft, in welcher Zone des Wiener Wärmeplans 2040 der Standort liegt, und nennt sie im Plan.",
-          "Begründet in zwei, drei Sätzen, warum ein 5GDHC-Netz zu dieser Zone passt.",
-          "Klärt früh Grundwasser- und Bohrpotenzial anhand öffentlicher Karten, um die Begründung zu stützen."
+          "Nennen Sie die Zone des Standorts im Wiener Wärmeplan 2040.",
+          "Erklären Sie in ein bis zwei Sätzen, warum ein 5GDHC-Netz zu dieser Zone passt.",
+          "Stützen Sie die Begründung mit gemessenen Verbräuchen und der Trassenlänge, wo sie vorliegen."
         ]
       },
       {
         "key": "boundary",
         "texts": [
-          "Zeichnet die Systemgrenze und legt fest, wer Wärmequelle, Netz und Wärmepumpen in den Gebäuden besitzt, finanziert und betreibt.",
-          "Prüft, dass keine Partei ein Risiko trägt, dem kein entsprechender Nutzen gegenübersteht."
+          "Zeichnen Sie die Systemgrenze und legen Sie fest, wem Wärmequelle, Netz und Wärmepumpen in den Gebäuden gehören.",
+          "Halten Sie fest, wer sie finanziert und betreibt, auch wenn die Entscheidung zwischen Eigenbetrieb und Contracting noch offen ist.",
+          "Prüfen Sie, dass keine Partei ein Risiko ohne passenden Nutzen trägt."
         ]
       },
       {
         "key": "operator",
         "texts": [
-          "Benennt einen Betreiber, entweder die Eigentümergemeinschaft oder einen Contractor, und seine Pflichten.",
-          "Beschreibt Wartung, Abrechnung, Störungsbehebung und Versorgungssicherheit als konkrete Aufgaben.",
-          "Haltet die offenen Vertragspunkte für den Betrieb in einer kurzen Liste fest."
+          "Benennen Sie den Betreiber oder die Entscheidungsregel, nach der er gewählt wird.",
+          "Beschreiben Sie seine Pflichten: Wartung, Messung und Abrechnung, Störungen und Versorgungssicherheit.",
+          "Listen Sie die offenen Vertragspunkte auf, etwa Liefermodalitäten und Nachverhandlung."
         ]
       },
       {
         "key": "cost-key",
         "texts": [
-          "Schreibt eine Regel zur Aufteilung der Kosten für Quelle, Leitungen und Anschlüsse auf, zum Beispiel die Quelle nach Anschlussleistung.",
-          "Prüft, dass kein Nutzer Kosten trägt, ohne einen entsprechenden Nutzen zu haben."
+          "Schreiben Sie den Kostenschlüssel als Regel, zum Beispiel die Quelle nach Anschlussleistung und die Leitungen nach Nutzung.",
+          "Legen Sie fest, wie die Anschlusskosten der einzelnen Gebäude verteilt werden.",
+          "Prüfen Sie, dass keine Partei ein Risiko ohne Gegenleistung trägt."
         ]
       },
       {
         "key": "price-vs-alternative",
         "texts": [
-          "Vergleicht die jährlichen Kosten eines typischen Kunden im Netz mit Gas und mit einer Einzelwärmepumpe über dieselben 20 bis 30 Jahre.",
-          "Beziffert den Kühlbedarf und macht Kühlung dort, wo sie gebraucht wird, zu einem genannten Anschlussgrund.",
-          "Setzt nicht auf Aufpreise für grüne Wärme, sondern argumentiert mit Preisstabilität, Komfort und vermiedenen Ersatzkosten."
+          "Vergleichen Sie die jährlichen Kosten eines typischen Kunden im Netz mit Gas und mit einer eigenen Wärmepumpe über dieselben 20 bis 30 Jahre.",
+          "Beziffern Sie den Kältebedarf und nennen Sie die Kühlung als Anschlussgrund, wo sie besteht.",
+          "Setzen Sie nicht auf Aufpreise für grüne Wärme, sondern auf Preisstabilität, Komfort und vermiedene Ersatzkosten."
         ]
       },
       {
         "key": "anchor-residential",
         "texts": [
-          "Schreibt für jeden Eigentümertyp auf, wer nach welcher Regel entscheidet, etwa Eigentümergemeinschaft, Miete oder gemeinnütziger Wohnbau.",
-          "Benennt einen Ankerkunden und strebt dafür eine Absichtserklärung an.",
-          "Bindet die Gemeinde früh als Partner ein und entwickelt das Angebot mit einer kleinen Gruppe entschlossener Erstkunden."
+          "Schreiben Sie je Eigentümerart auf, wer entscheidet und nach welcher Regel, zum Beispiel bei Eigentümergemeinschaft, Miete und gemeinnützigem Wohnbau.",
+          "Benennen Sie einen Ankerkunden und streben Sie eine Absichtserklärung an.",
+          "Entwickeln Sie das Angebot mit einer kleinen Gruppe entschlossener Erstkunden."
         ]
       },
       {
         "key": "water-permit",
         "texts": [
-          "Prüft Grundwasser- und Bohrpotenzial in öffentlichen Karten.",
-          "Vereinbart früh einen Termin mit der Wasserbehörde und benennt im Plan den Genehmigungsweg."
+          "Nennen Sie den Genehmigungsweg für die Nutzung von Grundwasser, Erdreich oder Oberflächenwasser.",
+          "Prüfen Sie das Grundwasser- und Bohrpotenzial in öffentlichen Karten.",
+          "Vereinbaren Sie früh einen Termin bei der Wasserbehörde und halten Sie das Ergebnis fest."
         ]
       },
       {
         "key": "connection-threshold",
         "texts": [
-          "Nennt eine angenommene Anschlussquote und eine Mindestquote, unter der der Plan nicht mehr trägt.",
-          "Zeigt, wie sich die Kosten pro Kunde ändern, wenn weniger Gebäude anschließen.",
-          "Strebt für einen Ankerkunden eine Absichtserklärung an und bindet die Gemeinde früh ein."
+          "Nennen Sie die erwartete Anschlussquote und eine Mindestquote, ab der das Vorhaben wirtschaftlich trägt.",
+          "Zeigen Sie, wie sich die Kosten pro Kunde ändern, wenn weniger Gebäude anschließen.",
+          "Sichern Sie die Anschlüsse über Absichtserklärungen und klären Sie die Entscheidungsregeln der Eigentümer."
         ]
       },
       {
         "key": "lifetime-cover",
         "texts": [
-          "Verteilt die Investition über die Abschreibungsdauer und vergleicht sie jährlich mit Erlösen und Betriebskosten inklusive Wärmepumpenstrom.",
-          "Ändert Anschlussquote, Tarif, Investition und Strompreis einzeln und notiert jeweils den Break-even-Wert.",
-          "Plant einen Puffer für Optimismus ein."
+          "Verteilen Sie die Investition auf die Abschreibungsdauer und vergleichen Sie sie jedes Jahr mit den Erlösen und den Betriebskosten einschließlich Wärmepumpenstrom.",
+          "Ändern Sie Anschlussquote, Tarif, Investition und Strompreis einzeln und notieren Sie den jeweiligen Break-even-Wert.",
+          "Rechnen Sie einen Sicherheitsaufschlag für Optimismus ein."
         ]
       },
       {
         "key": "subsidy-dependence",
         "texts": [
-          "Zeigt den Plan zusätzlich ganz ohne Förderung und benennt, was sich dadurch ändert.",
-          "Verteilt die Investition über die Abschreibungsdauer und vergleicht sie jährlich mit Erlösen und Kosten.",
-          "Variiert Anschlussquote, Tarif, Investition und Strompreis einzeln und haltet fest, wo der Plan kippt."
+          "Zeigen Sie, welchen Anteil der Förderungen der Finanzierungsplan braucht.",
+          "Rechnen Sie den Plan zusätzlich ganz ohne Förderung durch.",
+          "Ändern Sie Anschlussquote, Tarif, Investition und Strompreis einzeln und notieren Sie den Break-even-Wert."
         ]
       },
       {
         "key": "deal-breaker",
         "texts": [
-          "Markiert ein Risiko als möglichen Showstopper und beschreibt, was genau das Projekt stoppen würde.",
-          "Legt einen konkreten Prüfschritt fest: was getestet wird, wer es macht und bis wann.",
-          "Reiht die Annahmen nach Wichtigkeit und Belegbarkeit und testet die wichtigen ohne Beleg zuerst."
+          "Ordnen Sie die Annahmen nach Wichtigkeit und Belegen und markieren Sie das Risiko, das das Projekt wirklich stoppen könnte.",
+          "Legen Sie für dieses Risiko einen konkreten Prüfschritt fest: was geprüft wird, wer es tut und bis wann.",
+          "Halten Sie fest, was sich nach dem Feedback geändert hat und warum."
         ]
       },
       {
         "key": "decision-gate",
         "texts": [
-          "Formuliert ein Go-/No-go-Tor mit messbaren Kriterien, einer entscheidenden Person und einem Datum.",
-          "Definiert eine erste Phase als kleinen Cluster oder Mikronetz und die Schritte zum Wachstum.",
-          "Haltet fest, unter welchen Bedingungen sich das Modell auf andere Standorte übertragen lässt und wo nicht."
+          "Formulieren Sie ein Go-/No-go-Tor mit prüfbaren Kriterien, zum Beispiel Absichtserklärungen, Genehmigungsvorprüfung und Finanzierungszusage.",
+          "Benennen Sie die entscheidende Person und ein Datum.",
+          "Definieren Sie die erste Phase als kleinen Cluster oder Mikronetz und die Schritte zum Ausbau."
         ]
       }
     ]

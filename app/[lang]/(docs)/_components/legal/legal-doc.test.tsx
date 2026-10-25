@@ -29,14 +29,15 @@ describe("LegalDoc", () => {
     expect(page.props.after).toBeUndefined()
   })
 
-  it("shows that only the AI Plan Score is available while the other AI features are off", async () => {
+  it("shows that the AI features are available (D-82)", async () => {
     const page = await render("ai")
-    expect(page.props.status).toBe(enAi.status.score)
+    expect(page.props.status).toBe(enAi.status.live)
     expect(page.props.after?.["how-it-runs"].type).toBe(AiProviders)
   })
 
   it.each([
     { features: true, score: true, expected: enAi.status.live },
+    { features: false, score: true, expected: enAi.status.score },
     { features: false, score: false, expected: enAi.status.planned },
   ])("shows the matching status for features $features and score $score", async ({ features, score, expected }) => {
     vi.resetModules()

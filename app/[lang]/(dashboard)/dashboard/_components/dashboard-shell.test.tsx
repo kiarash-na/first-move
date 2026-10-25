@@ -7,6 +7,7 @@ import { ProjectStoreProvider } from "./store-provider"
 import { testDictionaries } from "./test-utils/dictionaries"
 
 vi.mock("next/navigation", () => ({ useRouter: () => ({ push: vi.fn() }), usePathname: () => "/en/dashboard" }))
+vi.mock("@/lib/legal/ai", async (original) => ({ ...(await original<typeof import("@/lib/legal/ai")>()), AI_FEATURES_LIVE: false }))
 
 const tabs: TestTab[] = []
 afterEach(() => {
