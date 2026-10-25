@@ -1,7 +1,7 @@
 ---
 id: PLAN-LANDING-FIX-00
 date: 2026-10-25
-status: in-progress
+status: done
 challenge: [quick-check-tool, business-models]
 covers: [DESIGN-TOKENS, D-16, D-19, D-27, D-32, D-33, D-34, D-48, D-66, D-69, D-71, D-72, D-73, D-78]
 blocked_by: []
@@ -74,3 +74,5 @@ Checked and clean: no horizontal overflow at the three widths (`scrollWidth == c
 ## Verification
 
 Screenshots before/after at 1440, 1280, 1024 (EN, DE); no overflow at 320–1440; axe clean on `/en` (partners spec); reduced motion shows the AI console's final state; all checks green.
+
+Done 2026-10-25: see [the note](../notes/2026-10-25_landing-fix-00.md) for what was built, the checks and the decisions (D-LF-1 to D-LF-7).

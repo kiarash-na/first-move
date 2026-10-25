@@ -202,9 +202,10 @@
 }
 
 /* The turn's decision: a branch's choice, or a gate's pass / unclear / fail. */
+/* The question gives way (ellipsis) so the result always shows whole. */
 .ai-turn__decision {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) auto;
   grid-template-rows: auto auto;
   column-gap: 10px;
   justify-self: end;
