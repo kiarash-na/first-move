@@ -5,6 +5,261 @@
   },
   "title": "KI-Plan-Score",
   "lead": "Eine separate KI-Bewertung Ihres Businessplans, getrennt von den Berechnungen der App.",
+  "intro": {
+    "badge": "KI-Bewertung",
+    "title": "Eine separate KI-Bewertung Ihres geschriebenen Plans",
+    "body": "Der KI-Plan-Score ist eine KI-Einschätzung dazu, wie konkret, beziffert und belegt die Texte Ihres Businessplans sind.",
+    "points": {
+      "calculation": "Er ist keine Berechnung der App. Der Quick Check bleibt die einzige Berechnung, und die Pitch-Vollständigkeit zählt weiterhin nur, welche Felder ausgefüllt sind.",
+      "verdict": "Er ist keine Machbarkeitsstudie und kein Urteil über Förderung oder Investition. Nutzen Sie ihn, um zu sehen, wo der Plan noch dünn ist.",
+      "models": "Jev, ein KI-Entscheidungsmodell, trifft jede Entscheidung. Das Textmodell Ihrer Wahl schreibt nur den Bericht aus Jevs Zahlen und ändert sie nie."
+    },
+    "docs": "So funktioniert der KI-Plan-Score"
+  },
+  "setup": {
+    "title": "Schlüssel verbinden",
+    "lead": "Der KI-Plan-Score läuft mit Ihrem eigenen Schlüssel für das Vercel AI Gateway (Bring your own key). Das Gateway rechnet die Nutzung eines Durchlaufs über Ihr Konto ab.",
+    "key": {
+      "label": "Schlüssel für das Vercel AI Gateway",
+      "placeholder": "API-Schlüssel einfügen",
+      "use": "Schlüssel verwenden",
+      "forget": "Schlüssel vergessen",
+      "invalid": "Das sieht nicht nach einem Gateway-Schlüssel aus. Fügen Sie den ganzen Schlüssel ohne Leerzeichen ein.",
+      "active": "Verwendeter Schlüssel: {masked}",
+      "none": "Kein Schlüssel in Verwendung.",
+      "memory": "Der Schlüssel bleibt nur im Arbeitsspeicher dieses Tabs und ist weg, sobald Sie neu laden oder den Tab schließen. Er wird nie gespeichert, exportiert oder in einen Link geschrieben und an niemanden außer das Vercel AI Gateway gesendet.",
+      "where": "So erhalten Sie einen Schlüssel: Melden Sie sich bei Vercel an, öffnen Sie im Dashboard AI Gateway und erstellen Sie dort einen API-Schlüssel. Bevor das Gateway ein Modell ausführt, braucht Ihr Konto Guthaben."
+    },
+    "credits": {
+      "checking": "Schlüssel und Guthaben werden geprüft…",
+      "balance": "Schlüssel akzeptiert. Guthaben: {amount}",
+      "failed": "Der Schlüssel bleibt erhalten, aber das Guthaben konnte nicht geprüft werden. {reason}",
+      "rejected": "Der Schlüssel wurde nicht akzeptiert und ist wieder vergessen. {reason}"
+    },
+    "decision": {
+      "label": "Entscheidungsmodell",
+      "name": "Jev von TypeSafe AI",
+      "version": "Version {version}, fest",
+      "note": "Jev trifft jede Entscheidung: die Stufe jedes Planteils, die Prüfungen und die Verzweigungen. Es ist fest eingestellt, damit Scores zwischen Durchläufen vergleichbar bleiben.",
+      "zdr": "Keine Datenspeicherung und kein Training angefordert"
+    },
+    "text": {
+      "label": "Textmodell für Bericht und Vorschläge",
+      "help": "Schreibt den kurzen Bericht und auf Wunsch Vorschläge aus Jevs Zahlen. Es ändert nie eine Zahl. Jedes Sprachmodell des Gateways ist möglich.",
+      "price": "{input} Eingabe · {output} Ausgabe je Million Tokens",
+      "zdr": "Keine Datenspeicherung angefordert",
+      "custom": "Anderes Modell",
+      "customLabel": "Modell-ID im Gateway",
+      "customPlaceholder": "anbieter/modell",
+      "customInvalid": "Verwenden Sie die Gateway-Form anbieter/modell, zum Beispiel {example}.",
+      "customPrice": "Der Preis ist hier nicht bekannt: siehe die Modellliste des Gateways. Kein Training mit Ihren Texten wird angefordert."
+    },
+    "data": {
+      "title": "Was gesendet wird und an wen",
+      "points": {
+        "what": "Was: die Texte der ausgefüllten Felder des Businessplans und, falls vorhanden, das Ergebnis des Quick Checks. Leere Felder werden nie gesendet.",
+        "how": "Wie: direkt aus Ihrem Browser an das Vercel AI Gateway, mit Ihrem Schlüssel. Nichts läuft über die Server von First Move.",
+        "who": "An wen: Das Gateway gibt den Plan an TypeSafe AI für Jevs Entscheidungen weiter und die entschiedenen Zahlen mit kurzen Auszügen aus dem Plan an den Anbieter des gewählten Textmodells.",
+        "terms": "Keine Datenspeicherung und kein Training mit Ihren Texten werden angefordert. Es gelten die Bedingungen von Vercel und der Anbieter.",
+        "when": "Wann: nur, wenn Sie einen Durchlauf starten, den Bericht neu schreiben lassen oder Vorschläge anfordern."
+      },
+      "ack": "Ich habe verstanden, was gesendet wird und an wen, und möchte meinen Schlüssel dafür verwenden.",
+      "ackNote": "Diese Bestätigung gilt nur für diesen Tab."
+    }
+  },
+  "usage": {
+    "title": "Grobe Kosten eines Durchlaufs",
+    "value": "Etwa {amount}",
+    "below": "Weniger als {amount}",
+    "decisionOnly": "Entscheidungen etwa {amount}. Der Preis dieses Textmodells ist hier nicht bekannt.",
+    "note": "Nur eine Größenordnung. Das Gateway rechnet die tatsächlich verbrauchten Tokens ab.",
+    "tokens": "{count} Tokens",
+    "how": {
+      "title": "So schätzen wir",
+      "decision": "Entscheidungen: etwa {tokens} Tokens aus Plan und Fragen über die vier Runden, zu Jevs Eingabepreis von {price} je Million Tokens: {amount}.",
+      "text": "Bericht: etwa {input} Eingabe-Tokens und bis zu {output} Ausgabe-Tokens zu den Preisen von {model}: {amount}.",
+      "textUnknown": "Bericht: etwa {input} Eingabe-Tokens und bis zu {output} Ausgabe-Tokens. Die Preise dieses Modells sind hier nicht bekannt.",
+      "tokens": "Ein Token entspricht etwa drei Zeichen, wie auch sonst in der App. Vorschläge kosten zusätzlich, und nur, wenn Sie sie anfordern."
+    }
+  },
+  "run": {
+    "title": "Plan bewerten",
+    "lead": "Jev liest den Plan in fünf Runden vom ersten bis zum letzten Feld: eine Runde ohne KI, dann eine je Schritt des Businessplans. Sie können jederzeit abbrechen.",
+    "start": "Meinen Plan bewerten",
+    "again": "Erneut bewerten",
+    "againNote": "Ein neuer Durchlauf ersetzt den gespeicherten Score.",
+    "cancel": "Abbrechen",
+    "running": "Wird bewertet…",
+    "filled": "{filled} von {total} Planteilen haben Text.",
+    "openPlan": "Businessplan öffnen",
+    "needs": {
+      "key": "Verwenden Sie zuerst einen Gateway-Schlüssel.",
+      "ack": "Bestätigen Sie zuerst, was gesendet wird.",
+      "model": "Wählen Sie zuerst ein gültiges Textmodell.",
+      "filled": "Noch nichts zu bewerten: Kein Feld des Businessplans hat Text."
+    },
+    "progress": {
+      "label": "Fortschritt des Durchlaufs",
+      "turn": "Runde {turn}",
+      "report": "Bericht",
+      "noAi": "Ohne KI",
+      "questions": "{count} Fragen",
+      "states": {
+        "pending": "Wartet",
+        "running": "Läuft",
+        "done": "Fertig",
+        "failed": "Gestoppt",
+        "skipped": "Nicht gelaufen"
+      }
+    },
+    "done": "Bewertet. Der Score ist in diesem Projekt gespeichert.",
+    "notSaved": "Der Durchlauf ist fertig, aber dieses Projekt ist nicht mehr geöffnet, daher wurde der Score nicht gespeichert.",
+    "reportError": "Der Score ist gespeichert, aber der Bericht konnte nicht geschrieben werden. {reason}",
+    "writeAgain": "Bericht neu schreiben",
+    "failed": "Der Durchlauf wurde gestoppt, und nichts wurde gespeichert. {reason}"
+  },
+  "errors": {
+    "key": "Das Gateway hat den Schlüssel nicht akzeptiert. Prüfen Sie, ob Sie den ganzen Schlüssel eingefügt haben und ob er noch aktiv ist.",
+    "credits": "Ihr Gateway-Konto hat kein Guthaben mehr. Laden Sie in Ihrem Vercel-Konto Guthaben auf und versuchen Sie es dann erneut.",
+    "forbidden": "Der Schlüssel darf dieses Modell oder diese Funktion nicht nutzen. Prüfen Sie die Einstellungen Ihres Gateways oder wählen Sie ein anderes Textmodell.",
+    "model": "Das Gateway kennt dieses Modell nicht. Wählen Sie ein anderes Textmodell.",
+    "rate": "Gerade zu viele Anfragen. Warten Sie eine Minute und versuchen Sie es dann erneut.",
+    "provider": "Beim Modellanbieter gab es ein Problem. Versuchen Sie es gleich noch einmal.",
+    "network": "Das Gateway war nicht erreichbar oder hat zu lange gebraucht. Prüfen Sie Ihre Verbindung und versuchen Sie es dann erneut.",
+    "aborted": "Abgebrochen.",
+    "unknown": "Etwas ist schiefgegangen. Versuchen Sie es erneut."
+  },
+  "flow": {
+    "title": "Entscheidungsfluss",
+    "lead": "Jede Entscheidung von Jev, Runde für Runde, vom ersten bis zum letzten Feld. Wählen Sie einen Knoten, um seine Details zu sehen.",
+    "placeholder": "Der Fluss erscheint hier, sobald Sie den Plan bewerten.",
+    "view": {
+      "label": "Ansicht",
+      "graph": "Grafik",
+      "table": "Tabelle"
+    },
+    "columns": {
+      "turn": "Runde {turn}",
+      "read": "Plan lesen",
+      "aggregate": "Zusammenführen",
+      "aggregateTitle": "Dimensionen und Score",
+      "report": "Bericht",
+      "reportTitle": "Kurzer Bericht",
+      "noAi": "Ohne KI",
+      "jev": "Jev",
+      "textModel": "Textmodell"
+    },
+    "groups": {
+      "empty": "Leere Felder",
+      "judgements": "Planteile",
+      "gates": "Prüfungen",
+      "branches": "Verzweigungen",
+      "dimensions": "Dimensionen"
+    },
+    "state": {
+      "pending": "Wartet",
+      "running": "Entscheidet…",
+      "none": "Hier gibt es nichts zu entscheiden"
+    },
+    "node": {
+      "level": "{level} · {name}",
+      "empty": "Leer · 0",
+      "refused": "Keine Antwort",
+      "probability": "{outcome} · {value}",
+      "capApplied": "{outcome} · begrenzt auf {level}",
+      "chosen": "{value} sicher",
+      "changed": "Seit dem Durchlauf geändert",
+      "signalNone": "Kein vollständiger Quick Check: Jev liest den Plan allein.",
+      "heatDensity": "Wärmedichte {value}",
+      "economicRatio": "Wirtschaftlichkeitsverhältnis {value}",
+      "filled": "{filled} von {total} Planteilen ausgefüllt",
+      "points": "{value} von 100",
+      "cappedAt": "Begrenzt auf Stufe {level}",
+      "final": "KI-Plan-Score",
+      "score": "{score} ± {band}",
+      "capped": "Eine Pflichtprüfung ist gescheitert, daher bleibt der Score unter Solide.",
+      "reportNone": "Noch nicht geschrieben",
+      "reportWriting": "Wird geschrieben…",
+      "reportFailed": "Konnte nicht geschrieben werden",
+      "reportBy": "Geschrieben von {model}",
+      "step": "Schritt {step}"
+    },
+    "detail": {
+      "kinds": {
+        "judgement": "Planteil",
+        "gate": "Prüfung",
+        "followUp": "Folgeprüfung",
+        "branch": "Verzweigung",
+        "signal": "Signal aus dem Quick Check",
+        "dimension": "Dimension",
+        "score": "KI-Plan-Score",
+        "report": "Bericht"
+      },
+      "expected": "Erwartete Stufe",
+      "expectedValue": "{level} von 4 · {name}",
+      "histogram": "Wahrscheinlichkeit je Stufe",
+      "confidence": "Sicherheit",
+      "confidenceHelp": "Wie gebündelt Jevs Antwort ist: 100 %, wenn eine Stufe alles trägt, 0 %, wenn alle Stufen gleich wahrscheinlich sind.",
+      "spread": "Streuung",
+      "spreadValue": "± {value} Stufen",
+      "dimension": "Dimension",
+      "step": "Schritt im Businessplan",
+      "source": "Entschieden",
+      "question": "Frage",
+      "outcome": "Ergebnis",
+      "probability": "Wahrscheinlichkeit, dass sie erfüllt ist",
+      "effect": "Wirkung",
+      "cap": "Begrenzt „{dimension}“ auf Stufe {level}, wenn sie nicht erfüllt ist.",
+      "capConditional": "Begrenzt „{dimension}“ auf Stufe {level}, wenn sie nicht erfüllt ist und die Wärmedichte im Quick Check niedrig ist.",
+      "flag": "Nur ein Hinweis: Sie senkt den Score nie.",
+      "applied": "Angewendet: „{dimension}“ ist auf Stufe {level} begrenzt.",
+      "openedBy": "Gefragt, weil die Verzweigung „{branch}“ „{option}“ gewählt hat.",
+      "options": "Optionen",
+      "chosen": "Gewählt",
+      "followUp": "Folgeprüfung in der nächsten Runde",
+      "none": "Keine",
+      "weight": "Gewicht",
+      "beforeCap": "Vor Begrenzungen",
+      "afterCap": "Nach Begrenzungen",
+      "band": "Band (eine Standardabweichung)",
+      "emptyNote": "Kein Text: ohne KI mit 0 bewertet und nie gesendet.",
+      "refusedNote": "Jev hat die Antwort abgelehnt, daher zählt dieser Teil nicht.",
+      "ruleNote": "Vor jeder KI per Regel entschieden.",
+      "skippedNote": "Nicht gefragt: Sie trifft auf diesen Plan nicht zu.",
+      "changedNote": "Der Text hat sich nach dem Durchlauf geändert, daher ist diese Stufe womöglich veraltet.",
+      "signalNote": "Das Ergebnis des Quick Checks geht als festes Signal ein. Die KI berechnet es nie.",
+      "heatDensity": "Wärmedichte",
+      "economicRatio": "Wirtschaftlichkeitsverhältnis",
+      "roundedNote": "Auf 5 Punkte gerundet angezeigt, um keine falsche Genauigkeit vorzutäuschen.",
+      "headline": "Überschrift",
+      "model": "Modell"
+    },
+    "legend": {
+      "label": "Legende",
+      "levels": "Erwartete Stufe",
+      "empty": "Leeres Feld",
+      "refused": "Keine Antwort",
+      "branch": "Verzweigung",
+      "edge": "Öffnet eine Folgeprüfung"
+    },
+    "table": {
+      "caption": "Entscheidungsfluss als Tabelle",
+      "heading": "Element",
+      "turn": "Runde",
+      "kind": "Art",
+      "result": "Ergebnis",
+      "certainty": "Wahrscheinlichkeit oder Sicherheit"
+    },
+    "how": {
+      "title": "So entscheidet der Fluss",
+      "read": "Runde 0, ohne KI: Die App prüft, welche Planteile Text haben. Leere erhalten sicher 0 und werden nie gesendet. Ein vollständiges Ergebnis des Quick Checks geht als festes Signal ein.",
+      "turns": "Runden 1 bis 4, ein Aufruf von Jev je Schritt des Businessplans: Jev bewertet jeden ausgefüllten Planteil auf fünf Stufen (fehlt, vage, konkret, beziffert, belegt) und gibt für jede Stufe eine Wahrscheinlichkeit an. Die erwartete Stufe ist E = Σ k · p(k), für k von 0 bis 4.",
+      "gates": "Prüfungen sind Ja-Nein-Fragen über den ganzen Plan. Sie bringen nie Punkte. Eine Prüfung, die mit Sicherheit nicht erfüllt ist, begrenzt ihre Dimension auf Stufe 2 oder 3; eine unklare Antwort ist nur ein Hinweis. Manche Prüfungen entscheidet eine Regel vor jeder KI.",
+      "branches": "Verzweigungen sind Auswahlfragen, etwa nach der wichtigsten Wärmequelle. Die Option, die Jev wählt, bestimmt, welche Folgeprüfung die nächste Runde stellt.",
+      "aggregate": "Zusammenführen, ohne KI: Eine Dimension ist der Mittelwert ihrer Planteile, gekappt durch die niedrigste Begrenzung ihrer nicht erfüllten Prüfungen. Der KI-Plan-Score ist die gewichtete Summe der sieben Dimensionen, von 0 bis 100, mit einem Band von einer Standardabweichung. Früh unter 40, Vielversprechend ab 40, Solide ab 70; eine gescheiterte Pflichtprüfung hält ihn unter Solide.",
+      "report": "Bericht: Das gewählte Textmodell schreibt aus diesen Zahlen einen kurzen Bericht. Es kann sie nicht ändern."
+    }
+  },
   "labels": {
     "scoreLevels": {
       "early": {
