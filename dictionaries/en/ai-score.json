@@ -272,7 +272,7 @@
       },
       "solid": {
         "name": "Solid",
-        "description": "The plan is specific, quantified and backed by evidence in most places, and no must-have gate failed."
+        "description": "The plan is specific, quantified and backed by evidence in most places, and no must-have check failed."
       }
     },
     "levels": {
@@ -555,7 +555,7 @@
       "outOf": "of 100",
       "band": "± {band}",
       "scoreLabel": "AI Plan Score {score} of 100, plus or minus {band}",
-      "range": "Band of one standard deviation: {from} to {to}",
+      "range": "Band of one standard deviation around the unrounded score: {from} to {to}",
       "rounded": "Shown rounded to {step} points. The label uses the unrounded score, {raw}.",
       "capped": "A must-have check failed, so the label stays below {solid} however many points the plan has.",
       "seeChecks": "See the checks",
@@ -589,7 +589,7 @@
       "edit": "Edit in {step}"
     },
     "dimensions": {
-      "title": "Seven dimensions",
+      "title": "{count} dimensions",
       "lead": "What makes a 5GDHC business plan solid. A dimension is the mean evidence level of its plan parts on the scale from 0 to 100; a failed check can cap it.",
       "view": {
         "label": "View",
@@ -605,8 +605,9 @@
       "weight": "Weight {value}",
       "value": "{score} ± {sd}",
       "capped": "Capped at level {level}",
+      "before": "{value} before the cap",
       "table": {
-        "caption": "Table view of the seven dimensions",
+        "caption": "Table view of the dimensions",
         "heading": "Dimension",
         "score": "Score",
         "raw": "Before cap",
@@ -620,7 +621,7 @@
     },
     "parts": {
       "title": "Every plan part",
-      "lead": "Jev's judgement of each part on the five evidence levels, in the order of the Business Plan. The bars show how likely Jev found each level; the line marks the expected level.",
+      "lead": "Jev's judgement of each part on the {count} evidence levels, in the order of the Business Plan. The bars show how likely Jev found each level; the line marks the expected level.",
       "turn": "Turn {turn} · {name}",
       "level": "{name} · {value}",
       "levelLabel": "Expected level {value} of {max}, {name}",
@@ -646,7 +647,7 @@
     },
     "checks": {
       "title": "Checks and decisions",
-      "lead": "Checks are yes-or-no questions across the plan. They never add points: a check that fails with confidence caps its dimension, an unclear one is only a flag. The branches decide which follow-up check the next turn asks.",
+      "lead": "Checks are yes-or-no or choice questions across the plan. They never add points: a check that fails with confidence caps its dimension, an unclear one is only a flag. The branches decide which follow-up check the next turn asks.",
       "gates": "Checks",
       "branches": "Decisions",
       "passProbability": "Pass probability {value}",
@@ -666,6 +667,7 @@
       "opens": "Opened the follow-up check “{check}”",
       "opensNone": "Opens no follow-up check",
       "options": "Probability per option",
+      "suggestions": "Suggestions",
       "suggest": "Suggest improvements",
       "suggestFor": "Suggest improvements for {name}"
     },
@@ -718,12 +720,12 @@
       "title": "How we score",
       "lead": "The AI Plan Score turns Jev's decisions into numbers without further AI. Every number here comes from the method itself.",
       "levels": {
-        "title": "Five evidence levels",
+        "title": "{count} evidence levels",
         "lead": "Every plan part is judged on the same scale. The levels describe quality, never length."
       },
       "turns": {
         "title": "Turns",
-        "lead": "Turn 0 reads the plan without AI: empty parts score 0 and are never sent, and the Quick Check enters as a fixed signal. Then Jev takes one turn per Business Plan step, from the first field to the last, and sees what it decided before."
+        "lead": "Turn 0 reads the plan without AI: empty parts score 0 and are never sent, and the Quick Check enters as a fixed signal. Then Jev takes one turn per Business Plan step, from the first field to the last, and sees the options it chose in the choice questions of earlier turns."
       },
       "checks": {
         "title": "Checks and caps",
@@ -732,13 +734,18 @@
       },
       "branches": {
         "title": "Branches and follow-up checks",
-        "body": "Three choice questions (the anchor customer, the main heat source and the ownership model) pick the follow-up check the next turn asks, so each plan gets the questions that fit it."
+        "body": "The choice questions {names} pick the follow-up check the next turn asks, so each plan gets the questions that fit it.",
+        "name": "“{name}”"
       },
       "formulas": {
         "title": "Formulas",
         "expected": {
           "name": "Expected level of a plan part",
           "formula": "E = Σ k · p(k), k = 0 … {max}"
+        },
+        "partSpread": {
+          "name": "Spread of a plan part",
+          "formula": "σ = √(Σ p(k) · (k − E)²)"
         },
         "dimensionLevel": {
           "name": "Level of a dimension",
@@ -750,7 +757,7 @@
         },
         "dimensionSpread": {
           "name": "Spread of a dimension",
-          "formula": "SD = √(Σ SD²) / n"
+          "formula": "SD = {perLevel} · √(Σ σ²) / n, in points"
         },
         "score": {
           "name": "AI Plan Score",
@@ -759,6 +766,10 @@
         "band": {
           "name": "Band",
           "formula": "Band = √(Σ (w · SD)²)"
+        },
+        "choicePass": {
+          "name": "Pass probability of a choice check",
+          "formula": "P = Σ v(o) · p(o) / Σ p(o); v = {pass} for a passing option, {partial} for a partial one, {fail} for a failing one; options that do not apply are left out"
         },
         "note": "An empty part counts as 0 with no spread; a part without an answer does not count. The spread of a dimension takes its parts as independent, which probably understates it."
       },
@@ -771,7 +782,7 @@
         "early": "below {promising}",
         "promising": "{promising} to below {solid}",
         "solid": "{solid} and above, unless a must-have check failed",
-        "rounding": "Shown rounded to {step} points, with the band in whole points, to avoid false precision. The label uses the unrounded score."
+        "rounding": "Shown rounded to {step} points, with the band in whole points and at least {minBand}, to avoid false precision. The label uses the unrounded score."
       },
       "caveats": {
         "title": "Read it with care",

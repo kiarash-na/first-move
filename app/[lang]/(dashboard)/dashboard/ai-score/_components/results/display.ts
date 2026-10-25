@@ -22,6 +22,25 @@ export const ROUNDING_STEP: number = (() => {
   return 1
 })()
 
+/** The smallest band `displayScore` shows, read from it as well: a run without any spread. */
+export const MIN_BAND: number = displayScore(0, 0).band
+
+const roundTo = (value: number, digits: number) => Math.round(value * 10 ** digits) / 10 ** digits
+
+/**
+ * The fewest fraction digits, from `min` to `max`, at which `value` rounds to the same side of
+ * every threshold as it is (never onto one it is not on), so a shown number never contradicts an
+ * engine threshold: a level of 1.96 is not "2.0" next to "below level 2", a probability of 0.7953
+ * not "80%" next to "Unclear".
+ */
+export function digitsBeside(value: number, thresholds: readonly number[], min: number, max: number): number {
+  for (let digits = min; digits < max; digits++) {
+    const shown = roundTo(value, digits)
+    if (thresholds.every((threshold) => Math.sign(shown - threshold) === Math.sign(value - threshold))) return digits
+  }
+  return max
+}
+
 /** A position on the 0..100 scale, kept inside it. */
 export const clampPoints = (points: number) => Math.min(100, Math.max(0, points))
 

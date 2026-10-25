@@ -14,6 +14,7 @@ import { MAX_LEVEL } from "./scale"
  *    independent (which probably understates it);
  * 3. the AI Plan Score is Σ weight × dimension score, its band √(Σ (weight × band)²);
  * 4. labels: Early < 40 ≤ Promising < 70 ≤ Solid; a must-have cap (level 2) keeps it below Solid.
+ *    The label reads the score as stored (one decimal), so the saved score and its label agree.
  * Shown rounded to 5 points, to avoid false precision (QCT-RES-LEVELS).
  */
 export const SOLID_FROM = 70
@@ -75,5 +76,6 @@ export function aggregate(nodes: readonly FlowNode[]): Aggregate {
   const score = 100 * dimensions.reduce((sum, dimension) => sum + dimension.weight * dimension.score, 0)
   const sd = 100 * Math.sqrt(dimensions.reduce((sum, dimension) => sum + (dimension.weight * dimension.sd) ** 2, 0))
   const capped = gates.some((gate) => appliedCap(gate) === 2)
-  return { score: round(score, 1), sd: round(sd, 1), level: labelOf(score, capped), capped, dimensions }
+  const stored = round(score, 1)
+  return { score: stored, sd: round(sd, 1), level: labelOf(stored, capped), capped, dimensions }
 }

@@ -4,18 +4,21 @@ import { CalculatorIcon, ChevronDownIcon } from "lucide-react"
 
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import { PROMISING_FROM, SOLID_FROM } from "@/lib/ai/plan-score/aggregate"
+import { BRANCHES } from "@/lib/ai/plan-score/branches"
 import { DIMENSIONS } from "@/lib/ai/plan-score/dimensions"
-import { GATE_FAIL, GATE_PASS } from "@/lib/ai/plan-score/gates"
+import { GATE_FAIL, GATE_PASS, OPTION_WEIGHT } from "@/lib/ai/plan-score/gates"
 import { TURNS } from "@/lib/ai/plan-score/judgements"
-import { LEVEL_IDS, MAX_LEVEL } from "@/lib/ai/plan-score/scale"
+import { LEVEL_COUNT, LEVEL_IDS, MAX_LEVEL } from "@/lib/ai/plan-score/scale"
+import { joinList } from "@/lib/dashboard/result-text"
 import { formatNumber, formatPercent } from "@/lib/i18n/format"
 import { interpolate } from "@/lib/i18n/interpolate"
 import { useDictionary, useLocale } from "../../../_components/i18n-provider"
-import { POINTS_PER_LEVEL, ROUNDING_STEP } from "./display"
+import { MIN_BAND, POINTS_PER_LEVEL, ROUNDING_STEP } from "./display"
 import { CAP_LEVELS } from "./gate-info"
 import { HowBlock } from "./how-block"
+import { branchCopy } from "./labels"
 
-const FORMULAS = ["expected", "dimensionLevel", "dimensionScore", "dimensionSpread", "score", "band"] as const
+const FORMULAS = ["expected", "partSpread", "dimensionLevel", "dimensionScore", "dimensionSpread", "score", "band", "choicePass"] as const
 /** Turn 0 reads the plan without AI; then one turn per Business Plan step (`run.ts`). */
 const RUN_TURNS = [0, ...TURNS] as const
 const CAVEATS = ["calibration", "opinion", "length"] as const
@@ -23,7 +26,8 @@ const CAVEATS = ["calibration", "opinion", "length"] as const
 /**
  * "How we score" (D-33), collapsed: the evidence levels, the turns, checks and caps, branches, the
  * formulas, the weights, the label thresholds and the caveats. Every number is imported from the
- * engine (scale, gates, aggregate, dimensions), never retyped.
+ * engine (scale, gates, branches, aggregate, dimensions), never retyped. Its title is a heading,
+ * so its blocks sit under it in the page outline.
  */
 export function HowWeScore() {
   const lang = useLocale()
@@ -31,19 +35,32 @@ export function HowWeScore() {
   const how = copy.results.how
   const number = (value: number) => formatNumber(value, lang)
   const levels = { promising: number(PROMISING_FROM), solid: number(SOLID_FROM) }
+  const branchNames = BRANCHES.flatMap((branch) => {
+    const name = branchCopy(copy.labels, branch.id)?.name
+    return name ? [interpolate(how.branches.name, { name })] : []
+  })
+  const formulaValues = {
+    max: number(MAX_LEVEL),
+    perLevel: number(POINTS_PER_LEVEL),
+    pass: number(OPTION_WEIGHT.pass),
+    partial: number(OPTION_WEIGHT.partial),
+    fail: number(OPTION_WEIGHT.fail),
+  }
 
   return (
     <Collapsible data-slot="how-we-score" className="group/how border bg-card px-5 py-1 sm:px-6">
-      <CollapsibleTrigger className="inline-flex min-h-12 w-full cursor-pointer items-center gap-2.5 font-mono text-xs tracking-[0.06em] text-muted-foreground uppercase transition-colors duration-[180ms] hover:text-foreground data-[state=open]:text-hot">
-        <CalculatorIcon className="size-4" strokeWidth={1.6} aria-hidden="true" />
-        {how.title}
-        <ChevronDownIcon className="ml-auto size-4 transition-transform duration-[220ms] ease-signature group-data-[state=open]/how:rotate-180" strokeWidth={1.6} aria-hidden="true" />
-      </CollapsibleTrigger>
+      <h3>
+        <CollapsibleTrigger className="inline-flex min-h-12 w-full cursor-pointer items-center gap-2.5 font-mono text-xs tracking-[0.06em] text-muted-foreground uppercase transition-colors duration-[180ms] hover:text-foreground data-[state=open]:text-hot">
+          <CalculatorIcon className="size-4" strokeWidth={1.6} aria-hidden="true" />
+          {how.title}
+          <ChevronDownIcon className="ml-auto size-4 transition-transform duration-[220ms] ease-signature group-data-[state=open]/how:rotate-180" strokeWidth={1.6} aria-hidden="true" />
+        </CollapsibleTrigger>
+      </h3>
       <CollapsibleContent className="overflow-hidden data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:animate-in data-[state=open]:fade-in-0">
         <div className="mb-5 flex flex-col gap-6 border-l-2 border-hot bg-muted/40 px-4 py-5 sm:px-5">
           <p className="max-w-[72ch] text-sm leading-relaxed text-text-secondary">{how.lead}</p>
 
-          <HowBlock title={how.levels.title}>
+          <HowBlock title={interpolate(how.levels.title, { count: number(LEVEL_COUNT) })}>
             <p className="max-w-[72ch] text-sm text-text-secondary">{how.levels.lead}</p>
             <ol className="flex flex-col divide-y divide-border border-y">
               {LEVEL_IDS.map((id, level) => (
@@ -81,7 +98,7 @@ export function HowWeScore() {
           </HowBlock>
 
           <HowBlock title={how.branches.title}>
-            <p className="max-w-[72ch] text-sm text-text-secondary">{how.branches.body}</p>
+            <p className="max-w-[72ch] text-sm text-text-secondary">{interpolate(how.branches.body, { names: joinList(branchNames, lang) })}</p>
           </HowBlock>
 
           <HowBlock title={how.formulas.title}>
@@ -89,7 +106,7 @@ export function HowWeScore() {
               {FORMULAS.map((id) => (
                 <div key={id} data-formula={id} className="grid gap-x-6 gap-y-1 py-2.5 sm:grid-cols-[minmax(0,14rem)_minmax(0,1fr)]">
                   <dt className="text-sm">{how.formulas[id].name}</dt>
-                  <dd className="font-mono text-sm break-words">{interpolate(how.formulas[id].formula, { max: number(MAX_LEVEL), perLevel: number(POINTS_PER_LEVEL) })}</dd>
+                  <dd className="font-mono text-sm break-words">{interpolate(how.formulas[id].formula, formulaValues)}</dd>
                 </div>
               ))}
             </dl>
@@ -116,7 +133,7 @@ export function HowWeScore() {
                 </li>
               ))}
             </ul>
-            <p className="max-w-[72ch] text-xs leading-relaxed text-muted-foreground">{interpolate(how.labels.rounding, { step: number(ROUNDING_STEP) })}</p>
+            <p className="max-w-[72ch] text-xs leading-relaxed text-muted-foreground">{interpolate(how.labels.rounding, { step: number(ROUNDING_STEP), minBand: number(MIN_BAND) })}</p>
           </HowBlock>
 
           <HowBlock title={how.caveats.title}>

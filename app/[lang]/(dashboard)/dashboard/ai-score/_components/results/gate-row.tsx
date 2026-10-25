@@ -1,10 +1,12 @@
 "use client"
 
+import { LOW_HEAT_DENSITY } from "@/lib/ai/plan-score/gates"
 import { formatNumber } from "@/lib/i18n/format"
 import { interpolate } from "@/lib/i18n/interpolate"
 import type { AiGate, AiScore } from "@/lib/project"
 import { useDictionary, useLocale } from "../../../_components/i18n-provider"
 import type { ResultActions } from "../types"
+import { AiBadge } from "./ai-badge"
 import { checkAnchor } from "./anchors"
 import { CAP_LEVELS, gateInfo, openedBy } from "./gate-info"
 import { branchCopy, gateCopy, optionName } from "./labels"
@@ -17,8 +19,22 @@ import { SuggestionTexts } from "./suggestion-texts"
  * One check (gate) of the run (PLAN-AI-SCORE-01 § Gates): its outcome in words, the pass
  * probability as a meter, the cap it applied or could apply, how it was decided, its question and,
  * for a follow-up check, the decision that asked it. A failed or unclear check can get suggestions.
+ * A conditional cap is a must-have only while its condition holds (the low Quick Check heat density).
  */
-export function GateRow({ gate, score, suggestions, actions }: { gate: AiGate; score: AiScore; suggestions: readonly string[]; actions: ResultActions }) {
+export function GateRow({
+  gate,
+  score,
+  suggestions,
+  suggestionsLang,
+  actions,
+}: {
+  gate: AiGate
+  score: AiScore
+  suggestions: readonly string[]
+  /** The language the saved suggestions were written in, when it may differ from the page's. */
+  suggestionsLang?: string
+  actions: ResultActions
+}) {
   const lang = useLocale()
   const copy = useDictionary("ai-score")
   const text = copy.results.checks
@@ -27,7 +43,8 @@ export function GateRow({ gate, score, suggestions, actions }: { gate: AiGate; s
   if (!info || !names) return null
 
   const dimension = copy.labels.dimensions[info.dimension].name
-  const mustHave = info.effect.kind === "cap" && info.effect.level === CAP_LEVELS[0]
+  const capHolds = !info.conditional || (score.quickCheck !== null && score.quickCheck.heatDensityMwhPerM < LOW_HEAT_DENSITY)
+  const mustHave = info.effect.kind === "cap" && info.effect.level === CAP_LEVELS[0] && capHolds
   const opened = openedBy(score, gate.id)
   const effect =
     gate.cap !== null
@@ -64,7 +81,7 @@ export function GateRow({ gate, score, suggestions, actions }: { gate: AiGate; s
           </p>
         </div>
         <div className="flex w-full flex-col gap-2 sm:w-52">
-          <OutcomeTag outcome={gate.outcome} />
+          <OutcomeTag outcome={gate.outcome} label={gate.source === "refused" ? copy.labels.gateSources.refused : undefined} />
           {gate.probability !== null ? (
             <PassMeter probability={gate.probability} />
           ) : (
@@ -72,7 +89,15 @@ export function GateRow({ gate, score, suggestions, actions }: { gate: AiGate; s
           )}
         </div>
       </div>
-      {suggestions.length > 0 && <SuggestionTexts texts={suggestions} className="border-l-2 border-hot pl-3" />}
+      {suggestions.length > 0 && (
+        <div className="flex flex-col gap-2 border-l-2 border-hot pl-3">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
+            <p className="font-mono text-xs tracking-[0.06em] text-muted-foreground uppercase">{text.suggestions}</p>
+            <AiBadge />
+          </div>
+          <SuggestionTexts texts={suggestions} lang={suggestionsLang} />
+        </div>
+      )}
       {target && <SuggestButton actions={actions} keys={[gate.id]} label={text.suggest} name={interpolate(text.suggestFor, { name: names.name })} />}
     </li>
   )

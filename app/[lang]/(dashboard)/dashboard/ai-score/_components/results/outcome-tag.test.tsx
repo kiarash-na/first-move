@@ -12,6 +12,12 @@ describe("OutcomeTag", () => {
     expect(tag.querySelector("svg")).toHaveAttribute("aria-hidden", "true")
   })
 
+  it("takes another word where the outcome alone would mislead", () => {
+    renderResults(<OutcomeTag outcome="skipped" label="No answer" />)
+    expect(screen.getByText("No answer")).toHaveAttribute("data-outcome", "skipped")
+    expect(screen.queryByText(aiScoreCopy("en").labels.outcomes.skipped)).not.toBeInTheDocument()
+  })
+
   it("uses orange for a failed check and cyan for a passed one", () => {
     renderResults(
       <>

@@ -25,13 +25,25 @@ describe("ScoreSummary", () => {
     expect(container.querySelector("[data-slot=quick-check-signal]")!.closest("[data-ai-generated]")).toBeNull()
     expect(screen.getByText(copy.results.aiGenerated)).toBeInTheDocument()
     expect(container).toHaveTextContent(`The label uses the unrounded score, ${varied.score.score}.`)
-    expect(container).toHaveTextContent(`Band of one standard deviation: ${shown.score - shown.band} to ${shown.score + shown.band}`)
+    // The range is the drawn band: the unrounded score ± its band, with one decimal.
+    const one = (value: number) => String(Math.round(value * 10) / 10)
+    expect(container).toHaveTextContent(`around the unrounded score: ${one(varied.score.score - varied.score.sd)} to ${one(varied.score.score + varied.score.sd)}`)
     expect(container.querySelector("[data-slot=capped-note]")).toBeNull()
   })
 
   it("puts the scale mark at the unrounded score", () => {
     const { container } = renderResults(<ScoreSummary score={varied.score} />)
     expect(container.querySelector<HTMLElement>("[data-marker]")!.style.left).toBe(`${varied.score.score}%`)
+  })
+
+  it("draws the same band the text states", () => {
+    // 62.4 ± 7.6 shows as 60 ± 8, but the band drawn and stated is 54.8 to 70.
+    const score = { ...varied.score, score: 62.4, sd: 7.6 }
+    const { container } = renderResults(<ScoreSummary score={score} />)
+    const band = container.querySelector<HTMLElement>("[data-slot=score-scale] [data-band]")!
+    expect(parseFloat(band.style.left)).toBeCloseTo(54.8, 6)
+    expect(parseFloat(band.style.width)).toBeCloseTo(15.2, 6)
+    expect(container).toHaveTextContent("around the unrounded score: 54.8 to 70")
   })
 
   it("explains a failed must-have check and links to the checks", () => {

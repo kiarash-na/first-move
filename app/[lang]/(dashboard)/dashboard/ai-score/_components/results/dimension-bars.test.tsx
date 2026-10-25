@@ -48,6 +48,9 @@ describe("DimensionBars", () => {
     expect(parseFloat(entry.querySelector<HTMLElement>("[data-raw]")!.style.width)).toBeCloseTo(governance.raw * 100, 6)
     expect(parseFloat(entry.querySelector<HTMLElement>("[data-measure]")!.style.width)).toBeCloseTo(50, 6)
     expect(entry).toHaveTextContent("Capped at level 2")
+    // The score before the cap is text as well, not only the ghost bar.
+    expect(entry.querySelector("[data-raw-text]")).toHaveTextContent(`${Math.round(governance.raw * 100)} before the cap`)
+    expect(row(container, "value").querySelector("[data-raw-text]")).toBeNull()
     // An uncapped dimension has neither.
     expect(row(container, "value").querySelector("[data-cap]")).toBeNull()
     expect(row(container, "value").querySelector("[data-raw]")).toBeNull()

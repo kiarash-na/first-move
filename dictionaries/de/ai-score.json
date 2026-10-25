@@ -272,7 +272,7 @@
       },
       "solid": {
         "name": "Solide",
-        "description": "Der Plan ist meist konkret, beziffert und belegt, und keine Pflichtschwelle ist gescheitert."
+        "description": "Der Plan ist meist konkret, beziffert und belegt, und keine Pflichtprüfung ist gescheitert."
       }
     },
     "levels": {
@@ -555,7 +555,7 @@
       "outOf": "von 100",
       "band": "± {band}",
       "scoreLabel": "KI-Plan-Score {score} von 100, plus oder minus {band}",
-      "range": "Band von einer Standardabweichung: {from} bis {to}",
+      "range": "Band von einer Standardabweichung um den ungerundeten Score: {from} bis {to}",
       "rounded": "Auf {step} Punkte gerundet angezeigt. Die Einstufung nutzt den ungerundeten Score, {raw}.",
       "capped": "Eine Pflichtprüfung ist nicht erfüllt, daher bleibt die Einstufung unter „{solid}“, egal wie viele Punkte der Plan hat.",
       "seeChecks": "Zu den Prüfungen",
@@ -589,7 +589,7 @@
       "edit": "Bearbeiten in {step}"
     },
     "dimensions": {
-      "title": "Sieben Dimensionen",
+      "title": "{count} Dimensionen",
       "lead": "Was einen Businessplan für ein 5GDHC-Netz solide macht. Eine Dimension ist die mittlere Stufe ihrer Planteile auf der Skala von 0 bis 100; eine nicht erfüllte Prüfung kann sie begrenzen.",
       "view": {
         "label": "Ansicht",
@@ -605,8 +605,9 @@
       "weight": "Gewicht {value}",
       "value": "{score} ± {sd}",
       "capped": "Begrenzt auf Stufe {level}",
+      "before": "{value} vor der Begrenzung",
       "table": {
-        "caption": "Tabellenansicht der sieben Dimensionen",
+        "caption": "Tabellenansicht der Dimensionen",
         "heading": "Dimension",
         "score": "Score",
         "raw": "Vor Begrenzung",
@@ -620,7 +621,7 @@
     },
     "parts": {
       "title": "Jeder Planteil",
-      "lead": "Jevs Einschätzung jedes Teils auf den fünf Stufen, in der Reihenfolge des Businessplans. Die Balken zeigen, wie wahrscheinlich Jev jede Stufe fand; die Linie markiert die erwartete Stufe.",
+      "lead": "Jevs Einschätzung jedes Teils auf den {count} Stufen, in der Reihenfolge des Businessplans. Die Balken zeigen, wie wahrscheinlich Jev jede Stufe fand; die Linie markiert die erwartete Stufe.",
       "turn": "Runde {turn} · {name}",
       "level": "{name} · {value}",
       "levelLabel": "Erwartete Stufe {value} von {max}, {name}",
@@ -646,10 +647,10 @@
     },
     "checks": {
       "title": "Prüfungen und Entscheidungen",
-      "lead": "Prüfungen sind Ja-Nein-Fragen über den ganzen Plan. Sie geben nie Punkte: Eine Prüfung, die sicher nicht erfüllt ist, begrenzt ihre Dimension, eine unklare ist nur ein Hinweis. Die Verzweigungen entscheiden, welche Folgeprüfung die nächste Runde stellt.",
+      "lead": "Prüfungen sind Ja-Nein- oder Auswahlfragen über den ganzen Plan. Sie geben nie Punkte: Eine Prüfung, die sicher nicht erfüllt ist, begrenzt ihre Dimension, eine unklare ist nur ein Hinweis. Die Verzweigungen entscheiden, welche Folgeprüfung die nächste Runde stellt.",
       "gates": "Prüfungen",
       "branches": "Entscheidungen",
-      "passProbability": "Erfüllt mit {value}",
+      "passProbability": "Wahrscheinlichkeit der Erfüllung: {value}",
       "noProbability": "Keine Wahrscheinlichkeit: {source}",
       "meterLabel": "Wahrscheinlichkeit, dass sie erfüllt ist: {value}. Erfüllt ab {pass}, nicht erfüllt bis {fail}.",
       "capApplied": "Begrenzt „{dimension}“ auf Stufe {level}",
@@ -658,7 +659,7 @@
       "flag": "Nur ein Hinweis: Sie senkt den Score nie",
       "mustHave": "Pflicht",
       "followUp": "Folgeprüfung",
-      "openedBy": "Gefragt, weil „{branch}“ „{option}“ ist",
+      "openedBy": "Gestellt, weil bei „{branch}“ „{option}“ gewählt wurde",
       "turn": "Runde {turn}",
       "chosen": "Gewählt: {option}",
       "chosenProbability": "{value} sicher",
@@ -666,6 +667,7 @@
       "opens": "Hat die Folgeprüfung „{check}“ ausgelöst",
       "opensNone": "Löst keine Folgeprüfung aus",
       "options": "Wahrscheinlichkeit je Option",
+      "suggestions": "Vorschläge",
       "suggest": "Verbesserungen vorschlagen",
       "suggestFor": "Verbesserungen für {name} vorschlagen"
     },
@@ -718,12 +720,12 @@
       "title": "So bewerten wir",
       "lead": "Der KI-Plan-Score macht aus Jevs Entscheidungen Zahlen, ohne weitere KI. Jede Zahl hier stammt aus der Methode selbst.",
       "levels": {
-        "title": "Fünf Stufen",
+        "title": "{count} Stufen",
         "lead": "Jeder Planteil wird auf derselben Skala bewertet. Die Stufen beschreiben Qualität, nie Länge."
       },
       "turns": {
         "title": "Runden",
-        "lead": "Runde 0 liest den Plan ohne KI: Leere Teile erhalten 0 und werden nie gesendet, und der Quick Check geht als festes Signal ein. Dann nimmt Jev eine Runde pro Schritt des Businessplans, vom ersten Feld bis zum letzten, und sieht, was es vorher entschieden hat."
+        "lead": "Runde 0 liest den Plan ohne KI: Leere Teile erhalten 0 und werden nie gesendet, und der Quick Check geht als festes Signal ein. Dann folgt je Schritt des Businessplans eine Runde mit Jev, vom ersten Feld bis zum letzten; dabei kennt Jev die Optionen, die es in den Auswahlfragen früherer Runden gewählt hat."
       },
       "checks": {
         "title": "Prüfungen und Begrenzungen",
@@ -732,13 +734,18 @@
       },
       "branches": {
         "title": "Verzweigungen und Folgeprüfungen",
-        "body": "Drei Auswahlfragen (der Ankerkunde, die wichtigste Wärmequelle und das Eigentumsmodell) wählen die Folgeprüfung, die die nächste Runde stellt. So bekommt jeder Plan die Fragen, die zu ihm passen."
+        "body": "Die Auswahlfragen {names} wählen die Folgeprüfung, die die nächste Runde stellt. So bekommt jeder Plan die Fragen, die zu ihm passen.",
+        "name": "„{name}“"
       },
       "formulas": {
         "title": "Formeln",
         "expected": {
           "name": "Erwartete Stufe eines Planteils",
           "formula": "E = Σ k · p(k), k = 0 … {max}"
+        },
+        "partSpread": {
+          "name": "Streuung eines Planteils",
+          "formula": "σ = √(Σ p(k) · (k − E)²)"
         },
         "dimensionLevel": {
           "name": "Stufe einer Dimension",
@@ -750,7 +757,7 @@
         },
         "dimensionSpread": {
           "name": "Streuung einer Dimension",
-          "formula": "SD = √(Σ SD²) / n"
+          "formula": "SD = {perLevel} · √(Σ σ²) / n, in Punkten"
         },
         "score": {
           "name": "KI-Plan-Score",
@@ -759,6 +766,10 @@
         "band": {
           "name": "Band",
           "formula": "Band = √(Σ (w · SD)²)"
+        },
+        "choicePass": {
+          "name": "Wahrscheinlichkeit der Erfüllung bei Auswahlfragen",
+          "formula": "P = Σ v(o) · p(o) / Σ p(o); v = {pass} bei einer erfüllenden Option, {partial} bei einer teilweise erfüllenden, {fail} bei einer nicht erfüllenden; Optionen, die nicht zutreffen, entfallen"
         },
         "note": "Ein leerer Teil zählt als 0 ohne Streuung; ein Teil ohne Antwort zählt nicht. Die Streuung einer Dimension nimmt ihre Teile als unabhängig an und unterschätzt sie daher wahrscheinlich."
       },
@@ -771,7 +782,7 @@
         "early": "unter {promising}",
         "promising": "{promising} bis unter {solid}",
         "solid": "ab {solid}, außer eine Pflichtprüfung ist nicht erfüllt",
-        "rounding": "Auf {step} Punkte gerundet angezeigt, das Band in ganzen Punkten, um keine falsche Genauigkeit vorzutäuschen. Die Einstufung nutzt den ungerundeten Score."
+        "rounding": "Auf {step} Punkte gerundet angezeigt, das Band in ganzen Punkten und mindestens {minBand}, um keine falsche Genauigkeit vorzutäuschen. Die Einstufung nutzt den ungerundeten Score."
       },
       "caveats": {
         "title": "Mit Vorsicht lesen",

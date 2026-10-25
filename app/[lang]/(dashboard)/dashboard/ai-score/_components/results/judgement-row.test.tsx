@@ -15,12 +15,15 @@ beforeAll(async () => {
 const entry = (id: string): AiJudgement => fixture.score.judgements.find((judgement) => judgement.id === id)!
 const copy = aiScoreCopy("en")
 
-function renderRow(id: string, options: { changed?: boolean; suggestions?: string[]; actions?: ReturnType<typeof mockActions>; lang?: "en" | "de" } = {}) {
+function renderRow(
+  id: string,
+  options: { changed?: boolean; suggestions?: string[]; actions?: ReturnType<typeof mockActions>; lang?: "en" | "de"; entry?: Partial<AiJudgement> } = {},
+) {
   const actions = options.actions ?? mockActions()
   const name = (copy.labels.judgements as Record<string, string>)[id]
   const view = renderResults(
     <ul>
-      <JudgementRow entry={entry(id)} name={name} changed={options.changed ?? false} suggestions={options.suggestions ?? []} actions={actions} />
+      <JudgementRow entry={{ ...entry(id), ...options.entry }} name={name} changed={options.changed ?? false} suggestions={options.suggestions ?? []} actions={actions} />
     </ul>,
     { lang: options.lang },
   )
@@ -59,6 +62,8 @@ describe("JudgementRow", () => {
     expect(levels[3]).toHaveAttribute("data-nearest", "true")
     expect(levels[3]).toHaveTextContent(copy.labels.levels.quantified.description)
     expect(within(row).getByText("Quote the metered demand.")).toBeInTheDocument()
+    // AI text inside the row carries a visible marker, not only the data attribute.
+    expect(within(row).getByText(copy.results.aiGenerated)).toBeInTheDocument()
     // Not weak: no suggest button.
     expect(within(row).queryByRole("button", { name: /Suggest improvements/ })).not.toBeInTheDocument()
   })
@@ -72,6 +77,23 @@ describe("JudgementRow", () => {
     await userEvent.click(within(row).getByRole("button", { name: `Details of ${name}` }))
     await userEvent.click(within(row).getByRole("button", { name: `Suggest improvements for ${name}` }))
     expect(actions.suggest).toHaveBeenCalledWith(["pain-point"])
+  })
+
+  it("never shows a weak level rounded up to the weak threshold", () => {
+    const { row } = renderRow("needs", { entry: { level: 1.96 } })
+    expect(row).toHaveAttribute("data-weak", "true")
+    expect(row.querySelector("[data-level-text]")).toHaveTextContent("1.96")
+    expect(row.querySelector("[data-level-text]")).not.toHaveTextContent("2.0")
+  })
+
+  it("shows an empty part without Jev's histogram or confidence, as it was never sent", async () => {
+    const { row, name } = renderRow("needs", { entry: { source: "empty", level: 0, probabilities: null } })
+    expect(row.querySelector("[data-level-text]")).toHaveTextContent(`${copy.labels.levels.missing.name} · 0.0`)
+    expect(within(row).queryByRole("img")).not.toBeInTheDocument()
+    expect(row.querySelector("[data-slot=confidence-meter]")).toBeNull()
+    expect(row).toHaveTextContent(copy.labels.fieldSources.empty)
+    await userEvent.click(within(row).getByRole("button", { name: `Details of ${name}` }))
+    expect(within(row).getByText(copy.results.parts.empty)).toBeInTheDocument()
   })
 
   it("shows a refused part without a level", async () => {

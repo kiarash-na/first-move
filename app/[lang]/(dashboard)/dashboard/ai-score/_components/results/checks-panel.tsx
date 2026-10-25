@@ -25,7 +25,7 @@ export function ChecksPanel({ score, actions }: { score: AiScore; actions: Resul
           </h4>
           <ul className="flex flex-col divide-y divide-border border-b">
             {score.gates.map((gate) => (
-              <GateRow key={gate.id} gate={gate} score={score} suggestions={saved.get(gate.id) ?? []} actions={actions} />
+              <GateRow key={gate.id} gate={gate} score={score} suggestions={saved.get(gate.id) ?? []} suggestionsLang={score.suggestions?.lang} actions={actions} />
             ))}
           </ul>
         </section>

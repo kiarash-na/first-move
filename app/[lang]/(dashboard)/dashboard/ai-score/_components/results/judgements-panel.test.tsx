@@ -2,6 +2,7 @@ import { screen, within } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import { beforeAll, describe, expect, it } from "vitest"
 import { JUDGEMENTS, TURNS } from "@/lib/ai/plan-score/judgements"
+import { LEVEL_COUNT } from "@/lib/ai/plan-score/scale"
 import { JudgementsPanel } from "./judgements-panel"
 import { scored, suggestions, withText, type Scored } from "./test-utils/fixtures"
 import { aiScoreCopy, mockActions, renderResults } from "./test-utils/render"
@@ -22,6 +23,7 @@ describe("JudgementsPanel", () => {
       expect(ids).toEqual(JUDGEMENTS.filter((judgement) => judgement.turn === turn).map((judgement) => judgement.id))
     }
     expect(container.querySelector("[data-slot=judgements-panel]")).toHaveAttribute("data-ai-generated", "true")
+    expect(screen.getByText(/on the \d+ evidence levels/)).toHaveTextContent(`on the ${LEVEL_COUNT} evidence levels`)
   })
 
   it("marks the changed parts and hands each its saved suggestions", async () => {
@@ -32,6 +34,14 @@ describe("JudgementsPanel", () => {
     const row = container.querySelector<HTMLElement>('[data-part="pain-point"]')!
     await userEvent.click(within(row).getByRole("button", { name: /Details of/ }))
     expect(within(row).getByText(suggestions().items[0].texts[0])).toBeInTheDocument()
+  })
+
+  it("marks saved suggestions in the other language with their language", async () => {
+    const score = withText(fixture.score, { suggestions: suggestions("de") })
+    const { container } = renderResults(<JudgementsPanel score={score} changed={[]} actions={mockActions()} />)
+    const row = container.querySelector<HTMLElement>('[data-part="pain-point"]')!
+    await userEvent.click(within(row).getByRole("button", { name: /Details of/ }))
+    expect(row.querySelector("[data-slot=suggestion-texts]")).toHaveAttribute("lang", "de")
   })
 
   it("leaves out an id the labels do not know", () => {

@@ -21,7 +21,8 @@ export const CHECKS_SECTION_ID = "ai-score-checks"
  * The score first, boldest (PLAN-AI-SCORE-00 step 6): the AI Plan Score rounded to 5 with its band
  * of one standard deviation (`displayScore`), the label and what it means, the 0..100 scale with
  * the zones, the must-have note when a cap keeps it below Solid, the Quick Check signal and the
- * facts of the run. Marked AI-generated.
+ * facts of the run. Marked AI-generated. The scale and the range under it use the same unrounded
+ * score and band, so picture and text agree.
  */
 export function ScoreSummary({ score }: { score: AiScore }) {
   const lang = useLocale()
@@ -70,8 +71,8 @@ export function ScoreSummary({ score }: { score: AiScore }) {
         <ScoreScale score={score.score} sd={score.sd} level={score.level} />
         <p className="text-xs leading-relaxed text-muted-foreground">
           {interpolate(summary.range, {
-            from: formatNumber(clampPoints(shown.score - shown.band), lang),
-            to: formatNumber(clampPoints(shown.score + shown.band), lang),
+            from: formatNumber(clampPoints(score.score - score.sd), lang, { maximumFractionDigits: 1 }),
+            to: formatNumber(clampPoints(score.score + score.sd), lang, { maximumFractionDigits: 1 }),
           })}
           {" · "}
           {interpolate(summary.rounded, { step: formatNumber(ROUNDING_STEP, lang), raw: formatNumber(score.score, lang, { maximumFractionDigits: 1 }) })}

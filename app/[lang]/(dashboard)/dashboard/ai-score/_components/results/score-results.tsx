@@ -10,6 +10,7 @@ import { DeleteScore } from "./delete-score"
 import { DimensionsPanel } from "./dimensions-panel"
 import { HowWeScore } from "./how-we-score"
 import { JudgementsPanel } from "./judgements-panel"
+import { rowKeys } from "./anchors"
 import { OutdatedBanner } from "./outdated-banner"
 import { ReportPanel } from "./report-panel"
 import { ScoreSummary } from "./score-summary"
@@ -50,7 +51,7 @@ export function ScoreResults({ score, changed, actions }: ScoreResultsProps) {
       </header>
       <OutdatedBanner score={score} changed={changed} />
       <ScoreSummary score={score} />
-      <ReportPanel report={score.report} actions={actions} error={last === "report" ? actions.error : null} />
+      <ReportPanel report={score.report} rows={rowKeys(score)} actions={actions} error={last === "report" ? actions.error : null} />
       <DimensionsPanel score={score} />
       <JudgementsPanel score={score} changed={changed} actions={actions} />
       <ChecksPanel score={score} actions={actions} />

@@ -201,12 +201,15 @@ export function capOf(gate: Gate, context: GateContext): 2 | 3 | null {
   return gate.effect.level
 }
 
+/** How much an option of a choice gate counts towards P(pass); neutral options are left out. */
+export const OPTION_WEIGHT = { pass: 1, partial: 0.5, fail: 0 } as const
+
 /** P(pass) of a choice answer: verdict-weighted, without the not-applicable options; null when those win. */
 export function choicePassProbability(gate: Gate, probabilities: Readonly<Record<string, number>>): number | null {
   const options = gate.options ?? []
   const neutral = options.filter((entry) => entry.verdict === "neutral").reduce((sum, entry) => sum + (probabilities[entry.id] ?? 0), 0)
   if (neutral >= 0.5) return null
-  const weight = { pass: 1, partial: 0.5, fail: 0 } as const
+  const weight = OPTION_WEIGHT
   const counted = options.filter((entry) => entry.verdict !== "neutral")
   const total = counted.reduce((sum, entry) => sum + (probabilities[entry.id] ?? 0), 0)
   if (total <= 0) return null
