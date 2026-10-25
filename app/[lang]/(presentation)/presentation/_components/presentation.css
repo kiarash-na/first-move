@@ -2992,6 +2992,14 @@ html[data-deck="js"] .deck-slide:not([data-state="active"]) .slide-title__line >
     transform: none;
   }
 
+  /*
+   * The global reduced-motion rule turns every transition into 0.01 ms, visibility included, and a
+   * slide that is still `hidden` for that instant cannot take focus. Slides switch at once instead.
+   */
+  html[data-deck="js"] .deck-slide {
+    transition-property: opacity !important;
+  }
+
   .first-move__flow,
   .scan__box,
   .scan__plane,

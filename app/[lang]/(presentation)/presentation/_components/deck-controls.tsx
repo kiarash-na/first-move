@@ -13,9 +13,9 @@ export interface DeckControlsCopy {
 }
 
 /**
- * Bottom bar: the keyboard hint, the index (dots from 768 px, a native select below, where ten
- * 44 px dots do not fit), and previous and next. The arrows stay focusable at the ends
- * (`aria-disabled`), so focus is never lost.
+ * Bottom bar, a footer landmark so nothing on the page sits outside one: the keyboard hint, the
+ * index (dots from 768 px, a native select below, where ten 44 px dots do not fit), and previous
+ * and next. The arrows stay focusable at the ends (`aria-disabled`), so focus is never lost.
  */
 export function DeckControls({ copy, titles }: { copy: DeckControlsCopy; titles: readonly string[] }) {
   const { index, count, goTo } = useDeck()
@@ -24,7 +24,7 @@ export function DeckControls({ copy, titles }: { copy: DeckControlsCopy; titles:
   const atEnd = index === count - 1
 
   return (
-    <div className="deck-bar deck-bar--bottom">
+    <footer className="deck-bar deck-bar--bottom">
       <p className="deck-hint">{copy.hint}</p>
       <nav className="deck-index" aria-label={copy.index}>
         <ol className="deck-dots">
@@ -58,6 +58,6 @@ export function DeckControls({ copy, titles }: { copy: DeckControlsCopy; titles:
           <ArrowRight size={18} strokeWidth={1.6} aria-hidden="true" />
         </button>
       </div>
-    </div>
+    </footer>
   )
 }

@@ -18,6 +18,11 @@ function setup(index: number) {
 }
 
 describe("DeckControls", () => {
+  it("sits in a landmark of its own, with the hint", () => {
+    setup(0)
+    expect(screen.getByRole("contentinfo")).toHaveTextContent("Arrow keys")
+  })
+
   it("names every dot after its slide and marks the current one", () => {
     setup(1)
     expect(screen.getByRole("button", { name: "Slide 2: Challenge" })).toHaveAttribute("aria-current", "step")
