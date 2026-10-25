@@ -5,8 +5,8 @@
   },
   "title": "Terms of Use",
   "intro": "These terms govern your use of First Move. They explain what the service does, what you can expect from it and what we expect from you. First Move is free, needs no account and keeps your projects in your browser.",
-  "updated": "2026-10-24",
-  "version": "1.1",
+  "updated": "2026-10-25",
+  "version": "1.2",
   "sections": [
     {
       "id": "provider",
@@ -68,6 +68,7 @@
         "- you are responsible for keeping your key secure and for setting a spending limit for it at the provider. You can remove it from the app at any time.",
         "AI output can be wrong or incomplete, and models can invent content. The AI never computes the Quick Check results, and AI-proposed values do not make the screening results more reliable. We do not control the AI provider or its models and are not responsible for their availability or output; our own liability is governed by [Liability](#liability).",
         "If you use the AI features in a professional capacity, you are a deployer of an AI system within the meaning of the EU AI Act (Regulation (EU) 2024/1689, Art. 3(4)) and responsible for your own use of it.",
+        "The optional AI Plan Score is available now and works as described on the [AI transparency](/ai#plan-score) page. It runs only when you start it, with your own key for the Vercel AI Gateway. The terms of Vercel and of the model providers apply between you and them, and the costs of each run are billed to your Vercel account. The score is an AI opinion on the text of your plan, not a calculation and not a verdict on whether a project is feasible. It can be wrong, and you must review it before you rely on it. It changes nothing in your project. We give no warranty for its accuracy; our own liability is governed by [Liability](#liability).",
         "When you confirm your first message to {{operator.emailAgent}}, you accept these terms for that use. We then send you e-mails about your request only, with no marketing. Replies from that address are written by an AI system; they may be wrong and are not binding. The Quick Check results they contain come from First Move's calculation."
       ]
     },

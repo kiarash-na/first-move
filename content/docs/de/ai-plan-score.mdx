@@ -18,13 +18,13 @@ Der KI-Plan-Score ist eine separate KI-Bewertung Ihres Business Plans. Ein KI-En
 
 ## Was gesendet wird und an wen
 
-Nichts wird gesendet, bevor Sie einen Lauf starten. Dann sendet Ihr Browser Folgendes direkt an das Vercel AI Gateway, unter Ihrem eigenen Konto:
+Aus Ihrem Projekt wird nichts gesendet, bevor Sie einen Lauf starten; beim Prüfen Ihres Schlüssels geht nur der Schlüssel an Vercel. Bei einem Lauf sendet Ihr Browser dann Folgendes direkt an das Vercel AI Gateway, unter Ihrem eigenen Konto:
 
 - die Texte des Business Plans des geöffneten Projekts, einschließlich der gemeinsamen Standortbeschreibung, der Beteiligten und der Partner: nur ausgefüllte Felder, sehr lange Texte gekürzt;
 - den Anwendungsfall, den Sie gewählt haben, falls vorhanden;
 - wenn der Quick Check eingeschaltet und vollständig ist, sein Ergebnis: die Einstufung, die Zahl der Gebäude, die Wärmedichte, den Wärme- und Kältebedarf, die Deckung und das wirtschaftliche Verhältnis.
 
-Das Gateway leitet die Entscheidungsfragen an TypeSafe AI weiter, das das Entscheidungsmodell Jev betreibt, und den Bericht und die Vorschläge an den Anbieter des Textmodells, das Sie gewählt haben. Für das Entscheidungsmodell und die aufgeführten Textmodelle bittet die App das Gateway, nur Anbieter ohne Datenspeicherung und ohne Training mit den Eingaben zu nutzen; für ein Modell, das Sie mit seinem Namen eingeben, bittet sie um kein Training mit den Eingaben. Ob eine Anfrage so bedient wird, hängt von den Bedingungen des Gateways und des Anbieters und von Ihrem Vercel-Tarif ab. Nichts läuft über die Server von First Move, und wir erhalten weder Ihren Schlüssel noch Ihren Plan.
+Das Gateway leitet die Entscheidungsfragen an TypeSafe AI weiter, das das Entscheidungsmodell Jev betreibt, und den Bericht und die Vorschläge an den Anbieter des Textmodells, das Sie gewählt haben. Für das Entscheidungsmodell und die aufgeführten Textmodelle bittet die App das Gateway, nur Anbieter ohne Datenspeicherung und ohne Training mit den Eingaben zu nutzen; für ein Modell, das Sie mit seinem Namen eingeben, bittet sie um kein Training mit den Eingaben. Vercel bietet Zero Data Retention nur in den Tarifen Pro und Enterprise an, den Ausschluss von Training in jedem Tarif. Für Anfragen mit einem Anbieterschlüssel, den Sie selbst bei Vercel hinterlegt haben (BYOK), gilt Ihre eigene Vereinbarung mit diesem Anbieter. Nichts läuft über die Server von First Move, und wir erhalten weder Ihren Schlüssel noch Ihren Plan.
 
 Schreiben Sie keine personenbezogenen Daten anderer Personen in den Plan, etwa die Namen von Bewohnern, es sei denn, Sie dürfen sie weitergeben. Rechtlich maßgeblich sind die [Datenschutzerklärung](/privacy#ai-plan-score) und die Seite [KI-Transparenz](/ai#plan-score).
 

@@ -18,13 +18,13 @@ The AI Plan Score is a separate AI scoring of your Business Plan. An AI decision
 
 ## What is sent and to whom
 
-Nothing is sent until you start a run. Then your browser sends the following directly to the Vercel AI Gateway, under your own account:
+Nothing from your project is sent until you start a run; checking your key sends only the key to Vercel. A run then sends the following from your browser directly to the Vercel AI Gateway, under your own account:
 
 - the texts of the open project's Business Plan, including the shared site description, the stakeholders and the partners: only filled fields, with very long texts shortened;
 - the use case you picked, if any;
 - when the Quick Check is on and complete, its result: the verdict, the number of buildings, the heat density, the heating and cooling demand, the coverage and the economic ratio.
 
-The Gateway passes the decision questions to TypeSafe AI, which runs the decision model Jev, and the report and the suggestions to the provider of the text model you picked. For the decision model and the listed text models, the app asks the Gateway to use only providers with zero data retention and no training on prompts; for a model you enter by name, it asks for no training on prompts. Whether a request is served that way depends on the terms of the Gateway and the provider and on your Vercel plan. Nothing passes through First Move's servers, and we receive neither your key nor your plan.
+The Gateway passes the decision questions to TypeSafe AI, which runs the decision model Jev, and the report and the suggestions to the provider of the text model you picked. For the decision model and the listed text models, the app asks the Gateway to use only providers with zero data retention and no training on prompts; for a model you enter by name, it asks for no training on prompts. Vercel offers zero data retention only on its Pro and Enterprise plans, and no training on prompts on every plan. Requests sent with a provider key you added to Vercel yourself (BYOK) fall under your own agreement with that provider. Nothing passes through First Move's servers, and we receive neither your key nor your plan.
 
 Do not put personal data of other people into the plan, such as the names of residents, unless you are allowed to send it. The [Privacy Policy](/privacy#ai-plan-score) and the [AI transparency](/ai#plan-score) page are the legal reference.
 
