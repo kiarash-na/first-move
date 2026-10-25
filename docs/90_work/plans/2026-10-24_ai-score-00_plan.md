@@ -19,7 +19,7 @@ Owner decisions of 2026-10-24 (D-71 to D-78, [owner decisions](../notes/2026-10-
 |---|---|
 | Decisions | **Jev only** (`typesafe-ai/jev-1.14.0`, AI SDK `experimental_decide`) takes every decision: field levels, gates, branches. |
 | Text | The short report and the improvement suggestions come from a **model the user picks** (any AI Gateway language model; curated list plus a custom id). The text model never changes a number. |
-| Key | **Bring your own key**: the user's Vercel AI Gateway key, used straight from the browser (CORS checked live on 2026-10-24 for `/v3/ai/decision-model` and `/v3/ai/language-model`), kept **in memory only** for the open tab. Nothing passes through our servers. |
+| Key | **Bring your own key**: the user's Vercel AI Gateway key, used straight from the browser through the Gateway API v4 (CORS checked live on 2026-10-24 for `/v4/ai/*` and `/v1/credits`, also from a localhost origin), kept **in memory only** for the open tab. Nothing passes through our servers. |
 | Visibility | **Live everywhere** now: linked in the sidebar in production; the AI page and the Privacy Policy describe it (EN, DE draft under D-44); the dashboard CSP adds `https://ai-gateway.vercel.sh` (extends D-48). |
 | Result | Saved **in the project** (schema v3, system-managed `aiScore` section): exported and imported with it, marked AI-generated, flagged outdated once a scored field changes. |
 | Dimensions | What makes a business plan **solid**, not the hackathon jury: the provider's own study first (ALG-04 aspects for successful implementation, ALG-05, ALG-09, ALG-10), then established literature (method file). |
@@ -35,9 +35,9 @@ Details, rubric texts, gates, weights and sources: [PLAN-AI-SCORE-01 method](202
    - one **score** question per filled field on a 5-level evidence scale (0 missing or off-topic, 1 vague, 2 specific, 3 quantified, 4 evidenced or validated), with the field's own "what good looks like";
    - **gates**: yes/no questions across fields (for example: who owns source, network and heat pumps; an anchor customer; a deal-breaker with a validation);
    - **branches**: choice questions whose answer selects the next turn's follow-up gate (anchor type, main heat source, ownership model).
-3. **Aggregation, no AI.** Jev returns a probability per level, so each field has an expected level and a spread. Dimension score = mean of its items; AI Plan Score = weighted mean × 100, with ± one standard deviation from the distributions. Level: Early < 40 ≤ Developing < 60 ≤ Solid < 80 ≤ Strong; a failed critical gate caps the level at Developing.
+3. **Aggregation, no AI.** Jev returns a probability per level, so each field has an expected level and a spread. Dimension score = mean of its items; AI Plan Score = weighted mean × 100, with ± one standard deviation from the distributions. Label: Early < 40 ≤ Promising < 70 ≤ Solid; a failed must-have gate (a cap at level 2) keeps the plan below Solid. Shown rounded to 5 points with the band in whole points.
 4. **Report, chosen model.** From the numbers only: a headline, a short summary, strengths, gaps, next actions, each pointing to fields.
-5. **Suggestions, on demand, chosen model.** For fields below level 2 and failed gates: one to three general, feasible improvements each.
+5. **Suggestions, on demand, chosen model.** For judgements below level 2 and gates that failed or stayed unclear: one to three general, feasible improvements each.
 
 ## Architecture
 
@@ -64,9 +64,9 @@ sidebar: "AI Plan Score" entry                 │                      credits 
 4. Engine `lib/ai/plan-score/` with tests against `Experimental_DecisionMockModelV4` and `MockLanguageModelV4`.
 5. Gateway client `lib/assistant/gateway/` (memory key, credits check, curated models, error mapping).
 6. Route UI: key and model, run with live flow graph, score dial with band, dimension radar, field list with probability bars, gates and branches, report, suggestions, "How we score" (D-33), sources.
-7. Business Plan: "Pitch completeness" rename (copy only, EN + DE, docs) and the AI Plan Score badge, bolder, above it; sidebar entry.
+7. Business Plan: "Pitch completeness" rename (copy only, EN + DE, docs) and the AI Plan Score badge, bolder, before it (step header and top of the completeness panel; a tile on the overview and a line in the report); sidebar entry.
 8. Reference cases (research sub-agent dossier): example definitions, start-screen group, docs page with verified references; external links only from a verified registry.
-9. Legal texts (AI page, Privacy Policy, version 1.2), CSP, public docs page "AI Plan Score".
+9. Legal texts (AI page 1.2, Privacy Policy 1.3, Cookie Policy 1.3; DE drafts under D-44), CSP, public docs page "AI Plan Score".
 10. `pnpm lint && pnpm typecheck && pnpm test && pnpm build`, e2e for the start screen and the new route, note, push.
 
 ## Verification
