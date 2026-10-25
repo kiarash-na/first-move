@@ -288,11 +288,7 @@
 }
 
 .hero__intro {
-  display: grid;
-  grid-template-columns: minmax(0, 410px) auto;
-  align-items: end;
-  gap: 28px;
-  max-width: 650px;
+  max-width: 430px;
   margin-top: clamp(26px, 4vh, 42px);
 }
 
@@ -303,6 +299,12 @@
   font-weight: 390;
   line-height: 1.6;
   text-wrap: pretty;
+}
+
+/* The next step of the copy, under the paragraph like every other story link. */
+.hero__intro .text-link {
+  width: max-content;
+  margin-top: 22px;
 }
 
 .text-link {
@@ -345,16 +347,21 @@
 
 .scene-hud__status {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-end;
   gap: 10px;
   min-height: 24px;
+  line-height: 1.5;
+  text-align: right;
+  text-wrap: balance;
 }
 
+/* Sits on the first line of the status, also when the status wraps (≤ 1199 px). */
 .scene-hud__cross {
+  flex: 0 0 auto;
   color: var(--accent-hot);
   font-size: 19px;
-  line-height: 1;
+  line-height: 18px;
 }
 
 .scene-hud__legend {
@@ -394,9 +401,16 @@
   font-variant-numeric: tabular-nums;
 }
 
-.scene-annotation {
-  position: absolute;
-  z-index: 1;
+/*
+ * Callouts on the district (SceneCallouts.tsx). The scene is fixed, so they are too; the scene
+ * writes `--anchor-x/-y` (the projected point) and `data-on` on each, and the dot at the end of
+ * the line sits on that point. Off until the first frame, and without WebGL (nothing is written).
+ */
+.scene-callout {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -404,38 +418,39 @@
   font-family: var(--font-mono);
   font-size: 12px;
   letter-spacing: 0.06em;
+  white-space: nowrap;
   text-transform: uppercase;
+  opacity: 0;
+  transform: translate(calc(var(--anchor-x, 0px) - 100%), calc(var(--anchor-y, 0px) - 50%));
+  transition: opacity 320ms ease-out;
   pointer-events: none;
+  will-change: transform;
 }
 
-.scene-annotation i {
+.scene-callout[data-on='true'] {
+  opacity: 1;
+}
+
+.scene-callout i {
+  position: relative;
   display: block;
   width: 72px;
   height: 1px;
-  background: var(--line-subtle);
+  background: var(--paper-300);
+  opacity: 0.55;
 }
 
-.scene-annotation i::after {
-  display: block;
+.scene-callout i::after {
+  position: absolute;
+  top: -2px;
+  right: -2px;
   width: 5px;
   height: 5px;
-  margin-top: -2px;
-  margin-left: 70px;
   background: var(--accent-cool);
   content: '';
 }
 
-.scene-annotation--top {
-  top: 31%;
-  right: 13%;
-}
-
-.scene-annotation--side {
-  top: 54%;
-  right: 3.2%;
-}
-
-.scene-annotation--side i::after {
+.scene-callout--hot i::after {
   background: var(--accent-hot);
 }
 
@@ -663,8 +678,17 @@
     font-size: clamp(3.35rem, 7.7vw, 5.5rem);
   }
 
-  .scene-annotation {
+  .scene-callout {
     display: none;
+  }
+
+  /* The status wraps here; without the cross the two lines stay one right-aligned block. */
+  .scene-hud__cross {
+    display: none;
+  }
+
+  .scene-hud__status > span:last-child {
+    max-width: 30ch;
   }
 
   .scene-controls__hint {
@@ -686,8 +710,7 @@
   }
 
   .hero__intro {
-    grid-template-columns: minmax(0, 390px);
-    gap: 12px;
+    max-width: 390px;
   }
 
   .text-link {
@@ -780,7 +803,6 @@
   }
 
   .hero__intro {
-    display: block;
     max-width: 350px;
     margin-top: 24px;
   }
@@ -790,7 +812,7 @@
     line-height: 1.55;
   }
 
-  .text-link {
+  .hero__intro .text-link {
     margin-top: 14px;
   }
 

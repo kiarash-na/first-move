@@ -10,6 +10,7 @@ import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js'
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js'
 import type { RefObject } from 'react'
 import type { ToolId } from './Header'
+import { anchorsChanged, screenAnchor, type AnchorPosition, type SceneAnchor } from './sceneAnchors'
 
 type FlowKind = 'cool' | 'hot'
 
@@ -558,6 +559,8 @@ export interface DistrictEvents {
   onFailed: () => void
   /** The GPU dropped the context: go back to the fallback. */
   onContextLost: () => void
+  /** Where the `anchors` are on screen; called only when one moved or switched on or off. */
+  onAnchors?: (positions: AnchorPosition[]) => void
 }
 
 /** Renders the district into `container` and returns the cleanup. */
@@ -565,6 +568,7 @@ export function mountDistrictWorld(
   container: HTMLDivElement,
   { directionRef, emphasisRef, chapterRef, demandRef, sourceRef }: DistrictInputs,
   events: DistrictEvents,
+  anchors: readonly SceneAnchor[] = [],
 ): () => void {
   let renderer: THREE.WebGLRenderer
   try {
@@ -622,9 +626,12 @@ export function mountDistrictWorld(
   const desiredDistrict = new THREE.Vector3()
   const desiredLook = new THREE.Vector3()
   const packetTransform = new THREE.Object3D()
+  const anchorPoint = new THREE.Vector3()
+  let previousAnchors: AnchorPosition[] | null = null
   let baseScale = 1
   let isMobile = false
   let chapterProgress = 0
+  let scrolled = 0
   let width = 1
   let height = 1
   let firstFrame = true
@@ -685,6 +692,7 @@ export function mountDistrictWorld(
   }
   const onPointerLeave = () => pointerTarget.set(0, 0)
   const onScroll = () => {
+    scrolled = window.scrollY
     const activeSection = document.getElementById(chapterRef.current)
     if (!activeSection) return
     const bounds = activeSection.getBoundingClientRect()
@@ -804,6 +812,20 @@ export function mountDistrictWorld(
     if (!reducedMotion.matches || firstFrame || motionChanged || pointer.distanceToSquared(pointerTarget) > 0.00001) {
       if (bloom.enabled) composer.render()
       else renderer.render(scene, camera)
+    }
+
+    // After the render the world matrices are current: project the anchors as they were drawn.
+    if (anchors.length > 0 && events.onAnchors) {
+      const view = { width, height, scrolled, overview: activeChapter === 'overview' }
+      const positions = anchors.map((anchor) => {
+        anchorPoint.set(anchor.position[0], anchor.position[1], anchor.position[2])
+        district.group.localToWorld(anchorPoint).project(camera)
+        return screenAnchor(anchor.id, anchorPoint, view)
+      })
+      if (anchorsChanged(previousAnchors, positions)) {
+        previousAnchors = positions
+        events.onAnchors(positions)
+      }
     }
     previousDirection = directionRef.current
     previousEmphasis = emphasisRef.current

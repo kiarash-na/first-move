@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import type { ToolId } from './Header'
+import type { AnchorPosition, SceneAnchor } from './sceneAnchors'
 
 interface DistrictSceneProps {
   flowDirection: 1 | -1
@@ -9,6 +10,9 @@ interface DistrictSceneProps {
   chapter: string
   demandDensity: number
   sourceAvailability: number
+  /** Points of the district to report on screen each frame (`sceneAnchors.ts`). */
+  anchors?: readonly SceneAnchor[]
+  onAnchors?: (positions: AnchorPosition[]) => void
 }
 
 function SceneFallback() {
@@ -36,13 +40,15 @@ function SceneFallback() {
   )
 }
 
-export function DistrictScene({ flowDirection, emphasis, chapter, demandDensity, sourceAvailability }: DistrictSceneProps) {
+export function DistrictScene({ flowDirection, emphasis, chapter, demandDensity, sourceAvailability, anchors, onAnchors }: DistrictSceneProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const directionRef = useRef(flowDirection)
   const emphasisRef = useRef(emphasis)
   const chapterRef = useRef(chapter)
   const demandRef = useRef(demandDensity)
   const sourceRef = useRef(sourceAvailability)
+  const anchorsRef = useRef(anchors)
+  const onAnchorsRef = useRef(onAnchors)
   const [ready, setReady] = useState(false)
   const [failed, setFailed] = useState(false)
 
@@ -67,6 +73,10 @@ export function DistrictScene({ flowDirection, emphasis, chapter, demandDensity,
   }, [sourceAvailability])
 
   useEffect(() => {
+    onAnchorsRef.current = onAnchors
+  }, [onAnchors])
+
+  useEffect(() => {
     const container = containerRef.current
     if (!container) return
 
@@ -87,7 +97,9 @@ export function DistrictScene({ flowDirection, emphasis, chapter, demandDensity,
               setReady(false)
               setFailed(true)
             },
+            onAnchors: (positions) => onAnchorsRef.current?.(positions),
           },
+          anchorsRef.current,
         )
       })
       .catch(() => {

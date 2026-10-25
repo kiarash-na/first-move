@@ -1,6 +1,7 @@
 import { ArrowDown, ArrowLeftRight, ArrowUpRight, MousePointer2 } from 'lucide-react'
 import type { ToolId } from '../Header'
 import { RichText } from '../rich-text'
+import { SceneCallouts } from '../SceneCallouts'
 import type { Landing } from '../types'
 
 interface HeroProps {
@@ -9,6 +10,8 @@ interface HeroProps {
   flowDirection: 1 | -1
   onFlowDirectionChange: () => void
   onToolSelect: (tool: ToolId) => void
+  /** Hands the scene callouts' elements to `Home`, which moves them onto the district (`sceneAnchors.ts`). */
+  registerCallout: (id: string) => (element: HTMLDivElement | null) => void
 }
 
 const toolMeta: Record<ToolId, { index: string; target: string }> = {
@@ -16,7 +19,7 @@ const toolMeta: Record<ToolId, { index: string; target: string }> = {
   'business-models': { index: '02', target: 'business-use-cases' },
 }
 
-export function Hero({ t, selectedTool, flowDirection, onFlowDirectionChange, onToolSelect }: HeroProps) {
+export function Hero({ t, selectedTool, flowDirection, onFlowDirectionChange, onToolSelect, registerCallout }: HeroProps) {
   const copy = t.hero
   const toolCopy: Record<ToolId, { title: string; description: string; sceneLabel: string }> = {
     'quick-check': copy.tools.quickCheck,
@@ -59,12 +62,7 @@ export function Hero({ t, selectedTool, flowDirection, onFlowDirectionChange, on
           </div>
         </div>
 
-        <div className="scene-annotation scene-annotation--top reveal reveal--6" aria-hidden="true">
-          <span>{copy.annotationTop}</span><i />
-        </div>
-        <div className="scene-annotation scene-annotation--side reveal reveal--6" aria-hidden="true">
-          <span>{copy.annotationSide}</span><i />
-        </div>
+        <SceneCallouts copy={copy} register={registerCallout} />
 
         <div className="scene-controls reveal reveal--6">
           <span className="scene-controls__hint">
