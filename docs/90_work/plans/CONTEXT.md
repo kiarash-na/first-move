@@ -68,3 +68,14 @@ The owner gave these in chat on 2026-10-25 and asked for them to be finished, te
 | O12 | Clean-up of the legal pages and the public docs (owner, 2026-10-25): every function is built, so remove "demo", "planned", "not yet available" and "draft" wording, the German draft marking of D-44 (`DE_REVIEW_PENDING` and its banners) included; the texts describe what the app does now | O9 | todo |
 | O13 | Finish everything open towards the v1.0 launch (owner, 2026-10-25): every phase in this file ends `done` or names the one thing only the owner can do; bump `package.json` to 0.8.0 and tag the last commit of the run `v.0.8` (the owner's spelling), pushed with the tag | all | todo |
 | O10 | QA, security review, live test (A09) and a final full check: `pnpm lint && pnpm typecheck && pnpm test && pnpm build`, e2e, notes, push | all | todo |
+
+### Follow-ups collected for O10 (final polish and QA)
+
+1. Re-record the presentation's blind test (`lib/presentation/blind-test/result.json`) with method 1.1.0 and the formal German rule; regenerate `e2e/fixtures/ai-score.firstmove.json` with method 1.1.0.
+2. The results scale (`ai-score/_components/results/score-scale.tsx`) marks the unrounded score: mark the displayed score so it sits in the zone its label names.
+3. `fit()` in `lib/ai/plan-score/text-input.ts` can leave a space before the ellipsis.
+4. `docs/02_design/first-move_ui-design-tokens.md`: the italic "Editorial accent" is no longer used on the landing.
+5. The public docs route is complete (every page, the AI pages visible once the switch is on).
+6. Presentation: slide 5 label "Every source, linked" again; slide 6 status of agent@ once A07 is live.
+7. Privacy Policy: the email agent's TypeSafe AI processing says zero data retention is requested, not guaranteed.
+8. A timing-sensitive unit test (`ai-score-view.test.tsx`, report error of the latest run) seen failing once under load.
