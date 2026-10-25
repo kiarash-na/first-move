@@ -90,11 +90,13 @@ Not done in this run; the app runs live without them. Next session, in this orde
 4. Presentation: slide 5 label "Every source, linked"; slide 6 says agent@ is live (follow-up 6); the presentation note's blind-test paragraph still describes the 1.0.0 recording (now 1.1.0: 56.2 shown 55 ± 3).
 5. Security review of the AI layer and a browser test of the assistant with a key (A09); the privacy wording of follow-up 7.
 
-## Handoff (2026-10-25, providers and activation, PR #3 — merged; presentation, PR #4 — open)
+## Handoff (2026-10-25, providers and activation, PR #3 — merged; presentation, PR #4 — open; email agent live, PR #5 → dev)
 
 PR #3 (email agent activation + OpenRouter default) is merged. PR #4 (presentation: experimental email tag, build-hours note, light/dark switch) branches off the merged main and is presentation-only; gates ran on a byte-identical tree. `dev` = merged main + the notes commit ([2026-10-25_presentation-fixes](../notes/2026-10-25_presentation-fixes.md)). While PR #4 is open, `dev` carries no code it lacks.
 
-Left, in order: the **one-click test-case run** (verify or build, next task); owner sets the Vercel Production variables (`EMAIL_AGENT_ENABLED=true`, `EMAIL_HUMAN_RELAY_ENABLED=true`, `RESEND_WEBHOOK_SECRET` from the webhook) and redeploys, then one outside test mail; owner live test with a real OpenRouter key; full e2e; the deferred legal/docs batch.
+The email agent is **live on production** ([2026-10-25_email-agent-live](../notes/2026-10-25_email-agent-live.md)): the webhook pointed at the apex host, whose 308 to `www` killed every delivery; re-pointed to `www`, the owner's replayed test mail was answered at 11:35 UTC. PR #5 (base `dev`, per the owner) adds the doctor's endpoint probe, which fails on a redirect.
+
+Left, in order: the **one-click test-case run** (verify or build, next task); owner sets `SITE_URL=https://www.firstmove.energy` on Vercel and redeploys (the rest of the Vercel list is done — the live reply proves env, secret and both switches); owner live test with a real OpenRouter key; full e2e; the deferred legal/docs batch. Expect a few late agent mails between the project's own test addresses while this morning's queued events drain.
 
 ## Handoff (2026-10-25, providers and activation, PR #3)
 
