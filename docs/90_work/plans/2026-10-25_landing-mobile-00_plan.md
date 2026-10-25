@@ -1,7 +1,7 @@
 ---
 id: PLAN-LANDING-MOBILE-00
 date: 2026-10-25
-status: in-progress
+status: done
 challenge: [quick-check-tool, business-models]
 covers: [DESIGN-TOKENS, D-16, D-19, D-27, D-32, D-33, D-34, D-48, D-66, D-69, D-71, D-72, D-73]
 blocked_by: [PLAN-LANDING-FIX-00]
@@ -51,7 +51,10 @@ Baseline screenshots of the desktop before any change (scratchpad `landing-mobil
 - **D-LM-5** The mobile version keeps every chapter and the chapter order of the desktop story, and the same copy keys, so a copy change reaches both versions. New copy only under `landing.mobile`.
 - **D-LM-6** The mobile AI console reuses the desktop's example data and playback hook by import only; its markup and CSS are its own.
 - **D-LM-7** Ids of the mobile tree are prefixed `m-`; the mobile nav and the story links use them. Deep links to the desktop ids (`/#ai-score`) still work on desktop; on a phone they land on the top of the page.
+- **D-LM-8** (added while building) Grids inside panels follow the panel's width with `@container` queries, not the viewport's: in the tablet split layout a panel is about 360 px wide at 768 px, and the viewport-based grids overflowed there.
 
 ## Verification
 
-Screenshots after the change (scratchpad `landing-mobile/after`): desktop 1440 × 900 and 1280 × 800 (pixel compare and DOM compare against the baseline); mobile 320 × 640, 375 × 812, 390 × 844, 430 × 932, 768 × 1024, 820 × 1180 (EN and DE), full page and by viewport; no horizontal overflow at any of them; axe clean; the e2e spec green against a production build.
+Screenshots after the change (scratchpad `landing-mobile/final2`): desktop 1440 × 900 and 1280 × 800 (pixel compare and DOM compare against the baseline); mobile 320 × 640, 375 × 812, 390 × 844, 430 × 932, 768 × 1024, 820 × 1180 (EN and DE), full page and by viewport; no horizontal overflow at any of them; axe clean; the e2e spec green against a production build.
+
+Done 2026-10-25: see [the note](../notes/2026-10-25_landing-mobile-00.md) for what was built, the checks (0 differing pixels without WebGL at 1440 and 1280, the DOM identical except React's `useId`), the hydration race found and fixed, and the decisions D-LM-1 to D-LM-8.
