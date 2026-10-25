@@ -131,7 +131,8 @@
         "opportunity": "Opportunity",
         "business-logic": "Business logic",
         "reality-check": "Reality check",
-        "implementation": "Implementation"
+        "implementation": "Implementation",
+        "aiScore": "AI Plan Score"
       }
     },
     "currentProject": "Current project",

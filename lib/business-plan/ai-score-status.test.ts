@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest"
 import { applyPatch, aiScoreSchema, createProject, type AiScore, type Project } from "@/lib/project"
-import { aiScoreStatus, fieldValueHash, shortHash } from "./ai-score-status"
+import { aiScoreStatus, displayScore, fieldValueHash, shortHash } from "./ai-score-status"
 
 const now = new Date("2026-10-24T10:00:00.000Z")
 
@@ -57,5 +57,12 @@ describe("AI Plan Score status (D-73)", () => {
     const rows = project.businessPlan.risks.map((row) => ({ ...row, id: "other" }))
     const same = applyPatch(project, { "businessPlan.risks": rows, "businessPlan.opportunity.painPoint": "  Gas boilers at the end of their life.  " }).project
     expect(aiScoreStatus(same).state).toBe("current")
+  })
+})
+
+describe("displayScore", () => {
+  it("rounds to 5 points and keeps a band of at least 1", () => {
+    expect(displayScore(62.4, 7.6)).toEqual({ score: 60, band: 8 })
+    expect(displayScore(63, 0.2)).toEqual({ score: 65, band: 1 })
   })
 })

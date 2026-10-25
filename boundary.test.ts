@@ -11,7 +11,7 @@ const ROOT = __dirname
 const SKIP = new Set(["node_modules", ".next", ".claude", ".git", ".swc", "coverage", "test-results", "playwright-report"])
 const SOURCE = /\.(ts|tsx|mts|js|mjs)$/
 
-const AGENT_UI = /^app\/\[lang\]\/\(dashboard\)\/dashboard\/(_agent|connect)\//
+const AGENT_UI = /^app\/\[lang\]\/\(dashboard\)\/dashboard\/(_agent|connect|ai-score)\//
 const AGENT_ROUTES = /^app\/(api\/|\[lang\]\/\(docs\)\/mail\/|\.well-known\/)/
 const CORE_LIB = /^lib\/(project|quick-check|business-plan|storage|store|i18n|dashboard|legal|examples|theme|docs)\/|^lib\/utils\.ts$/
 const AI_LAYER = /^(lib\/(ai|assistant|mail-agent)|workflows|emails)(\/|\.|$)/

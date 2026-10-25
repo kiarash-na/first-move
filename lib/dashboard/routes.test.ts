@@ -22,12 +22,13 @@ describe("dashboard routes (PLAN-DASH-00)", () => {
     expect(dashboardHref("en", { page: "business-plan", step: "reality-check" })).toBe("/en/dashboard/business-plan/reality-check")
     expect(dashboardHref("en", { page: "assumptions" })).toBe("/en/dashboard/assumptions")
     expect(dashboardHref("de", { page: "report" })).toBe("/de/dashboard/report")
+    expect(dashboardHref("en", { page: "ai-score" })).toBe("/en/dashboard/ai-score")
   })
 
   it("has one unique path per route", () => {
     const paths = DASHBOARD_ROUTES.map((route) => dashboardHref("en", route))
     expect(new Set(paths).size).toBe(paths.length)
-    expect(paths).toHaveLength(1 + 1 + 5 + 4 + 1 + 1)
+    expect(paths).toHaveLength(1 + 1 + 5 + 4 + 1 + 1 + 1)
   })
 
   it("guards step params", () => {

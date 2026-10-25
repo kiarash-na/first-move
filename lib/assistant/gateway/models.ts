@@ -1,3 +1,4 @@
+import type { ProviderOptions } from "@/lib/ai/plan-score/report"
 /**
  * Text models for the report and the suggestions (D-71: model-agnostic through the AI Gateway).
  * Prices per million tokens as listed in the Gateway catalogue on 2026-10-24; `zdr` says whether
@@ -30,7 +31,7 @@ export function isModelId(value: string): boolean {
 }
 
 /** Gateway options for a text request: ZDR where the catalogue lists it, never training on prompts. */
-export function textProviderOptions(modelId: string): Record<string, Record<string, unknown>> {
+export function textProviderOptions(modelId: string): ProviderOptions {
   const known = TEXT_MODELS.find((model) => model.id === modelId)
   return { gateway: known?.zdr ? { zeroDataRetention: true, disallowPromptTraining: true } : { disallowPromptTraining: true } }
 }

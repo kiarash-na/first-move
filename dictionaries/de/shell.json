@@ -131,7 +131,8 @@
         "opportunity": "Chance",
         "business-logic": "Geschäftslogik",
         "reality-check": "Realitätscheck",
-        "implementation": "Umsetzung"
+        "implementation": "Umsetzung",
+        "aiScore": "KI-Plan-Score"
       }
     },
     "currentProject": "Aktuelles Projekt",

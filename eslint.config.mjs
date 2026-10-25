@@ -18,7 +18,7 @@ const eslintConfig = defineConfig([
       "components/**",
       "app/**",
     ],
-    ignores: ["app/*/(dashboard)/dashboard/_agent/**", "app/*/(dashboard)/dashboard/connect/**", "app/*/(docs)/mail/**", "app/api/**"],
+    ignores: ["app/*/(dashboard)/dashboard/_agent/**", "app/*/(dashboard)/dashboard/connect/**", "app/*/(dashboard)/dashboard/ai-score/**", "app/*/(docs)/mail/**", "app/api/**"],
     rules: restrict([...AI_LAYER, ...AGENT_UI], "Core code never imports the AI layer (PLAN-AGENT-00 § Boundary)."),
   },
   {

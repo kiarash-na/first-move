@@ -13,7 +13,13 @@ describe("navSections (D-07)", () => {
       ["quickCheck", ["quickCheck.area", "quickCheck.buildings", "quickCheck.sources", "quickCheck.options", "quickCheck.results"]],
       [
         "businessPlan",
-        ["businessPlan.opportunity", "businessPlan.business-logic", "businessPlan.reality-check", "businessPlan.implementation"],
+        [
+          "businessPlan.opportunity",
+          "businessPlan.business-logic",
+          "businessPlan.reality-check",
+          "businessPlan.implementation",
+          "businessPlan.aiScore",
+        ],
       ],
     ])
   })
@@ -28,6 +34,12 @@ describe("navSections (D-07)", () => {
     const qcOnly = navSections({ quickCheck: true, businessPlan: false })
     expect(qcOnly.map((section) => section.id)).toEqual(["project", "quickCheck"])
     expect(qcOnly[0].items.map((item) => item.id)).toEqual(["overview", "assumptions"])
+  })
+
+  it("ends the Business Plan section with the AI Plan Score, without a step number (D-71)", () => {
+    const bp = navSections(both)[2]
+    expect(bp.items.at(-1)).toEqual({ id: "businessPlan.aiScore", route: { page: "ai-score" }, tone: "hot", step: null })
+    expect(bp.items.map((item) => item.step)).toEqual([1, 2, 3, 4, null])
   })
 
   it("uses the brand role of each module", () => {
@@ -47,5 +59,6 @@ describe("navSections (D-07)", () => {
     expect(routeModule({ page: "assumptions" })).toBe("quickCheck")
     expect(routeModule({ page: "quick-check", step: "area" })).toBe("quickCheck")
     expect(routeModule({ page: "business-plan", step: "opportunity" })).toBe("businessPlan")
+    expect(routeModule({ page: "ai-score" })).toBe("businessPlan")
   })
 })

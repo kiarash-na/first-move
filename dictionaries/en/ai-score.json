@@ -1,0 +1,8 @@
+{
+  "meta": {
+    "title": "AI Plan Score",
+    "description": "A separate AI scoring of the Business Plan: an AI decision model reads every field, takes each decision in turns and shows how it scored the plan."
+  },
+  "title": "AI Plan Score",
+  "lead": "A separate AI scoring of your Business Plan, apart from the app's own calculations."
+}

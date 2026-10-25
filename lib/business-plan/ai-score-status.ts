@@ -40,6 +40,14 @@ export function fieldValueHash(project: Project, keys: readonly string[]): strin
   return shortHash(JSON.stringify(values))
 }
 
+/**
+ * The AI Plan Score as shown (PLAN-AI-SCORE-01 § Aggregation): rounded to 5 points to avoid false
+ * precision (QCT-RES-LEVELS), the band (one standard deviation) to whole points but at least 1.
+ */
+export function displayScore(score: number, sd: number): { score: number; band: number } {
+  return { score: Math.round(score / 5) * 5, band: Math.max(1, Math.round(sd)) }
+}
+
 export type AiScoreState = "none" | "current" | "outdated"
 
 export interface AiScoreStatus {

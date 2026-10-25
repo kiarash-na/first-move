@@ -17,6 +17,7 @@ export const PROJECT_PAGES = [
   "business-plan/business-logic",
   "business-plan/reality-check",
   "business-plan/implementation",
+  "ai-score",
   "report",
 ] as const
 

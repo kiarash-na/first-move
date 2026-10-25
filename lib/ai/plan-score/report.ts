@@ -21,12 +21,15 @@ export const reportOutputSchema = z.object({
 })
 type ReportOutput = z.infer<typeof reportOutputSchema>
 
+/** Provider options of a text call (the SDK does not export the type by name). */
+export type ProviderOptions = NonNullable<Parameters<typeof generateText>[0]["providerOptions"]>
+
 export interface TextOptions {
   model: LanguageModel
   /** Model id as stored, e.g. `anthropic/claude-sonnet-5.5`. */
   modelId: string
   lang: TextLang
-  providerOptions?: Record<string, Record<string, unknown>>
+  providerOptions?: ProviderOptions
   abortSignal?: AbortSignal
 }
 

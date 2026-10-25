@@ -22,7 +22,8 @@ export interface NavSection {
 
 /**
  * The sidebar of an open project (D-07): Overview, the Quick Check steps and Results, the
- * Business Plan steps, Assumptions. A module section shows only when the module is on.
+ * Business Plan steps and the AI Plan Score (D-71), Assumptions. A module section shows only when
+ * the module is on.
  * Assumptions are the Quick Check defaults and parameter playground (D-10), so they follow it.
  */
 export function navSections(modules: ProjectModules): NavSection[] {
@@ -45,12 +46,15 @@ export function navSections(modules: ProjectModules): NavSection[] {
     sections.push({
       id: "businessPlan",
       tone: "hot",
-      items: BUSINESS_PLAN_PAGES.map((step, index) => ({
-        id: `businessPlan.${step}`,
-        route: { page: "business-plan", step },
-        tone: "hot",
-        step: index + 1,
-      })),
+      items: [
+        ...BUSINESS_PLAN_PAGES.map((step, index): NavItem => ({
+          id: `businessPlan.${step}`,
+          route: { page: "business-plan", step },
+          tone: "hot",
+          step: index + 1,
+        })),
+        { id: "businessPlan.aiScore", route: { page: "ai-score" }, tone: "hot", step: null },
+      ],
     })
   }
   if (modules.quickCheck) {
@@ -62,6 +66,6 @@ export function navSections(modules: ProjectModules): NavSection[] {
 /** The module a route belongs to, or null for project-wide pages. */
 export function routeModule(route: DashboardRoute): keyof ProjectModules | null {
   if (route.page === "quick-check" || route.page === "assumptions") return "quickCheck"
-  if (route.page === "business-plan") return "businessPlan"
+  if (route.page === "business-plan" || route.page === "ai-score") return "businessPlan"
   return null
 }

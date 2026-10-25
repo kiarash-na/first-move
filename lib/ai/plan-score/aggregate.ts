@@ -1,3 +1,4 @@
+import { displayScore } from "@/lib/business-plan"
 import type { AiScoreLevel } from "@/lib/project"
 import { DIMENSIONS, type DimensionId } from "./dimensions"
 import { expectedLevel, levelVariance } from "./distribution"
@@ -51,10 +52,8 @@ export function labelOf(score: number, mustHaveCap: boolean): AiScoreLevel {
   return score >= SOLID_FROM && !mustHaveCap ? "solid" : "promising"
 }
 
-/** Rounded for display: to 5 points, the band to whole points but at least 1. */
-export function displayScore(score: number, sd: number): { score: number; band: number } {
-  return { score: Math.round(score / 5) * 5, band: Math.max(1, Math.round(sd)) }
-}
+/** Rounded for display; core owns it so the Business Plan badge shows the same number. */
+export { displayScore }
 
 export function aggregate(nodes: readonly FlowNode[]): Aggregate {
   const gates = nodes.filter((node): node is GateNode => node.kind === "gate")

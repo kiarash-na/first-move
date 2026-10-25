@@ -1,0 +1,8 @@
+{
+  "meta": {
+    "title": "KI-Plan-Score",
+    "description": "Eine separate KI-Bewertung des Businessplans: Ein KI-Entscheidungsmodell liest jedes Feld, trifft jede Entscheidung in Runden und zeigt, wie es den Plan bewertet hat."
+  },
+  "title": "KI-Plan-Score",
+  "lead": "Eine separate KI-Bewertung Ihres Businessplans, getrennt von den Berechnungen der App."
+}
