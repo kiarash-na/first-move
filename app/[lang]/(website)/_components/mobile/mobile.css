@@ -1769,11 +1769,16 @@
   gap: 8px 10px;
   padding: 12px 0;
   border-bottom: 1px solid var(--line-subtle);
-  transition: opacity 300ms ease-out;
 }
 
-.m-ai-turn[data-state='pending'] {
-  opacity: 0.42;
+/* A turn the run has not reached: muted name (still 4.5:1), its decision not yet shown. */
+.m-ai-turn[data-state='pending'] .m-ai-turn__name {
+  color: var(--text-muted);
+}
+
+.m-ai-turn[data-state='pending'] .m-ai-turn__decision {
+  visibility: hidden;
+  opacity: 0;
 }
 
 .m-ai-turn__index {
@@ -1788,6 +1793,7 @@
   font-weight: 500;
   letter-spacing: -0.01em;
   line-height: 1.3;
+  transition: color 300ms ease-out;
 }
 
 .m-ai-turn__name small {
@@ -1836,6 +1842,7 @@
   font-family: var(--font-mono);
   font-size: 12px;
   line-height: 1.5;
+  transition: opacity 320ms ease-out;
 }
 
 .m-ai-turn__kind {
@@ -2198,7 +2205,8 @@
   .m-menu,
   .m-bar i,
   .m-risk summary svg,
-  .m-ai-turn,
+  .m-ai-turn__name,
+  .m-ai-turn__decision,
   .m-ai-turn__cells i,
   .m-ai-scale__range,
   .m-ai-scale__marker,
