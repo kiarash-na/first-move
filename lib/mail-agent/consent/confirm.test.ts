@@ -102,6 +102,14 @@ describe("handleConfirm", () => {
     expect((await handleConfirm(post({ token }), deps)).status).toBe(200)
   })
 
+  it("counts the origin the request reached: SITE_URL is the apex host, the site answers on www", async () => {
+    const token = await asked()
+    const headers = { "content-type": "application/json", origin: "https://www.firstmove.energy" }
+    const request = new Request("https://www.firstmove.energy/api/mail/confirm", { method: "POST", body: JSON.stringify({ token }), headers })
+    expect((await handleConfirm(request, deps)).status).toBe(CONFIRM_STATUS.confirmed)
+    expect(started.map((input) => input.emailId)).toEqual(["email-1"])
+  })
+
   it("does not exist without a configuration, and waits while switched off", async () => {
     const token = await asked()
     const incomplete: MailAgentEnv = { status: "incomplete", enabled: false, missing: ["RESEND_API_KEY"], invalid: [] }

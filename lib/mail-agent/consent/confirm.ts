@@ -53,11 +53,14 @@ async function readToken(request: Request): Promise<string | null> {
 }
 
 /**
- * The consent click (PLAN-AGENT-06 step 8, D-54). Only a POST from our own site counts, so a link
- * scanner that opens the page confirms nothing. The token is checked, then used up (`GETDEL`);
- * the consent is recorded with the Terms and Privacy versions; then every email that waited
- * starts, oldest first, under the sender's lock. If a start fails, the token is restored, so the
- * same link works again; emails that did start are no longer waiting.
+ * The consent click (PLAN-AGENT-06 step 8, D-54). Only a POST from the page we served counts —
+ * the Origin must match the origin the request reached — so a link scanner that opens the page
+ * confirms nothing, and a host redirect in front of the page (apex → www, a preview deployment)
+ * cannot forbid the confirm: the page and this route are always on the same origin. The token is
+ * checked, then used up (`GETDEL`); the consent is recorded with the Terms and Privacy versions;
+ * then every email that waited starts, oldest first, under the sender's lock. If a start fails,
+ * the token is restored, so the same link works again; emails that did start are no longer
+ * waiting.
  */
 export async function handleConfirm(request: Request, deps: ConfirmDeps): Promise<Response> {
   const { env, now } = deps
@@ -65,7 +68,7 @@ export async function handleConfirm(request: Request, deps: ConfirmDeps): Promis
   if (env.status === "disabled") return reply("unavailable")
 
   const { config } = env
-  if (request.headers.get("origin") !== new URL(config.siteUrl).origin) return reply("forbidden")
+  if (request.headers.get("origin") !== new URL(request.url).origin) return reply("forbidden")
 
   const token = await readToken(request)
   if (token === null) return reply("invalid")
