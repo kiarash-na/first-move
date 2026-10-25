@@ -1,5 +1,37 @@
 [
   {
+    "id": "docs:ai-plan-score",
+    "lang": "de",
+    "title": "KI-Plan-Score",
+    "url": "/de/docs/ai-plan-score",
+    "text": "Der KI-Plan-Score ist eine separate KI-Bewertung Ihres Businessplans. Er ist eine Einschätzung, wie solide der geschriebene Plan ist, keine Berechnung und kein Urteil über die Machbarkeit.",
+    "source": "content/docs/de/ai-plan-score.mdx"
+  },
+  {
+    "id": "docs:ai-plan-score#was-er-liest",
+    "lang": "de",
+    "title": "KI-Plan-Score · Was er liest",
+    "url": "/de/docs/ai-plan-score#was-er-liest",
+    "text": "Er liest die Felder der vier Schritte des Businessplans und, wenn der Quick Check aktiv und vollständig ist, dessen Gesamtergebnis.",
+    "source": "content/docs/de/ai-plan-score.mdx#was-er-liest"
+  },
+  {
+    "id": "docs:ai-plan-score#wie-er-bewertet",
+    "lang": "de",
+    "title": "KI-Plan-Score · Wie er bewertet",
+    "url": "/de/docs/ai-plan-score#wie-er-bewertet",
+    "text": "Ein KI-Entscheidungsmodell bewertet jedes ausgefüllte Feld in Runden, vom ersten bis zum letzten Schritt.",
+    "source": "content/docs/de/ai-plan-score.mdx#wie-er-bewertet"
+  },
+  {
+    "id": "docs:ai-plan-score#quellen",
+    "lang": "de",
+    "title": "KI-Plan-Score · Quellen",
+    "url": "/de/docs/ai-plan-score#quellen",
+    "text": "Die Methode folgt dem Material der Challenge und veröffentlichter Forschung.",
+    "source": "content/docs/de/ai-plan-score.mdx#quellen"
+  },
+  {
     "id": "docs:assistant",
     "lang": "de",
     "title": "KI-Assistent",
@@ -662,6 +694,38 @@
     "url": "/de/docs/quick-check#grenzen-des-quick-check",
     "text": "- Ein Screening, keine Ingenieurberatung. Der Quick Check ist für ein vorläufiges Screening gedacht, nicht für eine detaillierte Systemauslegung. Er ersetzt keine detaillierte technische oder wirtschaftliche Machbarkeitsstudie.\n- Vereinfachte Annahmen. Die Parameter, die Eingaben und die Methodik beruhen auf vereinfachten Annahmen und sollten mit Sorgfalt interpretiert werden. Die tatsächlichen Werte können je nach den Bedingungen des Projekts abweichen und sollten durch weitere Analysen verfeinert werden.\n- Nur Ihre Eingaben. Der Quick Check fragt keine externen Datenbanken ab. Er arbeitet mit dem, was Sie eingeben, und mit den Standardwerten.\n- Gleiche Eingaben, gleiches Ergebnis. Die Berechnung ist deterministisch und läuft in Ihrem Browser; sie verwendet keine KI.\n- Beispielhafte Eingaben. Die Beispielprojekte auf dem Startbildschirm verwenden nur beispielhafte Eingaben.",
     "source": "content/docs/de/quick-check.mdx#grenzen-des-quick-check"
+  },
+  {
+    "id": "docs:reference-cases",
+    "lang": "de",
+    "title": "Referenzfälle",
+    "url": "/de/docs/reference-cases",
+    "text": "Sechs Referenzfälle aus Wien zeigen, wie ein schwacher, ein mittlerer und ein starker Businessplan aussehen.",
+    "source": "content/docs/de/reference-cases.mdx"
+  },
+  {
+    "id": "docs:reference-cases#drei-reale-anergienetze",
+    "lang": "de",
+    "title": "Referenzfälle · Drei reale Anergienetze",
+    "url": "/de/docs/reference-cases#drei-reale-anergienetze",
+    "text": "Drei Fälle beschreiben Anergienetze, die es in Wien gibt.",
+    "source": "content/docs/de/reference-cases.mdx#drei-reale-anergienetze"
+  },
+  {
+    "id": "docs:reference-cases#drei-fiktive-plane-rund-um-reale-gebaude",
+    "lang": "de",
+    "title": "Referenzfälle · Drei fiktive Pläne rund um reale Gebäude",
+    "url": "/de/docs/reference-cases#drei-fiktive-plane-rund-um-reale-gebaude",
+    "text": "Drei Fälle sind fiktive Pläne rund um reale Gebäude in Wien.",
+    "source": "content/docs/de/reference-cases.mdx#drei-fiktive-plane-rund-um-reale-gebaude"
+  },
+  {
+    "id": "docs:reference-cases#so-nutzen-sie-sie",
+    "lang": "de",
+    "title": "Referenzfälle · So nutzen Sie sie",
+    "url": "/de/docs/reference-cases#so-nutzen-sie-sie",
+    "text": "Öffnen Sie einen Fall im Startbildschirm des Dashboards.",
+    "source": "content/docs/de/reference-cases.mdx#so-nutzen-sie-sie"
   },
   {
     "id": "docs:what-is-5gdhc",

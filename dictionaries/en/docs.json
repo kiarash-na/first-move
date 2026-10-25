@@ -20,6 +20,14 @@
       "title": "Business Plan",
       "description": "The four Business Plan steps, the example scenarios, the unofficial pitch-readiness checklist and the Quick Check numbers it shows."
     },
+    "ai-plan-score": {
+      "title": "AI Plan Score",
+      "description": "The separate AI scoring of the Business Plan: what it reads, how the decision model scores in turns, the gates, the dimensions, the report and the sources behind it."
+    },
+    "reference-cases": {
+      "title": "Reference cases",
+      "description": "Six reference cases for the Business Plan from Vienna, three real anergy networks and three fictional plans around real buildings, each with its sources."
+    },
     "assistant": {
       "title": "AI assistant",
       "description": "The optional AI assistant in the dashboard: your own key, your provider, proposed values you review, and how to remove the key."

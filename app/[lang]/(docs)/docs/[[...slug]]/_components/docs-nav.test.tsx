@@ -13,6 +13,8 @@ describe("DocsNav", () => {
       "/de/docs/what-is-5gdhc",
       "/de/docs/quick-check",
       "/de/docs/business-plan",
+      "/de/docs/ai-plan-score",
+      "/de/docs/reference-cases",
       "/de/docs/data-and-privacy",
     ])
     expect(within(nav).getByRole("link", { name: en.pages["quick-check"].title })).toHaveAttribute("aria-current", "page")
@@ -24,6 +26,6 @@ describe("DocsNav", () => {
     render(<DocsNav lang="en" current="assistant" copy={en} live={true} />)
     expect(screen.getByRole("link", { name: en.pages.assistant.title })).toHaveAttribute("href", "/en/docs/assistant")
     expect(screen.getByRole("link", { name: en.pages["email-agent"].title })).toHaveAttribute("href", "/en/docs/email-agent")
-    expect(screen.getAllByRole("link")).toHaveLength(7)
+    expect(screen.getAllByRole("link")).toHaveLength(9)
   })
 })

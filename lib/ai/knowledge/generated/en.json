@@ -1,5 +1,37 @@
 [
   {
+    "id": "docs:ai-plan-score",
+    "lang": "en",
+    "title": "AI Plan Score",
+    "url": "/en/docs/ai-plan-score",
+    "text": "The AI Plan Score is a separate AI scoring of your Business Plan. It is an opinion on how solid the written plan is, not a calculation and not a feasibility verdict.",
+    "source": "content/docs/en/ai-plan-score.mdx"
+  },
+  {
+    "id": "docs:ai-plan-score#what-it-reads",
+    "lang": "en",
+    "title": "AI Plan Score · What it reads",
+    "url": "/en/docs/ai-plan-score#what-it-reads",
+    "text": "It reads the fields of the four Business Plan steps and, when the Quick Check is on and complete, its overall result.",
+    "source": "content/docs/en/ai-plan-score.mdx#what-it-reads"
+  },
+  {
+    "id": "docs:ai-plan-score#how-it-scores",
+    "lang": "en",
+    "title": "AI Plan Score · How it scores",
+    "url": "/en/docs/ai-plan-score#how-it-scores",
+    "text": "An AI decision model scores each filled field in turns, from the first step to the last.",
+    "source": "content/docs/en/ai-plan-score.mdx#how-it-scores"
+  },
+  {
+    "id": "docs:ai-plan-score#sources",
+    "lang": "en",
+    "title": "AI Plan Score · Sources",
+    "url": "/en/docs/ai-plan-score#sources",
+    "text": "The method follows the challenge material and published research.",
+    "source": "content/docs/en/ai-plan-score.mdx#sources"
+  },
+  {
     "id": "docs:assistant",
     "lang": "en",
     "title": "AI assistant",
@@ -638,6 +670,38 @@
     "url": "/en/docs/quick-check#limits-of-the-quick-check",
     "text": "- A screening, not engineering advice. The Quick Check is intended for a preliminary screening rather than a detailed system design. It does not replace a detailed technical or economic feasibility study.\n- Simplified assumptions. The parameters, inputs and methodology are based on simplified assumptions and should be interpreted carefully. Actual values may vary with project-specific conditions and should be refined through further analysis.\n- Your inputs only. The Quick Check does not query external databases. It works with what you enter and the default values.\n- The same inputs give the same result. The calculation is deterministic and runs in your browser; it does not use AI.\n- Illustrative examples. The example projects on the start screen use illustrative inputs only.",
     "source": "content/docs/en/quick-check.mdx#limits-of-the-quick-check"
+  },
+  {
+    "id": "docs:reference-cases",
+    "lang": "en",
+    "title": "Reference cases",
+    "url": "/en/docs/reference-cases",
+    "text": "Six reference cases from Vienna show what a weak, a middling and a strong Business Plan look like.",
+    "source": "content/docs/en/reference-cases.mdx"
+  },
+  {
+    "id": "docs:reference-cases#three-real-anergy-networks",
+    "lang": "en",
+    "title": "Reference cases · Three real anergy networks",
+    "url": "/en/docs/reference-cases#three-real-anergy-networks",
+    "text": "Three cases describe anergy networks that exist in Vienna.",
+    "source": "content/docs/en/reference-cases.mdx#three-real-anergy-networks"
+  },
+  {
+    "id": "docs:reference-cases#three-fictional-plans-around-real-buildings",
+    "lang": "en",
+    "title": "Reference cases · Three fictional plans around real buildings",
+    "url": "/en/docs/reference-cases#three-fictional-plans-around-real-buildings",
+    "text": "Three cases are fictional plans built around real buildings in Vienna.",
+    "source": "content/docs/en/reference-cases.mdx#three-fictional-plans-around-real-buildings"
+  },
+  {
+    "id": "docs:reference-cases#how-to-use-them",
+    "lang": "en",
+    "title": "Reference cases · How to use them",
+    "url": "/en/docs/reference-cases#how-to-use-them",
+    "text": "Open a case from the start screen of the dashboard.",
+    "source": "content/docs/en/reference-cases.mdx#how-to-use-them"
   },
   {
     "id": "docs:what-is-5gdhc",

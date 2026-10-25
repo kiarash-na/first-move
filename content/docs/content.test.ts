@@ -5,6 +5,8 @@ import { describe, expect, it } from "vitest"
 import deCopy from "@/dictionaries/de/docs.json"
 import enCopy from "@/dictionaries/en/docs.json"
 import { redactSecrets } from "@/lib/ai/text/redact"
+import { REFERENCES } from "@/lib/docs/references"
+import { REFERENCE_CASE_SOURCES } from "@/lib/examples/reference-cases/sources"
 import { DASHBOARD_ROUTES, dashboardHref } from "@/lib/dashboard/routes"
 import { headingId } from "@/lib/docs/heading-id"
 import { AI_DOC_SLUGS, DOC_SLUGS, isDocSlug, type DocSlug } from "@/lib/docs/pages"
@@ -22,7 +24,8 @@ import { TBL_10, TBL_4, TBL_5, TBL_6, TBL_7, TBL_8, TBL_9 } from "@/lib/quick-ch
 /**
  * Guards the public docs (PLAN-AGENT-04, D-57) in both languages: both agents answer from these
  * pages, so they must hold no internal paths, environment names, secrets or internal ids, link
- * only to the site's own pages, use only the Markdown the docs route renders, and state the
+ * only to the site's own pages and to verified references (D-76), use only the Markdown the docs
+ * route renders, and state the
  * methodology's numbers exactly as the engine uses them. The German pages follow the English
  * ones section by section (D-32).
  */
@@ -33,7 +36,14 @@ type Lang = (typeof LANGS)[number]
 const COPY = { en: enCopy, de: deCopy }
 
 const source = (slug: DocSlug, lang: Lang = "en") => readFileSync(path.join(ROOT, "content/docs", lang, `${slug}.mdx`), "utf8")
-const PAGES = LANGS.flatMap((lang) => DOC_SLUGS.map((slug) => ({ lang, slug, text: source(slug, lang) })))
+
+/** The only external targets a page may link to: the checked references (`pnpm check:references`). */
+const VERIFIED = new Set([...REFERENCES, ...REFERENCE_CASE_SOURCES].map((reference) => reference.url))
+
+/** The text without the targets of verified external links, for the checks on plain text. */
+const withoutVerified = (text: string) => text.replace(/\]\((https:\/\/[^)\s]+)\)/g, (match, url: string) => (VERIFIED.has(url) ? "]()" : match))
+
+const PAGES = LANGS.flatMap((lang) => DOC_SLUGS.map((slug) => ({ lang, slug, text: source(slug, lang), plain: withoutVerified(source(slug, lang)) })))
 
 const headings = (text: string) => [...text.matchAll(/^##\s+(.+)$/gm)].map((match) => match[1].trim())
 const anchors = (slug: DocSlug, lang: Lang = "en") => headings(source(slug, lang)).map(headingId)
@@ -62,6 +72,7 @@ function docsTarget(slug: DocSlug, pathname: string): DocSlug | null {
 
 /** Why a link target is not one of the site's pages or sections, or null when it is. */
 function brokenTarget(slug: DocSlug, href: string, lang: Lang = "en"): string | null {
+  if (VERIFIED.has(href)) return null
   const [pathname, anchor] = href.split("#")
   if (pathname === "") return anchors(slug, lang).includes(anchor) ? null : `no heading #${anchor} on this page`
   if (!pathname.startsWith("/") || pathname.startsWith("//")) return "not a site path"
@@ -102,7 +113,7 @@ describe("public docs content (PLAN-AGENT-04)", () => {
     expect(text.match(/^#\s/gm)).toHaveLength(1)
   })
 
-  it.each(PAGES)("$lang/$slug uses only the Markdown the docs route renders", ({ text }) => {
+  it.each(PAGES)("$lang/$slug uses only the Markdown the docs route renders", ({ plain: text }) => {
     expect(text, "frontmatter").not.toMatch(/^---/)
     expect(text, "import or export").not.toMatch(/^(import|export)\s/m)
     expect(text, "code fence").not.toContain("```")
@@ -124,12 +135,14 @@ describe("public docs content (PLAN-AGENT-04)", () => {
     expect(new Set(ids).size).toBe(ids.length)
   })
 
-  it.each(PAGES)("$lang/$slug links only to pages and sections of the site", ({ lang, slug, text }) => {
+  it.each(PAGES)("$lang/$slug links only to pages and sections of the site and to verified references", ({ lang, slug, text }) => {
     for (const { href } of links(text)) expect(brokenTarget(slug, href, lang), href).toBeNull()
   })
 
   it("rejects targets outside the site in the link check", () => {
     expect(brokenTarget("index", "https://example.org")).toBe("not a site path")
+    expect(brokenTarget("index", REFERENCES[0].url)).toBeNull()
+    expect(withoutVerified(`[a](${REFERENCES[0].url}) [b](https://example.org)`)).toBe("[a]() [b](https://example.org)")
     expect(brokenTarget("index", "/docs/missing")).toBe("no such docs page")
     expect(brokenTarget("index", "/docs/quick-check#missing")).toBe("no heading #missing on quick-check")
     expect(brokenTarget("index", "/privacy#missing")).toBe("no section #missing on privacy")
@@ -168,7 +181,7 @@ describe("public docs content (PLAN-AGENT-04)", () => {
     expect(de.match(/\*\*/g)?.length).toBe(en.match(/\*\*/g)?.length)
   })
 
-  it.each(PAGES)("$lang/$slug holds no internal paths, environment names, secrets or internal ids", ({ text }) => {
+  it.each(PAGES)("$lang/$slug holds no internal paths, environment names, secrets or internal ids", ({ plain: text }) => {
     expect(text, "internal docs").not.toMatch(/\bdocs\/(?:\d|_)|90_work|00_originals|_reference|open-questions|CLAUDE\.md|CONTEXT\.md/)
     expect(text, "repository path").not.toMatch(/\b(?:lib|app|components|scripts|dictionaries|content|e2e|workflows|emails|node_modules|public)\/[\w[\]().-]/)
     expect(text, "source file").not.toMatch(/\b[\w-]+\.(?:ts|tsx|mts|mjs|cjs|js|ya?ml)\b/)

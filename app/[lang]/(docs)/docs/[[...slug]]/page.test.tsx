@@ -22,6 +22,8 @@ describe("docs page (PLAN-AGENT-04)", () => {
       { slug: ["what-is-5gdhc"] },
       { slug: ["quick-check"] },
       { slug: ["business-plan"] },
+      { slug: ["ai-plan-score"] },
+      { slug: ["reference-cases"] },
       { slug: ["data-and-privacy"] },
     ])
   })
