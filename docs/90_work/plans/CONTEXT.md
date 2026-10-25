@@ -94,4 +94,4 @@ Next, in this order (each as a workflow of sub-agents in worktrees, merged into 
 
 Owner actions already known: the email agent's deployment checklist (A07 note: `RESEND_WEBHOOK_SECRET` in Vercel, the Resend webhook for `inbox.email.received` to `SITE_URL/api/mail/inbound`, `EMAIL_AGENT_ENABLED` after A08, one real outside test mail); a browser test of the AI Plan Score and the assistant with the owner's own key; confirm D-81 (label follows the shown score) and the cost figures on the presentation; https://kiarash.online/link answered 404 once during the run (later 200).
 
-Next.js feedback candidate (AGENTS.md reporting pass, before the final response of the run): after deleting a route while `next dev` ran, `next typegen && tsc --noEmit` failed on a stale `.next/dev/types/validator.ts` until `.next/dev` was removed.
+Next.js feedback: the one candidate of this run (stale dev route validator after deleting a route) was drafted in the reporting pass of 2026-10-25 and handed to the owner as a review link; nothing is pending.
