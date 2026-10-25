@@ -7,10 +7,12 @@ import { CookieNotice } from "@/components/cookie-notice/cookie-notice"
 import { getDictionary } from "@/lib/i18n/get-dictionary"
 import { localeParams } from "@/lib/i18n/locales"
 import { requireLocale } from "@/lib/i18n/require-locale"
+import { publicMetadata } from "@/lib/seo/metadata"
 
 export async function generateMetadata({ params }: LayoutProps<"/[lang]">): Promise<Metadata> {
-  const { meta } = await getDictionary(requireLocale((await params).lang), "landing")
-  return { title: meta.title, description: meta.description }
+  const lang = requireLocale((await params).lang)
+  const [{ meta }, common] = await Promise.all([getDictionary(lang, "landing"), getDictionary(lang, "common")])
+  return { title: meta.title, description: meta.description, ...publicMetadata(lang, "", common.app.name) }
 }
 
 export const viewport: Viewport = {

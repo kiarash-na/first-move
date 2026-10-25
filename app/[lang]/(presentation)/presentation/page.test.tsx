@@ -10,8 +10,21 @@ vi.mock("next/navigation", () => ({ usePathname: () => "/en/presentation" }))
 const props = (lang: string) => ({ params: Promise.resolve({ lang }) }) as PageProps<"/[lang]/presentation">
 
 describe("presentation page", () => {
-  it("has its own title and description per language", async () => {
-    expect(await generateMetadata(props("de"))).toEqual({ title: de.meta.title, description: de.meta.description })
+  it("has its own title and description per language, with canonical, hreflang and cards", async () => {
+    expect(await generateMetadata(props("de"))).toMatchObject({
+      title: de.meta.title,
+      description: de.meta.description,
+      alternates: {
+        canonical: "https://www.firstmove.energy/de/presentation",
+        languages: {
+          en: "https://www.firstmove.energy/en/presentation",
+          de: "https://www.firstmove.energy/de/presentation",
+          "x-default": "https://www.firstmove.energy/de/presentation",
+        },
+      },
+      openGraph: { type: "website", siteName: "First Move", locale: "de_DE", alternateLocale: "en_US" },
+      twitter: { card: "summary_large_image" },
+    })
   })
 
   it("renders ten slides, no more, in the planned order", async () => {

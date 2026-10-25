@@ -5,6 +5,7 @@ import { docFromParam, docSegments, visibleDocs } from "@/lib/docs/pages"
 import { getDictionary } from "@/lib/i18n/get-dictionary"
 import { requireLocale } from "@/lib/i18n/require-locale"
 import { AI_FEATURES_LIVE } from "@/lib/legal/ai"
+import { publicMetadata } from "@/lib/seo/metadata"
 import { DocsArticle } from "./_components/docs-article"
 import { DocsNav } from "./_components/docs-nav"
 
@@ -24,10 +25,13 @@ export const ensureStatic = "navigation"
 export const instant = false
 
 export async function generateMetadata({ params }: PageProps<"/[lang]/docs/[[...slug]]">): Promise<Metadata> {
-  const { lang, slug } = await params
-  const docs = await getDictionary(requireLocale(lang), "docs")
+  const { lang: rawLang, slug } = await params
   const page = docFromParam(slug, AI_FEATURES_LIVE)
-  return page ? { title: docs.pages[page].title, description: docs.pages[page].description } : {}
+  if (!page) return {}
+  const lang = requireLocale(rawLang)
+  const [docs, common] = await Promise.all([getDictionary(lang, "docs"), getDictionary(lang, "common")])
+  const { title, description } = docs.pages[page]
+  return { title, description, ...publicMetadata(lang, page === "index" ? "/docs" : `/docs/${page}`, common.app.name) }
 }
 
 /**

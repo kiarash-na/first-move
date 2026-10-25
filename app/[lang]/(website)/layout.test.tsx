@@ -8,8 +8,24 @@ const props = (lang: string) => ({ params: Promise.resolve({ lang }) }) as Layou
 
 describe('website layout', () => {
   it('localizes the metadata from the landing dictionary', async () => {
-    expect(await generateMetadata(props('en'))).toEqual({ title: en.meta.title, description: en.meta.description })
-    expect(await generateMetadata(props('de'))).toEqual({ title: de.meta.title, description: de.meta.description })
+    const BASE = 'https://www.firstmove.energy'
+    expect(await generateMetadata(props('en'))).toEqual({
+      title: en.meta.title,
+      description: en.meta.description,
+      metadataBase: new URL(BASE),
+      alternates: {
+        canonical: `${BASE}/en`,
+        languages: { en: `${BASE}/en`, de: `${BASE}/de`, 'x-default': `${BASE}/de` },
+      },
+      openGraph: { type: 'website', siteName: 'First Move', url: `${BASE}/en`, locale: 'en_US', alternateLocale: 'de_DE' },
+      twitter: { card: 'summary_large_image' },
+    })
+    expect(await generateMetadata(props('de'))).toMatchObject({
+      title: de.meta.title,
+      description: de.meta.description,
+      alternates: { canonical: `${BASE}/de` },
+      openGraph: { locale: 'de_DE', alternateLocale: 'en_US' },
+    })
   })
 
   it('prerenders both locales', () => {

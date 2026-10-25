@@ -63,7 +63,22 @@ describe("LegalDoc", () => {
 })
 
 describe("legalMetadata", () => {
-  it("takes title and description from the document's meta", async () => {
-    expect(await legalMetadata("terms", "en")).toEqual({ title: enTerms.meta.title, description: enTerms.meta.description })
+  it("takes title and description from the document's meta, with canonical, hreflang and cards", async () => {
+    const BASE = "https://www.firstmove.energy"
+    expect(await legalMetadata("terms", "en")).toEqual({
+      title: enTerms.meta.title,
+      description: enTerms.meta.description,
+      metadataBase: new URL(BASE),
+      alternates: {
+        canonical: `${BASE}/en/terms`,
+        languages: { en: `${BASE}/en/terms`, de: `${BASE}/de/terms`, "x-default": `${BASE}/de/terms` },
+      },
+      openGraph: { type: "website", siteName: "First Move", url: `${BASE}/en/terms`, locale: "en_US", alternateLocale: "de_DE" },
+      twitter: { card: "summary_large_image" },
+    })
+    expect(await legalMetadata("privacy", "de")).toMatchObject({
+      alternates: { canonical: `${BASE}/de/privacy` },
+      openGraph: { locale: "de_DE", alternateLocale: "en_US" },
+    })
   })
 })

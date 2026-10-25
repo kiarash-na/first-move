@@ -4,6 +4,7 @@ import { getDictionary } from "@/lib/i18n/get-dictionary"
 import { requireLocale } from "@/lib/i18n/require-locale"
 import { blindSummary } from "@/lib/presentation/blind-test/summary"
 import { SLIDE_IDS, type SlideId } from "@/lib/presentation/slides"
+import { publicMetadata } from "@/lib/seo/metadata"
 import type { ResultLevel } from "@/lib/quick-check/overall-rule"
 import { Deck } from "./_components/deck"
 import { AiEngineSlide } from "./_components/slides/ai-engine-slide"
@@ -18,8 +19,9 @@ import { SystemOneSlide } from "./_components/slides/system-one-slide"
 import { WhySlide } from "./_components/slides/why-slide"
 
 export async function generateMetadata({ params }: PageProps<"/[lang]/presentation">): Promise<Metadata> {
-  const { meta } = await getDictionary(requireLocale((await params).lang), "presentation")
-  return { title: meta.title, description: meta.description }
+  const lang = requireLocale((await params).lang)
+  const [{ meta }, common] = await Promise.all([getDictionary(lang, "presentation"), getDictionary(lang, "common")])
+  return { title: meta.title, description: meta.description, ...publicMetadata(lang, "/presentation", common.app.name) }
 }
 
 /**

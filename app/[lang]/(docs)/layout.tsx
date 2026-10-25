@@ -12,10 +12,13 @@ import { ThemeSync } from "@/components/theme/theme-sync"
 import { getDictionary } from "@/lib/i18n/get-dictionary"
 import { localeParams } from "@/lib/i18n/locales"
 import { requireLocale } from "@/lib/i18n/require-locale"
+import { siteUrl } from "@/lib/seo/site"
 
 export async function generateMetadata({ params }: LayoutProps<"/[lang]">): Promise<Metadata> {
   const common = await getDictionary(requireLocale((await params).lang), "common")
   return {
+    // metadataBase only: each docs and legal page sets its own canonical, hreflang and cards.
+    metadataBase: new URL(siteUrl()),
     title: { default: common.docs.metaTitle, template: `%s · ${common.app.name}` },
     description: common.app.slogan,
   }
