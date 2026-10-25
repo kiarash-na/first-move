@@ -8,6 +8,9 @@ import { interpolate } from "@/lib/i18n/interpolate"
 import { assistantCopy, renderAgent } from "../test-utils/render"
 import { UnlockForm } from "./unlock-form"
 
+// A cheap PIN derivation keeps this test fast; the real count is pinned in `crypto.test.ts`.
+vi.mock("@/lib/assistant/vault/crypto", async (original) => ({ ...(await original<typeof import("@/lib/assistant/vault/crypto")>()), PBKDF2_ITERATIONS: 1000 }))
+
 const copy = assistantCopy()
 const KEY = "vck_remembered_gateway_key_0000c0de"
 const PIN = "482915"

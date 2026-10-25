@@ -65,6 +65,29 @@
       },
       "ack": "I understand what is sent and to whom, and I want to use my key for it.",
       "ackNote": "This confirmation is kept for this tab only."
+    },
+    "notice": {
+      "title": "Set a spending limit and an expiry date on the key",
+      "lead": "First Move keeps the key in this tab's memory, but the limit that really protects you is the one at Vercel. Set both when you create the key:",
+      "limit": "Spending limit: in the Create key dialog of the AI Gateway API Keys page, turn on the budget option, enter a spending limit in dollars and choose a refresh period (daily, weekly, monthly or none). AI Gateway then rejects requests once the limit is exceeded. A budget is a soft cap: the request that crosses it still completes.",
+      "expiry": "Expiry date: Vercel's docs offer an expiry only when you create the key with the Vercel CLI or API, for example vercel ai-gateway api-keys create --name first-move --limit 10 --expiration 30d (7d, 30d, 60d, 90d or 1y). A key created in the dashboard never expires until you delete it, so delete it when you no longer need it and create a new one.",
+      "docs": "Vercel docs: API key budgets",
+      "docsUrl": "https://vercel.com/docs/ai-gateway/observability-and-spend/budgets#api-key-budgets",
+      "ack": "I have set a spending limit and an expiry date on this key, or I will delete the key when I no longer need it.",
+      "required": "Confirm this before the key is used."
+    },
+    "unlock": {
+      "title": "Unlock your remembered key",
+      "lead": "Your {provider} key ending in {last4} is remembered on this device under your PIN (you chose this in the AI assistant). Unlock it, or paste a key: a key pasted here stays in this tab's memory only.",
+      "pin": "PIN",
+      "unlock": "Unlock",
+      "unlocking": "Unlocking…",
+      "wrong": "Wrong PIN. {remaining} attempts left before the key is deleted.",
+      "wiped": "Too many wrong PINs: the remembered key has been deleted. Paste the key again.",
+      "missing": "No remembered key was found. Paste the key again.",
+      "unavailable": "This browser cannot open the remembered key.",
+      "other": "Paste a key instead",
+      "provider": "Vercel AI Gateway"
     }
   },
   "usage": {
