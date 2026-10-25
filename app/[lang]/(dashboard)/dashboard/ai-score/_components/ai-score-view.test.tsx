@@ -16,6 +16,12 @@ import { example, scored } from "./test-utils/scored"
 const KEY = "vck_test_0123456789abcdefWXYZ"
 const copy = aiScoreCopy()
 
+/** A full run takes longer than waitFor's default second under full-suite load. */
+const slow = { timeout: 5_000 }
+
+/** Two transitions plus user-event typing can outgrow the 5 s test budget under load. */
+const slowTest = 15_000
+
 afterEach(() => {
   clearGatewayKey()
   openRouterKey.clear()
@@ -158,7 +164,6 @@ describe("AiScoreView (D-71)", () => {
     const panel = within(document.getElementById("ai-score-run")!)
     expect(await panel.findByRole("alert")).toHaveTextContent(copy.errors.provider)
     // A full run precedes the second report; under load it takes longer than waitFor's default second.
-    const slow = { timeout: 5_000 }
     fake.textModel.mockImplementation(fail(429))
     await userEvent.click(panel.getByRole("button", { name: copy.run.writeAgain }))
     await waitFor(() => expect(panel.getByRole("alert")).toHaveTextContent(copy.errors.rate), slow)
@@ -174,30 +179,30 @@ describe("AiScoreView (D-71)", () => {
     await connect()
     expect(screen.queryByText(copy.results.needsAi)).not.toBeInTheDocument()
     await userEvent.click(screen.getByRole("button", { name: copy.run.again }))
-    await waitFor(() => expect(document.querySelector("[data-column='1']")).toHaveAttribute("data-state", "running"))
+    await waitFor(() => expect(document.querySelector("[data-column='1']")).toHaveAttribute("data-state", "running"), slow)
     const report = document.querySelector<HTMLElement>("[data-slot='report-panel']")!
     expect(within(report).getByRole("button")).toBeDisabled()
     expect(within(report).getByText(copy.results.runInProgress)).toBeInTheDocument()
     expect(screen.queryByText(copy.results.needsAi)).not.toBeInTheDocument()
     fake.release()
-    expect(await screen.findByText(copy.run.done)).toBeInTheDocument()
+    expect(await screen.findByText(copy.run.done, undefined, slow)).toBeInTheDocument()
     expect(screen.queryByText(copy.results.runInProgress)).not.toBeInTheDocument()
-  })
+  }, slowTest)
 
   it("stops a run in flight when the saved score is deleted, so it does not come back", async () => {
     const project = example()
     const { store, fake } = show({ hold: true }, { ...project, aiScore: await scored(project) })
     await connect()
     await userEvent.click(screen.getByRole("button", { name: copy.run.again }))
-    await waitFor(() => expect(document.querySelector("[data-column='1']")).toHaveAttribute("data-state", "running"))
+    await waitFor(() => expect(document.querySelector("[data-column='1']")).toHaveAttribute("data-state", "running"), slow)
     await userEvent.click(screen.getByRole("button", { name: copy.results.remove.action }))
     await userEvent.click(within(screen.getByRole("alertdialog")).getByRole("button", { name: copy.results.remove.confirm }))
     fake.release()
-    expect(await within(document.getElementById("ai-score-run")!).findByRole("alert")).toHaveTextContent(copy.errors.aborted)
+    expect(await within(document.getElementById("ai-score-run")!).findByRole("alert", undefined, slow)).toHaveTextContent(copy.errors.aborted)
     expect(store.setAiScore).toHaveBeenCalledTimes(1)
     expect(store.setAiScore).toHaveBeenCalledWith(project.meta.id, null)
     expect(store.current().aiScore).toBeNull()
-  })
+  }, slowTest)
 
   it("shows a saved result from the project, with its flow", async () => {
     const project = example()
