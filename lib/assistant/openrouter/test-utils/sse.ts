@@ -15,8 +15,8 @@ export function sseResponse(events: string[]): Response {
 
 /** A plain answer, split into a few deltas. */
 export function textStream(text: string): Response {
-  const parts = text.match(/.{1,12}/gs) ?? [""]
-  return sseResponse([...parts.map((part, index) => chunk(index === 0 ? { content: part } : { content: part })), chunk({}, "stop", USAGE)])
+  const parts = text.match(/[^]{1,12}/g) ?? [""]
+  return sseResponse([...parts.map((part) => chunk({ content: part })), chunk({}, "stop", USAGE)])
 }
 
 /** One tool call with its JSON arguments. */
