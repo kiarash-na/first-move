@@ -28,7 +28,7 @@
     "lang": "en",
     "title": "AI Plan Score · What is sent and to whom",
     "url": "/en/docs/ai-plan-score#what-is-sent-and-to-whom",
-    "text": "Nothing is sent until you start a run. Then your browser sends the following directly to the Vercel AI Gateway, under your own account:\n- the texts of the open project's Business Plan, including the shared site description, the stakeholders and the partners: only filled fields, with very long texts shortened;\n- the use case you picked, if any;\n- when the Quick Check is on and complete, its result: the verdict, the number of buildings, the heat density, the heating and cooling demand, the coverage and the economic ratio.\nThe Gateway passes the decision questions to TypeSafe AI, which runs the decision model Jev, and the report and the suggestions to the provider of the text model you picked. For the decision model and the listed text models, the app asks the Gateway to use only providers with zero data retention and no training on prompts; for a model you enter by name, it asks for no training on prompts. Whether a request is served that way depends on the terms of the Gateway and the provider and on your Vercel plan. Nothing passes through First Move's servers, and we receive neither your key nor your plan.",
+    "text": "Nothing from your project is sent until you start a run; checking your key sends only the key to Vercel. A run then sends the following from your browser directly to the Vercel AI Gateway, under your own account:\n- the texts of the open project's Business Plan, including the shared site description, the stakeholders and the partners: only filled fields, with very long texts shortened;\n- the use case you picked, if any;\n- when the Quick Check is on and complete, its result: the verdict, the number of buildings, the heat density, the heating and cooling demand, the coverage and the economic ratio.",
     "source": "content/docs/en/ai-plan-score.mdx#what-is-sent-and-to-whom"
   },
   {
@@ -36,7 +36,7 @@
     "lang": "en",
     "title": "AI Plan Score · What is sent and to whom",
     "url": "/en/docs/ai-plan-score#what-is-sent-and-to-whom",
-    "text": "Do not put personal data of other people into the plan, such as the names of residents, unless you are allowed to send it. The Privacy Policy and the AI transparency page are the legal reference.",
+    "text": "The Gateway passes the decision questions to TypeSafe AI, which runs the decision model Jev, and the report and the suggestions to the provider of the text model you picked. For the decision model and the listed text models, the app asks the Gateway to use only providers with zero data retention and no training on prompts; for a model you enter by name, it asks for no training on prompts. Vercel offers zero data retention only on its Pro and Enterprise plans, and no training on prompts on every plan. Requests sent with a provider key you added to Vercel yourself (BYOK) fall under your own agreement with that provider. Nothing passes through First Move's servers, and we receive neither your key nor your plan.\nDo not put personal data of other people into the plan, such as the names of residents, unless you are allowed to send it. The Privacy Policy and the AI transparency page are the legal reference.",
     "source": "content/docs/en/ai-plan-score.mdx#what-is-sent-and-to-whom"
   },
   {
@@ -564,7 +564,7 @@
     "lang": "en",
     "title": "Email agent · A Business Plan by email",
     "url": "/en/docs/email-agent#a-business-plan-by-email",
-    "text": "For a Business Plan, the agent goes through the four steps, one round each: the opportunity, the business logic, the reality check and the implementation. Each round brings the guiding questions of the step, with the example scenarios as examples. Your answers are kept in your own words. When you choose both modules, the Business Plan shows the Quick Check figures read-only.\nThe summary lists the filled sections, the critical assumptions, the risks and the pitch-readiness checklist, which is unofficial. The Business Plan page explains the steps.",
+    "text": "For a Business Plan, the agent goes through the four steps, one round each: the opportunity, the business logic, the reality check and the implementation. Each round brings the guiding questions of the step, with the example scenarios as examples. Your answers are kept in your own words. When you choose both modules, the Business Plan shows the Quick Check figures read-only.\nThe summary lists the filled sections, the critical assumptions, the risks and the Pitch completeness checklist, which is unofficial. The Business Plan page explains the steps.",
     "source": "content/docs/en/email-agent.mdx#a-business-plan-by-email"
   },
   {
@@ -892,7 +892,7 @@
     "lang": "en",
     "title": "Reference cases · Smart Block Geblergasse",
     "url": "/en/docs/reference-cases#smart-block-geblergasse",
-    "text": "Real anergy network, strong plan.\nGeblergasse 11 and 13 in Hernals, 1170 Vienna: two Gründerzeit houses with 25 flats share geothermal probes under the courtyard, two hybrid solar roofs of 54 m² each and one heat pump, built from August 2018. It is the first anergy network in a Vienna Gründerzeit block and is laid out so that the other 16 houses of the block can join through prepared pipe stubs.\nThe plan is strong because it works with published numbers: design values of 90 + 67 MWh/a of space heat and 30 + 20 MWh/a of hot water, a tender cost of about €320,000 and a 30 % city grant of about €95,000. It sets a price rule, tenant cost at or below district heating, checks the costs over 20 years with the Quick Check defaults, names No drilling space for phase 2 as the deal-breaker and ends with a go or no-go for phase 2 within 12 months under four conditions. The heat-delivery contracting and phase 2 are proposals.",
+    "text": "Real anergy network, strong plan.\nGeblergasse 11 and 13 in Hernals, 1170 Vienna: two Gründerzeit houses with 25 flats share geothermal probes under the courtyard, two hybrid solar roofs of 54 m² each and one heat pump, built from August 2018. It is the first anergy network in a Vienna Gründerzeit block and is laid out with prepared pipe connections so that further houses of the block can join.\nThe plan is strong because it works with published numbers: design values of 90 + 67 MWh/a of space heat and 30 + 20 MWh/a of hot water, a tender cost of about €320,000 and a 30 % city grant of about €95,000. It sets a price rule, tenant cost at or below district heating, checks the costs over 20 years with the Quick Check defaults, names No drilling space for phase 2 as the deal-breaker and ends with a go or no-go for phase 2 within 12 months under four conditions. The heat-delivery contracting and phase 2 are proposals.",
     "source": "content/docs/en/reference-cases.mdx#smart-block-geblergasse"
   },
   {
@@ -900,7 +900,7 @@
     "lang": "en",
     "title": "Reference cases · Smart Block Geblergasse",
     "url": "/en/docs/reference-cases#smart-block-geblergasse",
-    "text": "Quick Check inputs: 2 residential buildings from before 1919 on 1,000 m², geothermal and solar thermal medium, ambient air low, PV, and the published heating demand of 207,000 kWh/a. Result: Further analysis required, because the default capacities of the sources cover less than half of that demand.\nSources:",
+    "text": "Quick Check inputs: 2 residential buildings from before 1919 on 1,000 m², geothermal and solar thermal medium, ambient air low, PV, and the published heating demand of 207,000 kWh/a. The area and the source potentials are estimates. Result: Further analysis required, because the default capacities of the sources cover less than half of that demand.\nSources:",
     "source": "content/docs/en/reference-cases.mdx#smart-block-geblergasse"
   },
   {
@@ -924,7 +924,7 @@
     "lang": "en",
     "title": "Reference cases · Kraftwerk Seebogen, Seestadt Aspern",
     "url": "/en/docs/reference-cases#kraftwerk-seebogen-seestadt-aspern",
-    "text": "Real anergy network, middling plan.\nOn plot H6 in Seestadt Aspern, 1220 Vienna, five developers share an anergy network for about 270 flats and about 250 workplaces on nearly 20,000 m² of new floor area. Two probe fields with 92 boreholes of 150 m serve as a seasonal store; outdoor air, waste heat from a supermarket and other spaces and four rooftop PV systems complete it. The loop runs at 4 °C in spring to 16 °C in autumn, covers about 1,600 MWh/a of space heating plus hot water and summer cooling, and saves about 440 t of CO2 a year. beyond carbon energy built the plant; the commercial yard of the Vienna Business Agency on the same plot uses district heating.\nThe plan is middling because the public sources leave gaps that it does not close: who owns and runs which part, the prices, the financing, the cost split between the five developers and a decision date. It is specific where facts exist, gives a rough drilling cost from 2020 prices and names a deal-breaker, Five developers disagree, but its tests stay open.",
+    "text": "Real anergy network, middling plan.\nOn plot H6 in Seestadt Aspern, 1220 Vienna, five developers built a mixed block of about 270 flats and about 250 workplaces and largely share one energy system: every building except the district-heated commercial yard of the Vienna Business Agency is on the anergy network. Two probe fields with 92 boreholes of 150 m serve as a seasonal store; outdoor air, waste heat from a supermarket and other spaces and four rooftop PV systems complete it. The loop runs at 4 °C in spring to 16 °C in autumn, covers about 1,600 MWh/a of space heating plus hot water and summer cooling, and saves about 440 t of CO2 a year.\nThe plan is middling because the public sources leave gaps that it does not close: who owns and runs which part, the prices, the financing, the cost split between the five developers and a decision date. It is specific where facts exist, gives a rough drilling cost from 2020 prices and names a deal-breaker, Five developers disagree, but its tests stay open.",
     "source": "content/docs/en/reference-cases.mdx#kraftwerk-seebogen-seestadt-aspern"
   },
   {
@@ -932,15 +932,7 @@
     "lang": "en",
     "title": "Reference cases · Kraftwerk Seebogen, Seestadt Aspern",
     "url": "/en/docs/reference-cases#kraftwerk-seebogen-seestadt-aspern",
-    "text": "Quick Check inputs: 5 buildings built since 2011 on 1 ha, 80 % residential and 20 % Category A, all three estimates; geothermal high, waste heat and ambient air medium, PV, and the published 1,600,000 kWh/a of space heating. Result: Further analysis required, because the building density is low and the default capacities cover only part of the demand.\nSources:",
-    "source": "content/docs/en/reference-cases.mdx#kraftwerk-seebogen-seestadt-aspern"
-  },
-  {
-    "id": "docs:reference-cases#kraftwerk-seebogen-seestadt-aspern-3",
-    "lang": "en",
-    "title": "Reference cases · Kraftwerk Seebogen, Seestadt Aspern",
-    "url": "/en/docs/reference-cases#kraftwerk-seebogen-seestadt-aspern",
-    "text": "- Stadt Wien, MA 20 Energieplanung (2026). Energie-Vorzeigeprojekt: Kraftwerk Seebogen. City of Vienna.\n- Berg, E. (Wien 3420 aspern Development AG) (2022). Bubbling with New Energy. aspern Seestadt, the developer's own publication.\n- Stadt Wien, MA 20 Energieplanung, with the Federal Ministry BMK and the Österreichischer Städtebund (2020). Projektbericht AnergieUrban, Stufe 1: Die Stadt als Energiespeicher. City of Vienna, via Wienbibliothek digital.\n- Stadt Wien, MA 20 Energieplanung (2024). Förderrichtlinie für Wärmenetze (Anergienetze) in Verbindung mit Wärmepumpen im Rahmen einer Heizungsumstellung ab zwei Objekten 2024/2025. City of Vienna.\n- Kranzl, L., Frank-Stocker, A., Hummel, M., Müller, A., Patel, N., Wiechers, E., Worm, J., Ziegler, M. (2026). Anergienetze: Gamechanger oder Nischenlösung für die urbane Wärme- und Kälteversorgung?. 19. Symposium Energieinnovation, TU Graz; based on a study for the City of Vienna, MA 20.",
+    "text": "Quick Check inputs: 5 buildings built since 2011 on 1 ha, 80 % residential and 20 % Category A, all three estimates; geothermal high, waste heat and ambient air medium, PV, and the published 1,600,000 kWh/a of space heating. Result: Further analysis required, because the building density is low and the default capacities cover only part of the demand.\nSources:\n- Stadt Wien, MA 20 Energieplanung (2026). Energie-Vorzeigeprojekt: Kraftwerk Seebogen. City of Vienna.\n- Stadt Wien, MA 20 Energieplanung, with the Federal Ministry BMK and the Österreichischer Städtebund (2020). Projektbericht AnergieUrban, Stufe 1: Die Stadt als Energiespeicher. City of Vienna, via Wienbibliothek digital.\n- Stadt Wien, MA 20 Energieplanung (2024). Förderrichtlinie für Wärmenetze (Anergienetze) in Verbindung mit Wärmepumpen im Rahmen einer Heizungsumstellung ab zwei Objekten 2024/2025. City of Vienna.\n- Kranzl, L., Frank-Stocker, A., Hummel, M., Müller, A., Patel, N., Wiechers, E., Worm, J., Ziegler, M. (2026). Anergienetze: Gamechanger oder Nischenlösung für die urbane Wärme- und Kälteversorgung?. 19. Symposium Energieinnovation, TU Graz; based on a study for the City of Vienna, MA 20.",
     "source": "content/docs/en/reference-cases.mdx#kraftwerk-seebogen-seestadt-aspern"
   },
   {
@@ -964,7 +956,7 @@
     "lang": "en",
     "title": "Reference cases · Klinik Donaustadt: fictional groundwater loop",
     "url": "/en/docs/reference-cases#klinik-donaustadt-fictional-groundwater-loop",
-    "text": "Fictional plan around a real building, strong plan.\nFictional business plan around a real building: neither the owner nor the operator has planned or endorsed it.\nThe real anchor is Klinik Donaustadt, Langobardenstraße 122, 1220 Vienna: a municipal hospital of the City of Vienna, run by the Wiener Gesundheitsverbund, with 963 systemised beds (hospital statute, 2022), built low with at most five floors on a total of 170,000 m². No energy project of the hospital is published, and its heat supply is not public. Donaustadt has about 12,010 buildings on gas and about 1,500 on district heating, and a TU Wien study for the city names Donaustadt as an area where groundwater use is realistic.",
+    "text": "Fictional plan around a real building, strong plan.\nFictional business plan around a real building: neither the owner nor the operator has planned or endorsed it.\nThe real anchor is Klinik Donaustadt, Langobardenstraße 122, 1220 Vienna: a municipal hospital of the City of Vienna, run by the Wiener Gesundheitsverbund, with 963 systemised beds (hospital statute, 2022), built low with at most five floors on a total of 170,000 m². No energy project of the hospital appears in the sources checked, and they do not state its heat supply. Donaustadt has about 12,010 buildings on gas and about 1,500 on district heating, and a study by TU Wien and e-think for the city (Kranzl et al., 2026) names Donaustadt as an area where groundwater use is realistic.",
     "source": "content/docs/en/reference-cases.mdx#klinik-donaustadt-fictional-groundwater-loop"
   },
   {
@@ -1004,7 +996,7 @@
     "lang": "en",
     "title": "Reference cases · Ottakringer Bad: fictional summer heat loop",
     "url": "/en/docs/reference-cases#ottakringer-bad-fictional-summer-heat-loop",
-    "text": "Fictional plan around a real building, middling plan.\nFictional business plan around a real building: neither the owner nor the operator has planned or endorsed it.\nThe real anchor is the Ottakringer Bad, Johann-Staud-Straße 11, 1160 Vienna: a combined pool of the City of Vienna with an indoor pool, a sauna and an outdoor pool open from 2 May to mid-September. The city built it in 1926 as Vienna's first outdoor pool that could warm its water, rebuilt it from 1966 to 1972 and added an indoor pool from 1971. How it is heated is not published. Ottakring has about 3,380 buildings on gas and about 180 on district heating.",
+    "text": "Fictional plan around a real building, middling plan.\nFictional business plan around a real building: neither the owner nor the operator has planned or endorsed it.\nThe real anchor is the Ottakringer Bad, Johann-Staud-Straße 11, 1160 Vienna: a combined pool of the City of Vienna with an indoor pool, a sauna and an outdoor pool open from 2 May to mid-September. The city built it in 1926 as Vienna's first outdoor pool that could warm its water, rebuilt it from 1966 to 1972 and added an indoor pool from 1971. The sources checked do not say how it is heated. Ottakring has about 3,380 buildings on gas and about 180 on district heating.",
     "source": "content/docs/en/reference-cases.mdx#ottakringer-bad-fictional-summer-heat-loop"
   },
   {
@@ -1044,7 +1036,7 @@
     "lang": "en",
     "title": "Reference cases · Großmarkt Wien: fictional waste-heat plan",
     "url": "/en/docs/reference-cases#großmarkt-wien-fictional-waste-heat-plan",
-    "text": "- GMW Großmarkt Wien Betrieb GmbH (2026). Daten und Fakten. Großmarkt Wien.\n- GMW Großmarkt Wien Betrieb GmbH (2026). GMW Großmarkt Wien Betrieb GmbH. Großmarkt Wien.\n- GMW Großmarkt Wien Betrieb GmbH (2022). 50 Jahre Großmarkt Wien: Festbroschüre. Großmarkt Wien.\n- Wien Geschichte Wiki (Wiener Stadt- und Landesarchiv, Wienbibliothek im Rathaus) (2024). Großmarkt Inzersdorf. City of Vienna.\n- Stadt Wien, MA 20 Energieplanung (2024). Energie-Info Liesing, 23. Bezirk. City of Vienna.\n- Giunta, F., Sawalha, S. (2021). Techno-economic analysis of heat recovery from supermarket's CO2 refrigeration systems to district heating networks. Applied Thermal Engineering 193, 117000.",
+    "text": "- GMW Großmarkt Wien Betrieb GmbH (2026). Daten und Fakten. Großmarkt Wien.\n- GMW Großmarkt Wien Betrieb GmbH (2026). GMW Großmarkt Wien Betrieb GmbH. Großmarkt Wien.\n- GMW Großmarkt Wien Betrieb GmbH (2022). Jubiläumsbroschüre 50 Jahre Großmarkt Wien: Garantierte Versorgung für Wien. Großmarkt Wien.\n- Wien Geschichte Wiki (Wiener Stadt- und Landesarchiv, Wienbibliothek im Rathaus) (2024). Großmarkt Inzersdorf. City of Vienna.\n- Stadt Wien, MA 20 Energieplanung (2024). Energie-Info Liesing, 23. Bezirk. City of Vienna.\n- Giunta, F., Sawalha, S. (2021). Techno-economic analysis of heat recovery from supermarket's CO2 refrigeration systems to district heating networks. Applied Thermal Engineering 193, 117000.",
     "source": "content/docs/en/reference-cases.mdx#großmarkt-wien-fictional-waste-heat-plan"
   },
   {

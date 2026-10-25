@@ -28,7 +28,7 @@
     "lang": "de",
     "title": "KI-Plan-Score · Was gesendet wird und an wen",
     "url": "/de/docs/ai-plan-score#was-gesendet-wird-und-an-wen",
-    "text": "Nichts wird gesendet, bevor Sie einen Lauf starten. Dann sendet Ihr Browser Folgendes direkt an das Vercel AI Gateway, unter Ihrem eigenen Konto:\n- die Texte des Business Plans des geöffneten Projekts, einschließlich der gemeinsamen Standortbeschreibung, der Beteiligten und der Partner: nur ausgefüllte Felder, sehr lange Texte gekürzt;\n- den Anwendungsfall, den Sie gewählt haben, falls vorhanden;\n- wenn der Quick Check eingeschaltet und vollständig ist, sein Ergebnis: die Einstufung, die Zahl der Gebäude, die Wärmedichte, den Wärme- und Kältebedarf, die Deckung und das wirtschaftliche Verhältnis.",
+    "text": "Aus Ihrem Projekt wird nichts gesendet, bevor Sie einen Lauf starten; beim Prüfen Ihres Schlüssels geht nur der Schlüssel an Vercel. Bei einem Lauf sendet Ihr Browser dann Folgendes direkt an das Vercel AI Gateway, unter Ihrem eigenen Konto:\n- die Texte des Business Plans des geöffneten Projekts, einschließlich der gemeinsamen Standortbeschreibung, der Beteiligten und der Partner: nur ausgefüllte Felder, sehr lange Texte gekürzt;\n- den Anwendungsfall, den Sie gewählt haben, falls vorhanden;\n- wenn der Quick Check eingeschaltet und vollständig ist, sein Ergebnis: die Einstufung, die Zahl der Gebäude, die Wärmedichte, den Wärme- und Kältebedarf, die Deckung und das wirtschaftliche Verhältnis.",
     "source": "content/docs/de/ai-plan-score.mdx#was-gesendet-wird-und-an-wen"
   },
   {
@@ -36,7 +36,7 @@
     "lang": "de",
     "title": "KI-Plan-Score · Was gesendet wird und an wen",
     "url": "/de/docs/ai-plan-score#was-gesendet-wird-und-an-wen",
-    "text": "Das Gateway leitet die Entscheidungsfragen an TypeSafe AI weiter, das das Entscheidungsmodell Jev betreibt, und den Bericht und die Vorschläge an den Anbieter des Textmodells, das Sie gewählt haben. Für das Entscheidungsmodell und die aufgeführten Textmodelle bittet die App das Gateway, nur Anbieter ohne Datenspeicherung und ohne Training mit den Eingaben zu nutzen; für ein Modell, das Sie mit seinem Namen eingeben, bittet sie um kein Training mit den Eingaben. Ob eine Anfrage so bedient wird, hängt von den Bedingungen des Gateways und des Anbieters und von Ihrem Vercel-Tarif ab. Nichts läuft über die Server von First Move, und wir erhalten weder Ihren Schlüssel noch Ihren Plan.\nSchreiben Sie keine personenbezogenen Daten anderer Personen in den Plan, etwa die Namen von Bewohnern, es sei denn, Sie dürfen sie weitergeben. Rechtlich maßgeblich sind die Datenschutzerklärung und die Seite KI-Transparenz.",
+    "text": "Das Gateway leitet die Entscheidungsfragen an TypeSafe AI weiter, das das Entscheidungsmodell Jev betreibt, und den Bericht und die Vorschläge an den Anbieter des Textmodells, das Sie gewählt haben. Für das Entscheidungsmodell und die aufgeführten Textmodelle bittet die App das Gateway, nur Anbieter ohne Datenspeicherung und ohne Training mit den Eingaben zu nutzen; für ein Modell, das Sie mit seinem Namen eingeben, bittet sie um kein Training mit den Eingaben. Vercel bietet Zero Data Retention nur in den Tarifen Pro und Enterprise an, den Ausschluss von Training in jedem Tarif. Für Anfragen mit einem Anbieterschlüssel, den Sie selbst bei Vercel hinterlegt haben (BYOK), gilt Ihre eigene Vereinbarung mit diesem Anbieter. Nichts läuft über die Server von First Move, und wir erhalten weder Ihren Schlüssel noch Ihren Plan.\nSchreiben Sie keine personenbezogenen Daten anderer Personen in den Plan, etwa die Namen von Bewohnern, es sei denn, Sie dürfen sie weitergeben. Rechtlich maßgeblich sind die Datenschutzerklärung und die Seite KI-Transparenz.",
     "source": "content/docs/de/ai-plan-score.mdx#was-gesendet-wird-und-an-wen"
   },
   {
@@ -612,7 +612,7 @@
     "lang": "de",
     "title": "E-Mail-Agent · Ein Business Plan per E-Mail",
     "url": "/de/docs/email-agent#ein-business-plan-per-e-mail",
-    "text": "Für einen Business Plan geht der Agent die vier Schritte in je einer Runde durch: Chance, Geschäftslogik, Realitätscheck und Umsetzung. Jede Runde enthält die Leitfragen des Schritts und nennt die Beispielszenarien als Beispiele. Ihre Antworten werden in Ihren eigenen Worten übernommen. Wenn Sie beide Module wählen, zeigt der Business Plan die Zahlen des Quick Check schreibgeschützt an.\nDie Zusammenfassung führt die ausgefüllten Abschnitte, die kritischen Annahmen, die Risiken und die inoffizielle Checkliste zur Pitch-Reife auf. Die Seite Business Plan erklärt die Schritte.",
+    "text": "Für einen Business Plan geht der Agent die vier Schritte in je einer Runde durch: Chance, Geschäftslogik, Realitätscheck und Umsetzung. Jede Runde enthält die Leitfragen des Schritts und nennt die Beispielszenarien als Beispiele. Ihre Antworten werden in Ihren eigenen Worten übernommen. Wenn Sie beide Module wählen, zeigt der Business Plan die Zahlen des Quick Check schreibgeschützt an.\nDie Zusammenfassung führt die ausgefüllten Abschnitte, die kritischen Annahmen, die Risiken und die inoffizielle Checkliste zur Pitch-Vollständigkeit auf. Die Seite Business Plan erklärt die Schritte.",
     "source": "content/docs/de/email-agent.mdx#ein-business-plan-per-e-mail"
   },
   {
@@ -956,7 +956,7 @@
     "lang": "de",
     "title": "Referenzfälle · Smart Block Geblergasse",
     "url": "/de/docs/reference-cases#smart-block-geblergasse",
-    "text": "Reales Anergienetz, starker Plan.\nGeblergasse 11 und 13 in Hernals, 1170 Wien: Zwei Gründerzeithäuser mit 25 Wohnungen teilen Erdwärmesonden unter dem Hof, zwei Hybrid-Solardächer mit je 54 m² und eine Wärmepumpe, gebaut ab August 2018. Es ist das erste Anergienetz in einem Wiener Gründerzeitblock und so angelegt, dass die übrigen 16 Häuser des Blocks über vorbereitete Leitungsstutzen dazukommen können.\nDer Plan ist stark, weil er mit veröffentlichten Zahlen arbeitet: Planwerte von 90 + 67 MWh/a Raumwärme und 30 + 20 MWh/a Warmwasser, Kosten laut Ausschreibung von rund 320.000 € und eine Förderung der Stadt von 30 %, rund 95.000 €. Er legt eine Preisregel fest, Kosten der Mieter*innen höchstens auf Fernwärmeniveau, rechnet die Kosten über 20 Jahre mit den Standardwerten des Quick Check, nennt Kein Bohrplatz für Phase 2 als K.-o.-Kriterium und endet mit einer Entscheidung über Phase 2 binnen 12 Monaten unter vier Bedingungen. Das Wärmeliefer-Contracting und Phase 2 sind Vorschläge.",
+    "text": "Reales Anergienetz, starker Plan.\nGeblergasse 11 und 13 in Hernals, 1170 Wien: Zwei Gründerzeithäuser mit 25 Wohnungen teilen Erdwärmesonden unter dem Hof, zwei Hybrid-Solardächer mit je 54 m² und eine Wärmepumpe, gebaut ab August 2018. Es ist das erste Anergienetz in einem Wiener Gründerzeitblock und mit vorbereiteten Leitungsanschlüssen so angelegt, dass weitere Häuser des Blocks dazukommen können.\nDer Plan ist stark, weil er mit veröffentlichten Zahlen arbeitet: Planwerte von 90 + 67 MWh/a Raumwärme und 30 + 20 MWh/a Warmwasser, Kosten laut Ausschreibung von rund 320.000 € und eine Förderung der Stadt von 30 %, rund 95.000 €. Er legt eine Preisregel fest, Kosten der Mieter*innen höchstens auf Fernwärmeniveau, rechnet die Kosten über 20 Jahre mit den Standardwerten des Quick Check, nennt Kein Bohrplatz für Phase 2 als K.-o.-Kriterium und endet mit einer Entscheidung über Phase 2 binnen 12 Monaten unter vier Bedingungen. Das Wärmeliefer-Contracting und Phase 2 sind Vorschläge.",
     "source": "content/docs/de/reference-cases.mdx#smart-block-geblergasse"
   },
   {
@@ -964,7 +964,7 @@
     "lang": "de",
     "title": "Referenzfälle · Smart Block Geblergasse",
     "url": "/de/docs/reference-cases#smart-block-geblergasse",
-    "text": "Eingaben im Quick Check: 2 Wohngebäude von vor 1919 auf 1.000 m², Geothermie und Solarthermie mittel, Umgebungsluft gering, PV und der veröffentlichte Wärmebedarf von 207.000 kWh/a. Ergebnis: Weitere Analyse erforderlich, weil die Standardkapazitäten der Quellen weniger als die Hälfte dieses Bedarfs decken.\nQuellen:",
+    "text": "Eingaben im Quick Check: 2 Wohngebäude von vor 1919 auf 1.000 m², Geothermie und Solarthermie mittel, Umgebungsluft gering, PV und der veröffentlichte Wärmebedarf von 207.000 kWh/a. Fläche und Potenziale der Quellen sind Schätzungen. Ergebnis: Weitere Analyse erforderlich, weil die Standardkapazitäten der Quellen weniger als die Hälfte dieses Bedarfs decken.\nQuellen:",
     "source": "content/docs/de/reference-cases.mdx#smart-block-geblergasse"
   },
   {
@@ -988,7 +988,7 @@
     "lang": "de",
     "title": "Referenzfälle · Kraftwerk Seebogen, Seestadt Aspern",
     "url": "/de/docs/reference-cases#kraftwerk-seebogen-seestadt-aspern",
-    "text": "Reales Anergienetz, mittlerer Plan.\nAm Bauplatz H6 der Seestadt Aspern, 1220 Wien, teilen fünf Bauträger ein Anergienetz für rund 270 Wohnungen und rund 250 Arbeitsplätze auf knapp 20.000 m² neuer Nutzfläche. Zwei Sondenfelder mit 92 Bohrungen zu je 150 m dienen als saisonaler Speicher; Außenluft, Abwärme eines Supermarkts und weiterer Räume sowie vier Dach-PV-Anlagen ergänzen es. Das Netz läuft mit 4 °C im Frühjahr bis 16 °C im Herbst, deckt rund 1.600 MWh/a Raumwärme samt Warmwasser und Sommerkühlung und spart rund 440 t CO2 pro Jahr. beyond carbon energy hat die Anlage gebaut; der Gewerbehof der Wirtschaftsagentur Wien am selben Bauplatz nutzt Fernwärme.\nDer Plan ist mittel, weil die öffentlichen Quellen Lücken lassen, die er nicht schließt: wem welcher Teil gehört und wer ihn betreibt, die Preise, die Finanzierung, die Kostenaufteilung zwischen den fünf Bauträgern und ein Entscheidungstermin. Wo Fakten vorliegen, ist er konkret, nennt grobe Bohrkosten zu Preisen von 2020 und ein K.-o.-Kriterium, Fünf Bauträger sind uneinig, aber seine Prüfungen bleiben offen.",
+    "text": "Reales Anergienetz, mittlerer Plan.\nAm Bauplatz H6 der Seestadt Aspern, 1220 Wien, haben fünf Bauträger einen gemischten Block mit rund 270 Wohnungen und rund 250 Arbeitsplätzen errichtet und teilen großteils ein Energiesystem: Alle Gebäude außer dem fernwärmeversorgten Gewerbehof der Wirtschaftsagentur Wien hängen am Anergienetz. Zwei Sondenfelder mit 92 Bohrungen zu je 150 m dienen als saisonaler Speicher; Außenluft, Abwärme eines Supermarkts und weiterer Räume sowie vier Dach-PV-Anlagen ergänzen es. Das Netz läuft mit 4 °C im Frühjahr bis 16 °C im Herbst, deckt rund 1.600 MWh/a Raumwärme samt Warmwasser und Sommerkühlung und spart rund 440 t CO2 pro Jahr.\nDer Plan ist mittel, weil die öffentlichen Quellen Lücken lassen, die er nicht schließt: wem welcher Teil gehört und wer ihn betreibt, die Preise, die Finanzierung, die Kostenaufteilung zwischen den fünf Bauträgern und ein Entscheidungstermin. Wo Fakten vorliegen, ist er konkret, nennt grobe Bohrkosten zu Preisen von 2020 und ein K.-o.-Kriterium, Fünf Bauträger sind uneinig, aber seine Prüfungen bleiben offen.",
     "source": "content/docs/de/reference-cases.mdx#kraftwerk-seebogen-seestadt-aspern"
   },
   {
@@ -996,15 +996,7 @@
     "lang": "de",
     "title": "Referenzfälle · Kraftwerk Seebogen, Seestadt Aspern",
     "url": "/de/docs/reference-cases#kraftwerk-seebogen-seestadt-aspern",
-    "text": "Eingaben im Quick Check: 5 Gebäude ab 2011 auf 1 ha, 80 % Wohnen und 20 % Kategorie A, alle drei geschätzt; Geothermie hoch, Abwärme und Umgebungsluft mittel, PV und die veröffentlichten 1.600.000 kWh/a Raumwärme. Ergebnis: Weitere Analyse erforderlich, weil die Gebäudedichte gering ist und die Standardkapazitäten nur einen Teil des Bedarfs decken.\nQuellen:",
-    "source": "content/docs/de/reference-cases.mdx#kraftwerk-seebogen-seestadt-aspern"
-  },
-  {
-    "id": "docs:reference-cases#kraftwerk-seebogen-seestadt-aspern-3",
-    "lang": "de",
-    "title": "Referenzfälle · Kraftwerk Seebogen, Seestadt Aspern",
-    "url": "/de/docs/reference-cases#kraftwerk-seebogen-seestadt-aspern",
-    "text": "- Stadt Wien, MA 20 Energieplanung (2026). Energie-Vorzeigeprojekt: Kraftwerk Seebogen. Stadt Wien.\n- Berg, E. (Wien 3420 aspern Development AG) (2022). Bubbling with New Energy. aspern Seestadt, eigene Publikation der Entwicklungsgesellschaft.\n- Stadt Wien, MA 20 Energieplanung, mit dem Bundesministerium BMK und dem Österreichischen Städtebund (2020). Projektbericht AnergieUrban, Stufe 1: Die Stadt als Energiespeicher. Stadt Wien, über Wienbibliothek digital.\n- Stadt Wien, MA 20 Energieplanung (2024). Förderrichtlinie für Wärmenetze (Anergienetze) in Verbindung mit Wärmepumpen im Rahmen einer Heizungsumstellung ab zwei Objekten 2024/2025. Stadt Wien.\n- Kranzl, L., Frank-Stocker, A., Hummel, M., Müller, A., Patel, N., Wiechers, E., Worm, J., Ziegler, M. (2026). Anergienetze: Gamechanger oder Nischenlösung für die urbane Wärme- und Kälteversorgung?. 19. Symposium Energieinnovation, TU Graz; auf Basis einer Studie für die Stadt Wien, MA 20.",
+    "text": "Eingaben im Quick Check: 5 Gebäude ab 2011 auf 1 ha, 80 % Wohnen und 20 % Kategorie A, alle drei geschätzt; Geothermie hoch, Abwärme und Umgebungsluft mittel, PV und die veröffentlichten 1.600.000 kWh/a Raumwärme. Ergebnis: Weitere Analyse erforderlich, weil die Gebäudedichte gering ist und die Standardkapazitäten nur einen Teil des Bedarfs decken.\nQuellen:\n- Stadt Wien, MA 20 Energieplanung (2026). Energie-Vorzeigeprojekt: Kraftwerk Seebogen. Stadt Wien.\n- Stadt Wien, MA 20 Energieplanung, mit dem Bundesministerium BMK und dem Österreichischen Städtebund (2020). Projektbericht AnergieUrban, Stufe 1: Die Stadt als Energiespeicher. Stadt Wien, über Wienbibliothek digital.\n- Stadt Wien, MA 20 Energieplanung (2024). Förderrichtlinie für Wärmenetze (Anergienetze) in Verbindung mit Wärmepumpen im Rahmen einer Heizungsumstellung ab zwei Objekten 2024/2025. Stadt Wien.\n- Kranzl, L., Frank-Stocker, A., Hummel, M., Müller, A., Patel, N., Wiechers, E., Worm, J., Ziegler, M. (2026). Anergienetze: Gamechanger oder Nischenlösung für die urbane Wärme- und Kälteversorgung?. 19. Symposium Energieinnovation, TU Graz; auf Basis einer Studie für die Stadt Wien, MA 20.",
     "source": "content/docs/de/reference-cases.mdx#kraftwerk-seebogen-seestadt-aspern"
   },
   {
@@ -1028,7 +1020,7 @@
     "lang": "de",
     "title": "Referenzfälle · Klinik Donaustadt: fiktives Grundwassernetz",
     "url": "/de/docs/reference-cases#klinik-donaustadt-fiktives-grundwassernetz",
-    "text": "Fiktiver Plan rund um ein reales Gebäude, starker Plan.\nFiktiver Businessplan rund um ein reales Gebäude: Weder Eigentümer noch Betreiber haben ihn geplant oder befürwortet.\nDer reale Anker ist die Klinik Donaustadt, Langobardenstraße 122, 1220 Wien: ein kommunales Spital der Stadt Wien, geführt vom Wiener Gesundheitsverbund, mit 963 systemisierten Betten (Anstaltsordnung, 2022), niedrig gebaut mit höchstens fünf Stockwerken auf insgesamt 170.000 m². Ein Energieprojekt des Spitals ist nicht veröffentlicht, seine Wärmeversorgung nicht öffentlich. Die Donaustadt hat rund 12.010 Gebäude mit Gas und rund 1.500 mit Fernwärme, und eine Studie der TU Wien für die Stadt nennt die Donaustadt als Gebiet, in dem Grundwassernutzung realistisch ist.",
+    "text": "Fiktiver Plan rund um ein reales Gebäude, starker Plan.\nFiktiver Businessplan rund um ein reales Gebäude: Weder Eigentümer noch Betreiber haben ihn geplant oder befürwortet.\nDer reale Anker ist die Klinik Donaustadt, Langobardenstraße 122, 1220 Wien: ein kommunales Spital der Stadt Wien, geführt vom Wiener Gesundheitsverbund, mit 963 systemisierten Betten (Anstaltsordnung, 2022), niedrig gebaut mit höchstens fünf Stockwerken auf insgesamt 170.000 m². In den geprüften Quellen findet sich kein Energieprojekt des Spitals, und sie nennen seine Wärmeversorgung nicht. Die Donaustadt hat rund 12.010 Gebäude mit Gas und rund 1.500 mit Fernwärme, und eine Studie von TU Wien und e-think für die Stadt (Kranzl et al., 2026) nennt die Donaustadt als Gebiet, in dem Grundwassernutzung realistisch ist.",
     "source": "content/docs/de/reference-cases.mdx#klinik-donaustadt-fiktives-grundwassernetz"
   },
   {
@@ -1068,7 +1060,7 @@
     "lang": "de",
     "title": "Referenzfälle · Ottakringer Bad: fiktives Sommerwärmenetz",
     "url": "/de/docs/reference-cases#ottakringer-bad-fiktives-sommerwarmenetz",
-    "text": "Fiktiver Plan rund um ein reales Gebäude, mittlerer Plan.\nFiktiver Businessplan rund um ein reales Gebäude: Weder Eigentümer noch Betreiber haben ihn geplant oder befürwortet.\nDer reale Anker ist das Ottakringer Bad, Johann-Staud-Straße 11, 1160 Wien: ein Kombibad der Stadt Wien mit Hallenbad, Sauna und einem Freibad, das vom 2. Mai bis Mitte September offen hat. Die Stadt errichtete es 1926 als erstes Wiener Freibad, das sein Wasser vorwärmen konnte, baute es von 1966 bis 1972 um und ergänzte ab 1971 ein Hallenbad. Wie es beheizt wird, ist nicht veröffentlicht. Ottakring hat rund 3.380 Gebäude mit Gas und rund 180 mit Fernwärme.",
+    "text": "Fiktiver Plan rund um ein reales Gebäude, mittlerer Plan.\nFiktiver Businessplan rund um ein reales Gebäude: Weder Eigentümer noch Betreiber haben ihn geplant oder befürwortet.\nDer reale Anker ist das Ottakringer Bad, Johann-Staud-Straße 11, 1160 Wien: ein Kombibad der Stadt Wien mit Hallenbad, Sauna und einem Freibad, das vom 2. Mai bis Mitte September offen hat. Die Stadt errichtete es 1926 als erstes Wiener Freibad, das sein Wasser vorwärmen konnte, baute es von 1966 bis 1972 um und ergänzte ab 1971 ein Hallenbad. Wie es beheizt wird, sagen die geprüften Quellen nicht. Ottakring hat rund 3.380 Gebäude mit Gas und rund 180 mit Fernwärme.",
     "source": "content/docs/de/reference-cases.mdx#ottakringer-bad-fiktives-sommerwarmenetz"
   },
   {
@@ -1108,7 +1100,7 @@
     "lang": "de",
     "title": "Referenzfälle · Großmarkt Wien: fiktiver Abwärmeplan",
     "url": "/de/docs/reference-cases#großmarkt-wien-fiktiver-abwarmeplan",
-    "text": "- GMW Großmarkt Wien Betrieb GmbH (2026). Daten und Fakten. Großmarkt Wien.\n- GMW Großmarkt Wien Betrieb GmbH (2026). GMW Großmarkt Wien Betrieb GmbH. Großmarkt Wien.\n- GMW Großmarkt Wien Betrieb GmbH (2022). 50 Jahre Großmarkt Wien: Festbroschüre. Großmarkt Wien.\n- Wien Geschichte Wiki (Wiener Stadt- und Landesarchiv, Wienbibliothek im Rathaus) (2024). Großmarkt Inzersdorf. Stadt Wien.\n- Stadt Wien, MA 20 Energieplanung (2024). Energie-Info Liesing, 23. Bezirk. Stadt Wien.\n- Giunta, F., Sawalha, S. (2021). Techno-economic analysis of heat recovery from supermarket's CO2 refrigeration systems to district heating networks. Applied Thermal Engineering 193, 117000.",
+    "text": "- GMW Großmarkt Wien Betrieb GmbH (2026). Daten und Fakten. Großmarkt Wien.\n- GMW Großmarkt Wien Betrieb GmbH (2026). GMW Großmarkt Wien Betrieb GmbH. Großmarkt Wien.\n- GMW Großmarkt Wien Betrieb GmbH (2022). Jubiläumsbroschüre 50 Jahre Großmarkt Wien: Garantierte Versorgung für Wien. Großmarkt Wien.\n- Wien Geschichte Wiki (Wiener Stadt- und Landesarchiv, Wienbibliothek im Rathaus) (2024). Großmarkt Inzersdorf. Stadt Wien.\n- Stadt Wien, MA 20 Energieplanung (2024). Energie-Info Liesing, 23. Bezirk. Stadt Wien.\n- Giunta, F., Sawalha, S. (2021). Techno-economic analysis of heat recovery from supermarket's CO2 refrigeration systems to district heating networks. Applied Thermal Engineering 193, 117000.",
     "source": "content/docs/de/reference-cases.mdx#großmarkt-wien-fiktiver-abwarmeplan"
   },
   {
