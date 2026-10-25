@@ -57,6 +57,7 @@ export default async function PresentationPage({ params }: PageProps<"/[lang]/pr
       appName={common.app.name}
       homeLabel={t.deck.home}
       language={common.language}
+      theme={common.theme}
       copy={t.deck}
       slides={SLIDE_IDS.map((id) => ({ id, title: s[id].title, content: content[id] }))}
     />

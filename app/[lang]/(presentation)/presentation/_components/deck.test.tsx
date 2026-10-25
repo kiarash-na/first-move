@@ -24,9 +24,10 @@ const slides: DeckSlide[] = [
 ]
 
 const language = { label: "Language", names: { en: "English", de: "Deutsch" }, short: { en: "EN", de: "DE" } }
+const theme = { switchToLight: "Switch to light theme", switchToDark: "Switch to dark theme" }
 
 function setup() {
-  return render(<Deck lang="en" appName="First Move" homeLabel={en.deck.home} language={language} copy={en.deck} slides={slides} />)
+  return render(<Deck lang="en" appName="First Move" homeLabel={en.deck.home} language={language} theme={theme} copy={en.deck} slides={slides} />)
 }
 
 const section = (name: RegExp) => screen.getByRole("region", { name })
