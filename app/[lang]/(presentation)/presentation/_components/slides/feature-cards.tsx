@@ -14,7 +14,7 @@ const ICONS: Record<string, LucideIcon> = { scan: Box, map: MapIcon, owners: Use
 
 const FACES = ["front", "back", "left", "right", "top"] as const
 
-/** The lead card's picture: a wireframe building turning under a scan plane (CSS 3D, `presentation.css`). */
+/** The lead card's picture: a wireframe building turning under a scan plane (CSS 3D, `styles/slide-09-next-moves.css`). */
 function ScanVisual() {
   return (
     <span className="scan" aria-hidden="true">

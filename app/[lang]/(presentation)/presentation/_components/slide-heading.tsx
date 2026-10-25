@@ -3,7 +3,7 @@ import { padSlideNumber } from "@/lib/presentation/slides"
 
 /**
  * Kicker and display title of a slide: an uppercase line and an italic accent line, each rising
- * out of its own mask when the slide enters (`presentation.css`).
+ * out of its own mask when the slide enters (`styles/type.css`).
  */
 export function SlideHeading({ number, kicker, headline, accent }: { number: number; kicker: string; headline: string; accent: string }) {
   return (

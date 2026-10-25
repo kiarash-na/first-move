@@ -33,7 +33,7 @@ type Phase = "idle" | "played"
 /**
  * Slide 1's interaction: "Make the first move" draws the knight's move of the First Move mark,
  * then the network it opens lights the buildings one by one. CSS transitions with delays run the
- * sequence (`presentation.css`); with reduced motion it jumps to the end.
+ * sequence (`styles/slide-01-why.css`); with reduced motion it jumps to the end.
  */
 export function FirstMove({ copy }: { copy: FirstMoveCopy }) {
   const [phase, setPhase] = useState<Phase>("idle")
