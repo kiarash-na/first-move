@@ -9,7 +9,7 @@ describe('landing Closing', () => {
     expect(screen.getByRole('link', { name: en.closing.getStarted.primary })).toHaveAttribute('href', '/de/dashboard')
     expect(screen.getByRole('link', { name: en.closing.footer.quickCheck })).toHaveAttribute('href', '/de/dashboard')
     expect(screen.getByRole('link', { name: en.closing.footer.businessModels })).toHaveAttribute('href', '/de/dashboard')
-    expect(screen.getByRole('link', { name: en.closing.getStarted.secondary })).toHaveAttribute('href', '#business-use-cases')
+    expect(screen.getByRole('link', { name: en.closing.getStarted.secondary })).toHaveAttribute('href', '/de/docs')
   })
 
   it('links the six legal pages and the source code from the footer, localized', () => {

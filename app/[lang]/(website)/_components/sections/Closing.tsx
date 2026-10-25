@@ -43,11 +43,11 @@ export function Closing({ t, lang }: LandingCopyProps) {
       <section className="get-started-section" id="get-started" data-chapter aria-labelledby="get-started-title">
         <div className="get-started-section__inner" data-reveal>
           <p className="section-kicker">{getStarted.kicker}</p>
-          <h2 id="get-started-title"><RichText text={getStarted.title} /></h2>
+          <h2 className="section-title" id="get-started-title"><RichText text={getStarted.title} /></h2>
           <p>{getStarted.body}</p>
           <div className="get-started-actions">
             <Link className="primary-action" href={dashboard}>{getStarted.primary}<ArrowUpRight size={23} strokeWidth={1.5} aria-hidden="true" /></Link>
-            <a className="text-link" href="#business-use-cases">{getStarted.secondary}<ArrowUpRight size={17} strokeWidth={1.6} aria-hidden="true" /></a>
+            <Link className="text-link" href={withLocale('/docs', lang)}>{getStarted.secondary}<ArrowUpRight size={17} strokeWidth={1.6} aria-hidden="true" /></Link>
           </div>
         </div>
       </section>

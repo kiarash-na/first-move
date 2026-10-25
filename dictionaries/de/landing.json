@@ -171,6 +171,7 @@
       "title": "Ein System.\n*Unterschiedliche Realitäten.*",
       "groupLabel": "Anwendungsfall des Geschäftsmodells",
       "inputsLabel": "Eingabekategorien des Geschäftsmodells",
+      "inputsShort": "Eingaben",
       "diagramSuffix": "(Netzdiagramm)",
       "diagramTitle": "BEISPIELHAFTE NETZTYPOLOGIE",
       "diagramFooter": "5GDHC / ANWENDUNGSFALL",
@@ -224,8 +225,8 @@
       "body": "Kritische Annahmen, die größten Risiken und das mögliche K.-o.-Kriterium kommen offen auf den Tisch. Das Ziel ist keine schönere Präsentation, sondern ein Modell, das schwierige Fragen übersteht.",
       "consoleTitle": "Prüfung der Annahmen",
       "consoleTag": "03 PRÜFUNGEN",
-      "dealBreakerLabel": "Mögliches K.-o.-Kriterium",
-      "dealBreaker": "Die Bedingung, die das Modell zu Fall bringt, wird offen benannt und nicht in einer Fußnote versteckt.",
+      "ruleLabel": "Warum das zählt",
+      "rule": "Die Bedingung, die das Modell zu Fall bringt, wird offen benannt und nicht in einer Fußnote versteckt.",
       "risks": {
         "connection": {
           "title": "Abhängigkeit von der Anschlussquote",
@@ -258,7 +259,7 @@
       "kicker": "Skizze der nächsten Umsetzungsschritte",
       "title": "Am Ende steht\n*der nächste Zug.*",
       "body": "Das Ergebnis endet nicht beim Canvas. Es macht aus dem gewählten Modell eine praktische Skizze für die Arbeit, die Abstimmung und die Entscheidungen, die als Nächstes anstehen.",
-      "link": "Methodik prüfen",
+      "link": "Weiter zum KI-Plan-Score",
       "steps": [
         { "title": "Bestätigen", "text": "Prüfen Sie die entscheidenden Annahmen des Screenings und die Bedingungen der lokalen Quelle." },
         { "title": "Vertiefen", "text": "Überführen Sie das vielversprechende Konzept in die nötigen technischen und wirtschaftlichen Machbarkeitsuntersuchungen." },
@@ -301,7 +302,7 @@
       "title": "Damit der erste\n*Zug zählt.*",
       "body": "Beginnen Sie mit einem Quick Check. Machen Sie aus einer vielversprechenden Richtung ein tragfähiges Geschäftsmodell.",
       "primary": "Jetzt starten",
-      "secondary": "Geschäftsmodelle erkunden"
+      "secondary": "Dokumentation lesen"
     },
     "footer": {
       "brandBack": "zurück nach oben",

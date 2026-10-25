@@ -171,6 +171,7 @@
       "title": "One system.\n*Different realities.*",
       "groupLabel": "Business model use case",
       "inputsLabel": "Business model input categories",
+      "inputsShort": "Inputs",
       "diagramSuffix": "network diagram",
       "diagramTitle": "ILLUSTRATIVE NETWORK TYPOLOGY",
       "diagramFooter": "5GDHC / USE CASE",
@@ -224,8 +225,8 @@
       "body": "Critical assumptions, top risks and the potential deal-breaker are brought into the open. The goal is not a nicer presentation, it is a model that survives difficult questions.",
       "consoleTitle": "Assumption scan",
       "consoleTag": "03 CHECKS",
-      "dealBreakerLabel": "Potential deal-breaker",
-      "dealBreaker": "The condition that invalidates the model is made explicit, not buried in a footnote.",
+      "ruleLabel": "Why it matters",
+      "rule": "The condition that invalidates the model is made explicit, not buried in a footnote.",
       "risks": {
         "connection": {
           "title": "Connection-rate sensitivity",
@@ -258,7 +259,7 @@
       "kicker": "Next-step implementation outline",
       "title": "End with\n*a next move.*",
       "body": "The output does not stop at a canvas. It turns the selected model into a practical outline for the work, alignment and decisions that come next.",
-      "link": "Check the methodology",
+      "link": "Continue to the AI Plan Score",
       "steps": [
         { "title": "Confirm", "text": "Validate the decisive screening assumptions and local source conditions." },
         { "title": "Detail", "text": "Move the promising setup into the required technical and economic feasibility work." },
@@ -279,7 +280,7 @@
         { "title": "Flexible output", "text": "Results can be communicated through a PDF, online view or another output document without losing the reasoning." }
       ],
       "boundaryLabel": "Explicit boundary",
-      "boundaryLead": "Fast initial screening",
+      "boundaryLead": "Fast initial screening,",
       "boundaryStrong": "not a full feasibility study."
     },
     "partners": {
@@ -301,7 +302,7 @@
       "title": "Make the first\n*move count.*",
       "body": "Start with a Quick Check. Turn a promising direction into a viable business model.",
       "primary": "Get Started",
-      "secondary": "Explore Business Models"
+      "secondary": "Read the documentation"
     },
     "footer": {
       "brandBack": "back to top",
