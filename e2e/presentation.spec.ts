@@ -174,6 +174,20 @@ for (const lang of LANGS) {
   })
 }
 
+// The landing hides its product links at 1100 px and below; the presentation sits in the legal row, which stays.
+for (const width of [390, 1024]) {
+  test(`the landing footer shows the presentation link at ${width} px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 844 })
+    await page.goto("/de")
+    const link = page.locator("footer.site-footer").getByRole("link", { name: text("de", "landing", "presentation.footer"), exact: true })
+    await link.scrollIntoViewIfNeeded()
+    await expect(link).toBeVisible()
+    await link.click()
+    await expect(page).toHaveURL(/\/de\/presentation$/)
+    await expect(slide(page, 1)).toBeVisible()
+  })
+}
+
 test("at phone width the select is the index and no slide scrolls sideways", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 })
   await open(page, "/en/presentation")

@@ -59,7 +59,6 @@ export function Closing({ t, lang }: LandingCopyProps) {
           <Link href={dashboard}>{footer.quickCheck}</Link>
           <Link href={dashboard}>{footer.businessModels}</Link>
           <a href="#methodology">{footer.methodology}</a>
-          <Link href={withLocale('/presentation', lang)} prefetch={false}>{t.presentation.footer}</Link>
         </nav>
         <a className="back-to-top" href="#overview">{footer.backToTop}<ArrowUp size={15} strokeWidth={1.6} aria-hidden="true" /></a>
         <LegalLinks
@@ -67,7 +66,10 @@ export function Closing({ t, lang }: LandingCopyProps) {
           lang={lang}
           labels={footer.legal}
           navLabel={footer.legal.nav}
-          extra={{ label: footer.legal.source, href: REPOSITORY.url }}
+          extra={[
+            { label: t.presentation.footer, href: withLocale('/presentation', lang) },
+            { label: footer.legal.source, href: REPOSITORY.url },
+          ]}
         />
       </footer>
     </>
