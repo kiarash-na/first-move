@@ -36,8 +36,8 @@ Planned on 2026-10-24; the owner said go the same day (D-64, D-65). Few agents (
 | A05 | [In-app assistant (BYOK)](2026-10-24_agents-05_assistant.md) ([note](../notes/2026-10-25_agents-05_assistant.md)) | A03, A04 | done (hidden until A08 sets `AI_FEATURES_LIVE`) |
 | A06 | [Email intake: webhook, gates, consent, guard, store](2026-10-24_agents-06_mail-intake.md) ([note](../notes/2026-10-24_agents-06_mail-intake.md)) | A03 | done (threat cases for the guard evaluation: owner, before A09) |
 | A07 | [Email conversation, extraction, on-brand results](2026-10-24_agents-07_mail-conversation.md) ([note](../notes/2026-10-25_agents-07_mail-conversation.md)) | A04, A06 | done (owner: the deployment checklist of the note) |
-| A08 | [Legal texts, docs, go-live switch](2026-10-24_agents-08_legal.md) | A05, A07 | todo |
-| A09 | [QA, security review, live test, go-live](2026-10-24_agents-09_qa-go-live.md) | A08 | todo |
+| A08 | [Legal texts, docs, go-live switch](2026-10-24_agents-08_legal.md) | A05, A07 | done ([note](../notes/2026-10-25_v1.0.md)): switch already on (f6237c0), texts finished in the v1.0 run; owner: the German review (D-44) and the provider-region legal check |
+| A09 | [QA, security review, live test, go-live](2026-10-24_agents-09_qa-go-live.md) | A08 | done: full gates and e2e green in the v1.0 run ([note](../notes/2026-10-25_v1.0.md)); owner: the live tests with real keys |
 
 Status values: `todo` → `in-progress` → `done`. Update both this table and the plan's frontmatter.
 
@@ -63,32 +63,25 @@ The owner gave these in chat on 2026-10-25 and asked for them to be finished, te
 | O6 | Home page: no italic text; the words that are italic now take the same style as the main title | O4, O5 | done ([PLAN-LANDING-POLISH-00](2026-10-25_landing-polish-00_plan.md), [note](../notes/2026-10-25_landing-polish-00.md)), merged into `dev` with the AI Plan Score follow-ups; left for the owner: the tokens doc's "Editorial accent" row (D-LP-1) |
 | O7 | In-app AI assistant (A05), **minimal and quick, no over-engineering** (owner, 2026-10-25): a 48 px `Bot` icon button fixed bottom right in the dashboard, a small panel; the PIN vault of D-50 for the key (session by default, "remember" with a 6-digit PIN); two bring-your-own-key providers for the assistant: the user's **Vercel AI Gateway** key (shared with the AI Plan Score; the vault may hold it; memory stays the default) and an **OpenRouter** key (paste; "Connect OpenRouter" with PKCE only if quick); the AI Plan Score stays on the Gateway because Jev runs there; **at key setup, everywhere a key is entered (assistant and AI Plan Score), a required notice tells the user to set a spending limit and an expiry date on the key when creating it** (owner, 2026-10-25; phrase each provider's options as its docs state them); built, tested and working | O1 | done (A05 merged at 3cdf314; visible once O9 flips `AI_FEATURES_LIVE`) |
 | O8 | Email agent **finished fully and actually working** (owner, 2026-10-25): conversation, extraction and on-brand results (A07) for agent@mail.firstmove.energy, human@ forwarding to a person; tested live with the configured Resend, KV and Gateway (test mails only to the project's own addresses) | O1 | done (A07 merged at 1557a21, live-tested between the project addresses; deployment checklist in the A07 note) |
-| O9 | Legal texts, docs and go-live switch of the assistant and the email agent (A08) | O7, O8 | switch done: `AI_FEATURES_LIVE = true` and the provider list (f6237c0, D-82); the texts are deferred (see below) |
-| O11 | A link to the public docs (`/{lang}/docs`, built in A04) in the site header and the site footer (desktop and the mobile landing), checked at the very end that the docs route is complete (owner, 2026-10-25) | O3, O5 | done for the links: "Docs" in the header and footer of the landing (desktop and mobile menu and footer), the docs header and the shared footer of the docs and legal pages ([PLAN-LANDING-POLISH-00](2026-10-25_landing-polish-00_plan.md), [note](../notes/2026-10-25_landing-polish-00.md); the footer's Quick Check and Business Models lead to the docs pages of the modules, D-LP-3); left: the final check that the docs route is complete, with O10 |
-| O12 | Clean-up of the legal pages and the public docs (owner, 2026-10-25): every function is built, so remove "demo", "planned", "not yet available" and "draft" wording, the German draft marking of D-44 (`DE_REVIEW_PENDING` and its banners) included; the texts describe what the app does now | O9 | deferred by the owner (see below) |
-| O13 | Finish everything open towards the v1.0 launch (owner, 2026-10-25): every phase in this file ends `done` or names the one thing only the owner can do; bump `package.json` to 0.8.0 and tag the last commit of the run `v.0.8` (the owner's spelling), pushed with the tag | all | in progress |
-| O10 | QA, security review, live test (A09) and a final full check: `pnpm lint && pnpm typecheck && pnpm test && pnpm build`, e2e, notes, push | all | in progress: follow-ups 1–4 and 8 done (2d71e3b, 24ba3c6, f6237c0); 5–7 and the security review deferred (see below); full checks and e2e before the tag |
+| O9 | Legal texts, docs and go-live switch of the assistant and the email agent (A08) | O7, O8 | done: switch (f6237c0, D-82) and the texts in the v1.0 run ([note](../notes/2026-10-25_v1.0.md)) |
+| O11 | A link to the public docs (`/{lang}/docs`, built in A04) in the site header and the site footer (desktop and the mobile landing), checked at the very end that the docs route is complete (owner, 2026-10-25) | O3, O5 | done, and the final check ran in the v1.0 session: all nine docs pages in both locales are prerendered, listed in the nav and in `app/sitemap.ts`, the AI pages included (live since D-82) |
+| O12 | Clean-up of the legal pages and the public docs (owner, 2026-10-25): every function is built, so remove "demo", "planned", "not yet available" and "draft" wording, the German draft marking of D-44 (`DE_REVIEW_PENDING` and its banners) included; the texts describe what the app does now | O9 | done in the v1.0 run, except the owner's German review: `DE_REVIEW_PENDING` stays `true` (D-44, D-80) |
+| O13 | Finish everything open towards the v1.0 launch (owner, 2026-10-25): every phase in this file ends `done` or names the one thing only the owner can do; released as `package.json` 1.0.0 with the tag `v.1.0` | all | done in the v1.0 run ([note](../notes/2026-10-25_v1.0.md)) |
+| O10 | QA, security review, live test (A09) and a final full check: `pnpm lint && pnpm typecheck && pnpm test && pnpm build`, e2e, notes, push | all | done in the v1.0 run: gates green, full e2e green (188 passed), the security review and the follow-ups closed ([note](../notes/2026-10-25_v1.0.md)) |
 
 ### Follow-ups collected for O10 (final polish and QA)
 
-1. Re-record the presentation's blind test (`lib/presentation/blind-test/result.json`) with method 1.1.0 and the formal German rule; regenerate `e2e/fixtures/ai-score.firstmove.json` with method 1.1.0.
-2. The results scale (`ai-score/_components/results/score-scale.tsx`) marks the unrounded score: mark the displayed score so it sits in the zone its label names.
-3. `fit()` in `lib/ai/plan-score/text-input.ts` can leave a space before the ellipsis.
-4. `docs/02_design/first-move_ui-design-tokens.md`: the italic "Editorial accent" is no longer used on the landing.
-5. The public docs route is complete (every page, the AI pages visible once the switch is on).
-6. Presentation: slide 5 label "Every source, linked" again; slide 6 status of agent@ once A07 is live.
-7. Privacy Policy: the email agent's TypeSafe AI processing says zero data retention is requested, not guaranteed.
-8. A timing-sensitive unit test (`ai-score-view.test.tsx`, report error of the latest run) seen failing once under load.
+All closed. 1–4 and 8 landed earlier (2d71e3b, 24ba3c6, f6237c0); 5 (the docs route is complete), 6 (presentation labels: slide 5 "Every source, linked", slide 6 agent@ live as an experiment) and 7 (zero data retention is *requested*, never *guaranteed*) were verified or finished in the v1.0 run. 8 came back once under full-suite load and was de-flaked for good (slow wait budgets, 15 s test budget).
 
 ### Deferred by the owner (2026-10-25, "functions first, get live")
 
-Not done in this run; the app runs live without them. Next session, in this order:
+Resolved in the v1.0 run (2026-10-25, [note](../notes/2026-10-25_v1.0.md)): the legal texts (1), the docs wording (3), the presentation labels (4) and the security review (5). Still the owner's: the German copy review — `DE_REVIEW_PENDING` stays `true` (D-44, D-80) — the provider-region legal check of `lib/legal/ai.ts`, and the live tests with real keys.
 
-1. Legal texts EN and DE (`ai`, `privacy`, `terms`, `cookies`, `legal`) for the assistant and the email agent: processors (Resend, Vercel KV, Vercel AI Gateway, TypeSafe AI, OpenRouter), consent, retention as `lib/mail-agent` implements it, "zero data retention requested" (never "guaranteed"), the IndexedDB `first-move-assistant` in the Cookie Policy, the Terms clause on AI outputs and the user's own key, the Privacy Policy's "(planned)" processor row. The provider regions in `lib/legal/ai.ts` need a legal check.
-2. `DE_REVIEW_PENDING` stays `true` (German draft notice) until the owner's review (D-44, D-80).
-3. Docs pages `assistant` and `email-agent` (`content/docs/{en,de}`) describe the built functions; drop "planned" and "not yet" wording in `index`, `data-and-privacy`, `ai-plan-score` (follow-up 5).
-4. Presentation: slide 5 label "Every source, linked"; slide 6 says agent@ is live (follow-up 6); the presentation note's blind-test paragraph still describes the 1.0.0 recording (now 1.1.0: 56.2 shown 55 ± 3).
-5. Security review of the AI layer and a browser test of the assistant with a key (A09); the privacy wording of follow-up 7.
+## Handoff (2026-10-25, v1.0)
+
+**v1.0 is released** (`package.json` 1.0.0, tag `v.1.0`), built and pushed from `main` after the full gates: lint, typecheck, 4095 unit tests, build, 188 e2e — all green. The run's work, deviations and the security review: [NOTE-2026-10-25-v1.0](../notes/2026-10-25_v1.0.md). New since v.0.8: the SEO package (robots.txt, sitemap.xml with hreflang, canonical and cards on every public page, generated per-locale OG image, JSON-LD, noindex dashboard), a consumer README, "Supported by" on the landing, the legal texts finished for the live AI features, two e2e-era fixes (cost-slide contrast, AI-page live status) and a de-flaked ai-score test.
+
+Left, all owner-side: the German copy review (`DE_REVIEW_PENDING` stays true), the provider-region legal check of `lib/legal/ai.ts`, live tests with real keys (assistant, AI Plan Score), and housekeeping: delete the `dev` and `ccr-eba51279-6zc48t` branches on GitHub (both fully merged; verified in the note).
 
 ## Handoff (2026-10-25, providers and activation, PR #3 — merged; presentation, PR #4 — open; email agent live, PR #5 → dev)
 
