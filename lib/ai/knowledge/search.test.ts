@@ -59,7 +59,7 @@ describe("the generated English knowledge", () => {
     ["What is a 5GDHC network?", "docs:what-is-5gdhc"],
     ["How do I confirm my first email?", "docs:email-agent#the-first-email-confirm-once"],
     ["What happens if I write off-topic emails?", "docs:email-agent#the-rules"],
-    ["Is the pitch readiness checklist official?", "docs:business-plan#pitch-readiness-unofficial"],
+    ["Is the pitch completeness checklist official?", "docs:business-plan#pitch-completeness-unofficial"],
   ])("answers %s from the public docs", (query, id) => {
     expect(top(query)).toContain(id)
   })
