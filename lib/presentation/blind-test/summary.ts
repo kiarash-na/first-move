@@ -10,8 +10,6 @@ import recorded from "./result.json"
 export interface BlindSummary {
   /** ISO date of the run. */
   at: string
-  decisionModel: string
-  textModel: string
   engine: { judgements: number; turns: number; gates: number; branches: number; dimensions: number; levels: number }
   decisionsMs: number
   /** As the app shows it: rounded to 5, with its band. */
@@ -44,8 +42,6 @@ export function blindSummary(lang: Locale, data: Recorded = recorded): BlindSumm
   const count = (outcome: string) => data.gates.filter((gate) => gate.outcome === outcome).length
   return {
     at: data.at,
-    decisionModel: data.models.decision,
-    textModel: data.models.text,
     engine: data.engine,
     decisionsMs: data.timing.decisionsMs,
     score: data.score.shown,

@@ -62,6 +62,7 @@
       "fingerprint": "Result fingerprint",
       "run": "Run again",
       "runs": "Run {count} · identical",
+      "runsDiffer": "Run {count} · different",
       "levelsLabel": "Result levels"
     },
     "businessPlan": {
