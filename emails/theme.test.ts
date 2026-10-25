@@ -2,7 +2,7 @@
 import { readFileSync } from "node:fs"
 import path from "node:path"
 import { describe, expect, it } from "vitest"
-import { COLORS } from "./theme"
+import { ACCENTS, COLORS, FONTS, TEXT } from "./theme"
 
 const CSS = readFileSync(path.resolve(__dirname, "../app/globals.css"), "utf8")
 
@@ -61,5 +61,15 @@ describe("email palette (D-15, D-16)", () => {
   it("draws lines as ink over paper at the light theme's alphas", () => {
     expect(COLORS.line).toBe(hex(mix(token("ink-950"), token("paper-100"), 0.14)))
     expect(COLORS.lineStrong).toBe(hex(mix(token("ink-950"), token("paper-100"), 0.28)))
+  })
+
+  it("has three accent roles and no other hue: cyan, orange and ink", () => {
+    expect(ACCENTS).toEqual({ cool: COLORS.cool, hot: COLORS.hot, ink: COLORS.ink })
+  })
+
+  it("keeps text styles square and free of web fonts", () => {
+    const styles = JSON.stringify(TEXT)
+    expect(styles).not.toMatch(/radius|url\(/i)
+    expect(TEXT.body.fontFamily).toBe(FONTS.sans)
   })
 })

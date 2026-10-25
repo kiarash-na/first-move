@@ -33,6 +33,7 @@ export function testEmail(overrides: Partial<InboundEmail> = {}): InboundEmail &
   return {
     id: "email-1",
     from: "jane@example.org",
+    to: ["agent@mail.firstmove.energy"],
     replyTo: [],
     subject: "Quick Check for our village",
     text: "Hello, we have 120 buildings on 12 ha. Can you run a Quick Check?",

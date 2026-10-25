@@ -6,6 +6,7 @@ describe("renderText", () => {
   it("lays out headings, paragraphs, lists, tables and links as plain text", () => {
     const text = renderText(
       <html>
+        {/* eslint-disable-next-line @next/next/no-head-element -- an email document, not a Next.js page */}
         <head>
           <title>ignored</title>
         </head>

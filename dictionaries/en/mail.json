@@ -18,12 +18,257 @@
       "error": "Something went wrong. Please try again in a few minutes."
     }
   },
+  "layout": {
+    "brand": "First Move",
+    "tagline": "Screening for fifth-generation district heating and cooling",
+    "greeting": "Hello,",
+    "signoff": "First Move assistant",
+    "ai": "Written by an AI system. It can be wrong and is not binding.",
+    "human": "Privacy or legal requests, or anything for a person: {address}",
+    "terms": "Terms",
+    "privacy": "Privacy Policy",
+    "commands": "Reply “new” to start over, or “stop” to end the conversation and delete it."
+  },
   "notices": {
-    "confirm": "Hello,\n\nthe First Move assistant received your message. It answers with AI, so it needs your confirmation once before it reads anything:\n\n{link}\n\nBy confirming you accept the Terms ({terms}) and emails about your request. No marketing.\n\nYour message waits up to {days} days for your confirmation. If you did not write to us, ignore this email: nothing is processed.\n\nFirst Move",
-    "warning": "Hello,\n\nthe First Move assistant only helps with First Move: the Quick Check, the Business Plan and fifth-generation district heating and cooling. Your message was not answered.\n\nPlease keep to these topics. After one more such message, this address is paused for {days} days.\n\nFirst Move",
-    "ban": "Hello,\n\nthis address is paused for {days} days after repeated messages outside the assistant's topics. Until then, messages from it are not answered.\n\nFirst Move",
-    "block": "Hello,\n\nyour request is blocked for now while an admin reviews it.\n\nFirst Move",
-    "unavailable": "Hello,\n\nthe First Move assistant cannot answer right now. Please try again later.\n\nFirst Move"
+    "confirm": {
+      "kicker": "Confirmation",
+      "title": "Please confirm your request",
+      "body": [
+        "The First Move assistant received your message. It answers with AI, so it needs your confirmation once before it reads anything.",
+        "By confirming you accept the Terms ({terms}) and emails about your request. No marketing.",
+        "Your message waits up to {days} days for your confirmation. If you did not write to us, ignore this email: nothing is processed."
+      ],
+      "button": "Confirm my request",
+      "linkHint": "If the button does not work, open this link:"
+    },
+    "warning": {
+      "kicker": "Notice",
+      "title": "Only First Move topics, please",
+      "body": [
+        "The First Move assistant only helps with First Move: the Quick Check, the Business Plan and fifth-generation district heating and cooling. Your message was not answered.",
+        "Please keep to these topics. After one more such message, this address is paused for {days} days."
+      ]
+    },
+    "ban": {
+      "kicker": "Notice",
+      "title": "This address is paused",
+      "body": ["This address is paused for {days} days after repeated messages outside the assistant's topics. Until then, messages from it are not answered."]
+    },
+    "block": {
+      "kicker": "Notice",
+      "title": "Your request is blocked",
+      "body": ["Your request is blocked for now while an admin reviews it."]
+    },
+    "unavailable": {
+      "kicker": "Notice",
+      "title": "The assistant cannot answer right now",
+      "body": ["The First Move assistant cannot answer right now. Please try again later."]
+    }
+  },
+  "conversation": {
+    "kicker": {
+      "menu": "Getting started",
+      "answer": "Answer",
+      "questions": "Questions",
+      "progress": "Progress",
+      "quickCheck": "Quick Check result",
+      "businessPlan": "Business Plan",
+      "handoff": "A person takes over",
+      "stopped": "Conversation ended",
+      "limit": "Conversation limit"
+    },
+    "menu": {
+      "title": "What would you like to do?",
+      "lead": "By email I can run First Move's Quick Check with you, work through a Business Plan, or both. The results come from First Move's own calculation, the same as in the dashboard.",
+      "options": {
+        "quickCheck": {
+          "label": "Quick Check",
+          "description": "A first technical and economic screening of your site."
+        },
+        "businessPlan": {
+          "label": "Business Plan",
+          "description": "Your business model in four steps, in your own words."
+        },
+        "both": {
+          "label": "Both",
+          "description": "The Quick Check first, then the Business Plan."
+        }
+      },
+      "file": "Would you also like a project file (.firstmove.json) to continue in the dashboard? Yes or no.",
+      "howTo": "Reply with the number and yes or no, for example: 1, yes",
+      "again": "Please choose 1, 2 or 3."
+    },
+    "answer": {
+      "title": "Your question",
+      "source": "More in the docs: {page}",
+      "fallback": "I can't answer that by email. The docs explain how First Move works: {link}"
+    },
+    "questions": {
+      "titleQuickCheck": "Quick Check: your project data",
+      "titleFollowUp": "Quick Check: still needed",
+      "titleBusinessPlan": "Business Plan, step {number} of {total}: {step}",
+      "lead": "Answer in one email, numbered like the questions. The examples show the format.",
+      "leadBusinessPlan": "Answer in your own words, numbered like the questions. Skip what you don't know yet. Reply “next” to go on to the next step.",
+      "guidance": "Questions to think about: {questions}",
+      "attachments": "Instead of typing, you can attach documents: PDF, Word, Excel, CSV or text, or a First Move project file (.firstmove.json).",
+      "optional": "optional",
+      "example": "Example: {example}",
+      "options": "Options: {options}",
+      "rows": "One line per entry: {properties}",
+      "file": "And: would you like the project file (.firstmove.json) with the results? Yes or no."
+    },
+    "qc": {
+      "name": {
+        "question": "What is the project called?",
+        "example": "Sonnenhof estate"
+      },
+      "buildings": {
+        "question": "How many buildings are in the project area?",
+        "example": "42"
+      },
+      "area": {
+        "question": "How large is the project area, in m²? Hectares are fine too.",
+        "example": "35,000 m² or 3.5 ha"
+      },
+      "mix": {
+        "question": "What is the building mix? Give the share of each building type and construction period in %. All shares add up to 100 %.",
+        "example": "Residential buildings 1961-1990: 60 %, Residential buildings 2011-today: 30 %, Category A 1991-2010: 10 %",
+        "types": "Building types: {types}",
+        "periods": "Construction periods: {periods}"
+      },
+      "sources": {
+        "question": "Which energy sources are available, and how high is their potential: low, medium, high or unknown?",
+        "example": "Ground water: high, ambient air: medium",
+        "list": "Sources: {sources}"
+      },
+      "pv": {
+        "question": "Is photovoltaic (PV) available for the heat pumps? Yes or no.",
+        "example": "yes"
+      },
+      "demand": {
+        "question": "Do you know the total annual heating and cooling demand, in kWh/a?",
+        "example": "Heating 1,200,000 kWh/a, cooling 150,000 kWh/a"
+      },
+      "network": {
+        "question": "Do you know the length of the network, in m?",
+        "example": "1,800 m"
+      }
+    },
+    "bp": {
+      "steps": {
+        "opportunity": "Define the opportunity",
+        "business-logic": "Build the business logic",
+        "reality-check": "Run the reality check",
+        "implementation": "Improve and prepare implementation"
+      },
+      "next": "Thank you. On to the next step.",
+      "nothing": "I found no answers for this step in your email. Reply with numbered answers, or “next” to skip the step."
+    },
+    "progress": {
+      "title": "What I understood",
+      "understood": "Taken from your email",
+      "unclear": "Not clear yet",
+      "missing": "Still missing",
+      "nothing": "I found no values for your project in this email.",
+      "from": "from {file}",
+      "sum": "The shares add up to {sum} %; they must add up to 100 %.",
+      "reasons": {
+        "not-in-scope": "not a value I can use here",
+        "missing-item": "which entry it belongs to is unclear",
+        "empty": "empty",
+        "not-a-number": "not a number",
+        "ambiguous-number": "the number can be read two ways; write it without thousands separators",
+        "unknown-unit": "unknown unit",
+        "unit-mismatch": "the unit does not fit this field",
+        "unknown-option": "not one of the options",
+        "not-a-boolean": "please answer yes or no"
+      }
+    },
+    "files": {
+      "title": "Your attachments",
+      "read": "Read: {name}",
+      "skipped": "Skipped: {name} ({reason})",
+      "imported": "Opened the project file {name}.",
+      "reasons": {
+        "empty": "the file is empty",
+        "too-large": "the file is too large",
+        "unsupported": "this file type can't be read; please send PDF, Word, Excel, CSV or text",
+        "macro": "files with macros are not opened",
+        "binary-office": "old Office formats can't be read; please save it as .docx or .xlsx",
+        "encrypted": "the file is password protected",
+        "corrupt": "the file is damaged",
+        "too-many-entries": "the file is too complex",
+        "zip-bomb": "the file is too large when unpacked",
+        "sheet-too-large": "the sheet is too large",
+        "too-many": "at most {max} files per email",
+        "unsafe": "the file contains text that looks like instructions to the assistant, so it was not used",
+        "unavailable": "the file could not be downloaded",
+        "no-text": "no text found, for example a scanned PDF",
+        "project": "the project file could not be opened: {detail}"
+      }
+    },
+    "results": {
+      "title": "Your Quick Check result",
+      "lead": "Computed by First Move's own Quick Check engine from the values below, the same calculation as in the dashboard.",
+      "overall": "Overall result",
+      "forced": "Set by a fixed rule",
+      "reasons": "Why this result",
+      "drivers": "Main factors",
+      "supporting": "Supporting",
+      "limiting": "Limiting",
+      "none": "None",
+      "indicators": "Indicators",
+      "heatingCoverage": "Heating coverage",
+      "coolingCoverage": "Cooling coverage",
+      "figures": "Key figures",
+      "inputs": "Inputs used",
+      "notes": "How we calculate",
+      "notesLead": "Each step in one sentence, with the equations of the methodology it uses. All equations: {link}",
+      "estimatedLength": "The network length is estimated from the building density and the project area.",
+      "yes": "Yes",
+      "no": "No",
+      "notEntered": "not entered",
+      "estimated": "estimated",
+      "shares": "{type} {period}: {share}",
+      "source": "{source}: {potential}",
+      "updated": "Updated with your latest values."
+    },
+    "businessPlan": {
+      "title": "Your Business Plan",
+      "lead": "Your answers as the dashboard would show them. The Business Plan is qualitative: it calculates nothing of its own.",
+      "empty": "Nothing filled in yet.",
+      "entry": "Entry {number}",
+      "dealBreaker": "Potential deal-breaker",
+      "readiness": "Pitch completeness (unofficial)",
+      "readinessLead": "How much of the final pitch already has content. It counts filled fields only and does not judge what you wrote.",
+      "readinessSummary": "{met} of {total} points covered",
+      "quickCheck": "From the Quick Check (read-only)",
+      "quickCheckLead": "Rough screening figures for context."
+    },
+    "file": {
+      "attached": "Your project file is attached: {name}. Import it in the dashboard to continue there: {link}",
+      "offer": "Reply “file” to get a project file (.firstmove.json) for the dashboard.",
+      "provenance": "Values I took from your emails are marked as AI-proposed in the file, so the dashboard shows them as such."
+    },
+    "reminder": {
+      "menu": "When you're ready, choose 1, 2 or 3 above.",
+      "collect": "We are still collecting your project data; the questions are in my last email.",
+      "results": "Your results are in my last email. Send changed values at any time, and I recompute."
+    },
+    "handoff": {
+      "title": "A person takes over",
+      "body": "I passed your message on to a person at First Move. They will answer from {address}. For privacy and legal requests, you can also write there directly."
+    },
+    "stopped": {
+      "title": "Conversation ended",
+      "body": "I ended our conversation and deleted the project data I collected. If you want your confirmation record or anything else deleted too, write to {address}.",
+      "nothing": "There was no conversation to end."
+    },
+    "restarted": "We start over. Your earlier answers are deleted.",
+    "limit": {
+      "title": "This conversation is long enough for email",
+      "body": "Please continue in the dashboard, where you can change every value directly: {link}. Reply “file” to get your project file, or “new” to start over."
+    }
   },
   "admin": {
     "subject": "First Move assistant: {kind}",
@@ -31,7 +276,8 @@
     "system": "What: {kind}\nWhen: {at}\n\n{detail}",
     "details": {
       "rate-global": "The daily limit of {limit} emails for all senders is reached. Further email today gets no answer.",
-      "budget": "Today's model budget of {budget} USD is spent. The assistant answers no email until the next day (UTC)."
+      "budget": "Today's model budget of {budget} USD is spent. The assistant answers no email until the next day (UTC).",
+      "text-failed": "The language model gave no answer today. Senders were asked to try again later."
     },
     "more": "More alerts today were not sent (at most {max} a day).",
     "moreKind": "more alerts today",
@@ -40,7 +286,9 @@
       "guard-failed": "guard decision failed",
       "rate-global": "daily limit for all mail reached",
       "budget": "daily budget spent",
-      "attachment-injection": "attachment skipped (injection)"
+      "attachment-injection": "attachment skipped (injection)",
+      "text-failed": "language model failed",
+      "handoff": "a sender asked for a person"
     }
   }
 }

@@ -22,7 +22,7 @@ describe("handleConfirm", () => {
   async function asked(): Promise<string> {
     await h.receive()
     const text = h.fake.replies.at(-1)!.text
-    return /#t=(\S+)/.exec(text)![1]
+    return /#t=([^\s)]+)/.exec(text)![1]
   }
 
   function post(body: unknown, origin: string | null = "https://firstmove.energy") {

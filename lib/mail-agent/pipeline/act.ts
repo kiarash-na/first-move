@@ -1,8 +1,11 @@
 import "server-only"
 import { sendAlert } from "../admin/alert"
+import { loadConversation } from "../conversation/state"
 import type { GuardResult } from "../guard/decide"
 import { verdictFor } from "../guard/policy"
+import type { Intent } from "../guard/questions"
 import { applyVerdict } from "../guard/sanctions"
+import { emailLocale } from "../locale/email-locale"
 import { logEvent, sidPrefix } from "../log"
 import { notice } from "../outbound/notices"
 import { sendReply } from "../outbound/send"
@@ -10,7 +13,7 @@ import { withSenderLock } from "../store/lock"
 import { loadSender, markDone } from "./sender"
 import { SenderBusyError, type InboundInput, type MailDeps } from "./types"
 
-export type ActResult = { next: "stop"; code: string } | { next: "respond"; action: "allow" | "small_talk" }
+export type ActResult = { next: "stop"; code: string } | { next: "respond"; action: "allow" | "small_talk"; intent: Intent | null }
 
 const scoresOf = (result: GuardResult): Record<string, number> =>
   result.ok
@@ -20,11 +23,11 @@ const scoresOf = (result: GuardResult): Record<string, number> =>
 /**
  * Acts on the guard's verdict (PLAN-AGENT-06 step 9, D-55): a strike sends the warning or the
  * ban notice, a block sends its one notice and alerts the admin, a guard that could not judge
- * tells the sender to try later and alerts the admin. Safe to repeat. Allowed mail goes on to
- * `respond`; everything else is done here and never acted on.
+ * tells the sender to try later and alerts the admin. Notices speak the sender's language. Safe to
+ * repeat. Allowed mail goes on to `respond` with Jev's reading of what the sender wants.
  */
 export async function act(deps: MailDeps, input: InboundInput, result: GuardResult, now: number): Promise<ActResult> {
-  const { store } = deps
+  const { store, config } = deps
   const sender = await loadSender(deps, input)
   if (!sender) return { next: "stop", code: "no-address" }
   const { email, sid } = sender
@@ -32,13 +35,16 @@ export async function act(deps: MailDeps, input: InboundInput, result: GuardResu
 
   const locked = await withSenderLock(store, sid, () => applyVerdict(store, sid, email.id, verdict, now))
   if (!locked.ok) throw new SenderBusyError()
-  if (locked.value) await sendReply(deps.transport, deps.config, email, input, await notice(locked.value))
+  if (locked.value) {
+    const locale = emailLocale(email, (await loadConversation(store, config.secrets.state, sid))?.locale)
+    await sendReply(deps.transport, config, email, input, await notice(config, locale, locked.value), locale)
+  }
 
   const category = verdict.action === "block" ? verdict.category : result.ok ? null : result.reason
   if (category) await sendAlert(deps, { kind: verdict.action === "block" ? "block" : "guard-failed", email, category, scores: scoresOf(result) }, now)
 
   logEvent("verdict", { sid: sidPrefix(sid), action: verdict.action, notice: locked.value, ...(category && { category }) })
-  if (verdict.action === "allow" || verdict.action === "small_talk") return { next: "respond", action: verdict.action }
+  if (verdict.action === "allow" || verdict.action === "small_talk") return { next: "respond", action: verdict.action, intent: result.ok ? result.decision.intent : null }
   const code = verdict.action === "strike" ? `strike-${verdict.reason}` : verdict.action
   await markDone(store, email.id, code)
   return { next: "stop", code }

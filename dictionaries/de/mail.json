@@ -18,12 +18,257 @@
       "error": "Etwas ist schiefgelaufen. Bitte versuchen Sie es in ein paar Minuten erneut."
     }
   },
+  "layout": {
+    "brand": "First Move",
+    "tagline": "Screening für Fernwärme und -kälte der 5. Generation",
+    "greeting": "Guten Tag,",
+    "signoff": "Assistent von First Move",
+    "ai": "Von einem KI-System verfasst. Es kann sich irren und ist nicht verbindlich.",
+    "human": "Datenschutz- oder Rechtsanfragen, oder alles für einen Menschen: {address}",
+    "terms": "Nutzungsbedingungen",
+    "privacy": "Datenschutzerklärung",
+    "commands": "Antworten Sie „neu“, um von vorne zu beginnen, oder „stopp“, um das Gespräch zu beenden und zu löschen."
+  },
   "notices": {
-    "confirm": "Guten Tag,\n\nder Assistent von First Move hat Ihre Nachricht erhalten. Er antwortet mit KI und braucht deshalb einmalig Ihre Bestätigung, bevor er etwas liest:\n\n{link}\n\nMit der Bestätigung akzeptieren Sie die Nutzungsbedingungen ({terms}) und E-Mails zu Ihrer Anfrage. Keine Werbung.\n\nIhre Nachricht wartet bis zu {days} Tage auf Ihre Bestätigung. Wenn Sie uns nicht geschrieben haben, ignorieren Sie diese E-Mail: Es wird nichts verarbeitet.\n\nFirst Move",
-    "warning": "Guten Tag,\n\nder Assistent von First Move hilft nur bei First Move: beim Quick Check, beim Business Plan und bei Fernwärme und -kälte der 5. Generation. Ihre Nachricht wurde nicht beantwortet.\n\nBitte bleiben Sie bei diesen Themen. Nach einer weiteren solchen Nachricht wird diese Adresse für {days} Tage pausiert.\n\nFirst Move",
-    "ban": "Guten Tag,\n\ndiese Adresse ist nach wiederholten Nachrichten außerhalb der Themen des Assistenten für {days} Tage pausiert. Bis dahin werden Nachrichten von dieser Adresse nicht beantwortet.\n\nFirst Move",
-    "block": "Guten Tag,\n\nIhre Anfrage ist vorerst gesperrt, während ein Administrator sie prüft.\n\nFirst Move",
-    "unavailable": "Guten Tag,\n\nder Assistent von First Move kann gerade nicht antworten. Bitte versuchen Sie es später erneut.\n\nFirst Move"
+    "confirm": {
+      "kicker": "Bestätigung",
+      "title": "Bitte bestätigen Sie Ihre Anfrage",
+      "body": [
+        "Der Assistent von First Move hat Ihre Nachricht erhalten. Er antwortet mit KI und braucht deshalb einmalig Ihre Bestätigung, bevor er etwas liest.",
+        "Mit der Bestätigung akzeptieren Sie die Nutzungsbedingungen ({terms}) und E-Mails zu Ihrer Anfrage. Keine Werbung.",
+        "Ihre Nachricht wartet bis zu {days} Tage auf Ihre Bestätigung. Wenn Sie uns nicht geschrieben haben, ignorieren Sie diese E-Mail: Es wird nichts verarbeitet."
+      ],
+      "button": "Anfrage bestätigen",
+      "linkHint": "Falls die Schaltfläche nicht funktioniert, öffnen Sie diesen Link:"
+    },
+    "warning": {
+      "kicker": "Hinweis",
+      "title": "Bitte nur Themen rund um First Move",
+      "body": [
+        "Der Assistent von First Move hilft nur bei First Move: beim Quick Check, beim Business Plan und bei Fernwärme und -kälte der 5. Generation. Ihre Nachricht wurde nicht beantwortet.",
+        "Bitte bleiben Sie bei diesen Themen. Nach einer weiteren solchen Nachricht wird diese Adresse für {days} Tage pausiert."
+      ]
+    },
+    "ban": {
+      "kicker": "Hinweis",
+      "title": "Diese Adresse ist pausiert",
+      "body": ["Diese Adresse ist nach wiederholten Nachrichten außerhalb der Themen des Assistenten für {days} Tage pausiert. Bis dahin werden Nachrichten von dieser Adresse nicht beantwortet."]
+    },
+    "block": {
+      "kicker": "Hinweis",
+      "title": "Ihre Anfrage ist gesperrt",
+      "body": ["Ihre Anfrage ist vorerst gesperrt, während ein Administrator sie prüft."]
+    },
+    "unavailable": {
+      "kicker": "Hinweis",
+      "title": "Der Assistent kann gerade nicht antworten",
+      "body": ["Der Assistent von First Move kann gerade nicht antworten. Bitte versuchen Sie es später erneut."]
+    }
+  },
+  "conversation": {
+    "kicker": {
+      "menu": "Erste Schritte",
+      "answer": "Antwort",
+      "questions": "Fragen",
+      "progress": "Zwischenstand",
+      "quickCheck": "Ergebnis des Quick Checks",
+      "businessPlan": "Business Plan",
+      "handoff": "Ein Mensch übernimmt",
+      "stopped": "Gespräch beendet",
+      "limit": "Gesprächslimit"
+    },
+    "menu": {
+      "title": "Wobei kann ich helfen?",
+      "lead": "Per E-Mail kann ich mit Ihnen den Quick Check von First Move durchführen, einen Business Plan erarbeiten oder beides. Die Ergebnisse stammen aus der eigenen Berechnung von First Move, genau wie im Dashboard.",
+      "options": {
+        "quickCheck": {
+          "label": "Quick Check",
+          "description": "Eine erste technische und wirtschaftliche Einschätzung Ihres Standorts."
+        },
+        "businessPlan": {
+          "label": "Business Plan",
+          "description": "Ihr Geschäftsmodell in vier Schritten, in Ihren eigenen Worten."
+        },
+        "both": {
+          "label": "Beides",
+          "description": "Zuerst der Quick Check, dann der Business Plan."
+        }
+      },
+      "file": "Möchten Sie außerdem eine Projektdatei (.firstmove.json), um im Dashboard weiterzuarbeiten? Ja oder nein.",
+      "howTo": "Antworten Sie mit der Nummer und ja oder nein, zum Beispiel: 1, ja",
+      "again": "Bitte wählen Sie 1, 2 oder 3."
+    },
+    "answer": {
+      "title": "Ihre Frage",
+      "source": "Mehr dazu in der Dokumentation: {page}",
+      "fallback": "Das kann ich per E-Mail nicht beantworten. Die Dokumentation erklärt, wie First Move funktioniert: {link}"
+    },
+    "questions": {
+      "titleQuickCheck": "Quick Check: Ihre Projektdaten",
+      "titleFollowUp": "Quick Check: Das fehlt noch",
+      "titleBusinessPlan": "Business Plan, Schritt {number} von {total}: {step}",
+      "lead": "Antworten Sie in einer E-Mail, nummeriert wie die Fragen. Die Beispiele zeigen das Format.",
+      "leadBusinessPlan": "Antworten Sie in Ihren eigenen Worten, nummeriert wie die Fragen. Lassen Sie aus, was Sie noch nicht wissen. Antworten Sie „weiter“, um zum nächsten Schritt zu gehen.",
+      "guidance": "Fragen zum Nachdenken: {questions}",
+      "attachments": "Statt zu tippen, können Sie Dokumente anhängen: PDF, Word, Excel, CSV oder Text, oder eine Projektdatei von First Move (.firstmove.json).",
+      "optional": "optional",
+      "example": "Beispiel: {example}",
+      "options": "Optionen: {options}",
+      "rows": "Eine Zeile pro Eintrag: {properties}",
+      "file": "Und: Möchten Sie die Projektdatei (.firstmove.json) mit den Ergebnissen? Ja oder nein."
+    },
+    "qc": {
+      "name": {
+        "question": "Wie heißt das Projekt?",
+        "example": "Quartier Sonnenhof"
+      },
+      "buildings": {
+        "question": "Wie viele Gebäude liegen im Projektgebiet?",
+        "example": "42"
+      },
+      "area": {
+        "question": "Wie groß ist das Projektgebiet in m²? Hektar gehen auch.",
+        "example": "35.000 m² oder 3,5 ha"
+      },
+      "mix": {
+        "question": "Wie setzt sich der Gebäudebestand zusammen? Geben Sie den Anteil jedes Gebäudetyps und jeder Baualtersklasse in % an. Alle Anteile ergeben zusammen 100 %.",
+        "example": "Wohngebäude 1961-1990: 60 %, Wohngebäude 2011-heute: 30 %, Kategorie A 1991-2010: 10 %",
+        "types": "Gebäudetypen: {types}",
+        "periods": "Baualtersklassen: {periods}"
+      },
+      "sources": {
+        "question": "Welche Energiequellen stehen zur Verfügung, und wie hoch ist ihr Potenzial: niedrig, mittel, hoch oder unbekannt?",
+        "example": "Grundwasser: hoch, Umgebungsluft: mittel",
+        "list": "Quellen: {sources}"
+      },
+      "pv": {
+        "question": "Steht Photovoltaik (PV) für die Wärmepumpen zur Verfügung? Ja oder nein.",
+        "example": "ja"
+      },
+      "demand": {
+        "question": "Kennen Sie den gesamten jährlichen Wärme- und Kältebedarf in kWh/a?",
+        "example": "Wärme 1.200.000 kWh/a, Kälte 150.000 kWh/a"
+      },
+      "network": {
+        "question": "Kennen Sie die Länge des Netzes in m?",
+        "example": "1.800 m"
+      }
+    },
+    "bp": {
+      "steps": {
+        "opportunity": "Die Chance beschreiben",
+        "business-logic": "Die Geschäftslogik aufbauen",
+        "reality-check": "Den Realitätscheck machen",
+        "implementation": "Verbessern und die Umsetzung vorbereiten"
+      },
+      "next": "Danke. Weiter zum nächsten Schritt.",
+      "nothing": "Ich habe in Ihrer E-Mail keine Antworten für diesen Schritt gefunden. Antworten Sie mit nummerierten Antworten oder mit „weiter“, um den Schritt zu überspringen."
+    },
+    "progress": {
+      "title": "Was ich verstanden habe",
+      "understood": "Aus Ihrer E-Mail übernommen",
+      "unclear": "Noch unklar",
+      "missing": "Fehlt noch",
+      "nothing": "Ich habe in dieser E-Mail keine Werte für Ihr Projekt gefunden.",
+      "from": "aus {file}",
+      "sum": "Die Anteile ergeben zusammen {sum} %; sie müssen 100 % ergeben.",
+      "reasons": {
+        "not-in-scope": "kein Wert, den ich hier verwenden kann",
+        "missing-item": "unklar, zu welchem Eintrag es gehört",
+        "empty": "leer",
+        "not-a-number": "keine Zahl",
+        "ambiguous-number": "die Zahl lässt sich zweifach lesen; schreiben Sie sie ohne Tausendertrennzeichen",
+        "unknown-unit": "unbekannte Einheit",
+        "unit-mismatch": "die Einheit passt nicht zu diesem Feld",
+        "unknown-option": "keine der Optionen",
+        "not-a-boolean": "bitte mit ja oder nein antworten"
+      }
+    },
+    "files": {
+      "title": "Ihre Anhänge",
+      "read": "Gelesen: {name}",
+      "skipped": "Übersprungen: {name} ({reason})",
+      "imported": "Projektdatei {name} geöffnet.",
+      "reasons": {
+        "empty": "die Datei ist leer",
+        "too-large": "die Datei ist zu groß",
+        "unsupported": "dieser Dateityp lässt sich nicht lesen; bitte PDF, Word, Excel, CSV oder Text senden",
+        "macro": "Dateien mit Makros werden nicht geöffnet",
+        "binary-office": "alte Office-Formate lassen sich nicht lesen; bitte als .docx oder .xlsx speichern",
+        "encrypted": "die Datei ist passwortgeschützt",
+        "corrupt": "die Datei ist beschädigt",
+        "too-many-entries": "die Datei ist zu komplex",
+        "zip-bomb": "die Datei ist entpackt zu groß",
+        "sheet-too-large": "die Tabelle ist zu groß",
+        "too-many": "höchstens {max} Dateien pro E-Mail",
+        "unsafe": "die Datei enthält Text, der wie Anweisungen an den Assistenten aussieht, deshalb wurde sie nicht verwendet",
+        "unavailable": "die Datei ließ sich nicht herunterladen",
+        "no-text": "kein Text gefunden, zum Beispiel ein eingescanntes PDF",
+        "project": "die Projektdatei ließ sich nicht öffnen: {detail}"
+      }
+    },
+    "results": {
+      "title": "Ihr Ergebnis des Quick Checks",
+      "lead": "Berechnet von der eigenen Quick-Check-Engine von First Move aus den Werten unten, dieselbe Berechnung wie im Dashboard.",
+      "overall": "Gesamtergebnis",
+      "forced": "Durch eine feste Regel gesetzt",
+      "reasons": "Warum dieses Ergebnis",
+      "drivers": "Wichtigste Faktoren",
+      "supporting": "Unterstützend",
+      "limiting": "Begrenzend",
+      "none": "Keine",
+      "indicators": "Indikatoren",
+      "heatingCoverage": "Deckung Wärme",
+      "coolingCoverage": "Deckung Kälte",
+      "figures": "Kennzahlen",
+      "inputs": "Verwendete Eingaben",
+      "notes": "So rechnen wir",
+      "notesLead": "Jeder Schritt in einem Satz, mit den Gleichungen der Methodik, die er verwendet. Alle Gleichungen: {link}",
+      "estimatedLength": "Die Netzlänge ist aus der Gebäudedichte und der Projektfläche geschätzt.",
+      "yes": "Ja",
+      "no": "Nein",
+      "notEntered": "nicht angegeben",
+      "estimated": "geschätzt",
+      "shares": "{type} {period}: {share}",
+      "source": "{source}: {potential}",
+      "updated": "Mit Ihren neuesten Werten aktualisiert."
+    },
+    "businessPlan": {
+      "title": "Ihr Business Plan",
+      "lead": "Ihre Antworten so, wie das Dashboard sie zeigen würde. Der Business Plan ist qualitativ: Er berechnet nichts Eigenes.",
+      "empty": "Noch nichts ausgefüllt.",
+      "entry": "Eintrag {number}",
+      "dealBreaker": "Möglicher Deal-Breaker",
+      "readiness": "Vollständigkeit des Pitches (inoffiziell)",
+      "readinessLead": "Wie viel des finalen Pitches bereits Inhalt hat. Es zählt nur ausgefüllte Felder und bewertet nicht, was Sie geschrieben haben.",
+      "readinessSummary": "{met} von {total} Punkten abgedeckt",
+      "quickCheck": "Aus dem Quick Check (nur lesend)",
+      "quickCheckLead": "Grobe Screening-Werte zur Einordnung."
+    },
+    "file": {
+      "attached": "Ihre Projektdatei ist angehängt: {name}. Importieren Sie sie im Dashboard, um dort weiterzuarbeiten: {link}",
+      "offer": "Antworten Sie „Datei“, um eine Projektdatei (.firstmove.json) für das Dashboard zu erhalten.",
+      "provenance": "Werte, die ich aus Ihren E-Mails übernommen habe, sind in der Datei als KI-Vorschlag markiert, damit das Dashboard sie so anzeigt."
+    },
+    "reminder": {
+      "menu": "Wenn Sie so weit sind, wählen Sie oben 1, 2 oder 3.",
+      "collect": "Wir sammeln noch Ihre Projektdaten; die Fragen stehen in meiner letzten E-Mail.",
+      "results": "Ihre Ergebnisse stehen in meiner letzten E-Mail. Senden Sie jederzeit geänderte Werte, dann rechne ich neu."
+    },
+    "handoff": {
+      "title": "Ein Mensch übernimmt",
+      "body": "Ich habe Ihre Nachricht an einen Menschen bei First Move weitergegeben. Die Antwort kommt von {address}. Für Datenschutz- und Rechtsanfragen können Sie auch direkt dorthin schreiben."
+    },
+    "stopped": {
+      "title": "Gespräch beendet",
+      "body": "Ich habe unser Gespräch beendet und die gesammelten Projektdaten gelöscht. Wenn auch Ihre Bestätigung oder anderes gelöscht werden soll, schreiben Sie an {address}.",
+      "nothing": "Es gab kein Gespräch zu beenden."
+    },
+    "restarted": "Wir beginnen von vorne. Ihre bisherigen Antworten sind gelöscht.",
+    "limit": {
+      "title": "Dieses Gespräch ist für E-Mail lang genug",
+      "body": "Bitte arbeiten Sie im Dashboard weiter, dort können Sie jeden Wert direkt ändern: {link}. Antworten Sie „Datei“, um Ihre Projektdatei zu erhalten, oder „neu“, um von vorne zu beginnen."
+    }
   },
   "admin": {
     "subject": "Assistent von First Move: {kind}",
@@ -31,7 +276,8 @@
     "system": "Was: {kind}\nWann: {at}\n\n{detail}",
     "details": {
       "rate-global": "Das Tageslimit von {limit} E-Mails für alle Absender ist erreicht. Weitere E-Mails werden heute nicht beantwortet.",
-      "budget": "Das heutige Modellbudget von {budget} USD ist aufgebraucht. Der Assistent beantwortet bis zum nächsten Tag (UTC) keine E-Mails."
+      "budget": "Das heutige Modellbudget von {budget} USD ist aufgebraucht. Der Assistent beantwortet bis zum nächsten Tag (UTC) keine E-Mails.",
+      "text-failed": "Das Sprachmodell hat heute keine Antwort geliefert. Absender wurden gebeten, es später erneut zu versuchen."
     },
     "more": "Weitere Warnungen wurden heute nicht gesendet (höchstens {max} pro Tag).",
     "moreKind": "weitere Warnungen heute",
@@ -40,7 +286,9 @@
       "guard-failed": "Entscheidung der Schutzprüfung fehlgeschlagen",
       "rate-global": "Tageslimit für alle E-Mails erreicht",
       "budget": "Tagesbudget aufgebraucht",
-      "attachment-injection": "Anhang übersprungen (Injection)"
+      "attachment-injection": "Anhang übersprungen (Injection)",
+      "text-failed": "Sprachmodell fehlgeschlagen",
+      "handoff": "ein Absender möchte einen Menschen"
     }
   }
 }

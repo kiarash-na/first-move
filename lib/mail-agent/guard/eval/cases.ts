@@ -49,6 +49,6 @@ export function caseEmail(entry: EvalCase): Pick<InboundEmail, "subject" | "text
   return {
     subject: entry.subject,
     text: entry.body,
-    attachments: entry.attachments.map((file, index) => ({ id: `att-${index}`, name: file.name, size: file.size, contentType: file.type })),
+    attachments: entry.attachments.map((file, index) => ({ id: `att-${index}`, name: file.name, size: file.size, contentType: file.type, inline: false })),
   }
 }
