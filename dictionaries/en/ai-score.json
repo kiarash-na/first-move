@@ -4,5 +4,291 @@
     "description": "A separate AI scoring of the Business Plan: an AI decision model reads every field, takes each decision in turns and shows how it scored the plan."
   },
   "title": "AI Plan Score",
-  "lead": "A separate AI scoring of your Business Plan, apart from the app's own calculations."
+  "lead": "A separate AI scoring of your Business Plan, apart from the app's own calculations.",
+  "labels": {
+    "scoreLevels": {
+      "early": {
+        "name": "Early",
+        "description": "The plan names the idea but leaves most of what makes a plan solid open."
+      },
+      "promising": {
+        "name": "Promising",
+        "description": "The plan is specific in many places; some parts still lack numbers, evidence or clear roles."
+      },
+      "solid": {
+        "name": "Solid",
+        "description": "The plan is specific, quantified and backed by evidence in most places, and no must-have gate failed."
+      }
+    },
+    "levels": {
+      "missing": {
+        "name": "Missing",
+        "description": "Empty, a placeholder or not about this item or site."
+      },
+      "vague": {
+        "name": "Vague",
+        "description": "A general claim that could fit any project: no named actor, place or number."
+      },
+      "specific": {
+        "name": "Specific",
+        "description": "Names the actors, buildings, sources or mechanisms of this site, without numbers or a basis for them."
+      },
+      "quantified": {
+        "name": "Quantified",
+        "description": "Gives the key quantities with units and a stated basis or assumption."
+      },
+      "evidenced": {
+        "name": "Evidenced",
+        "description": "The numbers are backed by named data or commitments, or tested, and the text says what happens if one is wrong."
+      }
+    },
+    "dimensions": {
+      "value": {
+        "name": "Customer value and demand",
+        "description": "Who connects, what they need and why the network beats their alternative."
+      },
+      "technology": {
+        "name": "Technical and site fit",
+        "description": "The site, its heat sources and resources, and whether the network fits the place."
+      },
+      "economics": {
+        "name": "Costs, revenues and financing",
+        "description": "Costs, tariffs, financing and subsidies, and whether revenues cover the costs over the lifetime."
+      },
+      "governance": {
+        "name": "Ownership, operation and governance",
+        "description": "Who owns, operates and pays for what, and how costs, risks and benefits are split."
+      },
+      "participation": {
+        "name": "Participation and commitment",
+        "description": "Owners, stakeholders, the anchor customer and the connection rate the plan relies on."
+      },
+      "evidence": {
+        "name": "Risks, assumptions and evidence",
+        "description": "Critical assumptions and risks, the deal-breaker and how each is validated."
+      },
+      "path": {
+        "name": "Implementation path and scalability",
+        "description": "The first phase, the next steps, the decision gate and how the model grows."
+      }
+    },
+    "judgements": {
+      "site": "Site description",
+      "ownership": "Property and usage types",
+      "stakeholders": "Stakeholders and partners",
+      "segments": "Customer segments",
+      "needs": "Heating and cooling needs",
+      "pain-point": "Key pain point",
+      "advantage": "Advantage over the alternatives",
+      "heat-sources": "Heat sources",
+      "value-proposition": "Value proposition",
+      "resources": "Key resources",
+      "partners": "Key partners",
+      "engagement": "Customer relationships and channels",
+      "cost-basis": "Costs and capital expenditure",
+      "revenue": "Revenue model and tariffs",
+      "operations": "Activities and operator responsibilities",
+      "allocation": "Allocation of investment, risk and benefit",
+      "connection-rate": "Connection rate",
+      "financing": "Financing",
+      "subsidies": "Subsidy dependence",
+      "assumptions": "Critical assumptions",
+      "risks": "Risks and the deal-breaker",
+      "learning": "Feedback and what changed",
+      "scalability": "Scalability and replication",
+      "data": "Data to collect",
+      "next-partners": "Stakeholders and partnerships to secure",
+      "pilot": "Pilot",
+      "decisions": "Key decisions and the decision gate"
+    },
+    "gates": {
+      "anchor": {
+        "name": "Anchor customer",
+        "question": "Does the plan name at least one specific anchor customer, a large or early connection, and its role?"
+      },
+      "extra-value": {
+        "name": "Extra value",
+        "question": "Does the plan use cooling or another extra value, such as stable prices or relief for the power grid, as a reason to connect, where it applies?"
+      },
+      "heat-density": {
+        "name": "Network length as a cost driver",
+        "question": "Does the plan address network length or heat line density as a cost driver, for example trench length, clustering close buildings or micro-networks?"
+      },
+      "vienna-zone": {
+        "name": "Zone in the Vienna Heating Plan 2040",
+        "question": "Does the plan state the site's zone in the Vienna Heating Plan 2040 and explain why a 5GDHC network fits it?"
+      },
+      "boundary": {
+        "name": "System boundary",
+        "question": "Who owns the heat source, the network and the heat pumps in the buildings, according to the plan?"
+      },
+      "operator": {
+        "name": "Operator and duties",
+        "question": "Does the plan name an operator and its operational duties, such as maintenance, billing, faults and security of supply?"
+      },
+      "cost-key": {
+        "name": "Cost key",
+        "question": "Does the plan state a rule for splitting the costs of the source, the pipes and the connections among the users?"
+      },
+      "price-vs-alternative": {
+        "name": "Price against the alternative",
+        "question": "Is the customer's price compared with the customer's realistic alternative, such as gas or an individual heat pump, including price stability?"
+      },
+      "connection-threshold": {
+        "name": "Minimum connection rate",
+        "question": "Does the plan state a connection rate and what happens to the costs or the viability if fewer buildings connect?"
+      },
+      "lifetime-cover": {
+        "name": "Revenues cover the lifetime costs",
+        "question": "Does the plan compare the yearly revenues with the yearly cost of the investment plus the running costs, heat-pump electricity included, over 20 to 30 years?"
+      },
+      "subsidy-dependence": {
+        "name": "Subsidy fallback",
+        "question": "How does the plan depend on subsidies?"
+      },
+      "deal-breaker": {
+        "name": "Deal-breaker with a validation",
+        "question": "Is one risk marked as the potential deal-breaker, could it really stop the project, and does it have a concrete validation step (what, who, when)?"
+      },
+      "start-small": {
+        "name": "Start small",
+        "question": "Is a first phase defined, such as an anchor cluster or a micro-network, with later steps to grow?"
+      },
+      "decision-gate": {
+        "name": "Decision gate",
+        "question": "Do the next steps contain a go or no-go decision with explicit, checkable criteria?"
+      },
+      "anchor-public": {
+        "name": "Public decision path",
+        "question": "Does the plan address the public owner's decision path: a council or board decision, the budget, or public procurement?"
+      },
+      "anchor-commercial": {
+        "name": "Anchor contract term",
+        "question": "Does the plan address how long the commercial anchor customer commits (contract term) compared with the payback period of the network?"
+      },
+      "anchor-residential": {
+        "name": "How owners and tenants decide",
+        "question": "Does the plan address how the individual owners or tenants decide, for example owners' votes, tenancy rules or consent of the tenants?"
+      },
+      "anchor-industry": {
+        "name": "Secure waste heat or cooling demand",
+        "question": "Does the plan address how secure the waste heat or the cooling demand is over time: a contract, and a backup if the company leaves?"
+      },
+      "water-permit": {
+        "name": "Permit route for water or ground",
+        "question": "Does the plan name the permit route for using the groundwater, the ground or the surface water, or an early check with the water authority?"
+      },
+      "source-wastewater": {
+        "name": "Sewer operator and wastewater data",
+        "question": "Does the plan address an agreement with the sewer operator and the measured flow and temperature of the wastewater?"
+      },
+      "source-waste-heat": {
+        "name": "Waste-heat supply agreement",
+        "question": "Does the plan address a supply agreement with the owner of the waste heat and what happens if that supply stops?"
+      },
+      "source-air": {
+        "name": "Air source in cold weather",
+        "question": "Does the plan address the lower efficiency of air as a source in cold weather and the noise of the outdoor units?"
+      },
+      "owner-utility": {
+        "name": "Utility commitment",
+        "question": "Does the plan state the utility's commitment: a decision, a letter of intent or its defined role in the project?"
+      },
+      "owner-municipal": {
+        "name": "Municipal decision path",
+        "question": "Does the plan address the municipal decision path: a council decision, the budget or a municipal company?"
+      },
+      "owner-community": {
+        "name": "Community rules",
+        "question": "Does the plan address the rules of the community: members' votes, joining and leaving, liability and how members finance their share?"
+      },
+      "owner-contracting": {
+        "name": "Contract term and prices",
+        "question": "Does the plan address the contract term, how prices may change over time and what happens when the contract ends?"
+      },
+      "owner-developer": {
+        "name": "Operation after handover",
+        "question": "Does the plan address who operates and maintains the network after the buildings are handed over or sold?"
+      }
+    },
+    "gateOptions": {
+      "boundary": {
+        "all": "Owner of all three stated",
+        "partial": "Owner of one or two stated",
+        "none": "No owner stated"
+      },
+      "lifetime-cover": {
+        "yes": "Yes, over the long term",
+        "partly": "Partly",
+        "no": "No comparison"
+      },
+      "subsidy-dependence": {
+        "none": "No subsidy assumed",
+        "fallback": "Subsidy with a fallback",
+        "no-fallback": "Subsidy without a fallback",
+        "unclear": "Unclear"
+      }
+    },
+    "branches": {
+      "anchor-type": {
+        "name": "Anchor type",
+        "question": "Which kind of anchor customer does the plan mainly rely on?",
+        "options": {
+          "public": "Public building",
+          "commercial": "Commercial customer",
+          "residential": "Large residential owner",
+          "industry": "Waste heat or cooling user",
+          "none": "No anchor"
+        }
+      },
+      "source-type": {
+        "name": "Main heat source",
+        "question": "Which heat source does the plan mainly rely on?",
+        "options": {
+          "groundwater": "Groundwater",
+          "borehole": "Borehole field",
+          "surface-water": "Surface water",
+          "wastewater": "Wastewater",
+          "waste-heat": "Waste heat",
+          "air": "Ambient air",
+          "unclear": "Unclear"
+        }
+      },
+      "ownership": {
+        "name": "Ownership model",
+        "question": "Which ownership and operating model does the plan describe for the network?",
+        "options": {
+          "utility": "Utility",
+          "municipal": "Municipality",
+          "community": "Users together",
+          "contracting": "Contractor",
+          "developer": "Developer",
+          "unclear": "Unclear"
+        }
+      }
+    },
+    "outcomes": {
+      "pass": "Pass",
+      "unclear": "Unclear",
+      "fail": "Fail",
+      "skipped": "Not asked"
+    },
+    "fieldSources": {
+      "empty": "Empty field",
+      "model": "Scored by Jev",
+      "refused": "No answer"
+    },
+    "gateSources": {
+      "rule": "Decided by rule",
+      "model": "Decided by Jev",
+      "refused": "No answer"
+    },
+    "turns": {
+      "0": "Read the plan",
+      "1": "Opportunity",
+      "2": "Business logic",
+      "3": "Reality check",
+      "4": "Implementation"
+    }
+  }
 }

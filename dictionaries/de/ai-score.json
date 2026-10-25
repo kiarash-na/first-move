@@ -4,5 +4,291 @@
     "description": "Eine separate KI-Bewertung des Businessplans: Ein KI-Entscheidungsmodell liest jedes Feld, trifft jede Entscheidung in Runden und zeigt, wie es den Plan bewertet hat."
   },
   "title": "KI-Plan-Score",
-  "lead": "Eine separate KI-Bewertung Ihres Businessplans, getrennt von den Berechnungen der App."
+  "lead": "Eine separate KI-Bewertung Ihres Businessplans, getrennt von den Berechnungen der App.",
+  "labels": {
+    "scoreLevels": {
+      "early": {
+        "name": "Früh",
+        "description": "Der Plan nennt die Idee, lässt aber das meiste offen, was einen Plan solide macht."
+      },
+      "promising": {
+        "name": "Vielversprechend",
+        "description": "Der Plan ist vielerorts konkret; manchen Teilen fehlen noch Zahlen, Belege oder klare Rollen."
+      },
+      "solid": {
+        "name": "Solide",
+        "description": "Der Plan ist meist konkret, beziffert und belegt, und keine Pflichtschwelle ist gescheitert."
+      }
+    },
+    "levels": {
+      "missing": {
+        "name": "Fehlt",
+        "description": "Leer, ein Platzhalter oder nicht zu diesem Punkt oder Standort."
+      },
+      "vague": {
+        "name": "Vage",
+        "description": "Eine allgemeine Aussage, die zu jedem Projekt passt: kein Akteur, kein Ort, keine Zahl."
+      },
+      "specific": {
+        "name": "Konkret",
+        "description": "Nennt Akteure, Gebäude, Quellen oder Mechanismen dieses Standorts, aber ohne Zahlen oder deren Grundlage."
+      },
+      "quantified": {
+        "name": "Beziffert",
+        "description": "Nennt die wichtigsten Mengen mit Einheiten und einer genannten Grundlage oder Annahme."
+      },
+      "evidenced": {
+        "name": "Belegt",
+        "description": "Die Zahlen stützen sich auf benannte Daten oder Zusagen oder sind geprüft, und der Text sagt, was passiert, wenn eine falsch ist."
+      }
+    },
+    "dimensions": {
+      "value": {
+        "name": "Kundennutzen und Bedarf",
+        "description": "Wer anschließt, was gebraucht wird und warum das Netz die Alternative schlägt."
+      },
+      "technology": {
+        "name": "Technik und Standort",
+        "description": "Der Standort, seine Wärmequellen und Ressourcen und ob das Netz zum Ort passt."
+      },
+      "economics": {
+        "name": "Kosten, Erlöse und Finanzierung",
+        "description": "Kosten, Tarife, Finanzierung und Förderungen und ob die Erlöse die Kosten über die Lebensdauer decken."
+      },
+      "governance": {
+        "name": "Eigentum, Betrieb und Steuerung",
+        "description": "Wer was besitzt, betreibt und bezahlt und wie Kosten, Risiken und Nutzen verteilt sind."
+      },
+      "participation": {
+        "name": "Beteiligung und Zusagen",
+        "description": "Eigentümer, Beteiligte, der Ankerkunde und die Anschlussquote, auf die der Plan baut."
+      },
+      "evidence": {
+        "name": "Risiken, Annahmen und Belege",
+        "description": "Kritische Annahmen und Risiken, das K.-o.-Kriterium und wie jedes geprüft wird."
+      },
+      "path": {
+        "name": "Umsetzungspfad und Skalierbarkeit",
+        "description": "Die erste Phase, die nächsten Schritte, das Entscheidungstor und wie das Modell wächst."
+      }
+    },
+    "judgements": {
+      "site": "Standortbeschreibung",
+      "ownership": "Eigentums- und Nutzungsarten",
+      "stakeholders": "Beteiligte und Partner",
+      "segments": "Kundensegmente",
+      "needs": "Wärme- und Kältebedarf",
+      "pain-point": "Zentrales Problem",
+      "advantage": "Vorteil gegenüber den Alternativen",
+      "heat-sources": "Wärmequellen",
+      "value-proposition": "Wertversprechen",
+      "resources": "Schlüsselressourcen",
+      "partners": "Schlüsselpartner",
+      "engagement": "Kundenbeziehungen und Kanäle",
+      "cost-basis": "Kosten und Investitionen",
+      "revenue": "Erlösmodell und Tarife",
+      "operations": "Aktivitäten und Betreiberpflichten",
+      "allocation": "Verteilung von Investition, Risiko und Nutzen",
+      "connection-rate": "Anschlussquote",
+      "financing": "Finanzierung",
+      "subsidies": "Abhängigkeit von Förderungen",
+      "assumptions": "Kritische Annahmen",
+      "risks": "Risiken und das K.-o.-Kriterium",
+      "learning": "Rückmeldungen und Änderungen",
+      "scalability": "Skalierbarkeit und Übertragbarkeit",
+      "data": "Zu sammelnde Daten",
+      "next-partners": "Zu gewinnende Beteiligte und Partnerschaften",
+      "pilot": "Pilot",
+      "decisions": "Schlüsselentscheidungen und Entscheidungstor"
+    },
+    "gates": {
+      "anchor": {
+        "name": "Ankerkunde",
+        "question": "Nennt der Plan mindestens einen konkreten Ankerkunden, einen großen oder frühen Anschluss, und seine Rolle?"
+      },
+      "extra-value": {
+        "name": "Zusatznutzen",
+        "question": "Nutzt der Plan Kühlung oder einen anderen Zusatznutzen, etwa stabile Preise oder die Entlastung des Stromnetzes, als Grund zum Anschluss, wo das passt?"
+      },
+      "heat-density": {
+        "name": "Netzlänge als Kostentreiber",
+        "question": "Behandelt der Plan die Netzlänge oder die Wärmebelegungsdichte als Kostentreiber, etwa Trassenlänge, nahe Gebäude bündeln oder Mikronetze?"
+      },
+      "vienna-zone": {
+        "name": "Zone im Wiener Wärmeplan 2040",
+        "question": "Nennt der Plan die Zone des Standorts im Wiener Wärmeplan 2040 und erklärt, warum ein 5GDHC-Netz dazu passt?"
+      },
+      "boundary": {
+        "name": "Systemgrenze",
+        "question": "Wem gehören laut Plan die Wärmequelle, das Netz und die Wärmepumpen in den Gebäuden?"
+      },
+      "operator": {
+        "name": "Betreiber und Pflichten",
+        "question": "Nennt der Plan einen Betreiber und seine Betriebspflichten, etwa Wartung, Abrechnung, Störungen und Versorgungssicherheit?"
+      },
+      "cost-key": {
+        "name": "Kostenschlüssel",
+        "question": "Nennt der Plan eine Regel, wie die Kosten von Quelle, Leitungen und Anschlüssen auf die Nutzer aufgeteilt werden?"
+      },
+      "price-vs-alternative": {
+        "name": "Preis gegenüber der Alternative",
+        "question": "Wird der Preis für die Kunden mit ihrer realistischen Alternative verglichen, etwa Gas oder einer eigenen Wärmepumpe, einschließlich der Preisstabilität?"
+      },
+      "connection-threshold": {
+        "name": "Mindestanschlussquote",
+        "question": "Nennt der Plan eine Anschlussquote und was mit den Kosten oder der Tragfähigkeit passiert, wenn weniger Gebäude anschließen?"
+      },
+      "lifetime-cover": {
+        "name": "Erlöse decken die Lebensdauerkosten",
+        "question": "Vergleicht der Plan die jährlichen Erlöse mit den jährlichen Kosten der Investition plus den Betriebskosten, einschließlich Wärmepumpenstrom, über 20 bis 30 Jahre?"
+      },
+      "subsidy-dependence": {
+        "name": "Plan ohne Förderung",
+        "question": "Wie hängt der Plan von Förderungen ab?"
+      },
+      "deal-breaker": {
+        "name": "K.-o.-Kriterium mit Prüfung",
+        "question": "Ist ein Risiko als mögliches K.-o.-Kriterium markiert, könnte es das Projekt wirklich stoppen, und hat es einen konkreten Prüfschritt (was, wer, wann)?"
+      },
+      "start-small": {
+        "name": "Klein anfangen",
+        "question": "Ist eine erste Phase festgelegt, etwa ein Ankercluster oder ein Mikronetz, mit späteren Schritten zum Wachsen?"
+      },
+      "decision-gate": {
+        "name": "Entscheidungstor",
+        "question": "Enthalten die nächsten Schritte eine Go- oder No-go-Entscheidung mit ausdrücklichen, prüfbaren Kriterien?"
+      },
+      "anchor-public": {
+        "name": "Öffentlicher Entscheidungsweg",
+        "question": "Behandelt der Plan den Entscheidungsweg des öffentlichen Eigentümers: einen Gemeinderats- oder Vorstandsbeschluss, das Budget oder die öffentliche Vergabe?"
+      },
+      "anchor-commercial": {
+        "name": "Vertragslaufzeit des Ankers",
+        "question": "Behandelt der Plan, wie lange sich der gewerbliche Ankerkunde bindet (Vertragslaufzeit), verglichen mit der Amortisationszeit des Netzes?"
+      },
+      "anchor-residential": {
+        "name": "Wie Eigentümer und Mieter entscheiden",
+        "question": "Behandelt der Plan, wie die einzelnen Eigentümer oder Mieter entscheiden, etwa Eigentümerbeschlüsse, Mietrecht oder Zustimmung der Mieter?"
+      },
+      "anchor-industry": {
+        "name": "Sichere Abwärme oder Kältenachfrage",
+        "question": "Behandelt der Plan, wie sicher die Abwärme oder der Kältebedarf über die Zeit ist: ein Vertrag und eine Reserve, falls das Unternehmen geht?"
+      },
+      "water-permit": {
+        "name": "Genehmigungsweg für Wasser oder Untergrund",
+        "question": "Nennt der Plan den Genehmigungsweg für die Nutzung von Grundwasser, Untergrund oder Oberflächenwasser oder eine frühe Abklärung mit der Wasserrechtsbehörde?"
+      },
+      "source-wastewater": {
+        "name": "Kanalbetreiber und Abwasserdaten",
+        "question": "Behandelt der Plan eine Vereinbarung mit dem Kanalbetreiber und die gemessene Menge und Temperatur des Abwassers?"
+      },
+      "source-waste-heat": {
+        "name": "Liefervertrag für Abwärme",
+        "question": "Behandelt der Plan einen Liefervertrag mit dem Eigentümer der Abwärme und was passiert, wenn diese Lieferung endet?"
+      },
+      "source-air": {
+        "name": "Luft als Quelle bei Kälte",
+        "question": "Behandelt der Plan die geringere Effizienz von Luft als Quelle bei kaltem Wetter und den Lärm der Außengeräte?"
+      },
+      "owner-utility": {
+        "name": "Zusage des Versorgers",
+        "question": "Nennt der Plan die Zusage des Versorgers: einen Beschluss, eine Absichtserklärung oder seine festgelegte Rolle im Projekt?"
+      },
+      "owner-municipal": {
+        "name": "Kommunaler Entscheidungsweg",
+        "question": "Behandelt der Plan den kommunalen Entscheidungsweg: einen Gemeinderatsbeschluss, das Budget oder ein kommunales Unternehmen?"
+      },
+      "owner-community": {
+        "name": "Regeln der Gemeinschaft",
+        "question": "Behandelt der Plan die Regeln der Gemeinschaft: Abstimmungen, Ein- und Austritt, Haftung und wie die Mitglieder ihren Anteil finanzieren?"
+      },
+      "owner-contracting": {
+        "name": "Vertragslaufzeit und Preise",
+        "question": "Behandelt der Plan die Vertragslaufzeit, wie sich Preise über die Zeit ändern dürfen und was am Vertragsende passiert?"
+      },
+      "owner-developer": {
+        "name": "Betrieb nach der Übergabe",
+        "question": "Behandelt der Plan, wer das Netz betreibt und wartet, nachdem die Gebäude übergeben oder verkauft wurden?"
+      }
+    },
+    "gateOptions": {
+      "boundary": {
+        "all": "Eigentümer aller drei genannt",
+        "partial": "Eigentümer von einem oder zwei genannt",
+        "none": "Kein Eigentümer genannt"
+      },
+      "lifetime-cover": {
+        "yes": "Ja, langfristig",
+        "partly": "Teilweise",
+        "no": "Kein Vergleich"
+      },
+      "subsidy-dependence": {
+        "none": "Keine Förderung angenommen",
+        "fallback": "Förderung mit Ausweichplan",
+        "no-fallback": "Förderung ohne Ausweichplan",
+        "unclear": "Unklar"
+      }
+    },
+    "branches": {
+      "anchor-type": {
+        "name": "Art des Ankers",
+        "question": "Auf welche Art von Ankerkunde baut der Plan vor allem?",
+        "options": {
+          "public": "Öffentliches Gebäude",
+          "commercial": "Gewerbekunde",
+          "residential": "Großer Wohnungseigentümer",
+          "industry": "Abwärme- oder Kältenutzer",
+          "none": "Kein Anker"
+        }
+      },
+      "source-type": {
+        "name": "Hauptwärmequelle",
+        "question": "Auf welche Wärmequelle baut der Plan vor allem?",
+        "options": {
+          "groundwater": "Grundwasser",
+          "borehole": "Erdsondenfeld",
+          "surface-water": "Oberflächenwasser",
+          "wastewater": "Abwasser",
+          "waste-heat": "Abwärme",
+          "air": "Außenluft",
+          "unclear": "Unklar"
+        }
+      },
+      "ownership": {
+        "name": "Eigentumsmodell",
+        "question": "Welches Eigentums- und Betriebsmodell beschreibt der Plan für das Netz?",
+        "options": {
+          "utility": "Versorger",
+          "municipal": "Gemeinde",
+          "community": "Nutzer gemeinsam",
+          "contracting": "Contractor",
+          "developer": "Bauträger",
+          "unclear": "Unklar"
+        }
+      }
+    },
+    "outcomes": {
+      "pass": "Erfüllt",
+      "unclear": "Unklar",
+      "fail": "Nicht erfüllt",
+      "skipped": "Nicht gefragt"
+    },
+    "fieldSources": {
+      "empty": "Leeres Feld",
+      "model": "Von Jev bewertet",
+      "refused": "Keine Antwort"
+    },
+    "gateSources": {
+      "rule": "Per Regel entschieden",
+      "model": "Von Jev entschieden",
+      "refused": "Keine Antwort"
+    },
+    "turns": {
+      "0": "Plan lesen",
+      "1": "Chance",
+      "2": "Geschäftslogik",
+      "3": "Realitätscheck",
+      "4": "Umsetzung"
+    }
+  }
 }
