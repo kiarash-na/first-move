@@ -90,6 +90,10 @@ Not done in this run; the app runs live without them. Next session, in this orde
 4. Presentation: slide 5 label "Every source, linked"; slide 6 says agent@ is live (follow-up 6); the presentation note's blind-test paragraph still describes the 1.0.0 recording (now 1.1.0: 56.2 shown 55 ± 3).
 5. Security review of the AI layer and a browser test of the assistant with a key (A09); the privacy wording of follow-up 7.
 
+## Handoff (2026-10-25, clean stop before the PR, v.0.8)
+
+`dev` = `origin/dev` at the tagged commit `v.0.8`; tree clean; no worktree or workflow running. The owner continues locally. State of the checks at eb9e948: `pnpm lint` and `pnpm typecheck` pass; the targeted unit tests of every change pass (legal, docs, dashboard shell and layout, AI Plan Score results, presentation, landing); the full `pnpm test`, `pnpm build` and the e2e suite were started but not confirmed in this session (the full suite last passed at 1557a21, e2e at e6bbeac). First thing locally: `pnpm test && pnpm build && pnpm test:e2e` (the assistant e2e specs run for the first time with the switch on), then the deferred list above.
+
 ## Handoff (2026-10-25, clean stop for a model switch)
 
 `dev` = `origin/dev` at the commit of this section; tree clean; every sub-agent worktree merged and removed; no workflow running. Last full check (after merging A05 and A07, at 1557a21): `pnpm lint`, `pnpm typecheck`, `pnpm test` (904 files, 4043 tests) and `pnpm build` all pass; the whole e2e suite last passed at e6bbeac (181 tests) and was not run after the A05/A07 merge.
