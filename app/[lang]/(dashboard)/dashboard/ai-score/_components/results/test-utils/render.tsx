@@ -29,7 +29,7 @@ export function renderResults(ui: ReactElement, { lang = "en", ...options }: Omi
   return render(ui, { wrapper: Wrapper, ...options })
 }
 
-/** Tests only: result actions with spies; a key and a text model are ready unless overridden. */
+/** Tests only: result actions with spies; a key and a text model are ready and no run is in flight unless overridden. */
 export function mockActions(overrides: Partial<ResultActions> = {}): ResultActions {
-  return { canUseAi: true, busy: null, error: null, rewriteReport: vi.fn(), suggest: vi.fn(), remove: vi.fn(), ...overrides }
+  return { canUseAi: true, running: false, busy: null, error: null, rewriteReport: vi.fn(), suggest: vi.fn(), remove: vi.fn(), ...overrides }
 }

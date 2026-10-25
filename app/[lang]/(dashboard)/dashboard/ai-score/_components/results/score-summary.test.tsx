@@ -1,5 +1,6 @@
 import { screen } from "@testing-library/react"
 import { beforeAll, describe, expect, it } from "vitest"
+import { labelOf } from "@/lib/ai/plan-score/aggregate"
 import { displayScore } from "@/lib/business-plan"
 import { ScoreSummary } from "./score-summary"
 import { CAPPED, scored, type Scored } from "./test-utils/fixtures"
@@ -24,11 +25,15 @@ describe("ScoreSummary", () => {
     expect(container.querySelector("[data-slot=score-summary] [data-ai-generated]")).toContainElement(container.querySelector("[data-score]") as HTMLElement)
     expect(container.querySelector("[data-slot=quick-check-signal]")!.closest("[data-ai-generated]")).toBeNull()
     expect(screen.getByText(copy.results.aiGenerated)).toBeInTheDocument()
-    expect(container).toHaveTextContent(`The label uses the unrounded score, ${varied.score.score}.`)
+    expect(container).toHaveTextContent(`Shown rounded to 5 points from ${varied.score.score}.`)
     // The range is the drawn band: the unrounded score ± its band, with one decimal.
     const one = (value: number) => String(Math.round(value * 10) / 10)
     expect(container).toHaveTextContent(`around the unrounded score: ${one(varied.score.score - varied.score.sd)} to ${one(varied.score.score + varied.score.sd)}`)
     expect(container.querySelector("[data-slot=capped-note]")).toBeNull()
+  })
+
+  it("labels a run of the current method as its score is shown (D-81)", () => {
+    for (const { score } of [varied, capped]) expect(score.level).toBe(labelOf(displayScore(score.score, score.sd).score, score.capped))
   })
 
   it("puts the scale mark at the unrounded score", () => {

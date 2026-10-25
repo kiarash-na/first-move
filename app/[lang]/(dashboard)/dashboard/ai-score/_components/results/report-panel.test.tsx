@@ -75,6 +75,13 @@ describe("ReportPanel", () => {
     expect(screen.getByText(copy.results.needsAi)).toBeInTheDocument()
   })
 
+  it("is disabled during a run and says so, instead of asking for a key", () => {
+    renderResults(<ReportPanel report={report("en")} rows={ROWS} actions={mockActions({ canUseAi: false, running: true })} error={null} />)
+    expect(screen.getByRole("button", { name: text.rewrite })).toBeDisabled()
+    expect(screen.getByText(copy.results.runInProgress)).toBeInTheDocument()
+    expect(screen.queryByText(copy.results.needsAi)).not.toBeInTheDocument()
+  })
+
   it("shows that the report is being written", () => {
     renderResults(<ReportPanel report={report("en")} rows={ROWS} actions={mockActions({ busy: "report" })} error={null} />)
     const button = screen.getByRole("button", { name: text.writing })

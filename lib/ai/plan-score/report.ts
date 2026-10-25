@@ -1,7 +1,7 @@
 import { generateText, Output, type LanguageModel } from "ai"
 import { z } from "zod"
 import { AI_SCORE_LIMITS, aiReportSchema, type AiReport, type AiScore, type Project } from "@/lib/project"
-import { cleanKeys, fit, LANGUAGE_NAME, planExcerpts, scoreFacts, TEXT_RULES, type TextLang } from "./text-input"
+import { cleanKeys, fit, LANGUAGE_RULE, planExcerpts, scoreFacts, TEXT_RULES, type TextLang } from "./text-input"
 
 /**
  * The short report (PLAN-AI-SCORE-00 step 4): the chosen text model writes a headline, a summary,
@@ -20,6 +20,14 @@ export const reportOutputSchema = z.object({
   actions: z.array(z.string()).describe("Up to three next actions, each one sentence."),
 })
 type ReportOutput = z.infer<typeof reportOutputSchema>
+
+/**
+ * The report's output token cap. A model that thinks before it answers counts its reasoning
+ * tokens against the cap, and German takes more tokens than English: at 1,500 a German report was
+ * cut off mid-JSON (finish reason "length", no object) in the presentation's blind test. The cap
+ * only bounds the cost; the stored lengths (`AI_SCORE_LIMITS`) still cut every text afterwards.
+ */
+export const REPORT_MAX_OUTPUT_TOKENS = 6_000
 
 /** Provider options of a text call (the SDK does not export the type by name). */
 export type ProviderOptions = NonNullable<Parameters<typeof generateText>[0]["providerOptions"]>
@@ -41,7 +49,7 @@ export interface TextResult<T> {
 export function reportPrompt(project: Project, score: AiScore, lang: TextLang): { system: string; prompt: string } {
   const filled = score.judgements.filter((entry) => entry.source !== "empty").map((entry) => entry.id)
   const system =
-    `${TEXT_RULES} Write the short report of the AI Plan Score in ${LANGUAGE_NAME[lang]}, addressed to the team, ` +
+    `${TEXT_RULES} ${LANGUAGE_RULE[lang]} Write the short report of the AI Plan Score, addressed to the team, ` +
     "plain and specific: what is strong, what is missing and what to do next. Refer to parts of the plan by their " +
     "labels, and put their keys only into the `keys` arrays. Never state a number that is not in the scores."
   const prompt = [
@@ -79,7 +87,7 @@ export async function writeReport(project: Project, score: AiScore, options: Tex
     system,
     prompt,
     output: Output.object({ schema: reportOutputSchema, name: "ai_plan_score_report" }),
-    maxOutputTokens: 1500,
+    maxOutputTokens: REPORT_MAX_OUTPUT_TOKENS,
     maxRetries: 2,
     abortSignal: options.abortSignal,
     providerOptions: options.providerOptions,

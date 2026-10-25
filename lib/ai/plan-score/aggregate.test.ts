@@ -73,9 +73,25 @@ describe("aggregate (PLAN-AI-SCORE-01 § Aggregation)", () => {
     expect(displayScore(63, 0.2)).toEqual({ score: 65, band: 1 })
   })
 
-  it("labels the score as stored, so the saved score and its label agree", () => {
-    // Level 2.7984 everywhere: 25 × 2.7984 = 69.96, stored with one decimal as 70.
-    const nodes = DIMENSIONS.map(({ id }): JudgementNode => ({ ...judgement(id, id, null), level: 2.7984 }))
-    expect(aggregate(nodes)).toMatchObject({ score: 70, level: "solid" })
+  it("labels the score as shown, rounded to 5, so the number and the label agree (D-81)", () => {
+    // The same level everywhere gives a score of 25 × level.
+    const at = (level: number, ...gates: GateNode[]) => aggregate([...DIMENSIONS.map(({ id }): JudgementNode => ({ ...judgement(id, id, null), level })), ...gates])
+    const cases = [
+      [2.72, 68, 70, "solid"],
+      [2.7, 67.5, 70, "solid"],
+      [2.696, 67.4, 65, "promising"],
+      [1.5, 37.5, 40, "promising"],
+      [1.496, 37.4, 35, "early"],
+    ] as const
+    for (const [level, score, shown, label] of cases) {
+      const result = at(level)
+      expect(result, `level ${level}`).toMatchObject({ score, level: label })
+      expect(displayScore(result.score, result.sd).score).toBe(shown)
+      expect(labelOf(shown, false)).toBe(label)
+    }
+    // A failed must-have still keeps a plan shown as 70 below Solid.
+    const capped = at(2.9, gate("deal-breaker", "evidence", "fail", 2))
+    expect(displayScore(capped.score, capped.sd).score).toBeGreaterThanOrEqual(70)
+    expect(capped).toMatchObject({ level: "promising", capped: true })
   })
 })

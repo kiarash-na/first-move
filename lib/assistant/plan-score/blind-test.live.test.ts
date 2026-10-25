@@ -1,16 +1,15 @@
 // @vitest-environment node
 import { writeFileSync } from "node:fs"
 import path from "node:path"
-import { wrapLanguageModel } from "ai"
 import { describe, expect, it } from "vitest"
 import { DIMENSIONS } from "@/lib/ai/plan-score/dimensions"
 import { BRANCHES } from "@/lib/ai/plan-score/branches"
 import { GATES } from "@/lib/ai/plan-score/gates"
 import { JUDGEMENTS, TURNS } from "@/lib/ai/plan-score/judgements"
-import { writeReport } from "@/lib/ai/plan-score/report"
+import { REPORT_MAX_OUTPUT_TOKENS, writeReport } from "@/lib/ai/plan-score/report"
 import { DECISION_MODEL_ID, METHOD_VERSION, scorePlan } from "@/lib/ai/plan-score/run"
 import { LEVEL_COUNT } from "@/lib/ai/plan-score/scale"
-import { writeSuggestions } from "@/lib/ai/plan-score/suggest"
+import { SUGGESTIONS_MAX_OUTPUT_TOKENS, writeSuggestions } from "@/lib/ai/plan-score/suggest"
 import type { TextLang } from "@/lib/ai/plan-score/text-input"
 import { displayScore } from "@/lib/business-plan"
 import { blindProject, BLIND_SOURCE } from "@/lib/presentation/blind-test/geblergasse-2017"
@@ -25,15 +24,16 @@ import { DEFAULT_TEXT_MODEL, textProviderOptions } from "../gateway/models"
  * lib/assistant/plan-score/blind-test.live.test.ts` with `AI_GATEWAY_API_KEY` set. Writes
  * `lib/presentation/blind-test/result.json`, which the slide reads. The key is never written.
  *
- * The text model thinks before it answers, and the engine's output limits (1,500 tokens for the
- * report, 2,500 for the suggestions) cut the German report off mid-JSON in the first run. This
- * run lifts the limit through middleware; prompts, schemas and checks stay the engine's own.
+ * The text model thinks before it answers. The engine's first output limits (1,500 tokens for the
+ * report, 2,500 for the suggestions) cut the German report off mid-JSON in the first run, so the
+ * recorded run lifted them to 8,000 here. The engine now has room for that itself
+ * (`REPORT_MAX_OUTPUT_TOKENS`, `SUGGESTIONS_MAX_OUTPUT_TOKENS`), and this run uses its limits,
+ * prompts, schemas and checks unchanged.
  */
 const apiKey = process.env.AI_GATEWAY_API_KEY
 const live = process.env.PRESENTATION_LIVE_BLIND === "1" && Boolean(apiKey)
 const OUT = process.env.PRESENTATION_BLIND_OUT ?? path.join(process.cwd(), "lib/presentation/blind-test/result.json")
 const LANGS: readonly TextLang[] = ["en", "de"]
-const TEXT_MAX_OUTPUT_TOKENS = 8_000
 
 describe.skipIf(!live)("blind test (live)", () => {
   it("scores the 2017 plan and records the result", async () => {
@@ -44,11 +44,7 @@ describe.skipIf(!live)("blind test (live)", () => {
     const decisionsMs = Date.now() - started
 
     const textModelId = DEFAULT_TEXT_MODEL
-    const model = wrapLanguageModel({
-      model: client.textModel(textModelId),
-      middleware: { transformParams: async ({ params }) => ({ ...params, maxOutputTokens: Math.max(params.maxOutputTokens ?? 0, TEXT_MAX_OUTPUT_TOKENS) }) },
-    })
-    const text = { model, modelId: textModelId, providerOptions: textProviderOptions(textModelId) }
+    const text = { model: client.textModel(textModelId), modelId: textModelId, providerOptions: textProviderOptions(textModelId) }
     const reports: Record<string, unknown> = {}
     const suggestions: Record<string, unknown> = {}
     const errors: string[] = []
@@ -77,7 +73,7 @@ describe.skipIf(!live)("blind test (live)", () => {
       case: "smart-block-geblergasse",
       input: { source: BLIND_SOURCE.url, created: BLIND_SOURCE.created, modules: "businessPlan" },
       at: score.at,
-      models: { decision: score.decisionModel, text: textModelId, textMaxOutputTokens: TEXT_MAX_OUTPUT_TOKENS },
+      models: { decision: score.decisionModel, text: textModelId, textMaxOutputTokens: { report: REPORT_MAX_OUTPUT_TOKENS, suggestions: SUGGESTIONS_MAX_OUTPUT_TOKENS } },
       method: METHOD_VERSION,
       engine: {
         judgements: JUDGEMENTS.length,

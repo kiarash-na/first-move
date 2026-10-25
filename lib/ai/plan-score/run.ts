@@ -13,8 +13,11 @@ import { quickCheckSignal } from "./quick-check-signal"
 import { MAX_LEVEL } from "./scale"
 import { buildState, isJudgementFilled } from "./state"
 
-/** Version of the scoring method (scale, judgements, gates, branches, weights, aggregation). */
-export const METHOD_VERSION = "1.0.0"
+/**
+ * Version of the scoring method (scale, judgements, gates, branches, weights, aggregation).
+ * 1.1.0: the label follows the score as shown, rounded to 5 (D-81).
+ */
+export const METHOD_VERSION = "1.1.0"
 /** Jev takes every decision (D-71); pinned so a new release cannot change scores silently. */
 export const DECISION_MODEL_ID = "typesafe-ai/jev-1.14.0"
 

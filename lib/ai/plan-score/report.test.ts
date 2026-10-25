@@ -1,9 +1,12 @@
+import { generateText, NoObjectGeneratedError, Output } from "ai"
 import { describe, expect, it } from "vitest"
 import { getExample, localizeExample } from "@/lib/examples"
-import { reportPrompt, toReport, weakJudgements, writeReport } from "./report"
+import { AI_SCORE_LIMITS } from "@/lib/project"
+import { REPORT_MAX_OUTPUT_TOKENS, reportOutputSchema, reportPrompt, toReport, weakJudgements, writeReport } from "./report"
 import { scorePlan } from "./run"
+import { germanText } from "./test-utils/german-text"
 import { mockJev } from "./test-utils/mock-jev"
-import { mockText } from "./test-utils/mock-text"
+import { MOCK_CHARS_PER_TOKEN, mockText, mockThinkingText } from "./test-utils/mock-text"
 
 const now = () => new Date("2026-10-24T12:00:00.000Z")
 const project = localizeExample(getExample("housing-cooperatives")!, "en")
@@ -44,6 +47,39 @@ describe("the report (PLAN-AI-SCORE-00 step 4)", () => {
     expect(value).toMatchObject({ model: "openai/gpt-6.1-sol", lang: "en", headline: "Promising, with gaps in financing." })
     expect(tokens).toBe(1200)
     expect(model.doGenerateCalls[0].responseFormat).toMatchObject({ type: "json" })
+  })
+
+  it("accepts a long German report from a thinking model within the cap, cut to the stored limits", async () => {
+    const score = await scored()
+    const point = (seed: number) => ({ text: germanText(AI_SCORE_LIMITS.item + 60, seed), keys: ["financing", "deal-breaker"] })
+    const long = {
+      headline: germanText(AI_SCORE_LIMITS.headline + 40, 1),
+      summary: germanText(AI_SCORE_LIMITS.text + 200, 2),
+      strengths: [point(3), point(4), point(5)],
+      gaps: [point(6), point(7), point(8)],
+      actions: [germanText(AI_SCORE_LIMITS.item, 9), germanText(AI_SCORE_LIMITS.item, 10), germanText(AI_SCORE_LIMITS.item, 11)],
+    }
+    const answer = Math.ceil(JSON.stringify(long).length / MOCK_CHARS_PER_TOKEN)
+
+    // The old cap of 1,500 cut this answer off after 1,000 tokens of thought (blind test, run 1).
+    const old = mockThinkingText(long, { reasoning: 1_000 })
+    const cut = await generateText({ model: old, prompt: "x", output: Output.object({ schema: reportOutputSchema }), maxOutputTokens: 1_500 }).catch((error: unknown) => error)
+    expect(NoObjectGeneratedError.isInstance(cut) && cut.finishReason).toBe("length")
+
+    // The engine's cap leaves room for far more thought before the same answer.
+    const reasoning = REPORT_MAX_OUTPUT_TOKENS - answer - 100
+    expect(reasoning).toBeGreaterThan(4_000)
+    const model = mockThinkingText(long, { reasoning })
+    const { value, tokens } = await writeReport(project, score, { model, modelId: "example/text-model", lang: "de" })
+    expect(model.doGenerateCalls[0].maxOutputTokens).toBe(REPORT_MAX_OUTPUT_TOKENS)
+    expect(tokens).toBe(900 + reasoning + answer)
+    expect(value.lang).toBe("de")
+    expect(value.headline.length).toBeLessThanOrEqual(AI_SCORE_LIMITS.headline)
+    expect(value.summary.length).toBeLessThanOrEqual(AI_SCORE_LIMITS.text)
+    expect(value.summary).toMatch(/…$/)
+    expect(value.strengths).toHaveLength(3)
+    expect(value.gaps.every((gap) => gap.text.length <= AI_SCORE_LIMITS.item)).toBe(true)
+    expect(value.actions).toHaveLength(3)
   })
 
   it("finds the weak judgements", async () => {

@@ -2,6 +2,7 @@ import { GATES } from "@/lib/ai/plan-score/gates"
 import { JUDGEMENTS, TURNS } from "@/lib/ai/plan-score/judgements"
 import { turnQuestions } from "@/lib/ai/plan-score/questions"
 import { quickCheckSignal } from "@/lib/ai/plan-score/quick-check-signal"
+import { REPORT_MAX_OUTPUT_TOKENS } from "@/lib/ai/plan-score/report"
 import { buildState, estimateTokens, isJudgementFilled } from "@/lib/ai/plan-score/state"
 import { planExcerpts, TEXT_RULES } from "@/lib/ai/plan-score/text-input"
 import type { TextModel } from "@/lib/assistant/gateway/models"
@@ -18,8 +19,8 @@ import type { Project } from "@/lib/project"
 export const JEV_INPUT_PRICE = 0.042
 /** The scores and gates the report prompt lists, about one line per judgement and gate. */
 const SCORE_FACTS_TOKENS = (JUDGEMENTS.length + GATES.length) * 40
-/** The report's output cap (`maxOutputTokens` of `writeReport`). */
-export const REPORT_OUTPUT_TOKENS = 1500
+/** The report's output cap, reasoning included (`REPORT_MAX_OUTPUT_TOKENS` of the engine): the most it can cost. */
+export const REPORT_OUTPUT_TOKENS = REPORT_MAX_OUTPUT_TOKENS
 
 export interface CostEstimate {
   /** Plan state plus questions, summed over the four turns. */

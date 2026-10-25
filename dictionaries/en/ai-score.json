@@ -556,7 +556,7 @@
       "band": "± {band}",
       "scoreLabel": "AI Plan Score {score} of 100, plus or minus {band}",
       "range": "Band of one standard deviation around the unrounded score: {from} to {to}",
-      "rounded": "Shown rounded to {step} points. The label uses the unrounded score, {raw}.",
+      "rounded": "Shown rounded to {step} points from {raw}.",
       "capped": "A must-have check failed, so the label stays below {solid} however many points the plan has.",
       "seeChecks": "See the checks",
       "scale": {
@@ -701,6 +701,7 @@
       "otherLanguage": "These suggestions are in {language}. Ask again to get them in {current}."
     },
     "needsAi": "To write with AI, use a Gateway key and choose a text model above.",
+    "runInProgress": "A run is in progress. You can write with AI again once it has finished.",
     "errors": {
       "key": "The Gateway did not accept the key. Check that you pasted the whole key and that it is still active.",
       "credits": "Your Gateway account has no credits left. Add credits in your Vercel account, then try again.",
@@ -782,7 +783,7 @@
         "early": "below {promising}",
         "promising": "{promising} to below {solid}",
         "solid": "{solid} and above, unless a must-have check failed",
-        "rounding": "Shown rounded to {step} points, with the band in whole points and at least {minBand}, to avoid false precision. The label uses the unrounded score."
+        "rounding": "Shown rounded to {step} points, with the band in whole points and at least {minBand}, to avoid false precision. The label follows the score as shown, so the number and the label never contradict each other."
       },
       "caveats": {
         "title": "Read it with care",

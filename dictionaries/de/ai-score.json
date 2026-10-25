@@ -556,7 +556,7 @@
       "band": "± {band}",
       "scoreLabel": "KI-Plan-Score {score} von 100, plus oder minus {band}",
       "range": "Band von einer Standardabweichung um den ungerundeten Score: {from} bis {to}",
-      "rounded": "Auf {step} Punkte gerundet angezeigt. Die Einstufung nutzt den ungerundeten Score, {raw}.",
+      "rounded": "Von {raw} auf {step} Punkte gerundet angezeigt.",
       "capped": "Eine Pflichtprüfung ist nicht erfüllt, daher bleibt die Einstufung unter „{solid}“, egal wie viele Punkte der Plan hat.",
       "seeChecks": "Zu den Prüfungen",
       "scale": {
@@ -701,6 +701,7 @@
       "otherLanguage": "Diese Vorschläge sind auf {language}. Fragen Sie erneut, um sie auf {current} zu erhalten."
     },
     "needsAi": "Um mit KI zu schreiben, verwenden Sie oben einen Gateway-Schlüssel und wählen ein Textmodell.",
+    "runInProgress": "Eine Bewertung läuft. Sobald sie abgeschlossen ist, können Sie wieder mit KI schreiben.",
     "errors": {
       "key": "Das Gateway hat den Schlüssel nicht akzeptiert. Prüfen Sie, ob Sie den ganzen Schlüssel eingefügt haben und ob er noch aktiv ist.",
       "credits": "Ihr Gateway-Konto hat kein Guthaben mehr. Laden Sie in Ihrem Vercel-Konto Guthaben auf und versuchen Sie es dann erneut.",
@@ -782,7 +783,7 @@
         "early": "unter {promising}",
         "promising": "{promising} bis unter {solid}",
         "solid": "ab {solid}, außer eine Pflichtprüfung ist nicht erfüllt",
-        "rounding": "Auf {step} Punkte gerundet angezeigt, das Band in ganzen Punkten und mindestens {minBand}, um keine falsche Genauigkeit vorzutäuschen. Die Einstufung nutzt den ungerundeten Score."
+        "rounding": "Auf {step} Punkte gerundet angezeigt, das Band in ganzen Punkten und mindestens {minBand}, um keine falsche Genauigkeit vorzutäuschen. Die Einstufung folgt dem angezeigten Score, sodass Zahl und Einstufung einander nie widersprechen."
       },
       "caveats": {
         "title": "Mit Vorsicht lesen",

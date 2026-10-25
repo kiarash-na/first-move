@@ -124,6 +124,20 @@ test("the blind test replays the recorded run and then reveals the known outcome
   await expect(current).toContainText(text("en", "presentation", "slides.aiEngine.caveat"))
 })
 
+for (const lang of LANGS) {
+  test(`slide 5 links the section of the method page that lists every source (${lang})`, async ({ page }) => {
+    await open(page, `/${lang}/presentation#5`)
+    const anchor = lang === "en" ? "sources" : "quellen"
+    const link = slide(page, 5).getByRole("link", { name: text(lang, "presentation", "slides.aiEngine.sources") })
+    await expect(link).toHaveAttribute("href", `/${lang}/docs/ai-plan-score#${anchor}`)
+    await link.click()
+    await expect(page).toHaveURL(new RegExp(`/${lang}/docs/ai-plan-score#${anchor}$`))
+    const heading = page.getByRole("heading", { level: 2, name: text(lang, "presentation", "slides.aiEngine.sourcesSection"), exact: true })
+    await expect(heading).toHaveAttribute("id", anchor)
+    await expect(heading).toBeInViewport()
+  })
+}
+
 test("the QR code on the last slide decodes to exactly the owner's link", async ({ page }) => {
   await open(page, "/en/presentation#10")
   await page.addScriptTag({ content: JSQR })

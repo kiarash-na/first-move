@@ -61,6 +61,7 @@ describe("HowWeScore (D-33)", () => {
     expect(container.querySelector('[data-label="early"]')).toHaveTextContent(`below ${PROMISING_FROM}`)
     expect(container.querySelector('[data-label="solid"]')).toHaveTextContent(`${SOLID_FROM} and above`)
     expect(screen.getByText(/Shown rounded to 5 points/)).toHaveTextContent(`in whole points and at least ${MIN_BAND},`)
+    expect(screen.getByText(/Shown rounded to 5 points/)).toHaveTextContent("The label follows the score as shown")
   })
 
   it("states spread formulas that give the engine's numbers", async () => {

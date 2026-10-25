@@ -99,11 +99,13 @@ Keine Quelle schreibt Gewichte in Zahlen vor, daher sind es begründete Standard
 - **Der KI-Plan-Score** ist die gewichtete Summe der sieben Dimensionen, von 0 bis 100. Seine Spanne ist eine Standardabweichung, berechnet aus den Streuungen unter der Annahme unabhängiger Teile, was sie wahrscheinlich zu schmal macht.
 - **Die Anzeige** rundet den Score auf 5 Punkte und die Spanne auf ganze Punkte, mindestens 1, um keine falsche Genauigkeit vorzutäuschen.
 
-Der Score erhält dann eine von drei Bezeichnungen:
+Der angezeigte Score erhält dann eine von drei Bezeichnungen:
 
 - **Früh**: unter 40.
 - **Vielversprechend**: von 40 bis unter 70, und auch bei 70 oder mehr, wenn eine Pflichtschwelle gescheitert ist.
 - **Solide**: 70 oder mehr, ohne gescheiterte Pflichtschwelle.
+
+Die Bezeichnung folgt dem gerundeten Score, sodass die angezeigte Zahl und ihre Bezeichnung einander nie widersprechen: Ein Plan mit 68 wird als 70 angezeigt und ist Solide, außer eine Pflichtschwelle ist gescheitert.
 
 ## Bericht und Vorschläge
 

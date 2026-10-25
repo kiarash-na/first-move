@@ -152,11 +152,19 @@
     "source": "content/docs/de/ai-plan-score.mdx#die-sieben-dimensionen"
   },
   {
-    "id": "docs:ai-plan-score#von-den-antworten-zum-score",
+    "id": "docs:ai-plan-score#von-den-antworten-zum-score-1",
     "lang": "de",
     "title": "KI-Plan-Score · Von den Antworten zum Score",
     "url": "/de/docs/ai-plan-score#von-den-antworten-zum-score",
-    "text": "- Die Stufe eines Teils ist der mit den Wahrscheinlichkeiten gewichtete Mittelwert der fünf Stufen, die erwartete Stufe, wie bei G-Eval (Liu et al., 2023). Ihre Streuung ist die Standardabweichung der Wahrscheinlichkeiten des Modells. Ein leerer Teil zählt 0 ohne Streuung.\n- Eine Dimension ist der Mittelwert ihrer Teile, begrenzt durch die niedrigste Obergrenze ihrer gescheiterten Schwellen, mal 25, sodass sie von 0 bis 100 reicht.\n- Der KI-Plan-Score ist die gewichtete Summe der sieben Dimensionen, von 0 bis 100. Seine Spanne ist eine Standardabweichung, berechnet aus den Streuungen unter der Annahme unabhängiger Teile, was sie wahrscheinlich zu schmal macht.\n- Die Anzeige rundet den Score auf 5 Punkte und die Spanne auf ganze Punkte, mindestens 1, um keine falsche Genauigkeit vorzutäuschen.\nDer Score erhält dann eine von drei Bezeichnungen:\n- Früh: unter 40.\n- Vielversprechend: von 40 bis unter 70, und auch bei 70 oder mehr, wenn eine Pflichtschwelle gescheitert ist.\n- Solide: 70 oder mehr, ohne gescheiterte Pflichtschwelle.",
+    "text": "- Die Stufe eines Teils ist der mit den Wahrscheinlichkeiten gewichtete Mittelwert der fünf Stufen, die erwartete Stufe, wie bei G-Eval (Liu et al., 2023). Ihre Streuung ist die Standardabweichung der Wahrscheinlichkeiten des Modells. Ein leerer Teil zählt 0 ohne Streuung.\n- Eine Dimension ist der Mittelwert ihrer Teile, begrenzt durch die niedrigste Obergrenze ihrer gescheiterten Schwellen, mal 25, sodass sie von 0 bis 100 reicht.\n- Der KI-Plan-Score ist die gewichtete Summe der sieben Dimensionen, von 0 bis 100. Seine Spanne ist eine Standardabweichung, berechnet aus den Streuungen unter der Annahme unabhängiger Teile, was sie wahrscheinlich zu schmal macht.\n- Die Anzeige rundet den Score auf 5 Punkte und die Spanne auf ganze Punkte, mindestens 1, um keine falsche Genauigkeit vorzutäuschen.\nDer angezeigte Score erhält dann eine von drei Bezeichnungen:\n- Früh: unter 40.\n- Vielversprechend: von 40 bis unter 70, und auch bei 70 oder mehr, wenn eine Pflichtschwelle gescheitert ist.\n- Solide: 70 oder mehr, ohne gescheiterte Pflichtschwelle.",
+    "source": "content/docs/de/ai-plan-score.mdx#von-den-antworten-zum-score"
+  },
+  {
+    "id": "docs:ai-plan-score#von-den-antworten-zum-score-2",
+    "lang": "de",
+    "title": "KI-Plan-Score · Von den Antworten zum Score",
+    "url": "/de/docs/ai-plan-score#von-den-antworten-zum-score",
+    "text": "Die Bezeichnung folgt dem gerundeten Score, sodass die angezeigte Zahl und ihre Bezeichnung einander nie widersprechen: Ein Plan mit 68 wird als 70 angezeigt und ist Solide, außer eine Pflichtschwelle ist gescheitert.",
     "source": "content/docs/de/ai-plan-score.mdx#von-den-antworten-zum-score"
   },
   {

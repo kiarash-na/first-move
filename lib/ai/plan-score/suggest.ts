@@ -7,7 +7,7 @@ import { HINTS } from "./hints"
 import { judgementOf } from "./judgements"
 import type { TextOptions, TextResult } from "./report"
 import { weakJudgements } from "./report"
-import { fit, GATE_STATEMENTS, LANGUAGE_NAME, planExcerpts, TEXT_RULES } from "./text-input"
+import { fit, GATE_STATEMENTS, LANGUAGE_RULE, planExcerpts, TEXT_RULES } from "./text-input"
 
 /**
  * On-demand suggestions (D-77): for each weak judgement and each failed or unclear gate, one to
@@ -18,6 +18,12 @@ export const suggestionsOutputSchema = z.object({
   items: z.array(z.object({ key: z.string(), suggestions: z.array(z.string()) })).describe("One entry per key that was asked for."),
 })
 type SuggestionsOutput = z.infer<typeof suggestionsOutputSchema>
+
+/**
+ * The suggestions' output token cap, reasoning tokens included (see `REPORT_MAX_OUTPUT_TOKENS`):
+ * at 2,500 German suggestions were cut off in the blind test. Stored lengths still apply.
+ */
+export const SUGGESTIONS_MAX_OUTPUT_TOKENS = 8_000
 
 /** What needs suggestions: weak judgements, then gates that failed or stayed unclear. */
 export function suggestionTargets(score: AiScore, only?: readonly string[]): string[] {
@@ -38,7 +44,7 @@ function target(key: string) {
 
 export function suggestPrompt(project: Project, keys: readonly string[], lang: TextOptions["lang"]): { system: string; prompt: string } {
   const system =
-    `${TEXT_RULES} Suggest improvements in ${LANGUAGE_NAME[lang]} for the weak parts and failed checks of a business plan. ` +
+    `${TEXT_RULES} ${LANGUAGE_RULE[lang]} Suggest improvements for the weak parts and failed checks of a business plan. ` +
     "For each key give one to three short suggestions (one sentence each) that the team can carry out with ordinary " +
     "effort: general and feasible, based on what a strong answer contains and on the hints given. Do not invent " +
     "programmes, prices, laws, organisations or figures."
@@ -70,7 +76,7 @@ export async function writeSuggestions(project: Project, score: AiScore, options
     system,
     prompt,
     output: Output.object({ schema: suggestionsOutputSchema, name: "ai_plan_score_suggestions" }),
-    maxOutputTokens: 2500,
+    maxOutputTokens: SUGGESTIONS_MAX_OUTPUT_TOKENS,
     maxRetries: 2,
     abortSignal: options.abortSignal,
     providerOptions: options.providerOptions,

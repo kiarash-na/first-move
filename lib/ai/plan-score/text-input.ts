@@ -22,6 +22,17 @@ export const TEXT_RULES =
 export const LANGUAGE_NAME = { en: "English", de: "German" } as const
 export type TextLang = keyof typeof LANGUAGE_NAME
 
+/**
+ * The language instruction of every text call. German addresses the reader formally, as the UI
+ * does ("Sie"): the first German blind-test texts said "ihr".
+ */
+export const LANGUAGE_RULE: Record<TextLang, string> = {
+  en: "Write in English.",
+  de:
+    'Write in German. Address the reader formally, as the app does: "Sie", "Ihr" and "Ihnen", capitalised. ' +
+    'Never use the informal "du", "dich", "dir" or "dein", nor the informal plural "ihr", "euch" or "euer".',
+}
+
 const EXCERPT = 280
 
 const excerpt = (value: unknown) => {

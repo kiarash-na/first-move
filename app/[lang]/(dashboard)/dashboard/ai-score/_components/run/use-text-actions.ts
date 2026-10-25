@@ -89,5 +89,5 @@ export function useTextActions({ store, createClient, project, score, textModelI
 
   const clearError = useCallback(() => setError(null), [])
 
-  return { canUseAi: ready && score !== null && !running, busy, error, rewriteReport: rewrite, suggest: suggestFor, remove, clearError }
+  return { canUseAi: ready && score !== null && !running, running, busy, error, rewriteReport: rewrite, suggest: suggestFor, remove, clearError }
 }

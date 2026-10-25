@@ -99,11 +99,13 @@ No source prescribes numeric weights, so these are reasoned defaults. Costs and 
 - **The AI Plan Score** is the weighted sum of the seven dimensions, from 0 to 100. Its band is one standard deviation, computed from the spreads with the parts taken as independent, which probably makes it too narrow.
 - **The display** rounds the score to 5 points and the band to whole points, at least 1, to avoid false precision.
 
-The score then gets one of three labels:
+The score as shown then gets one of three labels:
 
 - **Early**: below 40.
 - **Promising**: from 40 to below 70, and also 70 or more when a must-have gate failed.
 - **Solid**: 70 or more, with no failed must-have gate.
+
+The label follows the rounded score, so the number you see and its label never contradict each other: a plan at 68 shows 70 and is Solid, unless a must-have gate failed.
 
 ## Report and suggestions
 
