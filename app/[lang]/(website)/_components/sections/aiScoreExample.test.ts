@@ -22,6 +22,31 @@ describe('the AI Plan Score example run', () => {
     for (const turn of EXAMPLE_TURNS) for (const level of turn.levels) expect(level).toBeLessThanOrEqual(4)
   })
 
+  it('gives each cell the dimension of its judgement in lib/ai/plan-score/judgements.ts, in the same order', () => {
+    for (const turn of EXAMPLE_TURNS) expect(turn.dimensions).toHaveLength(turn.levels.length)
+    // A copy of the engine's order (the landing may not import lib/ai); update both together.
+    expect(EXAMPLE_TURNS.flatMap((turn) => turn.dimensions)).toEqual([
+      'technology', 'participation', 'participation', 'value', 'value', 'value', 'value', 'technology',
+      'value', 'technology', 'governance', 'participation', 'economics', 'economics', 'governance', 'governance',
+      'participation', 'economics', 'economics', 'evidence', 'evidence',
+      'evidence', 'path', 'path', 'path', 'path', 'path',
+    ])
+  })
+
+  it('derives the dimension bars and the score from the cells, as the engine aggregates them', () => {
+    expect(Object.fromEntries(EXAMPLE_DIMENSIONS.map((dimension) => [dimension.id, dimension.score]))).toEqual({
+      value: 50,
+      technology: 66.67,
+      economics: 62.5,
+      governance: 58.33,
+      participation: 68.75,
+      evidence: 58.33,
+      path: 55,
+    })
+    expect(EXAMPLE_DIMENSIONS.map((dimension) => dimension.weight)).toEqual([0.15, 0.1, 0.2, 0.2, 0.15, 0.1, 0.1])
+    expect(EXAMPLE_RAW_SCORE).toBe(60)
+  })
+
   it('labels like lib/ai/plan-score/aggregate.ts: Early < 40 ≤ Promising < 70 ≤ Solid, a must-have cap stays below Solid', () => {
     expect([PROMISING_FROM, SOLID_FROM]).toEqual([40, 70])
     expect(labelOf(39.9)).toBe('early')

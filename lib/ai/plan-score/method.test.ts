@@ -3,7 +3,7 @@ import { fieldsOf } from "@/lib/project"
 import { BRANCHES, FOLLOW_UP_GATE_IDS, followUpGate } from "./branches"
 import { DIMENSIONS, DIMENSION_IDS } from "./dimensions"
 import { GATES } from "./gates"
-import { JUDGEMENTS } from "./judgements"
+import { JUDGEMENTS, TURNS } from "./judgements"
 import { LEVEL_COUNT, LEVEL_CRITERIA } from "./scale"
 
 const STEP_TURN = { opportunity: 1, "business-logic": 2, "reality-check": 3, implementation: 4 } as const
@@ -23,6 +23,19 @@ describe("AI Plan Score method (PLAN-AI-SCORE-01)", () => {
     for (const judgement of JUDGEMENTS) expect(judgement.turn, judgement.id).toBe(STEP_TURN[steps.get(judgement.fields[0].id)!])
     const turns = JUDGEMENTS.map((judgement) => judgement.turn)
     expect(turns).toEqual([...turns].sort())
+  })
+
+  it("keeps the turns and dimensions the landing's example run copies (app/[lang]/(website)/_components/sections/aiScoreExample.ts)", () => {
+    // The landing may not import lib/ai (boundary.test.ts); if this changes, update the example too.
+    expect(TURNS.map((turn) => JUDGEMENTS.filter((judgement) => judgement.turn === turn).map((judgement) => judgement.dimension))).toEqual([
+      ["technology", "participation", "participation", "value", "value", "value", "value", "technology"],
+      ["value", "technology", "governance", "participation", "economics", "economics", "governance", "governance"],
+      ["participation", "economics", "economics", "evidence", "evidence"],
+      ["evidence", "path", "path", "path", "path", "path"],
+    ])
+    expect(DIMENSIONS.map((dimension) => [dimension.id, dimension.weight])).toEqual([
+      ["value", 0.15], ["technology", 0.1], ["economics", 0.2], ["governance", 0.2], ["participation", 0.15], ["evidence", 0.1], ["path", 0.1],
+    ])
   })
 
   it("has weights that sum to 1, and judgements in every dimension", () => {
