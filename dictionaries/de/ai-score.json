@@ -545,5 +545,289 @@
       "3": "Realitätscheck",
       "4": "Umsetzung"
     }
+  },
+  "results": {
+    "title": "Ihr KI-Plan-Score",
+    "lead": "Das gespeicherte Ergebnis des letzten Durchlaufs: jede Entscheidung von Jev und die Zahlen daraus. Eine KI-Einschätzung des geschriebenen Plans, kein Urteil über die Machbarkeit.",
+    "aiGenerated": "KI-generiert",
+    "summary": {
+      "title": "KI-Plan-Score",
+      "outOf": "von 100",
+      "band": "± {band}",
+      "scoreLabel": "KI-Plan-Score {score} von 100, plus oder minus {band}",
+      "range": "Band von einer Standardabweichung: {from} bis {to}",
+      "rounded": "Auf {step} Punkte gerundet angezeigt. Die Einstufung nutzt den ungerundeten Score, {raw}.",
+      "capped": "Eine Pflichtprüfung ist nicht erfüllt, daher bleibt die Einstufung unter „{solid}“, egal wie viele Punkte der Plan hat.",
+      "seeChecks": "Zu den Prüfungen",
+      "scale": {
+        "label": "Der Score auf der Skala von 0 bis 100, mit seinem Band und den Bereichen der Einstufungen"
+      }
+    },
+    "signal": {
+      "title": "Signal aus dem Quick Check",
+      "note": "Geht als festes Signal aus dem Quick Check ein. Die KI berechnet es nie.",
+      "verdict": "Ergebnis",
+      "heatDensity": "Wärmedichte",
+      "heatDensityValue": "{value} MWh/m",
+      "economicRatio": "Wirtschaftlichkeitskennzahl",
+      "economicRatioValue": "E = {value}",
+      "none": "Kein vollständiger Quick Check: Jev hat den Plan für sich allein gelesen."
+    },
+    "meta": {
+      "label": "Zu diesem Durchlauf",
+      "date": "Bewertet am {date}",
+      "method": "Methode {version}",
+      "decisionModel": "Entscheidungen von {model}",
+      "textModel": "Bericht von {model}",
+      "noReport": "Noch kein Bericht",
+      "tokens": "{count} Tokens",
+      "tokensDetail": "{decision} für Entscheidungen, {text} für Text"
+    },
+    "outdated": {
+      "title": "Ihr Plan hat sich seit dieser Bewertung geändert",
+      "body": "Diese Planteile haben sich seit dem Durchlauf geändert, daher sind ihre Stufen und der Score womöglich veraltet. Bewerten Sie oben erneut, um die Änderungen einzubeziehen.",
+      "edit": "Bearbeiten in {step}"
+    },
+    "dimensions": {
+      "title": "Sieben Dimensionen",
+      "lead": "Was einen Businessplan für ein 5GDHC-Netz solide macht. Eine Dimension ist die mittlere Stufe ihrer Planteile auf der Skala von 0 bis 100; eine nicht erfüllte Prüfung kann sie begrenzen.",
+      "view": {
+        "label": "Ansicht",
+        "chart": "Diagramm",
+        "table": "Tabelle"
+      },
+      "legend": {
+        "score": "Score",
+        "raw": "Vor der Begrenzung",
+        "cap": "Begrenzung durch eine Prüfung",
+        "band": "± eine Standardabweichung"
+      },
+      "weight": "Gewicht {value}",
+      "value": "{score} ± {sd}",
+      "capped": "Begrenzt auf Stufe {level}",
+      "table": {
+        "caption": "Tabellenansicht der sieben Dimensionen",
+        "heading": "Dimension",
+        "score": "Score",
+        "raw": "Vor Begrenzung",
+        "cap": "Begrenzung",
+        "sd": "± SD",
+        "weight": "Gewicht",
+        "points": "Gewichtete Punkte",
+        "total": "KI-Plan-Score",
+        "capValue": "Stufe {level} ({points})"
+      }
+    },
+    "parts": {
+      "title": "Jeder Planteil",
+      "lead": "Jevs Einschätzung jedes Teils auf den fünf Stufen, in der Reihenfolge des Businessplans. Die Balken zeigen, wie wahrscheinlich Jev jede Stufe fand; die Linie markiert die erwartete Stufe.",
+      "turn": "Runde {turn} · {name}",
+      "level": "{name} · {value}",
+      "levelLabel": "Erwartete Stufe {value} von {max}, {name}",
+      "histogram": "Wahrscheinlichkeit je Stufe",
+      "confidence": "Sicherheit",
+      "confidenceValue": "{value} sicher",
+      "confidenceHelp": "Wie gebündelt Jevs Antwort ist: 100 %, wenn eine Stufe alles trägt, 0 %, wenn alle Stufen gleich wahrscheinlich sind.",
+      "spread": "Streuung ± {value} Stufen",
+      "changed": "Geändert",
+      "changedNote": "Der Text hat sich nach dem Durchlauf geändert, daher ist diese Stufe womöglich veraltet.",
+      "edit": "Bearbeiten in {step}",
+      "details": "Details",
+      "detailsOf": "Details zu {name}",
+      "levels": "Was jede Stufe bedeutet",
+      "levelNumber": "Stufe {number}",
+      "empty": "Kein Text: ohne KI mit 0 bewertet und nie gesendet.",
+      "refused": "Jev hat nicht geantwortet, daher zählt dieser Teil nicht.",
+      "noDistribution": "Jev hat eine Stufe ohne Wahrscheinlichkeiten genannt.",
+      "weak": "Schwach: unter Stufe {level}",
+      "suggestions": "Vorschläge",
+      "suggest": "Verbesserungen vorschlagen",
+      "suggestFor": "Verbesserungen für {name} vorschlagen"
+    },
+    "checks": {
+      "title": "Prüfungen und Entscheidungen",
+      "lead": "Prüfungen sind Ja-Nein-Fragen über den ganzen Plan. Sie geben nie Punkte: Eine Prüfung, die sicher nicht erfüllt ist, begrenzt ihre Dimension, eine unklare ist nur ein Hinweis. Die Verzweigungen entscheiden, welche Folgeprüfung die nächste Runde stellt.",
+      "gates": "Prüfungen",
+      "branches": "Entscheidungen",
+      "passProbability": "Erfüllt mit {value}",
+      "noProbability": "Keine Wahrscheinlichkeit: {source}",
+      "meterLabel": "Wahrscheinlichkeit, dass sie erfüllt ist: {value}. Erfüllt ab {pass}, nicht erfüllt bis {fail}.",
+      "capApplied": "Begrenzt „{dimension}“ auf Stufe {level}",
+      "capPossible": "Würde „{dimension}“ auf Stufe {level} begrenzen, wenn sie nicht erfüllt wäre",
+      "capConditional": "Würde „{dimension}“ auf Stufe {level} begrenzen, wenn sie nicht erfüllt wäre und die Wärmedichte im Quick Check niedrig ist",
+      "flag": "Nur ein Hinweis: Sie senkt den Score nie",
+      "mustHave": "Pflicht",
+      "followUp": "Folgeprüfung",
+      "openedBy": "Gefragt, weil „{branch}“ „{option}“ ist",
+      "turn": "Runde {turn}",
+      "chosen": "Gewählt: {option}",
+      "chosenProbability": "{value} sicher",
+      "refusedBranch": "Jev hat nicht geantwortet, daher wurde keine Folgeprüfung gestellt.",
+      "opens": "Hat die Folgeprüfung „{check}“ ausgelöst",
+      "opensNone": "Löst keine Folgeprüfung aus",
+      "options": "Wahrscheinlichkeit je Option",
+      "suggest": "Verbesserungen vorschlagen",
+      "suggestFor": "Verbesserungen für {name} vorschlagen"
+    },
+    "report": {
+      "title": "Kurzbericht",
+      "lead": "Vom Textmodell aus Jevs endgültigen Zahlen geschrieben. Es ändert nie eine Zahl.",
+      "by": "Geschrieben von {model}",
+      "strengths": "Stärken",
+      "gaps": "Lücken",
+      "actions": "Nächste Schritte",
+      "pointsTo": "Bezieht sich auf",
+      "none": "Noch kein Bericht.",
+      "otherLanguage": "Dieser Bericht ist auf {language}.",
+      "write": "Bericht schreiben",
+      "writeIn": "Auf {language} schreiben",
+      "rewrite": "Bericht neu schreiben",
+      "writing": "Bericht wird geschrieben…"
+    },
+    "suggestions": {
+      "title": "Vorschläge",
+      "lead": "Auf Wunsch schlägt das Textmodell allgemeine, machbare Verbesserungen für schwache Planteile (unter Stufe {level}) und für nicht erfüllte oder unklare Prüfungen vor. Nichts wird gesendet, bevor Sie fragen.",
+      "ask": "Verbesserungen für die schwachen Teile vorschlagen",
+      "askAgain": "Erneut für die schwachen Teile vorschlagen",
+      "writing": "Vorschläge werden geschrieben…",
+      "targets": "{count} schwache Teile oder Prüfungen",
+      "nothing": "Keine schwachen Planteile und keine nicht erfüllten oder unklaren Prüfungen: nichts vorzuschlagen.",
+      "none": "Noch keine Vorschläge.",
+      "parts": "Planteile",
+      "checks": "Prüfungen",
+      "by": "Vorgeschlagen von {model} am {date}",
+      "otherLanguage": "Diese Vorschläge sind auf {language}. Fragen Sie erneut, um sie auf {current} zu erhalten."
+    },
+    "needsAi": "Um mit KI zu schreiben, verwenden Sie oben einen Gateway-Schlüssel und wählen ein Textmodell.",
+    "errors": {
+      "key": "Das Gateway hat den Schlüssel nicht akzeptiert. Prüfen Sie, ob Sie den ganzen Schlüssel eingefügt haben und ob er noch aktiv ist.",
+      "credits": "Ihr Gateway-Konto hat kein Guthaben mehr. Laden Sie in Ihrem Vercel-Konto Guthaben auf und versuchen Sie es dann erneut.",
+      "forbidden": "Der Schlüssel darf dieses Modell oder diese Funktion nicht nutzen. Prüfen Sie die Einstellungen Ihres Gateways oder wählen Sie ein anderes Textmodell.",
+      "model": "Das Gateway kennt dieses Modell nicht. Wählen Sie ein anderes Textmodell.",
+      "rate": "Gerade zu viele Anfragen. Warten Sie eine Minute und versuchen Sie es dann erneut.",
+      "provider": "Beim Modellanbieter gab es ein Problem. Versuchen Sie es gleich noch einmal.",
+      "network": "Das Gateway war nicht erreichbar oder hat zu lange gebraucht. Prüfen Sie Ihre Verbindung und versuchen Sie es dann erneut.",
+      "aborted": "Abgebrochen. Nichts wurde geändert.",
+      "unknown": "Etwas ist schiefgegangen. Versuchen Sie es erneut."
+    },
+    "languages": {
+      "en": "Englisch",
+      "de": "Deutsch"
+    },
+    "how": {
+      "title": "So bewerten wir",
+      "lead": "Der KI-Plan-Score macht aus Jevs Entscheidungen Zahlen, ohne weitere KI. Jede Zahl hier stammt aus der Methode selbst.",
+      "levels": {
+        "title": "Fünf Stufen",
+        "lead": "Jeder Planteil wird auf derselben Skala bewertet. Die Stufen beschreiben Qualität, nie Länge."
+      },
+      "turns": {
+        "title": "Runden",
+        "lead": "Runde 0 liest den Plan ohne KI: Leere Teile erhalten 0 und werden nie gesendet, und der Quick Check geht als festes Signal ein. Dann nimmt Jev eine Runde pro Schritt des Businessplans, vom ersten Feld bis zum letzten, und sieht, was es vorher entschieden hat."
+      },
+      "checks": {
+        "title": "Prüfungen und Begrenzungen",
+        "body": "Eine Prüfung ist erfüllt, wenn Jev ihre Wahrscheinlichkeit bei {pass} oder darüber sieht, und nicht erfüllt bei {fail} oder darunter; dazwischen bleibt sie unklar und ist nur ein Hinweis. Eine nicht erfüllte Prüfung begrenzt ihre Dimension auf Stufe {caps}. Eine nicht erfüllte Pflichtprüfung begrenzt auf Stufe {mustHave} und hält die Einstufung unter „{solid}“. Ein Hinweis begrenzt nie.",
+        "or": "oder"
+      },
+      "branches": {
+        "title": "Verzweigungen und Folgeprüfungen",
+        "body": "Drei Auswahlfragen (der Ankerkunde, die wichtigste Wärmequelle und das Eigentumsmodell) wählen die Folgeprüfung, die die nächste Runde stellt. So bekommt jeder Plan die Fragen, die zu ihm passen."
+      },
+      "formulas": {
+        "title": "Formeln",
+        "expected": {
+          "name": "Erwartete Stufe eines Planteils",
+          "formula": "E = Σ k · p(k), k = 0 … {max}"
+        },
+        "dimensionLevel": {
+          "name": "Stufe einer Dimension",
+          "formula": "L = min(mittleres E ihrer Teile, niedrigste Begrenzung ihrer nicht erfüllten Prüfungen)"
+        },
+        "dimensionScore": {
+          "name": "Score einer Dimension",
+          "formula": "S = {perLevel} · L"
+        },
+        "dimensionSpread": {
+          "name": "Streuung einer Dimension",
+          "formula": "SD = √(Σ SD²) / n"
+        },
+        "score": {
+          "name": "KI-Plan-Score",
+          "formula": "Score = Σ w · S"
+        },
+        "band": {
+          "name": "Band",
+          "formula": "Band = √(Σ (w · SD)²)"
+        },
+        "note": "Ein leerer Teil zählt als 0 ohne Streuung; ein Teil ohne Antwort zählt nicht. Die Streuung einer Dimension nimmt ihre Teile als unabhängig an und unterschätzt sie daher wahrscheinlich."
+      },
+      "weights": {
+        "title": "Gewichte",
+        "lead": "Begründete Voreinstellungen, die sich auf {total} summieren; keine Quelle schreibt Zahlen vor."
+      },
+      "labels": {
+        "title": "Einstufungen",
+        "early": "unter {promising}",
+        "promising": "{promising} bis unter {solid}",
+        "solid": "ab {solid}, außer eine Pflichtprüfung ist nicht erfüllt",
+        "rounding": "Auf {step} Punkte gerundet angezeigt, das Band in ganzen Punkten, um keine falsche Genauigkeit vorzutäuschen. Die Einstufung nutzt den ungerundeten Score."
+      },
+      "caveats": {
+        "title": "Mit Vorsicht lesen",
+        "calibration": "Jevs Wahrscheinlichkeiten sind nicht kalibriert: 80 % heißt nicht, dass es in vier von fünf Fällen richtig liegt.",
+        "opinion": "Der Score ist eine KI-Einschätzung des geschriebenen Plans, keine Vorhersage über Machbarkeit oder Förderung.",
+        "length": "Länge ist keine Qualität: Ein längerer Text erhält nur dann mehr, wenn er konkreter, bezifferter oder besser belegt ist."
+      }
+    },
+    "sources": {
+      "title": "Quellen",
+      "lead": "Die Bewertung wurde auf dem Material der Challenge, der Studie des Forschungsprojekts und veröffentlichten Quellen aufgebaut. Die Planteile und Prüfungen zitieren sie.",
+      "method": "Quellen der Methode",
+      "methodLead": "Veröffentlichte Forschung, amtliche Leitfäden und Standards, jeder Link geöffnet und geprüft.",
+      "showMethod": "Alle {count} Quellen zeigen",
+      "provider": "Quellen der Challenge",
+      "providerLead": "Mit ihrer Kennung aus dem Material der Challenge zitiert, ohne öffentlichen Link.",
+      "brief": "Challenge-Briefing: Geschäftsmodelle",
+      "talk": "Vortrag des Forschungsprojekts Anergie Leicht Gemacht",
+      "items": {
+        "BM-SCN-03": "Szenario 3: Stadtrand mit gemischtem Eigentum",
+        "BM-SCOPE-02": "Beschreibung der Challenge und Problemstellung",
+        "BM-SCOPE-03": "Leitfragen",
+        "BM-STEP-01": "Schritt 1: Die Chance beschreiben",
+        "BM-STEP-02": "Schritt 2: Die Geschäftslogik aufbauen",
+        "BM-STEP-03": "Schritt 3: Den Realitätscheck machen",
+        "BM-STEP-04": "Schritt 4: Verbessern und die Umsetzung vorbereiten",
+        "ALG-04": "Projektfokus: Aspekte für eine erfolgreiche Umsetzung",
+        "ALG-05": "Organisatorische Erkenntnisse",
+        "ALG-06": "Was ist ein Anergie- oder 5GDHC-Netz?",
+        "ALG-07": "Wärmebedarf im Wiener Wärmeplan 2040",
+        "ALG-08": "Beispiele aus der Praxis",
+        "ALG-09": "Erkenntnisse aus den Anwendungsfällen",
+        "ALG-10": "Tipps für die Challenge"
+      },
+      "kinds": {
+        "peer-reviewed": "Begutachtet",
+        "official": "Amtlich",
+        "standard": "Standard",
+        "book": "Buch",
+        "company": "Praxis"
+      },
+      "citedBy": "Zitiert in: {dimensions}",
+      "roles": {
+        "scale": "Grundlage der Stufen",
+        "aggregation": "Grundlage der erwarteten Stufe"
+      },
+      "link": "{title} (öffnet in einem neuen Tab)",
+      "checked": "Link geprüft am {date}",
+      "docs": "So funktioniert der KI-Plan-Score"
+    },
+    "remove": {
+      "action": "Score löschen",
+      "title": "KI-Plan-Score löschen?",
+      "body": "Der gespeicherte Score, sein Bericht und seine Vorschläge werden aus diesem Projekt entfernt. Ihr Businessplan bleibt, wie er ist, und Sie können jederzeit erneut bewerten.",
+      "cancel": "Behalten",
+      "confirm": "Score löschen"
+    }
   }
 }

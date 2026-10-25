@@ -545,5 +545,289 @@
       "3": "Reality check",
       "4": "Implementation"
     }
+  },
+  "results": {
+    "title": "Your AI Plan Score",
+    "lead": "The saved result of the last run: every decision Jev took and the numbers made from them. An AI opinion on the written plan, not a feasibility verdict.",
+    "aiGenerated": "AI-generated",
+    "summary": {
+      "title": "AI Plan Score",
+      "outOf": "of 100",
+      "band": "± {band}",
+      "scoreLabel": "AI Plan Score {score} of 100, plus or minus {band}",
+      "range": "Band of one standard deviation: {from} to {to}",
+      "rounded": "Shown rounded to {step} points. The label uses the unrounded score, {raw}.",
+      "capped": "A must-have check failed, so the label stays below {solid} however many points the plan has.",
+      "seeChecks": "See the checks",
+      "scale": {
+        "label": "The score on the scale from 0 to 100, with its band and the label zones"
+      }
+    },
+    "signal": {
+      "title": "Quick Check signal",
+      "note": "Entered as a fixed signal from the Quick Check. The AI never computes it.",
+      "verdict": "Verdict",
+      "heatDensity": "Heat density",
+      "heatDensityValue": "{value} MWh/m",
+      "economicRatio": "Economic ratio",
+      "economicRatioValue": "E = {value}",
+      "none": "No complete Quick Check: Jev read the plan on its own."
+    },
+    "meta": {
+      "label": "About this run",
+      "date": "Scored on {date}",
+      "method": "Method {version}",
+      "decisionModel": "Decisions by {model}",
+      "textModel": "Report by {model}",
+      "noReport": "No report yet",
+      "tokens": "{count} tokens",
+      "tokensDetail": "{decision} for decisions, {text} for text"
+    },
+    "outdated": {
+      "title": "Your plan changed after this score",
+      "body": "These plan parts changed since the run, so their levels and the score may be out of date. Score again above to include the changes.",
+      "edit": "Edit in {step}"
+    },
+    "dimensions": {
+      "title": "Seven dimensions",
+      "lead": "What makes a 5GDHC business plan solid. A dimension is the mean evidence level of its plan parts on the scale from 0 to 100; a failed check can cap it.",
+      "view": {
+        "label": "View",
+        "chart": "Chart",
+        "table": "Table"
+      },
+      "legend": {
+        "score": "Score",
+        "raw": "Before the cap",
+        "cap": "Cap of a failed check",
+        "band": "± one standard deviation"
+      },
+      "weight": "Weight {value}",
+      "value": "{score} ± {sd}",
+      "capped": "Capped at level {level}",
+      "table": {
+        "caption": "Table view of the seven dimensions",
+        "heading": "Dimension",
+        "score": "Score",
+        "raw": "Before cap",
+        "cap": "Cap",
+        "sd": "± SD",
+        "weight": "Weight",
+        "points": "Weighted points",
+        "total": "AI Plan Score",
+        "capValue": "Level {level} ({points})"
+      }
+    },
+    "parts": {
+      "title": "Every plan part",
+      "lead": "Jev's judgement of each part on the five evidence levels, in the order of the Business Plan. The bars show how likely Jev found each level; the line marks the expected level.",
+      "turn": "Turn {turn} · {name}",
+      "level": "{name} · {value}",
+      "levelLabel": "Expected level {value} of {max}, {name}",
+      "histogram": "Probability per level",
+      "confidence": "Confidence",
+      "confidenceValue": "{value} sure",
+      "confidenceHelp": "How concentrated Jev's answer is: 100 % when one level holds everything, 0 % when every level is equally likely.",
+      "spread": "Spread ± {value} levels",
+      "changed": "Changed",
+      "changedNote": "The text changed after the run, so this level may be out of date.",
+      "edit": "Edit in {step}",
+      "details": "Details",
+      "detailsOf": "Details of {name}",
+      "levels": "What each level means",
+      "levelNumber": "Level {number}",
+      "empty": "No text: scored 0 without AI and never sent.",
+      "refused": "Jev gave no answer, so this part does not count.",
+      "noDistribution": "Jev gave a level without probabilities.",
+      "weak": "Weak: below level {level}",
+      "suggestions": "Suggestions",
+      "suggest": "Suggest improvements",
+      "suggestFor": "Suggest improvements for {name}"
+    },
+    "checks": {
+      "title": "Checks and decisions",
+      "lead": "Checks are yes-or-no questions across the plan. They never add points: a check that fails with confidence caps its dimension, an unclear one is only a flag. The branches decide which follow-up check the next turn asks.",
+      "gates": "Checks",
+      "branches": "Decisions",
+      "passProbability": "Pass probability {value}",
+      "noProbability": "No probability: {source}",
+      "meterLabel": "Probability that it passes: {value}. Passes from {pass}, fails up to {fail}.",
+      "capApplied": "Caps {dimension} at level {level}",
+      "capPossible": "Would cap {dimension} at level {level} if it failed",
+      "capConditional": "Would cap {dimension} at level {level} if it failed while the Quick Check heat density is low",
+      "flag": "A flag only: it never lowers the score",
+      "mustHave": "Must-have",
+      "followUp": "Follow-up check",
+      "openedBy": "Asked because {branch} is “{option}”",
+      "turn": "Turn {turn}",
+      "chosen": "Chosen: {option}",
+      "chosenProbability": "{value} sure",
+      "refusedBranch": "Jev gave no answer, so no follow-up check was asked.",
+      "opens": "Opened the follow-up check “{check}”",
+      "opensNone": "Opens no follow-up check",
+      "options": "Probability per option",
+      "suggest": "Suggest improvements",
+      "suggestFor": "Suggest improvements for {name}"
+    },
+    "report": {
+      "title": "Short report",
+      "lead": "Written by the text model from Jev's final numbers. It never changes a number.",
+      "by": "Written by {model}",
+      "strengths": "Strengths",
+      "gaps": "Gaps",
+      "actions": "Next actions",
+      "pointsTo": "Points to",
+      "none": "No report yet.",
+      "otherLanguage": "This report is in {language}.",
+      "write": "Write the report",
+      "writeIn": "Write it in {language}",
+      "rewrite": "Write the report again",
+      "writing": "Writing the report…"
+    },
+    "suggestions": {
+      "title": "Suggestions",
+      "lead": "On request, the text model suggests general, feasible improvements for weak plan parts (below level {level}) and for checks that failed or stayed unclear. Nothing is sent until you ask.",
+      "ask": "Suggest improvements for the weak parts",
+      "askAgain": "Suggest again for the weak parts",
+      "writing": "Writing suggestions…",
+      "targets": "{count} weak parts or checks",
+      "nothing": "No weak plan parts and no failed or unclear checks: nothing to suggest.",
+      "none": "No suggestions yet.",
+      "parts": "Plan parts",
+      "checks": "Checks",
+      "by": "Suggested by {model} on {date}",
+      "otherLanguage": "These suggestions are in {language}. Ask again to get them in {current}."
+    },
+    "needsAi": "To write with AI, use a Gateway key and choose a text model above.",
+    "errors": {
+      "key": "The Gateway did not accept the key. Check that you pasted the whole key and that it is still active.",
+      "credits": "Your Gateway account has no credits left. Add credits in your Vercel account, then try again.",
+      "forbidden": "The key may not use this model or feature. Check the settings of your Gateway, or choose another text model.",
+      "model": "The Gateway does not know this model. Choose another text model.",
+      "rate": "Too many requests right now. Wait a minute, then try again.",
+      "provider": "The model provider had a problem. Try again in a moment.",
+      "network": "The Gateway could not be reached, or it took too long. Check your connection, then try again.",
+      "aborted": "Cancelled. Nothing was changed.",
+      "unknown": "Something went wrong. Try again."
+    },
+    "languages": {
+      "en": "English",
+      "de": "German"
+    },
+    "how": {
+      "title": "How we score",
+      "lead": "The AI Plan Score turns Jev's decisions into numbers without further AI. Every number here comes from the method itself.",
+      "levels": {
+        "title": "Five evidence levels",
+        "lead": "Every plan part is judged on the same scale. The levels describe quality, never length."
+      },
+      "turns": {
+        "title": "Turns",
+        "lead": "Turn 0 reads the plan without AI: empty parts score 0 and are never sent, and the Quick Check enters as a fixed signal. Then Jev takes one turn per Business Plan step, from the first field to the last, and sees what it decided before."
+      },
+      "checks": {
+        "title": "Checks and caps",
+        "body": "A check passes when Jev puts its probability at {pass} or above and fails at {fail} or below; in between it stays unclear and is only a flag. A failed check caps its dimension at level {caps}. A failed must-have check caps at level {mustHave} and keeps the label below {solid}. A flag never caps.",
+        "or": "or"
+      },
+      "branches": {
+        "title": "Branches and follow-up checks",
+        "body": "Three choice questions (the anchor customer, the main heat source and the ownership model) pick the follow-up check the next turn asks, so each plan gets the questions that fit it."
+      },
+      "formulas": {
+        "title": "Formulas",
+        "expected": {
+          "name": "Expected level of a plan part",
+          "formula": "E = Σ k · p(k), k = 0 … {max}"
+        },
+        "dimensionLevel": {
+          "name": "Level of a dimension",
+          "formula": "L = min(mean E of its parts, lowest cap of its failed checks)"
+        },
+        "dimensionScore": {
+          "name": "Score of a dimension",
+          "formula": "S = {perLevel} · L"
+        },
+        "dimensionSpread": {
+          "name": "Spread of a dimension",
+          "formula": "SD = √(Σ SD²) / n"
+        },
+        "score": {
+          "name": "AI Plan Score",
+          "formula": "Score = Σ w · S"
+        },
+        "band": {
+          "name": "Band",
+          "formula": "Band = √(Σ (w · SD)²)"
+        },
+        "note": "An empty part counts as 0 with no spread; a part without an answer does not count. The spread of a dimension takes its parts as independent, which probably understates it."
+      },
+      "weights": {
+        "title": "Weights",
+        "lead": "Reasoned defaults that sum to {total}; no source prescribes numbers."
+      },
+      "labels": {
+        "title": "Labels",
+        "early": "below {promising}",
+        "promising": "{promising} to below {solid}",
+        "solid": "{solid} and above, unless a must-have check failed",
+        "rounding": "Shown rounded to {step} points, with the band in whole points, to avoid false precision. The label uses the unrounded score."
+      },
+      "caveats": {
+        "title": "Read it with care",
+        "calibration": "Jev's probabilities are not calibrated: 80 % does not mean it is right four times in five.",
+        "opinion": "The score is an AI opinion on the written plan, not a prediction of feasibility or funding.",
+        "length": "Length is not quality: a longer text scores higher only when it is more specific, quantified or evidenced."
+      }
+    },
+    "sources": {
+      "title": "Sources",
+      "lead": "The scoring was built on the challenge material, the study of the research project and published references. The plan parts and checks cite them.",
+      "method": "Method references",
+      "methodLead": "Published research, official guidance and standards, each link opened and checked.",
+      "showMethod": "Show all {count} references",
+      "provider": "Provider sources",
+      "providerLead": "Cited by their id in the challenge material, without a public link.",
+      "brief": "Challenge brief: Business models",
+      "talk": "Talk of the research project Anergie Leicht Gemacht",
+      "items": {
+        "BM-SCN-03": "Scenario 3: urban outskirts with mixed ownership",
+        "BM-SCOPE-02": "Challenge description and problem statement",
+        "BM-SCOPE-03": "Key questions",
+        "BM-STEP-01": "Step 1: Define the opportunity",
+        "BM-STEP-02": "Step 2: Build the business logic",
+        "BM-STEP-03": "Step 3: Run the reality check",
+        "BM-STEP-04": "Step 4: Improve and prepare implementation",
+        "ALG-04": "Project focus: aspects for successful implementation",
+        "ALG-05": "Organisational learnings",
+        "ALG-06": "What is an anergy or 5GDHC network?",
+        "ALG-07": "Heat demand in the Vienna Heating Plan 2040",
+        "ALG-08": "Examples in practice",
+        "ALG-09": "Learnings from the use cases",
+        "ALG-10": "Tips for the challenge"
+      },
+      "kinds": {
+        "peer-reviewed": "Peer-reviewed",
+        "official": "Official",
+        "standard": "Standard",
+        "book": "Book",
+        "company": "Practice"
+      },
+      "citedBy": "Cited in: {dimensions}",
+      "roles": {
+        "scale": "Basis of the evidence scale",
+        "aggregation": "Basis of the expected level"
+      },
+      "link": "{title} (opens in a new tab)",
+      "checked": "Link checked on {date}",
+      "docs": "How the AI Plan Score works"
+    },
+    "remove": {
+      "action": "Delete score",
+      "title": "Delete the AI Plan Score?",
+      "body": "The saved score, its report and its suggestions are removed from this project. Your Business Plan stays as it is, and you can score again at any time.",
+      "cancel": "Keep it",
+      "confirm": "Delete score"
+    }
   }
 }
