@@ -72,7 +72,8 @@ export function AssistantPanel({ open, onClose }: { open: boolean; onClose: () =
         !open && "hidden",
       )}
     >
-      <header className="flex items-center gap-2 border-b px-4 py-2 pt-[max(0.5rem,env(safe-area-inset-top))]">
+      {/* A div, not <header>: a header outside sectioning content is a second banner landmark (axe). */}
+      <div className="flex items-center gap-2 border-b px-4 py-2 pt-[max(0.5rem,env(safe-area-inset-top))]">
         <BotIcon className="size-5 shrink-0" strokeWidth={1.6} aria-hidden="true" />
         <h2 id={titleId} className="text-base font-[560]">
           {copy.panel.title}
@@ -88,7 +89,7 @@ export function AssistantPanel({ open, onClose }: { open: boolean; onClose: () =
             <XIcon strokeWidth={1.6} aria-hidden="true" />
           </Button>
         </div>
-      </header>
+      </div>
       {showChat ? (
         <Chat key={projectId ?? "none"} provider={provider} modelId={modelId} modelName={modelName} focusOnMount />
       ) : (
