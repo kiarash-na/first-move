@@ -2,9 +2,22 @@
 import { readdirSync, readFileSync } from "node:fs"
 import path from "node:path"
 import { describe, expect, it } from "vitest"
+import aiScoreDe from "@/dictionaries/de/ai-score.json"
+import bpDe from "@/dictionaries/de/business-plan.json"
 import deCopy from "@/dictionaries/de/docs.json"
+import aiScoreEn from "@/dictionaries/en/ai-score.json"
+import bpEn from "@/dictionaries/en/business-plan.json"
 import enCopy from "@/dictionaries/en/docs.json"
+import { labelOf, PROMISING_FROM, SOLID_FROM } from "@/lib/ai/plan-score/aggregate"
+import { BRANCHES } from "@/lib/ai/plan-score/branches"
+import { DIMENSIONS } from "@/lib/ai/plan-score/dimensions"
+import { GATE_FAIL, GATE_PASS, GATES, LOW_HEAT_DENSITY } from "@/lib/ai/plan-score/gates"
+import { JUDGEMENTS, TURNS } from "@/lib/ai/plan-score/judgements"
+import { WEAK_LEVEL } from "@/lib/ai/plan-score/report"
+import { LEVEL_COUNT, LEVEL_IDS, MAX_LEVEL } from "@/lib/ai/plan-score/scale"
 import { redactSecrets } from "@/lib/ai/text/redact"
+import { displayScore } from "@/lib/business-plan"
+import { AI_SCORE_LIMITS } from "@/lib/project"
 import { REFERENCES } from "@/lib/docs/references"
 import { REFERENCE_CASE_SOURCES } from "@/lib/examples/reference-cases/sources"
 import { DASHBOARD_ROUTES, dashboardHref } from "@/lib/dashboard/routes"
@@ -380,5 +393,87 @@ describe("Quick Check numbers in the German docs match the engine", () => {
     expect(page).toContain(`- **Günstig**: E ist ${decimal(favorable.min)} oder mehr. ${economic("favorable")}`)
     expect(page).toContain(`- **Unklar**: E ist ${number(unclear.min)} oder mehr, aber unter ${decimal(favorable.min)}. ${economic("unclear")}`)
     expect(page).toContain(`- **Deutlich ungünstig**: E ist unter ${number(unclear.min)}. ${economic("clearly_unfavorable")}`)
+  })
+})
+
+/**
+ * The AI Plan Score page (PLAN-AI-SCORE-01) states the engine's constants: the weights, the label
+ * thresholds, the gate decision rule, the scale, the caps and the counts. Names come from the
+ * shared `ai-score` labels, so the page, the route and the engine say the same in both languages.
+ * The Business Plan's "How the AI Plan Score is made" states the same thresholds.
+ */
+describe("AI Plan Score numbers in the docs match the engine", () => {
+  const LABELS = { en: aiScoreEn.labels, de: aiScoreDe.labels }
+  type GateId = keyof (typeof aiScoreEn)["labels"]["gates"]
+  type BranchId = keyof (typeof aiScoreEn)["labels"]["branches"]
+  const WORDS = {
+    en: { mustHave: "must-have", shouldHave: "should-have", flag: "flag only", parts: "parts", and: "and", below: "below", from: "from", toBelow: "to below", orMore: "or more", orLess: "or less" },
+    de: { mustHave: "Pflichtschwelle", shouldHave: "Sollschwelle", flag: "nur Hinweis", parts: "Teile", and: "und", below: "unter", from: "von", toBelow: "bis unter", orMore: "oder mehr", orLess: "oder weniger" },
+  } as const
+  const number = (value: number, lang: Lang) => value.toLocaleString(lang === "en" ? "en-US" : "de-DE")
+  const percent = (value: number) => Math.round(value * 100)
+
+  it.each(LANGS)("%s: states every dimension with its weight, and the weights sum to 100", (lang) => {
+    const page = source("ai-plan-score", lang)
+    expect(DIMENSIONS.reduce((sum, dimension) => sum + percent(dimension.weight), 0)).toBe(100)
+    for (const { id, weight } of DIMENSIONS) {
+      const { name, description } = LABELS[lang].dimensions[id]
+      expect(page).toContain(`- **${name}**: ${percent(weight)} %. ${description}`)
+    }
+  })
+
+  it.each(LANGS)("%s: states the five evidence levels in order and the step of 25 points per level", (lang) => {
+    const page = source("ai-plan-score", lang)
+    expect(LEVEL_IDS).toHaveLength(LEVEL_COUNT)
+    LEVEL_IDS.forEach((id, level) => expect(page).toContain(`- **${LABELS[lang].levels[id].name} (${level})**:`))
+    expect(page).toContain(lang === "en" ? `times ${100 / MAX_LEVEL}` : `mal ${100 / MAX_LEVEL}`)
+  })
+
+  it.each(LANGS)("%s: states the labels at the engine's thresholds", (lang) => {
+    const page = source("ai-plan-score", lang)
+    const names = LABELS[lang].scoreLevels
+    const w = WORDS[lang]
+    expect(page).toContain(`- **${names.early.name}**: ${w.below} ${PROMISING_FROM}.`)
+    expect(page).toContain(`- **${names.promising.name}**: ${w.from} ${PROMISING_FROM} ${w.toBelow} ${SOLID_FROM},`)
+    expect(page).toContain(`- **${names.solid.name}**: ${SOLID_FROM} ${w.orMore},`)
+    expect(labelOf(PROMISING_FROM - 0.1, false)).toBe("early")
+    expect(labelOf(SOLID_FROM, false)).toBe("solid")
+    expect(labelOf(SOLID_FROM, true)).toBe("promising")
+    expect(displayScore(62.4, 7.6)).toEqual({ score: 60, band: 8 })
+  })
+
+  it.each(LANGS)("%s: states the gate rule, every gate with its dimension and effect, and the branches", (lang) => {
+    const page = source("ai-plan-score", lang)
+    const w = WORDS[lang]
+    expect(page).toContain(`${percent(GATE_PASS)} % ${w.orMore}`)
+    expect(page).toContain(`${percent(GATE_FAIL)} % ${w.orLess}`)
+    expect(page).toContain(`${number(LOW_HEAT_DENSITY, lang)} MWh/m`)
+    for (const gate of GATES) {
+      const effect = gate.effect.kind === "flag" ? w.flag : gate.effect.level === 2 ? w.mustHave : w.shouldHave
+      const line = page.split("\n").find((entry) => entry.startsWith(`- **${LABELS[lang].gates[gate.id as GateId].name}** (`))
+      expect(line, gate.id).toBeDefined()
+      expect(line, gate.id).toContain(`(${LABELS[lang].dimensions[gate.dimension].name}, ${effect}`)
+    }
+    for (const branch of BRANCHES) expect(page).toContain(`- **${LABELS[lang].branches[branch.id as BranchId].name}** (`)
+  })
+
+  it.each(LANGS)("%s: counts the parts per step and names the weak level and the suggestion limit", (lang) => {
+    const page = source("ai-plan-score", lang)
+    const w = WORDS[lang]
+    const perTurn = TURNS.map((turn) => JUDGEMENTS.filter((judgement) => judgement.turn === turn).length)
+    expect(page).toContain(`${JUDGEMENTS.length} ${w.parts}`)
+    expect(page).toContain(`${perTurn.slice(0, -1).join(", ")} ${w.and} ${perTurn.at(-1)}.`)
+    expect(page).toContain(lang === "en" ? `below level ${WEAK_LEVEL}` : `unter Stufe ${WEAK_LEVEL}`)
+    expect(AI_SCORE_LIMITS.suggestions).toBe(3)
+    expect(page).toContain(lang === "en" ? "one to three" : "ein bis drei")
+  })
+
+  it("states the same thresholds and label names in the Business Plan's explanation", () => {
+    const { scoreLevels: en } = aiScoreEn.labels
+    const { scoreLevels: de } = aiScoreDe.labels
+    expect(bpEn.aiScore.how.body).toContain(`Below ${PROMISING_FROM} is ${en.early.name}, from ${SOLID_FROM} on ${en.solid.name}`)
+    expect(bpDe.aiScore.how.body).toContain(`Unter ${PROMISING_FROM} heißt ${de.early.name}, ab ${SOLID_FROM} ${de.solid.name}`)
+    expect(bpEn.aiScore.levels).toEqual({ early: en.early.name, promising: en.promising.name, solid: en.solid.name })
+    expect(bpDe.aiScore.levels).toEqual({ early: de.early.name, promising: de.promising.name, solid: de.solid.name })
   })
 })

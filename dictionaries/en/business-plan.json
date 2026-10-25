@@ -458,7 +458,7 @@
     "completeness": "The pitch completeness below only counts filled fields.",
     "how": {
       "title": "How the AI Plan Score is made",
-      "body": "An AI decision model, Jev by TypeSafe AI, reads the plan step by step, from the first field to the last. It rates each filled part on five evidence levels, from missing to evidenced; empty parts count as 0 without any AI. Yes-or-no checks across the plan can cap a dimension when something a solid plan must settle is missing. Seven weighted dimensions add up to a score out of 100, shown rounded to 5 with a band of one standard deviation. Below 40 is Early, from 70 on Solid unless a must-have check failed, and Promising in between. The score is saved in the project and marked outdated once a scored field changes. The Quick Check stays the only calculation.",
+      "body": "An AI decision model, Jev by TypeSafe AI, reads the plan step by step, from the first field to the last. It rates each filled part on five evidence levels, from missing to evidenced; empty parts count as 0 without any AI. Gates, yes-or-no questions across the plan, can cap a dimension when something a solid plan must settle is missing. Seven weighted dimensions add up to a score out of 100, shown rounded to 5 with a band of one standard deviation. Below 40 is Early, from 70 on Solid unless a must-have gate failed, and Promising in between. The score is saved in the project and marked outdated once a scored field changes. The Quick Check stays the only calculation.",
       "docs": "The full method in the docs"
     }
   },

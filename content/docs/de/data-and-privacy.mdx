@@ -14,7 +14,7 @@ First Move speichert jede Änderung automatisch, und der Speicherstatus in der o
 
 ## Export und Import
 
-- **Exportieren** speichert das geöffnete Projekt als Datei `.firstmove.json` an einem Ort Ihrer Wahl. Die Datei enthält Ihre Eingaben. Die Ergebnisse werden nicht gespeichert; sie werden beim Import der Datei neu berechnet.
+- **Exportieren** speichert das geöffnete Projekt als Datei `.firstmove.json` an einem Ort Ihrer Wahl. Die Datei enthält Ihre Eingaben und, falls Sie einen erstellt haben, den letzten KI-Plan-Score. Die berechneten Ergebnisse werden nicht gespeichert; sie werden beim Import der Datei neu berechnet.
 - **Importieren** liest eine Datei `.firstmove.json` und prüft sie in Ihrem Browser; nichts wird hochgeladen. Ist das Projekt bereits in diesem Browser, wählen Sie, ob Sie beide behalten oder die gespeicherte Version ersetzen. Eine ersetzte Version wird aufbewahrt, sodass Sie sie wiederherstellen können.
 - Eine Datei aus einer früheren Version von First Move wird beim Import auf das aktuelle Format aktualisiert.
 - **Bericht** zeigt das geöffnete Projekt als druckbare Seite. Ihr Browser druckt sie oder speichert sie als PDF; nichts wird hochgeladen.
@@ -36,16 +36,25 @@ In Chromium-basierten Browsern speichert **Mit Datei verknüpfen** im Projektmen
 
 First Move setzt ein einziges funktionales Cookie, das sich Ihre Sprache merkt. Ihr Farbschema und Ihre anderen Einstellungen werden im Speicher Ihres Browsers aufbewahrt. Die Website verwendet kein Tracking, keine Werbung und keine Cookies von Drittanbietern, daher gibt es nichts zu akzeptieren. Die [Cookie-Richtlinie](/cookies) führt jedes Cookie und jeden Speichereintrag mit Namen auf.
 
+## Der KI-Plan-Score und Ihre Daten
+
+Der optionale [KI-Plan-Score](/docs/ai-plan-score) läuft nur, wenn Sie ihn starten, mit Ihrem eigenen Schlüssel für das Vercel AI Gateway. Ihr Browser sendet dann die Texte des Business Plans des geöffneten Projekts und, falls vorhanden, das Ergebnis des Quick Check direkt an das Vercel AI Gateway, unter Ihrem eigenen Konto. Nichts läuft über unsere Server, und wir erhalten weder die Inhalte noch den Schlüssel.
+
+- **Der Schlüssel bleibt im Arbeitsspeicher.** Er liegt nur im Arbeitsspeicher des geöffneten Tabs, nie im Speicher des Browsers, im Projekt oder in einem Export, und er ist weg, sobald Sie den Tab neu laden oder schließen.
+- **Der Score wird im Projekt gespeichert.** Der letzte Score wird mit seinem Bericht und seinen Vorschlägen zusammen mit dem Projekt in Ihrem Browser gespeichert und ist Teil eines Exports, gekennzeichnet als KI-generiert. Ein neuer Lauf ersetzt ihn.
+
+Die [Datenschutzerklärung](/privacy#ai-plan-score) nennt die Empfänger, und die Seite [KI-Transparenz](/ai#plan-score) erklärt, wie der Score eingestuft ist.
+
 <AiOnly>
 
 ## Die KI-Funktionen und Ihre Daten
 
-First Move hat zwei optionale KI-Ebenen, getrennt von der App und voneinander. Die Seite [KI-Transparenz](/ai) gibt an, ob sie derzeit verfügbar sind.
+Neben dem KI-Plan-Score hat First Move zwei optionale KI-Ebenen, getrennt von der App und voneinander. Die Seite [KI-Transparenz](/ai) gibt an, ob sie derzeit verfügbar sind.
 
 - **Der KI-Assistent im Dashboard** arbeitet mit Ihrem eigenen Schlüssel für einen KI-Anbieter Ihrer Wahl. Wenn Sie ihn nutzen, sendet Ihr Browser Ihre Anfrage direkt an diesen Anbieter: Ihre Frage, die Eingaben und Ergebnisse des geöffneten Projekts und die Dokumente, die Sie anhängen; nichts aus Ihren anderen Projekten. Wir erhalten weder die Inhalte noch den Schlüssel. Der Schlüssel bleibt in Ihrem Browser, nur für die Sitzung oder mit einer PIN gesperrt auf diesem Gerät, und auch der Chatverlauf bleibt in Ihrem Browser.
 - **Der E-Mail-Agent** unter agent@mail.firstmove.energy verarbeitet auf dem Server, was Sie ihm senden, über die in der [Datenschutzerklärung](/privacy#email) genannten Dienstleister, und erst, nachdem Sie einmal bestätigt haben. Die Unterhaltung wird verschlüsselt gespeichert, bis 30 Tage nach Ihrer letzten Nachricht.
 
-Die Ergebnisse von Quick Check und Business Plan stammen nie von KI, und die Projekte in Ihrem Browser gelangen nie auf unsere Server.
+Die Ergebnisse des Quick Check und die Pitch-Vollständigkeit stammen nie von KI, und die Projekte in Ihrem Browser gelangen nie auf unsere Server.
 
 Die Seiten [KI-Assistent](/docs/assistant) und [E-Mail-Agent](/docs/email-agent) erklären beides ausführlich.
 
