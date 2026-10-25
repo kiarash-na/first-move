@@ -75,6 +75,8 @@ describe("useTextActions (ResultActions)", () => {
     setGatewayKey(KEY)
     const { fake, hook } = setup({}, true, true)
     expect(hook.result.current.canUseAi).toBe(false)
+    // The results say why: a run, not a missing key or text model.
+    expect(hook.result.current.running).toBe(true)
     act(() => hook.result.current.rewriteReport())
     act(() => hook.result.current.suggest())
     expect(fake.create).not.toHaveBeenCalled()

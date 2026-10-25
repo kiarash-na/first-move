@@ -10,6 +10,7 @@ import type { AiReport } from "@/lib/project"
 import { useDictionary, useLocale } from "../../../_components/i18n-provider"
 import type { ResultActions } from "../types"
 import { AiBadge } from "./ai-badge"
+import { AiHint } from "./ai-hint"
 import { KeyChips } from "./key-chips"
 import { RequestError } from "./request-error"
 import { ResultsSection } from "./results-section"
@@ -57,7 +58,7 @@ export function ReportPanel({
 
   return (
     <ResultsSection title={text.title} lead={text.lead} actions={write} data-slot="report-panel" data-state={report === null ? "none" : otherLanguage ? "other-language" : "current"}>
-      {!actions.canUseAi && <p className="text-xs leading-snug text-muted-foreground">{copy.needsAi}</p>}
+      <AiHint actions={actions} />
       <RequestError code={error} />
       {report === null ? (
         <p className="text-sm text-muted-foreground">{text.none}</p>

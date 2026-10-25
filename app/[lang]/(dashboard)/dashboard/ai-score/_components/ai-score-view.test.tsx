@@ -126,6 +126,22 @@ describe("AiScoreView (D-71)", () => {
     expect(panel.getByRole("alert")).not.toHaveTextContent(copy.errors.rate)
   })
 
+  it("says a run is in progress, not that a key is missing, while the saved result waits for it", async () => {
+    const project = example()
+    const { fake } = show({ hold: true }, { ...project, aiScore: await scored(project) })
+    await connect()
+    expect(screen.queryByText(copy.results.needsAi)).not.toBeInTheDocument()
+    await userEvent.click(screen.getByRole("button", { name: copy.run.again }))
+    await waitFor(() => expect(document.querySelector("[data-column='1']")).toHaveAttribute("data-state", "running"))
+    const report = document.querySelector<HTMLElement>("[data-slot='report-panel']")!
+    expect(within(report).getByRole("button")).toBeDisabled()
+    expect(within(report).getByText(copy.results.runInProgress)).toBeInTheDocument()
+    expect(screen.queryByText(copy.results.needsAi)).not.toBeInTheDocument()
+    fake.release()
+    expect(await screen.findByText(copy.run.done)).toBeInTheDocument()
+    expect(screen.queryByText(copy.results.runInProgress)).not.toBeInTheDocument()
+  })
+
   it("stops a run in flight when the saved score is deleted, so it does not come back", async () => {
     const project = example()
     const { store, fake } = show({ hold: true }, { ...project, aiScore: await scored(project) })

@@ -5,8 +5,10 @@ import type { GatewayErrorCode } from "@/lib/assistant/gateway/errors"
  * the Gateway key, the chosen text model and the requests; the result views only call these.
  */
 export interface ResultActions {
-  /** A key is set and a text model is chosen, so the report and the suggestions can be written. */
+  /** A key is set, a text model is chosen and no run is in flight, so the report and the suggestions can be written. */
   canUseAi: boolean
+  /** A run is in flight: its score replaces the saved one, so no text request starts until it ends. */
+  running: boolean
   /** The text request that is running, if any. */
   busy: "report" | "suggestions" | null
   /** The error of the last text request, if it failed. */

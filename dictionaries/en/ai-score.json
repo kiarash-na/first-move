@@ -701,6 +701,7 @@
       "otherLanguage": "These suggestions are in {language}. Ask again to get them in {current}."
     },
     "needsAi": "To write with AI, use a Gateway key and choose a text model above.",
+    "runInProgress": "A run is in progress. You can write with AI again once it has finished.",
     "errors": {
       "key": "The Gateway did not accept the key. Check that you pasted the whole key and that it is still active.",
       "credits": "Your Gateway account has no credits left. Add credits in your Vercel account, then try again.",

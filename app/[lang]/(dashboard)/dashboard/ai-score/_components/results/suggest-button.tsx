@@ -6,10 +6,12 @@ import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { useDictionary } from "../../../_components/i18n-provider"
 import type { ResultActions } from "../types"
+import { AiHint } from "./ai-hint"
 
 /**
  * Asks for suggestions on demand (D-77): `actions.suggest(keys)`, or for every weak part without
- * keys. Disabled while a text request runs, and with a hint while no key or text model is ready.
+ * keys. Disabled while a text request runs, and with a hint (`AiHint`) during a run or while no
+ * key or text model is ready.
  */
 export function SuggestButton({
   actions,
@@ -45,7 +47,7 @@ export function SuggestButton({
         {busy ? <LoaderCircleIcon className="animate-spin" strokeWidth={1.6} aria-hidden="true" /> : <LightbulbIcon strokeWidth={1.6} aria-hidden="true" />}
         {busy ? copy.suggestions.writing : label}
       </Button>
-      {!actions.canUseAi && <p className="text-xs leading-snug text-muted-foreground">{copy.needsAi}</p>}
+      <AiHint actions={actions} />
     </div>
   )
 }

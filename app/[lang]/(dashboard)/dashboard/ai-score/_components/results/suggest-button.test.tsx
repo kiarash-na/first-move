@@ -25,6 +25,14 @@ describe("SuggestButton (D-77)", () => {
     expect(screen.getByText(aiScoreCopy("en").results.needsAi)).toBeInTheDocument()
   })
 
+  it("is disabled during a run and says so, instead of asking for a key", () => {
+    const copy = aiScoreCopy("en").results
+    renderResults(<SuggestButton actions={mockActions({ canUseAi: false, running: true })} label="Suggest" />)
+    expect(screen.getByRole("button", { name: "Suggest" })).toBeDisabled()
+    expect(screen.getByText(copy.runInProgress)).toBeInTheDocument()
+    expect(screen.queryByText(copy.needsAi)).not.toBeInTheDocument()
+  })
+
   it("shows that suggestions are being written, and waits for a running report", () => {
     const { unmount } = renderResults(<SuggestButton actions={mockActions({ busy: "suggestions" })} label="Suggest" />)
     const button = screen.getByRole("button", { name: aiScoreCopy("en").results.suggestions.writing })

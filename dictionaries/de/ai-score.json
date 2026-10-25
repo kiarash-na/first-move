@@ -701,6 +701,7 @@
       "otherLanguage": "Diese Vorschläge sind auf {language}. Fragen Sie erneut, um sie auf {current} zu erhalten."
     },
     "needsAi": "Um mit KI zu schreiben, verwenden Sie oben einen Gateway-Schlüssel und wählen ein Textmodell.",
+    "runInProgress": "Eine Bewertung läuft. Sobald sie abgeschlossen ist, können Sie wieder mit KI schreiben.",
     "errors": {
       "key": "Das Gateway hat den Schlüssel nicht akzeptiert. Prüfen Sie, ob Sie den ganzen Schlüssel eingefügt haben und ob er noch aktiv ist.",
       "credits": "Ihr Gateway-Konto hat kein Guthaben mehr. Laden Sie in Ihrem Vercel-Konto Guthaben auf und versuchen Sie es dann erneut.",
