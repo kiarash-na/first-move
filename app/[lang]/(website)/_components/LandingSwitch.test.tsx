@@ -55,6 +55,7 @@ describe('LandingSwitch', () => {
     const container = document.createElement('div')
     container.innerHTML = renderToString(ui)
     document.body.appendChild(container)
+    const serverMobileNode = container.querySelector('.landing-mobile p')
     const errors = vi.spyOn(console, 'error').mockImplementation(() => {})
 
     await act(async () => {
@@ -64,9 +65,21 @@ describe('LandingSwitch', () => {
     expect(errors).not.toHaveBeenCalled()
     expect(screen.getByText('mobile')).toBeInTheDocument()
     expect(screen.queryByText('desktop')).toBeNull()
-    expect(onMobileMount).toHaveBeenCalled()
+    expect(container.querySelectorAll('p')).toHaveLength(1)
+    // Hydrated in place, not client-rendered from scratch: the server's node is the one that stays.
+    expect(screen.getByText('mobile')).toBe(serverMobileNode)
+    expect(onMobileMount).toHaveBeenCalledTimes(1)
     expect(onDesktopMount).not.toHaveBeenCalled()
     errors.mockRestore()
     container.remove()
+  })
+
+  it('keeps the boundary elements stable across re-renders, so a dehydrated boundary stays hydratable', () => {
+    const desktop = <p>desktop</p>
+    const mobile = <p>mobile</p>
+    const { rerender } = render(<LandingSwitch desktop={desktop} mobile={mobile} />)
+    const before = screen.getByText('mobile')
+    rerender(<LandingSwitch desktop={desktop} mobile={mobile} />)
+    expect(screen.getByText('mobile')).toBe(before)
   })
 })

@@ -1,6 +1,6 @@
 'use client'
 
-import { Suspense, useSyncExternalStore, type ReactNode } from 'react'
+import { Suspense, useMemo, useSyncExternalStore, type ReactNode } from 'react'
 import './landing-switch.css'
 
 /** The desktop landing owns this width and up; phones and tablets get the mobile version (PLAN-LANDING-MOBILE-00, D-LM-1). */
@@ -42,17 +42,23 @@ interface LandingSwitchProps {
  * its own Suspense boundary: React hydrates a server-rendered boundary after the page shell, and
  * the hidden one is removed before its turn, so none of its effects ever runs. On a phone the
  * desktop's 3D scene therefore never loads three.js, and on a desktop the mobile tree costs nothing.
+ *
+ * The two boundary elements keep their identity across renders (`useMemo`): a dehydrated boundary
+ * whose props changed can no longer be hydrated lazily and React would client-render it from
+ * scratch; an unchanged one is left alone and hydrated in place when its turn comes.
  */
 export function LandingSwitch({ desktop, mobile }: LandingSwitchProps) {
   const variant = useLandingVariant()
+  const desktopTree = useMemo(() => <Suspense>{desktop}</Suspense>, [desktop])
+  const mobileTree = useMemo(() => <Suspense>{mobile}</Suspense>, [mobile])
 
   return (
     <>
       <div className="landing-desktop" data-variant={variant}>
-        {variant !== 'mobile' && <Suspense>{desktop}</Suspense>}
+        {variant !== 'mobile' && desktopTree}
       </div>
       <div className="landing-mobile" data-variant={variant}>
-        {variant !== 'desktop' && <Suspense>{mobile}</Suspense>}
+        {variant !== 'desktop' && mobileTree}
       </div>
     </>
   )

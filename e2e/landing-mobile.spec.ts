@@ -72,8 +72,9 @@ for (const lang of ["en", "de"] as Lang[]) {
       await expect(menu).toBeHidden()
       await expect(page.locator("#m-ai-score")).toBeInViewport()
 
-      // The example run plays to its score once in view, and replays.
+      // The example run plays to its score once in view (on a phone it sits below the chapter's copy), and replays.
       const console_ = page.locator("#m-ai-score .m-ai")
+      await console_.scrollIntoViewIfNeeded()
       await expect(console_).toHaveAttribute("data-step", "5", { timeout: 15_000 })
       await expect(console_.locator(".m-ai-score__number")).toHaveText("60", { timeout: 5_000 })
       await expect(console_.locator(".m-ai-score__level")).toHaveText(t("aiScore.console.levels.promising"))
