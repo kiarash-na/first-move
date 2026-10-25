@@ -69,7 +69,8 @@ export function useCountUp(target: number, active: boolean, run = 0, duration = 
     if (!active || reduced) return
     const start = performance.now()
     let frame = requestAnimationFrame(function tick(now) {
-      const progress = Math.min(1, (now - start) / duration)
+      // The first frame's timestamp can precede `start`; clamp, so the count never dips below 0.
+      const progress = Math.max(0, Math.min(1, (now - start) / duration))
       setState({ run, progress })
       if (progress < 1) frame = requestAnimationFrame(tick)
     })

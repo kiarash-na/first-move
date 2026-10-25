@@ -90,4 +90,19 @@ describe('useCountUp', () => {
     rerender({ active: true, run: 1 })
     expect(result.current).toBe(0)
   })
+
+  it('never shows a negative value when the first frame is stamped before the count started', () => {
+    vi.spyOn(performance, 'now').mockImplementation(() => 1_000)
+    const frames: FrameRequestCallback[] = []
+    vi.stubGlobal('requestAnimationFrame', (callback: FrameRequestCallback) => frames.push(callback))
+    vi.stubGlobal('cancelAnimationFrame', () => {})
+    const { result } = renderHook(() => useCountUp(60, true, 0, 900))
+    act(() => frames.shift()?.(984))
+    expect(result.current).toBe(0)
+    expect(Object.is(result.current, -0)).toBe(false)
+    act(() => frames.shift()?.(1_450))
+    expect(result.current).toBeGreaterThan(0)
+    act(() => frames.shift()?.(1_900))
+    expect(result.current).toBe(60)
+  })
 })
