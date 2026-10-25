@@ -38,6 +38,7 @@ export const THIRD_PARTY: readonly ThirdPartyEntry[] = [
   { name: "ai", license: "Apache-2.0", url: "https://ai-sdk.dev", role: "AI SDK: the email agent's guard decisions" },
   { name: "resend", license: "MIT", url: "https://github.com/resend/resend-node", role: "Receiving and sending the email agent's mail" },
   { name: "@upstash/redis", license: "MIT", url: "https://github.com/upstash/redis-js", role: "The email agent's encrypted state" },
+  { name: "qrcode-generator", license: "MIT", url: "https://github.com/kazuhikoarase/qrcode-generator", role: "QR code on the presentation" },
   { name: "@fontsource-variable/archivo", license: "OFL-1.1", url: "https://fontsource.org/fonts/archivo", role: "Font Archivo" },
   { name: "@fontsource/ibm-plex-mono", license: "OFL-1.1", url: "https://fontsource.org/fonts/ibm-plex-mono", role: "Font IBM Plex Mono" },
 ]
