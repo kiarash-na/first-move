@@ -12,14 +12,14 @@ The bot button at the bottom right of every dashboard page opens the assistant a
 
 The assistant works with two providers:
 
-- **Anthropic**: create an API key in your Anthropic account and paste it.
 - **OpenRouter**: paste an API key, or choose **Connect OpenRouter** to sign in there and create a key for First Move without copying it. OpenRouter also offers the Auto Router, which picks a model for each question.
+- **Vercel AI Gateway**: create an API key in your Vercel account and paste it. The same key also runs the AI Plan Score.
 
 The assistant tests the key with the provider before you use it. Requests are billed to your account with the provider, at its prices; First Move itself charges nothing.
 
 ## Pick a model
 
-Chips show the price level of each model, from $ to $$$$, and its kind: Fast, Balanced, Best, Frontier or Auto. A tooltip gives the prices, with the date they were checked. The defaults are Claude Sonnet 5.5 for Anthropic and the Auto Router for OpenRouter. You can also enter the id of another model; it must support tool use.
+Chips show the price level of each model, from $ to $$$$, and its kind: Fast, Balanced, Best, Frontier or Auto. A tooltip gives the prices, with the date they were checked. The defaults are the Auto Router for OpenRouter and Claude Sonnet 5.5 on the Vercel AI Gateway. You can also enter the id of another model; it must support tool use.
 
 ## Set a spending limit at your provider
 

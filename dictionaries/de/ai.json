@@ -6,7 +6,7 @@
   "title": "KI-Transparenz",
   "intro": "Diese Seite erklärt, wo First Move künstliche Intelligenz (KI) einsetzt und wo nicht, wie der KI-Plan-Score und die weiteren optionalen KI-Funktionen arbeiten, wie wir sie nach der KI-Verordnung der EU (Verordnung (EU) 2024/1689, „KI-VO“) einstufen und was Sie prüfen sollten, wenn Sie sie nutzen.",
   "updated": "2026-10-25",
-  "version": "1.2",
+  "version": "1.3",
   "status": {
     "planned": "Die auf dieser Seite beschriebenen KI-Funktionen der App sind noch nicht verfügbar, und die App First Move enthält derzeit kein KI-System. Diese Seite erklärt, wie die Funktionen arbeiten werden, sobald sie freigegeben sind.",
     "score": "Der KI-Plan-Score ist verfügbar: eine optionale KI-Bewertung Ihres Business Plans, die nur läuft, wenn Sie sie starten, mit Ihrem eigenen Schlüssel für das Vercel AI Gateway. Die beiden anderen auf dieser Seite beschriebenen KI-Funktionen der App, Fragen zu Ihrem Projekt und Werte aus Ihren Dokumenten, sind noch nicht verfügbar; diese Seite erklärt, wie sie arbeiten werden, sobald sie freigegeben sind.",
@@ -60,13 +60,13 @@
       "id": "how-it-runs",
       "heading": "So laufen die Funktionen: Ihr Anbieter, Ihr Schlüssel",
       "body": [
-        "Sobald diese beiden KI-Funktionen verfügbar sind, arbeiten sie nach dem Prinzip „Bring Your Own Key“, also mit Ihrem eigenen API-Schlüssel (wie der KI-Plan-Score arbeitet, steht unter [Der KI-Plan-Score](#plan-score)):",
-        "1. Sie wählen einen KI-Anbieter, Anthropic oder OpenRouter (dessen Auto Router für jede Frage ein Modell auswählt), und erhalten in Ihrem Konto dort einen API-Schlüssel. Legen Sie beim Anbieter ein Ausgabenlimit für den Schlüssel fest.",
+        "Die beiden KI-Funktionen arbeiten nach dem Prinzip „Bring Your Own Key“, also mit Ihrem eigenen API-Schlüssel (wie der KI-Plan-Score arbeitet, steht unter [Der KI-Plan-Score](#plan-score)):",
+        "1. Sie wählen einen KI-Anbieter — OpenRouter (dessen Auto Router für jede Frage ein Modell auswählt) oder das Vercel AI Gateway — und erhalten in Ihrem Konto dort einen API-Schlüssel. Legen Sie beim Anbieter ein Ausgabenlimit für den Schlüssel fest.",
         "2. Sie geben den Schlüssel in First Move ein oder verbinden Ihr OpenRouter-Konto. Der Schlüssel wird nur in Ihrem Browser gespeichert: nur für die aktuelle Sitzung oder, wenn Sie es wählen, auf diesem Gerät, verschlüsselt und mit einer 6-stelligen PIN gesperrt.",
         "3. Wenn Sie eine Funktion nutzen, sendet Ihr Browser die Anfrage mit Ihrem Schlüssel direkt an diesen Anbieter und empfängt die Antwort.",
         "4. First Move zeigt Ihnen die Antwort oder die vorgeschlagenen Werte, gekennzeichnet als KI-generiert.",
         "Wir betreiben keinen KI-Server. Ihr Schlüssel und die von Ihnen gesendeten Inhalte erreichen uns nie: Wir empfangen, speichern und sehen sie nicht und sind für diese Inhalte kein Auftragsverarbeiter, der in Ihrem Auftrag tätig wird (Art. 28 DSGVO). Der Anbieter ist eine eigenständige Partei; was er mit Ihren Anfragen tut, richtet sich nach seinen eigenen Bedingungen und seiner Datenschutzerklärung.",
-        "Sobald die Funktionen verfügbar sind, führt diese Seite die Anbieter mit ihren Angaben auf."
+        "Die Anbieter sind auf dieser Seite mit ihren Angaben aufgeführt."
       ]
     },
     {
@@ -174,7 +174,7 @@
         "Nachrichten an [{{operator.emailAgent}}](mailto:{{operator.emailAgent}}) werden von einem KI-System beantwortet. Wir weisen hier und im [Impressum](/imprint) darauf hin, damit Sie schon vor dem Schreiben wissen, dass Sie mit einem KI-System zu tun haben (Art. 50 Abs. 1). Dieses Postfach ist von den KI-Funktionen der App getrennt und hängt nicht von ihnen ab.",
         "- Antworten von dieser Adresse werden von einem KI-System verfasst und können falsch sein.",
         "- Sie sind keine rechtsverbindlichen Erklärungen und binden niemanden, weder uns noch Sie.",
-        "- Um eine Antwort vorzubereiten, verarbeiten neben unserem E-Mail-Anbieter {{mail.name}} die in der [Datenschutzerklärung](/privacy#email) genannten KI-Dienstleister Ihre Nachricht und ihre Anhänge: Ein Entscheidungsmodell (Jev von TypeSafe AI) prüft Themenbezug und Missbrauch, und Claude Haiku von Anthropic verfasst die Antwort. Die Ergebnisse des Quick Check stammen aus der Berechnung von First Move, nicht von der KI.",
+        "- Um eine Antwort vorzubereiten, verarbeiten neben unserem E-Mail-Anbieter {{mail.name}} die in der [Datenschutzerklärung](/privacy#email) genannten KI-Dienstleister Ihre Nachricht und ihre Anhänge: Ein Entscheidungsmodell (Jev von TypeSafe AI) prüft Themenbezug und Missbrauch, und Claude Haiku von Anthropic, über das Vercel AI Gateway abgerufen, verfasst die Antwort. Die Ergebnisse des Quick Check stammen aus der Berechnung von First Move, nicht von der KI.",
         "- Wenn Sie zum ersten Mal schreiben, bestätigen Sie einmal über einen Link; vorher wird nichts von KI verarbeitet. Mit der Bestätigung akzeptieren Sie die [Nutzungsbedingungen](/terms) und E-Mails zu Ihrer Anfrage, ohne Werbung.",
         "- Bleiben Sie beim Thema: Auf eine erste Nachricht ohne Themenbezug folgt ein Hinweis, nach einer zweiten pausiert das Postfach für Sie 30 Tage. Versuche, den Assistenten zu manipulieren, Belästigung und anderer Missbrauch führen zur Sperrung des Absenders, und wir werden darüber informiert.",
         "- Antworten werden automatisch versendet; ein Mensch prüft sie nicht. Unsere E-Mails enthalten ein minimales Tracking ([E-Mail-Tracking](/privacy#email-tracking)).",

@@ -5,7 +5,7 @@ import { axeViolations } from "./support/axe"
 import { text, type Lang } from "./support/dictionary"
 
 /**
- * D-69: "Brought to you by" on the landing page, right below the methodology's screening
+ * D-69: "Supported by" on the landing page, right below the methodology's screening
  * boundary. A slowly sliding row of placeholders; each opens a dialog with a link to the owner's
  * contact page. Moving cards are never "stable" for Playwright, so mouse clicks pause the strip
  * first, the way a person's pointer does by hovering it.

@@ -56,6 +56,10 @@ export const nextConfig: NextConfig = {
   cacheComponents: true,
   partialPrefetching: true,
   pageExtensions: ["ts", "tsx", "js", "jsx", "mdx"],
+  outputFileTracingIncludes: {
+    // The OG image route reads its fonts from disk at request time; ship them in the bundle.
+    "/[lang]/opengraph-image": ["./node_modules/@fontsource/ibm-plex-mono/files/*.woff"],
+  },
   turbopack: {
     rules: {
       "*.css": {

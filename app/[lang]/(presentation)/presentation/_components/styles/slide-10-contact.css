@@ -70,12 +70,12 @@
   background: var(--accent-hot);
 }
 
-/* The hours the build figure does not count: even smaller, no marker, plain case. */
+/* The hours the build figure does not count: even smaller, no marker, plain case.
+   Full opacity: at 0.75 the muted tone fell under 4.5:1 on the slide (axe color-contrast). */
 .cost__note--small {
   font-size: 11px;
   letter-spacing: 0.02em;
   text-transform: none;
-  opacity: 0.75;
 }
 
 .cost__note--small::before {

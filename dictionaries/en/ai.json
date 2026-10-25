@@ -6,7 +6,7 @@
   "title": "AI Transparency",
   "intro": "This page explains where First Move uses artificial intelligence and where it does not, how the AI Plan Score and the other optional AI features work, how we classify them under the EU Artificial Intelligence Act (Regulation (EU) 2024/1689, the \"AI Act\") and what you should check when you use them.",
   "updated": "2026-10-25",
-  "version": "1.2",
+  "version": "1.3",
   "status": {
     "planned": "The AI features in the app described on this page are not available yet, and the First Move app currently contains no AI system. This page explains how the features will work once they are released.",
     "score": "The AI Plan Score is available: an optional AI scoring of your Business Plan that runs only when you start it, with your own Vercel AI Gateway key. The two other AI functions in the app described on this page, questions about your project and values from your documents, are not available yet; this page explains how they will work once they are released.",
@@ -60,13 +60,13 @@
       "id": "how-it-runs",
       "heading": "How the features run: your provider, your key",
       "body": [
-        "When these two AI features are available, they work on a bring-your-own-key basis (the AI Plan Score works as described under [The AI Plan Score](#plan-score)):",
-        "1. You choose an AI provider, Anthropic or OpenRouter (whose Auto Router picks a model for each question), and obtain an API key from your account there. Set a spending limit for the key at the provider.",
+        "The two AI features work on a bring-your-own-key basis (the AI Plan Score works as described under [The AI Plan Score](#plan-score)):",
+        "1. You choose an AI provider — OpenRouter (whose Auto Router picks a model for each question) or the Vercel AI Gateway — and obtain an API key from your account there. Set a spending limit for the key at the provider.",
         "2. You enter the key in First Move, or connect your OpenRouter account. The key is kept only in your browser: for the current session only, or, if you choose, on this device, encrypted and locked with a 6-digit PIN.",
         "3. When you use a function, your browser sends the request directly to that provider, with your key, and receives the response.",
         "4. First Move shows you the answer or the proposed values, marked as AI-generated.",
         "We run no AI server. Your key and the content you send never reach us: we do not receive, store or see them, and we are not a processor acting on your behalf for this content (GDPR Art. 28). The provider is a separate party, and its own terms and privacy policy govern what it does with your requests.",
-        "This page lists the providers with their details once the features are available."
+        "The providers are listed on this page with their details."
       ]
     },
     {
@@ -174,7 +174,7 @@
         "Messages to [{{operator.emailAgent}}](mailto:{{operator.emailAgent}}) are answered by an AI system. We say so here and in the [Imprint](/imprint) so that you know before you write that you will be dealing with an AI system (Art. 50(1)). This mailbox is separate from the AI features in the app and does not depend on them.",
         "- Replies from this address are written by an AI system and may be wrong.",
         "- They are not legally binding statements and bind no one, neither us nor you.",
-        "- To prepare a reply, the AI service providers named in the [Privacy Policy](/privacy#email) process your message and its attachments, in addition to our e-mail provider {{mail.name}}: a decision model (Jev by TypeSafe AI) checks relevance and misuse, and Claude Haiku by Anthropic writes the answer. Quick Check results come from First Move's calculation, not from AI.",
+        "- To prepare a reply, the AI service providers named in the [Privacy Policy](/privacy#email) process your message and its attachments, in addition to our e-mail provider {{mail.name}}: a decision model (Jev by TypeSafe AI) checks relevance and misuse, and Claude Haiku by Anthropic, through Vercel's AI Gateway, writes the answer. Quick Check results come from First Move's calculation, not from AI.",
         "- The first time you write, you confirm once through a link; nothing is processed by AI before that. Confirming accepts the [Terms](/terms) and e-mails about your request, with no marketing.",
         "- Stay on topic: a first off-topic message gets a warning, a second one pauses the mailbox for you for 30 days. Attempts to manipulate the assistant, harassment and other misuse block the sender, and we are told about it.",
         "- Replies are sent automatically; a person does not review them. Our e-mails carry minimal tracking ([E-mail tracking](/privacy#email-tracking)).",

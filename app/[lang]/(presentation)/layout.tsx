@@ -10,11 +10,17 @@ import { ThemeSync } from "@/components/theme/theme-sync"
 import { getDictionary } from "@/lib/i18n/get-dictionary"
 import { localeParams } from "@/lib/i18n/locales"
 import { requireLocale } from "@/lib/i18n/require-locale"
+import { siteUrl } from "@/lib/seo/site"
 import { DeckBootScript } from "./_components/deck-boot-script"
 
 export async function generateMetadata({ params }: LayoutProps<"/[lang]">): Promise<Metadata> {
   const common = await getDictionary(requireLocale((await params).lang), "common")
-  return { title: { default: common.app.name, template: `%s · ${common.app.name}` }, description: common.app.slogan }
+  return {
+    // metadataBase only: the presentation page sets its own canonical, hreflang and cards.
+    metadataBase: new URL(siteUrl()),
+    title: { default: common.app.name, template: `%s · ${common.app.name}` },
+    description: common.app.slogan,
+  }
 }
 
 export const viewport: Viewport = {

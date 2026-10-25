@@ -13,6 +13,7 @@ describe("presentation layout", () => {
 
   it("names pages after First Move", async () => {
     expect(await generateMetadata(props("de"))).toEqual({
+      metadataBase: new URL("https://www.firstmove.energy"),
       title: { default: common.app.name, template: `%s · ${common.app.name}` },
       description: common.app.slogan,
     })

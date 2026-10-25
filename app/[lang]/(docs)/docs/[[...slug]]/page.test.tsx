@@ -36,11 +36,31 @@ describe("docs page (PLAN-AGENT-04)", () => {
     expect(instant).toBe(false)
   })
 
-  it("titles each page from the docs dictionary", async () => {
-    expect(await generateMetadata(props("en"))).toEqual({ title: en.pages.index.title, description: en.pages.index.description })
-    expect(await generateMetadata(props("de", ["data-and-privacy"]))).toEqual({
+  it("titles each page from the docs dictionary, with canonical, hreflang and cards", async () => {
+    const BASE = "https://www.firstmove.energy"
+    expect(await generateMetadata(props("en"))).toEqual({
+      title: en.pages.index.title,
+      description: en.pages.index.description,
+      metadataBase: new URL(BASE),
+      alternates: {
+        canonical: `${BASE}/en/docs`,
+        languages: { en: `${BASE}/en/docs`, de: `${BASE}/de/docs`, "x-default": `${BASE}/de/docs` },
+      },
+      openGraph: {
+        type: "website",
+        siteName: "First Move",
+        url: `${BASE}/en/docs`,
+        locale: "en_US",
+        alternateLocale: "de_DE",
+        images: [{ url: "/en/opengraph-image", width: 1200, height: 630, alt: "First Move" }],
+      },
+      twitter: { card: "summary_large_image" },
+    })
+    expect(await generateMetadata(props("de", ["data-and-privacy"]))).toMatchObject({
       title: de.pages["data-and-privacy"].title,
       description: de.pages["data-and-privacy"].description,
+      alternates: { canonical: `${BASE}/de/docs/data-and-privacy` },
+      openGraph: { locale: "de_DE", alternateLocale: "en_US" },
     })
     expect(de.pages["data-and-privacy"].title).not.toBe(en.pages["data-and-privacy"].title)
   })

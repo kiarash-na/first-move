@@ -5,6 +5,7 @@ import { requireLocale } from "@/lib/i18n/require-locale"
 import { AI_FEATURES_LIVE, AI_PLAN_SCORE_LIVE, aiStatus, type AiStatus } from "@/lib/legal/ai"
 import type { LegalSlug } from "@/lib/legal/docs"
 import type { LegalDocCopy } from "@/lib/legal/types"
+import { publicMetadata } from "@/lib/seo/metadata"
 import { AiProviders } from "./ai-providers"
 import { LegalPage } from "./legal-page"
 import { ThirdPartyTable } from "./third-party-table"
@@ -16,9 +17,11 @@ async function loadDoc(slug: LegalSlug, lang: ReturnType<typeof requireLocale>):
   return (await getDictionary(lang, slug)) as unknown as LegalDocCopy
 }
 
+/** The slug equals the single path segment for all six legal routes, so it is the canonical path. */
 export async function legalMetadata(slug: LegalSlug, rawLang: string): Promise<Metadata> {
-  const { meta } = await loadDoc(slug, requireLocale(rawLang))
-  return { title: meta.title, description: meta.description }
+  const lang = requireLocale(rawLang)
+  const [{ meta }, common] = await Promise.all([loadDoc(slug, lang), getDictionary(lang, "common")])
+  return { title: meta.title, description: meta.description, ...publicMetadata(lang, `/${slug}`, common.app.name) }
 }
 
 /** Shared body of the six legal routes: loads the document and the shared labels, adds the extras. */

@@ -1,67 +1,57 @@
+<div align="center">
+
+<img src="app/icon.svg" width="72" height="72" alt="The First Move mark">
+
 # First Move
 
-Initial screening of 5th-generation district heating and cooling (5GDHC) projects, in the browser. Live at <https://firstmove.energy>, in English and German.
+**Start your 5GDHC journey now.**
 
-A project has two optional modules:
+From a first screening to a viable business model — for the low-temperature,
+bidirectional heating and cooling networks that connect buildings with local
+renewables and waste heat.
 
-- **Quick Check**: enter an area, its buildings and the planned supply, and get a screening result with the key factors behind it.
-- **Business Plan**: work through the opportunity, the business logic and a reality check.
+[**Open First Move →**](https://www.firstmove.energy) &nbsp;·&nbsp; English &nbsp;·&nbsp; Deutsch
 
-Every input step and every computed number has a collapsed "How we calculate" with the equations behind it.
+<img src=".github/assets/landing-hero.png" alt="First Move: an interactive low-temperature district network, cooling in cyan, heating in orange" width="100%">
 
-## Your data stays in your browser
+</div>
 
-There is no backend and no database. Projects are stored in the browser (IndexedDB), and you can export and import them as files. The Content Security Policy only allows requests to the site's own origin, so project data is never sent anywhere. Details are in the Privacy Policy at `/en/privacy` and in [SECURITY.md](SECURITY.md).
+## What you can do
 
-## Getting started
+- **Quick Check** — describe your area, its buildings and the planned supply, and get a three-level screening result with the decisive factors behind it. Every number opens a "How we calculate" with its equations.
+- **Business Plan** — work through the opportunity, the business logic and a reality check, step by step, and leave with a document you can hand to decision-makers.
+- **AI Plan Score** — have your plan read the way an evaluator would: seven dimensions, named strengths and gaps, every source linked. Bring your own key; your plan never touches our servers.
+- **Ask by email** — write to [agent@mail.firstmove.energy](mailto:agent@mail.firstmove.energy) and the email agent walks you through your own screening. A person answers at [human@mail.firstmove.energy](mailto:human@mail.firstmove.energy).
 
-You need Node.js 20.9 or newer (developed on 24) and [pnpm](https://pnpm.io).
+## Your data stays yours
+
+No account, no backend, no database. Your projects live in your browser's storage and travel as files you export and import. The site's security policy blocks project data from leaving your machine — the [Privacy Policy](https://www.firstmove.energy/en/privacy) says it plainly.
+
+## Made for the energy transition
+
+For municipalities, energy agencies, utilities and planners who need a serious first answer in minutes, not a study in months. The screening follows the published AQC methodology, equation for equation — the [docs](https://www.firstmove.energy/en/docs) show every one of them.
+
+## For developers
+
+<details>
+<summary><b>Run it yourself</b> — Node.js 20.9+ and pnpm</summary>
 
 ```bash
 pnpm install
 pnpm dev
 ```
 
-Open <http://localhost:3000>. Unprefixed paths redirect to `/en` or `/de`.
-
 | Command | What it does |
 |---|---|
 | `pnpm dev` | Development server |
 | `pnpm build` · `pnpm start` | Production build and server |
-| `pnpm lint` | ESLint |
-| `pnpm typecheck` | Route types, then `tsc --noEmit` |
-| `pnpm test` | Unit and component tests (Vitest) |
-| `pnpm test:e2e` | End-to-end tests (Playwright, against a production build) |
-| `pnpm gen:reference` | Regenerates the Quick Check reference data from `docs/10_quick-check-tool/_reference/` |
+| `pnpm lint` · `pnpm typecheck` | ESLint · route types and `tsc` |
+| `pnpm test` · `pnpm test:e2e` | Vitest unit tests · Playwright end-to-end |
 
-## Environment
+Requirements, equations, design tokens and the build log live in [`docs/`](docs/CLAUDE.md). Vulnerabilities: please report them privately, as [SECURITY.md](SECURITY.md) describes.
 
-`.env.example` lists the server-side variables (Vercel AI Gateway and Resend). Copy it to `.env.local` to use them. The app does not read any of them yet, and the build needs none.
-
-## Project layout
-
-| Path | Contents |
-|---|---|
-| `app/[lang]/(website)`, `(docs)`, `(dashboard)` | The landing page, the docs and legal pages, and the dashboard |
-| `lib/` | Logic without JSX: Quick Check equations, project model, storage, i18n, legal facts |
-| `components/` | Components shared across layouts |
-| `dictionaries/{en,de}` | All visible text. German falls back to English where it is not translated yet |
-| `docs/` | Requirements, equations, design tokens and the build log. Start at [`docs/CLAUDE.md`](docs/CLAUDE.md) |
-
-The `source:` lines in `docs/` cite the original hackathon material under `docs/00_originals/`. That material belongs to its rights holders and is not published in this repository.
-
-## Deploying
-
-The app deploys to [Vercel](https://vercel.com) as a standard Next.js project. No environment variable is required for the current version.
-
-## Security
-
-Please report vulnerabilities privately, as described in [SECURITY.md](SECURITY.md).
+</details>
 
 ## License
 
-The code and the documentation of First Move are licensed under the [Apache License 2.0](LICENSE) (SPDX: `Apache-2.0`). Attribution and third-party notices are in [NOTICE](NOTICE). The Quick Check methodology is credited there, and the name "First Move" is a trade name that the licence does not grant.
-
-## Legal
-
-Terms of Use, Privacy Policy, Cookie Policy, Imprint, AI transparency and the licence overview are part of the app at `/en/terms`, `/en/privacy`, `/en/cookies`, `/en/imprint`, `/en/ai` and `/en/license` (and `/de/...`). The text lives in `dictionaries/<lang>/<page>.json`; the operator's details (name, address, VAT ID, mailboxes) are set once in `lib/legal/operator.ts`.
+[Apache License 2.0](LICENSE) for code and documentation; attribution and third-party notices in [NOTICE](NOTICE). The name "First Move" is a trade name the licence does not grant.

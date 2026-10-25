@@ -12,8 +12,11 @@ const props = (lang: string) => ({ params: Promise.resolve({ lang }) }) as Layou
 describe("dashboard root layout", () => {
   it("titles pages after the app with its slogan, per language", async () => {
     expect(await generateMetadata(props("en"))).toEqual({
+      metadataBase: new URL("https://www.firstmove.energy"),
       title: { default: en.app.name, template: `%s · ${en.app.name}` },
       description: en.app.slogan,
+      // The dashboard is a client-side app whose data lives in the visitor's browser: noindex.
+      robots: { index: false, follow: false },
     })
     // DE falls back to EN where it has no copy (D-32).
     expect((await generateMetadata(props("de"))).description).toBeTruthy()

@@ -17,7 +17,7 @@ describe("proxy matcher", () => {
   })
 
   it("skips locale-prefixed paths, _next and files", () => {
-    for (const url of ["/en", "/de", "/en/dashboard", "/de/docs/a/b", "/_next/static/chunk.js", "/icon.svg", "/favicon.ico"]) {
+    for (const url of ["/en", "/de", "/en/dashboard", "/de/docs/a/b", "/_next/static/chunk.js", "/icon.svg", "/favicon.ico", "/apple-icon"]) {
       expect(matches(url), url).toBe(false)
     }
   })

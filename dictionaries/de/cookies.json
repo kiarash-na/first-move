@@ -6,7 +6,7 @@
   "title": "Cookie-Richtlinie",
   "intro": "Diese Richtlinie erklärt, welches Cookie und welche weiteren Browserspeicher First Move verwendet, wofür sie dienen und wie Sie sie löschen oder blockieren können.",
   "updated": "2026-10-25",
-  "version": "1.3",
+  "version": "1.4",
   "sections": [
     {
       "id": "summary",
@@ -74,7 +74,7 @@
         "First Move enthält keine Analysewerkzeuge, keine Werbung, keine Tracking-Pixel und keine Social-Media-Plugins.",
         "Es lädt keine Skripte, Schriften, Karten oder eingebetteten Inhalte von Dritten. Unsere Schriften werden von unserer eigenen Website ausgeliefert.",
         "Wir nutzen keinen der Einträge, um Sie zu identifizieren, ein Profil zu erstellen oder Sie über Websites hinweg zu verfolgen.",
-        "Die Website sendet den Header `Referrer-Policy: no-referrer`, damit Ihr Browser anderen Websites nicht mitteilt, von welcher Seite von First Move Sie kommen. Ihre Content Security Policy beschränkt die Verbindungen der App auf die eigene Herkunft (Origin) und auf den Seiten des Dashboards auf die beiden KI-Anbieter des Assistenten und auf das Vercel AI Gateway des KI-Plan-Scores.",
+        "Die Website sendet den Header `Referrer-Policy: no-referrer`, damit Ihr Browser anderen Websites nicht mitteilt, von welcher Seite von First Move Sie kommen. Ihre Content Security Policy beschränkt die Verbindungen der App auf die eigene Herkunft (Origin) und auf den Seiten des Dashboards zusätzlich auf die beiden KI-Anbieter, die Sie mit Ihrem eigenen Schlüssel verbinden können (OpenRouter und das Vercel AI Gateway), über die auch der KI-Plan-Score läuft.",
         "Für E-Mails gilt Folgendes gesondert: Die E-Mails, die wir senden, enthalten ein minimales Tracking durch unseren E-Mail-Anbieter, beschrieben unter [E-Mail-Tracking](/privacy#email-tracking)."
       ]
     },
