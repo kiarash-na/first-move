@@ -1404,44 +1404,6 @@ html[data-deck="js"] .deck-slide:not([data-state="active"]) .slide-title__line >
 /* 9. Slide 5: AI Plan Score and the blind test                              */
 /* ------------------------------------------------------------------------- */
 
-.facts {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1px;
-  width: 100%;
-  max-width: 440px;
-  margin: 0;
-  border: 1px solid var(--line-subtle);
-  background: var(--line-subtle);
-}
-
-.facts__item {
-  display: flex;
-  flex-direction: column-reverse;
-  justify-content: flex-end;
-  gap: 4px;
-  padding: 12px 14px;
-  background: var(--surface-page);
-}
-
-.facts dt {
-  color: var(--text-muted);
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.04em;
-  line-height: 1.3;
-  text-transform: uppercase;
-}
-
-.facts dd {
-  margin: 0;
-  font-size: clamp(26px, 2.4vw, 34px);
-  font-stretch: 82%;
-  font-variant-numeric: tabular-nums;
-  font-weight: 560;
-  line-height: 1;
-}
-
 .blind {
   display: grid;
   gap: clamp(14px, 2.2vh, 22px);
@@ -1576,14 +1538,14 @@ html[data-deck="js"] .deck-slide:not([data-state="active"]) .slide-title__line >
   letter-spacing: 0;
 }
 
+/* One line: "Vielversprechend" (16 characters) fits inside the table's rim at 11 px. */
 .expert-table__level {
-  max-width: 9.5em;
-  overflow-wrap: anywhere;
   color: var(--accent-cool);
   font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.06em;
+  font-size: 11px;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .expert-table__score--idle .expert-table__number {
@@ -1671,8 +1633,7 @@ html[data-deck="js"] .deck-slide:not([data-state="active"]) .slide-title__line >
   color: var(--text-secondary);
 }
 
-.blind__musthave,
-.blind__branches {
+.blind__musthave {
   display: flex;
   flex-wrap: wrap;
   align-items: center;

@@ -22,7 +22,6 @@ export interface BlindSummary {
   gates: { pass: number; fail: number; unclear: number }
   /** Failed gates whose cap keeps the plan below Solid (cap level 2). */
   mustHaveFailed: string[]
-  branches: { id: string; choice: string }[]
   action: string | null
   input: { created: string; url: string }
   outcome: typeof KNOWN_OUTCOME
@@ -51,7 +50,6 @@ export function blindSummary(lang: Locale, data: Recorded = recorded): BlindSumm
     dimensions: data.dimensions.map((dimension) => ({ id: dimension.id, score: dimension.score, capped: dimension.cap !== null })),
     gates: { pass: count("pass"), fail: count("fail"), unclear: count("unclear") },
     mustHaveFailed: data.gates.filter((gate) => gate.outcome === "fail" && gate.cap === 2).map((gate) => gate.id),
-    branches: data.branches.map((branch) => ({ id: branch.id, choice: branch.choice })),
     action: reports[lang]?.actions[0] ?? reports.en?.actions[0] ?? null,
     input: { created: BLIND_SOURCE.created, url: BLIND_SOURCE.url },
     outcome: KNOWN_OUTCOME,

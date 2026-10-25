@@ -13,8 +13,6 @@ import { BlindTest, type BlindTestView } from "./blind-test"
 type Copy = Dictionary<"presentation">["slides"]["aiEngine"]
 type Labels = Dictionary<"ai-score">["labels"]
 
-const FACTS = ["judgements", "turns", "gates", "branches", "dimensions", "levels"] as const
-
 /** Engine ids → the app's own EN/DE names (`ai-score.json`), with the id as a last resort. */
 function nameOf(table: Record<string, { name: string } | string>, id: string): string {
   const entry = table[id]
@@ -24,7 +22,6 @@ function nameOf(table: Record<string, { name: string } | string>, id: string): s
 /** Everything the replay shows, formatted on the server in the slide's language. */
 export function blindView(lang: Locale, summary: BlindSummary, copy: Copy, labels: Labels): BlindTestView {
   const day = (iso: string) => formatDate(iso, lang, { dateStyle: "long", timeZone: "UTC" })
-  const branches = labels.branches as Record<string, { name: string; options: Record<string, string> }>
   const outcomeUrl = summary.outcome.sources as Record<string, string>
   return {
     seats: summary.dimensions.map((dimension) => ({ ...dimension, name: nameOf(labels.dimensions, dimension.id) })),
@@ -35,13 +32,16 @@ export function blindView(lang: Locale, summary: BlindSummary, copy: Copy, label
     input: interpolate(copy.blindInput, { date: day(summary.input.created) }),
     inputUrl: summary.input.url,
     decided: interpolate(copy.decided, { seconds: formatQuantity(summary.decisionsMs / 1000, "s", lang, { maximumFractionDigits: 1 }) }),
-    gates: [
-      `${formatNumber(summary.gates.pass, lang)} ${labels.outcomes.pass}`,
-      `${formatNumber(summary.gates.fail, lang)} ${labels.outcomes.fail}`,
-      `${formatNumber(summary.gates.unclear, lang)} ${labels.outcomes.unclear}`,
-    ].join(" · "),
+    // Every gate the run checked: the core gates and the follow-up gates its branches chose.
+    gates: interpolate(copy.gates, {
+      count: formatNumber(summary.gates.pass + summary.gates.fail + summary.gates.unclear, lang),
+      outcomes: [
+        `${formatNumber(summary.gates.pass, lang)} ${labels.outcomes.pass}`,
+        `${formatNumber(summary.gates.fail, lang)} ${labels.outcomes.fail}`,
+        `${formatNumber(summary.gates.unclear, lang)} ${labels.outcomes.unclear}`,
+      ].join(" · "),
+    }),
     mustHave: summary.mustHaveFailed.map((id) => nameOf(labels.gates, id)),
-    branches: summary.branches.map(({ id, choice }) => `${branches[id]?.name ?? id}: ${branches[id]?.options[choice] ?? choice}`),
     action: summary.action,
     outcome: copy.outcome.map((item) => ({ text: item.text, url: outcomeUrl[item.source] })),
     recorded: interpolate(copy.recorded, { date: day(summary.at) }),
@@ -66,14 +66,6 @@ export function AiEngineSlide({ number, lang, copy, labels, summary }: { number:
             <ArrowUpRight size={14} strokeWidth={1.6} aria-hidden="true" />
           </Link>
         </p>
-        <dl className="facts" data-reveal style={{ "--i": 4 } as CSSProperties}>
-          {FACTS.map((fact) => (
-            <div key={fact} className="facts__item">
-              <dt>{copy.facts[fact]}</dt>
-              <dd>{formatNumber(summary.engine[fact], lang)}</dd>
-            </div>
-          ))}
-        </dl>
       </div>
       <div className="slide__visual" data-reveal style={{ "--i": 2 } as CSSProperties}>
         <BlindTest lang={lang} view={blindView(lang, summary, copy, labels)} copy={copy} />

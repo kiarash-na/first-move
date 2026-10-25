@@ -1,9 +1,12 @@
+import { readFileSync } from "node:fs"
+import path from "node:path"
 import { render, screen } from "@testing-library/react"
 import { describe, expect, it } from "vitest"
 import aiScoreDe from "@/dictionaries/de/ai-score.json"
 import aiScoreEn from "@/dictionaries/en/ai-score.json"
 import de from "@/dictionaries/de/presentation.json"
 import en from "@/dictionaries/en/presentation.json"
+import { isDocSlug } from "@/lib/docs/pages"
 import { blindSummary } from "@/lib/presentation/blind-test/summary"
 import { KNOWN_OUTCOME } from "@/lib/presentation/blind-test/geblergasse-2017"
 import { AiEngineSlide, blindView } from "./ai-engine-slide"
@@ -20,6 +23,15 @@ describe("blindView", () => {
     expect(view.tryHref).toBe("/de/dashboard/ai-score")
   })
 
+  it("counts every gate the run checked, the follow-up gates of its branches included", () => {
+    const summary = blindSummary("en")
+    const view = blindView("en", summary, en.slides.aiEngine, aiScoreEn.labels)
+    const total = summary.gates.pass + summary.gates.fail + summary.gates.unclear
+    expect(total).toBeGreaterThan(summary.engine.gates)
+    const { pass, fail, unclear } = aiScoreEn.labels.outcomes
+    expect(view.gates).toBe(`${total} gates: ${summary.gates.pass} ${pass} · ${summary.gates.fail} ${fail} · ${summary.gates.unclear} ${unclear}`)
+  })
+
   it("links every outcome to its own source", () => {
     const view = blindView("en", blindSummary("en"), en.slides.aiEngine, aiScoreEn.labels)
     expect(view.outcome.map((item) => item.url)).toEqual([KNOWN_OUTCOME.sources.built, KNOWN_OUTCOME.sources.running, KNOWN_OUTCOME.sources.award])
@@ -27,10 +39,21 @@ describe("blindView", () => {
 })
 
 describe("AiEngineSlide", () => {
-  it("shows the engine's counts and links the sources page", () => {
+  it("links the method page and starts with the blind test, without a wall of numbers", () => {
     render(<AiEngineSlide number={5} lang="en" copy={en.slides.aiEngine} labels={aiScoreEn.labels} summary={blindSummary("en")} />)
-    expect(screen.getByText(en.slides.aiEngine.facts.judgements).nextElementSibling).toHaveTextContent("27")
     expect(screen.getByRole("link", { name: en.slides.aiEngine.sources })).toHaveAttribute("href", "/en/docs/ai-plan-score")
     expect(screen.getByRole("button", { name: en.slides.aiEngine.run })).toBeInTheDocument()
+    expect(screen.queryByRole("term")).not.toBeInTheDocument()
+  })
+
+  it("links a docs page that has a Sources section, in both languages", () => {
+    for (const [lang, copy, heading] of [["en", en, "Sources"], ["de", de, "Quellen"]] as const) {
+      const { unmount } = render(<AiEngineSlide number={5} lang={lang} copy={copy.slides.aiEngine} labels={aiScoreEn.labels} summary={blindSummary(lang)} />)
+      const slug = screen.getByRole("link", { name: copy.slides.aiEngine.sources }).getAttribute("href")?.split("/").pop()
+      expect(isDocSlug(slug)).toBe(true)
+      const page = readFileSync(path.join(process.cwd(), "content/docs", lang, `${slug}.mdx`), "utf8")
+      expect(page).toMatch(new RegExp(`^## ${heading}$`, "m"))
+      unmount()
+    }
   })
 })

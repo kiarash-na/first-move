@@ -19,7 +19,6 @@ const view: BlindTestView = {
   decided: "Decided in 1.4 s",
   gates: "3 pass · 7 fail · 6 unclear",
   mustHave: ["System boundary"],
-  branches: ["Anchor type: Residential"],
   action: "Decide who owns the boreholes.",
   outcome: [{ text: "Construction started in 2018", url: "https://example.org/built" }],
   recorded: "Recorded run, 25 October 2026",

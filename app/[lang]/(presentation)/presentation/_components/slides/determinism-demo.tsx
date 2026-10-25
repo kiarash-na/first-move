@@ -11,6 +11,8 @@ import type { ResultLevel } from "@/lib/quick-check/overall-rule"
 
 export interface DeterminismCopy {
   demoLabel: string
+  /** The example's name in the slide's language: the examples themselves are named in English only. */
+  demoName: string
   heating: string
   heatDensity: string
   economic: string
@@ -71,7 +73,7 @@ export function DeterminismDemo({
     <div className="console console--cool">
       <p className="console__head">
         <span className="deck-label">{copy.demoLabel}</span>
-        <span className="console__name">{project.meta.name}</span>
+        <span className="console__name">{copy.demoName}</span>
       </p>
       <dl key={runs} className="console__figures" data-run={runs > 1 ? "again" : "first"}>
         {figures.map((figure) => (

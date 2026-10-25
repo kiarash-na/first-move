@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import { describe, expect, it } from "vitest"
+import de from "@/dictionaries/de/presentation.json"
 import en from "@/dictionaries/en/presentation.json"
 import quickCheck from "@/dictionaries/en/quick-check.json"
 import { demoProject } from "@/lib/presentation/quick-check-demo"
@@ -22,9 +23,17 @@ function setup() {
 }
 
 describe("DeterminismDemo", () => {
+  it("names the example in the slide's language, the same example the engine runs", () => {
+    expect(copy.demoName).toBe(demoProject("en").meta.name)
+    render(<DeterminismDemo lang="de" project={demoProject("de")} initial={runDemo(demoProject("de"))} copy={de.slides.quickCheck} levelNames={levelNames} />)
+    expect(screen.getByText(de.slides.quickCheck.demoName)).toBeInTheDocument()
+    expect(screen.queryByText(copy.demoName)).not.toBeInTheDocument()
+  })
+
   it("shows the real result of the illustrative example, labelled as such", () => {
     const initial = setup()
     expect(screen.getByText(copy.demoLabel)).toBeInTheDocument()
+    expect(screen.getByText(copy.demoName)).toBeInTheDocument()
     expect(screen.getByText(initial.fingerprint)).toBeInTheDocument()
     expect(screen.getByText(levelNames[initial.level]).closest("p")).toHaveAttribute("data-current", "true")
   })

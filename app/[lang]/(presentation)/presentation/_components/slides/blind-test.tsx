@@ -19,7 +19,6 @@ export interface BlindTestView {
   decided: string
   gates: string
   mustHave: readonly string[]
-  branches: readonly string[]
   action: string | null
   outcome: readonly { text: string; url: string }[]
   recorded: string
@@ -151,13 +150,6 @@ export function BlindTest({ lang, view, copy }: { lang: Locale; view: BlindTestV
               {view.mustHave.map((gate) => (
                 <span key={gate} className="deck-chip deck-chip--hot">
                   {gate}
-                </span>
-              ))}
-            </p>
-            <p className="blind__branches">
-              {view.branches.map((branch) => (
-                <span key={branch} className="deck-chip">
-                  {branch}
                 </span>
               ))}
             </p>
