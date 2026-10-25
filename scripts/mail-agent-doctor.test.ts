@@ -48,24 +48,29 @@ function fakeResend({ agentActions = [], hooks, tracking = [true, true], humanMi
   return { client, calls }
 }
 
-const pong = vi.fn(async () => new Response(JSON.stringify({ result: "PONG" }), { status: 200 }))
+type FetchLike = (url: string, init?: RequestInit) => Promise<Response>
 
-async function doctor(overrides: Record<string, string> = {}, setup: Setup = {}) {
+const fakeFetch = vi.fn(async (url: string) =>
+  url.endsWith("/ping") ? new Response(JSON.stringify({ result: "PONG" }), { status: 200 }) : new Response(null, { status: 400 }),
+)
+
+async function doctor(overrides: Record<string, string> = {}, setup: Setup = {}, fetchImpl: FetchLike = fakeFetch) {
   const fake = fakeResend(setup)
-  const lines = await runDoctor({ env: { ...env, ...overrides }, example, resend: () => fake.client, fetchImpl: pong })
+  const lines = await runDoctor({ env: { ...env, ...overrides }, example, resend: () => fake.client, fetchImpl })
   return Object.fromEntries(lines.map((line: { check: string; status: string; detail: string }) => [line.check, line]))
 }
 
 describe("mail-agent doctor", () => {
   it("passes a complete setup, and says the switch is off", async () => {
     const lines = await doctor()
-    for (const check of ["env", "upstash", "agent inbox", "human inbox", "agent inbox agent", "human inbox agent", "webhook", "tracking"]) {
+    for (const check of ["env", "upstash", "agent inbox", "human inbox", "agent inbox agent", "human inbox agent", "webhook", "endpoint", "tracking"]) {
       expect(lines[check]?.status, check).toBe("ok")
     }
     expect(lines.switch).toMatchObject({ status: "warn", detail: "EMAIL_AGENT_ENABLED is off" })
     expect(lines.relay).toMatchObject({ status: "warn", detail: "EMAIL_HUMAN_RELAY_ENABLED is off: human@ mail stays in its inbox" })
     expect((await doctor({ EMAIL_HUMAN_RELAY_ENABLED: "true" })).relay).toMatchObject({ status: "ok", detail: "EMAIL_HUMAN_RELAY_ENABLED is on" })
-    expect(pong).toHaveBeenCalledWith("https://store.example.org/ping", { headers: { authorization: "Bearer test-token" } })
+    expect(fakeFetch).toHaveBeenCalledWith("https://store.example.org/ping", { headers: { authorization: "Bearer test-token" } })
+    expect(fakeFetch).toHaveBeenCalledWith("https://firstmove.energy/api/mail/inbound", expect.objectContaining({ method: "POST", redirect: "manual" }))
   })
 
   it("names empty and malformed variables, never their values", async () => {
@@ -91,9 +96,21 @@ describe("mail-agent doctor", () => {
     expect((await doctor({}, { hooks: extra })).webhook).toMatchObject({ status: "warn", detail: "also subscribed to email.received (ignored by the route)" })
   })
 
+  it("fails when the endpoint redirects, is not deployed, or is unreachable", async () => {
+    const ping = () => new Response(JSON.stringify({ result: "PONG" }), { status: 200 })
+    const redirect: FetchLike = async (url) => (url.endsWith("/ping") ? ping() : new Response(null, { status: 308 }))
+    expect((await doctor({}, {}, redirect)).endpoint).toMatchObject({ status: "fail", detail: "HTTP 308: redirects — webhook senders do not follow redirects" })
+    const missing: FetchLike = async (url) => (url.endsWith("/ping") ? ping() : new Response(null, { status: 404 }))
+    expect((await doctor({}, {}, missing)).endpoint.status).toBe("fail")
+    const down: FetchLike = async () => {
+      throw Object.assign(new Error("fetch failed"), { name: "TypeError" })
+    }
+    expect((await doctor({}, {}, down)).endpoint).toMatchObject({ status: "fail", detail: "unreachable (TypeError)" })
+  })
+
   it("only reads", async () => {
     const fake = fakeResend()
-    await runDoctor({ env, example, resend: () => fake.client, fetchImpl: pong })
+    await runDoctor({ env, example, resend: () => fake.client, fetchImpl: fakeFetch })
     expect(Object.keys(fake.client.inboxes)).toEqual(["get", "agent"])
     expect(Object.keys(fake.client.webhooks)).toEqual(["list"])
   })
