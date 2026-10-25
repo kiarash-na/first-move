@@ -11,6 +11,9 @@ export const OPENROUTER_API = "https://openrouter.ai/api/v1"
 /** App attribution OpenRouter asks for (both optional); no user or project data. */
 export const OPENROUTER_HEADERS = { "HTTP-Referer": "https://firstmove.energy", "X-OpenRouter-Title": "First Move" } as const
 
+/** The privacy switch of every OpenRouter call: only providers that do not collect the data. */
+export const OPENROUTER_PROVIDER_OPTIONS = { openrouter: { provider: { data_collection: "deny" } } } as const
+
 /** What `GET /api/v1/key` says about the key: its credit limit and, where given, its expiry. */
 export interface OpenRouterKeyInfo {
   /** USD, or null without a limit. */
