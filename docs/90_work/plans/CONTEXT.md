@@ -63,11 +63,11 @@ The owner gave these in chat on 2026-10-25 and asked for them to be finished, te
 | O6 | Home page: no italic text; the words that are italic now take the same style as the main title | O4, O5 | done ([PLAN-LANDING-POLISH-00](2026-10-25_landing-polish-00_plan.md), [note](../notes/2026-10-25_landing-polish-00.md)), merged into `dev` with the AI Plan Score follow-ups; left for the owner: the tokens doc's "Editorial accent" row (D-LP-1) |
 | O7 | In-app AI assistant (A05), **minimal and quick, no over-engineering** (owner, 2026-10-25): a 48 px `Bot` icon button fixed bottom right in the dashboard, a small panel; the PIN vault of D-50 for the key (session by default, "remember" with a 6-digit PIN); two bring-your-own-key providers for the assistant: the user's **Vercel AI Gateway** key (shared with the AI Plan Score; the vault may hold it; memory stays the default) and an **OpenRouter** key (paste; "Connect OpenRouter" with PKCE only if quick); the AI Plan Score stays on the Gateway because Jev runs there; **at key setup, everywhere a key is entered (assistant and AI Plan Score), a required notice tells the user to set a spending limit and an expiry date on the key when creating it** (owner, 2026-10-25; phrase each provider's options as its docs state them); built, tested and working | O1 | done (A05 merged at 3cdf314; visible once O9 flips `AI_FEATURES_LIVE`) |
 | O8 | Email agent **finished fully and actually working** (owner, 2026-10-25): conversation, extraction and on-brand results (A07) for agent@mail.firstmove.energy, human@ forwarding to a person; tested live with the configured Resend, KV and Gateway (test mails only to the project's own addresses) | O1 | done (A07 merged at 1557a21, live-tested between the project addresses; deployment checklist in the A07 note) |
-| O9 | Legal texts, docs and go-live switch of the assistant and the email agent (A08) | O7, O8 | todo |
+| O9 | Legal texts, docs and go-live switch of the assistant and the email agent (A08) | O7, O8 | switch done: `AI_FEATURES_LIVE = true` and the provider list (f6237c0, D-82); the texts are deferred (see below) |
 | O11 | A link to the public docs (`/{lang}/docs`, built in A04) in the site header and the site footer (desktop and the mobile landing), checked at the very end that the docs route is complete (owner, 2026-10-25) | O3, O5 | done for the links: "Docs" in the header and footer of the landing (desktop and mobile menu and footer), the docs header and the shared footer of the docs and legal pages ([PLAN-LANDING-POLISH-00](2026-10-25_landing-polish-00_plan.md), [note](../notes/2026-10-25_landing-polish-00.md); the footer's Quick Check and Business Models lead to the docs pages of the modules, D-LP-3); left: the final check that the docs route is complete, with O10 |
-| O12 | Clean-up of the legal pages and the public docs (owner, 2026-10-25): every function is built, so remove "demo", "planned", "not yet available" and "draft" wording, the German draft marking of D-44 (`DE_REVIEW_PENDING` and its banners) included; the texts describe what the app does now | O9 | todo |
-| O13 | Finish everything open towards the v1.0 launch (owner, 2026-10-25): every phase in this file ends `done` or names the one thing only the owner can do; bump `package.json` to 0.8.0 and tag the last commit of the run `v.0.8` (the owner's spelling), pushed with the tag | all | todo |
-| O10 | QA, security review, live test (A09) and a final full check: `pnpm lint && pnpm typecheck && pnpm test && pnpm build`, e2e, notes, push | all | todo |
+| O12 | Clean-up of the legal pages and the public docs (owner, 2026-10-25): every function is built, so remove "demo", "planned", "not yet available" and "draft" wording, the German draft marking of D-44 (`DE_REVIEW_PENDING` and its banners) included; the texts describe what the app does now | O9 | deferred by the owner (see below) |
+| O13 | Finish everything open towards the v1.0 launch (owner, 2026-10-25): every phase in this file ends `done` or names the one thing only the owner can do; bump `package.json` to 0.8.0 and tag the last commit of the run `v.0.8` (the owner's spelling), pushed with the tag | all | in progress |
+| O10 | QA, security review, live test (A09) and a final full check: `pnpm lint && pnpm typecheck && pnpm test && pnpm build`, e2e, notes, push | all | in progress: follow-ups 1–4 and 8 done (2d71e3b, 24ba3c6, f6237c0); 5–7 and the security review deferred (see below); full checks and e2e before the tag |
 
 ### Follow-ups collected for O10 (final polish and QA)
 
@@ -79,6 +79,16 @@ The owner gave these in chat on 2026-10-25 and asked for them to be finished, te
 6. Presentation: slide 5 label "Every source, linked" again; slide 6 status of agent@ once A07 is live.
 7. Privacy Policy: the email agent's TypeSafe AI processing says zero data retention is requested, not guaranteed.
 8. A timing-sensitive unit test (`ai-score-view.test.tsx`, report error of the latest run) seen failing once under load.
+
+### Deferred by the owner (2026-10-25, "functions first, get live")
+
+Not done in this run; the app runs live without them. Next session, in this order:
+
+1. Legal texts EN and DE (`ai`, `privacy`, `terms`, `cookies`, `legal`) for the assistant and the email agent: processors (Resend, Vercel KV, Vercel AI Gateway, TypeSafe AI, OpenRouter), consent, retention as `lib/mail-agent` implements it, "zero data retention requested" (never "guaranteed"), the IndexedDB `first-move-assistant` in the Cookie Policy, the Terms clause on AI outputs and the user's own key, the Privacy Policy's "(planned)" processor row. The provider regions in `lib/legal/ai.ts` need a legal check.
+2. `DE_REVIEW_PENDING` stays `true` (German draft notice) until the owner's review (D-44, D-80).
+3. Docs pages `assistant` and `email-agent` (`content/docs/{en,de}`) describe the built functions; drop "planned" and "not yet" wording in `index`, `data-and-privacy`, `ai-plan-score` (follow-up 5).
+4. Presentation: slide 5 label "Every source, linked"; slide 6 says agent@ is live (follow-up 6); the presentation note's blind-test paragraph still describes the 1.0.0 recording (now 1.1.0: 56.2 shown 55 ± 3).
+5. Security review of the AI layer and a browser test of the assistant with a key (A09); the privacy wording of follow-up 7.
 
 ## Handoff (2026-10-25, clean stop for a model switch)
 
