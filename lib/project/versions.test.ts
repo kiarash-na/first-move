@@ -4,7 +4,7 @@ import { METHODOLOGY_VERSION, SCHEMA_VERSION } from "./versions"
 
 describe("versions", () => {
   it("is at schema version 2 (provenance, PLAN-AGENT-01)", () => {
-    expect(SCHEMA_VERSION).toBe(2)
+    expect(SCHEMA_VERSION).toBe(3)
   })
 
   it("uses a semantic methodology version", () => {

@@ -51,7 +51,9 @@
     "forced": "Durch eine Regel festgelegt",
     "facts": "{buildings} Gebäude · {area}",
     "opened": "„{name}“ als Kopie geöffnet",
-    "extra": "Zusätzliches Beispiel"
+    "extra": "Zusätzliches Beispiel",
+    "show": "{count} Beispiele anzeigen",
+    "hide": "Beispiele ausblenden"
   },
   "import": {
     "title": "Projekt importieren",

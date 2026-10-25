@@ -3,6 +3,7 @@ import { readFileSync } from "node:fs"
 import { expect, test, type Page } from "@playwright/test"
 
 import { literal, text, type Lang } from "./support/dictionary"
+import { showExamples } from "./support/session"
 
 /**
  * PLAN-DASH-11 step 1: the whole journey in each language, and once more in the light theme.
@@ -62,7 +63,8 @@ for (const { lang, theme } of RUNS) {
       await expect(page.locator("html")).toHaveAttribute("data-theme", "light")
     }
 
-    // 2 · open an example (a copy).
+    // 2 · open an example (a copy); the examples sit collapsed at the bottom.
+    await showExamples(page)
     await page.locator(`[data-example="${EXAMPLE}"]`).getByRole("button", { name: t("start", "examples.open") }).click()
     await expect(page).toHaveURL(new RegExp(`/${lang}/dashboard/overview$`))
     const name = await page.getByRole("heading", { level: 1 }).first().innerText()

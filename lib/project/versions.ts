@@ -7,6 +7,6 @@
  *   (equations, Tables 1–11 and the resolved OQ answers). Bump it when a result can
  *   change for the same inputs. Results are never stored, so a bump needs no migration.
  */
-export const SCHEMA_VERSION = 2
+export const SCHEMA_VERSION = 3
 
 export const METHODOLOGY_VERSION = "1.0.0"

@@ -120,6 +120,21 @@ Given by the owner in the cloud session after A06 and A04, for the `dev` branch.
 | D-69 | **"Brought to you by"** strip on the landing page, right below the methodology's "Explicit boundary" line (the closing "Get started" card stays as it is): a slowly sliding row of partner placeholders ("Your Company", three for now) that pauses on hover or focus. A click opens a small dialog, "Contact us to become a partner", with a link to the owner's contact page (`https://kiarash.online/contact/`, new tab). Partner logos replace the placeholders later. |
 | D-70 | **The report (D-09) is built:** Report opens a light, printable report of the open project, and the browser's own "Save as PDF" makes the PDF. No PDF library. |
 
+## Decisions for the AI Plan Score (2026-10-24)
+
+Given by the owner in the cloud session on `dev`, answering numbered questions 1 to 8 ([PLAN-AI-SCORE-00](../plans/2026-10-24_ai-score-00_plan.md)).
+
+| ID | Decision |
+|---|---|
+| D-71 | **AI Plan Score**: a separate route that scores the Business Plan with AI. **Jev** (`typesafe-ai/jev-1.14.0`) takes every decision (field levels, gates, branches); the short report and the suggestions come from a language model the user picks (model-agnostic through the Vercel AI Gateway). Bring your own key: the user's **Vercel AI Gateway key**, called from the browser, kept **in memory only** for the open tab. |
+| D-72 | **Live everywhere now**: the route is linked in production. The AI page and the Privacy Policy describe it (EN; DE drafts under D-44), and the dashboard CSP adds `https://ai-gateway.vercel.sh`, extending D-48(a): the browser sends the open project's Business Plan texts and Quick Check signal to the Gateway only when the user starts a run. The in-app assistant (A05) stays unbuilt and `AI_FEATURES_LIVE` stays false. |
+| D-73 | The last analysis is **saved in the project** (schema v3, system-managed `aiScore`): exported and imported with it, shown as AI-generated, flagged outdated once a scored field changes. |
+| D-74 | The score is named **AI Plan Score**. The existing "Pitch readiness" is renamed **Pitch completeness** (copy only; it still counts filled fields), and the AI Plan Score sits above it, bolder. |
+| D-75 | The dimensions are **what makes a business plan solid**, not the hackathon jury criteria: the provider's study first (ALG-04 aspects for successful implementation, ALG-05, ALG-09, ALG-10), then verified literature. |
+| D-76 | **Reference cases**: 3 real Vienna anergy projects and 3 fictional anchor-building cases, one weak, one middling and one strong plan per group, with verified public references; on the start screen and in the public docs. |
+| D-77 | Improvement suggestions run **on demand** for weak fields only. |
+| D-78 | Start screen: **examples come last**, below the user's own projects, and start **collapsed**; this holds for the illustrative examples and the reference cases. |
+
 ## Defaults added in plan review (2026-10-24)
 
 | ID | Default |

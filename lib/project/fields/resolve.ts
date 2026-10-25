@@ -21,7 +21,7 @@ const isContainer = (schema: z.ZodType) => {
 
 /**
  * Maps a patch key (a dot path) to its registry entry. Leaves that exist in the schema but are
- * not inputs (`meta.id`, timestamps, versions, row ids) and the `provenance` section are
+ * not inputs (`meta.id`, timestamps, versions, row ids) and the `provenance` and `aiScore` sections are
  * read-only; containers such as `buildings.shares` are not fields (patch their fields one by
  * one), and neither are override cells without a default (OQ-13).
  */
@@ -34,7 +34,7 @@ export function resolvePatchPath(path: string): PatchTarget | PatchTargetFailure
 
   const item = matchItemPath(path, segments)
   if (item) return item.kind === "item" ? { ...item, segments } : item
-  if (segments[0] === "provenance") return { kind: "read-only" }
+  if (segments[0] === "provenance" || segments[0] === "aiScore") return { kind: "read-only" }
 
   const schema = schemaAt(projectSchema, segments)
   return { kind: schema && !isContainer(schema) && !isNullOnly(schema) ? "read-only" : "unknown-field" }

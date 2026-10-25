@@ -12,7 +12,7 @@ import { StorageBanner } from "./storage-banner"
 
 /**
  * The start screen at every visit (D-03): continue where you left off, import, the storage
- * warning, path tiles, examples and the project list. Static parts render at once; parts that
+ * warning, path tiles, the project list and, last and collapsed, the examples. Static parts render at once; parts that
  * need stored data show skeletons until the store is ready.
  */
 export function StartScreen({ examples }: { examples: readonly ExampleCard[] }) {
@@ -28,8 +28,9 @@ export function StartScreen({ examples }: { examples: readonly ExampleCard[] }) 
       {/* Below the Continue/Import row: it appears only once the store is ready, so above it would push the first screen down (layout shift). */}
       <StorageBanner />
       <PathTiles />
-      <ExamplesGallery examples={examples} />
       <ProjectList />
+      {/* Seed data comes last and starts collapsed (owner, 2026-10-24): the user's own projects first. */}
+      <ExamplesGallery examples={examples} />
     </div>
   )
 }

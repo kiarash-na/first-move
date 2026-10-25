@@ -12,27 +12,28 @@ describe("v2 provenance", () => {
     expect(v2Provenance.up({ meta: { schemaVersion: 1 } })).toEqual({ meta: { schemaVersion: 1 }, provenance: { ai: {} } })
   })
 
-  it("migrates the frozen v1 file to v2 without losing an input", () => {
+  it("migrates the frozen v1 file to the current version without losing an input", () => {
     const result = migrateProject(fixture)
     expect(result.ok).toBe(true)
     if (!result.ok) return
     expect(result).toMatchObject({ fromVersion: 1, migrated: true })
-    expect(result.project.meta.schemaVersion).toBe(2)
+    expect(result.project.meta.schemaVersion).toBe(3)
     expect(result.project.provenance).toEqual({ ai: {} })
-    const { provenance, meta, ...inputs } = result.project
+    const { provenance, aiScore, meta, ...inputs } = result.project
     const { meta: oldMeta, ...oldInputs } = fixture
     expect(provenance).toBeDefined()
+    expect(aiScore).toBeNull()
     expect(inputs).toEqual(oldInputs)
     expect({ ...meta, schemaVersion: 1 }).toEqual(oldMeta)
   })
 
-  it("imports a v1 export, then exports it again as v2", () => {
+  it("imports a v1 export, then exports it again at the current version", () => {
     const v1File = JSON.stringify({ format: EXPORT_FORMAT, formatVersion: EXPORT_FORMAT_VERSION, exportedAt: "2026-10-24T08:00:00.000Z", project: fixture })
     const imported = parseImportText(v1File)
     expect(imported.ok).toBe(true)
     if (!imported.ok) return
     const again = buildExport(imported.project, new Date("2026-10-24T09:00:00.000Z"))
-    expect(JSON.parse(again.text).project.meta.schemaVersion).toBe(2)
+    expect(JSON.parse(again.text).project.meta.schemaVersion).toBe(3)
     expect(JSON.parse(again.text).project.provenance).toEqual({ ai: {} })
   })
 })

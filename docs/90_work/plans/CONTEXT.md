@@ -40,3 +40,11 @@ Planned on 2026-10-24; the owner said go the same day (D-64, D-65). Few agents (
 | A09 | [QA, security review, live test, go-live](2026-10-24_agents-09_qa-go-live.md) | A08 | todo |
 
 Status values: `todo` → `in-progress` → `done`. Update both this table and the plan's frontmatter.
+
+## AI Plan Score (BYOK, Jev)
+
+A separate AI scoring of the Business Plan: [PLAN-AI-SCORE-00](2026-10-24_ai-score-00_plan.md) (architecture, steps) and [PLAN-AI-SCORE-01](2026-10-24_ai-score-01_method.md) (rubric, gates, dimensions, sources). Decisions D-71 to D-78: [owner decisions](../notes/2026-10-24_owner-decisions.md#decisions-for-the-ai-plan-score-2026-10-24).
+
+| Phase | Plan | Blocked by | Status |
+|---|---|---|---|
+| S00 | [AI Plan Score](2026-10-24_ai-score-00_plan.md) | none | in-progress |

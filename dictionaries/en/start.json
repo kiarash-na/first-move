@@ -51,7 +51,9 @@
     "forced": "Set by a rule",
     "facts": "{buildings} buildings · {area}",
     "opened": "“{name}” opened as a copy",
-    "extra": "Additional example"
+    "extra": "Additional example",
+    "show": "Show {count} examples",
+    "hide": "Hide the examples"
   },
   "import": {
     "title": "Import a project",
