@@ -352,6 +352,23 @@
   opacity: 1;
 }
 
+/* A must-have gate failed in the recorded run: said next to the level, and the capped bars are marked. */
+.ai-result__capped {
+  display: block;
+  margin-top: 6px;
+  color: var(--accent-hot);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.03em;
+  line-height: 1.5;
+  opacity: 0;
+  transition: opacity 400ms ease-out 150ms;
+}
+
+.ai-console[data-scored] .ai-result__capped {
+  opacity: 1;
+}
+
 .ai-result__level--early,
 .ai-result__value--early {
   color: var(--accent-hot);
@@ -482,6 +499,11 @@
   transition-delay: 0ms;
 }
 
+/* A dimension held at its cap: the bar ends in a hatched tail, so the cap reads as a limit, not a measure. */
+.ai-dimensions li[data-capped] i {
+  background: repeating-linear-gradient(135deg, var(--accent-hot) 0 3px, color-mix(in oklab, var(--accent-hot) 35%, transparent) 3px 6px);
+}
+
 .ai-console__note {
   margin: 0;
   padding: 14px 24px;
@@ -490,6 +512,27 @@
   font-family: var(--font-mono);
   font-size: 12px;
   line-height: 1.55;
+}
+
+/* The way to the blind test on slide 5: a link in the note, named like the page's other text links. */
+.ai-console__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border-bottom: 1px solid var(--line-subtle);
+  color: var(--text-primary);
+  letter-spacing: 0.025em;
+  white-space: nowrap;
+  text-transform: uppercase;
+  transition: border-color 180ms ease-out;
+}
+
+.ai-console__link svg {
+  color: var(--accent-cool);
+}
+
+.ai-console__link:hover {
+  border-color: var(--accent-cool);
 }
 
 @media (max-width: 1199px) {
@@ -569,6 +612,7 @@
   .ai-turn__decision,
   .ai-result,
   .ai-result__level,
+  .ai-result__capped,
   .ai-result__range,
   .ai-result__marker,
   .ai-dimensions li i {

@@ -1,4 +1,5 @@
 import type { LanguageSwitchProps } from '@/components/language-switch/language-switch'
+import type { RecordedRun } from '@/lib/presentation/blind-test/recorded-run'
 import type { LandingCopyProps } from '../types'
 import './mobile.css'
 import { MobileAiScore } from './MobileAiScore'
@@ -21,6 +22,8 @@ import { MobileUseCases } from './MobileUseCases'
 
 export interface MobileLandingProps extends LandingCopyProps {
   language: Omit<LanguageSwitchProps, 'lang' | 'className'>
+  /** The recorded blind test the AI Plan Score chapter replays. */
+  run: RecordedRun
 }
 
 /**
@@ -28,7 +31,7 @@ export interface MobileLandingProps extends LandingCopyProps {
  * order and with the same copy, in one column (two on tablets where it helps), without the 3D
  * scene and the scroll machinery. Shown below 1024 px by `LandingSwitch`.
  */
-export function MobileLanding({ t, lang, language }: MobileLandingProps) {
+export function MobileLanding({ t, lang, language, run }: MobileLandingProps) {
   return (
     <MobileRevealRoot>
       <MobileHeader t={t} lang={lang} language={language} />
@@ -44,7 +47,7 @@ export function MobileLanding({ t, lang, language }: MobileLandingProps) {
         <MobileRealityCheck t={t} />
         <MobileScalability t={t} />
         <MobileImplementation t={t} />
-        <MobileAiScore t={t} lang={lang} />
+        <MobileAiScore t={t} lang={lang} run={run} />
         <MobileMethodology t={t} />
         <MobileGetStarted t={t} lang={lang} />
       </main>

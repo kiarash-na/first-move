@@ -1,7 +1,16 @@
+import { readFileSync } from "node:fs"
+import path from "node:path"
+
 import { expect, test, type Page } from "@playwright/test"
 
 import { axeViolations } from "./support/axe"
 import { text, type Lang } from "./support/dictionary"
+
+/** The recorded run the AI chapter replays: its numbers are read, never typed (PLAN-LANDING-POLISH-00 step f). */
+const RECORDED = JSON.parse(readFileSync(path.join(process.cwd(), "lib/presentation/blind-test/result.json"), "utf8")) as {
+  score: { shown: number; level: string }
+}
+const SCORE = String(RECORDED.score.shown)
 
 /**
  * PLAN-LANDING-MOBILE-00: below 1024 px the landing is the separate phone and tablet version. The
@@ -68,16 +77,19 @@ for (const lang of ["en", "de"] as Lang[]) {
       for (const [key, id] of [["system", "m-system"], ["quickCheck", "m-quick-check"], ["businessModels", "m-business-models"], ["aiScore", "m-ai-score"], ["methodology", "m-methodology"]]) {
         await expect(menu.getByRole("link", { name: t(`header.nav.${key}`) })).toHaveAttribute("href", `#${id}`)
       }
+      // The public docs after the chapters (PLAN-LANDING-POLISH-00 step b).
+      await expect(menu.getByRole("link", { name: t("header.nav.docs") })).toHaveAttribute("href", `/${lang}/docs`)
       await menu.getByRole("link", { name: t("header.nav.aiScore") }).click()
       await expect(menu).toBeHidden()
       await expect(page.locator("#m-ai-score")).toBeInViewport()
 
-      // The example run plays to its score once in view (on a phone it sits below the chapter's copy), and replays.
+      // The recorded run plays to its score once in view (on a phone it sits below the chapter's copy), and replays.
       const console_ = page.locator("#m-ai-score .m-ai")
       await console_.scrollIntoViewIfNeeded()
       await expect(console_).toHaveAttribute("data-step", "5", { timeout: 15_000 })
-      await expect(console_.locator(".m-ai-score__number")).toHaveText("60", { timeout: 5_000 })
-      await expect(console_.locator(".m-ai-score__level")).toHaveText(t("aiScore.console.levels.promising"))
+      await expect(console_.locator(".m-ai-score__number")).toHaveText(SCORE, { timeout: 5_000 })
+      await expect(console_.locator(".m-ai-score__level")).toHaveText(t(`aiScore.console.levels.${RECORDED.score.level}`))
+      await expect(console_.getByRole("link", { name: t("aiScore.console.link") })).toHaveAttribute("href", `/${lang}/presentation#5`)
       await console_.getByRole("button", { name: t("aiScore.console.replay") }).click()
       await expect(console_).toHaveAttribute("data-step", "0")
       await expect(console_).toHaveAttribute("data-step", "5", { timeout: 15_000 })
@@ -92,6 +104,11 @@ for (const lang of ["en", "de"] as Lang[]) {
       const legal = page.getByRole("navigation", { name: t("closing.footer.legal.nav") })
       await expect(legal.getByRole("link")).toHaveCount(8)
       await expect(legal.getByRole("link", { name: t("presentation.footer"), exact: true })).toHaveAttribute("href", `/${lang}/presentation`)
+      // The footer's product row: the modules' docs pages, the methodology chapter, the docs index (D-LP-3).
+      const footerNav = page.locator("footer.m-footer").getByRole("navigation", { name: t("closing.footer.nav") })
+      await expect(footerNav.getByRole("link", { name: t("closing.footer.quickCheck"), exact: true })).toHaveAttribute("href", `/${lang}/docs/quick-check`)
+      await expect(footerNav.getByRole("link", { name: t("closing.footer.businessModels"), exact: true })).toHaveAttribute("href", `/${lang}/docs/business-plan`)
+      await expect(footerNav.getByRole("link", { name: t("closing.footer.docs"), exact: true })).toHaveAttribute("href", `/${lang}/docs`)
 
       // Nothing scrolls sideways once everything is revealed; three.js never arrived.
       expect(await overflow(page), `sideways overflow at ${viewport.width}px`).toBe(0)
@@ -152,7 +169,14 @@ test("with reduced motion every block is visible at once and the run shows its f
   expect(await blocks.evaluateAll((elements) => elements.every((element) => element.classList.contains("is-in")))).toBe(true)
   await page.locator("#m-ai-score").scrollIntoViewIfNeeded()
   await expect(page.locator("#m-ai-score .m-ai")).toHaveAttribute("data-step", "5", { timeout: 5_000 })
-  await expect(page.locator("#m-ai-score .m-ai-score__number")).toHaveText("60")
+  await expect(page.locator("#m-ai-score .m-ai-score__number")).toHaveText(SCORE)
+  // Nothing on the mobile landing is italic (D-LP-1).
+  const italic = await page.evaluate(() =>
+    [...document.querySelectorAll<HTMLElement>(".m-landing *")]
+      .filter((element) => element.getClientRects().length > 0 && (element.textContent ?? "").trim().length > 0 && getComputedStyle(element).fontStyle === "italic")
+      .map((element) => `${element.tagName.toLowerCase()}: ${(element.textContent ?? "").trim().slice(0, 40)}`),
+  )
+  expect(italic).toEqual([])
 })
 
 for (const lang of ["en", "de"] as Lang[]) {

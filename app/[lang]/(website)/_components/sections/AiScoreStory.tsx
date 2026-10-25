@@ -3,16 +3,23 @@
 import Link from 'next/link'
 import { ArrowDownRight, ArrowUpRight } from 'lucide-react'
 import { withLocale } from '@/lib/i18n/locale-path'
+import type { RecordedRun } from '@/lib/presentation/blind-test/recorded-run'
 import { RichText } from '../rich-text'
 import type { LandingCopyProps } from '../types'
 import { AiScoreConsole } from './AiScoreConsole'
 
+interface AiScoreStoryProps extends LandingCopyProps {
+  /** The recorded blind test the console replays. */
+  run: RecordedRun
+}
+
 /**
  * The AI Plan Score chapter (PLAN-LANDING-FIX-00 step 9), after the Business Plan's "next move"
  * and before the methodology: a separate AI opinion on the written plan, every decision shown.
- * Links to the dashboard route and the docs page; the story link continues to the methodology.
+ * The console replays the recorded blind test (PLAN-LANDING-POLISH-00 step f). Links to the
+ * dashboard route and the docs page; the story link continues to the methodology.
  */
-export function AiScoreStory({ t, lang }: LandingCopyProps) {
+export function AiScoreStory({ t, lang, run }: AiScoreStoryProps) {
   const copy = t.aiScore
 
   return (
@@ -49,7 +56,7 @@ export function AiScoreStory({ t, lang }: LandingCopyProps) {
         </div>
 
         <div className="ai-console-stage" data-reveal>
-          <AiScoreConsole copy={copy.console} lang={lang} />
+          <AiScoreConsole copy={copy.console} lang={lang} run={run} />
         </div>
       </div>
     </section>

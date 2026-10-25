@@ -1,12 +1,18 @@
 import Link from 'next/link'
 import { ArrowDownRight, ArrowUpRight } from 'lucide-react'
 import { withLocale } from '@/lib/i18n/locale-path'
+import type { RecordedRun } from '@/lib/presentation/blind-test/recorded-run'
 import { RichText } from '../rich-text'
 import type { LandingCopyProps } from '../types'
 import { MobileAiConsole } from './MobileAiConsole'
 
-/** The AI Plan Score chapter: the three facts, the route and the docs page, and the example run. */
-export function MobileAiScore({ t, lang }: LandingCopyProps) {
+interface MobileAiScoreProps extends LandingCopyProps {
+  /** The recorded blind test the console replays. */
+  run: RecordedRun
+}
+
+/** The AI Plan Score chapter: the three facts, the route and the docs page, and the recorded run. */
+export function MobileAiScore({ t, lang, run }: MobileAiScoreProps) {
   const copy = t.aiScore
 
   return (
@@ -43,7 +49,7 @@ export function MobileAiScore({ t, lang }: LandingCopyProps) {
         </div>
 
         <div data-m-reveal>
-          <MobileAiConsole copy={copy.console} lang={lang} />
+          <MobileAiConsole copy={copy.console} lang={lang} run={run} />
         </div>
       </div>
     </section>

@@ -35,6 +35,17 @@ for (const lang of ["en", "de"] as Lang[]) {
   })
 }
 
+test("the shared header and footer link the docs index from a docs page and a legal page (PLAN-LANDING-POLISH-00 step b)", async ({ page }) => {
+  for (const [lang, route] of [["en", "/en/docs/quick-check"], ["de", "/de/imprint"]] as const) {
+    await page.goto(route)
+    await expect(page.getByRole("banner").getByRole("link", { name: text(lang, "common", "docs.link"), exact: true })).toHaveAttribute("href", `/${lang}/docs`)
+    await expect(page.getByRole("contentinfo").getByRole("link", { name: text(lang, "legal", "documentation"), exact: true })).toHaveAttribute("href", `/${lang}/docs`)
+  }
+  await page.getByRole("banner").getByRole("link", { name: text("de", "common", "docs.link"), exact: true }).click()
+  await expect(page).toHaveURL(/\/de\/docs$/)
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText(text("de", "docs", "pages.index.title"))
+})
+
 test("a German docs page shows the German page, without the English-only note", async ({ page }) => {
   await page.goto("/de/docs/data-and-privacy")
   await expect(page.getByRole("heading", { level: 1 })).toHaveText(text("de", "docs", "pages.data-and-privacy.title"))

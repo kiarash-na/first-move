@@ -2,7 +2,11 @@ import { render, screen } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import common from '@/dictionaries/en/common.json'
 import en from '@/dictionaries/en/landing.json'
+import aiScore from '@/dictionaries/en/ai-score.json'
+import { recordedRun } from '@/lib/presentation/blind-test/recorded-run'
 import { MobileLanding } from './MobileLanding'
+
+const run = recordedRun(aiScore.labels)
 
 vi.mock('next/navigation', () => ({ usePathname: () => '/en' }))
 
@@ -23,7 +27,7 @@ afterEach(() => vi.unstubAllGlobals())
 
 describe('MobileLanding', () => {
   it('renders every chapter in the desktop order, one main, the header and the footer', () => {
-    render(<MobileLanding t={en} lang="en" language={common.language} />)
+    render(<MobileLanding t={en} lang="en" language={common.language} run={run} />)
     const ids = CHAPTERS.map((id) => document.getElementById(id))
     ids.forEach((element, index) => expect(element, CHAPTERS[index]).not.toBeNull())
     // In page order.
@@ -37,7 +41,7 @@ describe('MobileLanding', () => {
   })
 
   it('uses only m- prefixed ids, so nothing collides with the desktop tree', () => {
-    render(<MobileLanding t={en} lang="en" language={common.language} />)
+    render(<MobileLanding t={en} lang="en" language={common.language} run={run} />)
     for (const id of DESKTOP_IDS) expect(document.getElementById(id), id).toBeNull()
     const ids = Array.from(document.querySelectorAll('[id]')).map((element) => element.id)
     expect(ids.length).toBeGreaterThan(CHAPTERS.length)
@@ -45,7 +49,7 @@ describe('MobileLanding', () => {
   })
 
   it('links every Get Started to the localized dashboard', () => {
-    render(<MobileLanding t={en} lang="de" language={common.language} />)
+    render(<MobileLanding t={en} lang="de" language={common.language} run={run} />)
     const links = screen.getAllByRole('link', { name: new RegExp(`^${en.closing.getStarted.primary}$`, 'i') })
     expect(links.length).toBeGreaterThanOrEqual(2)
     for (const link of links) expect(link).toHaveAttribute('href', '/de/dashboard')

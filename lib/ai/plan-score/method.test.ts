@@ -1,5 +1,13 @@
 import { describe, expect, it } from "vitest"
+import {
+  PROMISING_FROM as MIRRORED_PROMISING_FROM,
+  SHOWN_DECISIONS,
+  SOLID_FROM as MIRRORED_SOLID_FROM,
+  TURN_SIZES,
+} from "@/lib/presentation/blind-test/recorded-run"
+import recorded from "@/lib/presentation/blind-test/result.json"
 import { fieldsOf } from "@/lib/project"
+import { PROMISING_FROM, SOLID_FROM } from "./aggregate"
 import { BRANCHES, FOLLOW_UP_GATE_IDS, followUpGate } from "./branches"
 import { DIMENSIONS, DIMENSION_IDS } from "./dimensions"
 import { GATES } from "./gates"
@@ -25,14 +33,16 @@ describe("AI Plan Score method (PLAN-AI-SCORE-01)", () => {
     expect(turns).toEqual([...turns].sort())
   })
 
-  it("keeps the turns and dimensions the landing's example run copies (app/[lang]/(website)/_components/sections/aiScoreExample.ts)", () => {
-    // The landing may not import lib/ai (boundary.test.ts); if this changes, update the example too.
-    expect(TURNS.map((turn) => JUDGEMENTS.filter((judgement) => judgement.turn === turn).map((judgement) => judgement.dimension))).toEqual([
-      ["technology", "participation", "participation", "value", "value", "value", "value", "technology"],
-      ["value", "technology", "governance", "participation", "economics", "economics", "governance", "governance"],
-      ["participation", "economics", "economics", "evidence", "evidence"],
-      ["evidence", "path", "path", "path", "path", "path"],
-    ])
+  it("keeps what the landing's recorded run mirrors (lib/presentation/blind-test/recorded-run.ts): turn sizes, thresholds, the turn of each shown decision", () => {
+    // The landing may not import lib/ai (boundary.test.ts); if this changes, update the mirror too.
+    expect(TURNS.map((turn) => JUDGEMENTS.filter((judgement) => judgement.turn === turn).length)).toEqual([...TURN_SIZES])
+    expect([PROMISING_FROM, SOLID_FROM]).toEqual([MIRRORED_PROMISING_FROM, MIRRORED_SOLID_FROM])
+    for (const shown of SHOWN_DECISIONS) {
+      const entry = shown.kind === "gate" ? GATES.find((gate) => gate.id === shown.id) : BRANCHES.find((branch) => branch.id === shown.id)
+      expect(entry?.turn, shown.id).toBe(shown.turn)
+    }
+    // The recording lists the judgements in the engine's order, so slicing it by turn size gives the turns.
+    expect(recorded.judgements.map((judgement) => judgement.id)).toEqual(JUDGEMENTS.map((judgement) => judgement.id))
     expect(DIMENSIONS.map((dimension) => [dimension.id, dimension.weight])).toEqual([
       ["value", 0.15], ["technology", 0.1], ["economics", 0.2], ["governance", 0.2], ["participation", 0.15], ["evidence", 0.1], ["path", 0.1],
     ])

@@ -288,27 +288,23 @@
     "secondary": "So bewerten wir",
     "link": "Methodik prüfen",
     "console": {
-      "title": "Beispiellauf",
-      "tag": "Beispielhaft",
+      "title": "Aufgezeichneter Lauf",
+      "tag": "Echter Wiener Plan · {year}",
       "replay": "Erneut abspielen",
-      "summary": "Ein Beispiellauf: {fields} Punkte in vier Runden bewertet, ein Score von {score} ± {band}, {level}.",
+      "summary": "Ein aufgezeichneter Lauf auf einem echten Wiener Plan von {year}: {fields} Punkte in vier Runden bewertet, ein Score von {score} ± {band}, {level}.",
       "turns": { "1": "Chance", "2": "Geschäftslogik", "3": "Realitätscheck", "4": "Umsetzung" },
       "fields": "{count} Punkte",
       "branch": "Verzweigung",
       "gate": "Schwelle",
-      "decisions": {
-        "1": { "name": "Hauptwärmequelle", "result": "Grundwasser" },
-        "2": { "name": "Systemgrenze", "result": "Erfüllt" },
-        "3": { "name": "K.-o.-Kriterium mit Prüfung", "result": "Unklar" },
-        "4": { "name": "Entscheidungstor", "result": "Erfüllt" }
-      },
       "evidenceLabel": "Belegstufe",
       "evidence": ["Fehlt", "Vage", "Konkret", "Beziffert", "Belegt"],
       "scoreLabel": "KI-Plan-Score",
       "levels": { "early": "Früh", "promising": "Vielversprechend", "solid": "Solide" },
+      "capped": "Pflichtschwelle verfehlt · {count} Dimensionen gedeckelt",
       "dimensionsLabel": "Sieben Dimensionen",
       "dimensions": { "value": "Nutzen", "technology": "Technik", "economics": "Wirtschaft", "governance": "Steuerung", "participation": "Beteiligung", "evidence": "Belege", "path": "Umsetzung" },
-      "note": "Beispielhafte Entscheidungen · der echte Score hängt vom geschriebenen Plan und vom Entscheidungsmodell ab."
+      "note": "Aufgezeichnet am {date}: ein echter Wiener Businessplan von {year}, Name und Ausgang entfernt, blind bewertet. Ein Fall zeigt, wie die Engine arbeitet. Er bestätigt sie nicht.",
+      "link": "Zum Blindtest"
     }
   },
   "closing": {
