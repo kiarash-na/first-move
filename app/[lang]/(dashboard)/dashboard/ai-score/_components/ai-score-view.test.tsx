@@ -108,6 +108,39 @@ describe("AiScoreView (D-71)", () => {
     expect(screen.queryByRole("alert")).not.toBeInTheDocument()
   })
 
+  it("shows why the report of the latest run failed, not an older error", async () => {
+    const { fake } = show({ textStatus: 503 })
+    const fail = (status: number) => () => {
+      throw Object.assign(new Error(`status ${status}`), { statusCode: status })
+    }
+    await connect()
+    await userEvent.click(startButton())
+    const panel = within(document.getElementById("ai-score-run")!)
+    expect(await panel.findByRole("alert")).toHaveTextContent(copy.errors.provider)
+    fake.textModel.mockImplementation(fail(429))
+    await userEvent.click(panel.getByRole("button", { name: copy.run.writeAgain }))
+    await waitFor(() => expect(panel.getByRole("alert")).toHaveTextContent(copy.errors.rate))
+    fake.textModel.mockImplementation(fail(503))
+    await userEvent.click(panel.getByRole("button", { name: copy.run.again }))
+    await waitFor(() => expect(panel.getByRole("alert")).toHaveTextContent(copy.errors.provider))
+    expect(panel.getByRole("alert")).not.toHaveTextContent(copy.errors.rate)
+  })
+
+  it("stops a run in flight when the saved score is deleted, so it does not come back", async () => {
+    const project = example()
+    const { store, fake } = show({ hold: true }, { ...project, aiScore: await scored(project) })
+    await connect()
+    await userEvent.click(screen.getByRole("button", { name: copy.run.again }))
+    await waitFor(() => expect(document.querySelector("[data-column='1']")).toHaveAttribute("data-state", "running"))
+    await userEvent.click(screen.getByRole("button", { name: copy.results.remove.action }))
+    await userEvent.click(within(screen.getByRole("alertdialog")).getByRole("button", { name: copy.results.remove.confirm }))
+    fake.release()
+    expect(await within(document.getElementById("ai-score-run")!).findByRole("alert")).toHaveTextContent(copy.errors.aborted)
+    expect(store.setAiScore).toHaveBeenCalledTimes(1)
+    expect(store.setAiScore).toHaveBeenCalledWith(project.meta.id, null)
+    expect(store.current().aiScore).toBeNull()
+  })
+
   it("shows a saved result from the project, with its flow", async () => {
     const project = example()
     const score = await scored(project)

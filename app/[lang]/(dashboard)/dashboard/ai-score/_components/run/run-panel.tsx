@@ -32,7 +32,7 @@ export function filledCount(project: Project): number {
 /**
  * Step 2 of the page: start, cancel and follow a run (PLAN-AI-SCORE-00 step 6). Disabled until a
  * key is set, what is sent is confirmed, the text model is valid and a plan part has text; says
- * which is missing. Errors come as copy per Gateway error code, never raw; a failed report keeps
+ * which is missing. While a report or suggestions are being written, a new run waits. Errors come as copy per Gateway error code, never raw; a failed report keeps
  * the score and offers to write it again.
  */
 export function RunPanel({
@@ -42,6 +42,7 @@ export function RunPanel({
   hasScore,
   hasReport,
   writing,
+  textBusy = false,
   textError,
   onStart,
   onCancel,
@@ -54,6 +55,8 @@ export function RunPanel({
   /** The saved score has a report (after a successful rewrite). */
   hasReport: boolean
   writing: boolean
+  /** A report or suggestions request is running; a new run waits until it ends. */
+  textBusy?: boolean
   textError: GatewayErrorCode | null
   onStart: () => void
   onCancel: () => void
@@ -65,7 +68,7 @@ export function RunPanel({
   const filled = useMemo(() => filledCount(project), [project])
   const running = run.phase === "running"
   const missing = [!readiness.key && text.needs.key, !readiness.ack && text.needs.ack, !readiness.model && text.needs.model].filter(Boolean) as string[]
-  const canStart = !running && filled > 0 && missing.length === 0
+  const canStart = !running && !textBusy && filled > 0 && missing.length === 0
   const ready = missing.length === 0
 
   return (
