@@ -2,5 +2,168 @@
   "launcher": {
     "open": "KI-Assistenten öffnen",
     "close": "KI-Assistenten schließen"
+  },
+  "panel": {
+    "title": "KI-Assistent",
+    "badge": "KI",
+    "close": "Schließen",
+    "settings": "Schlüssel und Modell",
+    "back": "Zum Chat",
+    "loading": "Der Assistent wird geladen …"
+  },
+  "providers": {
+    "gateway": "Vercel AI Gateway",
+    "openrouter": "OpenRouter"
+  },
+  "setup": {
+    "title": "Schlüssel verbinden",
+    "lead": "Der Assistent läuft mit Ihrem eigenen Schlüssel. Wenn Sie eine Nachricht senden, schickt Ihr Browser sie zusammen mit den Projektdaten, die der Assistent liest, direkt an den Anbieter Ihrer Wahl. Nichts läuft über die Server von First Move.",
+    "provider": {
+      "label": "Anbieter",
+      "gatewayHint": "Derselbe Schlüssel wie beim KI-Plan-Score: Ein Schlüssel reicht für beides.",
+      "openrouterHint": "Ein Schlüssel für viele Modelle, mit dem Auto Router."
+    },
+    "key": {
+      "label": "API-Schlüssel",
+      "placeholder": {
+        "gateway": "AI-Gateway-Schlüssel einfügen",
+        "openrouter": "OpenRouter-Schlüssel einfügen (sk-or-…)"
+      },
+      "invalid": "Das sieht nicht nach einem Schlüssel dieses Anbieters aus. Fügen Sie den ganzen Schlüssel ohne Leerzeichen ein.",
+      "where": {
+        "gateway": "So erhalten Sie einen Schlüssel: Melden Sie sich bei Vercel an, öffnen Sie im Dashboard AI Gateway und erstellen Sie dort einen API-Schlüssel. Bevor das Gateway ein Modell ausführt, braucht Ihr Konto Guthaben.",
+        "openrouter": "So erhalten Sie einen Schlüssel: Melden Sie sich bei openrouter.ai an, öffnen Sie Keys und erstellen Sie dort einen Schlüssel. Für kostenpflichtige Modelle braucht Ihr OpenRouter-Konto Guthaben."
+      }
+    },
+    "storage": {
+      "label": "Schlüssel aufbewahren",
+      "session": "Nur für diesen Tab",
+      "sessionHint": "Empfohlen. Der Schlüssel bleibt im Arbeitsspeicher dieses Tabs und ist weg, sobald Sie neu laden oder den Tab schließen.",
+      "remember": "Auf diesem Gerät mit einer PIN merken",
+      "rememberHint": "Der Schlüssel wird in diesem Browser unter Ihrer sechsstelligen PIN verschlüsselt. Fünf falsche PINs löschen ihn, und nach 30 Minuten ohne Nutzung wird er gesperrt. Die PIN hält andere Personen ab, die diesen Browser nutzen; sie schützt nicht vor jemandem, der Ihr Browserprofil kopiert oder Code in dieser Seite ausführt. Der eigentliche Schutz ist das Ausgabenlimit bei Ihrem Anbieter."
+    },
+    "pin": {
+      "label": "Sechsstellige PIN",
+      "repeat": "PIN wiederholen",
+      "format": "Verwenden Sie genau sechs Ziffern.",
+      "common": "Diese PIN ist zu leicht zu erraten. Wählen Sie eine andere.",
+      "mismatch": "Die beiden PINs stimmen nicht überein."
+    },
+    "use": "Schlüssel prüfen und verwenden",
+    "checking": "Der Schlüssel wird beim Anbieter geprüft …",
+    "rejected": "Der Schlüssel wurde nicht akzeptiert. {reason}",
+    "failed": "Der Schlüssel konnte nicht geprüft werden. {reason}",
+    "unavailable": "Dieser Browser kann den Schlüssel nicht auf dem Gerät aufbewahren. Er gilt nur für diesen Tab.",
+    "active": "Verwendeter Schlüssel: {masked} ({provider})",
+    "remembered": "Auf diesem Gerät unter Ihrer PIN gemerkt.",
+    "forget": "Schlüssel in diesem Tab vergessen",
+    "remove": "Gemerkten Schlüssel entfernen",
+    "balance": "Guthaben im Gateway: {amount}",
+    "limit": "Kreditlimit dieses Schlüssels: {amount}, davon {remaining} übrig.",
+    "limitReset": "Es wird {reset} zurückgesetzt.",
+    "resets": {
+      "daily": "täglich",
+      "weekly": "wöchentlich",
+      "monthly": "monatlich"
+    },
+    "noLimit": "Dieser Schlüssel hat kein Kreditlimit. Legen Sie unter openrouter.ai/keys eines fest oder erstellen Sie einen neuen Schlüssel mit Limit.",
+    "expires": "Der Schlüssel läuft am {date} ab.",
+    "noExpiry": "OpenRouter meldet für diesen Schlüssel kein Ablaufdatum. Erstellen Sie einen Schlüssel mit Ablaufdatum oder löschen Sie diesen, wenn Sie fertig sind.",
+    "model": {
+      "label": "Modell",
+      "custom": "Anderes Modell",
+      "customLabel": "Modell-ID",
+      "customPlaceholder": "anbieter/modell",
+      "customInvalid": "Verwenden Sie die Form anbieter/modell, zum Beispiel {example}.",
+      "customHint": "Das Modell muss Werkzeuge (Tool Use) unterstützen. Den Preis nennt Ihr Anbieter.",
+      "auto": "Wählt für jede Nachricht ein Modell und berechnet dessen Preis.",
+      "price": "{input} Eingabe · {output} Ausgabe pro Million Tokens"
+    }
+  },
+  "notice": {
+    "title": "Legen Sie für den Schlüssel ein Ausgabenlimit und ein Ablaufdatum fest",
+    "lead": "Der Assistent schützt den Schlüssel in Ihrem Browser, doch die Grenze, die Sie wirklich schützt, ist die bei Ihrem Anbieter. Legen Sie beides beim Erstellen des Schlüssels fest:",
+    "gateway": {
+      "limit": "Ausgabenlimit: Schalten Sie im Dialog „Create key“ auf der Seite „API Keys“ des AI Gateway die Budget-Option ein, geben Sie ein Ausgabenlimit in Dollar ein und wählen Sie einen Zeitraum, nach dem es zurückgesetzt wird (täglich, wöchentlich, monatlich oder nie). Ist das Limit überschritten, lehnt das AI Gateway weitere Anfragen ab. Ein Budget ist eine weiche Grenze: Die Anfrage, die es überschreitet, wird noch ausgeführt.",
+      "expiry": "Ablaufdatum: Laut der Vercel-Dokumentation lässt sich ein Ablaufdatum nur festlegen, wenn Sie den Schlüssel mit der Vercel CLI oder der API erstellen, zum Beispiel vercel ai-gateway api-keys create --name first-move --limit 10 --expiration 30d (7d, 30d, 60d, 90d oder 1y). Ein im Dashboard erstellter Schlüssel läuft nie ab, bis Sie ihn löschen. Löschen Sie ihn also, wenn Sie ihn nicht mehr brauchen, und erstellen Sie einen neuen.",
+      "docs": "Vercel-Dokumentation: Budgets für API-Schlüssel",
+      "docsUrl": "https://vercel.com/docs/ai-gateway/observability-and-spend/budgets#api-key-budgets"
+    },
+    "openrouter": {
+      "limit": "Kreditlimit: Wählen Sie beim Erstellen des Schlüssels unter openrouter.ai/keys ein Kreditlimit und, wenn Sie möchten, eine tägliche, wöchentliche oder monatliche Rücksetzung. Hat der Schlüssel sein Limit verbraucht, lehnt OpenRouter seine Anfragen ab. OpenRouter empfiehlt ein Limit für jeden Schlüssel.",
+      "expiry": "Ablaufdatum: Geben Sie dem Schlüssel beim Erstellen ein Ablaufdatum. Bei einem bestehenden Schlüssel lässt es sich nicht mehr ändern, legen Sie es also gleich fest.",
+      "docs": "OpenRouter-Dokumentation: API-Schlüssel und Limits",
+      "docsUrl": "https://openrouter.ai/docs/api-reference/authentication"
+    },
+    "ack": "Ich habe für diesen Schlüssel ein Ausgabenlimit und ein Ablaufdatum festgelegt, oder ich lösche den Schlüssel, sobald ich ihn nicht mehr brauche.",
+    "required": "Bestätigen Sie das, bevor der Schlüssel verwendet wird."
+  },
+  "unlock": {
+    "title": "Gemerkten Schlüssel entsperren",
+    "lead": "Ihr Schlüssel für {provider} mit der Endung {last4} ist auf diesem Gerät gemerkt.",
+    "pin": "PIN",
+    "unlock": "Entsperren",
+    "unlocking": "Wird entsperrt …",
+    "wrong": "Falsche PIN. Noch {remaining} Versuche, dann wird der Schlüssel gelöscht.",
+    "wiped": "Zu viele falsche PINs: Der gemerkte Schlüssel wurde gelöscht. Fügen Sie den Schlüssel erneut ein.",
+    "missing": "Es wurde kein gemerkter Schlüssel gefunden. Fügen Sie den Schlüssel erneut ein.",
+    "unavailable": "Dieser Browser kann den gemerkten Schlüssel nicht öffnen.",
+    "other": "Anderen Schlüssel verwenden"
+  },
+  "chat": {
+    "noProject": "Es ist kein Projekt geöffnet. Fragen zur Methode von First Move können Sie trotzdem stellen.",
+    "empty": "Fragen Sie zu Ihrem geöffneten Projekt oder dazu, wie First Move rechnet. Zum Beispiel:",
+    "examples": {
+      "result": "Warum zeigt mein Quick Check dieses Ergebnis?",
+      "length": "Wie wird die Netzlänge geschätzt?",
+      "missing": "Was fehlt in meinem Projekt noch?"
+    },
+    "label": "Nachricht an den Assistenten",
+    "placeholder": "Frage stellen …",
+    "send": "Senden",
+    "stop": "Stopp",
+    "retry": "Erneut versuchen",
+    "you": "Sie",
+    "aiLabel": "KI-generiert",
+    "working": "Wird bearbeitet …",
+    "tools": {
+      "get_project": "Geöffnetes Projekt gelesen",
+      "search_docs": "Dokumentation durchsucht",
+      "explain": "Nachgeschlagen, wie First Move rechnet",
+      "propose_values": "Werte zur Prüfung vorbereitet"
+    },
+    "clear": "Neues Gespräch",
+    "via": "{model} über {provider}",
+    "privacy": "Ihre Nachrichten und die Projektdaten, die der Assistent liest, gehen unter Ihrem Schlüssel an {provider}. KI-Antworten können falsch sein: Prüfen Sie sie anhand der Ergebnisse."
+  },
+  "review": {
+    "title": "Vorgeschlagene Werte",
+    "lead": "Nichts ändert sich, bevor Sie übernehmen. Übernommene Werte bleiben als KI-Vorschlag markiert, bis Sie sie bearbeiten.",
+    "current": "Jetzt",
+    "proposed": "Vorschlag",
+    "empty": "leer",
+    "yes": "Ja",
+    "no": "Nein",
+    "newEntries": "{count} neue Einträge",
+    "invalid": "Kann nicht übernommen werden",
+    "unclear": "Unklar, nicht vorgeschlagen",
+    "conflict": "Verschiedene Werte gefunden; keiner wurde gewählt",
+    "apply": "Auswahl übernehmen",
+    "dismiss": "Verwerfen",
+    "applied": "Übernommen: {count}.",
+    "appliedNone": "Nichts konnte übernommen werden.",
+    "dismissed": "Verworfen.",
+    "noProject": "Öffnen Sie das Projekt erneut, um diese Werte zu übernehmen."
+  },
+  "errors": {
+    "key": "Der Anbieter hat den Schlüssel nicht akzeptiert. Prüfen Sie, ob er vollständig und noch aktiv ist.",
+    "credits": "Das Ausgabenlimit des Schlüssels oder das Guthaben Ihres Kontos ist aufgebraucht. Erhöhen Sie das Limit oder laden Sie bei Ihrem Anbieter Guthaben auf und versuchen Sie es dann erneut.",
+    "forbidden": "Der Schlüssel darf dieses Modell nicht nutzen. Prüfen Sie seine Einstellungen bei Ihrem Anbieter oder wählen Sie ein anderes Modell.",
+    "model": "Der Anbieter bietet dieses Modell nicht an, oder nur mit Datensammlung, die der Assistent nicht zulässt. Wählen Sie ein anderes Modell.",
+    "rate": "Gerade zu viele Anfragen. Warten Sie eine Minute und versuchen Sie es dann erneut.",
+    "provider": "Beim Modellanbieter gab es ein Problem. Versuchen Sie es gleich noch einmal.",
+    "network": "Der Anbieter war nicht erreichbar oder hat zu lange gebraucht. Prüfen Sie Ihre Verbindung und versuchen Sie es dann erneut.",
+    "aborted": "Gestoppt.",
+    "unknown": "Etwas ist schiefgegangen. Versuchen Sie es erneut."
   }
 }

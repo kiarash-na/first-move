@@ -4,7 +4,9 @@ import type { ReactNode } from "react"
 
 import { Toaster } from "@/components/ui/sonner"
 import { TooltipProvider } from "@/components/ui/tooltip"
+import { AI_FEATURES_LIVE } from "@/lib/legal/ai"
 import { useStartProjectStore } from "@/lib/store"
+import { AgentLauncher } from "../_agent/agent-launcher"
 import { useDictionary } from "./i18n-provider"
 import { ImportProvider } from "./import/import-provider"
 import { NoticeToasts } from "./notices/notice-toasts"
@@ -13,8 +15,12 @@ import { SkipLink } from "./skip-link"
 import { useStore } from "./store-provider"
 import { TopBar } from "./top-bar/top-bar"
 
+/** Toasts sit above the assistant's 48px launcher (16px gap + 48px + 12px) while it is shown. */
+const ABOVE_LAUNCHER = { offset: { bottom: 76 }, mobileOffset: { bottom: 76 } }
+
 /**
- * The dashboard frame (PLAN-DASH-07): sidebar, top bar, toasts. Starts the project store once
+ * The dashboard frame (PLAN-DASH-07): sidebar, top bar, toasts, and the AI assistant's launcher
+ * while `AI_FEATURES_LIVE` is on (the one touch point of PLAN-AGENT-00 here). Starts the project store once
  * (after mount; the static shell and hydration see the empty server snapshot, so every data
  * part shows a skeleton first).
  */
@@ -48,8 +54,10 @@ export function DashboardShell({ children }: { children: ReactNode }) {
             closeButton
             containerAriaLabel={shell.notices.region}
             toastOptions={{ closeButtonAriaLabel: shell.notices.dismiss }}
+            {...(AI_FEATURES_LIVE ? ABOVE_LAUNCHER : {})}
           />
         </div>
+        {AI_FEATURES_LIVE && <AgentLauncher />}
       </ImportProvider>
     </TooltipProvider>
   )

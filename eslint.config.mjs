@@ -22,6 +22,11 @@ const eslintConfig = defineConfig([
     rules: restrict([...AI_LAYER, ...AGENT_UI], "Core code never imports the AI layer (PLAN-AGENT-00 § Boundary)."),
   },
   {
+    // The one allowed touch point in the shell (PLAN-AGENT-00): the assistant's launcher; `boundary.test.ts` allows the same import.
+    files: ["app/*/(dashboard)/dashboard/_components/dashboard-shell.tsx"],
+    rules: restrict([...AI_LAYER, "**/_agent/*", "!**/_agent/agent-launcher"], "Core code never imports the AI layer (PLAN-AGENT-00 § Boundary); the shell may import only the assistant's launcher."),
+  },
+  {
     files: ["lib/assistant/**"],
     rules: restrict(["@/lib/mail-agent", "@/lib/mail-agent/*", "@/workflows", "@/workflows/*", "@/emails", "@/emails/*", "server-only"], "The in-app assistant runs in the browser and never imports the email agent."),
   },

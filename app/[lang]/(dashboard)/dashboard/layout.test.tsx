@@ -15,6 +15,8 @@ describe("dashboard layout", () => {
     expect(tree.props.dictionaries.calc.ui.info).toBe(calcDe.ui.info)
     expect(tree.props.dictionaries.shell.nav.label).toBe(shell.nav.label)
     expect(tree.props.children.props.children).toBe("page")
+    // No `assistant` area while the AI assistant is dark (`layout.live.test.tsx` covers on).
+    expect(tree.props.dictionaries).not.toHaveProperty("assistant")
   })
 
   it("rejects an unknown language", async () => {
