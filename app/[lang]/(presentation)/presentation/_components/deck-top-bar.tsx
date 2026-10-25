@@ -2,6 +2,7 @@
 
 import { Brand } from "@/components/brand/brand"
 import { LanguageSwitch, type LanguageSwitchProps } from "@/components/language-switch/language-switch"
+import { ThemeToggle, type ThemeToggleLabels } from "@/components/theme/theme-toggle"
 import { withLocale } from "@/lib/i18n/locale-path"
 import type { Locale } from "@/lib/i18n/locales"
 import { hashForSlide, padSlideNumber } from "@/lib/presentation/slides"
@@ -14,10 +15,11 @@ export interface DeckTopBarProps {
   homeLabel: string
   language: Omit<LanguageSwitchProps, "lang" | "className" | "hash">
   fullscreen: { enterLabel: string; exitLabel: string }
+  theme: ThemeToggleLabels
 }
 
-/** The deck's own small bar: the mark back to the website, the counter, the language, full screen. */
-export function DeckTopBar({ lang, appName, homeLabel, language, fullscreen }: DeckTopBarProps) {
+/** The deck's own small bar: the mark back to the website, the counter, the language, light/dark, full screen. */
+export function DeckTopBar({ lang, appName, homeLabel, language, fullscreen, theme }: DeckTopBarProps) {
   const { index, count } = useDeck()
 
   return (
@@ -29,6 +31,7 @@ export function DeckTopBar({ lang, appName, homeLabel, language, fullscreen }: D
           <span className="deck-counter__total"> / {padSlideNumber(count)}</span>
         </p>
         <LanguageSwitch lang={lang} {...language} hash={hashForSlide(index)} />
+        <ThemeToggle labels={theme} />
         <FullscreenButton {...fullscreen} />
       </div>
     </header>

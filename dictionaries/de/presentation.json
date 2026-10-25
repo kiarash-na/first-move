@@ -123,8 +123,8 @@
       "agent": {
         "who": "Ein KI-Agent",
         "text": "Fragen Sie, schicken Sie Ihre Projektdaten, erhalten Sie einen Quick Check zurück.",
-        "status": "Noch nicht live",
-        "statusNote": "Eingang und Sicherheitsprüfung gebaut; Antworten folgen."
+        "status": "Experimentell",
+        "statusNote": "Gebaut und live getestet — als Experiment eingeschaltet."
       },
       "human": {
         "who": "Ein Mensch",
@@ -203,6 +203,7 @@
       "about": "etwa {amount}",
       "run": "im Monat für den Betrieb, bis {users} aktive Nutzer",
       "maintenance": "Wartung nicht inbegriffen.",
+      "hours": "Nicht mitgerechnet: etwa 17 Stunden Arbeit und etwa 38 Stunden KI-Arbeit.",
       "open": "Offen für Projekte und langfristige Zusammenarbeit.",
       "qrLabel": "QR-Code für kiarash.online/link",
       "links": "Alle meine Links",

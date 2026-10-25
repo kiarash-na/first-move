@@ -123,8 +123,8 @@
       "agent": {
         "who": "An AI agent",
         "text": "Ask, send your project data, get a Quick Check back.",
-        "status": "Not live yet",
-        "statusNote": "Intake and security guard built; replies next."
+        "status": "Experimental",
+        "statusNote": "Built and live-tested — on as an experiment."
       },
       "human": {
         "who": "A person",
@@ -203,6 +203,7 @@
       "about": "about {amount}",
       "run": "a month to run, up to {users} active users",
       "maintenance": "Maintenance not included.",
+      "hours": "Not counted here: about 17 hours of work and about 38 hours of AI work.",
       "open": "Open to projects and long-term collaborations.",
       "qrLabel": "QR code for kiarash.online/link",
       "links": "All my links",
