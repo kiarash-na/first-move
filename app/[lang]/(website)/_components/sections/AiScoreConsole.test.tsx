@@ -2,6 +2,7 @@ import { act, fireEvent, render, screen } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import en from '@/dictionaries/en/landing.json'
 import de from '@/dictionaries/de/landing.json'
+import { EMPTY_VALUE } from '@/lib/i18n/format'
 import { AiScoreConsole } from './AiScoreConsole'
 import { EXAMPLE_TURNS } from './aiScoreExample'
 
@@ -39,6 +40,13 @@ describe('AiScoreConsole', () => {
     expect(container.querySelectorAll('.ai-dimensions li')).toHaveLength(7)
     expect(screen.getByText(en.aiScore.console.evidence[4])).toBeInTheDocument()
     expect(container.querySelector('.ai-console')).toHaveAttribute('data-step', '0')
+  })
+
+  it('before the run shows no score: the empty value, no band, and the console is not scored', () => {
+    const { container } = render(<AiScoreConsole copy={en.aiScore.console} lang="en" />)
+    expect(container.querySelector('.ai-console')).not.toHaveAttribute('data-scored')
+    expect(container.querySelector('.ai-result__number')).toHaveTextContent(EMPTY_VALUE)
+    expect(container.querySelector('.ai-result__band')).toBeNull()
   })
 
   it('shows the score once the console is in view, and the summary names it for assistive technology', () => {

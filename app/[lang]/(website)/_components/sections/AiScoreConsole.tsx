@@ -2,7 +2,7 @@
 
 import { useRef, type CSSProperties } from 'react'
 import { Check, CircleDashed, RotateCcw, X } from 'lucide-react'
-import { formatNumber } from '@/lib/i18n/format'
+import { EMPTY_VALUE, formatNumber } from '@/lib/i18n/format'
 import { interpolate } from '@/lib/i18n/interpolate'
 import type { Locale } from '@/lib/i18n/locales'
 import type { Landing } from '../types'
@@ -30,7 +30,8 @@ interface AiScoreConsoleProps {
  * The AI Plan Score chapter's visual (PLAN-LANDING-FIX-00 step 9): an example run that plays when
  * it scrolls into view. Four turns light up the 27 judgements to their evidence level, one
  * decision per turn, then the score with its band on the Early / Promising / Solid scale and the
- * seven dimensions. Fixed, illustrative data (`aiScoreExample.ts`), labelled as such.
+ * seven dimensions. Fixed, illustrative data (`aiScoreExample.ts`), labelled as such. Before the
+ * run the score shows the empty value, no band and (CSS) no level, so nothing reads as a 0.
  */
 export function AiScoreConsole({ copy, lang }: AiScoreConsoleProps) {
   const ref = useRef<HTMLDivElement>(null)
@@ -102,8 +103,8 @@ export function AiScoreConsole({ copy, lang }: AiScoreConsoleProps) {
           <div className="ai-result__score">
             <span className="ai-result__label">{copy.scoreLabel}</span>
             <strong className={`ai-result__value ai-result__value--${EXAMPLE_LEVEL}`}>
-              <span className="ai-result__number">{formatNumber(shown, lang)}</span>
-              <span className="ai-result__band">±{formatNumber(EXAMPLE_SCORE.band, lang)}</span>
+              <span className="ai-result__number">{scored ? formatNumber(shown, lang) : EMPTY_VALUE}</span>
+              {scored && <span className="ai-result__band">±{formatNumber(EXAMPLE_SCORE.band, lang)}</span>}
             </strong>
             <span className={`ai-result__level ai-result__level--${EXAMPLE_LEVEL}`}>{level}</span>
             <div className="ai-result__scale" style={{ '--score': EXAMPLE_SCORE.score, '--band': EXAMPLE_SCORE.band } as CSSProperties}>

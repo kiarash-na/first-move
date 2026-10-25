@@ -103,7 +103,7 @@ export function MobileAiConsole({ copy, lang }: MobileAiConsoleProps) {
           <span className="m-label">{copy.scoreLabel}</span>
           <div className="m-ai-score">
             <strong className="m-ai-score__number">{scored ? formatNumber(shown, lang) : EMPTY_VALUE}</strong>
-            <span className="m-ai-score__band">±{formatNumber(EXAMPLE_SCORE.band, lang)}</span>
+            {scored && <span className="m-ai-score__band">±{formatNumber(EXAMPLE_SCORE.band, lang)}</span>}
             <span className={`m-ai-score__level m-ai-score__level--${EXAMPLE_LEVEL}`}>{level}</span>
           </div>
           <div className="m-ai-scale" style={{ '--score': EXAMPLE_SCORE.score, '--band': EXAMPLE_SCORE.band } as CSSProperties}>

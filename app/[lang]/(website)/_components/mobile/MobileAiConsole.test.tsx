@@ -42,7 +42,7 @@ describe('MobileAiConsole', () => {
     expect(screen.getByText(copy.note)).toBeInTheDocument()
   })
 
-  it('before the run shows no score: every turn pending, an empty value, no level', () => {
+  it('before the run shows no score: every turn pending, an empty value, no band, no level', () => {
     stub(false, false)
     const { container } = render(<MobileAiConsole copy={en.aiScore.console} lang="en" />)
     const console_ = container.querySelector('.m-ai')!
@@ -50,6 +50,7 @@ describe('MobileAiConsole', () => {
     expect(console_).not.toHaveAttribute('data-scored')
     for (const turn of container.querySelectorAll('.m-ai-turn')) expect(turn).toHaveAttribute('data-state', 'pending')
     expect(container.querySelector('.m-ai-score__number')).toHaveTextContent(EMPTY_VALUE)
+    expect(container.querySelector('.m-ai-score__band')).toBeNull()
     expect(screen.getByRole('button', { name: en.aiScore.console.replay })).toBeInTheDocument()
   })
 

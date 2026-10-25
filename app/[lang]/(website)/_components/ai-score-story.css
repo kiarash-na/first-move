@@ -125,9 +125,10 @@
   list-style: none;
 }
 
+/* Fixed tracks, so every row's cell strip starts at the same x: 140 px = 8 cells × 14 + 7 gaps × 4. */
 .ai-turn {
   display: grid;
-  grid-template-columns: 28px minmax(118px, 0.55fr) auto minmax(0, 1fr);
+  grid-template-columns: 28px 132px 140px minmax(0, 1fr);
   align-items: center;
   min-height: 62px;
   gap: 16px;
@@ -202,11 +203,13 @@
 }
 
 /* The turn's decision: a branch's choice, or a gate's pass / unclear / fail. */
-/* The question gives way (ellipsis) so the result always shows whole. */
+/* Nothing is cut: where the question and the result do not fit on one line, the result moves */
+/* under the question, and a long question wraps between its words. */
 .ai-turn__decision {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  grid-template-rows: auto auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
   column-gap: 10px;
   justify-self: end;
   min-width: 0;
@@ -228,17 +231,14 @@
 }
 
 .ai-turn__kind {
-  grid-column: 1 / 3;
+  flex-basis: 100%;
   color: var(--text-muted);
   letter-spacing: 0.045em;
   text-transform: uppercase;
 }
 
 .ai-turn__question {
-  overflow: hidden;
   color: var(--text-secondary);
-  white-space: nowrap;
-  text-overflow: ellipsis;
 }
 
 .ai-turn__result {
@@ -343,6 +343,13 @@
   font-stretch: 90%;
   font-weight: 510;
   letter-spacing: -0.02em;
+  opacity: 0;
+  transition: opacity 400ms ease-out;
+}
+
+/* The level shows once there is a score; it keeps its line, so nothing below it moves. */
+.ai-console[data-scored] .ai-result__level {
+  opacity: 1;
 }
 
 .ai-result__level--early,
@@ -487,11 +494,12 @@
 
 @media (max-width: 1199px) {
   .ai-turn {
-    grid-template-columns: 28px minmax(100px, 0.5fr) auto;
+    grid-template-columns: 28px 132px 140px;
   }
 
   .ai-turn__decision {
     grid-column: 2 / 4;
+    justify-content: flex-start;
     justify-self: start;
     text-align: left;
   }
@@ -560,6 +568,7 @@
   .ai-turn__cells i,
   .ai-turn__decision,
   .ai-result,
+  .ai-result__level,
   .ai-result__range,
   .ai-result__marker,
   .ai-dimensions li i {
