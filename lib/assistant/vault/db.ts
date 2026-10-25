@@ -32,12 +32,22 @@ export interface VaultDb extends DBSchema {
 
 export const DEVICE_KEY = "device"
 
-/** Opens the database, or null when this browser has no usable IndexedDB (some private modes). */
-export async function openVaultDb(name = VAULT_DB_NAME): Promise<IDBPDatabase<VaultDb> | null> {
+/**
+ * Opens the database, or null when this browser has no usable IndexedDB (some private modes).
+ * With `create: false` (every read) it is also null while the database does not exist: the
+ * upgrade that would create it is aborted, so looking for a remembered key leaves nothing behind.
+ * Only remembering a key creates it.
+ */
+export async function openVaultDb(name = VAULT_DB_NAME, { create = true }: { create?: boolean } = {}): Promise<IDBPDatabase<VaultDb> | null> {
   if (typeof indexedDB === "undefined") return null
   try {
     return await openDB<VaultDb>(name, VAULT_DB_VERSION, {
-      upgrade(database) {
+      upgrade(database, oldVersion, _newVersion, transaction) {
+        if (oldVersion === 0 && !create) {
+          transaction.done.catch(() => {})
+          transaction.abort()
+          return
+        }
         database.createObjectStore("vault")
         database.createObjectStore("device")
       },

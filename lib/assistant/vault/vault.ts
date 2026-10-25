@@ -33,8 +33,9 @@ export type UnlockResult =
 /** Associated data of both layers: the record version and the provider. */
 const aad = (provider: Provider) => utf8(`${VAULT_DB_NAME}:v1:${provider}`)
 
-async function withDb<T>(options: VaultOptions, fallback: T, work: (db: IDBPDatabase<VaultDb>) => Promise<T>): Promise<T> {
-  const db = await openVaultDb(options.dbName)
+/** Runs `work` on the database; reads pass `create: false`, so they never create it. */
+async function withDb<T>(options: VaultOptions & { create?: boolean }, fallback: T, work: (db: IDBPDatabase<VaultDb>) => Promise<T>): Promise<T> {
+  const db = await openVaultDb(options.dbName, { create: options.create ?? false })
   if (!db) return fallback
   try {
     return await work(db)
@@ -71,7 +72,7 @@ export function listVault(options: VaultOptions = {}): Promise<VaultEntry[]> {
  */
 export async function rememberKey(provider: Provider, key: string, pin: string, options: VaultOptions = {}): Promise<void> {
   if (!isPinFormat(pin)) throw new Error("The PIN must be six digits")
-  const saved = await withDb(options, false, async (db) => {
+  const saved = await withDb({ ...options, create: true }, false, async (db) => {
     const salt = randomBytes(SALT_BYTES)
     const inner = await seal(await derivePinKey(pin, salt, options.iterations ?? PBKDF2_ITERATIONS), utf8(key), aad(provider))
     const outer = await seal(await deviceKey(db), inner.data, aad(provider))
@@ -97,7 +98,9 @@ export async function rememberKey(provider: Provider, key: string, pin: string, 
  * A record the device key cannot open (another profile, damage) is deleted too.
  */
 export function unlockKey(provider: Provider, pin: string, options: VaultOptions = {}): Promise<UnlockResult> {
-  return withDb<UnlockResult>(options, { status: "unavailable" }, async (db) => {
+  // No database means nothing was remembered here; no IndexedDB at all means it cannot be.
+  const absent: UnlockResult = typeof indexedDB === "undefined" ? { status: "unavailable" } : { status: "missing" }
+  return withDb<UnlockResult>(options, absent, async (db) => {
     const record = await db.get("vault", provider)
     if (!record) return { status: "missing" }
     let inner: Uint8Array<ArrayBuffer>

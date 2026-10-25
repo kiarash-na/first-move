@@ -95,4 +95,16 @@ describe("key vault (D-50)", () => {
     await forgetKey("gateway", options)
     expect(await listVault(options)).toEqual([])
   })
+
+  it("never creates its database by looking: only remembering a key does", async () => {
+    const options = fresh()
+    const exists = async () => (await indexedDB.databases()).some((database) => database.name === options.dbName)
+    expect(await listVault(options)).toEqual([])
+    expect(await unlockKey("gateway", PIN, options)).toEqual({ status: "missing" })
+    await forgetKey("gateway", options)
+    expect(await exists()).toBe(false)
+    await rememberKey("gateway", KEY, PIN, options)
+    expect(await exists()).toBe(true)
+    expect(await listVault(options)).toHaveLength(1)
+  })
 })
