@@ -36,6 +36,7 @@ export const THIRD_PARTY: readonly ThirdPartyEntry[] = [
   { name: "mammoth", license: "BSD-2-Clause", url: "https://github.com/mwilliamson/mammoth.js", role: "Word text for the AI assistants" },
   { name: "read-excel-file", license: "MIT", url: "https://gitlab.com/catamphetamine/read-excel-file", role: "Excel values for the AI assistants" },
   { name: "ai", license: "Apache-2.0", url: "https://ai-sdk.dev", role: "AI SDK: the email agent's guard decisions" },
+  { name: "@anthropic-ai/sdk", license: "Apache-2.0", url: "https://github.com/anthropics/anthropic-sdk-typescript", role: "The email agent's answers and value extraction" },
   { name: "resend", license: "MIT", url: "https://github.com/resend/resend-node", role: "Receiving and sending the email agent's mail" },
   { name: "@upstash/redis", license: "MIT", url: "https://github.com/upstash/redis-js", role: "The email agent's encrypted state" },
   { name: "@fontsource-variable/archivo", license: "OFL-1.1", url: "https://fontsource.org/fonts/archivo", role: "Font Archivo" },
