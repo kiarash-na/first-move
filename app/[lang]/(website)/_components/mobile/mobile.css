@@ -1051,7 +1051,8 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: var(--report-accent);
+  /* 16 px is not large text: the report accent reaches 3.8:1 on paper, this one 4.8:1. */
+  color: var(--accent-on-light);
   font-size: 16px;
   font-weight: 600;
 }
