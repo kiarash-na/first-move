@@ -75,13 +75,42 @@ The slides: 1 why "First Move", 2 the challenge and the jury's questions, 3 Quic
 - `lib/storage/no-html-rendering.test.ts`: the boot script joins the allow-list of build-time pre-paint scripts (same pattern as the theme and sidebar scripts).
 - `lib/presentation/slides.ts`: the `count` parameters are typed `number` (they inferred the literal `10`).
 
+## Follow-up: landing polish and AI Plan Score follow-ups merged (2026-10-25)
+
+Both follow-up branches were merged into `dev` after this phase ([landing polish](2026-10-25_landing-polish-00.md), [AI Plan Score follow-ups](2026-10-25_ai-score-followups.md)). What changed for the deck:
+
+- **Slide 5 links every source.** The label says "Every source, linked" again (DE "Jede Quelle, verlinkt") and opens the Sources section of the AI Plan Score page (`/{lang}/docs/ai-plan-score#sources`, DE `#quellen`); unit and e2e tests follow the anchor.
+- **The engine no longer needs the live test's workaround.** The report and suggestion calls allow 6,000 and 8,000 output tokens, and German texts say "Sie". The live test dropped its `wrapLanguageModel` middleware (the first deviation above no longer applies to a new recording). The label now follows the shown score (D-81, method 1.1.0).
+- **The recording stays as it is.** `result.json` is still the method 1.0.0 run: 54 shows 55 and is Promising under both label rules, so `summary.test.ts` accepts the same major version when the recorded label matches the current rule. Its German suggestion still says "ihr" (decision 21) until the run is recorded again.
+- **The landing replays the same run.** The landing's AI Plan Score chapter (desktop and mobile) now plays `result.json` and links "See the blind test" to `/{lang}/presentation#5` (`BLIND_TEST_SLIDE` in `AiScoreConsole.tsx`): if slide 5 moves, that constant moves with it.
+- **Footers.** The site footer (docs and legal pages) shows "Docs" before "Presentation"; the landing keeps the presentation link in its legal row on the desktop and in the phone and tablet footer (`f237f47`).
+- **Checks on the merged `dev`:** lint, typecheck, unit tests, build and the whole e2e suite (181 of 181, `presentation.spec.ts` included, after two timing fixes in other specs), as listed in the [landing polish note](2026-10-25_landing-polish-00.md#integration-on-dev-2026-10-25).
+
 ## Open questions for the owner
 
-1. **AI Plan Score engine bug, German output:** `lib/ai/plan-score/report.ts` caps the report at 1,500 output tokens and the suggestions at 2,500; with reasoning tokens the German texts hit the cap (`finishReason: "length"`, `AI_NoObjectGeneratedError`). Raise the limits or the reasoning budget in the engine. *Fixed on 2026-10-25: 6,000 and 8,000 in the engine, and German texts now say "Sie" ([AI Plan Score follow-ups](2026-10-25_ai-score-followups.md), items 1 and 2). The recorded run stays as it is until it is recorded again.*
-2. The cost figures (about €180 to build, about €5 a month up to 1,000 active users) come from the owner alone; confirm what they include before the slide is shown publicly.
-3. The landing footer edit (the presentation link in the `LegalLinks` of `Closing.tsx`) may overlap with the landing rework running in parallel.
-4. Review the German copy (D-32).
-5. **Slide 5's link label.** The full AI Plan Score page with its linked sources is on the AI Plan Score branch (commit 292db70), not on this one. Once both are merged, the label can say "Every source, linked" again (`slides.aiEngine.sources`), with a test that the page links its sources. *Done on 2026-10-25: the label says "Every source, linked" and the link opens the page's Sources section (`#sources`, DE `#quellen`), tested in unit and e2e ([AI Plan Score follow-ups](2026-10-25_ai-score-followups.md), item 5).*
+Collected on 2026-10-25 from the three builds of the overnight workflow (this presentation, the [landing fix](2026-10-25_landing-fix-00.md) and the [mobile landing](2026-10-25_landing-mobile-00.md)), minus what the review fixes, the landing polish and the AI Plan Score follow-ups have fixed (listed after the questions).
+
+1. **Cost figures.** "About €180 to build" and "about €5 a month for up to 1,000 active users" come from the owner alone. Confirm what they include before slide 10 is shown publicly.
+2. **German copy (D-32).** The German deck and landing copy wait for the owner's review, including the two new keys of the mobile landing (`landing.mobile.hero.visualLabel` "Niedertemperatur-Quartiersnetz", `landing.mobile.hero.visualAlt`).
+3. **Record the blind test again** with a Gateway key (`PRESENTATION_LIVE_BLIND=1`, see `lib/assistant/plan-score/blind-test.live.test.ts`), so slide 5 and the landing replay method 1.1.0 with the engine's own output caps and a German suggestion in "Sie". A new recording changes the numbers on both without any copy change.
+4. **Slide 6, agent@.** When the email conversation (A07, O8) ships, update `slides.emails.agent.status` and `statusNote` in `dictionaries/{en,de}/presentation.json` (they say "Not live yet").
+5. **Where the desktop starts.** The desktop landing starts at 1024 px (D-LM-1). Should it start at 1200 px, so 1024–1199 px laptops and 1024 px landscape tablets get the touch version? The e2e specs assert the desktop header (six entries on one line) and the footer's product row at 1024 px and would change with it.
+6. **Deep links on phones.** A link with a desktop id (`/de#ai-score`, shared from a desktop) lands at the top on a phone, because the mobile ids are prefixed `m-` (D-LM-7). Translate desktop ids to `m-` ids with a small hash map in the switch?
+7. **Both landings in the HTML.** The page source carries both versions (about one extra landing of HTML, no extra JavaScript on phones, D-LM-2). Acceptable, or serve one version per device later (needs client hints or a cookie, and the page would lose static prerendering)?
+8. **A shorter phone page.** The 390 px page is about 17 screens. Merging Scalability into Implementation and folding the canvas allocation roles and the Quick Check report card into `<details>` would bring it to about 10–12, but changes the chapters D-LM-5 keeps. Owner's call.
+
+More owner questions stay in their own notes: the [AI Plan Score follow-ups](2026-10-25_ai-score-followups.md#open-questions-for-the-owner) (confirm D-81 and the 1.1.0 step, the scale mark near a threshold, relabelling saved 1.0.0 scores, the trailing space in `fit`) and the [landing polish](2026-10-25_landing-polish-00.md#decisions-taken-for-the-owner) (D-LP-1: the tokens doc's "Editorial accent" row is no longer used on the landing).
+
+Closed since the builds:
+
+- `https://kiarash.online/link` answers 200 ("Links — Kiarash"); the QR code decodes to it (review fix, decision 19).
+- The engine's output caps for German (this note's former question 1): 6,000 and 8,000 tokens, German in "Sie" ([follow-ups](2026-10-25_ai-score-followups.md), items 1 and 2).
+- The landing footer overlap (former question 3): merged; the presentation link sits in the landing's legal row (desktop), in the phone and tablet footer and in the site footer.
+- Slide 5's link label (former question 5): "Every source, linked", opening the Sources section ([follow-ups](2026-10-25_ai-score-followups.md), item 5).
+- The landing's illustrative example run (60 ± 6): replaced by the recorded blind test (D-LP-5); `aiScoreExample.ts` is gone.
+- "Two tools. One system." while the overview lists three parts: "Three parts. One system." and "Screen. Plan. Score. / One workflow." (D-LP-4).
+- The footer's "Quick Check" and "Business Models" both leading to `/dashboard`: they lead to the docs pages of the two modules (D-LP-3).
+- The landing's plain links to `/{lang}/dashboard/ai-score` and `/{lang}/docs/ai-plan-score`: both routes exist and the landing e2e checks both links on desktop and mobile; nothing for the owner to decide.
 
 ## Verification
 

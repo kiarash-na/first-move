@@ -89,3 +89,11 @@ Not fixed here:
 
 - **Presentation link in the mobile footer (merge step).** The presentation branch adds `/presentation` to the landing footer in `Closing.tsx` only, which is not mounted below 1024 px here. This branch has no presentation route or `landing.presentation` copy, so the link cannot be added before the merge. **When merging the two branches**, pass both links in `MobileFooter.tsx`: `extra={[{ label: t.presentation.footer, href: withLocale('/presentation', lang) }, { label: copy.legal.source, href: REPOSITORY.url }]}` (the presentation branch's `LegalLinks` takes an array), add an assertion for `/{lang}/presentation` to `MobileFooter.test.tsx`, and check it at 390 px in `e2e/landing-mobile.spec.ts`.
 - **Further cuts on phones (owner decision, D-LM-5)**: merging Scalability into Implementation, and folding the canvas allocation roles and the Quick Check report card into `<details>`, would bring the 390 px page towards 10–12 screens; they change the story's chapters, so they wait for the owner.
+
+## Follow-up: presentation link and landing polish merged (2026-10-25)
+
+- **The merge step above is done** (`f237f47`): `MobileFooter` passes the presentation and the source code as `LegalLinks` extras, in the desktop footer's order; `MobileFooter.test.tsx` and `e2e/landing-mobile.spec.ts` check `/{lang}/presentation` at 390 px.
+- **Landing polish** ([note](2026-10-25_landing-polish-00.md)): the menu ends with a "Docs" row (outward arrow, `/{lang}/docs`), the footer's product row ends with "Docs", and its "Quick Check" and "Business Models" lead to the docs pages of the two modules (D-LP-2, D-LP-3); `.m-title em` and `.m-hero__accent` are no longer italic (D-LP-1); the "two tools" wording of the shared copy keys says three parts (D-LP-4).
+- **The mobile console replays the recorded blind test** (D-LP-5): D-LM-6 still holds (the playback hook is shared, the markup is its own), but the data is now `recordedRun(aiScore.labels)`, loaded by the landing page on the server and passed to both trees, instead of `aiScoreExample.ts`, which is gone.
+
+The owner questions of this build (the breakpoint, deep links on phones, the duplicated HTML, a shorter phone page, the German copy of the two new keys) are collected in the [presentation note](2026-10-25_presentation.md#open-questions-for-the-owner) (questions 2 and 5–8).

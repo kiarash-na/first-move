@@ -56,3 +56,14 @@ Owner's words: "There is the italic text in homepage. I wanted to get rid of tha
 
 - O11's last part, the check that the docs route is complete, stays with O10 (final QA).
 - The hatched bars mark the capped dimensions visually; the count is said in words under the level. If the owner wants the cap explained on the landing, the `ai-score` docs page already does it, one link away ("How we score").
+
+## Integration on `dev` (2026-10-25)
+
+Merged into `dev` together with the [AI Plan Score follow-ups](2026-10-25_ai-score-followups.md) (`8fe4238`, `0b51059`). The follow-ups had changed `aiScoreExample.ts` to label its shown score (D-81); the merge keeps the file deleted, since the landing now reads the level from `result.json`, which is the same under both label rules (54 shows 55, Promising). The follow-ups also gave slide 5, which "See the blind test" opens, its "Every source, linked" link to the Sources section of the AI Plan Score page.
+
+Checks on the merged `dev`: `pnpm gen:knowledge` (no change), `pnpm lint`, `pnpm typecheck`, `pnpm build` clean; `pnpm test` 805 files passed and 3 skipped, 3633 tests passed and 14 skipped (the `ai-score-view.test.tsx` timeout seen above did not recur). The whole e2e suite against the production build (`E2E_PORT=3711`) first ended 180 passed, 1 failed, then 179 passed, 2 failed, on timing in two specs, fixed in the specs only:
+
+- `e2e/partners.spec.ts` (`dece977`): the card click measured the row's middle once, after a Pause click that Playwright retries while the strip still reveals, re-aligning the page; the point could sit below the window or in the 16 px gap between two cards. It now clicks the card nearest the row's middle. Its axe test waits until every revealed block has opacity 1, as the mobile spec does.
+- `e2e/support/session.ts` (`13e84a4`): `settle()` also waits for running CSS transitions; the Export button is disabled until the project has loaded and fades in over 170 ms, and axe read it mid-fade as low-contrast text (light theme, 1440 px).
+
+The third whole run passed: 181 of 181.

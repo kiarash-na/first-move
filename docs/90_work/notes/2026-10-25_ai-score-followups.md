@@ -51,3 +51,7 @@ The live blind test (`blind-test.live.test.ts`) needs a Gateway key and was not 
 3. **Saved scores of method 1.0.0** keep their stored label, so a saved 68 still reads "70, Promising" until the plan is scored again. Relabel old scores on display, or keep them as saved?
 4. **Re-record the blind test** with a Gateway key, so slide 5 replays method 1.1.0 with the engine's own caps and formal German (`PRESENTATION_LIVE_BLIND=1`, see the live test).
 5. **`fit` keeps a trailing space** before "…" when the last space falls just below half the limit (for example "Prüfen Sie die …"). Cosmetic; seen while writing the German tests and left as it is.
+
+## After the merge (2026-10-25)
+
+This branch was merged into `dev` after the [landing polish](2026-10-25_landing-polish-00.md), which had replaced the landing's illustrative run with the recorded blind test. The merge keeps `aiScoreExample.ts` deleted, so item 3's change to it is gone with the file: the landing now reads its level from `result.json`, which gives the same label under both rules (54 shows 55, Promising). Question 4 above is also listed in the [presentation note](2026-10-25_presentation.md#open-questions-for-the-owner) (question 3), since the landing now replays the same recording.
