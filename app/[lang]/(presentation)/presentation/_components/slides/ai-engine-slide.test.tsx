@@ -6,10 +6,12 @@ import aiScoreDe from "@/dictionaries/de/ai-score.json"
 import aiScoreEn from "@/dictionaries/en/ai-score.json"
 import de from "@/dictionaries/de/presentation.json"
 import en from "@/dictionaries/en/presentation.json"
+import { headingId } from "@/lib/docs/heading-id"
 import { isDocSlug } from "@/lib/docs/pages"
+import { REFERENCES } from "@/lib/docs/references"
 import { blindSummary } from "@/lib/presentation/blind-test/summary"
 import { KNOWN_OUTCOME } from "@/lib/presentation/blind-test/geblergasse-2017"
-import { AiEngineSlide, blindView } from "./ai-engine-slide"
+import { AiEngineSlide, blindView, sourcesHref } from "./ai-engine-slide"
 
 describe("blindView", () => {
   it("formats the recorded run in German and names everything with the app's own labels", () => {
@@ -39,20 +41,28 @@ describe("blindView", () => {
 })
 
 describe("AiEngineSlide", () => {
-  it("links the method page and starts with the blind test, without a wall of numbers", () => {
+  it("links the sources of the method page and starts with the blind test, without a wall of numbers", () => {
     render(<AiEngineSlide number={5} lang="en" copy={en.slides.aiEngine} labels={aiScoreEn.labels} summary={blindSummary("en")} />)
-    expect(screen.getByRole("link", { name: en.slides.aiEngine.sources })).toHaveAttribute("href", "/en/docs/ai-plan-score")
+    expect(screen.getByRole("link", { name: en.slides.aiEngine.sources })).toHaveAttribute("href", "/en/docs/ai-plan-score#sources")
     expect(screen.getByRole("button", { name: en.slides.aiEngine.run })).toBeInTheDocument()
     expect(screen.queryByRole("term")).not.toBeInTheDocument()
   })
 
-  it("links a docs page that has a Sources section, in both languages", () => {
-    for (const [lang, copy, heading] of [["en", en, "Sources"], ["de", de, "Quellen"]] as const) {
+  it("links the docs section that lists and links every source, in both languages", () => {
+    for (const [lang, copy, anchor] of [["en", en, "sources"], ["de", de, "quellen"]] as const) {
       const { unmount } = render(<AiEngineSlide number={5} lang={lang} copy={copy.slides.aiEngine} labels={aiScoreEn.labels} summary={blindSummary(lang)} />)
-      const slug = screen.getByRole("link", { name: copy.slides.aiEngine.sources }).getAttribute("href")?.split("/").pop()
+      const href = screen.getByRole("link", { name: copy.slides.aiEngine.sources }).getAttribute("href")!
+      expect(href).toBe(sourcesHref(lang, copy.slides.aiEngine))
+      const [pathname, hash] = href.split("#")
+      expect(hash).toBe(anchor)
+      const slug = pathname.split("/").pop()
       expect(isDocSlug(slug)).toBe(true)
       const page = readFileSync(path.join(process.cwd(), "content/docs", lang, `${slug}.mdx`), "utf8")
-      expect(page).toMatch(new RegExp(`^## ${heading}$`, "m"))
+      // The anchor is the id the docs page gives one of its `##` headings (`mdx-h2.tsx`).
+      const sections = page.split(/^## /m).slice(1)
+      const section = sections.find((entry) => headingId(entry.split("\n")[0]) === hash)
+      expect(section, `${lang}: no "## " heading with the id ${hash}`).toBeDefined()
+      for (const reference of REFERENCES) expect(section, `${lang}: ${reference.id}`).toContain(`](${reference.url})`)
       unmount()
     }
   })

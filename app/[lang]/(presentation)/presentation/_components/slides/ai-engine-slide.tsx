@@ -1,6 +1,7 @@
 import { ArrowUpRight } from "lucide-react"
 import Link from "next/link"
 import type { CSSProperties } from "react"
+import { headingId } from "@/lib/docs/heading-id"
 import type { Dictionary } from "@/lib/i18n/dictionaries"
 import { formatDate, formatNumber, formatQuantity } from "@/lib/i18n/format"
 import { interpolate } from "@/lib/i18n/interpolate"
@@ -50,6 +51,14 @@ export function blindView(lang: Locale, summary: BlindSummary, copy: Copy, label
 }
 
 /**
+ * The section of the AI Plan Score docs page that lists and links every source: the anchor of its
+ * `##` heading (`headingId`, as the docs page renders it), named in the slide's copy.
+ */
+export function sourcesHref(lang: Locale, copy: Pick<Copy, "sourcesSection">): string {
+  return `${withLocale("/docs/ai-plan-score", lang)}#${headingId(copy.sourcesSection)}`
+}
+
+/**
  * Slide 5: the AI Plan Score as a table of experts (D-71, D-75): taught what a good decision is
  * from the provider's material and verified sources, deciding in seconds. The proof is a blind
  * test on a plan with a known outcome; one case demonstrates, it does not validate.
@@ -61,7 +70,7 @@ export function AiEngineSlide({ number, lang, copy, labels, summary }: { number:
       <div className="slide__body">
         <p className="slide-line" data-reveal style={{ "--i": 3 } as CSSProperties}>
           {copy.line}{" "}
-          <Link href={withLocale("/docs/ai-plan-score", lang)} className="deck-inline-link" prefetch={false}>
+          <Link href={sourcesHref(lang, copy)} className="deck-inline-link" prefetch={false}>
             {copy.sources}
             <ArrowUpRight size={14} strokeWidth={1.6} aria-hidden="true" />
           </Link>
