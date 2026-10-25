@@ -11,6 +11,8 @@ export interface MailStore {
   set(key: string, value: string, options?: { ttlMs?: number; ifAbsent?: boolean }): Promise<boolean>
   /** Reads and deletes in one step (single-use tokens). */
   getdel(key: string): Promise<string | null>
+  /** Deletes only when the stored value still equals `expected` — one atomic step, so a re-acquired lock is never deleted from under its new holder. Returns whether it deleted. */
+  compareAndDelete(key: string, expected: string): Promise<boolean>
   del(key: string): Promise<void>
   /** Adds `by` (default 1) and returns the new value; a new key gets `ttlMs`, an existing one keeps its expiry. */
   incr(key: string, ttlMs: number, by?: number): Promise<number>

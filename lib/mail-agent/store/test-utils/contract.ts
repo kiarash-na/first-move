@@ -32,6 +32,16 @@ export function storeContract(make: () => { store: MailStore; advance: (ms: numb
     expect(await store.getdel(key("once"))).toBeNull()
   })
 
+  it("compare-and-deletes only the expected value", async () => {
+    const { store } = make()
+    await store.set(key("cad"), "ours")
+    expect(await store.compareAndDelete(key("cad"), "theirs")).toBe(false)
+    expect(await store.get(key("cad"))).toBe("ours")
+    expect(await store.compareAndDelete(key("missing"), "x")).toBe(false)
+    expect(await store.compareAndDelete(key("cad"), "ours")).toBe(true)
+    expect(await store.get(key("cad"))).toBeNull()
+  })
+
   it("counts up, starting a new key at zero", async () => {
     const { store } = make()
     expect(await store.incr(key("count"), 60_000)).toBe(1)

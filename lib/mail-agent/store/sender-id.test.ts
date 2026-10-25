@@ -14,6 +14,10 @@ describe("emailAddress", () => {
   it("rejects what is not an address", () => {
     for (const bad of ["", "Jane", "<>", "jane@", "@example.org", "jane@example", "a b@example.org", `${"x".repeat(250)}@e.de`]) expect(emailAddress(bad)).toBeNull()
   })
+
+  it("rejects list separators in the address, so a parsed From can never carry two recipients", () => {
+    for (const bad of ["a@b.c,d.e", "a@b.c;d.e", "a@b.c, d@e.f"]) expect(emailAddress(bad)).toBeNull()
+  })
 })
 
 describe("normalizeAddress", () => {

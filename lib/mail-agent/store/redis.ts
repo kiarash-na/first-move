@@ -20,6 +20,10 @@ export function createRedisStore({ url, token }: { url: string; token: string })
     async getdel(key) {
       return redis.getdel<string>(key)
     },
+    async compareAndDelete(key, expected) {
+      const deleted = await redis.eval("if redis.call('get', KEYS[1]) == ARGV[1] then return redis.call('del', KEYS[1]) else return 0 end", [key], [expected])
+      return deleted === 1
+    },
     async del(key) {
       await redis.del(key)
     },

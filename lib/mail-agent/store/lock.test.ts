@@ -33,4 +33,15 @@ describe("withSenderLock", () => {
     })
     expect(await store.get(keys.lock("sid1"))).toBe("someone-else")
   })
+
+  it("never deletes a lock re-acquired after its own lapsed mid-flight", async () => {
+    let time = 0
+    const store = createMemoryStore({ now: () => time })
+    await withSenderLock(store, "sid1", async () => {
+      time += 130_000 // our 120 s lock lapses while the work runs
+      // a later run of the same sender acquires a fresh lock and still holds it
+      expect(await store.set(keys.lock("sid1"), "fresh-token", { ttlMs: 120_000, ifAbsent: true })).toBe(true)
+    })
+    expect(await store.get(keys.lock("sid1"))).toBe("fresh-token")
+  })
 })
