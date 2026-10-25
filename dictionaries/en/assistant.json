@@ -2,5 +2,172 @@
   "launcher": {
     "open": "Open the AI assistant",
     "close": "Close the AI assistant"
+  },
+  "panel": {
+    "title": "AI assistant",
+    "badge": "AI",
+    "close": "Close",
+    "settings": "Key and model",
+    "back": "Go to the chat",
+    "loading": "Loading the assistant…",
+    "loadFailed": "The assistant could not be loaded. Check your connection, then click the assistant button again."
+  },
+  "providers": {
+    "gateway": "Vercel AI Gateway",
+    "openrouter": "OpenRouter"
+  },
+  "setup": {
+    "title": "Connect your key",
+    "lead": "The assistant runs on your own key. When you send a message, your browser sends it, with the open project's data the assistant reads, straight to the provider you choose. Nothing passes through First Move's servers.",
+    "provider": {
+      "label": "Provider",
+      "gatewayHint": "The same key as the AI Plan Score: one key serves both.",
+      "openrouterHint": "One key for many models, with the Auto Router."
+    },
+    "key": {
+      "label": "API key",
+      "placeholder": {
+        "gateway": "Paste your AI Gateway key",
+        "openrouter": "Paste your OpenRouter key (sk-or-…)"
+      },
+      "invalid": "This does not look like a key of this provider. Paste the whole key, without spaces.",
+      "where": {
+        "gateway": "Where to get a key: sign in to Vercel, open AI Gateway in your dashboard and create an API key there. The Gateway needs credits on your account before it runs a model.",
+        "openrouter": "Where to get a key: sign in at openrouter.ai, open Keys and create a key there. OpenRouter needs credits on your account for paid models."
+      }
+    },
+    "storage": {
+      "label": "Keep the key",
+      "session": "For this tab only",
+      "sessionHint": "Recommended. The key stays in this tab's memory and is gone when you reload or close the tab.",
+      "remember": "Remember on this device with a PIN",
+      "rememberHint": "The key is encrypted in this browser under your six-digit PIN. Five wrong PINs delete it, and it locks after 30 minutes without use. The PIN stops other people who use this browser; it does not protect against someone who copies your browser profile or runs code in this page. The spending limit at your provider is the real safety net."
+    },
+    "pin": {
+      "label": "Six-digit PIN",
+      "repeat": "Repeat the PIN",
+      "format": "Use exactly six digits.",
+      "common": "This PIN is too easy to guess. Choose another.",
+      "mismatch": "The two PINs are not the same."
+    },
+    "use": "Check and use key",
+    "checking": "Checking the key with the provider…",
+    "rejected": "The key was not accepted. {reason}",
+    "failed": "The key could not be checked. {reason}",
+    "unavailable": "This browser cannot keep the key on the device. It is used for this tab only.",
+    "active": "Key in use: {masked} ({provider})",
+    "remembered": "Remembered on this device under your PIN.",
+    "forget": "Forget key in this tab",
+    "remove": "Remove remembered key",
+    "balance": "Gateway balance: {amount}",
+    "limit": "Credit limit of this key: {amount}, {remaining} left.",
+    "limitReset": "It resets {reset}.",
+    "resets": {
+      "daily": "every day",
+      "weekly": "every week",
+      "monthly": "every month"
+    },
+    "noLimit": "This key has no credit limit. Set one on the key at openrouter.ai/keys, or create a new key with a limit.",
+    "expires": "The key expires on {date}.",
+    "noExpiry": "OpenRouter reports no expiry date for this key. Create a key with an expiration, or delete this one when you are done.",
+    "model": {
+      "label": "Model",
+      "custom": "Another model",
+      "customLabel": "Model id",
+      "customPlaceholder": "creator/model",
+      "customInvalid": "Use the form creator/model, for example {example}.",
+      "customHint": "The model must support tool use. Its price is listed by your provider.",
+      "auto": "Picks a model for each message and bills that model's price.",
+      "price": "{input} input · {output} output per million tokens"
+    }
+  },
+  "notice": {
+    "title": "Set a spending limit and an expiry date on the key",
+    "lead": "The assistant keeps the key safe in your browser, but the limit that really protects you is the one at your provider. Set both when you create the key:",
+    "gateway": {
+      "limit": "Spending limit: in the Create key dialog of the AI Gateway API Keys page, turn on the budget option, enter a spending limit in dollars and choose a refresh period (daily, weekly, monthly or none). AI Gateway then rejects requests once the limit is exceeded. A budget is a soft cap: the request that crosses it still completes.",
+      "expiry": "Expiry date: Vercel's docs offer an expiry only when you create the key with the Vercel CLI or API, for example vercel ai-gateway api-keys create --name first-move --limit 10 --expiration 30d (7d, 30d, 60d, 90d or 1y). A key created in the dashboard never expires until you delete it, so delete it when you no longer need it and create a new one.",
+      "docs": "Vercel docs: API key budgets",
+      "docsUrl": "https://vercel.com/docs/ai-gateway/observability-and-spend/budgets#api-key-budgets"
+    },
+    "openrouter": {
+      "limit": "Credit limit: when you create the key at openrouter.ai/keys, choose a credit limit and, if you like, a daily, weekly or monthly reset. Once the key has used its limit, OpenRouter rejects its requests. OpenRouter recommends a limit on every key.",
+      "expiry": "Expiry date: give the key an expiration date when you create it. The expiration of an existing key cannot be changed, so set it then.",
+      "docs": "OpenRouter docs: API keys and limits",
+      "docsUrl": "https://openrouter.ai/docs/api-reference/authentication",
+      "docsExpiry": "OpenRouter docs: key expiration",
+      "docsExpiryUrl": "https://openrouter.ai/docs/guides/overview/auth/security-settings#act-on-keys"
+    },
+    "ack": "I have set a spending limit and an expiry date on this key, or I will delete the key when I no longer need it.",
+    "required": "Confirm this before the key is used."
+  },
+  "unlock": {
+    "title": "Unlock your remembered key",
+    "lead": "Your {provider} key ending in {last4} is remembered on this device.",
+    "pin": "PIN",
+    "unlock": "Unlock",
+    "unlocking": "Unlocking…",
+    "wrong": "Wrong PIN. {remaining} attempts left before the key is deleted.",
+    "wiped": "Too many wrong PINs: the remembered key has been deleted. Paste the key again.",
+    "missing": "No remembered key was found. Paste the key again.",
+    "unavailable": "This browser cannot open the remembered key.",
+    "other": "Use another key",
+    "remove": "Remove remembered key"
+  },
+  "chat": {
+    "noProject": "No project is open. You can still ask about First Move's method.",
+    "empty": "Ask about your open project or about how First Move calculates. For example:",
+    "examples": {
+      "result": "Why does my Quick Check show this result?",
+      "length": "How is the network length estimated?",
+      "missing": "What is still missing in my project?"
+    },
+    "label": "Message to the assistant",
+    "placeholder": "Ask a question…",
+    "send": "Send",
+    "stop": "Stop",
+    "retry": "Try again",
+    "you": "You",
+    "aiLabel": "AI-generated",
+    "working": "Working…",
+    "tools": {
+      "get_project": "Read the open project",
+      "search_docs": "Searched the docs",
+      "explain": "Looked up how First Move calculates",
+      "propose_values": "Prepared values for your review"
+    },
+    "clear": "New conversation",
+    "via": "{model} via {provider}",
+    "privacy": "Your messages, and the project data the assistant reads, go to {provider} under your key. AI answers can be wrong: check them against the results."
+  },
+  "review": {
+    "title": "Proposed values",
+    "lead": "Nothing changes until you apply. Applied values are marked as AI-proposed until you edit them.",
+    "current": "Now",
+    "proposed": "Proposed",
+    "empty": "empty",
+    "yes": "Yes",
+    "no": "No",
+    "newEntries": "{count} new entries",
+    "invalid": "Cannot be applied",
+    "unclear": "Unclear, not proposed",
+    "conflict": "Different values were found; none was picked",
+    "apply": "Apply selected",
+    "dismiss": "Dismiss",
+    "applied": "Applied: {count}.",
+    "appliedNone": "Nothing could be applied.",
+    "dismissed": "Dismissed.",
+    "noProject": "Open the project again to apply these values."
+  },
+  "errors": {
+    "key": "The provider did not accept the key. Check that it is complete and still active.",
+    "credits": "The key's spending limit or your account's credits are used up. Raise the limit or add credits at your provider, then try again.",
+    "forbidden": "The key may not use this model. Check its settings at your provider, or choose another model.",
+    "model": "The provider does not offer this model, or not without collecting data, which the assistant does not allow. Choose another model.",
+    "rate": "Too many requests right now. Wait a minute, then try again.",
+    "provider": "The model provider had a problem. Try again in a moment.",
+    "network": "The provider could not be reached, or it took too long. Check your connection, then try again.",
+    "aborted": "Stopped.",
+    "unknown": "Something went wrong. Try again."
   }
 }

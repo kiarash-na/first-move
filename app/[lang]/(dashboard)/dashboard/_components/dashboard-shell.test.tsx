@@ -33,5 +33,7 @@ describe("DashboardShell", () => {
     await waitFor(() => expect(tab.store.getState().phase).toBe("ready"))
     expect(start).toHaveBeenCalledTimes(1)
     expect(await screen.findByRole("status")).toHaveTextContent(shell.saveStatus.noProject)
+    // The AI assistant stays dark while `AI_FEATURES_LIVE` is off (`dashboard-shell.live.test.tsx` covers on).
+    expect(document.querySelector("[data-slot='agent-launcher']")).toBeNull()
   })
 })

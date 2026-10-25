@@ -69,6 +69,13 @@ describe("CSP split for the in-app assistant (D-48)", () => {
     const dashboard = (await headersFor("/en/dashboard")).get("Content-Security-Policy") ?? ""
     expect(strip(dashboard)).toBe(strip(site))
   })
+
+  it("allows exactly the hosts the assistant and the AI Plan Score call (A05)", async () => {
+    // The assistant's providers (lib/assistant/openrouter/client.ts, lib/assistant/gateway/client.ts).
+    expect([...AI_PROVIDER_ORIGINS]).toEqual(["https://openrouter.ai", "https://ai-gateway.vercel.sh"])
+    const csp = (await headersFor("/en/dashboard")).get("Content-Security-Policy") ?? ""
+    expect(csp).not.toContain("anthropic.com")
+  })
 })
 
 describe("next config", () => {

@@ -17,7 +17,10 @@ const CORE_LIB = /^lib\/(project|quick-check|business-plan|storage|store|i18n|da
 const AI_LAYER = /^(lib\/(ai|assistant|mail-agent)|workflows|emails)(\/|\.|$)/
 
 /** Imports the boundary allows on purpose (the touch points of PLAN-AGENT-00). */
-const ALLOWED: readonly [from: RegExp, to: RegExp][] = []
+const ALLOWED: readonly [from: RegExp, to: RegExp][] = [
+  // The assistant's launcher in the dashboard shell (A05). It is tiny; the panel and the AI SDK load on its first click.
+  [/^app\/\[lang\]\/\(dashboard\)\/dashboard\/_components\/dashboard-shell\.tsx$/, /^app\/\[lang\]\/\(dashboard\)\/dashboard\/_agent\/agent-launcher$/],
+]
 
 function files(dir: string): string[] {
   return readdirSync(path.join(ROOT, dir)).flatMap((name) => {

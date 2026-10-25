@@ -65,6 +65,30 @@
       },
       "ack": "Ich habe verstanden, was gesendet wird und an wen, und möchte meinen Schlüssel dafür verwenden.",
       "ackNote": "Diese Bestätigung gilt nur für diesen Tab."
+    },
+    "notice": {
+      "title": "Legen Sie für den Schlüssel ein Ausgabenlimit und ein Ablaufdatum fest",
+      "lead": "First Move hält den Schlüssel nur im Arbeitsspeicher dieses Tabs, doch die Grenze, die Sie wirklich schützt, ist die bei Vercel. Legen Sie beides beim Erstellen des Schlüssels fest:",
+      "limit": "Ausgabenlimit: Schalten Sie im Dialog „Create key“ auf der Seite „API Keys“ des AI Gateway die Budget-Option ein, geben Sie ein Ausgabenlimit in Dollar ein und wählen Sie einen Zeitraum, nach dem es zurückgesetzt wird (täglich, wöchentlich, monatlich oder nie). Ist das Limit überschritten, lehnt das AI Gateway weitere Anfragen ab. Ein Budget ist eine weiche Grenze: Die Anfrage, die es überschreitet, wird noch ausgeführt.",
+      "expiry": "Ablaufdatum: Laut der Vercel-Dokumentation lässt sich ein Ablaufdatum nur festlegen, wenn Sie den Schlüssel mit der Vercel CLI oder der API erstellen, zum Beispiel vercel ai-gateway api-keys create --name first-move --limit 10 --expiration 30d (7d, 30d, 60d, 90d oder 1y). Ein im Dashboard erstellter Schlüssel läuft nie ab, bis Sie ihn löschen. Löschen Sie ihn also, wenn Sie ihn nicht mehr brauchen, und erstellen Sie einen neuen.",
+      "docs": "Vercel-Dokumentation: Budgets für API-Schlüssel",
+      "docsUrl": "https://vercel.com/docs/ai-gateway/observability-and-spend/budgets#api-key-budgets",
+      "ack": "Ich habe für diesen Schlüssel ein Ausgabenlimit und ein Ablaufdatum festgelegt, oder ich lösche den Schlüssel, sobald ich ihn nicht mehr brauche.",
+      "required": "Bestätigen Sie das, bevor der Schlüssel verwendet wird."
+    },
+    "unlock": {
+      "title": "Gemerkten Schlüssel entsperren",
+      "lead": "Ihr Schlüssel für {provider} mit der Endung {last4} ist auf diesem Gerät unter Ihrer PIN gemerkt (das haben Sie im KI-Assistenten gewählt). Entsperren Sie ihn oder fügen Sie einen Schlüssel ein: Ein hier eingefügter Schlüssel bleibt nur im Arbeitsspeicher dieses Tabs.",
+      "pin": "PIN",
+      "unlock": "Entsperren",
+      "unlocking": "Wird entsperrt …",
+      "wrong": "Falsche PIN. Noch {remaining} Versuche, dann wird der Schlüssel gelöscht.",
+      "wiped": "Zu viele falsche PINs: Der gemerkte Schlüssel wurde gelöscht. Fügen Sie den Schlüssel erneut ein.",
+      "missing": "Es wurde kein gemerkter Schlüssel gefunden. Fügen Sie den Schlüssel erneut ein.",
+      "unavailable": "Dieser Browser kann den gemerkten Schlüssel nicht öffnen.",
+      "other": "Stattdessen einen Schlüssel einfügen",
+      "remove": "Gemerkten Schlüssel entfernen",
+      "provider": "Vercel AI Gateway"
     }
   },
   "usage": {

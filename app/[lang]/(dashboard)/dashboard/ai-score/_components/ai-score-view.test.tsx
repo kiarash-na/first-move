@@ -29,6 +29,7 @@ function show(options: FakeClientOptions = {}, project = example()) {
 }
 
 async function connect() {
+  await userEvent.click(screen.getByRole("checkbox", { name: copy.setup.notice.ack }))
   await userEvent.type(screen.getByLabelText(copy.setup.key.label), KEY)
   await userEvent.click(screen.getByRole("button", { name: copy.setup.key.use }))
   await userEvent.click(screen.getByRole("checkbox", { name: copy.setup.data.ack }))
