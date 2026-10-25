@@ -10,6 +10,7 @@ import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js'
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js'
 import type { RefObject } from 'react'
 import type { ToolId } from './Header'
+import { anchorsChanged, screenAnchor, type AnchorPosition, type SceneAnchor } from './sceneAnchors'
 
 type FlowKind = 'cool' | 'hot'
 
@@ -62,6 +63,7 @@ const CHAPTER_POSES: Record<string, ChapterPose> = {
   'reality-check': { camera: [-1, 2, 1], district: [-5.8, -0.6, 0], target: [-1.2, 0.4, 0], scale: 0.96, rotation: -0.36 },
   scalability: { camera: [0, 10, 4], district: [1.2, -1.4, 0], target: [0.8, 0, 0], scale: 0.64, rotation: 0.12 },
   implementation: { camera: [-2, 5, -2], district: [-5.2, -1, 0], target: [-1, 0.2, 0], scale: 0.8, rotation: 0.34 },
+  'ai-score': { camera: [1, 9, 2], district: [-5.6, -1.3, 0], target: [-1.2, 0.3, 0], scale: 0.7, rotation: 0.22 },
   methodology: { camera: [0, 5, 0], district: [0, -1, 0], target: [0, 0, 0], scale: 0.8, rotation: -0.1 },
   'get-started': { camera: [-1, 2, 0], district: [-3.4, -0.4, 0], target: [0, 0.3, 0], scale: 1.08, rotation: -0.1 },
 }
@@ -558,6 +560,8 @@ export interface DistrictEvents {
   onFailed: () => void
   /** The GPU dropped the context: go back to the fallback. */
   onContextLost: () => void
+  /** Where the `anchors` are on screen; called only when one moved or switched on or off. */
+  onAnchors?: (positions: AnchorPosition[]) => void
 }
 
 /** Renders the district into `container` and returns the cleanup. */
@@ -565,6 +569,7 @@ export function mountDistrictWorld(
   container: HTMLDivElement,
   { directionRef, emphasisRef, chapterRef, demandRef, sourceRef }: DistrictInputs,
   events: DistrictEvents,
+  anchors: readonly SceneAnchor[] = [],
 ): () => void {
   let renderer: THREE.WebGLRenderer
   try {
@@ -622,9 +627,12 @@ export function mountDistrictWorld(
   const desiredDistrict = new THREE.Vector3()
   const desiredLook = new THREE.Vector3()
   const packetTransform = new THREE.Object3D()
+  const anchorPoint = new THREE.Vector3()
+  let previousAnchors: AnchorPosition[] | null = null
   let baseScale = 1
   let isMobile = false
   let chapterProgress = 0
+  let scrolled = 0
   let width = 1
   let height = 1
   let firstFrame = true
@@ -685,6 +693,7 @@ export function mountDistrictWorld(
   }
   const onPointerLeave = () => pointerTarget.set(0, 0)
   const onScroll = () => {
+    scrolled = window.scrollY
     const activeSection = document.getElementById(chapterRef.current)
     if (!activeSection) return
     const bounds = activeSection.getBoundingClientRect()
@@ -747,7 +756,7 @@ export function mountDistrictWorld(
     const activeChapter = chapterRef.current
     const chapterKind = activeChapter.startsWith('quick')
       ? 'cool'
-      : activeChapter.startsWith('business') || activeChapter === 'reality-check' || activeChapter === 'implementation'
+      : activeChapter.startsWith('business') || activeChapter === 'reality-check' || activeChapter === 'implementation' || activeChapter === 'ai-score'
         ? 'hot'
         : null
     const selectedKind = activeChapter === 'overview' && emphasisRef.current
@@ -770,7 +779,8 @@ export function mountDistrictWorld(
     })
 
     updateLayer(district.layers.scan, activeChapter === 'quick-inputs' || activeChapter === 'quick-assessment' ? 1 : 0, delta)
-    updateLayer(district.layers.business, activeChapter === 'business-use-cases' || activeChapter === 'business-canvas' || activeChapter === 'implementation' ? 1 : 0, delta)
+    // The business layer, six nodes around one core, is also the AI chapter's "experts at one table".
+    updateLayer(district.layers.business, activeChapter === 'business-use-cases' || activeChapter === 'business-canvas' || activeChapter === 'implementation' || activeChapter === 'ai-score' ? 1 : 0, delta)
     updateLayer(district.layers.risk, activeChapter === 'reality-check' ? 1 : 0, delta)
     updateLayer(district.layers.replication, activeChapter === 'scalability' ? 1 : 0, delta)
 
@@ -804,6 +814,20 @@ export function mountDistrictWorld(
     if (!reducedMotion.matches || firstFrame || motionChanged || pointer.distanceToSquared(pointerTarget) > 0.00001) {
       if (bloom.enabled) composer.render()
       else renderer.render(scene, camera)
+    }
+
+    // After the render the world matrices are current: project the anchors as they were drawn.
+    if (anchors.length > 0 && events.onAnchors) {
+      const view = { width, height, scrolled, overview: activeChapter === 'overview' }
+      const positions = anchors.map((anchor) => {
+        anchorPoint.set(anchor.position[0], anchor.position[1], anchor.position[2])
+        district.group.localToWorld(anchorPoint).project(camera)
+        return screenAnchor(anchor.id, anchorPoint, view)
+      })
+      if (anchorsChanged(previousAnchors, positions)) {
+        previousAnchors = positions
+        events.onAnchors(positions)
+      }
     }
     previousDirection = directionRef.current
     previousEmphasis = emphasisRef.current

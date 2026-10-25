@@ -53,11 +53,35 @@
 .main-nav a {
   padding-right: 11px;
   padding-left: 11px;
+  white-space: nowrap;
 }
 
 .main-nav a::after {
   right: 11px;
   left: 11px;
+}
+
+/* Five entries between the brand and the actions: tighter from 1199 px down to the collapse at 899 px. */
+@media (max-width: 1199px) {
+  .main-nav {
+    gap: 0;
+  }
+
+  .main-nav a {
+    padding-right: 7px;
+    padding-left: 7px;
+    letter-spacing: 0.02em;
+  }
+
+  .main-nav a::after {
+    right: 7px;
+    left: 7px;
+  }
+
+  .header-cta {
+    gap: 12px;
+    padding: 0 14px;
+  }
 }
 
 .mobile-menu-toggle,
@@ -328,6 +352,24 @@
 
 .tool-chapter--hot .tool-chapter__title {
   color: var(--accent-hot);
+}
+
+/* The AI Plan Score belongs to the Business Plan, not a third tool: a quieter row in paper. */
+.tool-chapter--ai {
+  min-height: 118px;
+}
+
+.tool-chapter--ai::before {
+  background: oklch(0.95 0.012 200 / 0.045);
+}
+
+.tool-chapter--ai .tool-chapter__index {
+  color: var(--accent-hot);
+}
+
+.tool-chapter--ai .tool-chapter__title {
+  color: var(--text-primary);
+  font-size: clamp(1.6rem, 2.4vw, 2.5rem);
 }
 
 .tool-chapter__subtitle {
@@ -797,28 +839,40 @@
   border-top: 1px solid var(--line-subtle);
 }
 
+/* State buttons, not links: an index on the right and a 2 px bar on the selected one, no arrow. */
 .use-case-switcher button {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
   min-height: 56px;
-  padding: 0;
+  gap: 16px;
+  padding: 0 0 0 14px;
   border: 0;
   border-bottom: 1px solid var(--line-subtle);
+  box-shadow: inset 2px 0 0 transparent;
   background: transparent;
   color: var(--text-secondary);
   text-align: left;
   cursor: pointer;
-  transition: color 180ms ease-out, transform 180ms ease-out;
+  transition: color 180ms ease-out, box-shadow 180ms ease-out, padding-left 180ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .use-case-switcher button:hover {
-  transform: translateX(4px);
+  color: var(--text-primary);
+  padding-left: 18px;
 }
 
 .use-case-switcher button[aria-pressed='true'] {
+  box-shadow: inset 2px 0 0 var(--accent-hot);
   color: var(--accent-hot);
+}
+
+.use-case-switcher__index {
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
 }
 
 .use-case-focus {
@@ -905,19 +959,41 @@
   to { stroke-dashoffset: -92; }
 }
 
+/* The model's input categories: one labelled line under the diagram, separated by middle dots. */
 .business-inputs {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px 20px;
-  margin-top: 20px;
-}
-
-.business-inputs span {
-  padding-bottom: 4px;
+  align-items: baseline;
+  gap: 18px;
+  margin-top: 14px;
+  padding: 14px 0;
   border-bottom: 1px solid var(--line-subtle);
-  color: var(--text-secondary);
   font-family: var(--font-mono);
   font-size: 12px;
+  line-height: 1.6;
+}
+
+.business-inputs__label {
+  flex: 0 0 auto;
+  color: var(--accent-hot);
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
+}
+
+.business-inputs ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 6px;
+  margin: 0;
+  padding: 0;
+  color: var(--text-secondary);
+  list-style: none;
+}
+
+/* Trailing separators, so a wrapped line never starts with a dot. */
+.business-inputs li:not(:last-child)::after {
+  margin-left: 6px;
+  color: var(--text-muted);
+  content: '·';
 }
 
 /* Business Model Canvas */
@@ -931,7 +1007,7 @@
 }
 
 .business-canvas article {
-  min-height: 175px;
+  min-height: 150px;
   padding: 28px;
   border-right: 1px solid var(--control-border);
   border-bottom: 1px solid var(--control-border);
@@ -1110,7 +1186,8 @@
 .replication-ledger {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  margin-top: 34vh;
+  /* Room for the scene's replication layer between copy and ledger, without a hole. */
+  margin-top: 22vh;
   border-top: 1px solid var(--line-subtle);
   background: oklch(0.135 0.014 230 / 0.76);
 }
@@ -1156,7 +1233,7 @@
 
 .implementation-path li {
   display: grid;
-  grid-template-columns: 44px 1fr 24px;
+  grid-template-columns: 44px 1fr;
   align-items: center;
   gap: 18px;
   min-height: 116px;
@@ -1183,10 +1260,6 @@
   color: var(--text-secondary);
   font-size: 14px;
   line-height: 1.5;
-}
-
-.implementation-path svg {
-  color: var(--text-muted);
 }
 
 /* Methodology */
@@ -1467,15 +1540,9 @@
   margin: 0 auto;
 }
 
+/* The closing title is a `.section-title`: one display scale for every chapter. */
 .get-started-section h2 {
   max-width: 850px;
-  margin: 0;
-  font-size: clamp(4rem, 8vw, 6rem);
-  font-stretch: 74%;
-  font-weight: 600;
-  letter-spacing: -0.06em;
-  line-height: 0.88;
-  text-transform: uppercase;
 }
 
 .get-started-section__inner > p:not(.section-kicker) {
@@ -1948,7 +2015,8 @@
   }
 
   .business-inputs {
-    gap: 9px 14px;
+    flex-direction: column;
+    gap: 6px;
   }
 
   .business-canvas {
@@ -2006,10 +2074,6 @@
     padding: 18px 14px;
   }
 
-  .implementation-path li > svg {
-    display: none;
-  }
-
   .methodology-section {
     padding: 96px 18px;
   }
@@ -2047,10 +2111,6 @@
 
   .get-started-section::before {
     background: linear-gradient(180deg, oklch(0.135 0.014 230 / 0.9), oklch(0.135 0.014 230 / 0.5), oklch(0.135 0.014 230 / 0.88));
-  }
-
-  .get-started-section h2 {
-    font-size: clamp(3.4rem, 15vw, 5rem);
   }
 
   .get-started-section__inner > p:not(.section-kicker) {

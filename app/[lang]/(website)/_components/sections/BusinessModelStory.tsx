@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { ArrowDownRight, ArrowUpRight, ChevronDown, ShieldAlert } from 'lucide-react'
+import { ArrowDownRight, ChevronDown, ShieldAlert } from 'lucide-react'
 import { RichText } from '../rich-text'
 import type { Landing } from '../types'
 
@@ -89,9 +89,10 @@ export function BusinessModelStory({ t }: { t: Landing }) {
             <h2 className="section-title" id="use-cases-title"><RichText text={useCases.title} /></h2>
             <p className="section-body">{activeUseCase.description}</p>
             <div className="use-case-switcher" role="group" aria-label={useCases.groupLabel}>
-              {useCaseIds.map((item) => (
+              {useCaseIds.map((item, index) => (
                 <button key={item.id} type="button" aria-pressed={useCase === item.id} onClick={() => setUseCase(item.id)}>
-                  <span>{useCases.items[item.key].shortTitle}</span><ArrowUpRight size={18} strokeWidth={1.5} aria-hidden="true" />
+                  <span>{useCases.items[item.key].shortTitle}</span>
+                  <span className="use-case-switcher__index" aria-hidden="true">0{index + 1}</span>
                 </button>
               ))}
             </div>
@@ -102,8 +103,11 @@ export function BusinessModelStory({ t }: { t: Landing }) {
           </div>
           <div className="use-case-visual" data-reveal>
             <UseCaseDiagram selected={useCase} label={`${activeUseCase.title} ${useCases.diagramSuffix}`} copy={useCases} />
-            <div className="business-inputs" aria-label={useCases.inputsLabel}>
-              {useCases.inputs.map((input) => <span key={input}>{input}</span>)}
+            <div className="business-inputs">
+              <span className="business-inputs__label">{useCases.inputsShort}</span>
+              <ul aria-label={useCases.inputsLabel}>
+                {useCases.inputs.map((input) => <li key={input}>{input}</li>)}
+              </ul>
             </div>
           </div>
         </div>
@@ -167,8 +171,8 @@ export function BusinessModelStory({ t }: { t: Landing }) {
               )
             })}
             <div className="deal-breaker">
-              <span>{reality.dealBreakerLabel}</span>
-              <p>{reality.dealBreaker}</p>
+              <span>{reality.ruleLabel}</span>
+              <p>{reality.rule}</p>
             </div>
           </div>
         </div>
@@ -195,14 +199,13 @@ export function BusinessModelStory({ t }: { t: Landing }) {
             <p className="section-kicker section-kicker--hot">{implementation.kicker}</p>
             <h2 className="section-title" id="implementation-title"><RichText text={implementation.title} /></h2>
             <p className="section-body">{implementation.body}</p>
-            <a className="text-link story-link" href="#methodology">{implementation.link}<ArrowDownRight size={17} strokeWidth={1.7} aria-hidden="true" /></a>
+            <a className="text-link story-link" href="#ai-score">{implementation.link}<ArrowDownRight size={17} strokeWidth={1.7} aria-hidden="true" /></a>
           </div>
           <ol className="implementation-path" data-reveal>
             {implementation.steps.map((step, index) => (
               <li key={step.title}>
                 <span>{String(index + 1).padStart(2, '0')}</span>
                 <div><h3>{step.title}</h3><p>{step.text}</p></div>
-                <ArrowUpRight size={21} strokeWidth={1.4} aria-hidden="true" />
               </li>
             ))}
           </ol>

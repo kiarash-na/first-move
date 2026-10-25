@@ -1,0 +1,23 @@
+/*
+ * The switch between the two landings (LandingSwitch.tsx, PLAN-LANDING-MOBILE-00). Below 1024 px
+ * the mobile version shows; from 1024 px the desktop wrapper has no box of its own
+ * (`display: contents`), so the desktop tree lays out exactly as it did without the wrapper.
+ * Keep the breakpoint equal to DESKTOP_MIN_WIDTH in LandingSwitch.tsx.
+ */
+.landing-desktop {
+  display: none;
+}
+
+.landing-mobile {
+  display: block;
+}
+
+@media (min-width: 1024px) {
+  .landing-desktop {
+    display: contents;
+  }
+
+  .landing-mobile {
+    display: none;
+  }
+}

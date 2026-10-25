@@ -18,7 +18,7 @@ describe('landing Home', () => {
   it('renders every chapter from the dictionary and links Get Started to the dashboard', () => {
     render(<Home t={en} lang="en" language={common.language} />)
     expect(screen.getByRole('heading', { level: 1, name: en.hero.titleLabel })).toBeInTheDocument()
-    for (const id of ['overview', 'promise', 'quick-inputs', 'business-use-cases', 'methodology', 'get-started']) {
+    for (const id of ['overview', 'promise', 'quick-inputs', 'business-use-cases', 'ai-score', 'methodology', 'get-started']) {
       expect(document.getElementById(id), id).not.toBeNull()
     }
     for (const link of screen.getAllByRole('link', { name: new RegExp(en.closing.getStarted.primary, 'i') })) {
