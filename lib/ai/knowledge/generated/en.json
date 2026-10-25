@@ -228,7 +228,7 @@
     "lang": "en",
     "title": "AI assistant · Choose a provider and a key",
     "url": "/en/docs/assistant#choose-a-provider-and-a-key",
-    "text": "The assistant works with two providers:\n- Anthropic: create an API key in your Anthropic account and paste it.\n- OpenRouter: paste an API key, or choose Connect OpenRouter to sign in there and create a key for First Move without copying it. OpenRouter also offers the Auto Router, which picks a model for each question.\nThe assistant tests the key with the provider before you use it. Requests are billed to your account with the provider, at its prices; First Move itself charges nothing.",
+    "text": "The assistant works with two providers:\n- OpenRouter: paste an API key, or choose Connect OpenRouter to sign in there and create a key for First Move without copying it. OpenRouter also offers the Auto Router, which picks a model for each question.\n- Vercel AI Gateway: create an API key in your Vercel account and paste it. The same key also runs the AI Plan Score.\nThe assistant tests the key with the provider before you use it. Requests are billed to your account with the provider, at its prices; First Move itself charges nothing.",
     "source": "content/docs/en/assistant.mdx#choose-a-provider-and-a-key"
   },
   {
@@ -236,7 +236,7 @@
     "lang": "en",
     "title": "AI assistant · Pick a model",
     "url": "/en/docs/assistant#pick-a-model",
-    "text": "Chips show the price level of each model, from $ to $$$$, and its kind: Fast, Balanced, Best, Frontier or Auto. A tooltip gives the prices, with the date they were checked. The defaults are Claude Sonnet 5.5 for Anthropic and the Auto Router for OpenRouter. You can also enter the id of another model; it must support tool use.",
+    "text": "Chips show the price level of each model, from $ to $$$$, and its kind: Fast, Balanced, Best, Frontier or Auto. A tooltip gives the prices, with the date they were checked. The defaults are the Auto Router for OpenRouter and Claude Sonnet 5.5 on the Vercel AI Gateway. You can also enter the id of another model; it must support tool use.",
     "source": "content/docs/en/assistant.mdx#pick-a-model"
   },
   {

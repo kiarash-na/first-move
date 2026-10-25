@@ -268,7 +268,7 @@
     "lang": "de",
     "title": "KI-Assistent · Anbieter und Schlüssel wählen",
     "url": "/de/docs/assistant#anbieter-und-schlussel-wahlen",
-    "text": "Der Assistent arbeitet mit zwei Anbietern:\n- Anthropic: Erstellen Sie in Ihrem Anthropic-Konto einen API-Schlüssel und fügen Sie ihn ein.\n- OpenRouter: Fügen Sie einen API-Schlüssel ein, oder wählen Sie OpenRouter verbinden, um sich dort anzumelden und einen Schlüssel für First Move zu erstellen, ohne ihn zu kopieren. OpenRouter bietet außerdem den Auto Router, der für jede Frage ein Modell auswählt.\nDer Assistent testet den Schlüssel beim Anbieter, bevor Sie ihn nutzen. Anfragen werden Ihrem Konto beim Anbieter zu dessen Preisen in Rechnung gestellt; First Move selbst verlangt nichts.",
+    "text": "Der Assistent arbeitet mit zwei Anbietern:\n- OpenRouter: Fügen Sie einen API-Schlüssel ein, oder wählen Sie OpenRouter verbinden, um sich dort anzumelden und einen Schlüssel für First Move zu erstellen, ohne ihn zu kopieren. OpenRouter bietet außerdem den Auto Router, der für jede Frage ein Modell auswählt.\n- Vercel AI Gateway: Erstellen Sie in Ihrem Vercel-Konto einen API-Schlüssel und fügen Sie ihn ein. Derselbe Schlüssel läuft auch für den KI-Plan-Score.\nDer Assistent testet den Schlüssel beim Anbieter, bevor Sie ihn nutzen. Anfragen werden Ihrem Konto beim Anbieter zu dessen Preisen in Rechnung gestellt; First Move selbst verlangt nichts.",
     "source": "content/docs/de/assistant.mdx#anbieter-und-schlussel-wahlen"
   },
   {
@@ -276,7 +276,7 @@
     "lang": "de",
     "title": "KI-Assistent · Ein Modell wählen",
     "url": "/de/docs/assistant#ein-modell-wahlen",
-    "text": "Chips zeigen die Preisstufe jedes Modells, von $ bis $$$$, und seine Art: Schnell, Ausgewogen, Beste, Frontier oder Auto. Ein Tooltip nennt die Preise, mit dem Datum, an dem sie geprüft wurden. Voreingestellt sind Claude Sonnet 5.5 für Anthropic und der Auto Router für OpenRouter. Sie können auch die ID eines anderen Modells eingeben; es muss die Nutzung von Tools unterstützen.",
+    "text": "Chips zeigen die Preisstufe jedes Modells, von $ bis $$$$, und seine Art: Schnell, Ausgewogen, Beste, Frontier oder Auto. Ein Tooltip nennt die Preise, mit dem Datum, an dem sie geprüft wurden. Voreingestellt sind der Auto Router für OpenRouter und Claude Sonnet 5.5 auf dem Vercel AI Gateway. Sie können auch die ID eines anderen Modells eingeben; es muss die Nutzung von Tools unterstützen.",
     "source": "content/docs/de/assistant.mdx#ein-modell-wahlen"
   },
   {
